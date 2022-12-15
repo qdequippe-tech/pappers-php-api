@@ -663,8 +663,8 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[] $requestBody
-     * @param array                                            $queryParameters {
+     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[]|null $requestBody
+     * @param array                                                 $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
@@ -680,7 +680,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseNotFoundException
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseServiceUnavailableException
      */
-    public function surveillanceEntreprise(array $requestBody, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceEntreprise(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new \Qdequippe\Pappers\Api\Endpoint\SurveillanceEntreprise($requestBody, $queryParameters), $fetch);
     }
@@ -688,8 +688,8 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param array[] $requestBody
-     * @param array   $queryParameters {
+     * @param array[]|null $requestBody
+     * @param array        $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance
@@ -705,7 +705,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteNotFoundException
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteServiceUnavailableException
      */
-    public function surveillanceNotificationsDelete(array $requestBody, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceNotificationsDelete(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new \Qdequippe\Pappers\Api\Endpoint\SurveillanceNotificationsDelete($requestBody, $queryParameters), $fetch);
     }
@@ -713,8 +713,8 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste. Les informations à renseigner sont différentes selon le type de personne à ajouter (morale ou physique).
      *
-     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[] $requestBody
-     * @param array                                            $queryParameters {
+     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[]|null $requestBody
+     * @param array                                                 $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
@@ -730,7 +730,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantNotFoundException
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantServiceUnavailableException
      */
-    public function surveillanceDirigeant(array $requestBody, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceDirigeant(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new \Qdequippe\Pappers\Api\Endpoint\SurveillanceDirigeant($requestBody, $queryParameters), $fetch);
     }
@@ -738,8 +738,8 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param \Qdequippe\Pappers\Api\Model\ListeInformationsPostBody $requestBody
-     * @param array                                                  $queryParameters {
+     * @param \Qdequippe\Pappers\Api\Model\ListeInformationsPostBody|null $requestBody
+     * @param array                                                       $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
@@ -754,7 +754,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsNotFoundException
      * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsServiceUnavailableException
      */
-    public function surveillanceListeInformations(Model\ListeInformationsPostBody $requestBody, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceListeInformations(?Model\ListeInformationsPostBody $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new \Qdequippe\Pappers\Api\Endpoint\SurveillanceListeInformations($requestBody, $queryParameters), $fetch);
     }

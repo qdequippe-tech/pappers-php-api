@@ -18,20 +18,20 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe en pleine propriété, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePleinePropriete;
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe en nue propriété, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageNuePropriete;
 
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe en pleine propriété, en pourcentage des parts totales.
      */
-    public function getPourcentagePleinePropriete(): float
+    public function getPourcentagePleinePropriete(): ?float
     {
         return $this->pourcentagePleinePropriete;
     }
@@ -39,7 +39,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe en pleine propriété, en pourcentage des parts totales.
      */
-    public function setPourcentagePleinePropriete(float $pourcentagePleinePropriete): self
+    public function setPourcentagePleinePropriete(?float $pourcentagePleinePropriete): self
     {
         $this->initialized['pourcentagePleinePropriete'] = true;
         $this->pourcentagePleinePropriete = $pourcentagePleinePropriete;
@@ -50,7 +50,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe en nue propriété, en pourcentage des parts totales.
      */
-    public function getPourcentageNuePropriete(): float
+    public function getPourcentageNuePropriete(): ?float
     {
         return $this->pourcentageNuePropriete;
     }
@@ -58,7 +58,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe en nue propriété, en pourcentage des parts totales.
      */
-    public function setPourcentageNuePropriete(float $pourcentageNuePropriete): self
+    public function setPourcentageNuePropriete(?float $pourcentageNuePropriete): self
     {
         $this->initialized['pourcentageNuePropriete'] = true;
         $this->pourcentageNuePropriete = $pourcentageNuePropriete;

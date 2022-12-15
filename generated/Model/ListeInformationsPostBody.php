@@ -18,22 +18,22 @@ class ListeInformationsPostBody extends \ArrayObject
     /**
      * Tableau d'identifiant de notifications.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $notifications;
     /**
      * Information à rajouter sur les notifications.
      *
-     * @var string
+     * @var string|null
      */
     protected $informations;
 
     /**
      * Tableau d'identifiant de notifications.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getNotifications(): array
+    public function getNotifications(): ?array
     {
         return $this->notifications;
     }
@@ -41,9 +41,9 @@ class ListeInformationsPostBody extends \ArrayObject
     /**
      * Tableau d'identifiant de notifications.
      *
-     * @param string[] $notifications
+     * @param string[]|null $notifications
      */
-    public function setNotifications(array $notifications): self
+    public function setNotifications(?array $notifications): self
     {
         $this->initialized['notifications'] = true;
         $this->notifications = $notifications;
@@ -54,7 +54,7 @@ class ListeInformationsPostBody extends \ArrayObject
     /**
      * Information à rajouter sur les notifications.
      */
-    public function getInformations(): string
+    public function getInformations(): ?string
     {
         return $this->informations;
     }
@@ -62,7 +62,7 @@ class ListeInformationsPostBody extends \ArrayObject
     /**
      * Information à rajouter sur les notifications.
      */
-    public function setInformations(string $informations): self
+    public function setInformations(?string $informations): self
     {
         $this->initialized['informations'] = true;
         $this->informations = $informations;

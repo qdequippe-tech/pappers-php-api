@@ -18,28 +18,28 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Liste des documents qui correspondent à la recherche.
      *
-     * @var RechercheDocumentsGetResponse200ResultatsItem[]
+     * @var RechercheDocumentsGetResponse200ResultatsItem[]|null
      */
     protected $resultats;
     /**
      * Nombre de documents qui correspondent à la recherche.
      *
-     * @var int
+     * @var int|null
      */
     protected $total;
     /**
      * Page actuelle.
      *
-     * @var int
+     * @var int|null
      */
     protected $page;
 
     /**
      * Liste des documents qui correspondent à la recherche.
      *
-     * @return RechercheDocumentsGetResponse200ResultatsItem[]
+     * @return RechercheDocumentsGetResponse200ResultatsItem[]|null
      */
-    public function getResultats(): array
+    public function getResultats(): ?array
     {
         return $this->resultats;
     }
@@ -47,9 +47,9 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Liste des documents qui correspondent à la recherche.
      *
-     * @param RechercheDocumentsGetResponse200ResultatsItem[] $resultats
+     * @param RechercheDocumentsGetResponse200ResultatsItem[]|null $resultats
      */
-    public function setResultats(array $resultats): self
+    public function setResultats(?array $resultats): self
     {
         $this->initialized['resultats'] = true;
         $this->resultats = $resultats;
@@ -60,7 +60,7 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Nombre de documents qui correspondent à la recherche.
      */
-    public function getTotal(): int
+    public function getTotal(): ?int
     {
         return $this->total;
     }
@@ -68,7 +68,7 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Nombre de documents qui correspondent à la recherche.
      */
-    public function setTotal(int $total): self
+    public function setTotal(?int $total): self
     {
         $this->initialized['total'] = true;
         $this->total = $total;
@@ -79,7 +79,7 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Page actuelle.
      */
-    public function getPage(): int
+    public function getPage(): ?int
     {
         return $this->page;
     }
@@ -87,7 +87,7 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Page actuelle.
      */
-    public function setPage(int $page): self
+    public function setPage(?int $page): self
     {
         $this->initialized['page'] = true;
         $this->page = $page;

@@ -18,114 +18,114 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Date de dépôt des comptes, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDepot;
     /**
      * Code du greffe de dépôt des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $codeGreffe;
     /**
      * Numéro de dépôt des comptes au greffe.
      *
-     * @var string
+     * @var string|null
      */
     protected $numeroDepot;
     /**
      * Numéro de gestion au greffe.
      *
-     * @var string
+     * @var string|null
      */
     protected $numeroGestion;
     /**
      * Date de cloture des comptes, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateCloture;
     /**
      * Date de cloture des comptes n-1, lorsque présents, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateClotureN1;
     /**
      * Durée de l'exercice déposé, en mois.
      *
-     * @var int
+     * @var int|null
      */
     protected $dureeExerciceN;
     /**
      * Durée de l'exercice précédent, lorsque présent, en mois.
      *
-     * @var int
+     * @var int|null
      */
     protected $dureeExerciceN1;
     /**
      * Type de comptes (C = complets ; S = simplifiés ; K = consolidés ; CS = mélange complets/simplifiés ; B = banques ; A = assurances).
      *
-     * @var string
+     * @var string|null
      */
     protected $typeComptes;
     /**
      * Libellé du type de comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelleTypeComptes;
     /**
      * Devise des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $devise;
     /**
      * Devise d'origine en cas de conversion.
      *
-     * @var string
+     * @var string|null
      */
     protected $deviseOrigine;
     /**
      * Confidentialité totale des comptes.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $confidentialite;
     /**
      * Confidentialité partielle des comptes (seul le compte de résultat est confidentiel, le reste des comptes sont disponibles).
      *
-     * @var bool
+     * @var bool|null
      */
     protected $confidentialiteCompteDeResultat;
     /**
      * Description du type de saisie des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $typeSaisie;
     /**
      * Informations complémentaires sur le traitement des comptes.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $informationsTraitement;
     /**
      * Liste des sections de liasses fiscales.
      *
-     * @var EntrepriseComptesGetResponse200ItemItemSectionsItem[]
+     * @var EntrepriseComptesGetResponse200ItemItemSectionsItem[]|null
      */
     protected $sections;
     /**
-     * @var Ratios
+     * @var Ratios|null
      */
     protected $ratios;
 
     /**
      * Date de dépôt des comptes, au format AAAA-MM-JJ.
      */
-    public function getDateDepot(): string
+    public function getDateDepot(): ?string
     {
         return $this->dateDepot;
     }
@@ -133,7 +133,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Date de dépôt des comptes, au format AAAA-MM-JJ.
      */
-    public function setDateDepot(string $dateDepot): self
+    public function setDateDepot(?string $dateDepot): self
     {
         $this->initialized['dateDepot'] = true;
         $this->dateDepot = $dateDepot;
@@ -144,7 +144,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Code du greffe de dépôt des comptes.
      */
-    public function getCodeGreffe(): string
+    public function getCodeGreffe(): ?string
     {
         return $this->codeGreffe;
     }
@@ -152,7 +152,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Code du greffe de dépôt des comptes.
      */
-    public function setCodeGreffe(string $codeGreffe): self
+    public function setCodeGreffe(?string $codeGreffe): self
     {
         $this->initialized['codeGreffe'] = true;
         $this->codeGreffe = $codeGreffe;
@@ -163,7 +163,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Numéro de dépôt des comptes au greffe.
      */
-    public function getNumeroDepot(): string
+    public function getNumeroDepot(): ?string
     {
         return $this->numeroDepot;
     }
@@ -171,7 +171,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Numéro de dépôt des comptes au greffe.
      */
-    public function setNumeroDepot(string $numeroDepot): self
+    public function setNumeroDepot(?string $numeroDepot): self
     {
         $this->initialized['numeroDepot'] = true;
         $this->numeroDepot = $numeroDepot;
@@ -182,7 +182,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Numéro de gestion au greffe.
      */
-    public function getNumeroGestion(): string
+    public function getNumeroGestion(): ?string
     {
         return $this->numeroGestion;
     }
@@ -190,7 +190,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Numéro de gestion au greffe.
      */
-    public function setNumeroGestion(string $numeroGestion): self
+    public function setNumeroGestion(?string $numeroGestion): self
     {
         $this->initialized['numeroGestion'] = true;
         $this->numeroGestion = $numeroGestion;
@@ -201,7 +201,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Date de cloture des comptes, au format AAAA-MM-JJ.
      */
-    public function getDateCloture(): string
+    public function getDateCloture(): ?string
     {
         return $this->dateCloture;
     }
@@ -209,7 +209,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Date de cloture des comptes, au format AAAA-MM-JJ.
      */
-    public function setDateCloture(string $dateCloture): self
+    public function setDateCloture(?string $dateCloture): self
     {
         $this->initialized['dateCloture'] = true;
         $this->dateCloture = $dateCloture;
@@ -220,7 +220,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Date de cloture des comptes n-1, lorsque présents, au format AAAA-MM-JJ.
      */
-    public function getDateClotureN1(): string
+    public function getDateClotureN1(): ?string
     {
         return $this->dateClotureN1;
     }
@@ -228,7 +228,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Date de cloture des comptes n-1, lorsque présents, au format AAAA-MM-JJ.
      */
-    public function setDateClotureN1(string $dateClotureN1): self
+    public function setDateClotureN1(?string $dateClotureN1): self
     {
         $this->initialized['dateClotureN1'] = true;
         $this->dateClotureN1 = $dateClotureN1;
@@ -239,7 +239,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Durée de l'exercice déposé, en mois.
      */
-    public function getDureeExerciceN(): int
+    public function getDureeExerciceN(): ?int
     {
         return $this->dureeExerciceN;
     }
@@ -247,7 +247,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Durée de l'exercice déposé, en mois.
      */
-    public function setDureeExerciceN(int $dureeExerciceN): self
+    public function setDureeExerciceN(?int $dureeExerciceN): self
     {
         $this->initialized['dureeExerciceN'] = true;
         $this->dureeExerciceN = $dureeExerciceN;
@@ -258,7 +258,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Durée de l'exercice précédent, lorsque présent, en mois.
      */
-    public function getDureeExerciceN1(): int
+    public function getDureeExerciceN1(): ?int
     {
         return $this->dureeExerciceN1;
     }
@@ -266,7 +266,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Durée de l'exercice précédent, lorsque présent, en mois.
      */
-    public function setDureeExerciceN1(int $dureeExerciceN1): self
+    public function setDureeExerciceN1(?int $dureeExerciceN1): self
     {
         $this->initialized['dureeExerciceN1'] = true;
         $this->dureeExerciceN1 = $dureeExerciceN1;
@@ -277,7 +277,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Type de comptes (C = complets ; S = simplifiés ; K = consolidés ; CS = mélange complets/simplifiés ; B = banques ; A = assurances).
      */
-    public function getTypeComptes(): string
+    public function getTypeComptes(): ?string
     {
         return $this->typeComptes;
     }
@@ -285,7 +285,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Type de comptes (C = complets ; S = simplifiés ; K = consolidés ; CS = mélange complets/simplifiés ; B = banques ; A = assurances).
      */
-    public function setTypeComptes(string $typeComptes): self
+    public function setTypeComptes(?string $typeComptes): self
     {
         $this->initialized['typeComptes'] = true;
         $this->typeComptes = $typeComptes;
@@ -296,7 +296,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Libellé du type de comptes.
      */
-    public function getLibelleTypeComptes(): string
+    public function getLibelleTypeComptes(): ?string
     {
         return $this->libelleTypeComptes;
     }
@@ -304,7 +304,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Libellé du type de comptes.
      */
-    public function setLibelleTypeComptes(string $libelleTypeComptes): self
+    public function setLibelleTypeComptes(?string $libelleTypeComptes): self
     {
         $this->initialized['libelleTypeComptes'] = true;
         $this->libelleTypeComptes = $libelleTypeComptes;
@@ -315,7 +315,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Devise des comptes.
      */
-    public function getDevise(): string
+    public function getDevise(): ?string
     {
         return $this->devise;
     }
@@ -323,7 +323,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Devise des comptes.
      */
-    public function setDevise(string $devise): self
+    public function setDevise(?string $devise): self
     {
         $this->initialized['devise'] = true;
         $this->devise = $devise;
@@ -334,7 +334,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Devise d'origine en cas de conversion.
      */
-    public function getDeviseOrigine(): string
+    public function getDeviseOrigine(): ?string
     {
         return $this->deviseOrigine;
     }
@@ -342,7 +342,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Devise d'origine en cas de conversion.
      */
-    public function setDeviseOrigine(string $deviseOrigine): self
+    public function setDeviseOrigine(?string $deviseOrigine): self
     {
         $this->initialized['deviseOrigine'] = true;
         $this->deviseOrigine = $deviseOrigine;
@@ -353,7 +353,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Confidentialité totale des comptes.
      */
-    public function getConfidentialite(): bool
+    public function getConfidentialite(): ?bool
     {
         return $this->confidentialite;
     }
@@ -361,7 +361,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Confidentialité totale des comptes.
      */
-    public function setConfidentialite(bool $confidentialite): self
+    public function setConfidentialite(?bool $confidentialite): self
     {
         $this->initialized['confidentialite'] = true;
         $this->confidentialite = $confidentialite;
@@ -372,7 +372,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Confidentialité partielle des comptes (seul le compte de résultat est confidentiel, le reste des comptes sont disponibles).
      */
-    public function getConfidentialiteCompteDeResultat(): bool
+    public function getConfidentialiteCompteDeResultat(): ?bool
     {
         return $this->confidentialiteCompteDeResultat;
     }
@@ -380,7 +380,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Confidentialité partielle des comptes (seul le compte de résultat est confidentiel, le reste des comptes sont disponibles).
      */
-    public function setConfidentialiteCompteDeResultat(bool $confidentialiteCompteDeResultat): self
+    public function setConfidentialiteCompteDeResultat(?bool $confidentialiteCompteDeResultat): self
     {
         $this->initialized['confidentialiteCompteDeResultat'] = true;
         $this->confidentialiteCompteDeResultat = $confidentialiteCompteDeResultat;
@@ -391,7 +391,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Description du type de saisie des comptes.
      */
-    public function getTypeSaisie(): string
+    public function getTypeSaisie(): ?string
     {
         return $this->typeSaisie;
     }
@@ -399,7 +399,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Description du type de saisie des comptes.
      */
-    public function setTypeSaisie(string $typeSaisie): self
+    public function setTypeSaisie(?string $typeSaisie): self
     {
         $this->initialized['typeSaisie'] = true;
         $this->typeSaisie = $typeSaisie;
@@ -410,9 +410,9 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Informations complémentaires sur le traitement des comptes.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getInformationsTraitement(): array
+    public function getInformationsTraitement(): ?array
     {
         return $this->informationsTraitement;
     }
@@ -420,9 +420,9 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Informations complémentaires sur le traitement des comptes.
      *
-     * @param string[] $informationsTraitement
+     * @param string[]|null $informationsTraitement
      */
-    public function setInformationsTraitement(array $informationsTraitement): self
+    public function setInformationsTraitement(?array $informationsTraitement): self
     {
         $this->initialized['informationsTraitement'] = true;
         $this->informationsTraitement = $informationsTraitement;
@@ -433,9 +433,9 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Liste des sections de liasses fiscales.
      *
-     * @return EntrepriseComptesGetResponse200ItemItemSectionsItem[]
+     * @return EntrepriseComptesGetResponse200ItemItemSectionsItem[]|null
      */
-    public function getSections(): array
+    public function getSections(): ?array
     {
         return $this->sections;
     }
@@ -443,9 +443,9 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Liste des sections de liasses fiscales.
      *
-     * @param EntrepriseComptesGetResponse200ItemItemSectionsItem[] $sections
+     * @param EntrepriseComptesGetResponse200ItemItemSectionsItem[]|null $sections
      */
-    public function setSections(array $sections): self
+    public function setSections(?array $sections): self
     {
         $this->initialized['sections'] = true;
         $this->sections = $sections;
@@ -453,12 +453,12 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
         return $this;
     }
 
-    public function getRatios(): Ratios
+    public function getRatios(): ?Ratios
     {
         return $this->ratios;
     }
 
-    public function setRatios(Ratios $ratios): self
+    public function setRatios(?Ratios $ratios): self
     {
         $this->initialized['ratios'] = true;
         $this->ratios = $ratios;

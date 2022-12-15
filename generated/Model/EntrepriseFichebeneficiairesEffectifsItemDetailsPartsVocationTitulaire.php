@@ -18,32 +18,32 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageDirectes;
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageIndirectes;
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes|null
      */
     protected $detailsDirectes;
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes|null
      */
     protected $detailsIndirectes;
 
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe, en pourcentage des parts totales.
      */
-    public function getPourcentageDirectes(): float
+    public function getPourcentageDirectes(): ?float
     {
         return $this->pourcentageDirectes;
     }
@@ -51,7 +51,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe, en pourcentage des parts totales.
      */
-    public function setPourcentageDirectes(float $pourcentageDirectes): self
+    public function setPourcentageDirectes(?float $pourcentageDirectes): self
     {
         $this->initialized['pourcentageDirectes'] = true;
         $this->pourcentageDirectes = $pourcentageDirectes;
@@ -62,7 +62,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte, en pourcentage des parts totales.
      */
-    public function getPourcentageIndirectes(): float
+    public function getPourcentageIndirectes(): ?float
     {
         return $this->pourcentageIndirectes;
     }
@@ -70,7 +70,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte, en pourcentage des parts totales.
      */
-    public function setPourcentageIndirectes(float $pourcentageIndirectes): self
+    public function setPourcentageIndirectes(?float $pourcentageIndirectes): self
     {
         $this->initialized['pourcentageIndirectes'] = true;
         $this->pourcentageIndirectes = $pourcentageIndirectes;
@@ -81,7 +81,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe.
      */
-    public function getDetailsDirectes(): EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes
+    public function getDetailsDirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes
     {
         return $this->detailsDirectes;
     }
@@ -89,7 +89,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe.
      */
-    public function setDetailsDirectes(EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes $detailsDirectes): self
+    public function setDetailsDirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes $detailsDirectes): self
     {
         $this->initialized['detailsDirectes'] = true;
         $this->detailsDirectes = $detailsDirectes;
@@ -100,7 +100,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte.
      */
-    public function getDetailsIndirectes(): EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes
+    public function getDetailsIndirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes
     {
         return $this->detailsIndirectes;
     }
@@ -108,7 +108,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte.
      */
-    public function setDetailsIndirectes(EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes $detailsIndirectes): self
+    public function setDetailsIndirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes $detailsIndirectes): self
     {
         $this->initialized['detailsIndirectes'] = true;
         $this->detailsIndirectes = $detailsIndirectes;

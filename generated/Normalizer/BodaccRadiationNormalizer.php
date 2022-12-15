@@ -50,29 +50,41 @@ class BodaccRadiationNormalizer implements DenormalizerInterface, NormalizerInte
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('numero_parution', $data)) {
+        if (\array_key_exists('numero_parution', $data) && null !== $data['numero_parution']) {
             $object->setNumeroParution($data['numero_parution']);
             unset($data['numero_parution']);
+        } elseif (\array_key_exists('numero_parution', $data) && null === $data['numero_parution']) {
+            $object->setNumeroParution(null);
         }
-        if (\array_key_exists('date', $data)) {
+        if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
+        } elseif (\array_key_exists('date', $data) && null === $data['date']) {
+            $object->setDate(null);
         }
-        if (\array_key_exists('numero_annonce', $data)) {
+        if (\array_key_exists('numero_annonce', $data) && null !== $data['numero_annonce']) {
             $object->setNumeroAnnonce($data['numero_annonce']);
             unset($data['numero_annonce']);
+        } elseif (\array_key_exists('numero_annonce', $data) && null === $data['numero_annonce']) {
+            $object->setNumeroAnnonce(null);
         }
-        if (\array_key_exists('bodacc', $data)) {
+        if (\array_key_exists('bodacc', $data) && null !== $data['bodacc']) {
             $object->setBodacc($data['bodacc']);
             unset($data['bodacc']);
+        } elseif (\array_key_exists('bodacc', $data) && null === $data['bodacc']) {
+            $object->setBodacc(null);
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('greffe', $data)) {
+        if (\array_key_exists('greffe', $data) && null !== $data['greffe']) {
             $object->setGreffe($data['greffe']);
             unset($data['greffe']);
+        } elseif (\array_key_exists('greffe', $data) && null === $data['greffe']) {
+            $object->setGreffe(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

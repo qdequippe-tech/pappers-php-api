@@ -18,74 +18,74 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Code postal du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Code insee du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $codeInsee;
     /**
      * Ville du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
     /**
      * Numéro de voie du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $numeroVoie;
     /**
      * Indice de répétition du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $indiceRepetition;
     /**
      * Type de voie du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $typeVoie;
     /**
      * Libellé de la voie du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelleVoie;
     /**
      * Complément de l'adresse du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $complementAdresse;
     /**
      * Complément de distribution du siege social.
      *
-     * @var string
+     * @var string|null
      */
     protected $distribution;
     /**
      * Adresse complète du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne1;
     /**
      * Renseignement supplémentaire à l'adresse du siège social.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne2;
 
     /**
      * Code postal du siège social.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -93,7 +93,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Code postal du siège social.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -104,7 +104,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Code insee du siège social.
      */
-    public function getCodeInsee(): string
+    public function getCodeInsee(): ?string
     {
         return $this->codeInsee;
     }
@@ -112,7 +112,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Code insee du siège social.
      */
-    public function setCodeInsee(string $codeInsee): self
+    public function setCodeInsee(?string $codeInsee): self
     {
         $this->initialized['codeInsee'] = true;
         $this->codeInsee = $codeInsee;
@@ -123,7 +123,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Ville du siège social.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -131,7 +131,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Ville du siège social.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;
@@ -142,7 +142,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Numéro de voie du siège social.
      */
-    public function getNumeroVoie(): string
+    public function getNumeroVoie(): ?string
     {
         return $this->numeroVoie;
     }
@@ -150,7 +150,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Numéro de voie du siège social.
      */
-    public function setNumeroVoie(string $numeroVoie): self
+    public function setNumeroVoie(?string $numeroVoie): self
     {
         $this->initialized['numeroVoie'] = true;
         $this->numeroVoie = $numeroVoie;
@@ -161,7 +161,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Indice de répétition du siège social.
      */
-    public function getIndiceRepetition(): string
+    public function getIndiceRepetition(): ?string
     {
         return $this->indiceRepetition;
     }
@@ -169,7 +169,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Indice de répétition du siège social.
      */
-    public function setIndiceRepetition(string $indiceRepetition): self
+    public function setIndiceRepetition(?string $indiceRepetition): self
     {
         $this->initialized['indiceRepetition'] = true;
         $this->indiceRepetition = $indiceRepetition;
@@ -180,7 +180,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Type de voie du siège social.
      */
-    public function getTypeVoie(): string
+    public function getTypeVoie(): ?string
     {
         return $this->typeVoie;
     }
@@ -188,7 +188,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Type de voie du siège social.
      */
-    public function setTypeVoie(string $typeVoie): self
+    public function setTypeVoie(?string $typeVoie): self
     {
         $this->initialized['typeVoie'] = true;
         $this->typeVoie = $typeVoie;
@@ -199,7 +199,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Libellé de la voie du siège social.
      */
-    public function getLibelleVoie(): string
+    public function getLibelleVoie(): ?string
     {
         return $this->libelleVoie;
     }
@@ -207,7 +207,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Libellé de la voie du siège social.
      */
-    public function setLibelleVoie(string $libelleVoie): self
+    public function setLibelleVoie(?string $libelleVoie): self
     {
         $this->initialized['libelleVoie'] = true;
         $this->libelleVoie = $libelleVoie;
@@ -218,7 +218,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Complément de l'adresse du siège social.
      */
-    public function getComplementAdresse(): string
+    public function getComplementAdresse(): ?string
     {
         return $this->complementAdresse;
     }
@@ -226,7 +226,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Complément de l'adresse du siège social.
      */
-    public function setComplementAdresse(string $complementAdresse): self
+    public function setComplementAdresse(?string $complementAdresse): self
     {
         $this->initialized['complementAdresse'] = true;
         $this->complementAdresse = $complementAdresse;
@@ -237,7 +237,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Complément de distribution du siege social.
      */
-    public function getDistribution(): string
+    public function getDistribution(): ?string
     {
         return $this->distribution;
     }
@@ -245,7 +245,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Complément de distribution du siege social.
      */
-    public function setDistribution(string $distribution): self
+    public function setDistribution(?string $distribution): self
     {
         $this->initialized['distribution'] = true;
         $this->distribution = $distribution;
@@ -256,7 +256,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Adresse complète du siège social.
      */
-    public function getAdresseLigne1(): string
+    public function getAdresseLigne1(): ?string
     {
         return $this->adresseLigne1;
     }
@@ -264,7 +264,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Adresse complète du siège social.
      */
-    public function setAdresseLigne1(string $adresseLigne1): self
+    public function setAdresseLigne1(?string $adresseLigne1): self
     {
         $this->initialized['adresseLigne1'] = true;
         $this->adresseLigne1 = $adresseLigne1;
@@ -275,7 +275,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Renseignement supplémentaire à l'adresse du siège social.
      */
-    public function getAdresseLigne2(): string
+    public function getAdresseLigne2(): ?string
     {
         return $this->adresseLigne2;
     }
@@ -283,7 +283,7 @@ class AssociationAdresseSiege extends \ArrayObject
     /**
      * Renseignement supplémentaire à l'adresse du siège social.
      */
-    public function setAdresseLigne2(string $adresseLigne2): self
+    public function setAdresseLigne2(?string $adresseLigne2): self
     {
         $this->initialized['adresseLigne2'] = true;
         $this->adresseLigne2 = $adresseLigne2;

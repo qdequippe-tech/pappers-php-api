@@ -18,199 +18,199 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Le numéro SIREN de l'entreprise au format xxxxxxxxx.
      *
-     * @var string
+     * @var string|null
      */
     protected $siren;
     /**
      * Le numéro SIREN de l'entreprise au format xxx xxx xxx.
      *
-     * @var string
+     * @var string|null
      */
     protected $sirenFormate;
     /**
      * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomEntreprise;
     /**
      * Vrai en cas de personne morale, faux en cas de personne physique.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $personneMorale;
     /**
      * Dénomination de l'entreprise si personne morale.
      *
-     * @var string
+     * @var string|null
      */
     protected $denomination;
     /**
      * Nom si personne physique.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Prénom si personne physique.
      *
-     * @var string
+     * @var string|null
      */
     protected $prenom;
     /**
      * Sexe si personne physique. F pour féminin, M pour masculin.
      *
-     * @var string
+     * @var string|null
      */
     protected $sexe;
     /**
      * Code NAF de l'entreprise.
      *
-     * @var string
+     * @var string|null
      */
     protected $codeNaf;
     /**
      * Libellé du code NAF de l'entreprise.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelleCodeNaf;
     /**
      * Domaine d'activité de l'entreprise.
      *
-     * @var string
+     * @var string|null
      */
     protected $domaineActivite;
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @var EntrepriseBaseConventionsCollectivesItem[]
+     * @var EntrepriseBaseConventionsCollectivesItem[]|null
      */
     protected $conventionsCollectives;
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateCreation;
     /**
      * Date de création de l'entreprise au format JJ/MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateCreationFormate;
     /**
      * Si vrai, l'entreprise n'est plus en activité. Sinon, elle est toujours en activité.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $entrepriseCessee;
     /**
      * Date de cessation de l'entreprise au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateCessation;
     /**
      * Si vrai, l'entreprise a au moins un employé.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $entrepriseEmployeuse;
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *
-     * @var string
+     * @var string|null
      */
     protected $categorieJuridique;
     /**
      * Forme juridique de l'entreprise.
      *
-     * @var string
+     * @var string|null
      */
     protected $formeJuridique;
     /**
      * Tranche d'effectif de l'entreprise.
      *
-     * @var string
+     * @var string|null
      */
     protected $effectif;
     /**
      * Effectif minimal de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $effectifMin;
     /**
      * Effectif maximal de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $effectifMax;
     /**
      * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
      *
-     * @var string
+     * @var string|null
      */
     protected $trancheEffectif;
     /**
      * Année de validité des variables effectif, effectif_min et effectif_max.
      *
-     * @var int
+     * @var int|null
      */
     protected $anneeEffectif;
     /**
      * Capital de l'entreprise.
      *
-     * @var float
+     * @var float|null
      */
     protected $capital;
     /**
      * Statut de l'entreprise au RCS.
      *
-     * @var string
+     * @var string|null
      */
     protected $statutRcs;
     /**
-     * @var EtablissementRecherche
+     * @var EtablissementRecherche|null
      */
     protected $siege;
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $villes;
     /**
      * Chiffre d'affaires de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $chiffreAffaires;
     /**
      * Résultat de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $resultat;
     /**
      * Effectif de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $effectifsFinances;
     /**
      * Année de correspondance des variables financières (chiffre_affaires, resultat, effectifs_finances).
      *
-     * @var string
+     * @var string|null
      */
     protected $anneeFinances;
 
     /**
      * Le numéro SIREN de l'entreprise au format xxxxxxxxx.
      */
-    public function getSiren(): string
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
@@ -218,7 +218,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Le numéro SIREN de l'entreprise au format xxxxxxxxx.
      */
-    public function setSiren(string $siren): self
+    public function setSiren(?string $siren): self
     {
         $this->initialized['siren'] = true;
         $this->siren = $siren;
@@ -229,7 +229,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Le numéro SIREN de l'entreprise au format xxx xxx xxx.
      */
-    public function getSirenFormate(): string
+    public function getSirenFormate(): ?string
     {
         return $this->sirenFormate;
     }
@@ -237,7 +237,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Le numéro SIREN de l'entreprise au format xxx xxx xxx.
      */
-    public function setSirenFormate(string $sirenFormate): self
+    public function setSirenFormate(?string $sirenFormate): self
     {
         $this->initialized['sirenFormate'] = true;
         $this->sirenFormate = $sirenFormate;
@@ -248,7 +248,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique.
      */
-    public function getNomEntreprise(): string
+    public function getNomEntreprise(): ?string
     {
         return $this->nomEntreprise;
     }
@@ -256,7 +256,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique.
      */
-    public function setNomEntreprise(string $nomEntreprise): self
+    public function setNomEntreprise(?string $nomEntreprise): self
     {
         $this->initialized['nomEntreprise'] = true;
         $this->nomEntreprise = $nomEntreprise;
@@ -267,7 +267,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Vrai en cas de personne morale, faux en cas de personne physique.
      */
-    public function getPersonneMorale(): bool
+    public function getPersonneMorale(): ?bool
     {
         return $this->personneMorale;
     }
@@ -275,7 +275,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Vrai en cas de personne morale, faux en cas de personne physique.
      */
-    public function setPersonneMorale(bool $personneMorale): self
+    public function setPersonneMorale(?bool $personneMorale): self
     {
         $this->initialized['personneMorale'] = true;
         $this->personneMorale = $personneMorale;
@@ -286,7 +286,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Dénomination de l'entreprise si personne morale.
      */
-    public function getDenomination(): string
+    public function getDenomination(): ?string
     {
         return $this->denomination;
     }
@@ -294,7 +294,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Dénomination de l'entreprise si personne morale.
      */
-    public function setDenomination(string $denomination): self
+    public function setDenomination(?string $denomination): self
     {
         $this->initialized['denomination'] = true;
         $this->denomination = $denomination;
@@ -305,7 +305,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Nom si personne physique.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -313,7 +313,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Nom si personne physique.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -324,7 +324,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Prénom si personne physique.
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -332,7 +332,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Prénom si personne physique.
      */
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
@@ -343,7 +343,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Sexe si personne physique. F pour féminin, M pour masculin.
      */
-    public function getSexe(): string
+    public function getSexe(): ?string
     {
         return $this->sexe;
     }
@@ -351,7 +351,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Sexe si personne physique. F pour féminin, M pour masculin.
      */
-    public function setSexe(string $sexe): self
+    public function setSexe(?string $sexe): self
     {
         $this->initialized['sexe'] = true;
         $this->sexe = $sexe;
@@ -362,7 +362,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Code NAF de l'entreprise.
      */
-    public function getCodeNaf(): string
+    public function getCodeNaf(): ?string
     {
         return $this->codeNaf;
     }
@@ -370,7 +370,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Code NAF de l'entreprise.
      */
-    public function setCodeNaf(string $codeNaf): self
+    public function setCodeNaf(?string $codeNaf): self
     {
         $this->initialized['codeNaf'] = true;
         $this->codeNaf = $codeNaf;
@@ -381,7 +381,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Libellé du code NAF de l'entreprise.
      */
-    public function getLibelleCodeNaf(): string
+    public function getLibelleCodeNaf(): ?string
     {
         return $this->libelleCodeNaf;
     }
@@ -389,7 +389,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Libellé du code NAF de l'entreprise.
      */
-    public function setLibelleCodeNaf(string $libelleCodeNaf): self
+    public function setLibelleCodeNaf(?string $libelleCodeNaf): self
     {
         $this->initialized['libelleCodeNaf'] = true;
         $this->libelleCodeNaf = $libelleCodeNaf;
@@ -400,7 +400,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Domaine d'activité de l'entreprise.
      */
-    public function getDomaineActivite(): string
+    public function getDomaineActivite(): ?string
     {
         return $this->domaineActivite;
     }
@@ -408,7 +408,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Domaine d'activité de l'entreprise.
      */
-    public function setDomaineActivite(string $domaineActivite): self
+    public function setDomaineActivite(?string $domaineActivite): self
     {
         $this->initialized['domaineActivite'] = true;
         $this->domaineActivite = $domaineActivite;
@@ -419,9 +419,9 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @return EntrepriseBaseConventionsCollectivesItem[]
+     * @return EntrepriseBaseConventionsCollectivesItem[]|null
      */
-    public function getConventionsCollectives(): array
+    public function getConventionsCollectives(): ?array
     {
         return $this->conventionsCollectives;
     }
@@ -429,9 +429,9 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @param EntrepriseBaseConventionsCollectivesItem[] $conventionsCollectives
+     * @param EntrepriseBaseConventionsCollectivesItem[]|null $conventionsCollectives
      */
-    public function setConventionsCollectives(array $conventionsCollectives): self
+    public function setConventionsCollectives(?array $conventionsCollectives): self
     {
         $this->initialized['conventionsCollectives'] = true;
         $this->conventionsCollectives = $conventionsCollectives;
@@ -442,7 +442,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      */
-    public function getDateCreation(): \DateTime
+    public function getDateCreation(): ?\DateTime
     {
         return $this->dateCreation;
     }
@@ -450,7 +450,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      */
-    public function setDateCreation(\DateTime $dateCreation): self
+    public function setDateCreation(?\DateTime $dateCreation): self
     {
         $this->initialized['dateCreation'] = true;
         $this->dateCreation = $dateCreation;
@@ -461,7 +461,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Date de création de l'entreprise au format JJ/MM/AAAA.
      */
-    public function getDateCreationFormate(): string
+    public function getDateCreationFormate(): ?string
     {
         return $this->dateCreationFormate;
     }
@@ -469,7 +469,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Date de création de l'entreprise au format JJ/MM/AAAA.
      */
-    public function setDateCreationFormate(string $dateCreationFormate): self
+    public function setDateCreationFormate(?string $dateCreationFormate): self
     {
         $this->initialized['dateCreationFormate'] = true;
         $this->dateCreationFormate = $dateCreationFormate;
@@ -480,7 +480,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Si vrai, l'entreprise n'est plus en activité. Sinon, elle est toujours en activité.
      */
-    public function getEntrepriseCessee(): bool
+    public function getEntrepriseCessee(): ?bool
     {
         return $this->entrepriseCessee;
     }
@@ -488,7 +488,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Si vrai, l'entreprise n'est plus en activité. Sinon, elle est toujours en activité.
      */
-    public function setEntrepriseCessee(bool $entrepriseCessee): self
+    public function setEntrepriseCessee(?bool $entrepriseCessee): self
     {
         $this->initialized['entrepriseCessee'] = true;
         $this->entrepriseCessee = $entrepriseCessee;
@@ -499,7 +499,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Date de cessation de l'entreprise au format AAAA-MM-JJ.
      */
-    public function getDateCessation(): string
+    public function getDateCessation(): ?string
     {
         return $this->dateCessation;
     }
@@ -507,7 +507,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Date de cessation de l'entreprise au format AAAA-MM-JJ.
      */
-    public function setDateCessation(string $dateCessation): self
+    public function setDateCessation(?string $dateCessation): self
     {
         $this->initialized['dateCessation'] = true;
         $this->dateCessation = $dateCessation;
@@ -518,7 +518,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Si vrai, l'entreprise a au moins un employé.
      */
-    public function getEntrepriseEmployeuse(): bool
+    public function getEntrepriseEmployeuse(): ?bool
     {
         return $this->entrepriseEmployeuse;
     }
@@ -526,7 +526,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Si vrai, l'entreprise a au moins un employé.
      */
-    public function setEntrepriseEmployeuse(bool $entrepriseEmployeuse): self
+    public function setEntrepriseEmployeuse(?bool $entrepriseEmployeuse): self
     {
         $this->initialized['entrepriseEmployeuse'] = true;
         $this->entrepriseEmployeuse = $entrepriseEmployeuse;
@@ -538,7 +538,7 @@ class EntrepriseRecherche extends \ArrayObject
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      */
-    public function getCategorieJuridique(): string
+    public function getCategorieJuridique(): ?string
     {
         return $this->categorieJuridique;
     }
@@ -547,7 +547,7 @@ class EntrepriseRecherche extends \ArrayObject
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      */
-    public function setCategorieJuridique(string $categorieJuridique): self
+    public function setCategorieJuridique(?string $categorieJuridique): self
     {
         $this->initialized['categorieJuridique'] = true;
         $this->categorieJuridique = $categorieJuridique;
@@ -558,7 +558,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Forme juridique de l'entreprise.
      */
-    public function getFormeJuridique(): string
+    public function getFormeJuridique(): ?string
     {
         return $this->formeJuridique;
     }
@@ -566,7 +566,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Forme juridique de l'entreprise.
      */
-    public function setFormeJuridique(string $formeJuridique): self
+    public function setFormeJuridique(?string $formeJuridique): self
     {
         $this->initialized['formeJuridique'] = true;
         $this->formeJuridique = $formeJuridique;
@@ -577,7 +577,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Tranche d'effectif de l'entreprise.
      */
-    public function getEffectif(): string
+    public function getEffectif(): ?string
     {
         return $this->effectif;
     }
@@ -585,7 +585,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Tranche d'effectif de l'entreprise.
      */
-    public function setEffectif(string $effectif): self
+    public function setEffectif(?string $effectif): self
     {
         $this->initialized['effectif'] = true;
         $this->effectif = $effectif;
@@ -596,7 +596,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Effectif minimal de l'entreprise.
      */
-    public function getEffectifMin(): int
+    public function getEffectifMin(): ?int
     {
         return $this->effectifMin;
     }
@@ -604,7 +604,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Effectif minimal de l'entreprise.
      */
-    public function setEffectifMin(int $effectifMin): self
+    public function setEffectifMin(?int $effectifMin): self
     {
         $this->initialized['effectifMin'] = true;
         $this->effectifMin = $effectifMin;
@@ -615,7 +615,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Effectif maximal de l'entreprise.
      */
-    public function getEffectifMax(): int
+    public function getEffectifMax(): ?int
     {
         return $this->effectifMax;
     }
@@ -623,7 +623,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Effectif maximal de l'entreprise.
      */
-    public function setEffectifMax(int $effectifMax): self
+    public function setEffectifMax(?int $effectifMax): self
     {
         $this->initialized['effectifMax'] = true;
         $this->effectifMax = $effectifMax;
@@ -634,7 +634,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
      */
-    public function getTrancheEffectif(): string
+    public function getTrancheEffectif(): ?string
     {
         return $this->trancheEffectif;
     }
@@ -642,7 +642,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
      */
-    public function setTrancheEffectif(string $trancheEffectif): self
+    public function setTrancheEffectif(?string $trancheEffectif): self
     {
         $this->initialized['trancheEffectif'] = true;
         $this->trancheEffectif = $trancheEffectif;
@@ -653,7 +653,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Année de validité des variables effectif, effectif_min et effectif_max.
      */
-    public function getAnneeEffectif(): int
+    public function getAnneeEffectif(): ?int
     {
         return $this->anneeEffectif;
     }
@@ -661,7 +661,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Année de validité des variables effectif, effectif_min et effectif_max.
      */
-    public function setAnneeEffectif(int $anneeEffectif): self
+    public function setAnneeEffectif(?int $anneeEffectif): self
     {
         $this->initialized['anneeEffectif'] = true;
         $this->anneeEffectif = $anneeEffectif;
@@ -672,7 +672,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Capital de l'entreprise.
      */
-    public function getCapital(): float
+    public function getCapital(): ?float
     {
         return $this->capital;
     }
@@ -680,7 +680,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Capital de l'entreprise.
      */
-    public function setCapital(float $capital): self
+    public function setCapital(?float $capital): self
     {
         $this->initialized['capital'] = true;
         $this->capital = $capital;
@@ -691,7 +691,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Statut de l'entreprise au RCS.
      */
-    public function getStatutRcs(): string
+    public function getStatutRcs(): ?string
     {
         return $this->statutRcs;
     }
@@ -699,7 +699,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Statut de l'entreprise au RCS.
      */
-    public function setStatutRcs(string $statutRcs): self
+    public function setStatutRcs(?string $statutRcs): self
     {
         $this->initialized['statutRcs'] = true;
         $this->statutRcs = $statutRcs;
@@ -707,12 +707,12 @@ class EntrepriseRecherche extends \ArrayObject
         return $this;
     }
 
-    public function getSiege(): EtablissementRecherche
+    public function getSiege(): ?EtablissementRecherche
     {
         return $this->siege;
     }
 
-    public function setSiege(EtablissementRecherche $siege): self
+    public function setSiege(?EtablissementRecherche $siege): self
     {
         $this->initialized['siege'] = true;
         $this->siege = $siege;
@@ -723,9 +723,9 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getVilles(): array
+    public function getVilles(): ?array
     {
         return $this->villes;
     }
@@ -733,9 +733,9 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @param string[] $villes
+     * @param string[]|null $villes
      */
-    public function setVilles(array $villes): self
+    public function setVilles(?array $villes): self
     {
         $this->initialized['villes'] = true;
         $this->villes = $villes;
@@ -746,7 +746,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Chiffre d'affaires de l'entreprise.
      */
-    public function getChiffreAffaires(): int
+    public function getChiffreAffaires(): ?int
     {
         return $this->chiffreAffaires;
     }
@@ -754,7 +754,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Chiffre d'affaires de l'entreprise.
      */
-    public function setChiffreAffaires(int $chiffreAffaires): self
+    public function setChiffreAffaires(?int $chiffreAffaires): self
     {
         $this->initialized['chiffreAffaires'] = true;
         $this->chiffreAffaires = $chiffreAffaires;
@@ -765,7 +765,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Résultat de l'entreprise.
      */
-    public function getResultat(): int
+    public function getResultat(): ?int
     {
         return $this->resultat;
     }
@@ -773,7 +773,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Résultat de l'entreprise.
      */
-    public function setResultat(int $resultat): self
+    public function setResultat(?int $resultat): self
     {
         $this->initialized['resultat'] = true;
         $this->resultat = $resultat;
@@ -784,7 +784,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Effectif de l'entreprise.
      */
-    public function getEffectifsFinances(): int
+    public function getEffectifsFinances(): ?int
     {
         return $this->effectifsFinances;
     }
@@ -792,7 +792,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Effectif de l'entreprise.
      */
-    public function setEffectifsFinances(int $effectifsFinances): self
+    public function setEffectifsFinances(?int $effectifsFinances): self
     {
         $this->initialized['effectifsFinances'] = true;
         $this->effectifsFinances = $effectifsFinances;
@@ -803,7 +803,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Année de correspondance des variables financières (chiffre_affaires, resultat, effectifs_finances).
      */
-    public function getAnneeFinances(): string
+    public function getAnneeFinances(): ?string
     {
         return $this->anneeFinances;
     }
@@ -811,7 +811,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Année de correspondance des variables financières (chiffre_affaires, resultat, effectifs_finances).
      */
-    public function setAnneeFinances(string $anneeFinances): self
+    public function setAnneeFinances(?string $anneeFinances): self
     {
         $this->initialized['anneeFinances'] = true;
         $this->anneeFinances = $anneeFinances;

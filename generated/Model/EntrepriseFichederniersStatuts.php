@@ -18,62 +18,62 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de dépôt des statuts, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDepot;
     /**
      * Date de dépôt formaté des statuts, au format JJ/MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDepotFormate;
     /**
      * Disponibilité des statuts.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $disponible;
     /**
      * Nom du fichier pdf des statuts.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomFichierPdf;
     /**
      * Token des statuts.
      *
-     * @var string
+     * @var string|null
      */
     protected $token;
     /**
      * Champ "type" du document contenant les statuts.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Champ "decision" du document contenant les statuts.
      *
-     * @var string
+     * @var string|null
      */
     protected $decision;
     /**
      * Date de publication des statuts, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateActe;
     /**
      * Date de publication des statuts, au format JJ/MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateActeFormate;
 
     /**
      * Date de dépôt des statuts, au format AAAA-MM-JJ.
      */
-    public function getDateDepot(): \DateTime
+    public function getDateDepot(): ?\DateTime
     {
         return $this->dateDepot;
     }
@@ -81,7 +81,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de dépôt des statuts, au format AAAA-MM-JJ.
      */
-    public function setDateDepot(\DateTime $dateDepot): self
+    public function setDateDepot(?\DateTime $dateDepot): self
     {
         $this->initialized['dateDepot'] = true;
         $this->dateDepot = $dateDepot;
@@ -92,7 +92,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de dépôt formaté des statuts, au format JJ/MM/AAAA.
      */
-    public function getDateDepotFormate(): string
+    public function getDateDepotFormate(): ?string
     {
         return $this->dateDepotFormate;
     }
@@ -100,7 +100,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de dépôt formaté des statuts, au format JJ/MM/AAAA.
      */
-    public function setDateDepotFormate(string $dateDepotFormate): self
+    public function setDateDepotFormate(?string $dateDepotFormate): self
     {
         $this->initialized['dateDepotFormate'] = true;
         $this->dateDepotFormate = $dateDepotFormate;
@@ -111,7 +111,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Disponibilité des statuts.
      */
-    public function getDisponible(): bool
+    public function getDisponible(): ?bool
     {
         return $this->disponible;
     }
@@ -119,7 +119,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Disponibilité des statuts.
      */
-    public function setDisponible(bool $disponible): self
+    public function setDisponible(?bool $disponible): self
     {
         $this->initialized['disponible'] = true;
         $this->disponible = $disponible;
@@ -130,7 +130,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Nom du fichier pdf des statuts.
      */
-    public function getNomFichierPdf(): string
+    public function getNomFichierPdf(): ?string
     {
         return $this->nomFichierPdf;
     }
@@ -138,7 +138,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Nom du fichier pdf des statuts.
      */
-    public function setNomFichierPdf(string $nomFichierPdf): self
+    public function setNomFichierPdf(?string $nomFichierPdf): self
     {
         $this->initialized['nomFichierPdf'] = true;
         $this->nomFichierPdf = $nomFichierPdf;
@@ -149,7 +149,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Token des statuts.
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -157,7 +157,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Token des statuts.
      */
-    public function setToken(string $token): self
+    public function setToken(?string $token): self
     {
         $this->initialized['token'] = true;
         $this->token = $token;
@@ -168,7 +168,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Champ "type" du document contenant les statuts.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -176,7 +176,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Champ "type" du document contenant les statuts.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -187,7 +187,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Champ "decision" du document contenant les statuts.
      */
-    public function getDecision(): string
+    public function getDecision(): ?string
     {
         return $this->decision;
     }
@@ -195,7 +195,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Champ "decision" du document contenant les statuts.
      */
-    public function setDecision(string $decision): self
+    public function setDecision(?string $decision): self
     {
         $this->initialized['decision'] = true;
         $this->decision = $decision;
@@ -206,7 +206,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de publication des statuts, au format AAAA-MM-JJ.
      */
-    public function getDateActe(): \DateTime
+    public function getDateActe(): ?\DateTime
     {
         return $this->dateActe;
     }
@@ -214,7 +214,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de publication des statuts, au format AAAA-MM-JJ.
      */
-    public function setDateActe(\DateTime $dateActe): self
+    public function setDateActe(?\DateTime $dateActe): self
     {
         $this->initialized['dateActe'] = true;
         $this->dateActe = $dateActe;
@@ -225,7 +225,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de publication des statuts, au format JJ/MM/AAAA.
      */
-    public function getDateActeFormate(): string
+    public function getDateActeFormate(): ?string
     {
         return $this->dateActeFormate;
     }
@@ -233,7 +233,7 @@ class EntrepriseFichederniersStatuts extends \ArrayObject
     /**
      * Date de publication des statuts, au format JJ/MM/AAAA.
      */
-    public function setDateActeFormate(string $dateActeFormate): self
+    public function setDateActeFormate(?string $dateActeFormate): self
     {
         $this->initialized['dateActeFormate'] = true;
         $this->dateActeFormate = $dateActeFormate;

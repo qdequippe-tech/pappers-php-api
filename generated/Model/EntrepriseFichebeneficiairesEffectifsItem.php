@@ -18,234 +18,234 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de génération des bénéficiaires effectifs, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateGreffe;
     /**
      * Type du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Nom du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Nom d'usage du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomUsage;
     /**
      * Prénom du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $prenom;
     /**
-     * @var string
+     * @var string|null
      */
     protected $pseudonyme;
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDeNaissanceFormatee;
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDeNaissanceCompleteFormatee;
     /**
      * Nationalité du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $nationalite;
     /**
      * Code de la nationalité du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $codeNationalite;
     /**
      * Ville de naissance du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $villeDeNaissance;
     /**
      * Pays de naissance du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $paysDeNaissance;
     /**
      * Code du pays de naissance du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePaysDeNaissance;
     /**
      * Première ligne de l'adresse du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne1;
     /**
      * Deuxième ligne de l'adresse du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne2;
     /**
      * Troisième ligne de l'adresse du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne3;
     /**
      * Code postal du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Ville du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
     /**
      * Pays du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $pays;
     /**
      * Code du pays du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePays;
     /**
      * Parts détenues par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageParts;
     /**
      * Parts détenues de façon directe par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePartsDirectes;
     /**
      * Parts détenues de façon indirecte par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePartsIndirectes;
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire par l'effet d'un acte juridique, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePartsVocationTitulaire;
     /**
      * Détails des parts détenues de façon directe par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes|null
      */
     protected $detailsPartsDirectes;
     /**
      * Détails des parts détenues de façon indirecte par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes|null
      */
     protected $detailsPartsIndirectes;
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire|null
      */
     protected $detailsPartsVocationTitulaire;
     /**
      * Droits de vote détenus par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageVotes;
     /**
      * Droits de vote détenus de façon directe par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageVotesDirects;
     /**
      * Droits de vote détenus de façon indirecte par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageVotesIndirect;
     /**
      * Détails des droits de vote détenus de façon directe par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects|null
      */
     protected $detailsVotesDirects;
     /**
      * Détails des droits de vote détenus de façon indirecte par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects|null
      */
     protected $detailsVotesIndirects;
     /**
      * Détails sur la société de gestion, le cas échéant.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion|null
      */
     protected $detailsSocieteDeGestion;
     /**
      * Vaut vrai pour les moyens de contrôle sur les organes d'administration, de gestion, de direction ou de surveillance de la personne morale autre que le pouvoir de nommer ou de révoquer la majorité des membres.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $detentionPouvoirDecisionAg;
     /**
      * Vaut vrai si le moyen de contrôle est le pouvoir de nommer ou de révoquer la majorité des membres des organes d'administration, de gestion, de direction ou de surveillance de la personne morale.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $detentionPouvoirNomMembreConseilAdministration;
     /**
      * Vaut vrai s'il existe d'autres moyens de contrôle.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $detentionAutresMoyensControle;
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif a été défini comme le représentant légal par défaut.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $beneficiaireRepresentantLegal;
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif est le représentant légal du placement collectif (cas où le placement collectif n'a pas délégué sa gestion à une société de gestion).
      *
-     * @var bool
+     * @var bool|null
      */
     protected $representantLegalPlacementSansGestionDelegation;
 
     /**
      * Date de génération des bénéficiaires effectifs, au format AAAA-MM-JJ.
      */
-    public function getDateGreffe(): \DateTime
+    public function getDateGreffe(): ?\DateTime
     {
         return $this->dateGreffe;
     }
@@ -253,7 +253,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de génération des bénéficiaires effectifs, au format AAAA-MM-JJ.
      */
-    public function setDateGreffe(\DateTime $dateGreffe): self
+    public function setDateGreffe(?\DateTime $dateGreffe): self
     {
         $this->initialized['dateGreffe'] = true;
         $this->dateGreffe = $dateGreffe;
@@ -264,7 +264,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Type du bénéficiaire effectif.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -272,7 +272,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Type du bénéficiaire effectif.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -283,7 +283,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Nom du bénéficiaire effectif.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -291,7 +291,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Nom du bénéficiaire effectif.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -302,7 +302,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Nom d'usage du bénéficiaire effectif.
      */
-    public function getNomUsage(): string
+    public function getNomUsage(): ?string
     {
         return $this->nomUsage;
     }
@@ -310,7 +310,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Nom d'usage du bénéficiaire effectif.
      */
-    public function setNomUsage(string $nomUsage): self
+    public function setNomUsage(?string $nomUsage): self
     {
         $this->initialized['nomUsage'] = true;
         $this->nomUsage = $nomUsage;
@@ -321,7 +321,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Prénom du bénéficiaire effectif.
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -329,7 +329,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Prénom du bénéficiaire effectif.
      */
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
@@ -337,12 +337,12 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
         return $this;
     }
 
-    public function getPseudonyme(): string
+    public function getPseudonyme(): ?string
     {
         return $this->pseudonyme;
     }
 
-    public function setPseudonyme(string $pseudonyme): self
+    public function setPseudonyme(?string $pseudonyme): self
     {
         $this->initialized['pseudonyme'] = true;
         $this->pseudonyme = $pseudonyme;
@@ -353,7 +353,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      */
-    public function getDateDeNaissanceFormatee(): string
+    public function getDateDeNaissanceFormatee(): ?string
     {
         return $this->dateDeNaissanceFormatee;
     }
@@ -361,7 +361,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      */
-    public function setDateDeNaissanceFormatee(string $dateDeNaissanceFormatee): self
+    public function setDateDeNaissanceFormatee(?string $dateDeNaissanceFormatee): self
     {
         $this->initialized['dateDeNaissanceFormatee'] = true;
         $this->dateDeNaissanceFormatee = $dateDeNaissanceFormatee;
@@ -372,7 +372,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      */
-    public function getDateDeNaissanceCompleteFormatee(): \DateTime
+    public function getDateDeNaissanceCompleteFormatee(): ?\DateTime
     {
         return $this->dateDeNaissanceCompleteFormatee;
     }
@@ -380,7 +380,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      */
-    public function setDateDeNaissanceCompleteFormatee(\DateTime $dateDeNaissanceCompleteFormatee): self
+    public function setDateDeNaissanceCompleteFormatee(?\DateTime $dateDeNaissanceCompleteFormatee): self
     {
         $this->initialized['dateDeNaissanceCompleteFormatee'] = true;
         $this->dateDeNaissanceCompleteFormatee = $dateDeNaissanceCompleteFormatee;
@@ -391,7 +391,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Nationalité du bénéficiaire effectif.
      */
-    public function getNationalite(): string
+    public function getNationalite(): ?string
     {
         return $this->nationalite;
     }
@@ -399,7 +399,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Nationalité du bénéficiaire effectif.
      */
-    public function setNationalite(string $nationalite): self
+    public function setNationalite(?string $nationalite): self
     {
         $this->initialized['nationalite'] = true;
         $this->nationalite = $nationalite;
@@ -410,7 +410,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code de la nationalité du bénéficiaire effectif.
      */
-    public function getCodeNationalite(): string
+    public function getCodeNationalite(): ?string
     {
         return $this->codeNationalite;
     }
@@ -418,7 +418,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code de la nationalité du bénéficiaire effectif.
      */
-    public function setCodeNationalite(string $codeNationalite): self
+    public function setCodeNationalite(?string $codeNationalite): self
     {
         $this->initialized['codeNationalite'] = true;
         $this->codeNationalite = $codeNationalite;
@@ -429,7 +429,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Ville de naissance du bénéficiaire effectif.
      */
-    public function getVilleDeNaissance(): string
+    public function getVilleDeNaissance(): ?string
     {
         return $this->villeDeNaissance;
     }
@@ -437,7 +437,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Ville de naissance du bénéficiaire effectif.
      */
-    public function setVilleDeNaissance(string $villeDeNaissance): self
+    public function setVilleDeNaissance(?string $villeDeNaissance): self
     {
         $this->initialized['villeDeNaissance'] = true;
         $this->villeDeNaissance = $villeDeNaissance;
@@ -448,7 +448,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Pays de naissance du bénéficiaire effectif.
      */
-    public function getPaysDeNaissance(): string
+    public function getPaysDeNaissance(): ?string
     {
         return $this->paysDeNaissance;
     }
@@ -456,7 +456,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Pays de naissance du bénéficiaire effectif.
      */
-    public function setPaysDeNaissance(string $paysDeNaissance): self
+    public function setPaysDeNaissance(?string $paysDeNaissance): self
     {
         $this->initialized['paysDeNaissance'] = true;
         $this->paysDeNaissance = $paysDeNaissance;
@@ -467,7 +467,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code du pays de naissance du bénéficiaire effectif.
      */
-    public function getCodePaysDeNaissance(): string
+    public function getCodePaysDeNaissance(): ?string
     {
         return $this->codePaysDeNaissance;
     }
@@ -475,7 +475,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code du pays de naissance du bénéficiaire effectif.
      */
-    public function setCodePaysDeNaissance(string $codePaysDeNaissance): self
+    public function setCodePaysDeNaissance(?string $codePaysDeNaissance): self
     {
         $this->initialized['codePaysDeNaissance'] = true;
         $this->codePaysDeNaissance = $codePaysDeNaissance;
@@ -486,7 +486,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Première ligne de l'adresse du bénéficiaire effectif.
      */
-    public function getAdresseLigne1(): string
+    public function getAdresseLigne1(): ?string
     {
         return $this->adresseLigne1;
     }
@@ -494,7 +494,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Première ligne de l'adresse du bénéficiaire effectif.
      */
-    public function setAdresseLigne1(string $adresseLigne1): self
+    public function setAdresseLigne1(?string $adresseLigne1): self
     {
         $this->initialized['adresseLigne1'] = true;
         $this->adresseLigne1 = $adresseLigne1;
@@ -505,7 +505,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Deuxième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function getAdresseLigne2(): string
+    public function getAdresseLigne2(): ?string
     {
         return $this->adresseLigne2;
     }
@@ -513,7 +513,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Deuxième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function setAdresseLigne2(string $adresseLigne2): self
+    public function setAdresseLigne2(?string $adresseLigne2): self
     {
         $this->initialized['adresseLigne2'] = true;
         $this->adresseLigne2 = $adresseLigne2;
@@ -524,7 +524,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Troisième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function getAdresseLigne3(): string
+    public function getAdresseLigne3(): ?string
     {
         return $this->adresseLigne3;
     }
@@ -532,7 +532,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Troisième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function setAdresseLigne3(string $adresseLigne3): self
+    public function setAdresseLigne3(?string $adresseLigne3): self
     {
         $this->initialized['adresseLigne3'] = true;
         $this->adresseLigne3 = $adresseLigne3;
@@ -543,7 +543,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code postal du bénéficiaire effectif.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -551,7 +551,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code postal du bénéficiaire effectif.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -562,7 +562,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Ville du bénéficiaire effectif.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -570,7 +570,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Ville du bénéficiaire effectif.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;
@@ -581,7 +581,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Pays du bénéficiaire effectif.
      */
-    public function getPays(): string
+    public function getPays(): ?string
     {
         return $this->pays;
     }
@@ -589,7 +589,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Pays du bénéficiaire effectif.
      */
-    public function setPays(string $pays): self
+    public function setPays(?string $pays): self
     {
         $this->initialized['pays'] = true;
         $this->pays = $pays;
@@ -600,7 +600,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code du pays du bénéficiaire effectif.
      */
-    public function getCodePays(): string
+    public function getCodePays(): ?string
     {
         return $this->codePays;
     }
@@ -608,7 +608,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Code du pays du bénéficiaire effectif.
      */
-    public function setCodePays(string $codePays): self
+    public function setCodePays(?string $codePays): self
     {
         $this->initialized['codePays'] = true;
         $this->codePays = $codePays;
@@ -619,7 +619,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts détenues par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentageParts(): float
+    public function getPourcentageParts(): ?float
     {
         return $this->pourcentageParts;
     }
@@ -627,7 +627,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts détenues par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentageParts(float $pourcentageParts): self
+    public function setPourcentageParts(?float $pourcentageParts): self
     {
         $this->initialized['pourcentageParts'] = true;
         $this->pourcentageParts = $pourcentageParts;
@@ -638,7 +638,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts détenues de façon directe par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentagePartsDirectes(): float
+    public function getPourcentagePartsDirectes(): ?float
     {
         return $this->pourcentagePartsDirectes;
     }
@@ -646,7 +646,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts détenues de façon directe par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentagePartsDirectes(float $pourcentagePartsDirectes): self
+    public function setPourcentagePartsDirectes(?float $pourcentagePartsDirectes): self
     {
         $this->initialized['pourcentagePartsDirectes'] = true;
         $this->pourcentagePartsDirectes = $pourcentagePartsDirectes;
@@ -657,7 +657,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts détenues de façon indirecte par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentagePartsIndirectes(): float
+    public function getPourcentagePartsIndirectes(): ?float
     {
         return $this->pourcentagePartsIndirectes;
     }
@@ -665,7 +665,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts détenues de façon indirecte par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentagePartsIndirectes(float $pourcentagePartsIndirectes): self
+    public function setPourcentagePartsIndirectes(?float $pourcentagePartsIndirectes): self
     {
         $this->initialized['pourcentagePartsIndirectes'] = true;
         $this->pourcentagePartsIndirectes = $pourcentagePartsIndirectes;
@@ -676,7 +676,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire par l'effet d'un acte juridique, en pourcentage des parts totales.
      */
-    public function getPourcentagePartsVocationTitulaire(): float
+    public function getPourcentagePartsVocationTitulaire(): ?float
     {
         return $this->pourcentagePartsVocationTitulaire;
     }
@@ -684,7 +684,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire par l'effet d'un acte juridique, en pourcentage des parts totales.
      */
-    public function setPourcentagePartsVocationTitulaire(float $pourcentagePartsVocationTitulaire): self
+    public function setPourcentagePartsVocationTitulaire(?float $pourcentagePartsVocationTitulaire): self
     {
         $this->initialized['pourcentagePartsVocationTitulaire'] = true;
         $this->pourcentagePartsVocationTitulaire = $pourcentagePartsVocationTitulaire;
@@ -695,7 +695,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon directe par le bénéficiaire effectif.
      */
-    public function getDetailsPartsDirectes(): EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes
+    public function getDetailsPartsDirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes
     {
         return $this->detailsPartsDirectes;
     }
@@ -703,7 +703,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon directe par le bénéficiaire effectif.
      */
-    public function setDetailsPartsDirectes(EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes $detailsPartsDirectes): self
+    public function setDetailsPartsDirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes $detailsPartsDirectes): self
     {
         $this->initialized['detailsPartsDirectes'] = true;
         $this->detailsPartsDirectes = $detailsPartsDirectes;
@@ -714,7 +714,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon indirecte par le bénéficiaire effectif.
      */
-    public function getDetailsPartsIndirectes(): EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes
+    public function getDetailsPartsIndirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes
     {
         return $this->detailsPartsIndirectes;
     }
@@ -722,7 +722,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon indirecte par le bénéficiaire effectif.
      */
-    public function setDetailsPartsIndirectes(EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes $detailsPartsIndirectes): self
+    public function setDetailsPartsIndirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes $detailsPartsIndirectes): self
     {
         $this->initialized['detailsPartsIndirectes'] = true;
         $this->detailsPartsIndirectes = $detailsPartsIndirectes;
@@ -733,7 +733,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire.
      */
-    public function getDetailsPartsVocationTitulaire(): EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire
+    public function getDetailsPartsVocationTitulaire(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire
     {
         return $this->detailsPartsVocationTitulaire;
     }
@@ -741,7 +741,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire.
      */
-    public function setDetailsPartsVocationTitulaire(EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire $detailsPartsVocationTitulaire): self
+    public function setDetailsPartsVocationTitulaire(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire $detailsPartsVocationTitulaire): self
     {
         $this->initialized['detailsPartsVocationTitulaire'] = true;
         $this->detailsPartsVocationTitulaire = $detailsPartsVocationTitulaire;
@@ -752,7 +752,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Droits de vote détenus par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageVotes(): float
+    public function getPourcentageVotes(): ?float
     {
         return $this->pourcentageVotes;
     }
@@ -760,7 +760,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Droits de vote détenus par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageVotes(float $pourcentageVotes): self
+    public function setPourcentageVotes(?float $pourcentageVotes): self
     {
         $this->initialized['pourcentageVotes'] = true;
         $this->pourcentageVotes = $pourcentageVotes;
@@ -771,7 +771,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon directe par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageVotesDirects(): float
+    public function getPourcentageVotesDirects(): ?float
     {
         return $this->pourcentageVotesDirects;
     }
@@ -779,7 +779,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon directe par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageVotesDirects(float $pourcentageVotesDirects): self
+    public function setPourcentageVotesDirects(?float $pourcentageVotesDirects): self
     {
         $this->initialized['pourcentageVotesDirects'] = true;
         $this->pourcentageVotesDirects = $pourcentageVotesDirects;
@@ -790,7 +790,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon indirecte par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageVotesIndirect(): float
+    public function getPourcentageVotesIndirect(): ?float
     {
         return $this->pourcentageVotesIndirect;
     }
@@ -798,7 +798,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon indirecte par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageVotesIndirect(float $pourcentageVotesIndirect): self
+    public function setPourcentageVotesIndirect(?float $pourcentageVotesIndirect): self
     {
         $this->initialized['pourcentageVotesIndirect'] = true;
         $this->pourcentageVotesIndirect = $pourcentageVotesIndirect;
@@ -809,7 +809,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon directe par le bénéficiaire effectif.
      */
-    public function getDetailsVotesDirects(): EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects
+    public function getDetailsVotesDirects(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects
     {
         return $this->detailsVotesDirects;
     }
@@ -817,7 +817,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon directe par le bénéficiaire effectif.
      */
-    public function setDetailsVotesDirects(EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects $detailsVotesDirects): self
+    public function setDetailsVotesDirects(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects $detailsVotesDirects): self
     {
         $this->initialized['detailsVotesDirects'] = true;
         $this->detailsVotesDirects = $detailsVotesDirects;
@@ -828,7 +828,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon indirecte par le bénéficiaire effectif.
      */
-    public function getDetailsVotesIndirects(): EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects
+    public function getDetailsVotesIndirects(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects
     {
         return $this->detailsVotesIndirects;
     }
@@ -836,7 +836,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon indirecte par le bénéficiaire effectif.
      */
-    public function setDetailsVotesIndirects(EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects $detailsVotesIndirects): self
+    public function setDetailsVotesIndirects(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects $detailsVotesIndirects): self
     {
         $this->initialized['detailsVotesIndirects'] = true;
         $this->detailsVotesIndirects = $detailsVotesIndirects;
@@ -847,7 +847,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails sur la société de gestion, le cas échéant.
      */
-    public function getDetailsSocieteDeGestion(): EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion
+    public function getDetailsSocieteDeGestion(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion
     {
         return $this->detailsSocieteDeGestion;
     }
@@ -855,7 +855,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails sur la société de gestion, le cas échéant.
      */
-    public function setDetailsSocieteDeGestion(EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion $detailsSocieteDeGestion): self
+    public function setDetailsSocieteDeGestion(?EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion $detailsSocieteDeGestion): self
     {
         $this->initialized['detailsSocieteDeGestion'] = true;
         $this->detailsSocieteDeGestion = $detailsSocieteDeGestion;
@@ -866,7 +866,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai pour les moyens de contrôle sur les organes d'administration, de gestion, de direction ou de surveillance de la personne morale autre que le pouvoir de nommer ou de révoquer la majorité des membres.
      */
-    public function getDetentionPouvoirDecisionAg(): bool
+    public function getDetentionPouvoirDecisionAg(): ?bool
     {
         return $this->detentionPouvoirDecisionAg;
     }
@@ -874,7 +874,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai pour les moyens de contrôle sur les organes d'administration, de gestion, de direction ou de surveillance de la personne morale autre que le pouvoir de nommer ou de révoquer la majorité des membres.
      */
-    public function setDetentionPouvoirDecisionAg(bool $detentionPouvoirDecisionAg): self
+    public function setDetentionPouvoirDecisionAg(?bool $detentionPouvoirDecisionAg): self
     {
         $this->initialized['detentionPouvoirDecisionAg'] = true;
         $this->detentionPouvoirDecisionAg = $detentionPouvoirDecisionAg;
@@ -885,7 +885,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai si le moyen de contrôle est le pouvoir de nommer ou de révoquer la majorité des membres des organes d'administration, de gestion, de direction ou de surveillance de la personne morale.
      */
-    public function getDetentionPouvoirNomMembreConseilAdministration(): bool
+    public function getDetentionPouvoirNomMembreConseilAdministration(): ?bool
     {
         return $this->detentionPouvoirNomMembreConseilAdministration;
     }
@@ -893,7 +893,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai si le moyen de contrôle est le pouvoir de nommer ou de révoquer la majorité des membres des organes d'administration, de gestion, de direction ou de surveillance de la personne morale.
      */
-    public function setDetentionPouvoirNomMembreConseilAdministration(bool $detentionPouvoirNomMembreConseilAdministration): self
+    public function setDetentionPouvoirNomMembreConseilAdministration(?bool $detentionPouvoirNomMembreConseilAdministration): self
     {
         $this->initialized['detentionPouvoirNomMembreConseilAdministration'] = true;
         $this->detentionPouvoirNomMembreConseilAdministration = $detentionPouvoirNomMembreConseilAdministration;
@@ -904,7 +904,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai s'il existe d'autres moyens de contrôle.
      */
-    public function getDetentionAutresMoyensControle(): bool
+    public function getDetentionAutresMoyensControle(): ?bool
     {
         return $this->detentionAutresMoyensControle;
     }
@@ -912,7 +912,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai s'il existe d'autres moyens de contrôle.
      */
-    public function setDetentionAutresMoyensControle(bool $detentionAutresMoyensControle): self
+    public function setDetentionAutresMoyensControle(?bool $detentionAutresMoyensControle): self
     {
         $this->initialized['detentionAutresMoyensControle'] = true;
         $this->detentionAutresMoyensControle = $detentionAutresMoyensControle;
@@ -923,7 +923,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif a été défini comme le représentant légal par défaut.
      */
-    public function getBeneficiaireRepresentantLegal(): bool
+    public function getBeneficiaireRepresentantLegal(): ?bool
     {
         return $this->beneficiaireRepresentantLegal;
     }
@@ -931,7 +931,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif a été défini comme le représentant légal par défaut.
      */
-    public function setBeneficiaireRepresentantLegal(bool $beneficiaireRepresentantLegal): self
+    public function setBeneficiaireRepresentantLegal(?bool $beneficiaireRepresentantLegal): self
     {
         $this->initialized['beneficiaireRepresentantLegal'] = true;
         $this->beneficiaireRepresentantLegal = $beneficiaireRepresentantLegal;
@@ -942,7 +942,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif est le représentant légal du placement collectif (cas où le placement collectif n'a pas délégué sa gestion à une société de gestion).
      */
-    public function getRepresentantLegalPlacementSansGestionDelegation(): bool
+    public function getRepresentantLegalPlacementSansGestionDelegation(): ?bool
     {
         return $this->representantLegalPlacementSansGestionDelegation;
     }
@@ -950,7 +950,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif est le représentant légal du placement collectif (cas où le placement collectif n'a pas délégué sa gestion à une société de gestion).
      */
-    public function setRepresentantLegalPlacementSansGestionDelegation(bool $representantLegalPlacementSansGestionDelegation): self
+    public function setRepresentantLegalPlacementSansGestionDelegation(?bool $representantLegalPlacementSansGestionDelegation): self
     {
         $this->initialized['representantLegalPlacementSansGestionDelegation'] = true;
         $this->representantLegalPlacementSansGestionDelegation = $representantLegalPlacementSansGestionDelegation;

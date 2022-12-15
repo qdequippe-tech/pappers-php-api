@@ -18,44 +18,44 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Nom de la société de gestion.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * SIREN de la société de gestion.
      *
-     * @var string
+     * @var string|null
      */
     protected $siren;
     /**
      * Greffe de la société de gestion.
      *
-     * @var string
+     * @var string|null
      */
     protected $greffe;
     /**
      * Adresse de la société de gestion.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresse;
     /**
      * Code postal de la société de gestion.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Ville de la société de gestion.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
 
     /**
      * Nom de la société de gestion.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -63,7 +63,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Nom de la société de gestion.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -74,7 +74,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * SIREN de la société de gestion.
      */
-    public function getSiren(): string
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
@@ -82,7 +82,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * SIREN de la société de gestion.
      */
-    public function setSiren(string $siren): self
+    public function setSiren(?string $siren): self
     {
         $this->initialized['siren'] = true;
         $this->siren = $siren;
@@ -93,7 +93,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Greffe de la société de gestion.
      */
-    public function getGreffe(): string
+    public function getGreffe(): ?string
     {
         return $this->greffe;
     }
@@ -101,7 +101,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Greffe de la société de gestion.
      */
-    public function setGreffe(string $greffe): self
+    public function setGreffe(?string $greffe): self
     {
         $this->initialized['greffe'] = true;
         $this->greffe = $greffe;
@@ -112,7 +112,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Adresse de la société de gestion.
      */
-    public function getAdresse(): string
+    public function getAdresse(): ?string
     {
         return $this->adresse;
     }
@@ -120,7 +120,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Adresse de la société de gestion.
      */
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->initialized['adresse'] = true;
         $this->adresse = $adresse;
@@ -131,7 +131,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Code postal de la société de gestion.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -139,7 +139,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Code postal de la société de gestion.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -150,7 +150,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Ville de la société de gestion.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -158,7 +158,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
     /**
      * Ville de la société de gestion.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;

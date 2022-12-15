@@ -50,17 +50,21 @@ class ListeInformationsPostBodyNormalizer implements DenormalizerInterface, Norm
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('notifications', $data)) {
+        if (\array_key_exists('notifications', $data) && null !== $data['notifications']) {
             $values = [];
             foreach ($data['notifications'] as $value) {
                 $values[] = $value;
             }
             $object->setNotifications($values);
             unset($data['notifications']);
+        } elseif (\array_key_exists('notifications', $data) && null === $data['notifications']) {
+            $object->setNotifications(null);
         }
-        if (\array_key_exists('informations', $data)) {
+        if (\array_key_exists('informations', $data) && null !== $data['informations']) {
             $object->setInformations($data['informations']);
             unset($data['informations']);
+        } elseif (\array_key_exists('informations', $data) && null === $data['informations']) {
+            $object->setInformations(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

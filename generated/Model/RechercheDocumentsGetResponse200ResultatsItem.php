@@ -18,30 +18,30 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Type de document.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Date de dépôt du document.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDepot;
     /**
      * Mentions de la recherche dans le document.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $mentions;
     /**
-     * @var EntrepriseRecherche
+     * @var EntrepriseRecherche|null
      */
     protected $entreprise;
 
     /**
      * Type de document.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -49,7 +49,7 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Type de document.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -60,7 +60,7 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de dépôt du document.
      */
-    public function getDateDepot(): \DateTime
+    public function getDateDepot(): ?\DateTime
     {
         return $this->dateDepot;
     }
@@ -68,7 +68,7 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de dépôt du document.
      */
-    public function setDateDepot(\DateTime $dateDepot): self
+    public function setDateDepot(?\DateTime $dateDepot): self
     {
         $this->initialized['dateDepot'] = true;
         $this->dateDepot = $dateDepot;
@@ -79,9 +79,9 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans le document.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getMentions(): array
+    public function getMentions(): ?array
     {
         return $this->mentions;
     }
@@ -89,9 +89,9 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans le document.
      *
-     * @param string[] $mentions
+     * @param string[]|null $mentions
      */
-    public function setMentions(array $mentions): self
+    public function setMentions(?array $mentions): self
     {
         $this->initialized['mentions'] = true;
         $this->mentions = $mentions;
@@ -99,12 +99,12 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
         return $this;
     }
 
-    public function getEntreprise(): EntrepriseRecherche
+    public function getEntreprise(): ?EntrepriseRecherche
     {
         return $this->entreprise;
     }
 
-    public function setEntreprise(EntrepriseRecherche $entreprise): self
+    public function setEntreprise(?EntrepriseRecherche $entreprise): self
     {
         $this->initialized['entreprise'] = true;
         $this->entreprise = $entreprise;

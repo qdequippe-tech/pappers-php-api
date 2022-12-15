@@ -18,218 +18,218 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Nom d'usage du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomUsage;
     /**
      * Prénom du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $prenom;
     /**
      * Pseudonyme du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $pseudonyme;
     /**
      * Nom complet du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomComplet;
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDeNaissanceFormate;
     /**
      * Nationalité du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $nationalite;
     /**
      * Parts détenues par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageParts;
     /**
      * Droits de vote détenus par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageVotes;
     /**
      * Droits de vote détenus de façon indirecte par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageVotesIndirect;
     /**
      * Droits de vote détenus de façon directe par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageVotesDirects;
     /**
      * Vaut vrai s'il existe d'autres moyens de contrôle.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $detentionAutresMoyensControle;
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif a été défini comme le représentant légal par défaut.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $beneficiaireRepresentantLegal;
     /**
      * Première ligne de l'adresse du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne1;
     /**
      * Deuxième ligne de l'adresse du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne2;
     /**
      * Troisième ligne de l'adresse du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne3;
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire par l'effet d'un acte juridique, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePartsVocationTitulaire;
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif est le représentant légal du placement collectif (cas où le placement collectif n'a pas délégué sa gestion à une société de gestion).
      *
-     * @var bool
+     * @var bool|null
      */
     protected $representantLegalPlacementSansGestionDelegation;
     /**
      * Code postal du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Vaut vrai si le moyen de contrôle est le pouvoir de nommer ou de révoquer la majorité des membres des organes d'administration, de gestion, de direction ou de surveillance de la personne morale.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $detentionPouvoirNomMembreConseilAdministration;
     /**
      * Ville du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDeNaissanceCompleteFormatee;
     /**
      * Parts détenues de façon directe par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePartsDirectes;
     /**
      * Parts détenues de façon indirecte par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePartsIndirectes;
     /**
      * Pays de naissance du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $paysDeNaissance;
     /**
      * Code du pays de naissance du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePaysDeNaissance;
     /**
      * Ville de naissance du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $villeDeNaissance;
     /**
      * Vaut vrai pour les moyens de contrôle sur les organes d'administration, de gestion, de direction ou de surveillance de la personne morale autre que le pouvoir de nommer ou de révoquer la majorité des membres.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $detentionPouvoirDecisionAg;
     /**
      * Pays du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $pays;
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDeNaissanceFormatee;
     /**
      * Code pays du bénéficiaire effectif.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePays;
     /**
      * Liste des entreprises dont le bénéficiaire effectif est bénéficiaire effectif, dans la limite de 100 entreprises.
      *
-     * @var EntrepriseRecherche[]
+     * @var EntrepriseRecherche[]|null
      */
     protected $entreprises;
     /**
      * Nombre d'entreprises du bénéficiaire effectif au total.
      *
-     * @var int
+     * @var int|null
      */
     protected $nbEntreprisesTotal;
     /**
      * Liste des entreprises dont le bénéficiaire effectif est dirigeant (sans forcément en être bénéficiaire effectif), dans la limite de 100 entreprises.
      *
-     * @var EntrepriseRecherche[]
+     * @var EntrepriseRecherche[]|null
      */
     protected $entreprisesDirigeant;
     /**
      * Nombre d'entreprises dont le bénéficiaire effectif est dirigeant au total.
      *
-     * @var int
+     * @var int|null
      */
     protected $nbEntreprisesDirigeantTotal;
 
     /**
      * Nom du bénéficiaire effectif.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -237,7 +237,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom du bénéficiaire effectif.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -248,7 +248,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom d'usage du bénéficiaire effectif.
      */
-    public function getNomUsage(): string
+    public function getNomUsage(): ?string
     {
         return $this->nomUsage;
     }
@@ -256,7 +256,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom d'usage du bénéficiaire effectif.
      */
-    public function setNomUsage(string $nomUsage): self
+    public function setNomUsage(?string $nomUsage): self
     {
         $this->initialized['nomUsage'] = true;
         $this->nomUsage = $nomUsage;
@@ -267,7 +267,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Prénom du bénéficiaire effectif.
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -275,7 +275,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Prénom du bénéficiaire effectif.
      */
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
@@ -286,7 +286,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pseudonyme du bénéficiaire effectif.
      */
-    public function getPseudonyme(): string
+    public function getPseudonyme(): ?string
     {
         return $this->pseudonyme;
     }
@@ -294,7 +294,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pseudonyme du bénéficiaire effectif.
      */
-    public function setPseudonyme(string $pseudonyme): self
+    public function setPseudonyme(?string $pseudonyme): self
     {
         $this->initialized['pseudonyme'] = true;
         $this->pseudonyme = $pseudonyme;
@@ -305,7 +305,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom complet du bénéficiaire effectif.
      */
-    public function getNomComplet(): string
+    public function getNomComplet(): ?string
     {
         return $this->nomComplet;
     }
@@ -313,7 +313,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom complet du bénéficiaire effectif.
      */
-    public function setNomComplet(string $nomComplet): self
+    public function setNomComplet(?string $nomComplet): self
     {
         $this->initialized['nomComplet'] = true;
         $this->nomComplet = $nomComplet;
@@ -324,7 +324,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      */
-    public function getDateDeNaissanceFormate(): string
+    public function getDateDeNaissanceFormate(): ?string
     {
         return $this->dateDeNaissanceFormate;
     }
@@ -332,7 +332,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      */
-    public function setDateDeNaissanceFormate(string $dateDeNaissanceFormate): self
+    public function setDateDeNaissanceFormate(?string $dateDeNaissanceFormate): self
     {
         $this->initialized['dateDeNaissanceFormate'] = true;
         $this->dateDeNaissanceFormate = $dateDeNaissanceFormate;
@@ -343,7 +343,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nationalité du bénéficiaire effectif.
      */
-    public function getNationalite(): string
+    public function getNationalite(): ?string
     {
         return $this->nationalite;
     }
@@ -351,7 +351,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nationalité du bénéficiaire effectif.
      */
-    public function setNationalite(string $nationalite): self
+    public function setNationalite(?string $nationalite): self
     {
         $this->initialized['nationalite'] = true;
         $this->nationalite = $nationalite;
@@ -362,7 +362,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts détenues par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentageParts(): float
+    public function getPourcentageParts(): ?float
     {
         return $this->pourcentageParts;
     }
@@ -370,7 +370,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts détenues par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentageParts(float $pourcentageParts): self
+    public function setPourcentageParts(?float $pourcentageParts): self
     {
         $this->initialized['pourcentageParts'] = true;
         $this->pourcentageParts = $pourcentageParts;
@@ -381,7 +381,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Droits de vote détenus par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageVotes(): float
+    public function getPourcentageVotes(): ?float
     {
         return $this->pourcentageVotes;
     }
@@ -389,7 +389,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Droits de vote détenus par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageVotes(float $pourcentageVotes): self
+    public function setPourcentageVotes(?float $pourcentageVotes): self
     {
         $this->initialized['pourcentageVotes'] = true;
         $this->pourcentageVotes = $pourcentageVotes;
@@ -400,7 +400,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon indirecte par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageVotesIndirect(): float
+    public function getPourcentageVotesIndirect(): ?float
     {
         return $this->pourcentageVotesIndirect;
     }
@@ -408,7 +408,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon indirecte par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageVotesIndirect(float $pourcentageVotesIndirect): self
+    public function setPourcentageVotesIndirect(?float $pourcentageVotesIndirect): self
     {
         $this->initialized['pourcentageVotesIndirect'] = true;
         $this->pourcentageVotesIndirect = $pourcentageVotesIndirect;
@@ -419,7 +419,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon directe par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageVotesDirects(): float
+    public function getPourcentageVotesDirects(): ?float
     {
         return $this->pourcentageVotesDirects;
     }
@@ -427,7 +427,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Droits de vote détenus de façon directe par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageVotesDirects(float $pourcentageVotesDirects): self
+    public function setPourcentageVotesDirects(?float $pourcentageVotesDirects): self
     {
         $this->initialized['pourcentageVotesDirects'] = true;
         $this->pourcentageVotesDirects = $pourcentageVotesDirects;
@@ -438,7 +438,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai s'il existe d'autres moyens de contrôle.
      */
-    public function getDetentionAutresMoyensControle(): bool
+    public function getDetentionAutresMoyensControle(): ?bool
     {
         return $this->detentionAutresMoyensControle;
     }
@@ -446,7 +446,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai s'il existe d'autres moyens de contrôle.
      */
-    public function setDetentionAutresMoyensControle(bool $detentionAutresMoyensControle): self
+    public function setDetentionAutresMoyensControle(?bool $detentionAutresMoyensControle): self
     {
         $this->initialized['detentionAutresMoyensControle'] = true;
         $this->detentionAutresMoyensControle = $detentionAutresMoyensControle;
@@ -457,7 +457,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif a été défini comme le représentant légal par défaut.
      */
-    public function getBeneficiaireRepresentantLegal(): bool
+    public function getBeneficiaireRepresentantLegal(): ?bool
     {
         return $this->beneficiaireRepresentantLegal;
     }
@@ -465,7 +465,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif a été défini comme le représentant légal par défaut.
      */
-    public function setBeneficiaireRepresentantLegal(bool $beneficiaireRepresentantLegal): self
+    public function setBeneficiaireRepresentantLegal(?bool $beneficiaireRepresentantLegal): self
     {
         $this->initialized['beneficiaireRepresentantLegal'] = true;
         $this->beneficiaireRepresentantLegal = $beneficiaireRepresentantLegal;
@@ -476,7 +476,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Première ligne de l'adresse du bénéficiaire effectif.
      */
-    public function getAdresseLigne1(): string
+    public function getAdresseLigne1(): ?string
     {
         return $this->adresseLigne1;
     }
@@ -484,7 +484,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Première ligne de l'adresse du bénéficiaire effectif.
      */
-    public function setAdresseLigne1(string $adresseLigne1): self
+    public function setAdresseLigne1(?string $adresseLigne1): self
     {
         $this->initialized['adresseLigne1'] = true;
         $this->adresseLigne1 = $adresseLigne1;
@@ -495,7 +495,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Deuxième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function getAdresseLigne2(): string
+    public function getAdresseLigne2(): ?string
     {
         return $this->adresseLigne2;
     }
@@ -503,7 +503,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Deuxième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function setAdresseLigne2(string $adresseLigne2): self
+    public function setAdresseLigne2(?string $adresseLigne2): self
     {
         $this->initialized['adresseLigne2'] = true;
         $this->adresseLigne2 = $adresseLigne2;
@@ -514,7 +514,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Troisième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function getAdresseLigne3(): string
+    public function getAdresseLigne3(): ?string
     {
         return $this->adresseLigne3;
     }
@@ -522,7 +522,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Troisième ligne de l'adresse du bénéficiaire effectif.
      */
-    public function setAdresseLigne3(string $adresseLigne3): self
+    public function setAdresseLigne3(?string $adresseLigne3): self
     {
         $this->initialized['adresseLigne3'] = true;
         $this->adresseLigne3 = $adresseLigne3;
@@ -533,7 +533,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire par l'effet d'un acte juridique, en pourcentage des parts totales.
      */
-    public function getPourcentagePartsVocationTitulaire(): float
+    public function getPourcentagePartsVocationTitulaire(): ?float
     {
         return $this->pourcentagePartsVocationTitulaire;
     }
@@ -541,7 +541,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts dont le bénéficiaire effectif a vocation à devenir titulaire par l'effet d'un acte juridique, en pourcentage des parts totales.
      */
-    public function setPourcentagePartsVocationTitulaire(float $pourcentagePartsVocationTitulaire): self
+    public function setPourcentagePartsVocationTitulaire(?float $pourcentagePartsVocationTitulaire): self
     {
         $this->initialized['pourcentagePartsVocationTitulaire'] = true;
         $this->pourcentagePartsVocationTitulaire = $pourcentagePartsVocationTitulaire;
@@ -552,7 +552,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif est le représentant légal du placement collectif (cas où le placement collectif n'a pas délégué sa gestion à une société de gestion).
      */
-    public function getRepresentantLegalPlacementSansGestionDelegation(): bool
+    public function getRepresentantLegalPlacementSansGestionDelegation(): ?bool
     {
         return $this->representantLegalPlacementSansGestionDelegation;
     }
@@ -560,7 +560,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai dans le cas où le bénéficiaire effectif est le représentant légal du placement collectif (cas où le placement collectif n'a pas délégué sa gestion à une société de gestion).
      */
-    public function setRepresentantLegalPlacementSansGestionDelegation(bool $representantLegalPlacementSansGestionDelegation): self
+    public function setRepresentantLegalPlacementSansGestionDelegation(?bool $representantLegalPlacementSansGestionDelegation): self
     {
         $this->initialized['representantLegalPlacementSansGestionDelegation'] = true;
         $this->representantLegalPlacementSansGestionDelegation = $representantLegalPlacementSansGestionDelegation;
@@ -571,7 +571,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code postal du bénéficiaire effectif.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -579,7 +579,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code postal du bénéficiaire effectif.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -590,7 +590,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai si le moyen de contrôle est le pouvoir de nommer ou de révoquer la majorité des membres des organes d'administration, de gestion, de direction ou de surveillance de la personne morale.
      */
-    public function getDetentionPouvoirNomMembreConseilAdministration(): bool
+    public function getDetentionPouvoirNomMembreConseilAdministration(): ?bool
     {
         return $this->detentionPouvoirNomMembreConseilAdministration;
     }
@@ -598,7 +598,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai si le moyen de contrôle est le pouvoir de nommer ou de révoquer la majorité des membres des organes d'administration, de gestion, de direction ou de surveillance de la personne morale.
      */
-    public function setDetentionPouvoirNomMembreConseilAdministration(bool $detentionPouvoirNomMembreConseilAdministration): self
+    public function setDetentionPouvoirNomMembreConseilAdministration(?bool $detentionPouvoirNomMembreConseilAdministration): self
     {
         $this->initialized['detentionPouvoirNomMembreConseilAdministration'] = true;
         $this->detentionPouvoirNomMembreConseilAdministration = $detentionPouvoirNomMembreConseilAdministration;
@@ -609,7 +609,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville du bénéficiaire effectif.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -617,7 +617,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville du bénéficiaire effectif.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;
@@ -628,7 +628,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      */
-    public function getDateDeNaissanceCompleteFormatee(): \DateTime
+    public function getDateDeNaissanceCompleteFormatee(): ?\DateTime
     {
         return $this->dateDeNaissanceCompleteFormatee;
     }
@@ -636,7 +636,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      */
-    public function setDateDeNaissanceCompleteFormatee(\DateTime $dateDeNaissanceCompleteFormatee): self
+    public function setDateDeNaissanceCompleteFormatee(?\DateTime $dateDeNaissanceCompleteFormatee): self
     {
         $this->initialized['dateDeNaissanceCompleteFormatee'] = true;
         $this->dateDeNaissanceCompleteFormatee = $dateDeNaissanceCompleteFormatee;
@@ -647,7 +647,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts détenues de façon directe par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentagePartsDirectes(): float
+    public function getPourcentagePartsDirectes(): ?float
     {
         return $this->pourcentagePartsDirectes;
     }
@@ -655,7 +655,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts détenues de façon directe par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentagePartsDirectes(float $pourcentagePartsDirectes): self
+    public function setPourcentagePartsDirectes(?float $pourcentagePartsDirectes): self
     {
         $this->initialized['pourcentagePartsDirectes'] = true;
         $this->pourcentagePartsDirectes = $pourcentagePartsDirectes;
@@ -666,7 +666,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts détenues de façon indirecte par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentagePartsIndirectes(): float
+    public function getPourcentagePartsIndirectes(): ?float
     {
         return $this->pourcentagePartsIndirectes;
     }
@@ -674,7 +674,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Parts détenues de façon indirecte par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentagePartsIndirectes(float $pourcentagePartsIndirectes): self
+    public function setPourcentagePartsIndirectes(?float $pourcentagePartsIndirectes): self
     {
         $this->initialized['pourcentagePartsIndirectes'] = true;
         $this->pourcentagePartsIndirectes = $pourcentagePartsIndirectes;
@@ -685,7 +685,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays de naissance du bénéficiaire effectif.
      */
-    public function getPaysDeNaissance(): string
+    public function getPaysDeNaissance(): ?string
     {
         return $this->paysDeNaissance;
     }
@@ -693,7 +693,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays de naissance du bénéficiaire effectif.
      */
-    public function setPaysDeNaissance(string $paysDeNaissance): self
+    public function setPaysDeNaissance(?string $paysDeNaissance): self
     {
         $this->initialized['paysDeNaissance'] = true;
         $this->paysDeNaissance = $paysDeNaissance;
@@ -704,7 +704,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code du pays de naissance du bénéficiaire effectif.
      */
-    public function getCodePaysDeNaissance(): string
+    public function getCodePaysDeNaissance(): ?string
     {
         return $this->codePaysDeNaissance;
     }
@@ -712,7 +712,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code du pays de naissance du bénéficiaire effectif.
      */
-    public function setCodePaysDeNaissance(string $codePaysDeNaissance): self
+    public function setCodePaysDeNaissance(?string $codePaysDeNaissance): self
     {
         $this->initialized['codePaysDeNaissance'] = true;
         $this->codePaysDeNaissance = $codePaysDeNaissance;
@@ -723,7 +723,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville de naissance du bénéficiaire effectif.
      */
-    public function getVilleDeNaissance(): string
+    public function getVilleDeNaissance(): ?string
     {
         return $this->villeDeNaissance;
     }
@@ -731,7 +731,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville de naissance du bénéficiaire effectif.
      */
-    public function setVilleDeNaissance(string $villeDeNaissance): self
+    public function setVilleDeNaissance(?string $villeDeNaissance): self
     {
         $this->initialized['villeDeNaissance'] = true;
         $this->villeDeNaissance = $villeDeNaissance;
@@ -742,7 +742,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai pour les moyens de contrôle sur les organes d'administration, de gestion, de direction ou de surveillance de la personne morale autre que le pouvoir de nommer ou de révoquer la majorité des membres.
      */
-    public function getDetentionPouvoirDecisionAg(): bool
+    public function getDetentionPouvoirDecisionAg(): ?bool
     {
         return $this->detentionPouvoirDecisionAg;
     }
@@ -750,7 +750,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai pour les moyens de contrôle sur les organes d'administration, de gestion, de direction ou de surveillance de la personne morale autre que le pouvoir de nommer ou de révoquer la majorité des membres.
      */
-    public function setDetentionPouvoirDecisionAg(bool $detentionPouvoirDecisionAg): self
+    public function setDetentionPouvoirDecisionAg(?bool $detentionPouvoirDecisionAg): self
     {
         $this->initialized['detentionPouvoirDecisionAg'] = true;
         $this->detentionPouvoirDecisionAg = $detentionPouvoirDecisionAg;
@@ -761,7 +761,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays du bénéficiaire effectif.
      */
-    public function getPays(): string
+    public function getPays(): ?string
     {
         return $this->pays;
     }
@@ -769,7 +769,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays du bénéficiaire effectif.
      */
-    public function setPays(string $pays): self
+    public function setPays(?string $pays): self
     {
         $this->initialized['pays'] = true;
         $this->pays = $pays;
@@ -780,7 +780,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      */
-    public function getDateDeNaissanceFormatee(): string
+    public function getDateDeNaissanceFormatee(): ?string
     {
         return $this->dateDeNaissanceFormatee;
     }
@@ -788,7 +788,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      */
-    public function setDateDeNaissanceFormatee(string $dateDeNaissanceFormatee): self
+    public function setDateDeNaissanceFormatee(?string $dateDeNaissanceFormatee): self
     {
         $this->initialized['dateDeNaissanceFormatee'] = true;
         $this->dateDeNaissanceFormatee = $dateDeNaissanceFormatee;
@@ -799,7 +799,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code pays du bénéficiaire effectif.
      */
-    public function getCodePays(): string
+    public function getCodePays(): ?string
     {
         return $this->codePays;
     }
@@ -807,7 +807,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code pays du bénéficiaire effectif.
      */
-    public function setCodePays(string $codePays): self
+    public function setCodePays(?string $codePays): self
     {
         $this->initialized['codePays'] = true;
         $this->codePays = $codePays;
@@ -818,9 +818,9 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est bénéficiaire effectif, dans la limite de 100 entreprises.
      *
-     * @return EntrepriseRecherche[]
+     * @return EntrepriseRecherche[]|null
      */
-    public function getEntreprises(): array
+    public function getEntreprises(): ?array
     {
         return $this->entreprises;
     }
@@ -828,9 +828,9 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est bénéficiaire effectif, dans la limite de 100 entreprises.
      *
-     * @param EntrepriseRecherche[] $entreprises
+     * @param EntrepriseRecherche[]|null $entreprises
      */
-    public function setEntreprises(array $entreprises): self
+    public function setEntreprises(?array $entreprises): self
     {
         $this->initialized['entreprises'] = true;
         $this->entreprises = $entreprises;
@@ -841,7 +841,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nombre d'entreprises du bénéficiaire effectif au total.
      */
-    public function getNbEntreprisesTotal(): int
+    public function getNbEntreprisesTotal(): ?int
     {
         return $this->nbEntreprisesTotal;
     }
@@ -849,7 +849,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nombre d'entreprises du bénéficiaire effectif au total.
      */
-    public function setNbEntreprisesTotal(int $nbEntreprisesTotal): self
+    public function setNbEntreprisesTotal(?int $nbEntreprisesTotal): self
     {
         $this->initialized['nbEntreprisesTotal'] = true;
         $this->nbEntreprisesTotal = $nbEntreprisesTotal;
@@ -860,9 +860,9 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est dirigeant (sans forcément en être bénéficiaire effectif), dans la limite de 100 entreprises.
      *
-     * @return EntrepriseRecherche[]
+     * @return EntrepriseRecherche[]|null
      */
-    public function getEntreprisesDirigeant(): array
+    public function getEntreprisesDirigeant(): ?array
     {
         return $this->entreprisesDirigeant;
     }
@@ -870,9 +870,9 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est dirigeant (sans forcément en être bénéficiaire effectif), dans la limite de 100 entreprises.
      *
-     * @param EntrepriseRecherche[] $entreprisesDirigeant
+     * @param EntrepriseRecherche[]|null $entreprisesDirigeant
      */
-    public function setEntreprisesDirigeant(array $entreprisesDirigeant): self
+    public function setEntreprisesDirigeant(?array $entreprisesDirigeant): self
     {
         $this->initialized['entreprisesDirigeant'] = true;
         $this->entreprisesDirigeant = $entreprisesDirigeant;
@@ -883,7 +883,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nombre d'entreprises dont le bénéficiaire effectif est dirigeant au total.
      */
-    public function getNbEntreprisesDirigeantTotal(): int
+    public function getNbEntreprisesDirigeantTotal(): ?int
     {
         return $this->nbEntreprisesDirigeantTotal;
     }
@@ -891,7 +891,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nombre d'entreprises dont le bénéficiaire effectif est dirigeant au total.
      */
-    public function setNbEntreprisesDirigeantTotal(int $nbEntreprisesDirigeantTotal): self
+    public function setNbEntreprisesDirigeantTotal(?int $nbEntreprisesDirigeantTotal): self
     {
         $this->initialized['nbEntreprisesDirigeantTotal'] = true;
         $this->nbEntreprisesDirigeantTotal = $nbEntreprisesDirigeantTotal;

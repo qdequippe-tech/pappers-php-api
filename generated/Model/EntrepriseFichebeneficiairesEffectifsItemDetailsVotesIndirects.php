@@ -18,32 +18,32 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageEnIndivision;
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageEnPersonneMorale;
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision|null
      */
     protected $detailsEnIndivision;
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale
+     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale|null
      */
     protected $detailsEnPersonneMorale;
 
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageEnIndivision(): float
+    public function getPourcentageEnIndivision(): ?float
     {
         return $this->pourcentageEnIndivision;
     }
@@ -51,7 +51,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageEnIndivision(float $pourcentageEnIndivision): self
+    public function setPourcentageEnIndivision(?float $pourcentageEnIndivision): self
     {
         $this->initialized['pourcentageEnIndivision'] = true;
         $this->pourcentageEnIndivision = $pourcentageEnIndivision;
@@ -62,7 +62,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageEnPersonneMorale(): float
+    public function getPourcentageEnPersonneMorale(): ?float
     {
         return $this->pourcentageEnPersonneMorale;
     }
@@ -70,7 +70,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageEnPersonneMorale(float $pourcentageEnPersonneMorale): self
+    public function setPourcentageEnPersonneMorale(?float $pourcentageEnPersonneMorale): self
     {
         $this->initialized['pourcentageEnPersonneMorale'] = true;
         $this->pourcentageEnPersonneMorale = $pourcentageEnPersonneMorale;
@@ -81,7 +81,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif.
      */
-    public function getDetailsEnIndivision(): EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision
+    public function getDetailsEnIndivision(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision
     {
         return $this->detailsEnIndivision;
     }
@@ -89,7 +89,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif.
      */
-    public function setDetailsEnIndivision(EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision $detailsEnIndivision): self
+    public function setDetailsEnIndivision(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision $detailsEnIndivision): self
     {
         $this->initialized['detailsEnIndivision'] = true;
         $this->detailsEnIndivision = $detailsEnIndivision;
@@ -100,7 +100,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif.
      */
-    public function getDetailsEnPersonneMorale(): EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale
+    public function getDetailsEnPersonneMorale(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale
     {
         return $this->detailsEnPersonneMorale;
     }
@@ -108,7 +108,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif.
      */
-    public function setDetailsEnPersonneMorale(EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale $detailsEnPersonneMorale): self
+    public function setDetailsEnPersonneMorale(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale $detailsEnPersonneMorale): self
     {
         $this->initialized['detailsEnPersonneMorale'] = true;
         $this->detailsEnPersonneMorale = $detailsEnPersonneMorale;

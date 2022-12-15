@@ -18,26 +18,26 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     /**
      * Le nombre de jetons mensuels initiaux de votre abonnement.
      *
-     * @var float
+     * @var float|null
      */
     protected $jetonsAbonnement;
     /**
      * Le nombre de jetons mensuels de votre abonnement que vous avez utilisés.
      *
-     * @var float
+     * @var float|null
      */
     protected $jetonsAbonnementUtilises;
     /**
      * Le nombre de jetons pay as you go qu'il vous reste.
      *
-     * @var float
+     * @var float|null
      */
     protected $jetonsPayAsYouGoRestants;
 
     /**
      * Le nombre de jetons mensuels initiaux de votre abonnement.
      */
-    public function getJetonsAbonnement(): float
+    public function getJetonsAbonnement(): ?float
     {
         return $this->jetonsAbonnement;
     }
@@ -45,7 +45,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     /**
      * Le nombre de jetons mensuels initiaux de votre abonnement.
      */
-    public function setJetonsAbonnement(float $jetonsAbonnement): self
+    public function setJetonsAbonnement(?float $jetonsAbonnement): self
     {
         $this->initialized['jetonsAbonnement'] = true;
         $this->jetonsAbonnement = $jetonsAbonnement;
@@ -56,7 +56,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     /**
      * Le nombre de jetons mensuels de votre abonnement que vous avez utilisés.
      */
-    public function getJetonsAbonnementUtilises(): float
+    public function getJetonsAbonnementUtilises(): ?float
     {
         return $this->jetonsAbonnementUtilises;
     }
@@ -64,7 +64,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     /**
      * Le nombre de jetons mensuels de votre abonnement que vous avez utilisés.
      */
-    public function setJetonsAbonnementUtilises(float $jetonsAbonnementUtilises): self
+    public function setJetonsAbonnementUtilises(?float $jetonsAbonnementUtilises): self
     {
         $this->initialized['jetonsAbonnementUtilises'] = true;
         $this->jetonsAbonnementUtilises = $jetonsAbonnementUtilises;
@@ -75,7 +75,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     /**
      * Le nombre de jetons pay as you go qu'il vous reste.
      */
-    public function getJetonsPayAsYouGoRestants(): float
+    public function getJetonsPayAsYouGoRestants(): ?float
     {
         return $this->jetonsPayAsYouGoRestants;
     }
@@ -83,7 +83,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     /**
      * Le nombre de jetons pay as you go qu'il vous reste.
      */
-    public function setJetonsPayAsYouGoRestants(float $jetonsPayAsYouGoRestants): self
+    public function setJetonsPayAsYouGoRestants(?float $jetonsPayAsYouGoRestants): self
     {
         $this->initialized['jetonsPayAsYouGoRestants'] = true;
         $this->jetonsPayAsYouGoRestants = $jetonsPayAsYouGoRestants;

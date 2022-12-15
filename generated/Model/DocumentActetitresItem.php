@@ -18,20 +18,20 @@ class DocumentActetitresItem extends \ArrayObject
     /**
      * Type de l'acte.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Décision de l'acte.
      *
-     * @var string
+     * @var string|null
      */
     protected $decision;
 
     /**
      * Type de l'acte.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -39,7 +39,7 @@ class DocumentActetitresItem extends \ArrayObject
     /**
      * Type de l'acte.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -50,7 +50,7 @@ class DocumentActetitresItem extends \ArrayObject
     /**
      * Décision de l'acte.
      */
-    public function getDecision(): string
+    public function getDecision(): ?string
     {
         return $this->decision;
     }
@@ -58,7 +58,7 @@ class DocumentActetitresItem extends \ArrayObject
     /**
      * Décision de l'acte.
      */
-    public function setDecision(string $decision): self
+    public function setDecision(?string $decision): self
     {
         $this->initialized['decision'] = true;
         $this->decision = $decision;

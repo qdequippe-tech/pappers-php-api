@@ -50,33 +50,47 @@ class EntrepriseFichemarquesItemEvenementsItemNormalizer implements Denormalizer
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('identifiant_evenement', $data)) {
+        if (\array_key_exists('identifiant_evenement', $data) && null !== $data['identifiant_evenement']) {
             $object->setIdentifiantEvenement($data['identifiant_evenement']);
             unset($data['identifiant_evenement']);
+        } elseif (\array_key_exists('identifiant_evenement', $data) && null === $data['identifiant_evenement']) {
+            $object->setIdentifiantEvenement(null);
         }
-        if (\array_key_exists('reference', $data)) {
+        if (\array_key_exists('reference', $data) && null !== $data['reference']) {
             $object->setReference($data['reference']);
             unset($data['reference']);
+        } elseif (\array_key_exists('reference', $data) && null === $data['reference']) {
+            $object->setReference(null);
         }
-        if (\array_key_exists('date', $data)) {
+        if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
+        } elseif (\array_key_exists('date', $data) && null === $data['date']) {
+            $object->setDate(null);
         }
-        if (\array_key_exists('numero_bopi', $data)) {
+        if (\array_key_exists('numero_bopi', $data) && null !== $data['numero_bopi']) {
             $object->setNumeroBopi($data['numero_bopi']);
             unset($data['numero_bopi']);
+        } elseif (\array_key_exists('numero_bopi', $data) && null === $data['numero_bopi']) {
+            $object->setNumeroBopi(null);
         }
-        if (\array_key_exists('date_bopi', $data)) {
+        if (\array_key_exists('date_bopi', $data) && null !== $data['date_bopi']) {
             $object->setDateBopi($data['date_bopi']);
             unset($data['date_bopi']);
+        } elseif (\array_key_exists('date_bopi', $data) && null === $data['date_bopi']) {
+            $object->setDateBopi(null);
         }
-        if (\array_key_exists('beneficiaire', $data)) {
+        if (\array_key_exists('beneficiaire', $data) && null !== $data['beneficiaire']) {
             $object->setBeneficiaire($data['beneficiaire']);
             unset($data['beneficiaire']);
+        } elseif (\array_key_exists('beneficiaire', $data) && null === $data['beneficiaire']) {
+            $object->setBeneficiaire(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

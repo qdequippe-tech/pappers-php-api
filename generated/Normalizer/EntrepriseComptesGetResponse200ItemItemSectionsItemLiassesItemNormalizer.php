@@ -50,21 +50,27 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemNormalizer i
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('code', $data)) {
+        if (\array_key_exists('code', $data) && null !== $data['code']) {
             $object->setCode($data['code']);
             unset($data['code']);
+        } elseif (\array_key_exists('code', $data) && null === $data['code']) {
+            $object->setCode(null);
         }
-        if (\array_key_exists('libelle', $data)) {
+        if (\array_key_exists('libelle', $data) && null !== $data['libelle']) {
             $object->setLibelle($data['libelle']);
             unset($data['libelle']);
+        } elseif (\array_key_exists('libelle', $data) && null === $data['libelle']) {
+            $object->setLibelle(null);
         }
-        if (\array_key_exists('colonnes', $data)) {
+        if (\array_key_exists('colonnes', $data) && null !== $data['colonnes']) {
             $values = [];
             foreach ($data['colonnes'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem', 'json', $context);
             }
             $object->setColonnes($values);
             unset($data['colonnes']);
+        } elseif (\array_key_exists('colonnes', $data) && null === $data['colonnes']) {
+            $object->setColonnes(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

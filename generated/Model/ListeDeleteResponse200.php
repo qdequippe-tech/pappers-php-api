@@ -18,14 +18,14 @@ class ListeDeleteResponse200 extends \ArrayObject
     /**
      * Le nombre de notifications supprimées de votre liste de surveillance.
      *
-     * @var float
+     * @var float|null
      */
     protected $notificationsSupprimees;
 
     /**
      * Le nombre de notifications supprimées de votre liste de surveillance.
      */
-    public function getNotificationsSupprimees(): float
+    public function getNotificationsSupprimees(): ?float
     {
         return $this->notificationsSupprimees;
     }
@@ -33,7 +33,7 @@ class ListeDeleteResponse200 extends \ArrayObject
     /**
      * Le nombre de notifications supprimées de votre liste de surveillance.
      */
-    public function setNotificationsSupprimees(float $notificationsSupprimees): self
+    public function setNotificationsSupprimees(?float $notificationsSupprimees): self
     {
         $this->initialized['notificationsSupprimees'] = true;
         $this->notificationsSupprimees = $notificationsSupprimees;

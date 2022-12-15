@@ -18,80 +18,80 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Date de dépôt des comptes.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDepot;
     /**
      * Date de dépôt formatée des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDepotFormate;
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateCloture;
     /**
      * Année de clôture des comptes.
      *
-     * @var int
+     * @var int|null
      */
     protected $anneeCloture;
     /**
      * Confidentialité totale des comptes.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $confidentialite;
     /**
      * Confidentialité partielle des comptes (seul le compte de résultat est confidentiel, le reste des comptes sont disponibles).
      *
-     * @var bool
+     * @var bool|null
      */
     protected $confidentialiteCompteDeResultat;
     /**
      * Disponibilité des comptes au format PDF.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $disponible;
     /**
      * Nom du fichier PDF des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomFichierPdf;
     /**
      * Token des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $token;
     /**
      * Disponibilité des comptes au format XLSX.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $disponibleXlsx;
     /**
      * Nom du fichier XLSX des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomFichierXlsx;
     /**
      * Token des comptes XLSX.
      *
-     * @var string
+     * @var string|null
      */
     protected $tokenXlsx;
 
     /**
      * Date de dépôt des comptes.
      */
-    public function getDateDepot(): \DateTime
+    public function getDateDepot(): ?\DateTime
     {
         return $this->dateDepot;
     }
@@ -99,7 +99,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Date de dépôt des comptes.
      */
-    public function setDateDepot(\DateTime $dateDepot): self
+    public function setDateDepot(?\DateTime $dateDepot): self
     {
         $this->initialized['dateDepot'] = true;
         $this->dateDepot = $dateDepot;
@@ -110,7 +110,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Date de dépôt formatée des comptes.
      */
-    public function getDateDepotFormate(): string
+    public function getDateDepotFormate(): ?string
     {
         return $this->dateDepotFormate;
     }
@@ -118,7 +118,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Date de dépôt formatée des comptes.
      */
-    public function setDateDepotFormate(string $dateDepotFormate): self
+    public function setDateDepotFormate(?string $dateDepotFormate): self
     {
         $this->initialized['dateDepotFormate'] = true;
         $this->dateDepotFormate = $dateDepotFormate;
@@ -129,7 +129,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      */
-    public function getDateCloture(): \DateTime
+    public function getDateCloture(): ?\DateTime
     {
         return $this->dateCloture;
     }
@@ -137,7 +137,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      */
-    public function setDateCloture(\DateTime $dateCloture): self
+    public function setDateCloture(?\DateTime $dateCloture): self
     {
         $this->initialized['dateCloture'] = true;
         $this->dateCloture = $dateCloture;
@@ -148,7 +148,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Année de clôture des comptes.
      */
-    public function getAnneeCloture(): int
+    public function getAnneeCloture(): ?int
     {
         return $this->anneeCloture;
     }
@@ -156,7 +156,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Année de clôture des comptes.
      */
-    public function setAnneeCloture(int $anneeCloture): self
+    public function setAnneeCloture(?int $anneeCloture): self
     {
         $this->initialized['anneeCloture'] = true;
         $this->anneeCloture = $anneeCloture;
@@ -167,7 +167,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Confidentialité totale des comptes.
      */
-    public function getConfidentialite(): bool
+    public function getConfidentialite(): ?bool
     {
         return $this->confidentialite;
     }
@@ -175,7 +175,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Confidentialité totale des comptes.
      */
-    public function setConfidentialite(bool $confidentialite): self
+    public function setConfidentialite(?bool $confidentialite): self
     {
         $this->initialized['confidentialite'] = true;
         $this->confidentialite = $confidentialite;
@@ -186,7 +186,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Confidentialité partielle des comptes (seul le compte de résultat est confidentiel, le reste des comptes sont disponibles).
      */
-    public function getConfidentialiteCompteDeResultat(): bool
+    public function getConfidentialiteCompteDeResultat(): ?bool
     {
         return $this->confidentialiteCompteDeResultat;
     }
@@ -194,7 +194,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Confidentialité partielle des comptes (seul le compte de résultat est confidentiel, le reste des comptes sont disponibles).
      */
-    public function setConfidentialiteCompteDeResultat(bool $confidentialiteCompteDeResultat): self
+    public function setConfidentialiteCompteDeResultat(?bool $confidentialiteCompteDeResultat): self
     {
         $this->initialized['confidentialiteCompteDeResultat'] = true;
         $this->confidentialiteCompteDeResultat = $confidentialiteCompteDeResultat;
@@ -205,7 +205,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Disponibilité des comptes au format PDF.
      */
-    public function getDisponible(): bool
+    public function getDisponible(): ?bool
     {
         return $this->disponible;
     }
@@ -213,7 +213,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Disponibilité des comptes au format PDF.
      */
-    public function setDisponible(bool $disponible): self
+    public function setDisponible(?bool $disponible): self
     {
         $this->initialized['disponible'] = true;
         $this->disponible = $disponible;
@@ -224,7 +224,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Nom du fichier PDF des comptes.
      */
-    public function getNomFichierPdf(): string
+    public function getNomFichierPdf(): ?string
     {
         return $this->nomFichierPdf;
     }
@@ -232,7 +232,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Nom du fichier PDF des comptes.
      */
-    public function setNomFichierPdf(string $nomFichierPdf): self
+    public function setNomFichierPdf(?string $nomFichierPdf): self
     {
         $this->initialized['nomFichierPdf'] = true;
         $this->nomFichierPdf = $nomFichierPdf;
@@ -243,7 +243,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Token des comptes.
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -251,7 +251,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Token des comptes.
      */
-    public function setToken(string $token): self
+    public function setToken(?string $token): self
     {
         $this->initialized['token'] = true;
         $this->token = $token;
@@ -262,7 +262,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Disponibilité des comptes au format XLSX.
      */
-    public function getDisponibleXlsx(): bool
+    public function getDisponibleXlsx(): ?bool
     {
         return $this->disponibleXlsx;
     }
@@ -270,7 +270,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Disponibilité des comptes au format XLSX.
      */
-    public function setDisponibleXlsx(bool $disponibleXlsx): self
+    public function setDisponibleXlsx(?bool $disponibleXlsx): self
     {
         $this->initialized['disponibleXlsx'] = true;
         $this->disponibleXlsx = $disponibleXlsx;
@@ -281,7 +281,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Nom du fichier XLSX des comptes.
      */
-    public function getNomFichierXlsx(): string
+    public function getNomFichierXlsx(): ?string
     {
         return $this->nomFichierXlsx;
     }
@@ -289,7 +289,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Nom du fichier XLSX des comptes.
      */
-    public function setNomFichierXlsx(string $nomFichierXlsx): self
+    public function setNomFichierXlsx(?string $nomFichierXlsx): self
     {
         $this->initialized['nomFichierXlsx'] = true;
         $this->nomFichierXlsx = $nomFichierXlsx;
@@ -300,7 +300,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Token des comptes XLSX.
      */
-    public function getTokenXlsx(): string
+    public function getTokenXlsx(): ?string
     {
         return $this->tokenXlsx;
     }
@@ -308,7 +308,7 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     /**
      * Token des comptes XLSX.
      */
-    public function setTokenXlsx(string $tokenXlsx): self
+    public function setTokenXlsx(?string $tokenXlsx): self
     {
         $this->initialized['tokenXlsx'] = true;
         $this->tokenXlsx = $tokenXlsx;

@@ -18,14 +18,14 @@ class DocumentComptes extends Document
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateCloture;
 
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      */
-    public function getDateCloture(): \DateTime
+    public function getDateCloture(): ?\DateTime
     {
         return $this->dateCloture;
     }
@@ -33,7 +33,7 @@ class DocumentComptes extends Document
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      */
-    public function setDateCloture(\DateTime $dateCloture): self
+    public function setDateCloture(?\DateTime $dateCloture): self
     {
         $this->initialized['dateCloture'] = true;
         $this->dateCloture = $dateCloture;

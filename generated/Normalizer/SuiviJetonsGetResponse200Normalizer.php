@@ -59,17 +59,23 @@ class SuiviJetonsGetResponse200Normalizer implements DenormalizerInterface, Norm
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('jetons_abonnement', $data)) {
+        if (\array_key_exists('jetons_abonnement', $data) && null !== $data['jetons_abonnement']) {
             $object->setJetonsAbonnement($data['jetons_abonnement']);
             unset($data['jetons_abonnement']);
+        } elseif (\array_key_exists('jetons_abonnement', $data) && null === $data['jetons_abonnement']) {
+            $object->setJetonsAbonnement(null);
         }
-        if (\array_key_exists('jetons_abonnement_utilises', $data)) {
+        if (\array_key_exists('jetons_abonnement_utilises', $data) && null !== $data['jetons_abonnement_utilises']) {
             $object->setJetonsAbonnementUtilises($data['jetons_abonnement_utilises']);
             unset($data['jetons_abonnement_utilises']);
+        } elseif (\array_key_exists('jetons_abonnement_utilises', $data) && null === $data['jetons_abonnement_utilises']) {
+            $object->setJetonsAbonnementUtilises(null);
         }
-        if (\array_key_exists('jetons_pay_as_you_go_restants', $data)) {
+        if (\array_key_exists('jetons_pay_as_you_go_restants', $data) && null !== $data['jetons_pay_as_you_go_restants']) {
             $object->setJetonsPayAsYouGoRestants($data['jetons_pay_as_you_go_restants']);
             unset($data['jetons_pay_as_you_go_restants']);
+        } elseif (\array_key_exists('jetons_pay_as_you_go_restants', $data) && null === $data['jetons_pay_as_you_go_restants']) {
+            $object->setJetonsPayAsYouGoRestants(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

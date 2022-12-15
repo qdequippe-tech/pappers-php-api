@@ -11,14 +11,14 @@ class SurveillanceEntreprise extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[] $requestBody
-     * @param array                                            $queryParameters {
+     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[]|null $requestBody
+     * @param array                                                 $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
      * }
      */
-    public function __construct(array $requestBody, array $queryParameters = [])
+    public function __construct(?array $requestBody = null, array $queryParameters = [])
     {
         $this->body = $requestBody;
         $this->queryParameters = $queryParameters;

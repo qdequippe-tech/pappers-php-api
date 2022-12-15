@@ -18,16 +18,16 @@ class DocumentActe extends Document
     /**
      * Titres des actes associés au document.
      *
-     * @var DocumentActetitresItem[]
+     * @var DocumentActetitresItem[]|null
      */
     protected $titres;
 
     /**
      * Titres des actes associés au document.
      *
-     * @return DocumentActetitresItem[]
+     * @return DocumentActetitresItem[]|null
      */
-    public function getTitres(): array
+    public function getTitres(): ?array
     {
         return $this->titres;
     }
@@ -35,9 +35,9 @@ class DocumentActe extends Document
     /**
      * Titres des actes associés au document.
      *
-     * @param DocumentActetitresItem[] $titres
+     * @param DocumentActetitresItem[]|null $titres
      */
-    public function setTitres(array $titres): self
+    public function setTitres(?array $titres): self
     {
         $this->initialized['titres'] = true;
         $this->titres = $titres;

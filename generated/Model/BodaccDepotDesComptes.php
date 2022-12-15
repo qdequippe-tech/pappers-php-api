@@ -18,26 +18,26 @@ class BodaccDepotDesComptes extends Bodacc
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateCloture;
     /**
      * Type de dépôt de comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $typeDepot;
     /**
      * Descriptif du dépôt de comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $descriptif;
 
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      */
-    public function getDateCloture(): string
+    public function getDateCloture(): ?string
     {
         return $this->dateCloture;
     }
@@ -45,7 +45,7 @@ class BodaccDepotDesComptes extends Bodacc
     /**
      * Date de clôture des comptes, au format AAAA-MM-JJ.
      */
-    public function setDateCloture(string $dateCloture): self
+    public function setDateCloture(?string $dateCloture): self
     {
         $this->initialized['dateCloture'] = true;
         $this->dateCloture = $dateCloture;
@@ -56,7 +56,7 @@ class BodaccDepotDesComptes extends Bodacc
     /**
      * Type de dépôt de comptes.
      */
-    public function getTypeDepot(): string
+    public function getTypeDepot(): ?string
     {
         return $this->typeDepot;
     }
@@ -64,7 +64,7 @@ class BodaccDepotDesComptes extends Bodacc
     /**
      * Type de dépôt de comptes.
      */
-    public function setTypeDepot(string $typeDepot): self
+    public function setTypeDepot(?string $typeDepot): self
     {
         $this->initialized['typeDepot'] = true;
         $this->typeDepot = $typeDepot;
@@ -75,7 +75,7 @@ class BodaccDepotDesComptes extends Bodacc
     /**
      * Descriptif du dépôt de comptes.
      */
-    public function getDescriptif(): string
+    public function getDescriptif(): ?string
     {
         return $this->descriptif;
     }
@@ -83,7 +83,7 @@ class BodaccDepotDesComptes extends Bodacc
     /**
      * Descriptif du dépôt de comptes.
      */
-    public function setDescriptif(string $descriptif): self
+    public function setDescriptif(?string $descriptif): self
     {
         $this->initialized['descriptif'] = true;
         $this->descriptif = $descriptif;

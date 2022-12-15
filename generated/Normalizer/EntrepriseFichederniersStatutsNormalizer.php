@@ -50,41 +50,59 @@ class EntrepriseFichederniersStatutsNormalizer implements DenormalizerInterface,
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('date_depot', $data)) {
+        if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
             $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
             unset($data['date_depot']);
+        } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
+            $object->setDateDepot(null);
         }
-        if (\array_key_exists('date_depot_formate', $data)) {
+        if (\array_key_exists('date_depot_formate', $data) && null !== $data['date_depot_formate']) {
             $object->setDateDepotFormate($data['date_depot_formate']);
             unset($data['date_depot_formate']);
+        } elseif (\array_key_exists('date_depot_formate', $data) && null === $data['date_depot_formate']) {
+            $object->setDateDepotFormate(null);
         }
-        if (\array_key_exists('disponible', $data)) {
+        if (\array_key_exists('disponible', $data) && null !== $data['disponible']) {
             $object->setDisponible($data['disponible']);
             unset($data['disponible']);
+        } elseif (\array_key_exists('disponible', $data) && null === $data['disponible']) {
+            $object->setDisponible(null);
         }
-        if (\array_key_exists('nom_fichier_pdf', $data)) {
+        if (\array_key_exists('nom_fichier_pdf', $data) && null !== $data['nom_fichier_pdf']) {
             $object->setNomFichierPdf($data['nom_fichier_pdf']);
             unset($data['nom_fichier_pdf']);
+        } elseif (\array_key_exists('nom_fichier_pdf', $data) && null === $data['nom_fichier_pdf']) {
+            $object->setNomFichierPdf(null);
         }
-        if (\array_key_exists('token', $data)) {
+        if (\array_key_exists('token', $data) && null !== $data['token']) {
             $object->setToken($data['token']);
             unset($data['token']);
+        } elseif (\array_key_exists('token', $data) && null === $data['token']) {
+            $object->setToken(null);
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('decision', $data)) {
+        if (\array_key_exists('decision', $data) && null !== $data['decision']) {
             $object->setDecision($data['decision']);
             unset($data['decision']);
+        } elseif (\array_key_exists('decision', $data) && null === $data['decision']) {
+            $object->setDecision(null);
         }
-        if (\array_key_exists('date_acte', $data)) {
+        if (\array_key_exists('date_acte', $data) && null !== $data['date_acte']) {
             $object->setDateActe(\DateTime::createFromFormat('Y-m-d', $data['date_acte'])->setTime(0, 0, 0));
             unset($data['date_acte']);
+        } elseif (\array_key_exists('date_acte', $data) && null === $data['date_acte']) {
+            $object->setDateActe(null);
         }
-        if (\array_key_exists('date_acte_formate', $data)) {
+        if (\array_key_exists('date_acte_formate', $data) && null !== $data['date_acte_formate']) {
             $object->setDateActeFormate($data['date_acte_formate']);
             unset($data['date_acte_formate']);
+        } elseif (\array_key_exists('date_acte_formate', $data) && null === $data['date_acte_formate']) {
+            $object->setDateActeFormate(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

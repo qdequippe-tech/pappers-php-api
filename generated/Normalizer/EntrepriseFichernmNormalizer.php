@@ -50,33 +50,47 @@ class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerI
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('date_immatriculation', $data)) {
+        if (\array_key_exists('date_immatriculation', $data) && null !== $data['date_immatriculation']) {
             $object->setDateImmatriculation($data['date_immatriculation']);
             unset($data['date_immatriculation']);
+        } elseif (\array_key_exists('date_immatriculation', $data) && null === $data['date_immatriculation']) {
+            $object->setDateImmatriculation(null);
         }
-        if (\array_key_exists('date_radiation', $data)) {
+        if (\array_key_exists('date_radiation', $data) && null !== $data['date_radiation']) {
             $object->setDateRadiation($data['date_radiation']);
             unset($data['date_radiation']);
+        } elseif (\array_key_exists('date_radiation', $data) && null === $data['date_radiation']) {
+            $object->setDateRadiation(null);
         }
-        if (\array_key_exists('date_debut_activite', $data)) {
+        if (\array_key_exists('date_debut_activite', $data) && null !== $data['date_debut_activite']) {
             $object->setDateDebutActivite($data['date_debut_activite']);
             unset($data['date_debut_activite']);
+        } elseif (\array_key_exists('date_debut_activite', $data) && null === $data['date_debut_activite']) {
+            $object->setDateDebutActivite(null);
         }
-        if (\array_key_exists('date_cessation_activite', $data)) {
+        if (\array_key_exists('date_cessation_activite', $data) && null !== $data['date_cessation_activite']) {
             $object->setDateCessationActivite($data['date_cessation_activite']);
             unset($data['date_cessation_activite']);
+        } elseif (\array_key_exists('date_cessation_activite', $data) && null === $data['date_cessation_activite']) {
+            $object->setDateCessationActivite(null);
         }
-        if (\array_key_exists('chambre_des_metiers', $data)) {
+        if (\array_key_exists('chambre_des_metiers', $data) && null !== $data['chambre_des_metiers']) {
             $object->setChambreDesMetiers($data['chambre_des_metiers']);
             unset($data['chambre_des_metiers']);
+        } elseif (\array_key_exists('chambre_des_metiers', $data) && null === $data['chambre_des_metiers']) {
+            $object->setChambreDesMetiers(null);
         }
-        if (\array_key_exists('qualification', $data)) {
+        if (\array_key_exists('qualification', $data) && null !== $data['qualification']) {
             $object->setQualification($data['qualification']);
             unset($data['qualification']);
+        } elseif (\array_key_exists('qualification', $data) && null === $data['qualification']) {
+            $object->setQualification(null);
         }
-        if (\array_key_exists('derniere_mise_a_jour', $data)) {
+        if (\array_key_exists('derniere_mise_a_jour', $data) && null !== $data['derniere_mise_a_jour']) {
             $object->setDerniereMiseAJour($data['derniere_mise_a_jour']);
             unset($data['derniere_mise_a_jour']);
+        } elseif (\array_key_exists('derniere_mise_a_jour', $data) && null === $data['derniere_mise_a_jour']) {
+            $object->setDerniereMiseAJour(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

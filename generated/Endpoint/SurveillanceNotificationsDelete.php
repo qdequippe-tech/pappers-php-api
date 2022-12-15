@@ -11,15 +11,15 @@ class SurveillanceNotificationsDelete extends \Qdequippe\Pappers\Api\Runtime\Cli
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param array[] $requestBody
-     * @param array   $queryParameters {
+     * @param array[]|null $requestBody
+     * @param array        $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance
      *     @var bool $delete_all Suppression de toutes les notifications de la liste
      * }
      */
-    public function __construct(array $requestBody, array $queryParameters = [])
+    public function __construct(?array $requestBody = null, array $queryParameters = [])
     {
         $this->body = $requestBody;
         $this->queryParameters = $queryParameters;

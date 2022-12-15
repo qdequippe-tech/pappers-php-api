@@ -18,20 +18,20 @@ class EtablissementFicheDomiciliation extends \ArrayObject
     /**
      * Nom de l'entreprise de domiciliation.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Siren de l'entreprise de domiciliation.
      *
-     * @var string
+     * @var string|null
      */
     protected $siren;
 
     /**
      * Nom de l'entreprise de domiciliation.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -39,7 +39,7 @@ class EtablissementFicheDomiciliation extends \ArrayObject
     /**
      * Nom de l'entreprise de domiciliation.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -50,7 +50,7 @@ class EtablissementFicheDomiciliation extends \ArrayObject
     /**
      * Siren de l'entreprise de domiciliation.
      */
-    public function getSiren(): string
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
@@ -58,7 +58,7 @@ class EtablissementFicheDomiciliation extends \ArrayObject
     /**
      * Siren de l'entreprise de domiciliation.
      */
-    public function setSiren(string $siren): self
+    public function setSiren(?string $siren): self
     {
         $this->initialized['siren'] = true;
         $this->siren = $siren;

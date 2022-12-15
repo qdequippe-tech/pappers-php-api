@@ -50,53 +50,65 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('resultats_nom_entreprise', $data)) {
+        if (\array_key_exists('resultats_nom_entreprise', $data) && null !== $data['resultats_nom_entreprise']) {
             $values = [];
             foreach ($data['resultats_nom_entreprise'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsNomEntrepriseItem', 'json', $context);
             }
             $object->setResultatsNomEntreprise($values);
             unset($data['resultats_nom_entreprise']);
+        } elseif (\array_key_exists('resultats_nom_entreprise', $data) && null === $data['resultats_nom_entreprise']) {
+            $object->setResultatsNomEntreprise(null);
         }
-        if (\array_key_exists('resultats_denomination', $data)) {
+        if (\array_key_exists('resultats_denomination', $data) && null !== $data['resultats_denomination']) {
             $values_1 = [];
             foreach ($data['resultats_denomination'] as $value_1) {
                 $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsDenominationItem', 'json', $context);
             }
             $object->setResultatsDenomination($values_1);
             unset($data['resultats_denomination']);
+        } elseif (\array_key_exists('resultats_denomination', $data) && null === $data['resultats_denomination']) {
+            $object->setResultatsDenomination(null);
         }
-        if (\array_key_exists('resultats_nom_complet', $data)) {
+        if (\array_key_exists('resultats_nom_complet', $data) && null !== $data['resultats_nom_complet']) {
             $values_2 = [];
             foreach ($data['resultats_nom_complet'] as $value_2) {
                 $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsNomCompletItem', 'json', $context);
             }
             $object->setResultatsNomComplet($values_2);
             unset($data['resultats_nom_complet']);
+        } elseif (\array_key_exists('resultats_nom_complet', $data) && null === $data['resultats_nom_complet']) {
+            $object->setResultatsNomComplet(null);
         }
-        if (\array_key_exists('resultats_representant', $data)) {
+        if (\array_key_exists('resultats_representant', $data) && null !== $data['resultats_representant']) {
             $values_3 = [];
             foreach ($data['resultats_representant'] as $value_3) {
                 $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsRepresentantItem', 'json', $context);
             }
             $object->setResultatsRepresentant($values_3);
             unset($data['resultats_representant']);
+        } elseif (\array_key_exists('resultats_representant', $data) && null === $data['resultats_representant']) {
+            $object->setResultatsRepresentant(null);
         }
-        if (\array_key_exists('resultats_siren', $data)) {
+        if (\array_key_exists('resultats_siren', $data) && null !== $data['resultats_siren']) {
             $values_4 = [];
             foreach ($data['resultats_siren'] as $value_4) {
                 $values_4[] = $this->denormalizer->denormalize($value_4, 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSirenItem', 'json', $context);
             }
             $object->setResultatsSiren($values_4);
             unset($data['resultats_siren']);
+        } elseif (\array_key_exists('resultats_siren', $data) && null === $data['resultats_siren']) {
+            $object->setResultatsSiren(null);
         }
-        if (\array_key_exists('resultats_siret', $data)) {
+        if (\array_key_exists('resultats_siret', $data) && null !== $data['resultats_siret']) {
             $values_5 = [];
             foreach ($data['resultats_siret'] as $value_5) {
                 $values_5[] = $this->denormalizer->denormalize($value_5, 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSiretItem', 'json', $context);
             }
             $object->setResultatsSiret($values_5);
             unset($data['resultats_siret']);
+        } elseif (\array_key_exists('resultats_siret', $data) && null === $data['resultats_siret']) {
+            $object->setResultatsSiret(null);
         }
         foreach ($data as $key => $value_6) {
             if (preg_match('/.*/', (string) $key)) {

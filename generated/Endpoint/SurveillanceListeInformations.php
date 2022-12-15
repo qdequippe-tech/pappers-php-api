@@ -17,7 +17,7 @@ class SurveillanceListeInformations extends \Qdequippe\Pappers\Api\Runtime\Clien
      *     @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
      * }
      */
-    public function __construct(\Qdequippe\Pappers\Api\Model\ListeInformationsPostBody $requestBody, array $queryParameters = [])
+    public function __construct(?\Qdequippe\Pappers\Api\Model\ListeInformationsPostBody $requestBody = null, array $queryParameters = [])
     {
         $this->body = $requestBody;
         $this->queryParameters = $queryParameters;

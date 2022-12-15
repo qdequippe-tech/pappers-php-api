@@ -18,34 +18,34 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises qui correspondent à la recherche.
      *
-     * @var RechercheGetResponse200ResultatsItem[]
+     * @var RechercheGetResponse200ResultatsItem[]|null
      */
     protected $resultats;
     /**
      * Nombre d'entreprises qui correspondent à la recherche.
      *
-     * @var int
+     * @var int|null
      */
     protected $total;
     /**
      * Page actuelle.
      *
-     * @var int
+     * @var int|null
      */
     protected $page;
     /**
      * Présent uniquement en cas d'utilisation du paramètre `curseur`. Contient le curseur courant à envoyer en paramètre `curseur` de la requête suivantes.
      *
-     * @var string
+     * @var string|null
      */
     protected $curseurSuivant;
 
     /**
      * Liste des entreprises qui correspondent à la recherche.
      *
-     * @return RechercheGetResponse200ResultatsItem[]
+     * @return RechercheGetResponse200ResultatsItem[]|null
      */
-    public function getResultats(): array
+    public function getResultats(): ?array
     {
         return $this->resultats;
     }
@@ -53,9 +53,9 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises qui correspondent à la recherche.
      *
-     * @param RechercheGetResponse200ResultatsItem[] $resultats
+     * @param RechercheGetResponse200ResultatsItem[]|null $resultats
      */
-    public function setResultats(array $resultats): self
+    public function setResultats(?array $resultats): self
     {
         $this->initialized['resultats'] = true;
         $this->resultats = $resultats;
@@ -66,7 +66,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Nombre d'entreprises qui correspondent à la recherche.
      */
-    public function getTotal(): int
+    public function getTotal(): ?int
     {
         return $this->total;
     }
@@ -74,7 +74,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Nombre d'entreprises qui correspondent à la recherche.
      */
-    public function setTotal(int $total): self
+    public function setTotal(?int $total): self
     {
         $this->initialized['total'] = true;
         $this->total = $total;
@@ -85,7 +85,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Page actuelle.
      */
-    public function getPage(): int
+    public function getPage(): ?int
     {
         return $this->page;
     }
@@ -93,7 +93,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Page actuelle.
      */
-    public function setPage(int $page): self
+    public function setPage(?int $page): self
     {
         $this->initialized['page'] = true;
         $this->page = $page;
@@ -104,7 +104,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Présent uniquement en cas d'utilisation du paramètre `curseur`. Contient le curseur courant à envoyer en paramètre `curseur` de la requête suivantes.
      */
-    public function getCurseurSuivant(): string
+    public function getCurseurSuivant(): ?string
     {
         return $this->curseurSuivant;
     }
@@ -112,7 +112,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Présent uniquement en cas d'utilisation du paramètre `curseur`. Contient le curseur courant à envoyer en paramètre `curseur` de la requête suivantes.
      */
-    public function setCurseurSuivant(string $curseurSuivant): self
+    public function setCurseurSuivant(?string $curseurSuivant): self
     {
         $this->initialized['curseurSuivant'] = true;
         $this->curseurSuivant = $curseurSuivant;

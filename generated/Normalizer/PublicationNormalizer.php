@@ -50,17 +50,23 @@ class PublicationNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('date', $data)) {
+        if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate(\DateTime::createFromFormat('Y-m-d', $data['date'])->setTime(0, 0, 0));
             unset($data['date']);
+        } elseif (\array_key_exists('date', $data) && null === $data['date']) {
+            $object->setDate(null);
         }
-        if (\array_key_exists('contenu', $data)) {
+        if (\array_key_exists('contenu', $data) && null !== $data['contenu']) {
             $object->setContenu($data['contenu']);
             unset($data['contenu']);
+        } elseif (\array_key_exists('contenu', $data) && null === $data['contenu']) {
+            $object->setContenu(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

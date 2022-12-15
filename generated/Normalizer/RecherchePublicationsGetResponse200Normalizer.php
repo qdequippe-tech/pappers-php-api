@@ -50,21 +50,27 @@ class RecherchePublicationsGetResponse200Normalizer implements DenormalizerInter
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('resultats', $data)) {
+        if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
             $values = [];
             foreach ($data['resultats'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\RecherchePublicationsGetResponse200ResultatsItem', 'json', $context);
             }
             $object->setResultats($values);
             unset($data['resultats']);
+        } elseif (\array_key_exists('resultats', $data) && null === $data['resultats']) {
+            $object->setResultats(null);
         }
-        if (\array_key_exists('total', $data)) {
+        if (\array_key_exists('total', $data) && null !== $data['total']) {
             $object->setTotal($data['total']);
             unset($data['total']);
+        } elseif (\array_key_exists('total', $data) && null === $data['total']) {
+            $object->setTotal(null);
         }
-        if (\array_key_exists('page', $data)) {
+        if (\array_key_exists('page', $data) && null !== $data['page']) {
             $object->setPage($data['page']);
             unset($data['page']);
+        } elseif (\array_key_exists('page', $data) && null === $data['page']) {
+            $object->setPage(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

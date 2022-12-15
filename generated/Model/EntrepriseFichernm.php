@@ -18,50 +18,50 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date d'immatriculation au Répertoire des Métiers, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateImmatriculation;
     /**
      * Date de radiation du Répertoire des Métiers, le cas échéant, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateRadiation;
     /**
      * Date de début d'activé déclarée au Répertoire des Métiers, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDebutActivite;
     /**
      * Date de cessation d'activité déclarée au Répertoire des Métiers, le cas échéant, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateCessationActivite;
     /**
      * Chambre des métiers où l'entreprise est immatriculée.
      *
-     * @var string
+     * @var string|null
      */
     protected $chambreDesMetiers;
     /**
      * Qualification retenue par le Répertoire des Métiers.
      *
-     * @var string
+     * @var string|null
      */
     protected $qualification;
     /**
      * Date de dernière mise à jour de l'entreprise au Répertoire des Métiers, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $derniereMiseAJour;
 
     /**
      * Date d'immatriculation au Répertoire des Métiers, au format AAAA-MM-JJ.
      */
-    public function getDateImmatriculation(): string
+    public function getDateImmatriculation(): ?string
     {
         return $this->dateImmatriculation;
     }
@@ -69,7 +69,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date d'immatriculation au Répertoire des Métiers, au format AAAA-MM-JJ.
      */
-    public function setDateImmatriculation(string $dateImmatriculation): self
+    public function setDateImmatriculation(?string $dateImmatriculation): self
     {
         $this->initialized['dateImmatriculation'] = true;
         $this->dateImmatriculation = $dateImmatriculation;
@@ -80,7 +80,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de radiation du Répertoire des Métiers, le cas échéant, au format AAAA-MM-JJ.
      */
-    public function getDateRadiation(): string
+    public function getDateRadiation(): ?string
     {
         return $this->dateRadiation;
     }
@@ -88,7 +88,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de radiation du Répertoire des Métiers, le cas échéant, au format AAAA-MM-JJ.
      */
-    public function setDateRadiation(string $dateRadiation): self
+    public function setDateRadiation(?string $dateRadiation): self
     {
         $this->initialized['dateRadiation'] = true;
         $this->dateRadiation = $dateRadiation;
@@ -99,7 +99,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de début d'activé déclarée au Répertoire des Métiers, au format AAAA-MM-JJ.
      */
-    public function getDateDebutActivite(): string
+    public function getDateDebutActivite(): ?string
     {
         return $this->dateDebutActivite;
     }
@@ -107,7 +107,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de début d'activé déclarée au Répertoire des Métiers, au format AAAA-MM-JJ.
      */
-    public function setDateDebutActivite(string $dateDebutActivite): self
+    public function setDateDebutActivite(?string $dateDebutActivite): self
     {
         $this->initialized['dateDebutActivite'] = true;
         $this->dateDebutActivite = $dateDebutActivite;
@@ -118,7 +118,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de cessation d'activité déclarée au Répertoire des Métiers, le cas échéant, au format AAAA-MM-JJ.
      */
-    public function getDateCessationActivite(): string
+    public function getDateCessationActivite(): ?string
     {
         return $this->dateCessationActivite;
     }
@@ -126,7 +126,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de cessation d'activité déclarée au Répertoire des Métiers, le cas échéant, au format AAAA-MM-JJ.
      */
-    public function setDateCessationActivite(string $dateCessationActivite): self
+    public function setDateCessationActivite(?string $dateCessationActivite): self
     {
         $this->initialized['dateCessationActivite'] = true;
         $this->dateCessationActivite = $dateCessationActivite;
@@ -137,7 +137,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Chambre des métiers où l'entreprise est immatriculée.
      */
-    public function getChambreDesMetiers(): string
+    public function getChambreDesMetiers(): ?string
     {
         return $this->chambreDesMetiers;
     }
@@ -145,7 +145,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Chambre des métiers où l'entreprise est immatriculée.
      */
-    public function setChambreDesMetiers(string $chambreDesMetiers): self
+    public function setChambreDesMetiers(?string $chambreDesMetiers): self
     {
         $this->initialized['chambreDesMetiers'] = true;
         $this->chambreDesMetiers = $chambreDesMetiers;
@@ -156,7 +156,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Qualification retenue par le Répertoire des Métiers.
      */
-    public function getQualification(): string
+    public function getQualification(): ?string
     {
         return $this->qualification;
     }
@@ -164,7 +164,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Qualification retenue par le Répertoire des Métiers.
      */
-    public function setQualification(string $qualification): self
+    public function setQualification(?string $qualification): self
     {
         $this->initialized['qualification'] = true;
         $this->qualification = $qualification;
@@ -175,7 +175,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de dernière mise à jour de l'entreprise au Répertoire des Métiers, au format AAAA-MM-JJ.
      */
-    public function getDerniereMiseAJour(): string
+    public function getDerniereMiseAJour(): ?string
     {
         return $this->derniereMiseAJour;
     }
@@ -183,7 +183,7 @@ class EntrepriseFichernm extends \ArrayObject
     /**
      * Date de dernière mise à jour de l'entreprise au Répertoire des Métiers, au format AAAA-MM-JJ.
      */
-    public function setDerniereMiseAJour(string $derniereMiseAJour): self
+    public function setDerniereMiseAJour(?string $derniereMiseAJour): self
     {
         $this->initialized['derniereMiseAJour'] = true;
         $this->derniereMiseAJour = $derniereMiseAJour;

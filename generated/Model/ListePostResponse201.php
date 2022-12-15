@@ -18,14 +18,14 @@ class ListePostResponse201 extends \ArrayObject
     /**
      * Le nombre de dirigeants ajoutées à votre liste de surveillance de dirigeants.
      *
-     * @var float
+     * @var float|null
      */
     protected $notificationsAjoutees;
 
     /**
      * Le nombre de dirigeants ajoutées à votre liste de surveillance de dirigeants.
      */
-    public function getNotificationsAjoutees(): float
+    public function getNotificationsAjoutees(): ?float
     {
         return $this->notificationsAjoutees;
     }
@@ -33,7 +33,7 @@ class ListePostResponse201 extends \ArrayObject
     /**
      * Le nombre de dirigeants ajoutées à votre liste de surveillance de dirigeants.
      */
-    public function setNotificationsAjoutees(float $notificationsAjoutees): self
+    public function setNotificationsAjoutees(?float $notificationsAjoutees): self
     {
         $this->initialized['notificationsAjoutees'] = true;
         $this->notificationsAjoutees = $notificationsAjoutees;

@@ -18,30 +18,30 @@ class RecherchePublicationsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Type de publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Date de publication, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $date;
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      *
-     * @var string
+     * @var string|null
      */
     protected $contenu;
     /**
-     * @var EntrepriseRecherche
+     * @var EntrepriseRecherche|null
      */
     protected $entreprise;
 
     /**
      * Type de publication.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -49,7 +49,7 @@ class RecherchePublicationsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Type de publication.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -60,7 +60,7 @@ class RecherchePublicationsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de publication, au format AAAA-MM-JJ.
      */
-    public function getDate(): \DateTime
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
@@ -68,7 +68,7 @@ class RecherchePublicationsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de publication, au format AAAA-MM-JJ.
      */
-    public function setDate(\DateTime $date): self
+    public function setDate(?\DateTime $date): self
     {
         $this->initialized['date'] = true;
         $this->date = $date;
@@ -79,7 +79,7 @@ class RecherchePublicationsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      */
-    public function getContenu(): string
+    public function getContenu(): ?string
     {
         return $this->contenu;
     }
@@ -87,7 +87,7 @@ class RecherchePublicationsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      */
-    public function setContenu(string $contenu): self
+    public function setContenu(?string $contenu): self
     {
         $this->initialized['contenu'] = true;
         $this->contenu = $contenu;
@@ -95,12 +95,12 @@ class RecherchePublicationsGetResponse200ResultatsItem extends \ArrayObject
         return $this;
     }
 
-    public function getEntreprise(): EntrepriseRecherche
+    public function getEntreprise(): ?EntrepriseRecherche
     {
         return $this->entreprise;
     }
 
-    public function setEntreprise(EntrepriseRecherche $entreprise): self
+    public function setEntreprise(?EntrepriseRecherche $entreprise): self
     {
         $this->initialized['entreprise'] = true;
         $this->entreprise = $entreprise;

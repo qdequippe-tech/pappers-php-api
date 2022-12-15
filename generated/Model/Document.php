@@ -18,26 +18,26 @@ class Document extends \ArrayObject
     /**
      * Type de document.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Date de dépôt du document.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDepot;
     /**
      * Mentions de la recherche dans le document.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $mentions;
 
     /**
      * Type de document.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -45,7 +45,7 @@ class Document extends \ArrayObject
     /**
      * Type de document.
      */
-    public function setType(string $type)
+    public function setType(?string $type)
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -54,7 +54,7 @@ class Document extends \ArrayObject
     /**
      * Date de dépôt du document.
      */
-    public function getDateDepot(): \DateTime
+    public function getDateDepot(): ?\DateTime
     {
         return $this->dateDepot;
     }
@@ -62,7 +62,7 @@ class Document extends \ArrayObject
     /**
      * Date de dépôt du document.
      */
-    public function setDateDepot(\DateTime $dateDepot)
+    public function setDateDepot(?\DateTime $dateDepot)
     {
         $this->initialized['dateDepot'] = true;
         $this->dateDepot = $dateDepot;
@@ -71,9 +71,9 @@ class Document extends \ArrayObject
     /**
      * Mentions de la recherche dans le document.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getMentions(): array
+    public function getMentions(): ?array
     {
         return $this->mentions;
     }
@@ -81,9 +81,9 @@ class Document extends \ArrayObject
     /**
      * Mentions de la recherche dans le document.
      *
-     * @param string[] $mentions
+     * @param string[]|null $mentions
      */
-    public function setMentions(array $mentions)
+    public function setMentions(?array $mentions)
     {
         $this->initialized['mentions'] = true;
         $this->mentions = $mentions;

@@ -50,25 +50,33 @@ class RechercheDocumentsGetResponse200ResultatsItemNormalizer implements Denorma
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('date_depot', $data)) {
+        if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
             $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
             unset($data['date_depot']);
+        } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
+            $object->setDateDepot(null);
         }
-        if (\array_key_exists('mentions', $data)) {
+        if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values = [];
             foreach ($data['mentions'] as $value) {
                 $values[] = $value;
             }
             $object->setMentions($values);
             unset($data['mentions']);
+        } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
+            $object->setMentions(null);
         }
-        if (\array_key_exists('entreprise', $data)) {
+        if (\array_key_exists('entreprise', $data) && null !== $data['entreprise']) {
             $object->setEntreprise($this->denormalizer->denormalize($data['entreprise'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseRecherche', 'json', $context));
             unset($data['entreprise']);
+        } elseif (\array_key_exists('entreprise', $data) && null === $data['entreprise']) {
+            $object->setEntreprise(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

@@ -18,266 +18,266 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Année de cloture d'exercice.
      *
-     * @var int
+     * @var int|null
      */
     protected $annee;
     /**
      * Date de cloture de l'exercice des finances de l'entreprise.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDeClotureExercice;
     /**
      * Durée de l'exercice de l'entreprise.".
      *
-     * @var int
+     * @var int|null
      */
     protected $dureeExercice;
     /**
      * Chiffre d'affaires de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $chiffreAffaires;
     /**
      * Résultat de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $resultat;
     /**
      * Effectif de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $effectif;
     /**
      * Marge brute de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $margeBrute;
     /**
      * Excédent brut d'exploitation (EBITDA) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $excedentBrutExploitation;
     /**
      * Résultat d'exploitation (EBIT) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $resultatExploitation;
     /**
      * Taux de croissance du chiffre d'affaires (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $tauxCroissanceChiffreAffaires;
     /**
      * Taux de marge brute (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $tauxMargeBrute;
     /**
      * Taux de marge d'EBITDA (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $tauxMargeEBITDA;
     /**
      * Taux de marge opérationnelle (EBIT) (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $tauxMargeOperationnelle;
     /**
      * BFR (Besoin en fonds de roulement) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $bFR;
     /**
      * BFR exploitation de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $bFRExploitation;
     /**
      * BFR hors exploitation de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $bFRHorsExploitation;
     /**
      * BFR (en jours de CA) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $bFRJoursCA;
     /**
      * BFR exploitation (en jours de CA) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $bFRExploitationJoursCA;
     /**
      * BFR hors exploitation (en jours de CA) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $bFRHorsExploitationJoursCA;
     /**
      * Délai de paiement clients (en jours) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $delaiPaiementClientsJours;
     /**
      * Délai de paiement fournisseurs (en jours) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $delaiPaiementFournisseursJours;
     /**
      * Ratio des stocks / CA (en jours) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $ratioStockCAJours;
     /**
      * Capacité d'autofinancement de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $capaciteAutofinancement;
     /**
      * Capacité d'autofinancement / CA (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $capaciteAutofinancementCA;
     /**
      * Fonds de roulement net global de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $fondsRoulementNetGlobal;
     /**
      * Couverture du BFR de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $couvertureBFR;
     /**
      * Trésorerie de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $tresorerie;
     /**
      * Dettes financières de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $dettesFinancieres;
     /**
      * Capacité de remboursement de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $capaciteRemboursement;
     /**
      * Ratio d'endettement (Gearing) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $ratioEndettement;
     /**
      * Autonomie financière (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $autonomieFinanciere;
     /**
      * Taux de levier (DFN/EBITDA) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $tauxLevier;
     /**
      * Etat des dettes à 1 an au plus de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $etatDettes1AnAuPlus;
     /**
      * Liquidité générale de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $liquiditeGenerale;
     /**
      * Couverture des dettes de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $couvertureDettes;
     /**
      * Marge nette (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $margeNette;
     /**
      * Rentabilité sur fonds propres (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $rentabiliteFondsPropres;
     /**
      * Rentabilité économique (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $rentabiliteEconomique;
     /**
      * Valeur ajoutée de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $valeurAjoutee;
     /**
      * Valeur ajoutée / CA (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $valeurAjouteeCA;
     /**
      * Salaires et charges sociales de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $salairesChargesSociales;
     /**
      * Salaires / CA (en %) de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $salairesCA;
     /**
      * Impôts et taxes de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $impotsTaxes;
 
     /**
      * Année de cloture d'exercice.
      */
-    public function getAnnee(): int
+    public function getAnnee(): ?int
     {
         return $this->annee;
     }
@@ -285,7 +285,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Année de cloture d'exercice.
      */
-    public function setAnnee(int $annee): self
+    public function setAnnee(?int $annee): self
     {
         $this->initialized['annee'] = true;
         $this->annee = $annee;
@@ -296,7 +296,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Date de cloture de l'exercice des finances de l'entreprise.
      */
-    public function getDateDeClotureExercice(): \DateTime
+    public function getDateDeClotureExercice(): ?\DateTime
     {
         return $this->dateDeClotureExercice;
     }
@@ -304,7 +304,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Date de cloture de l'exercice des finances de l'entreprise.
      */
-    public function setDateDeClotureExercice(\DateTime $dateDeClotureExercice): self
+    public function setDateDeClotureExercice(?\DateTime $dateDeClotureExercice): self
     {
         $this->initialized['dateDeClotureExercice'] = true;
         $this->dateDeClotureExercice = $dateDeClotureExercice;
@@ -315,7 +315,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Durée de l'exercice de l'entreprise.".
      */
-    public function getDureeExercice(): int
+    public function getDureeExercice(): ?int
     {
         return $this->dureeExercice;
     }
@@ -323,7 +323,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Durée de l'exercice de l'entreprise.".
      */
-    public function setDureeExercice(int $dureeExercice): self
+    public function setDureeExercice(?int $dureeExercice): self
     {
         $this->initialized['dureeExercice'] = true;
         $this->dureeExercice = $dureeExercice;
@@ -334,7 +334,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Chiffre d'affaires de l'entreprise.
      */
-    public function getChiffreAffaires(): int
+    public function getChiffreAffaires(): ?int
     {
         return $this->chiffreAffaires;
     }
@@ -342,7 +342,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Chiffre d'affaires de l'entreprise.
      */
-    public function setChiffreAffaires(int $chiffreAffaires): self
+    public function setChiffreAffaires(?int $chiffreAffaires): self
     {
         $this->initialized['chiffreAffaires'] = true;
         $this->chiffreAffaires = $chiffreAffaires;
@@ -353,7 +353,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Résultat de l'entreprise.
      */
-    public function getResultat(): int
+    public function getResultat(): ?int
     {
         return $this->resultat;
     }
@@ -361,7 +361,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Résultat de l'entreprise.
      */
-    public function setResultat(int $resultat): self
+    public function setResultat(?int $resultat): self
     {
         $this->initialized['resultat'] = true;
         $this->resultat = $resultat;
@@ -372,7 +372,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Effectif de l'entreprise.
      */
-    public function getEffectif(): int
+    public function getEffectif(): ?int
     {
         return $this->effectif;
     }
@@ -380,7 +380,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Effectif de l'entreprise.
      */
-    public function setEffectif(int $effectif): self
+    public function setEffectif(?int $effectif): self
     {
         $this->initialized['effectif'] = true;
         $this->effectif = $effectif;
@@ -391,7 +391,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Marge brute de l'entreprise.
      */
-    public function getMargeBrute(): int
+    public function getMargeBrute(): ?int
     {
         return $this->margeBrute;
     }
@@ -399,7 +399,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Marge brute de l'entreprise.
      */
-    public function setMargeBrute(int $margeBrute): self
+    public function setMargeBrute(?int $margeBrute): self
     {
         $this->initialized['margeBrute'] = true;
         $this->margeBrute = $margeBrute;
@@ -410,7 +410,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Excédent brut d'exploitation (EBITDA) de l'entreprise.
      */
-    public function getExcedentBrutExploitation(): int
+    public function getExcedentBrutExploitation(): ?int
     {
         return $this->excedentBrutExploitation;
     }
@@ -418,7 +418,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Excédent brut d'exploitation (EBITDA) de l'entreprise.
      */
-    public function setExcedentBrutExploitation(int $excedentBrutExploitation): self
+    public function setExcedentBrutExploitation(?int $excedentBrutExploitation): self
     {
         $this->initialized['excedentBrutExploitation'] = true;
         $this->excedentBrutExploitation = $excedentBrutExploitation;
@@ -429,7 +429,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Résultat d'exploitation (EBIT) de l'entreprise.
      */
-    public function getResultatExploitation(): int
+    public function getResultatExploitation(): ?int
     {
         return $this->resultatExploitation;
     }
@@ -437,7 +437,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Résultat d'exploitation (EBIT) de l'entreprise.
      */
-    public function setResultatExploitation(int $resultatExploitation): self
+    public function setResultatExploitation(?int $resultatExploitation): self
     {
         $this->initialized['resultatExploitation'] = true;
         $this->resultatExploitation = $resultatExploitation;
@@ -448,7 +448,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de croissance du chiffre d'affaires (en %) de l'entreprise.
      */
-    public function getTauxCroissanceChiffreAffaires(): int
+    public function getTauxCroissanceChiffreAffaires(): ?int
     {
         return $this->tauxCroissanceChiffreAffaires;
     }
@@ -456,7 +456,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de croissance du chiffre d'affaires (en %) de l'entreprise.
      */
-    public function setTauxCroissanceChiffreAffaires(int $tauxCroissanceChiffreAffaires): self
+    public function setTauxCroissanceChiffreAffaires(?int $tauxCroissanceChiffreAffaires): self
     {
         $this->initialized['tauxCroissanceChiffreAffaires'] = true;
         $this->tauxCroissanceChiffreAffaires = $tauxCroissanceChiffreAffaires;
@@ -467,7 +467,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de marge brute (en %) de l'entreprise.
      */
-    public function getTauxMargeBrute(): int
+    public function getTauxMargeBrute(): ?int
     {
         return $this->tauxMargeBrute;
     }
@@ -475,7 +475,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de marge brute (en %) de l'entreprise.
      */
-    public function setTauxMargeBrute(int $tauxMargeBrute): self
+    public function setTauxMargeBrute(?int $tauxMargeBrute): self
     {
         $this->initialized['tauxMargeBrute'] = true;
         $this->tauxMargeBrute = $tauxMargeBrute;
@@ -486,7 +486,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de marge d'EBITDA (en %) de l'entreprise.
      */
-    public function getTauxMargeEBITDA(): int
+    public function getTauxMargeEBITDA(): ?int
     {
         return $this->tauxMargeEBITDA;
     }
@@ -494,7 +494,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de marge d'EBITDA (en %) de l'entreprise.
      */
-    public function setTauxMargeEBITDA(int $tauxMargeEBITDA): self
+    public function setTauxMargeEBITDA(?int $tauxMargeEBITDA): self
     {
         $this->initialized['tauxMargeEBITDA'] = true;
         $this->tauxMargeEBITDA = $tauxMargeEBITDA;
@@ -505,7 +505,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de marge opérationnelle (EBIT) (en %) de l'entreprise.
      */
-    public function getTauxMargeOperationnelle(): int
+    public function getTauxMargeOperationnelle(): ?int
     {
         return $this->tauxMargeOperationnelle;
     }
@@ -513,7 +513,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de marge opérationnelle (EBIT) (en %) de l'entreprise.
      */
-    public function setTauxMargeOperationnelle(int $tauxMargeOperationnelle): self
+    public function setTauxMargeOperationnelle(?int $tauxMargeOperationnelle): self
     {
         $this->initialized['tauxMargeOperationnelle'] = true;
         $this->tauxMargeOperationnelle = $tauxMargeOperationnelle;
@@ -524,7 +524,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR (Besoin en fonds de roulement) de l'entreprise.
      */
-    public function getBFR(): int
+    public function getBFR(): ?int
     {
         return $this->bFR;
     }
@@ -532,7 +532,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR (Besoin en fonds de roulement) de l'entreprise.
      */
-    public function setBFR(int $bFR): self
+    public function setBFR(?int $bFR): self
     {
         $this->initialized['bFR'] = true;
         $this->bFR = $bFR;
@@ -543,7 +543,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR exploitation de l'entreprise.
      */
-    public function getBFRExploitation(): int
+    public function getBFRExploitation(): ?int
     {
         return $this->bFRExploitation;
     }
@@ -551,7 +551,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR exploitation de l'entreprise.
      */
-    public function setBFRExploitation(int $bFRExploitation): self
+    public function setBFRExploitation(?int $bFRExploitation): self
     {
         $this->initialized['bFRExploitation'] = true;
         $this->bFRExploitation = $bFRExploitation;
@@ -562,7 +562,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR hors exploitation de l'entreprise.
      */
-    public function getBFRHorsExploitation(): int
+    public function getBFRHorsExploitation(): ?int
     {
         return $this->bFRHorsExploitation;
     }
@@ -570,7 +570,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR hors exploitation de l'entreprise.
      */
-    public function setBFRHorsExploitation(int $bFRHorsExploitation): self
+    public function setBFRHorsExploitation(?int $bFRHorsExploitation): self
     {
         $this->initialized['bFRHorsExploitation'] = true;
         $this->bFRHorsExploitation = $bFRHorsExploitation;
@@ -581,7 +581,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR (en jours de CA) de l'entreprise.
      */
-    public function getBFRJoursCA(): int
+    public function getBFRJoursCA(): ?int
     {
         return $this->bFRJoursCA;
     }
@@ -589,7 +589,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR (en jours de CA) de l'entreprise.
      */
-    public function setBFRJoursCA(int $bFRJoursCA): self
+    public function setBFRJoursCA(?int $bFRJoursCA): self
     {
         $this->initialized['bFRJoursCA'] = true;
         $this->bFRJoursCA = $bFRJoursCA;
@@ -600,7 +600,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR exploitation (en jours de CA) de l'entreprise.
      */
-    public function getBFRExploitationJoursCA(): int
+    public function getBFRExploitationJoursCA(): ?int
     {
         return $this->bFRExploitationJoursCA;
     }
@@ -608,7 +608,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR exploitation (en jours de CA) de l'entreprise.
      */
-    public function setBFRExploitationJoursCA(int $bFRExploitationJoursCA): self
+    public function setBFRExploitationJoursCA(?int $bFRExploitationJoursCA): self
     {
         $this->initialized['bFRExploitationJoursCA'] = true;
         $this->bFRExploitationJoursCA = $bFRExploitationJoursCA;
@@ -619,7 +619,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR hors exploitation (en jours de CA) de l'entreprise.
      */
-    public function getBFRHorsExploitationJoursCA(): int
+    public function getBFRHorsExploitationJoursCA(): ?int
     {
         return $this->bFRHorsExploitationJoursCA;
     }
@@ -627,7 +627,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * BFR hors exploitation (en jours de CA) de l'entreprise.
      */
-    public function setBFRHorsExploitationJoursCA(int $bFRHorsExploitationJoursCA): self
+    public function setBFRHorsExploitationJoursCA(?int $bFRHorsExploitationJoursCA): self
     {
         $this->initialized['bFRHorsExploitationJoursCA'] = true;
         $this->bFRHorsExploitationJoursCA = $bFRHorsExploitationJoursCA;
@@ -638,7 +638,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Délai de paiement clients (en jours) de l'entreprise.
      */
-    public function getDelaiPaiementClientsJours(): int
+    public function getDelaiPaiementClientsJours(): ?int
     {
         return $this->delaiPaiementClientsJours;
     }
@@ -646,7 +646,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Délai de paiement clients (en jours) de l'entreprise.
      */
-    public function setDelaiPaiementClientsJours(int $delaiPaiementClientsJours): self
+    public function setDelaiPaiementClientsJours(?int $delaiPaiementClientsJours): self
     {
         $this->initialized['delaiPaiementClientsJours'] = true;
         $this->delaiPaiementClientsJours = $delaiPaiementClientsJours;
@@ -657,7 +657,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Délai de paiement fournisseurs (en jours) de l'entreprise.
      */
-    public function getDelaiPaiementFournisseursJours(): int
+    public function getDelaiPaiementFournisseursJours(): ?int
     {
         return $this->delaiPaiementFournisseursJours;
     }
@@ -665,7 +665,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Délai de paiement fournisseurs (en jours) de l'entreprise.
      */
-    public function setDelaiPaiementFournisseursJours(int $delaiPaiementFournisseursJours): self
+    public function setDelaiPaiementFournisseursJours(?int $delaiPaiementFournisseursJours): self
     {
         $this->initialized['delaiPaiementFournisseursJours'] = true;
         $this->delaiPaiementFournisseursJours = $delaiPaiementFournisseursJours;
@@ -676,7 +676,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Ratio des stocks / CA (en jours) de l'entreprise.
      */
-    public function getRatioStockCAJours(): int
+    public function getRatioStockCAJours(): ?int
     {
         return $this->ratioStockCAJours;
     }
@@ -684,7 +684,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Ratio des stocks / CA (en jours) de l'entreprise.
      */
-    public function setRatioStockCAJours(int $ratioStockCAJours): self
+    public function setRatioStockCAJours(?int $ratioStockCAJours): self
     {
         $this->initialized['ratioStockCAJours'] = true;
         $this->ratioStockCAJours = $ratioStockCAJours;
@@ -695,7 +695,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Capacité d'autofinancement de l'entreprise.
      */
-    public function getCapaciteAutofinancement(): int
+    public function getCapaciteAutofinancement(): ?int
     {
         return $this->capaciteAutofinancement;
     }
@@ -703,7 +703,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Capacité d'autofinancement de l'entreprise.
      */
-    public function setCapaciteAutofinancement(int $capaciteAutofinancement): self
+    public function setCapaciteAutofinancement(?int $capaciteAutofinancement): self
     {
         $this->initialized['capaciteAutofinancement'] = true;
         $this->capaciteAutofinancement = $capaciteAutofinancement;
@@ -714,7 +714,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Capacité d'autofinancement / CA (en %) de l'entreprise.
      */
-    public function getCapaciteAutofinancementCA(): int
+    public function getCapaciteAutofinancementCA(): ?int
     {
         return $this->capaciteAutofinancementCA;
     }
@@ -722,7 +722,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Capacité d'autofinancement / CA (en %) de l'entreprise.
      */
-    public function setCapaciteAutofinancementCA(int $capaciteAutofinancementCA): self
+    public function setCapaciteAutofinancementCA(?int $capaciteAutofinancementCA): self
     {
         $this->initialized['capaciteAutofinancementCA'] = true;
         $this->capaciteAutofinancementCA = $capaciteAutofinancementCA;
@@ -733,7 +733,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Fonds de roulement net global de l'entreprise.
      */
-    public function getFondsRoulementNetGlobal(): int
+    public function getFondsRoulementNetGlobal(): ?int
     {
         return $this->fondsRoulementNetGlobal;
     }
@@ -741,7 +741,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Fonds de roulement net global de l'entreprise.
      */
-    public function setFondsRoulementNetGlobal(int $fondsRoulementNetGlobal): self
+    public function setFondsRoulementNetGlobal(?int $fondsRoulementNetGlobal): self
     {
         $this->initialized['fondsRoulementNetGlobal'] = true;
         $this->fondsRoulementNetGlobal = $fondsRoulementNetGlobal;
@@ -752,7 +752,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Couverture du BFR de l'entreprise.
      */
-    public function getCouvertureBFR(): int
+    public function getCouvertureBFR(): ?int
     {
         return $this->couvertureBFR;
     }
@@ -760,7 +760,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Couverture du BFR de l'entreprise.
      */
-    public function setCouvertureBFR(int $couvertureBFR): self
+    public function setCouvertureBFR(?int $couvertureBFR): self
     {
         $this->initialized['couvertureBFR'] = true;
         $this->couvertureBFR = $couvertureBFR;
@@ -771,7 +771,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Trésorerie de l'entreprise.
      */
-    public function getTresorerie(): int
+    public function getTresorerie(): ?int
     {
         return $this->tresorerie;
     }
@@ -779,7 +779,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Trésorerie de l'entreprise.
      */
-    public function setTresorerie(int $tresorerie): self
+    public function setTresorerie(?int $tresorerie): self
     {
         $this->initialized['tresorerie'] = true;
         $this->tresorerie = $tresorerie;
@@ -790,7 +790,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Dettes financières de l'entreprise.
      */
-    public function getDettesFinancieres(): int
+    public function getDettesFinancieres(): ?int
     {
         return $this->dettesFinancieres;
     }
@@ -798,7 +798,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Dettes financières de l'entreprise.
      */
-    public function setDettesFinancieres(int $dettesFinancieres): self
+    public function setDettesFinancieres(?int $dettesFinancieres): self
     {
         $this->initialized['dettesFinancieres'] = true;
         $this->dettesFinancieres = $dettesFinancieres;
@@ -809,7 +809,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Capacité de remboursement de l'entreprise.
      */
-    public function getCapaciteRemboursement(): int
+    public function getCapaciteRemboursement(): ?int
     {
         return $this->capaciteRemboursement;
     }
@@ -817,7 +817,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Capacité de remboursement de l'entreprise.
      */
-    public function setCapaciteRemboursement(int $capaciteRemboursement): self
+    public function setCapaciteRemboursement(?int $capaciteRemboursement): self
     {
         $this->initialized['capaciteRemboursement'] = true;
         $this->capaciteRemboursement = $capaciteRemboursement;
@@ -828,7 +828,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Ratio d'endettement (Gearing) de l'entreprise.
      */
-    public function getRatioEndettement(): int
+    public function getRatioEndettement(): ?int
     {
         return $this->ratioEndettement;
     }
@@ -836,7 +836,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Ratio d'endettement (Gearing) de l'entreprise.
      */
-    public function setRatioEndettement(int $ratioEndettement): self
+    public function setRatioEndettement(?int $ratioEndettement): self
     {
         $this->initialized['ratioEndettement'] = true;
         $this->ratioEndettement = $ratioEndettement;
@@ -847,7 +847,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Autonomie financière (en %) de l'entreprise.
      */
-    public function getAutonomieFinanciere(): int
+    public function getAutonomieFinanciere(): ?int
     {
         return $this->autonomieFinanciere;
     }
@@ -855,7 +855,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Autonomie financière (en %) de l'entreprise.
      */
-    public function setAutonomieFinanciere(int $autonomieFinanciere): self
+    public function setAutonomieFinanciere(?int $autonomieFinanciere): self
     {
         $this->initialized['autonomieFinanciere'] = true;
         $this->autonomieFinanciere = $autonomieFinanciere;
@@ -866,7 +866,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de levier (DFN/EBITDA) de l'entreprise.
      */
-    public function getTauxLevier(): int
+    public function getTauxLevier(): ?int
     {
         return $this->tauxLevier;
     }
@@ -874,7 +874,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Taux de levier (DFN/EBITDA) de l'entreprise.
      */
-    public function setTauxLevier(int $tauxLevier): self
+    public function setTauxLevier(?int $tauxLevier): self
     {
         $this->initialized['tauxLevier'] = true;
         $this->tauxLevier = $tauxLevier;
@@ -885,7 +885,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Etat des dettes à 1 an au plus de l'entreprise.
      */
-    public function getEtatDettes1AnAuPlus(): int
+    public function getEtatDettes1AnAuPlus(): ?int
     {
         return $this->etatDettes1AnAuPlus;
     }
@@ -893,7 +893,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Etat des dettes à 1 an au plus de l'entreprise.
      */
-    public function setEtatDettes1AnAuPlus(int $etatDettes1AnAuPlus): self
+    public function setEtatDettes1AnAuPlus(?int $etatDettes1AnAuPlus): self
     {
         $this->initialized['etatDettes1AnAuPlus'] = true;
         $this->etatDettes1AnAuPlus = $etatDettes1AnAuPlus;
@@ -904,7 +904,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Liquidité générale de l'entreprise.
      */
-    public function getLiquiditeGenerale(): int
+    public function getLiquiditeGenerale(): ?int
     {
         return $this->liquiditeGenerale;
     }
@@ -912,7 +912,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Liquidité générale de l'entreprise.
      */
-    public function setLiquiditeGenerale(int $liquiditeGenerale): self
+    public function setLiquiditeGenerale(?int $liquiditeGenerale): self
     {
         $this->initialized['liquiditeGenerale'] = true;
         $this->liquiditeGenerale = $liquiditeGenerale;
@@ -923,7 +923,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Couverture des dettes de l'entreprise.
      */
-    public function getCouvertureDettes(): int
+    public function getCouvertureDettes(): ?int
     {
         return $this->couvertureDettes;
     }
@@ -931,7 +931,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Couverture des dettes de l'entreprise.
      */
-    public function setCouvertureDettes(int $couvertureDettes): self
+    public function setCouvertureDettes(?int $couvertureDettes): self
     {
         $this->initialized['couvertureDettes'] = true;
         $this->couvertureDettes = $couvertureDettes;
@@ -942,7 +942,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Marge nette (en %) de l'entreprise.
      */
-    public function getMargeNette(): int
+    public function getMargeNette(): ?int
     {
         return $this->margeNette;
     }
@@ -950,7 +950,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Marge nette (en %) de l'entreprise.
      */
-    public function setMargeNette(int $margeNette): self
+    public function setMargeNette(?int $margeNette): self
     {
         $this->initialized['margeNette'] = true;
         $this->margeNette = $margeNette;
@@ -961,7 +961,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Rentabilité sur fonds propres (en %) de l'entreprise.
      */
-    public function getRentabiliteFondsPropres(): int
+    public function getRentabiliteFondsPropres(): ?int
     {
         return $this->rentabiliteFondsPropres;
     }
@@ -969,7 +969,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Rentabilité sur fonds propres (en %) de l'entreprise.
      */
-    public function setRentabiliteFondsPropres(int $rentabiliteFondsPropres): self
+    public function setRentabiliteFondsPropres(?int $rentabiliteFondsPropres): self
     {
         $this->initialized['rentabiliteFondsPropres'] = true;
         $this->rentabiliteFondsPropres = $rentabiliteFondsPropres;
@@ -980,7 +980,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Rentabilité économique (en %) de l'entreprise.
      */
-    public function getRentabiliteEconomique(): int
+    public function getRentabiliteEconomique(): ?int
     {
         return $this->rentabiliteEconomique;
     }
@@ -988,7 +988,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Rentabilité économique (en %) de l'entreprise.
      */
-    public function setRentabiliteEconomique(int $rentabiliteEconomique): self
+    public function setRentabiliteEconomique(?int $rentabiliteEconomique): self
     {
         $this->initialized['rentabiliteEconomique'] = true;
         $this->rentabiliteEconomique = $rentabiliteEconomique;
@@ -999,7 +999,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Valeur ajoutée de l'entreprise.
      */
-    public function getValeurAjoutee(): int
+    public function getValeurAjoutee(): ?int
     {
         return $this->valeurAjoutee;
     }
@@ -1007,7 +1007,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Valeur ajoutée de l'entreprise.
      */
-    public function setValeurAjoutee(int $valeurAjoutee): self
+    public function setValeurAjoutee(?int $valeurAjoutee): self
     {
         $this->initialized['valeurAjoutee'] = true;
         $this->valeurAjoutee = $valeurAjoutee;
@@ -1018,7 +1018,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Valeur ajoutée / CA (en %) de l'entreprise.
      */
-    public function getValeurAjouteeCA(): int
+    public function getValeurAjouteeCA(): ?int
     {
         return $this->valeurAjouteeCA;
     }
@@ -1026,7 +1026,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Valeur ajoutée / CA (en %) de l'entreprise.
      */
-    public function setValeurAjouteeCA(int $valeurAjouteeCA): self
+    public function setValeurAjouteeCA(?int $valeurAjouteeCA): self
     {
         $this->initialized['valeurAjouteeCA'] = true;
         $this->valeurAjouteeCA = $valeurAjouteeCA;
@@ -1037,7 +1037,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Salaires et charges sociales de l'entreprise.
      */
-    public function getSalairesChargesSociales(): int
+    public function getSalairesChargesSociales(): ?int
     {
         return $this->salairesChargesSociales;
     }
@@ -1045,7 +1045,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Salaires et charges sociales de l'entreprise.
      */
-    public function setSalairesChargesSociales(int $salairesChargesSociales): self
+    public function setSalairesChargesSociales(?int $salairesChargesSociales): self
     {
         $this->initialized['salairesChargesSociales'] = true;
         $this->salairesChargesSociales = $salairesChargesSociales;
@@ -1056,7 +1056,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Salaires / CA (en %) de l'entreprise.
      */
-    public function getSalairesCA(): int
+    public function getSalairesCA(): ?int
     {
         return $this->salairesCA;
     }
@@ -1064,7 +1064,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Salaires / CA (en %) de l'entreprise.
      */
-    public function setSalairesCA(int $salairesCA): self
+    public function setSalairesCA(?int $salairesCA): self
     {
         $this->initialized['salairesCA'] = true;
         $this->salairesCA = $salairesCA;
@@ -1075,7 +1075,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Impôts et taxes de l'entreprise.
      */
-    public function getImpotsTaxes(): int
+    public function getImpotsTaxes(): ?int
     {
         return $this->impotsTaxes;
     }
@@ -1083,7 +1083,7 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     /**
      * Impôts et taxes de l'entreprise.
      */
-    public function setImpotsTaxes(int $impotsTaxes): self
+    public function setImpotsTaxes(?int $impotsTaxes): self
     {
         $this->initialized['impotsTaxes'] = true;
         $this->impotsTaxes = $impotsTaxes;

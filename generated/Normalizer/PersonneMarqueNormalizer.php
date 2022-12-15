@@ -50,41 +50,59 @@ class PersonneMarqueNormalizer implements DenormalizerInterface, NormalizerInter
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('siren', $data)) {
+        if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
+        } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
+            $object->setSiren(null);
         }
-        if (\array_key_exists('entite_legale', $data)) {
+        if (\array_key_exists('entite_legale', $data) && null !== $data['entite_legale']) {
             $object->setEntiteLegale($data['entite_legale']);
             unset($data['entite_legale']);
+        } elseif (\array_key_exists('entite_legale', $data) && null === $data['entite_legale']) {
+            $object->setEntiteLegale(null);
         }
-        if (\array_key_exists('nom', $data)) {
+        if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
+        } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
+            $object->setNom(null);
         }
-        if (\array_key_exists('batiment', $data)) {
+        if (\array_key_exists('batiment', $data) && null !== $data['batiment']) {
             $object->setBatiment($data['batiment']);
             unset($data['batiment']);
+        } elseif (\array_key_exists('batiment', $data) && null === $data['batiment']) {
+            $object->setBatiment(null);
         }
-        if (\array_key_exists('rue', $data)) {
+        if (\array_key_exists('rue', $data) && null !== $data['rue']) {
             $object->setRue($data['rue']);
             unset($data['rue']);
+        } elseif (\array_key_exists('rue', $data) && null === $data['rue']) {
+            $object->setRue(null);
         }
-        if (\array_key_exists('ville', $data)) {
+        if (\array_key_exists('ville', $data) && null !== $data['ville']) {
             $object->setVille($data['ville']);
             unset($data['ville']);
+        } elseif (\array_key_exists('ville', $data) && null === $data['ville']) {
+            $object->setVille(null);
         }
-        if (\array_key_exists('boite_postale', $data)) {
+        if (\array_key_exists('boite_postale', $data) && null !== $data['boite_postale']) {
             $object->setBoitePostale($data['boite_postale']);
             unset($data['boite_postale']);
+        } elseif (\array_key_exists('boite_postale', $data) && null === $data['boite_postale']) {
+            $object->setBoitePostale(null);
         }
-        if (\array_key_exists('code_postal', $data)) {
+        if (\array_key_exists('code_postal', $data) && null !== $data['code_postal']) {
             $object->setCodePostal($data['code_postal']);
             unset($data['code_postal']);
+        } elseif (\array_key_exists('code_postal', $data) && null === $data['code_postal']) {
+            $object->setCodePostal(null);
         }
-        if (\array_key_exists('code_pays', $data)) {
+        if (\array_key_exists('code_pays', $data) && null !== $data['code_pays']) {
             $object->setCodePays($data['code_pays']);
             unset($data['code_pays']);
+        } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
+            $object->setCodePays(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

@@ -18,62 +18,62 @@ class PersonneMarque extends \ArrayObject
     /**
      * Siren de l'entité, dans le cas d'une personne morale.
      *
-     * @var string
+     * @var string|null
      */
     protected $siren;
     /**
      * Entité légale.
      *
-     * @var string
+     * @var string|null
      */
     protected $entiteLegale;
     /**
      * Nom de l'entité.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Bâtiment de l'entité.
      *
-     * @var string
+     * @var string|null
      */
     protected $batiment;
     /**
      * Rue de l'entité.
      *
-     * @var string
+     * @var string|null
      */
     protected $rue;
     /**
      * Ville de l'entité.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
     /**
      * Boîte postale de l'entité.
      *
-     * @var string
+     * @var string|null
      */
     protected $boitePostale;
     /**
      * Code postal de l'entité.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Code pays de l'entité.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePays;
 
     /**
      * Siren de l'entité, dans le cas d'une personne morale.
      */
-    public function getSiren(): string
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
@@ -81,7 +81,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Siren de l'entité, dans le cas d'une personne morale.
      */
-    public function setSiren(string $siren): self
+    public function setSiren(?string $siren): self
     {
         $this->initialized['siren'] = true;
         $this->siren = $siren;
@@ -92,7 +92,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Entité légale.
      */
-    public function getEntiteLegale(): string
+    public function getEntiteLegale(): ?string
     {
         return $this->entiteLegale;
     }
@@ -100,7 +100,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Entité légale.
      */
-    public function setEntiteLegale(string $entiteLegale): self
+    public function setEntiteLegale(?string $entiteLegale): self
     {
         $this->initialized['entiteLegale'] = true;
         $this->entiteLegale = $entiteLegale;
@@ -111,7 +111,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Nom de l'entité.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -119,7 +119,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Nom de l'entité.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -130,7 +130,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Bâtiment de l'entité.
      */
-    public function getBatiment(): string
+    public function getBatiment(): ?string
     {
         return $this->batiment;
     }
@@ -138,7 +138,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Bâtiment de l'entité.
      */
-    public function setBatiment(string $batiment): self
+    public function setBatiment(?string $batiment): self
     {
         $this->initialized['batiment'] = true;
         $this->batiment = $batiment;
@@ -149,7 +149,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Rue de l'entité.
      */
-    public function getRue(): string
+    public function getRue(): ?string
     {
         return $this->rue;
     }
@@ -157,7 +157,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Rue de l'entité.
      */
-    public function setRue(string $rue): self
+    public function setRue(?string $rue): self
     {
         $this->initialized['rue'] = true;
         $this->rue = $rue;
@@ -168,7 +168,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Ville de l'entité.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -176,7 +176,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Ville de l'entité.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;
@@ -187,7 +187,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Boîte postale de l'entité.
      */
-    public function getBoitePostale(): string
+    public function getBoitePostale(): ?string
     {
         return $this->boitePostale;
     }
@@ -195,7 +195,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Boîte postale de l'entité.
      */
-    public function setBoitePostale(string $boitePostale): self
+    public function setBoitePostale(?string $boitePostale): self
     {
         $this->initialized['boitePostale'] = true;
         $this->boitePostale = $boitePostale;
@@ -206,7 +206,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Code postal de l'entité.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -214,7 +214,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Code postal de l'entité.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -225,7 +225,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Code pays de l'entité.
      */
-    public function getCodePays(): string
+    public function getCodePays(): ?string
     {
         return $this->codePays;
     }
@@ -233,7 +233,7 @@ class PersonneMarque extends \ArrayObject
     /**
      * Code pays de l'entité.
      */
-    public function setCodePays(string $codePays): self
+    public function setCodePays(?string $codePays): self
     {
         $this->initialized['codePays'] = true;
         $this->codePays = $codePays;

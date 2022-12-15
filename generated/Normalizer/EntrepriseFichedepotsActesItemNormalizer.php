@@ -50,33 +50,45 @@ class EntrepriseFichedepotsActesItemNormalizer implements DenormalizerInterface,
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('date_depot', $data)) {
+        if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
             $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
             unset($data['date_depot']);
+        } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
+            $object->setDateDepot(null);
         }
-        if (\array_key_exists('date_depot_formate', $data)) {
+        if (\array_key_exists('date_depot_formate', $data) && null !== $data['date_depot_formate']) {
             $object->setDateDepotFormate($data['date_depot_formate']);
             unset($data['date_depot_formate']);
+        } elseif (\array_key_exists('date_depot_formate', $data) && null === $data['date_depot_formate']) {
+            $object->setDateDepotFormate(null);
         }
-        if (\array_key_exists('disponible', $data)) {
+        if (\array_key_exists('disponible', $data) && null !== $data['disponible']) {
             $object->setDisponible($data['disponible']);
             unset($data['disponible']);
+        } elseif (\array_key_exists('disponible', $data) && null === $data['disponible']) {
+            $object->setDisponible(null);
         }
-        if (\array_key_exists('nom_fichier_pdf', $data)) {
+        if (\array_key_exists('nom_fichier_pdf', $data) && null !== $data['nom_fichier_pdf']) {
             $object->setNomFichierPdf($data['nom_fichier_pdf']);
             unset($data['nom_fichier_pdf']);
+        } elseif (\array_key_exists('nom_fichier_pdf', $data) && null === $data['nom_fichier_pdf']) {
+            $object->setNomFichierPdf(null);
         }
-        if (\array_key_exists('token', $data)) {
+        if (\array_key_exists('token', $data) && null !== $data['token']) {
             $object->setToken($data['token']);
             unset($data['token']);
+        } elseif (\array_key_exists('token', $data) && null === $data['token']) {
+            $object->setToken(null);
         }
-        if (\array_key_exists('actes', $data)) {
+        if (\array_key_exists('actes', $data) && null !== $data['actes']) {
             $values = [];
             foreach ($data['actes'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichedepotsActesItemActesItem', 'json', $context);
             }
             $object->setActes($values);
             unset($data['actes']);
+        } elseif (\array_key_exists('actes', $data) && null === $data['actes']) {
+            $object->setActes(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

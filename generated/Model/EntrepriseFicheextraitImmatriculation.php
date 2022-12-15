@@ -18,14 +18,14 @@ class EntrepriseFicheextraitImmatriculation extends \ArrayObject
     /**
      * Token.
      *
-     * @var string
+     * @var string|null
      */
     protected $token;
 
     /**
      * Token.
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -33,7 +33,7 @@ class EntrepriseFicheextraitImmatriculation extends \ArrayObject
     /**
      * Token.
      */
-    public function setToken(string $token): self
+    public function setToken(?string $token): self
     {
         $this->initialized['token'] = true;
         $this->token = $token;

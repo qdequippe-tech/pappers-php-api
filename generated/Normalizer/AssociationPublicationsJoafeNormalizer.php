@@ -50,45 +50,65 @@ class AssociationPublicationsJoafeNormalizer implements DenormalizerInterface, N
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('numero_parution', $data)) {
+        if (\array_key_exists('numero_parution', $data) && null !== $data['numero_parution']) {
             $object->setNumeroParution($data['numero_parution']);
             unset($data['numero_parution']);
+        } elseif (\array_key_exists('numero_parution', $data) && null === $data['numero_parution']) {
+            $object->setNumeroParution(null);
         }
-        if (\array_key_exists('date_parution', $data)) {
+        if (\array_key_exists('date_parution', $data) && null !== $data['date_parution']) {
             $object->setDateParution($data['date_parution']);
             unset($data['date_parution']);
+        } elseif (\array_key_exists('date_parution', $data) && null === $data['date_parution']) {
+            $object->setDateParution(null);
         }
-        if (\array_key_exists('date_declaration', $data)) {
+        if (\array_key_exists('date_declaration', $data) && null !== $data['date_declaration']) {
             $object->setDateDeclaration($data['date_declaration']);
             unset($data['date_declaration']);
+        } elseif (\array_key_exists('date_declaration', $data) && null === $data['date_declaration']) {
+            $object->setDateDeclaration(null);
         }
-        if (\array_key_exists('numero_annonce', $data)) {
+        if (\array_key_exists('numero_annonce', $data) && null !== $data['numero_annonce']) {
             $object->setNumeroAnnonce($data['numero_annonce']);
             unset($data['numero_annonce']);
+        } elseif (\array_key_exists('numero_annonce', $data) && null === $data['numero_annonce']) {
+            $object->setNumeroAnnonce(null);
         }
-        if (\array_key_exists('titre', $data)) {
+        if (\array_key_exists('titre', $data) && null !== $data['titre']) {
             $object->setTitre($data['titre']);
             unset($data['titre']);
+        } elseif (\array_key_exists('titre', $data) && null === $data['titre']) {
+            $object->setTitre(null);
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('prefecture', $data)) {
+        if (\array_key_exists('prefecture', $data) && null !== $data['prefecture']) {
             $object->setPrefecture($data['prefecture']);
             unset($data['prefecture']);
+        } elseif (\array_key_exists('prefecture', $data) && null === $data['prefecture']) {
+            $object->setPrefecture(null);
         }
-        if (\array_key_exists('objet', $data)) {
+        if (\array_key_exists('objet', $data) && null !== $data['objet']) {
             $object->setObjet($data['objet']);
             unset($data['objet']);
+        } elseif (\array_key_exists('objet', $data) && null === $data['objet']) {
+            $object->setObjet(null);
         }
-        if (\array_key_exists('site_web', $data)) {
+        if (\array_key_exists('site_web', $data) && null !== $data['site_web']) {
             $object->setSiteWeb($data['site_web']);
             unset($data['site_web']);
+        } elseif (\array_key_exists('site_web', $data) && null === $data['site_web']) {
+            $object->setSiteWeb(null);
         }
-        if (\array_key_exists('adresse', $data)) {
+        if (\array_key_exists('adresse', $data) && null !== $data['adresse']) {
             $object->setAdresse($data['adresse']);
             unset($data['adresse']);
+        } elseif (\array_key_exists('adresse', $data) && null === $data['adresse']) {
+            $object->setAdresse(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

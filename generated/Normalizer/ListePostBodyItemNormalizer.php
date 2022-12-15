@@ -50,29 +50,41 @@ class ListePostBodyItemNormalizer implements DenormalizerInterface, NormalizerIn
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('siren', $data)) {
+        if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
+        } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
+            $object->setSiren(null);
         }
-        if (\array_key_exists('denomination', $data)) {
+        if (\array_key_exists('denomination', $data) && null !== $data['denomination']) {
             $object->setDenomination($data['denomination']);
             unset($data['denomination']);
+        } elseif (\array_key_exists('denomination', $data) && null === $data['denomination']) {
+            $object->setDenomination(null);
         }
-        if (\array_key_exists('nom', $data)) {
+        if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
+        } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
+            $object->setNom(null);
         }
-        if (\array_key_exists('prenom', $data)) {
+        if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
             $object->setPrenom($data['prenom']);
             unset($data['prenom']);
+        } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
+            $object->setPrenom(null);
         }
-        if (\array_key_exists('date_de_naissance', $data)) {
+        if (\array_key_exists('date_de_naissance', $data) && null !== $data['date_de_naissance']) {
             $object->setDateDeNaissance($data['date_de_naissance']);
             unset($data['date_de_naissance']);
+        } elseif (\array_key_exists('date_de_naissance', $data) && null === $data['date_de_naissance']) {
+            $object->setDateDeNaissance(null);
         }
-        if (\array_key_exists('recherche_elargie', $data)) {
+        if (\array_key_exists('recherche_elargie', $data) && null !== $data['recherche_elargie']) {
             $object->setRechercheElargie($data['recherche_elargie']);
             unset($data['recherche_elargie']);
+        } elseif (\array_key_exists('recherche_elargie', $data) && null === $data['recherche_elargie']) {
+            $object->setRechercheElargie(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

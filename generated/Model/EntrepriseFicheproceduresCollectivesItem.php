@@ -18,32 +18,32 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Type de la procédure collective.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Date de début de la procédure collective, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDebut;
     /**
      * Date de fin de la procédure collective, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateFin;
     /**
      * Liste des publications relatives à la procédure collective.
      *
-     * @var Bodacc[]
+     * @var Bodacc[]|null
      */
     protected $publicationsBodacc;
 
     /**
      * Type de la procédure collective.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -51,7 +51,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Type de la procédure collective.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -62,7 +62,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Date de début de la procédure collective, au format AAAA-MM-JJ.
      */
-    public function getDateDebut(): string
+    public function getDateDebut(): ?string
     {
         return $this->dateDebut;
     }
@@ -70,7 +70,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Date de début de la procédure collective, au format AAAA-MM-JJ.
      */
-    public function setDateDebut(string $dateDebut): self
+    public function setDateDebut(?string $dateDebut): self
     {
         $this->initialized['dateDebut'] = true;
         $this->dateDebut = $dateDebut;
@@ -81,7 +81,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Date de fin de la procédure collective, au format AAAA-MM-JJ.
      */
-    public function getDateFin(): string
+    public function getDateFin(): ?string
     {
         return $this->dateFin;
     }
@@ -89,7 +89,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Date de fin de la procédure collective, au format AAAA-MM-JJ.
      */
-    public function setDateFin(string $dateFin): self
+    public function setDateFin(?string $dateFin): self
     {
         $this->initialized['dateFin'] = true;
         $this->dateFin = $dateFin;
@@ -100,9 +100,9 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Liste des publications relatives à la procédure collective.
      *
-     * @return Bodacc[]
+     * @return Bodacc[]|null
      */
-    public function getPublicationsBodacc(): array
+    public function getPublicationsBodacc(): ?array
     {
         return $this->publicationsBodacc;
     }
@@ -110,9 +110,9 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Liste des publications relatives à la procédure collective.
      *
-     * @param Bodacc[] $publicationsBodacc
+     * @param Bodacc[]|null $publicationsBodacc
      */
-    public function setPublicationsBodacc(array $publicationsBodacc): self
+    public function setPublicationsBodacc(?array $publicationsBodacc): self
     {
         $this->initialized['publicationsBodacc'] = true;
         $this->publicationsBodacc = $publicationsBodacc;

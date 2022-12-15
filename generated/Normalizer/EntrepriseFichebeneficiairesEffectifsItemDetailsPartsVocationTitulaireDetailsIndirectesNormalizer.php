@@ -56,21 +56,29 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('pourcentage_en_indivision', $data)) {
+        if (\array_key_exists('pourcentage_en_indivision', $data) && null !== $data['pourcentage_en_indivision']) {
             $object->setPourcentageEnIndivision($data['pourcentage_en_indivision']);
             unset($data['pourcentage_en_indivision']);
+        } elseif (\array_key_exists('pourcentage_en_indivision', $data) && null === $data['pourcentage_en_indivision']) {
+            $object->setPourcentageEnIndivision(null);
         }
-        if (\array_key_exists('pourcentage_en_personne_morale', $data)) {
+        if (\array_key_exists('pourcentage_en_personne_morale', $data) && null !== $data['pourcentage_en_personne_morale']) {
             $object->setPourcentageEnPersonneMorale($data['pourcentage_en_personne_morale']);
             unset($data['pourcentage_en_personne_morale']);
+        } elseif (\array_key_exists('pourcentage_en_personne_morale', $data) && null === $data['pourcentage_en_personne_morale']) {
+            $object->setPourcentageEnPersonneMorale(null);
         }
-        if (\array_key_exists('details_en_indivision', $data)) {
+        if (\array_key_exists('details_en_indivision', $data) && null !== $data['details_en_indivision']) {
             $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision', 'json', $context));
             unset($data['details_en_indivision']);
+        } elseif (\array_key_exists('details_en_indivision', $data) && null === $data['details_en_indivision']) {
+            $object->setDetailsEnIndivision(null);
         }
-        if (\array_key_exists('details_en_personne_morale', $data)) {
+        if (\array_key_exists('details_en_personne_morale', $data) && null !== $data['details_en_personne_morale']) {
             $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale', 'json', $context));
             unset($data['details_en_personne_morale']);
+        } elseif (\array_key_exists('details_en_personne_morale', $data) && null === $data['details_en_personne_morale']) {
+            $object->setDetailsEnPersonneMorale(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

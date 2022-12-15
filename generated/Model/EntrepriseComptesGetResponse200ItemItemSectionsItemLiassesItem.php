@@ -18,26 +18,26 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Code de la liasse.
      *
-     * @var string
+     * @var string|null
      */
     protected $code;
     /**
      * Libellé de la liasse.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelle;
     /**
      * Colonnes de la liasse.
      *
-     * @var EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]
+     * @var EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]|null
      */
     protected $colonnes;
 
     /**
      * Code de la liasse.
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }
@@ -45,7 +45,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Code de la liasse.
      */
-    public function setCode(string $code): self
+    public function setCode(?string $code): self
     {
         $this->initialized['code'] = true;
         $this->code = $code;
@@ -56,7 +56,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Libellé de la liasse.
      */
-    public function getLibelle(): string
+    public function getLibelle(): ?string
     {
         return $this->libelle;
     }
@@ -64,7 +64,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Libellé de la liasse.
      */
-    public function setLibelle(string $libelle): self
+    public function setLibelle(?string $libelle): self
     {
         $this->initialized['libelle'] = true;
         $this->libelle = $libelle;
@@ -75,9 +75,9 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Colonnes de la liasse.
      *
-     * @return EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]
+     * @return EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]|null
      */
-    public function getColonnes(): array
+    public function getColonnes(): ?array
     {
         return $this->colonnes;
     }
@@ -85,9 +85,9 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Colonnes de la liasse.
      *
-     * @param EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[] $colonnes
+     * @param EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]|null $colonnes
      */
-    public function setColonnes(array $colonnes): self
+    public function setColonnes(?array $colonnes): self
     {
         $this->initialized['colonnes'] = true;
         $this->colonnes = $colonnes;

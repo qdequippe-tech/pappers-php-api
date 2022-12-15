@@ -50,69 +50,95 @@ class EntrepriseFichemarquesItemNormalizer implements DenormalizerInterface, Nor
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('numero', $data)) {
+        if (\array_key_exists('numero', $data) && null !== $data['numero']) {
             $object->setNumero($data['numero']);
             unset($data['numero']);
+        } elseif (\array_key_exists('numero', $data) && null === $data['numero']) {
+            $object->setNumero(null);
         }
-        if (\array_key_exists('date_enregistrement', $data)) {
+        if (\array_key_exists('date_enregistrement', $data) && null !== $data['date_enregistrement']) {
             $object->setDateEnregistrement($data['date_enregistrement']);
             unset($data['date_enregistrement']);
+        } elseif (\array_key_exists('date_enregistrement', $data) && null === $data['date_enregistrement']) {
+            $object->setDateEnregistrement(null);
         }
-        if (\array_key_exists('date_expiration', $data)) {
+        if (\array_key_exists('date_expiration', $data) && null !== $data['date_expiration']) {
             $object->setDateExpiration($data['date_expiration']);
             unset($data['date_expiration']);
+        } elseif (\array_key_exists('date_expiration', $data) && null === $data['date_expiration']) {
+            $object->setDateExpiration(null);
         }
-        if (\array_key_exists('lieu_enregistrement', $data)) {
+        if (\array_key_exists('lieu_enregistrement', $data) && null !== $data['lieu_enregistrement']) {
             $object->setLieuEnregistrement($data['lieu_enregistrement']);
             unset($data['lieu_enregistrement']);
+        } elseif (\array_key_exists('lieu_enregistrement', $data) && null === $data['lieu_enregistrement']) {
+            $object->setLieuEnregistrement(null);
         }
-        if (\array_key_exists('statut', $data)) {
+        if (\array_key_exists('statut', $data) && null !== $data['statut']) {
             $object->setStatut($data['statut']);
             unset($data['statut']);
+        } elseif (\array_key_exists('statut', $data) && null === $data['statut']) {
+            $object->setStatut(null);
         }
-        if (\array_key_exists('texte', $data)) {
+        if (\array_key_exists('texte', $data) && null !== $data['texte']) {
             $object->setTexte($data['texte']);
             unset($data['texte']);
+        } elseif (\array_key_exists('texte', $data) && null === $data['texte']) {
+            $object->setTexte(null);
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('lien_image', $data)) {
+        if (\array_key_exists('lien_image', $data) && null !== $data['lien_image']) {
             $object->setLienImage($data['lien_image']);
             unset($data['lien_image']);
+        } elseif (\array_key_exists('lien_image', $data) && null === $data['lien_image']) {
+            $object->setLienImage(null);
         }
-        if (\array_key_exists('descriptions', $data)) {
+        if (\array_key_exists('descriptions', $data) && null !== $data['descriptions']) {
             $values = [];
             foreach ($data['descriptions'] as $value) {
                 $values[] = $value;
             }
             $object->setDescriptions($values);
             unset($data['descriptions']);
+        } elseif (\array_key_exists('descriptions', $data) && null === $data['descriptions']) {
+            $object->setDescriptions(null);
         }
-        if (\array_key_exists('classes', $data)) {
+        if (\array_key_exists('classes', $data) && null !== $data['classes']) {
             $values_1 = [];
             foreach ($data['classes'] as $value_1) {
                 $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichemarquesItemClassesItem', 'json', $context);
             }
             $object->setClasses($values_1);
             unset($data['classes']);
+        } elseif (\array_key_exists('classes', $data) && null === $data['classes']) {
+            $object->setClasses(null);
         }
-        if (\array_key_exists('deposant', $data)) {
+        if (\array_key_exists('deposant', $data) && null !== $data['deposant']) {
             $object->setDeposant($this->denormalizer->denormalize($data['deposant'], 'Qdequippe\\Pappers\\Api\\Model\\PersonneMarque', 'json', $context));
             unset($data['deposant']);
+        } elseif (\array_key_exists('deposant', $data) && null === $data['deposant']) {
+            $object->setDeposant(null);
         }
-        if (\array_key_exists('mandataire', $data)) {
+        if (\array_key_exists('mandataire', $data) && null !== $data['mandataire']) {
             $object->setMandataire($this->denormalizer->denormalize($data['mandataire'], 'Qdequippe\\Pappers\\Api\\Model\\PersonneMarque', 'json', $context));
             unset($data['mandataire']);
+        } elseif (\array_key_exists('mandataire', $data) && null === $data['mandataire']) {
+            $object->setMandataire(null);
         }
-        if (\array_key_exists('evenements', $data)) {
+        if (\array_key_exists('evenements', $data) && null !== $data['evenements']) {
             $values_2 = [];
             foreach ($data['evenements'] as $value_2) {
                 $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichemarquesItemEvenementsItem', 'json', $context);
             }
             $object->setEvenements($values_2);
             unset($data['evenements']);
+        } elseif (\array_key_exists('evenements', $data) && null === $data['evenements']) {
+            $object->setEvenements(null);
         }
         foreach ($data as $key => $value_3) {
             if (preg_match('/.*/', (string) $key)) {

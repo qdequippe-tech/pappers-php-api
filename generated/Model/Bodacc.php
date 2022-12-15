@@ -18,44 +18,44 @@ class Bodacc extends \ArrayObject
     /**
      * Numéro de parution de la publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $numeroParution;
     /**
      * Date de la publication, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $date;
     /**
      * Numéro d'annonce de la publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $numeroAnnonce;
     /**
      * Bodacc de la publication (A, B ou C).
      *
-     * @var string
+     * @var string|null
      */
     protected $bodacc;
     /**
      * Type de la publication parmi la liste suivante : Création, Immatriculation, Modification, Vente, Achat, Radiation, Procédure collective, Dépôt des comptes.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Greffe de publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $greffe;
 
     /**
      * Numéro de parution de la publication.
      */
-    public function getNumeroParution(): string
+    public function getNumeroParution(): ?string
     {
         return $this->numeroParution;
     }
@@ -63,7 +63,7 @@ class Bodacc extends \ArrayObject
     /**
      * Numéro de parution de la publication.
      */
-    public function setNumeroParution(string $numeroParution)
+    public function setNumeroParution(?string $numeroParution)
     {
         $this->initialized['numeroParution'] = true;
         $this->numeroParution = $numeroParution;
@@ -72,7 +72,7 @@ class Bodacc extends \ArrayObject
     /**
      * Date de la publication, au format AAAA-MM-JJ.
      */
-    public function getDate(): string
+    public function getDate(): ?string
     {
         return $this->date;
     }
@@ -80,7 +80,7 @@ class Bodacc extends \ArrayObject
     /**
      * Date de la publication, au format AAAA-MM-JJ.
      */
-    public function setDate(string $date)
+    public function setDate(?string $date)
     {
         $this->initialized['date'] = true;
         $this->date = $date;
@@ -89,7 +89,7 @@ class Bodacc extends \ArrayObject
     /**
      * Numéro d'annonce de la publication.
      */
-    public function getNumeroAnnonce(): string
+    public function getNumeroAnnonce(): ?string
     {
         return $this->numeroAnnonce;
     }
@@ -97,7 +97,7 @@ class Bodacc extends \ArrayObject
     /**
      * Numéro d'annonce de la publication.
      */
-    public function setNumeroAnnonce(string $numeroAnnonce)
+    public function setNumeroAnnonce(?string $numeroAnnonce)
     {
         $this->initialized['numeroAnnonce'] = true;
         $this->numeroAnnonce = $numeroAnnonce;
@@ -106,7 +106,7 @@ class Bodacc extends \ArrayObject
     /**
      * Bodacc de la publication (A, B ou C).
      */
-    public function getBodacc(): string
+    public function getBodacc(): ?string
     {
         return $this->bodacc;
     }
@@ -114,7 +114,7 @@ class Bodacc extends \ArrayObject
     /**
      * Bodacc de la publication (A, B ou C).
      */
-    public function setBodacc(string $bodacc)
+    public function setBodacc(?string $bodacc)
     {
         $this->initialized['bodacc'] = true;
         $this->bodacc = $bodacc;
@@ -123,7 +123,7 @@ class Bodacc extends \ArrayObject
     /**
      * Type de la publication parmi la liste suivante : Création, Immatriculation, Modification, Vente, Achat, Radiation, Procédure collective, Dépôt des comptes.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -131,7 +131,7 @@ class Bodacc extends \ArrayObject
     /**
      * Type de la publication parmi la liste suivante : Création, Immatriculation, Modification, Vente, Achat, Radiation, Procédure collective, Dépôt des comptes.
      */
-    public function setType(string $type)
+    public function setType(?string $type)
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -140,7 +140,7 @@ class Bodacc extends \ArrayObject
     /**
      * Greffe de publication.
      */
-    public function getGreffe(): string
+    public function getGreffe(): ?string
     {
         return $this->greffe;
     }
@@ -148,7 +148,7 @@ class Bodacc extends \ArrayObject
     /**
      * Greffe de publication.
      */
-    public function setGreffe(string $greffe)
+    public function setGreffe(?string $greffe)
     {
         $this->initialized['greffe'] = true;
         $this->greffe = $greffe;

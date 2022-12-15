@@ -18,44 +18,44 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Date de dépôt de l'acte, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateDepot;
     /**
      * Date de dépôt formatée de l'acte, au format JJ/MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDepotFormate;
     /**
      * Disponibilité de l'acte. Un acte peut être indisponible car il a été publié avant le 1er janvier 1993 ou bien car il est confidentiel.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $disponible;
     /**
      * Nom du fichier pdf de l'acte.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomFichierPdf;
     /**
      * Token de l'acte.
      *
-     * @var string
+     * @var string|null
      */
     protected $token;
     /**
      * Détails de l'acte.
      *
-     * @var EntrepriseFichedepotsActesItemActesItem[]
+     * @var EntrepriseFichedepotsActesItemActesItem[]|null
      */
     protected $actes;
 
     /**
      * Date de dépôt de l'acte, au format AAAA-MM-JJ.
      */
-    public function getDateDepot(): \DateTime
+    public function getDateDepot(): ?\DateTime
     {
         return $this->dateDepot;
     }
@@ -63,7 +63,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Date de dépôt de l'acte, au format AAAA-MM-JJ.
      */
-    public function setDateDepot(\DateTime $dateDepot): self
+    public function setDateDepot(?\DateTime $dateDepot): self
     {
         $this->initialized['dateDepot'] = true;
         $this->dateDepot = $dateDepot;
@@ -74,7 +74,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Date de dépôt formatée de l'acte, au format JJ/MM/AAAA.
      */
-    public function getDateDepotFormate(): string
+    public function getDateDepotFormate(): ?string
     {
         return $this->dateDepotFormate;
     }
@@ -82,7 +82,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Date de dépôt formatée de l'acte, au format JJ/MM/AAAA.
      */
-    public function setDateDepotFormate(string $dateDepotFormate): self
+    public function setDateDepotFormate(?string $dateDepotFormate): self
     {
         $this->initialized['dateDepotFormate'] = true;
         $this->dateDepotFormate = $dateDepotFormate;
@@ -93,7 +93,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Disponibilité de l'acte. Un acte peut être indisponible car il a été publié avant le 1er janvier 1993 ou bien car il est confidentiel.
      */
-    public function getDisponible(): bool
+    public function getDisponible(): ?bool
     {
         return $this->disponible;
     }
@@ -101,7 +101,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Disponibilité de l'acte. Un acte peut être indisponible car il a été publié avant le 1er janvier 1993 ou bien car il est confidentiel.
      */
-    public function setDisponible(bool $disponible): self
+    public function setDisponible(?bool $disponible): self
     {
         $this->initialized['disponible'] = true;
         $this->disponible = $disponible;
@@ -112,7 +112,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Nom du fichier pdf de l'acte.
      */
-    public function getNomFichierPdf(): string
+    public function getNomFichierPdf(): ?string
     {
         return $this->nomFichierPdf;
     }
@@ -120,7 +120,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Nom du fichier pdf de l'acte.
      */
-    public function setNomFichierPdf(string $nomFichierPdf): self
+    public function setNomFichierPdf(?string $nomFichierPdf): self
     {
         $this->initialized['nomFichierPdf'] = true;
         $this->nomFichierPdf = $nomFichierPdf;
@@ -131,7 +131,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Token de l'acte.
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -139,7 +139,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Token de l'acte.
      */
-    public function setToken(string $token): self
+    public function setToken(?string $token): self
     {
         $this->initialized['token'] = true;
         $this->token = $token;
@@ -150,9 +150,9 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Détails de l'acte.
      *
-     * @return EntrepriseFichedepotsActesItemActesItem[]
+     * @return EntrepriseFichedepotsActesItemActesItem[]|null
      */
-    public function getActes(): array
+    public function getActes(): ?array
     {
         return $this->actes;
     }
@@ -160,9 +160,9 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Détails de l'acte.
      *
-     * @param EntrepriseFichedepotsActesItemActesItem[] $actes
+     * @param EntrepriseFichedepotsActesItemActesItem[]|null $actes
      */
-    public function setActes(array $actes): self
+    public function setActes(?array $actes): self
     {
         $this->initialized['actes'] = true;
         $this->actes = $actes;

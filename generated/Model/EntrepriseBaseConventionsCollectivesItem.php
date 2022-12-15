@@ -18,26 +18,26 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
     /**
      * Nom de la convention collective.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Code IDCC de l'entreprise.
      *
-     * @var int
+     * @var int|null
      */
     protected $idcc;
     /**
      * Si confirmée, l'information est issue de la DSN de l'entreprise et fournie par le ministère du Travail. Si non confirmée, ce n'est qu'une estimation à partir du code NAF de l'entreprise.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $confirmee;
 
     /**
      * Nom de la convention collective.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -45,7 +45,7 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
     /**
      * Nom de la convention collective.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -56,7 +56,7 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
     /**
      * Code IDCC de l'entreprise.
      */
-    public function getIdcc(): int
+    public function getIdcc(): ?int
     {
         return $this->idcc;
     }
@@ -64,7 +64,7 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
     /**
      * Code IDCC de l'entreprise.
      */
-    public function setIdcc(int $idcc): self
+    public function setIdcc(?int $idcc): self
     {
         $this->initialized['idcc'] = true;
         $this->idcc = $idcc;
@@ -75,7 +75,7 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
     /**
      * Si confirmée, l'information est issue de la DSN de l'entreprise et fournie par le ministère du Travail. Si non confirmée, ce n'est qu'une estimation à partir du code NAF de l'entreprise.
      */
-    public function getConfirmee(): bool
+    public function getConfirmee(): ?bool
     {
         return $this->confirmee;
     }
@@ -83,7 +83,7 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
     /**
      * Si confirmée, l'information est issue de la DSN de l'entreprise et fournie par le ministère du Travail. Si non confirmée, ce n'est qu'une estimation à partir du code NAF de l'entreprise.
      */
-    public function setConfirmee(bool $confirmee): self
+    public function setConfirmee(?bool $confirmee): self
     {
         $this->initialized['confirmee'] = true;
         $this->confirmee = $confirmee;

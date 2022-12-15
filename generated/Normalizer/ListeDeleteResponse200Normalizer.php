@@ -53,9 +53,11 @@ class ListeDeleteResponse200Normalizer implements DenormalizerInterface, Normali
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('notifications_supprimees', $data)) {
+        if (\array_key_exists('notifications_supprimees', $data) && null !== $data['notifications_supprimees']) {
             $object->setNotificationsSupprimees($data['notifications_supprimees']);
             unset($data['notifications_supprimees']);
+        } elseif (\array_key_exists('notifications_supprimees', $data) && null === $data['notifications_supprimees']) {
+            $object->setNotificationsSupprimees(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

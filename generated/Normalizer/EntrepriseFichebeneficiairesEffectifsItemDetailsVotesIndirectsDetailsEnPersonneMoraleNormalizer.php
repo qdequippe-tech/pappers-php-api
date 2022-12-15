@@ -59,17 +59,23 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPer
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('pourcentage_pleine_propriete', $data)) {
+        if (\array_key_exists('pourcentage_pleine_propriete', $data) && null !== $data['pourcentage_pleine_propriete']) {
             $object->setPourcentagePleinePropriete($data['pourcentage_pleine_propriete']);
             unset($data['pourcentage_pleine_propriete']);
+        } elseif (\array_key_exists('pourcentage_pleine_propriete', $data) && null === $data['pourcentage_pleine_propriete']) {
+            $object->setPourcentagePleinePropriete(null);
         }
-        if (\array_key_exists('pourcentage_nue_propriete', $data)) {
+        if (\array_key_exists('pourcentage_nue_propriete', $data) && null !== $data['pourcentage_nue_propriete']) {
             $object->setPourcentageNuePropriete($data['pourcentage_nue_propriete']);
             unset($data['pourcentage_nue_propriete']);
+        } elseif (\array_key_exists('pourcentage_nue_propriete', $data) && null === $data['pourcentage_nue_propriete']) {
+            $object->setPourcentageNuePropriete(null);
         }
-        if (\array_key_exists('pourcentage_usufruit', $data)) {
+        if (\array_key_exists('pourcentage_usufruit', $data) && null !== $data['pourcentage_usufruit']) {
             $object->setPourcentageUsufruit($data['pourcentage_usufruit']);
             unset($data['pourcentage_usufruit']);
+        } elseif (\array_key_exists('pourcentage_usufruit', $data) && null === $data['pourcentage_usufruit']) {
+            $object->setPourcentageUsufruit(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

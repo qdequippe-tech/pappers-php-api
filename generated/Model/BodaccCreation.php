@@ -18,68 +18,68 @@ class BodaccCreation extends Bodacc
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomEntreprise;
     /**
      * Vrai si l'entreprise concernée par la publication est une personne morale, faux si c'est une personne physique.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $personneMorale;
     /**
      * Dénomination de l'entreprise concernée par la publication (uniquement en cas de personne morale).
      *
-     * @var string
+     * @var string|null
      */
     protected $denomination;
     /**
      * Nom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Prénom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      *
-     * @var string
+     * @var string|null
      */
     protected $prenom;
     /**
      * Administration (dans le cas d'une personne morale).
      *
-     * @var string
+     * @var string|null
      */
     protected $administration;
     /**
      * Adresse de l'entreprise concernée par la publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresse;
     /**
      * Capital de l'entreprise concernée par la publication.
      *
-     * @var int
+     * @var int|null
      */
     protected $capital;
     /**
      * Activité de l'entreprise concernée par la publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $activite;
     /**
      * Date de début d'activité de l'entreprise concernée par la publication, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDebutActivite;
 
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.
      */
-    public function getNomEntreprise(): string
+    public function getNomEntreprise(): ?string
     {
         return $this->nomEntreprise;
     }
@@ -87,7 +87,7 @@ class BodaccCreation extends Bodacc
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.
      */
-    public function setNomEntreprise(string $nomEntreprise): self
+    public function setNomEntreprise(?string $nomEntreprise): self
     {
         $this->initialized['nomEntreprise'] = true;
         $this->nomEntreprise = $nomEntreprise;
@@ -98,7 +98,7 @@ class BodaccCreation extends Bodacc
     /**
      * Vrai si l'entreprise concernée par la publication est une personne morale, faux si c'est une personne physique.
      */
-    public function getPersonneMorale(): bool
+    public function getPersonneMorale(): ?bool
     {
         return $this->personneMorale;
     }
@@ -106,7 +106,7 @@ class BodaccCreation extends Bodacc
     /**
      * Vrai si l'entreprise concernée par la publication est une personne morale, faux si c'est une personne physique.
      */
-    public function setPersonneMorale(bool $personneMorale): self
+    public function setPersonneMorale(?bool $personneMorale): self
     {
         $this->initialized['personneMorale'] = true;
         $this->personneMorale = $personneMorale;
@@ -117,7 +117,7 @@ class BodaccCreation extends Bodacc
     /**
      * Dénomination de l'entreprise concernée par la publication (uniquement en cas de personne morale).
      */
-    public function getDenomination(): string
+    public function getDenomination(): ?string
     {
         return $this->denomination;
     }
@@ -125,7 +125,7 @@ class BodaccCreation extends Bodacc
     /**
      * Dénomination de l'entreprise concernée par la publication (uniquement en cas de personne morale).
      */
-    public function setDenomination(string $denomination): self
+    public function setDenomination(?string $denomination): self
     {
         $this->initialized['denomination'] = true;
         $this->denomination = $denomination;
@@ -136,7 +136,7 @@ class BodaccCreation extends Bodacc
     /**
      * Nom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -144,7 +144,7 @@ class BodaccCreation extends Bodacc
     /**
      * Nom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -155,7 +155,7 @@ class BodaccCreation extends Bodacc
     /**
      * Prénom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -163,7 +163,7 @@ class BodaccCreation extends Bodacc
     /**
      * Prénom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
@@ -174,7 +174,7 @@ class BodaccCreation extends Bodacc
     /**
      * Administration (dans le cas d'une personne morale).
      */
-    public function getAdministration(): string
+    public function getAdministration(): ?string
     {
         return $this->administration;
     }
@@ -182,7 +182,7 @@ class BodaccCreation extends Bodacc
     /**
      * Administration (dans le cas d'une personne morale).
      */
-    public function setAdministration(string $administration): self
+    public function setAdministration(?string $administration): self
     {
         $this->initialized['administration'] = true;
         $this->administration = $administration;
@@ -193,7 +193,7 @@ class BodaccCreation extends Bodacc
     /**
      * Adresse de l'entreprise concernée par la publication.
      */
-    public function getAdresse(): string
+    public function getAdresse(): ?string
     {
         return $this->adresse;
     }
@@ -201,7 +201,7 @@ class BodaccCreation extends Bodacc
     /**
      * Adresse de l'entreprise concernée par la publication.
      */
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->initialized['adresse'] = true;
         $this->adresse = $adresse;
@@ -212,7 +212,7 @@ class BodaccCreation extends Bodacc
     /**
      * Capital de l'entreprise concernée par la publication.
      */
-    public function getCapital(): int
+    public function getCapital(): ?int
     {
         return $this->capital;
     }
@@ -220,7 +220,7 @@ class BodaccCreation extends Bodacc
     /**
      * Capital de l'entreprise concernée par la publication.
      */
-    public function setCapital(int $capital): self
+    public function setCapital(?int $capital): self
     {
         $this->initialized['capital'] = true;
         $this->capital = $capital;
@@ -231,7 +231,7 @@ class BodaccCreation extends Bodacc
     /**
      * Activité de l'entreprise concernée par la publication.
      */
-    public function getActivite(): string
+    public function getActivite(): ?string
     {
         return $this->activite;
     }
@@ -239,7 +239,7 @@ class BodaccCreation extends Bodacc
     /**
      * Activité de l'entreprise concernée par la publication.
      */
-    public function setActivite(string $activite): self
+    public function setActivite(?string $activite): self
     {
         $this->initialized['activite'] = true;
         $this->activite = $activite;
@@ -250,7 +250,7 @@ class BodaccCreation extends Bodacc
     /**
      * Date de début d'activité de l'entreprise concernée par la publication, au format AAAA-MM-JJ.
      */
-    public function getDateDebutActivite(): string
+    public function getDateDebutActivite(): ?string
     {
         return $this->dateDebutActivite;
     }
@@ -258,7 +258,7 @@ class BodaccCreation extends Bodacc
     /**
      * Date de début d'activité de l'entreprise concernée par la publication, au format AAAA-MM-JJ.
      */
-    public function setDateDebutActivite(string $dateDebutActivite): self
+    public function setDateDebutActivite(?string $dateDebutActivite): self
     {
         $this->initialized['dateDebutActivite'] = true;
         $this->dateDebutActivite = $dateDebutActivite;

@@ -18,176 +18,176 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Qualité du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $qualite;
     /**
      * Vrai si le représentant est une personne morale, faux si personne physique.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $personneMorale;
     /**
      * Date de prise de poste du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $datePriseDePoste;
     /**
      * Sexe supposé du dirigeant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du dirigeant.
      *
-     * @var string
+     * @var string|null
      */
     protected $sexe;
     /**
      * Nom du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Prénoms du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $prenom;
     /**
      * Prénom usuel du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $prenomUsuel;
     /**
      * Nom complet du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomComplet;
     /**
      * Date de naissance du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDeNaissance;
     /**
      * Date de naissance formatée du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDeNaissanceFormate;
     /**
      * Age du représentant.
      *
-     * @var int
+     * @var int|null
      */
     protected $age;
     /**
      * Nationalité du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $nationalite;
     /**
      * Code nationalité du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $codeNationalite;
     /**
      * Ville de naissance du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $villeDeNaissance;
     /**
      * Pays de naissance du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $paysDeNaissance;
     /**
      * Code du pays de naissance du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePaysDeNaissance;
     /**
      * Première ligne de l'adresse du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne1;
     /**
      * Deuxième ligne de l'adresse du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne2;
     /**
      * Troisième ligne de l'adresse du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne3;
     /**
      * Code postal du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Ville du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
     /**
      * Pays du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $pays;
     /**
      * Code du pays du représentant.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePays;
     /**
      * Vaut vrai si le représentant est toujours à son poste.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $actuel;
     /**
      * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDepartDePoste;
     /**
      * Forme juridique du représentant dans le cas d'une personne morale.
      *
-     * @var string
+     * @var string|null
      */
     protected $formeJuridique;
     /**
      * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
      *
-     * @var EntrepriseRecherche[]
+     * @var EntrepriseRecherche[]|null
      */
     protected $entreprises;
     /**
      * Nombre d'entreprises du dirigeant au total.
      *
-     * @var int
+     * @var int|null
      */
     protected $nbEntreprisesTotal;
 
     /**
      * Qualité du représentant.
      */
-    public function getQualite(): string
+    public function getQualite(): ?string
     {
         return $this->qualite;
     }
@@ -195,7 +195,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Qualité du représentant.
      */
-    public function setQualite(string $qualite): self
+    public function setQualite(?string $qualite): self
     {
         $this->initialized['qualite'] = true;
         $this->qualite = $qualite;
@@ -206,7 +206,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vrai si le représentant est une personne morale, faux si personne physique.
      */
-    public function getPersonneMorale(): bool
+    public function getPersonneMorale(): ?bool
     {
         return $this->personneMorale;
     }
@@ -214,7 +214,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vrai si le représentant est une personne morale, faux si personne physique.
      */
-    public function setPersonneMorale(bool $personneMorale): self
+    public function setPersonneMorale(?bool $personneMorale): self
     {
         $this->initialized['personneMorale'] = true;
         $this->personneMorale = $personneMorale;
@@ -225,7 +225,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de prise de poste du représentant.
      */
-    public function getDatePriseDePoste(): string
+    public function getDatePriseDePoste(): ?string
     {
         return $this->datePriseDePoste;
     }
@@ -233,7 +233,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de prise de poste du représentant.
      */
-    public function setDatePriseDePoste(string $datePriseDePoste): self
+    public function setDatePriseDePoste(?string $datePriseDePoste): self
     {
         $this->initialized['datePriseDePoste'] = true;
         $this->datePriseDePoste = $datePriseDePoste;
@@ -244,7 +244,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Sexe supposé du dirigeant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du dirigeant.
      */
-    public function getSexe(): string
+    public function getSexe(): ?string
     {
         return $this->sexe;
     }
@@ -252,7 +252,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Sexe supposé du dirigeant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du dirigeant.
      */
-    public function setSexe(string $sexe): self
+    public function setSexe(?string $sexe): self
     {
         $this->initialized['sexe'] = true;
         $this->sexe = $sexe;
@@ -263,7 +263,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom du représentant.
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -271,7 +271,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom du représentant.
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -282,7 +282,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Prénoms du représentant.
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -290,7 +290,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Prénoms du représentant.
      */
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
@@ -301,7 +301,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Prénom usuel du représentant.
      */
-    public function getPrenomUsuel(): string
+    public function getPrenomUsuel(): ?string
     {
         return $this->prenomUsuel;
     }
@@ -309,7 +309,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Prénom usuel du représentant.
      */
-    public function setPrenomUsuel(string $prenomUsuel): self
+    public function setPrenomUsuel(?string $prenomUsuel): self
     {
         $this->initialized['prenomUsuel'] = true;
         $this->prenomUsuel = $prenomUsuel;
@@ -320,7 +320,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom complet du représentant.
      */
-    public function getNomComplet(): string
+    public function getNomComplet(): ?string
     {
         return $this->nomComplet;
     }
@@ -328,7 +328,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nom complet du représentant.
      */
-    public function setNomComplet(string $nomComplet): self
+    public function setNomComplet(?string $nomComplet): self
     {
         $this->initialized['nomComplet'] = true;
         $this->nomComplet = $nomComplet;
@@ -339,7 +339,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de naissance du représentant.
      */
-    public function getDateDeNaissance(): string
+    public function getDateDeNaissance(): ?string
     {
         return $this->dateDeNaissance;
     }
@@ -347,7 +347,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de naissance du représentant.
      */
-    public function setDateDeNaissance(string $dateDeNaissance): self
+    public function setDateDeNaissance(?string $dateDeNaissance): self
     {
         $this->initialized['dateDeNaissance'] = true;
         $this->dateDeNaissance = $dateDeNaissance;
@@ -358,7 +358,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de naissance formatée du représentant.
      */
-    public function getDateDeNaissanceFormate(): string
+    public function getDateDeNaissanceFormate(): ?string
     {
         return $this->dateDeNaissanceFormate;
     }
@@ -366,7 +366,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de naissance formatée du représentant.
      */
-    public function setDateDeNaissanceFormate(string $dateDeNaissanceFormate): self
+    public function setDateDeNaissanceFormate(?string $dateDeNaissanceFormate): self
     {
         $this->initialized['dateDeNaissanceFormate'] = true;
         $this->dateDeNaissanceFormate = $dateDeNaissanceFormate;
@@ -377,7 +377,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Age du représentant.
      */
-    public function getAge(): int
+    public function getAge(): ?int
     {
         return $this->age;
     }
@@ -385,7 +385,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Age du représentant.
      */
-    public function setAge(int $age): self
+    public function setAge(?int $age): self
     {
         $this->initialized['age'] = true;
         $this->age = $age;
@@ -396,7 +396,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nationalité du représentant.
      */
-    public function getNationalite(): string
+    public function getNationalite(): ?string
     {
         return $this->nationalite;
     }
@@ -404,7 +404,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nationalité du représentant.
      */
-    public function setNationalite(string $nationalite): self
+    public function setNationalite(?string $nationalite): self
     {
         $this->initialized['nationalite'] = true;
         $this->nationalite = $nationalite;
@@ -415,7 +415,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code nationalité du représentant.
      */
-    public function getCodeNationalite(): string
+    public function getCodeNationalite(): ?string
     {
         return $this->codeNationalite;
     }
@@ -423,7 +423,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code nationalité du représentant.
      */
-    public function setCodeNationalite(string $codeNationalite): self
+    public function setCodeNationalite(?string $codeNationalite): self
     {
         $this->initialized['codeNationalite'] = true;
         $this->codeNationalite = $codeNationalite;
@@ -434,7 +434,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville de naissance du représentant.
      */
-    public function getVilleDeNaissance(): string
+    public function getVilleDeNaissance(): ?string
     {
         return $this->villeDeNaissance;
     }
@@ -442,7 +442,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville de naissance du représentant.
      */
-    public function setVilleDeNaissance(string $villeDeNaissance): self
+    public function setVilleDeNaissance(?string $villeDeNaissance): self
     {
         $this->initialized['villeDeNaissance'] = true;
         $this->villeDeNaissance = $villeDeNaissance;
@@ -453,7 +453,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays de naissance du représentant.
      */
-    public function getPaysDeNaissance(): string
+    public function getPaysDeNaissance(): ?string
     {
         return $this->paysDeNaissance;
     }
@@ -461,7 +461,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays de naissance du représentant.
      */
-    public function setPaysDeNaissance(string $paysDeNaissance): self
+    public function setPaysDeNaissance(?string $paysDeNaissance): self
     {
         $this->initialized['paysDeNaissance'] = true;
         $this->paysDeNaissance = $paysDeNaissance;
@@ -472,7 +472,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code du pays de naissance du représentant.
      */
-    public function getCodePaysDeNaissance(): string
+    public function getCodePaysDeNaissance(): ?string
     {
         return $this->codePaysDeNaissance;
     }
@@ -480,7 +480,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code du pays de naissance du représentant.
      */
-    public function setCodePaysDeNaissance(string $codePaysDeNaissance): self
+    public function setCodePaysDeNaissance(?string $codePaysDeNaissance): self
     {
         $this->initialized['codePaysDeNaissance'] = true;
         $this->codePaysDeNaissance = $codePaysDeNaissance;
@@ -491,7 +491,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Première ligne de l'adresse du représentant.
      */
-    public function getAdresseLigne1(): string
+    public function getAdresseLigne1(): ?string
     {
         return $this->adresseLigne1;
     }
@@ -499,7 +499,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Première ligne de l'adresse du représentant.
      */
-    public function setAdresseLigne1(string $adresseLigne1): self
+    public function setAdresseLigne1(?string $adresseLigne1): self
     {
         $this->initialized['adresseLigne1'] = true;
         $this->adresseLigne1 = $adresseLigne1;
@@ -510,7 +510,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Deuxième ligne de l'adresse du représentant.
      */
-    public function getAdresseLigne2(): string
+    public function getAdresseLigne2(): ?string
     {
         return $this->adresseLigne2;
     }
@@ -518,7 +518,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Deuxième ligne de l'adresse du représentant.
      */
-    public function setAdresseLigne2(string $adresseLigne2): self
+    public function setAdresseLigne2(?string $adresseLigne2): self
     {
         $this->initialized['adresseLigne2'] = true;
         $this->adresseLigne2 = $adresseLigne2;
@@ -529,7 +529,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Troisième ligne de l'adresse du représentant.
      */
-    public function getAdresseLigne3(): string
+    public function getAdresseLigne3(): ?string
     {
         return $this->adresseLigne3;
     }
@@ -537,7 +537,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Troisième ligne de l'adresse du représentant.
      */
-    public function setAdresseLigne3(string $adresseLigne3): self
+    public function setAdresseLigne3(?string $adresseLigne3): self
     {
         $this->initialized['adresseLigne3'] = true;
         $this->adresseLigne3 = $adresseLigne3;
@@ -548,7 +548,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code postal du représentant.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -556,7 +556,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code postal du représentant.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -567,7 +567,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville du représentant.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -575,7 +575,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Ville du représentant.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;
@@ -586,7 +586,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays du représentant.
      */
-    public function getPays(): string
+    public function getPays(): ?string
     {
         return $this->pays;
     }
@@ -594,7 +594,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Pays du représentant.
      */
-    public function setPays(string $pays): self
+    public function setPays(?string $pays): self
     {
         $this->initialized['pays'] = true;
         $this->pays = $pays;
@@ -605,7 +605,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code du pays du représentant.
      */
-    public function getCodePays(): string
+    public function getCodePays(): ?string
     {
         return $this->codePays;
     }
@@ -613,7 +613,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Code du pays du représentant.
      */
-    public function setCodePays(string $codePays): self
+    public function setCodePays(?string $codePays): self
     {
         $this->initialized['codePays'] = true;
         $this->codePays = $codePays;
@@ -624,7 +624,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai si le représentant est toujours à son poste.
      */
-    public function getActuel(): bool
+    public function getActuel(): ?bool
     {
         return $this->actuel;
     }
@@ -632,7 +632,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Vaut vrai si le représentant est toujours à son poste.
      */
-    public function setActuel(bool $actuel): self
+    public function setActuel(?bool $actuel): self
     {
         $this->initialized['actuel'] = true;
         $this->actuel = $actuel;
@@ -643,7 +643,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
      */
-    public function getDateDepartDePoste(): string
+    public function getDateDepartDePoste(): ?string
     {
         return $this->dateDepartDePoste;
     }
@@ -651,7 +651,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
      */
-    public function setDateDepartDePoste(string $dateDepartDePoste): self
+    public function setDateDepartDePoste(?string $dateDepartDePoste): self
     {
         $this->initialized['dateDepartDePoste'] = true;
         $this->dateDepartDePoste = $dateDepartDePoste;
@@ -662,7 +662,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Forme juridique du représentant dans le cas d'une personne morale.
      */
-    public function getFormeJuridique(): string
+    public function getFormeJuridique(): ?string
     {
         return $this->formeJuridique;
     }
@@ -670,7 +670,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Forme juridique du représentant dans le cas d'une personne morale.
      */
-    public function setFormeJuridique(string $formeJuridique): self
+    public function setFormeJuridique(?string $formeJuridique): self
     {
         $this->initialized['formeJuridique'] = true;
         $this->formeJuridique = $formeJuridique;
@@ -681,9 +681,9 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
      *
-     * @return EntrepriseRecherche[]
+     * @return EntrepriseRecherche[]|null
      */
-    public function getEntreprises(): array
+    public function getEntreprises(): ?array
     {
         return $this->entreprises;
     }
@@ -691,9 +691,9 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
      *
-     * @param EntrepriseRecherche[] $entreprises
+     * @param EntrepriseRecherche[]|null $entreprises
      */
-    public function setEntreprises(array $entreprises): self
+    public function setEntreprises(?array $entreprises): self
     {
         $this->initialized['entreprises'] = true;
         $this->entreprises = $entreprises;
@@ -704,7 +704,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nombre d'entreprises du dirigeant au total.
      */
-    public function getNbEntreprisesTotal(): int
+    public function getNbEntreprisesTotal(): ?int
     {
         return $this->nbEntreprisesTotal;
     }
@@ -712,7 +712,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Nombre d'entreprises du dirigeant au total.
      */
-    public function setNbEntreprisesTotal(int $nbEntreprisesTotal): self
+    public function setNbEntreprisesTotal(?int $nbEntreprisesTotal): self
     {
         $this->initialized['nbEntreprisesTotal'] = true;
         $this->nbEntreprisesTotal = $nbEntreprisesTotal;

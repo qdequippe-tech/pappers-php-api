@@ -50,13 +50,17 @@ class DocumentActetitresItemNormalizer implements DenormalizerInterface, Normali
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('decision', $data)) {
+        if (\array_key_exists('decision', $data) && null !== $data['decision']) {
             $object->setDecision($data['decision']);
             unset($data['decision']);
+        } elseif (\array_key_exists('decision', $data) && null === $data['decision']) {
+            $object->setDecision(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

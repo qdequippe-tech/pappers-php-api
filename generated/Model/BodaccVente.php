@@ -18,98 +18,98 @@ class BodaccVente extends Bodacc
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomEntreprise;
     /**
      * Vrai si l'entreprise concernée par la publication est une personne morale, faux si c'est une personne physique.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $personneMorale;
     /**
      * Dénomination de l'entreprise concernée par la publication (uniquement en cas de personne morale).
      *
-     * @var string
+     * @var string|null
      */
     protected $denomination;
     /**
      * Nom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      *
-     * @var string
+     * @var string|null
      */
     protected $nom;
     /**
      * Prénom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      *
-     * @var string
+     * @var string|null
      */
     protected $prenom;
     /**
      * Administration (dans le cas d'une personne morale).
      *
-     * @var string
+     * @var string|null
      */
     protected $administration;
     /**
      * Adresse de l'entreprise concernée par la publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresse;
     /**
      * Commentaires sur la publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $commentaires;
     /**
      * Détails sur les oppositions.
      *
-     * @var string
+     * @var string|null
      */
     protected $oppositions;
     /**
      * Détails sur la déclaration de créance.
      *
-     * @var string
+     * @var string|null
      */
     protected $declarationCreance;
     /**
      * Journal où a été publiée la publication légale.
      *
-     * @var string
+     * @var string|null
      */
     protected $publicationLegale;
     /**
      * Dénomination du nouveau propriétaire de l'établisement.
      *
-     * @var string
+     * @var string|null
      */
     protected $denominationNouveauProprietaire;
     /**
      * Siren du nouveau propriétaire de l'établisement.
      *
-     * @var string
+     * @var string|null
      */
     protected $sirenNouveauProprietaire;
     /**
      * Dénomination du nouvel exploitant de l'établisement.
      *
-     * @var string
+     * @var string|null
      */
     protected $denominationNouvelExploitant;
     /**
      * Siren du nouvel exploitant de l'établisement.
      *
-     * @var string
+     * @var string|null
      */
     protected $sirenNouvelExploitant;
 
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.
      */
-    public function getNomEntreprise(): string
+    public function getNomEntreprise(): ?string
     {
         return $this->nomEntreprise;
     }
@@ -117,7 +117,7 @@ class BodaccVente extends Bodacc
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.
      */
-    public function setNomEntreprise(string $nomEntreprise): self
+    public function setNomEntreprise(?string $nomEntreprise): self
     {
         $this->initialized['nomEntreprise'] = true;
         $this->nomEntreprise = $nomEntreprise;
@@ -128,7 +128,7 @@ class BodaccVente extends Bodacc
     /**
      * Vrai si l'entreprise concernée par la publication est une personne morale, faux si c'est une personne physique.
      */
-    public function getPersonneMorale(): bool
+    public function getPersonneMorale(): ?bool
     {
         return $this->personneMorale;
     }
@@ -136,7 +136,7 @@ class BodaccVente extends Bodacc
     /**
      * Vrai si l'entreprise concernée par la publication est une personne morale, faux si c'est une personne physique.
      */
-    public function setPersonneMorale(bool $personneMorale): self
+    public function setPersonneMorale(?bool $personneMorale): self
     {
         $this->initialized['personneMorale'] = true;
         $this->personneMorale = $personneMorale;
@@ -147,7 +147,7 @@ class BodaccVente extends Bodacc
     /**
      * Dénomination de l'entreprise concernée par la publication (uniquement en cas de personne morale).
      */
-    public function getDenomination(): string
+    public function getDenomination(): ?string
     {
         return $this->denomination;
     }
@@ -155,7 +155,7 @@ class BodaccVente extends Bodacc
     /**
      * Dénomination de l'entreprise concernée par la publication (uniquement en cas de personne morale).
      */
-    public function setDenomination(string $denomination): self
+    public function setDenomination(?string $denomination): self
     {
         $this->initialized['denomination'] = true;
         $this->denomination = $denomination;
@@ -166,7 +166,7 @@ class BodaccVente extends Bodacc
     /**
      * Nom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function getNom(): string
+    public function getNom(): ?string
     {
         return $this->nom;
     }
@@ -174,7 +174,7 @@ class BodaccVente extends Bodacc
     /**
      * Nom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function setNom(string $nom): self
+    public function setNom(?string $nom): self
     {
         $this->initialized['nom'] = true;
         $this->nom = $nom;
@@ -185,7 +185,7 @@ class BodaccVente extends Bodacc
     /**
      * Prénom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function getPrenom(): string
+    public function getPrenom(): ?string
     {
         return $this->prenom;
     }
@@ -193,7 +193,7 @@ class BodaccVente extends Bodacc
     /**
      * Prénom de la personne physique concernée par la publication (uniquement en cas de personne physique).
      */
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
@@ -204,7 +204,7 @@ class BodaccVente extends Bodacc
     /**
      * Administration (dans le cas d'une personne morale).
      */
-    public function getAdministration(): string
+    public function getAdministration(): ?string
     {
         return $this->administration;
     }
@@ -212,7 +212,7 @@ class BodaccVente extends Bodacc
     /**
      * Administration (dans le cas d'une personne morale).
      */
-    public function setAdministration(string $administration): self
+    public function setAdministration(?string $administration): self
     {
         $this->initialized['administration'] = true;
         $this->administration = $administration;
@@ -223,7 +223,7 @@ class BodaccVente extends Bodacc
     /**
      * Adresse de l'entreprise concernée par la publication.
      */
-    public function getAdresse(): string
+    public function getAdresse(): ?string
     {
         return $this->adresse;
     }
@@ -231,7 +231,7 @@ class BodaccVente extends Bodacc
     /**
      * Adresse de l'entreprise concernée par la publication.
      */
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->initialized['adresse'] = true;
         $this->adresse = $adresse;
@@ -242,7 +242,7 @@ class BodaccVente extends Bodacc
     /**
      * Commentaires sur la publication.
      */
-    public function getCommentaires(): string
+    public function getCommentaires(): ?string
     {
         return $this->commentaires;
     }
@@ -250,7 +250,7 @@ class BodaccVente extends Bodacc
     /**
      * Commentaires sur la publication.
      */
-    public function setCommentaires(string $commentaires): self
+    public function setCommentaires(?string $commentaires): self
     {
         $this->initialized['commentaires'] = true;
         $this->commentaires = $commentaires;
@@ -261,7 +261,7 @@ class BodaccVente extends Bodacc
     /**
      * Détails sur les oppositions.
      */
-    public function getOppositions(): string
+    public function getOppositions(): ?string
     {
         return $this->oppositions;
     }
@@ -269,7 +269,7 @@ class BodaccVente extends Bodacc
     /**
      * Détails sur les oppositions.
      */
-    public function setOppositions(string $oppositions): self
+    public function setOppositions(?string $oppositions): self
     {
         $this->initialized['oppositions'] = true;
         $this->oppositions = $oppositions;
@@ -280,7 +280,7 @@ class BodaccVente extends Bodacc
     /**
      * Détails sur la déclaration de créance.
      */
-    public function getDeclarationCreance(): string
+    public function getDeclarationCreance(): ?string
     {
         return $this->declarationCreance;
     }
@@ -288,7 +288,7 @@ class BodaccVente extends Bodacc
     /**
      * Détails sur la déclaration de créance.
      */
-    public function setDeclarationCreance(string $declarationCreance): self
+    public function setDeclarationCreance(?string $declarationCreance): self
     {
         $this->initialized['declarationCreance'] = true;
         $this->declarationCreance = $declarationCreance;
@@ -299,7 +299,7 @@ class BodaccVente extends Bodacc
     /**
      * Journal où a été publiée la publication légale.
      */
-    public function getPublicationLegale(): string
+    public function getPublicationLegale(): ?string
     {
         return $this->publicationLegale;
     }
@@ -307,7 +307,7 @@ class BodaccVente extends Bodacc
     /**
      * Journal où a été publiée la publication légale.
      */
-    public function setPublicationLegale(string $publicationLegale): self
+    public function setPublicationLegale(?string $publicationLegale): self
     {
         $this->initialized['publicationLegale'] = true;
         $this->publicationLegale = $publicationLegale;
@@ -318,7 +318,7 @@ class BodaccVente extends Bodacc
     /**
      * Dénomination du nouveau propriétaire de l'établisement.
      */
-    public function getDenominationNouveauProprietaire(): string
+    public function getDenominationNouveauProprietaire(): ?string
     {
         return $this->denominationNouveauProprietaire;
     }
@@ -326,7 +326,7 @@ class BodaccVente extends Bodacc
     /**
      * Dénomination du nouveau propriétaire de l'établisement.
      */
-    public function setDenominationNouveauProprietaire(string $denominationNouveauProprietaire): self
+    public function setDenominationNouveauProprietaire(?string $denominationNouveauProprietaire): self
     {
         $this->initialized['denominationNouveauProprietaire'] = true;
         $this->denominationNouveauProprietaire = $denominationNouveauProprietaire;
@@ -337,7 +337,7 @@ class BodaccVente extends Bodacc
     /**
      * Siren du nouveau propriétaire de l'établisement.
      */
-    public function getSirenNouveauProprietaire(): string
+    public function getSirenNouveauProprietaire(): ?string
     {
         return $this->sirenNouveauProprietaire;
     }
@@ -345,7 +345,7 @@ class BodaccVente extends Bodacc
     /**
      * Siren du nouveau propriétaire de l'établisement.
      */
-    public function setSirenNouveauProprietaire(string $sirenNouveauProprietaire): self
+    public function setSirenNouveauProprietaire(?string $sirenNouveauProprietaire): self
     {
         $this->initialized['sirenNouveauProprietaire'] = true;
         $this->sirenNouveauProprietaire = $sirenNouveauProprietaire;
@@ -356,7 +356,7 @@ class BodaccVente extends Bodacc
     /**
      * Dénomination du nouvel exploitant de l'établisement.
      */
-    public function getDenominationNouvelExploitant(): string
+    public function getDenominationNouvelExploitant(): ?string
     {
         return $this->denominationNouvelExploitant;
     }
@@ -364,7 +364,7 @@ class BodaccVente extends Bodacc
     /**
      * Dénomination du nouvel exploitant de l'établisement.
      */
-    public function setDenominationNouvelExploitant(string $denominationNouvelExploitant): self
+    public function setDenominationNouvelExploitant(?string $denominationNouvelExploitant): self
     {
         $this->initialized['denominationNouvelExploitant'] = true;
         $this->denominationNouvelExploitant = $denominationNouvelExploitant;
@@ -375,7 +375,7 @@ class BodaccVente extends Bodacc
     /**
      * Siren du nouvel exploitant de l'établisement.
      */
-    public function getSirenNouvelExploitant(): string
+    public function getSirenNouvelExploitant(): ?string
     {
         return $this->sirenNouvelExploitant;
     }
@@ -383,7 +383,7 @@ class BodaccVente extends Bodacc
     /**
      * Siren du nouvel exploitant de l'établisement.
      */
-    public function setSirenNouvelExploitant(string $sirenNouvelExploitant): self
+    public function setSirenNouvelExploitant(?string $sirenNouvelExploitant): self
     {
         $this->initialized['sirenNouvelExploitant'] = true;
         $this->sirenNouvelExploitant = $sirenNouvelExploitant;

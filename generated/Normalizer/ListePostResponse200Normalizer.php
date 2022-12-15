@@ -53,9 +53,11 @@ class ListePostResponse200Normalizer implements DenormalizerInterface, Normalize
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('notifications_ajoutees', $data)) {
+        if (\array_key_exists('notifications_ajoutees', $data) && null !== $data['notifications_ajoutees']) {
             $object->setNotificationsAjoutees($data['notifications_ajoutees']);
             unset($data['notifications_ajoutees']);
+        } elseif (\array_key_exists('notifications_ajoutees', $data) && null === $data['notifications_ajoutees']) {
+            $object->setNotificationsAjoutees(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

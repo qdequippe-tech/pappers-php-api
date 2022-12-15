@@ -50,17 +50,21 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemNormalizer implements D
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('libelle', $data)) {
+        if (\array_key_exists('libelle', $data) && null !== $data['libelle']) {
             $object->setLibelle($data['libelle']);
             unset($data['libelle']);
+        } elseif (\array_key_exists('libelle', $data) && null === $data['libelle']) {
+            $object->setLibelle(null);
         }
-        if (\array_key_exists('liasses', $data)) {
+        if (\array_key_exists('liasses', $data) && null !== $data['liasses']) {
             $values = [];
             foreach ($data['liasses'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem', 'json', $context);
             }
             $object->setLiasses($values);
             unset($data['liasses']);
+        } elseif (\array_key_exists('liasses', $data) && null === $data['liasses']) {
+            $object->setLiasses(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

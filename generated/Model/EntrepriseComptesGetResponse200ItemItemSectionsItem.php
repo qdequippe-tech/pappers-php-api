@@ -18,20 +18,20 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
     /**
      * Libellé de la section.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelle;
     /**
      * Liste des liasses fiscales de la section.
      *
-     * @var EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]
+     * @var EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]|null
      */
     protected $liasses;
 
     /**
      * Libellé de la section.
      */
-    public function getLibelle(): string
+    public function getLibelle(): ?string
     {
         return $this->libelle;
     }
@@ -39,7 +39,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
     /**
      * Libellé de la section.
      */
-    public function setLibelle(string $libelle): self
+    public function setLibelle(?string $libelle): self
     {
         $this->initialized['libelle'] = true;
         $this->libelle = $libelle;
@@ -50,9 +50,9 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
     /**
      * Liste des liasses fiscales de la section.
      *
-     * @return EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]
+     * @return EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]|null
      */
-    public function getLiasses(): array
+    public function getLiasses(): ?array
     {
         return $this->liasses;
     }
@@ -60,9 +60,9 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
     /**
      * Liste des liasses fiscales de la section.
      *
-     * @param EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[] $liasses
+     * @param EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]|null $liasses
      */
-    public function setLiasses(array $liasses): self
+    public function setLiasses(?array $liasses): self
     {
         $this->initialized['liasses'] = true;
         $this->liasses = $liasses;

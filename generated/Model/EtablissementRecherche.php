@@ -18,92 +18,92 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxxxxxxxxxxxxx.
      *
-     * @var string
+     * @var string|null
      */
     protected $siret;
     /**
      * Numéro siret de l'établissement au format xxx xxx xxx xxxxx.
      *
-     * @var string
+     * @var string|null
      */
     protected $siretFormate;
     /**
      * Numéro NIC de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $nic;
     /**
      * Numéro de voie de l'établissement.
      *
-     * @var int
+     * @var int|null
      */
     protected $numeroVoie;
     /**
      * Indice de répétition de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $indiceRepetition;
     /**
      * Type de voie de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $typeVoie;
     /**
      * Libellé de la voie de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelleVoie;
     /**
      * Complément d'adresse de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $complementAdresse;
     /**
      * Première ligne de l'adresse de l'établissement. Correspond à l'ensemble des données numero_voie, indice_repetition, type_voie et libelle_voie.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne1;
     /**
      * Seconde ligne de l'adresse de l'établissement. Est égal à complement_adresse.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne2;
     /**
      * Code postal de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Ville de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
     /**
      * Latitude de l'établissement.
      *
-     * @var float
+     * @var float|null
      */
     protected $latitude;
     /**
      * Longitude de l'établissement.
      *
-     * @var float
+     * @var float|null
      */
     protected $longitude;
 
     /**
      * Numéro siret de l'établissement au format xxxxxxxxxxxxxx.
      */
-    public function getSiret(): string
+    public function getSiret(): ?string
     {
         return $this->siret;
     }
@@ -111,7 +111,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxxxxxxxxxxxxx.
      */
-    public function setSiret(string $siret): self
+    public function setSiret(?string $siret): self
     {
         $this->initialized['siret'] = true;
         $this->siret = $siret;
@@ -122,7 +122,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxx xxx xxx xxxxx.
      */
-    public function getSiretFormate(): string
+    public function getSiretFormate(): ?string
     {
         return $this->siretFormate;
     }
@@ -130,7 +130,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxx xxx xxx xxxxx.
      */
-    public function setSiretFormate(string $siretFormate): self
+    public function setSiretFormate(?string $siretFormate): self
     {
         $this->initialized['siretFormate'] = true;
         $this->siretFormate = $siretFormate;
@@ -141,7 +141,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro NIC de l'établissement.
      */
-    public function getNic(): string
+    public function getNic(): ?string
     {
         return $this->nic;
     }
@@ -149,7 +149,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro NIC de l'établissement.
      */
-    public function setNic(string $nic): self
+    public function setNic(?string $nic): self
     {
         $this->initialized['nic'] = true;
         $this->nic = $nic;
@@ -160,7 +160,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro de voie de l'établissement.
      */
-    public function getNumeroVoie(): int
+    public function getNumeroVoie(): ?int
     {
         return $this->numeroVoie;
     }
@@ -168,7 +168,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Numéro de voie de l'établissement.
      */
-    public function setNumeroVoie(int $numeroVoie): self
+    public function setNumeroVoie(?int $numeroVoie): self
     {
         $this->initialized['numeroVoie'] = true;
         $this->numeroVoie = $numeroVoie;
@@ -179,7 +179,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Indice de répétition de l'établissement.
      */
-    public function getIndiceRepetition(): string
+    public function getIndiceRepetition(): ?string
     {
         return $this->indiceRepetition;
     }
@@ -187,7 +187,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Indice de répétition de l'établissement.
      */
-    public function setIndiceRepetition(string $indiceRepetition): self
+    public function setIndiceRepetition(?string $indiceRepetition): self
     {
         $this->initialized['indiceRepetition'] = true;
         $this->indiceRepetition = $indiceRepetition;
@@ -198,7 +198,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Type de voie de l'établissement.
      */
-    public function getTypeVoie(): string
+    public function getTypeVoie(): ?string
     {
         return $this->typeVoie;
     }
@@ -206,7 +206,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Type de voie de l'établissement.
      */
-    public function setTypeVoie(string $typeVoie): self
+    public function setTypeVoie(?string $typeVoie): self
     {
         $this->initialized['typeVoie'] = true;
         $this->typeVoie = $typeVoie;
@@ -217,7 +217,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Libellé de la voie de l'établissement.
      */
-    public function getLibelleVoie(): string
+    public function getLibelleVoie(): ?string
     {
         return $this->libelleVoie;
     }
@@ -225,7 +225,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Libellé de la voie de l'établissement.
      */
-    public function setLibelleVoie(string $libelleVoie): self
+    public function setLibelleVoie(?string $libelleVoie): self
     {
         $this->initialized['libelleVoie'] = true;
         $this->libelleVoie = $libelleVoie;
@@ -236,7 +236,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Complément d'adresse de l'établissement.
      */
-    public function getComplementAdresse(): string
+    public function getComplementAdresse(): ?string
     {
         return $this->complementAdresse;
     }
@@ -244,7 +244,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Complément d'adresse de l'établissement.
      */
-    public function setComplementAdresse(string $complementAdresse): self
+    public function setComplementAdresse(?string $complementAdresse): self
     {
         $this->initialized['complementAdresse'] = true;
         $this->complementAdresse = $complementAdresse;
@@ -255,7 +255,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Première ligne de l'adresse de l'établissement. Correspond à l'ensemble des données numero_voie, indice_repetition, type_voie et libelle_voie.
      */
-    public function getAdresseLigne1(): string
+    public function getAdresseLigne1(): ?string
     {
         return $this->adresseLigne1;
     }
@@ -263,7 +263,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Première ligne de l'adresse de l'établissement. Correspond à l'ensemble des données numero_voie, indice_repetition, type_voie et libelle_voie.
      */
-    public function setAdresseLigne1(string $adresseLigne1): self
+    public function setAdresseLigne1(?string $adresseLigne1): self
     {
         $this->initialized['adresseLigne1'] = true;
         $this->adresseLigne1 = $adresseLigne1;
@@ -274,7 +274,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Seconde ligne de l'adresse de l'établissement. Est égal à complement_adresse.
      */
-    public function getAdresseLigne2(): string
+    public function getAdresseLigne2(): ?string
     {
         return $this->adresseLigne2;
     }
@@ -282,7 +282,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Seconde ligne de l'adresse de l'établissement. Est égal à complement_adresse.
      */
-    public function setAdresseLigne2(string $adresseLigne2): self
+    public function setAdresseLigne2(?string $adresseLigne2): self
     {
         $this->initialized['adresseLigne2'] = true;
         $this->adresseLigne2 = $adresseLigne2;
@@ -293,7 +293,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Code postal de l'établissement.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -301,7 +301,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Code postal de l'établissement.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -312,7 +312,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Ville de l'établissement.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -320,7 +320,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Ville de l'établissement.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;
@@ -331,7 +331,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Latitude de l'établissement.
      */
-    public function getLatitude(): float
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
@@ -339,7 +339,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Latitude de l'établissement.
      */
-    public function setLatitude(float $latitude): self
+    public function setLatitude(?float $latitude): self
     {
         $this->initialized['latitude'] = true;
         $this->latitude = $latitude;
@@ -350,7 +350,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Longitude de l'établissement.
      */
-    public function getLongitude(): float
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
@@ -358,7 +358,7 @@ class EtablissementRecherche extends \ArrayObject
     /**
      * Longitude de l'établissement.
      */
-    public function setLongitude(float $longitude): self
+    public function setLongitude(?float $longitude): self
     {
         $this->initialized['longitude'] = true;
         $this->longitude = $longitude;

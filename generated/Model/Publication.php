@@ -18,26 +18,26 @@ class Publication extends \ArrayObject
     /**
      * Type de publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Date de publication, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $date;
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      *
-     * @var string
+     * @var string|null
      */
     protected $contenu;
 
     /**
      * Type de publication.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -45,7 +45,7 @@ class Publication extends \ArrayObject
     /**
      * Type de publication.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -56,7 +56,7 @@ class Publication extends \ArrayObject
     /**
      * Date de publication, au format AAAA-MM-JJ.
      */
-    public function getDate(): \DateTime
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
@@ -64,7 +64,7 @@ class Publication extends \ArrayObject
     /**
      * Date de publication, au format AAAA-MM-JJ.
      */
-    public function setDate(\DateTime $date): self
+    public function setDate(?\DateTime $date): self
     {
         $this->initialized['date'] = true;
         $this->date = $date;
@@ -75,7 +75,7 @@ class Publication extends \ArrayObject
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      */
-    public function getContenu(): string
+    public function getContenu(): ?string
     {
         return $this->contenu;
     }
@@ -83,7 +83,7 @@ class Publication extends \ArrayObject
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      */
-    public function setContenu(string $contenu): self
+    public function setContenu(?string $contenu): self
     {
         $this->initialized['contenu'] = true;
         $this->contenu = $contenu;

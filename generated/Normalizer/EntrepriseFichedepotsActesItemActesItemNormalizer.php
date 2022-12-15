@@ -50,21 +50,29 @@ class EntrepriseFichedepotsActesItemActesItemNormalizer implements DenormalizerI
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('decision', $data)) {
+        if (\array_key_exists('decision', $data) && null !== $data['decision']) {
             $object->setDecision($data['decision']);
             unset($data['decision']);
+        } elseif (\array_key_exists('decision', $data) && null === $data['decision']) {
+            $object->setDecision(null);
         }
-        if (\array_key_exists('date_acte', $data)) {
+        if (\array_key_exists('date_acte', $data) && null !== $data['date_acte']) {
             $object->setDateActe(\DateTime::createFromFormat('Y-m-d', $data['date_acte'])->setTime(0, 0, 0));
             unset($data['date_acte']);
+        } elseif (\array_key_exists('date_acte', $data) && null === $data['date_acte']) {
+            $object->setDateActe(null);
         }
-        if (\array_key_exists('date_acte_formate', $data)) {
+        if (\array_key_exists('date_acte_formate', $data) && null !== $data['date_acte_formate']) {
             $object->setDateActeFormate($data['date_acte_formate']);
             unset($data['date_acte_formate']);
+        } elseif (\array_key_exists('date_acte_formate', $data) && null === $data['date_acte_formate']) {
+            $object->setDateActeFormate(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

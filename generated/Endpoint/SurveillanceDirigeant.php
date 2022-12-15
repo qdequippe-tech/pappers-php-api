@@ -11,14 +11,14 @@ class SurveillanceDirigeant extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEn
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste. Les informations à renseigner sont différentes selon le type de personne à ajouter (morale ou physique).
      *
-     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[] $requestBody
-     * @param array                                            $queryParameters {
+     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[]|null $requestBody
+     * @param array                                                 $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
      * }
      */
-    public function __construct(array $requestBody, array $queryParameters = [])
+    public function __construct(?array $requestBody = null, array $queryParameters = [])
     {
         $this->body = $requestBody;
         $this->queryParameters = $queryParameters;

@@ -18,26 +18,26 @@ class BodaccProcedureCollective extends Bodacc
     /**
      * Famille de la procédure collective.
      *
-     * @var string
+     * @var string|null
      */
     protected $famille;
     /**
      * Nature de la procédure collective.
      *
-     * @var string
+     * @var string|null
      */
     protected $nature;
     /**
      * Complément sur le jugement de procédure collective.
      *
-     * @var string
+     * @var string|null
      */
     protected $complementJugement;
 
     /**
      * Famille de la procédure collective.
      */
-    public function getFamille(): string
+    public function getFamille(): ?string
     {
         return $this->famille;
     }
@@ -45,7 +45,7 @@ class BodaccProcedureCollective extends Bodacc
     /**
      * Famille de la procédure collective.
      */
-    public function setFamille(string $famille): self
+    public function setFamille(?string $famille): self
     {
         $this->initialized['famille'] = true;
         $this->famille = $famille;
@@ -56,7 +56,7 @@ class BodaccProcedureCollective extends Bodacc
     /**
      * Nature de la procédure collective.
      */
-    public function getNature(): string
+    public function getNature(): ?string
     {
         return $this->nature;
     }
@@ -64,7 +64,7 @@ class BodaccProcedureCollective extends Bodacc
     /**
      * Nature de la procédure collective.
      */
-    public function setNature(string $nature): self
+    public function setNature(?string $nature): self
     {
         $this->initialized['nature'] = true;
         $this->nature = $nature;
@@ -75,7 +75,7 @@ class BodaccProcedureCollective extends Bodacc
     /**
      * Complément sur le jugement de procédure collective.
      */
-    public function getComplementJugement(): string
+    public function getComplementJugement(): ?string
     {
         return $this->complementJugement;
     }
@@ -83,7 +83,7 @@ class BodaccProcedureCollective extends Bodacc
     /**
      * Complément sur le jugement de procédure collective.
      */
-    public function setComplementJugement(string $complementJugement): self
+    public function setComplementJugement(?string $complementJugement): self
     {
         $this->initialized['complementJugement'] = true;
         $this->complementJugement = $complementJugement;

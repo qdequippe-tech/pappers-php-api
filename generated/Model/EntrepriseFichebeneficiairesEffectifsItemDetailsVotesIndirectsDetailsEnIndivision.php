@@ -18,26 +18,26 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnInd
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en pleine propriété par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePleinePropriete;
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en nue propriété par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageNuePropriete;
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en usufruit par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageUsufruit;
 
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en pleine propriété par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentagePleinePropriete(): float
+    public function getPourcentagePleinePropriete(): ?float
     {
         return $this->pourcentagePleinePropriete;
     }
@@ -45,7 +45,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnInd
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en pleine propriété par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentagePleinePropriete(float $pourcentagePleinePropriete): self
+    public function setPourcentagePleinePropriete(?float $pourcentagePleinePropriete): self
     {
         $this->initialized['pourcentagePleinePropriete'] = true;
         $this->pourcentagePleinePropriete = $pourcentagePleinePropriete;
@@ -56,7 +56,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnInd
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en nue propriété par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageNuePropriete(): float
+    public function getPourcentageNuePropriete(): ?float
     {
         return $this->pourcentageNuePropriete;
     }
@@ -64,7 +64,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnInd
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en nue propriété par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageNuePropriete(float $pourcentageNuePropriete): self
+    public function setPourcentageNuePropriete(?float $pourcentageNuePropriete): self
     {
         $this->initialized['pourcentageNuePropriete'] = true;
         $this->pourcentageNuePropriete = $pourcentageNuePropriete;
@@ -75,7 +75,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnInd
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en usufruit par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function getPourcentageUsufruit(): float
+    public function getPourcentageUsufruit(): ?float
     {
         return $this->pourcentageUsufruit;
     }
@@ -83,7 +83,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnInd
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision en usufruit par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      */
-    public function setPourcentageUsufruit(float $pourcentageUsufruit): self
+    public function setPourcentageUsufruit(?float $pourcentageUsufruit): self
     {
         $this->initialized['pourcentageUsufruit'] = true;
         $this->pourcentageUsufruit = $pourcentageUsufruit;

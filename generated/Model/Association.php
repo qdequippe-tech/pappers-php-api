@@ -18,172 +18,172 @@ class Association extends \ArrayObject
     /**
      * Détermine si l'association possède un numéro WALDEC/RNA.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $isWaldec;
     /**
      * L'identifiant l'association au format Wxxxxxxxxx si WALDEC, xxxxxxxxxxxxxx sinon.
      *
-     * @var string
+     * @var string|null
      */
     protected $idAssociation;
     /**
      * Ancien numéro de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $idExAssociation;
     /**
      * Dénomination de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $denomination;
     /**
      * Numéro siret de l'association au format xxxxxxxxxxxxxx.
      *
-     * @var string
+     * @var string|null
      */
     protected $siret;
     /**
      * Numéro de Reconnaissance d'Utilité Publique.
      *
-     * @var string
+     * @var string|null
      */
     protected $numeroRup;
     /**
      * Objet de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $objet;
     /**
      * Objet social 1 de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $objetSocial1;
     /**
      * Libellé correspondant à l'objet social 1.
      *
-     * @var string
+     * @var string|null
      */
     protected $categorieSocial1;
     /**
      * Objet social 2 de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $objetSocial2;
     /**
      * Libellé correspondant à l'objet social 1.
      *
-     * @var string
+     * @var string|null
      */
     protected $categorieSocial2;
     /**
      * Date de déclaration de création au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateCreation;
     /**
      * Date de dernière déclaration au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDerniereDeclaration;
     /**
      * Date de publication du Journal Officiel de l'avis de création au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $datePublicationCreation;
     /**
      * Date de déclaration de dissolution au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateDeclarationDissolution;
     /**
      * Groupement de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $groupement;
     /**
      * Position d'activité de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $positionActivite;
     /**
      * Nature de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $nature;
     /**
      * Site web de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $siteWeb;
     /**
      * Numéro de téléphone de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $telephone;
     /**
      * Email de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $email;
     /**
-     * @var AssociationAdresseSiege
+     * @var AssociationAdresseSiege|null
      */
     protected $adresseSiege;
     /**
-     * @var AssociationAdresseGestionnaire
+     * @var AssociationAdresseGestionnaire|null
      */
     protected $adresseGestionnaire;
     /**
      * Observation relative à l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $observation;
     /**
      * Code du site gestionnaire (préfecture, sous-préfecture) de l'association.
      *
-     * @var string
+     * @var string|null
      */
     protected $codeGestion;
     /**
      * Civilité du dirigeant.
      *
-     * @var string
+     * @var string|null
      */
     protected $dirigeantCivilite;
     /**
      * Date de la dernière mise à jour des informations au RNA au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $derniereMaj;
     /**
      * Publications JOAFE.
      *
-     * @var AssociationPublicationsJoafe
+     * @var AssociationPublicationsJoafe|null
      */
     protected $publicationsJoafe;
 
     /**
      * Détermine si l'association possède un numéro WALDEC/RNA.
      */
-    public function getIsWaldec(): bool
+    public function getIsWaldec(): ?bool
     {
         return $this->isWaldec;
     }
@@ -191,7 +191,7 @@ class Association extends \ArrayObject
     /**
      * Détermine si l'association possède un numéro WALDEC/RNA.
      */
-    public function setIsWaldec(bool $isWaldec): self
+    public function setIsWaldec(?bool $isWaldec): self
     {
         $this->initialized['isWaldec'] = true;
         $this->isWaldec = $isWaldec;
@@ -202,7 +202,7 @@ class Association extends \ArrayObject
     /**
      * L'identifiant l'association au format Wxxxxxxxxx si WALDEC, xxxxxxxxxxxxxx sinon.
      */
-    public function getIdAssociation(): string
+    public function getIdAssociation(): ?string
     {
         return $this->idAssociation;
     }
@@ -210,7 +210,7 @@ class Association extends \ArrayObject
     /**
      * L'identifiant l'association au format Wxxxxxxxxx si WALDEC, xxxxxxxxxxxxxx sinon.
      */
-    public function setIdAssociation(string $idAssociation): self
+    public function setIdAssociation(?string $idAssociation): self
     {
         $this->initialized['idAssociation'] = true;
         $this->idAssociation = $idAssociation;
@@ -221,7 +221,7 @@ class Association extends \ArrayObject
     /**
      * Ancien numéro de l'association.
      */
-    public function getIdExAssociation(): string
+    public function getIdExAssociation(): ?string
     {
         return $this->idExAssociation;
     }
@@ -229,7 +229,7 @@ class Association extends \ArrayObject
     /**
      * Ancien numéro de l'association.
      */
-    public function setIdExAssociation(string $idExAssociation): self
+    public function setIdExAssociation(?string $idExAssociation): self
     {
         $this->initialized['idExAssociation'] = true;
         $this->idExAssociation = $idExAssociation;
@@ -240,7 +240,7 @@ class Association extends \ArrayObject
     /**
      * Dénomination de l'association.
      */
-    public function getDenomination(): string
+    public function getDenomination(): ?string
     {
         return $this->denomination;
     }
@@ -248,7 +248,7 @@ class Association extends \ArrayObject
     /**
      * Dénomination de l'association.
      */
-    public function setDenomination(string $denomination): self
+    public function setDenomination(?string $denomination): self
     {
         $this->initialized['denomination'] = true;
         $this->denomination = $denomination;
@@ -259,7 +259,7 @@ class Association extends \ArrayObject
     /**
      * Numéro siret de l'association au format xxxxxxxxxxxxxx.
      */
-    public function getSiret(): string
+    public function getSiret(): ?string
     {
         return $this->siret;
     }
@@ -267,7 +267,7 @@ class Association extends \ArrayObject
     /**
      * Numéro siret de l'association au format xxxxxxxxxxxxxx.
      */
-    public function setSiret(string $siret): self
+    public function setSiret(?string $siret): self
     {
         $this->initialized['siret'] = true;
         $this->siret = $siret;
@@ -278,7 +278,7 @@ class Association extends \ArrayObject
     /**
      * Numéro de Reconnaissance d'Utilité Publique.
      */
-    public function getNumeroRup(): string
+    public function getNumeroRup(): ?string
     {
         return $this->numeroRup;
     }
@@ -286,7 +286,7 @@ class Association extends \ArrayObject
     /**
      * Numéro de Reconnaissance d'Utilité Publique.
      */
-    public function setNumeroRup(string $numeroRup): self
+    public function setNumeroRup(?string $numeroRup): self
     {
         $this->initialized['numeroRup'] = true;
         $this->numeroRup = $numeroRup;
@@ -297,7 +297,7 @@ class Association extends \ArrayObject
     /**
      * Objet de l'association.
      */
-    public function getObjet(): string
+    public function getObjet(): ?string
     {
         return $this->objet;
     }
@@ -305,7 +305,7 @@ class Association extends \ArrayObject
     /**
      * Objet de l'association.
      */
-    public function setObjet(string $objet): self
+    public function setObjet(?string $objet): self
     {
         $this->initialized['objet'] = true;
         $this->objet = $objet;
@@ -316,7 +316,7 @@ class Association extends \ArrayObject
     /**
      * Objet social 1 de l'association.
      */
-    public function getObjetSocial1(): string
+    public function getObjetSocial1(): ?string
     {
         return $this->objetSocial1;
     }
@@ -324,7 +324,7 @@ class Association extends \ArrayObject
     /**
      * Objet social 1 de l'association.
      */
-    public function setObjetSocial1(string $objetSocial1): self
+    public function setObjetSocial1(?string $objetSocial1): self
     {
         $this->initialized['objetSocial1'] = true;
         $this->objetSocial1 = $objetSocial1;
@@ -335,7 +335,7 @@ class Association extends \ArrayObject
     /**
      * Libellé correspondant à l'objet social 1.
      */
-    public function getCategorieSocial1(): string
+    public function getCategorieSocial1(): ?string
     {
         return $this->categorieSocial1;
     }
@@ -343,7 +343,7 @@ class Association extends \ArrayObject
     /**
      * Libellé correspondant à l'objet social 1.
      */
-    public function setCategorieSocial1(string $categorieSocial1): self
+    public function setCategorieSocial1(?string $categorieSocial1): self
     {
         $this->initialized['categorieSocial1'] = true;
         $this->categorieSocial1 = $categorieSocial1;
@@ -354,7 +354,7 @@ class Association extends \ArrayObject
     /**
      * Objet social 2 de l'association.
      */
-    public function getObjetSocial2(): string
+    public function getObjetSocial2(): ?string
     {
         return $this->objetSocial2;
     }
@@ -362,7 +362,7 @@ class Association extends \ArrayObject
     /**
      * Objet social 2 de l'association.
      */
-    public function setObjetSocial2(string $objetSocial2): self
+    public function setObjetSocial2(?string $objetSocial2): self
     {
         $this->initialized['objetSocial2'] = true;
         $this->objetSocial2 = $objetSocial2;
@@ -373,7 +373,7 @@ class Association extends \ArrayObject
     /**
      * Libellé correspondant à l'objet social 1.
      */
-    public function getCategorieSocial2(): string
+    public function getCategorieSocial2(): ?string
     {
         return $this->categorieSocial2;
     }
@@ -381,7 +381,7 @@ class Association extends \ArrayObject
     /**
      * Libellé correspondant à l'objet social 1.
      */
-    public function setCategorieSocial2(string $categorieSocial2): self
+    public function setCategorieSocial2(?string $categorieSocial2): self
     {
         $this->initialized['categorieSocial2'] = true;
         $this->categorieSocial2 = $categorieSocial2;
@@ -392,7 +392,7 @@ class Association extends \ArrayObject
     /**
      * Date de déclaration de création au format AAAA-MM-JJ.
      */
-    public function getDateCreation(): string
+    public function getDateCreation(): ?string
     {
         return $this->dateCreation;
     }
@@ -400,7 +400,7 @@ class Association extends \ArrayObject
     /**
      * Date de déclaration de création au format AAAA-MM-JJ.
      */
-    public function setDateCreation(string $dateCreation): self
+    public function setDateCreation(?string $dateCreation): self
     {
         $this->initialized['dateCreation'] = true;
         $this->dateCreation = $dateCreation;
@@ -411,7 +411,7 @@ class Association extends \ArrayObject
     /**
      * Date de dernière déclaration au format AAAA-MM-JJ.
      */
-    public function getDateDerniereDeclaration(): string
+    public function getDateDerniereDeclaration(): ?string
     {
         return $this->dateDerniereDeclaration;
     }
@@ -419,7 +419,7 @@ class Association extends \ArrayObject
     /**
      * Date de dernière déclaration au format AAAA-MM-JJ.
      */
-    public function setDateDerniereDeclaration(string $dateDerniereDeclaration): self
+    public function setDateDerniereDeclaration(?string $dateDerniereDeclaration): self
     {
         $this->initialized['dateDerniereDeclaration'] = true;
         $this->dateDerniereDeclaration = $dateDerniereDeclaration;
@@ -430,7 +430,7 @@ class Association extends \ArrayObject
     /**
      * Date de publication du Journal Officiel de l'avis de création au format AAAA-MM-JJ.
      */
-    public function getDatePublicationCreation(): string
+    public function getDatePublicationCreation(): ?string
     {
         return $this->datePublicationCreation;
     }
@@ -438,7 +438,7 @@ class Association extends \ArrayObject
     /**
      * Date de publication du Journal Officiel de l'avis de création au format AAAA-MM-JJ.
      */
-    public function setDatePublicationCreation(string $datePublicationCreation): self
+    public function setDatePublicationCreation(?string $datePublicationCreation): self
     {
         $this->initialized['datePublicationCreation'] = true;
         $this->datePublicationCreation = $datePublicationCreation;
@@ -449,7 +449,7 @@ class Association extends \ArrayObject
     /**
      * Date de déclaration de dissolution au format AAAA-MM-JJ.
      */
-    public function getDateDeclarationDissolution(): string
+    public function getDateDeclarationDissolution(): ?string
     {
         return $this->dateDeclarationDissolution;
     }
@@ -457,7 +457,7 @@ class Association extends \ArrayObject
     /**
      * Date de déclaration de dissolution au format AAAA-MM-JJ.
      */
-    public function setDateDeclarationDissolution(string $dateDeclarationDissolution): self
+    public function setDateDeclarationDissolution(?string $dateDeclarationDissolution): self
     {
         $this->initialized['dateDeclarationDissolution'] = true;
         $this->dateDeclarationDissolution = $dateDeclarationDissolution;
@@ -468,7 +468,7 @@ class Association extends \ArrayObject
     /**
      * Groupement de l'association.
      */
-    public function getGroupement(): string
+    public function getGroupement(): ?string
     {
         return $this->groupement;
     }
@@ -476,7 +476,7 @@ class Association extends \ArrayObject
     /**
      * Groupement de l'association.
      */
-    public function setGroupement(string $groupement): self
+    public function setGroupement(?string $groupement): self
     {
         $this->initialized['groupement'] = true;
         $this->groupement = $groupement;
@@ -487,7 +487,7 @@ class Association extends \ArrayObject
     /**
      * Position d'activité de l'association.
      */
-    public function getPositionActivite(): string
+    public function getPositionActivite(): ?string
     {
         return $this->positionActivite;
     }
@@ -495,7 +495,7 @@ class Association extends \ArrayObject
     /**
      * Position d'activité de l'association.
      */
-    public function setPositionActivite(string $positionActivite): self
+    public function setPositionActivite(?string $positionActivite): self
     {
         $this->initialized['positionActivite'] = true;
         $this->positionActivite = $positionActivite;
@@ -506,7 +506,7 @@ class Association extends \ArrayObject
     /**
      * Nature de l'association.
      */
-    public function getNature(): string
+    public function getNature(): ?string
     {
         return $this->nature;
     }
@@ -514,7 +514,7 @@ class Association extends \ArrayObject
     /**
      * Nature de l'association.
      */
-    public function setNature(string $nature): self
+    public function setNature(?string $nature): self
     {
         $this->initialized['nature'] = true;
         $this->nature = $nature;
@@ -525,7 +525,7 @@ class Association extends \ArrayObject
     /**
      * Site web de l'association.
      */
-    public function getSiteWeb(): string
+    public function getSiteWeb(): ?string
     {
         return $this->siteWeb;
     }
@@ -533,7 +533,7 @@ class Association extends \ArrayObject
     /**
      * Site web de l'association.
      */
-    public function setSiteWeb(string $siteWeb): self
+    public function setSiteWeb(?string $siteWeb): self
     {
         $this->initialized['siteWeb'] = true;
         $this->siteWeb = $siteWeb;
@@ -544,7 +544,7 @@ class Association extends \ArrayObject
     /**
      * Numéro de téléphone de l'association.
      */
-    public function getTelephone(): string
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
@@ -552,7 +552,7 @@ class Association extends \ArrayObject
     /**
      * Numéro de téléphone de l'association.
      */
-    public function setTelephone(string $telephone): self
+    public function setTelephone(?string $telephone): self
     {
         $this->initialized['telephone'] = true;
         $this->telephone = $telephone;
@@ -563,7 +563,7 @@ class Association extends \ArrayObject
     /**
      * Email de l'association.
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -571,7 +571,7 @@ class Association extends \ArrayObject
     /**
      * Email de l'association.
      */
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->initialized['email'] = true;
         $this->email = $email;
@@ -579,12 +579,12 @@ class Association extends \ArrayObject
         return $this;
     }
 
-    public function getAdresseSiege(): AssociationAdresseSiege
+    public function getAdresseSiege(): ?AssociationAdresseSiege
     {
         return $this->adresseSiege;
     }
 
-    public function setAdresseSiege(AssociationAdresseSiege $adresseSiege): self
+    public function setAdresseSiege(?AssociationAdresseSiege $adresseSiege): self
     {
         $this->initialized['adresseSiege'] = true;
         $this->adresseSiege = $adresseSiege;
@@ -592,12 +592,12 @@ class Association extends \ArrayObject
         return $this;
     }
 
-    public function getAdresseGestionnaire(): AssociationAdresseGestionnaire
+    public function getAdresseGestionnaire(): ?AssociationAdresseGestionnaire
     {
         return $this->adresseGestionnaire;
     }
 
-    public function setAdresseGestionnaire(AssociationAdresseGestionnaire $adresseGestionnaire): self
+    public function setAdresseGestionnaire(?AssociationAdresseGestionnaire $adresseGestionnaire): self
     {
         $this->initialized['adresseGestionnaire'] = true;
         $this->adresseGestionnaire = $adresseGestionnaire;
@@ -608,7 +608,7 @@ class Association extends \ArrayObject
     /**
      * Observation relative à l'association.
      */
-    public function getObservation(): string
+    public function getObservation(): ?string
     {
         return $this->observation;
     }
@@ -616,7 +616,7 @@ class Association extends \ArrayObject
     /**
      * Observation relative à l'association.
      */
-    public function setObservation(string $observation): self
+    public function setObservation(?string $observation): self
     {
         $this->initialized['observation'] = true;
         $this->observation = $observation;
@@ -627,7 +627,7 @@ class Association extends \ArrayObject
     /**
      * Code du site gestionnaire (préfecture, sous-préfecture) de l'association.
      */
-    public function getCodeGestion(): string
+    public function getCodeGestion(): ?string
     {
         return $this->codeGestion;
     }
@@ -635,7 +635,7 @@ class Association extends \ArrayObject
     /**
      * Code du site gestionnaire (préfecture, sous-préfecture) de l'association.
      */
-    public function setCodeGestion(string $codeGestion): self
+    public function setCodeGestion(?string $codeGestion): self
     {
         $this->initialized['codeGestion'] = true;
         $this->codeGestion = $codeGestion;
@@ -646,7 +646,7 @@ class Association extends \ArrayObject
     /**
      * Civilité du dirigeant.
      */
-    public function getDirigeantCivilite(): string
+    public function getDirigeantCivilite(): ?string
     {
         return $this->dirigeantCivilite;
     }
@@ -654,7 +654,7 @@ class Association extends \ArrayObject
     /**
      * Civilité du dirigeant.
      */
-    public function setDirigeantCivilite(string $dirigeantCivilite): self
+    public function setDirigeantCivilite(?string $dirigeantCivilite): self
     {
         $this->initialized['dirigeantCivilite'] = true;
         $this->dirigeantCivilite = $dirigeantCivilite;
@@ -665,7 +665,7 @@ class Association extends \ArrayObject
     /**
      * Date de la dernière mise à jour des informations au RNA au format AAAA-MM-JJ.
      */
-    public function getDerniereMaj(): string
+    public function getDerniereMaj(): ?string
     {
         return $this->derniereMaj;
     }
@@ -673,7 +673,7 @@ class Association extends \ArrayObject
     /**
      * Date de la dernière mise à jour des informations au RNA au format AAAA-MM-JJ.
      */
-    public function setDerniereMaj(string $derniereMaj): self
+    public function setDerniereMaj(?string $derniereMaj): self
     {
         $this->initialized['derniereMaj'] = true;
         $this->derniereMaj = $derniereMaj;
@@ -684,7 +684,7 @@ class Association extends \ArrayObject
     /**
      * Publications JOAFE.
      */
-    public function getPublicationsJoafe(): AssociationPublicationsJoafe
+    public function getPublicationsJoafe(): ?AssociationPublicationsJoafe
     {
         return $this->publicationsJoafe;
     }
@@ -692,7 +692,7 @@ class Association extends \ArrayObject
     /**
      * Publications JOAFE.
      */
-    public function setPublicationsJoafe(AssociationPublicationsJoafe $publicationsJoafe): self
+    public function setPublicationsJoafe(?AssociationPublicationsJoafe $publicationsJoafe): self
     {
         $this->initialized['publicationsJoafe'] = true;
         $this->publicationsJoafe = $publicationsJoafe;

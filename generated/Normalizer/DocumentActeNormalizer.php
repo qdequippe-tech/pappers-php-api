@@ -50,29 +50,37 @@ class DocumentActeNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('date_depot', $data)) {
+        if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
             $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
             unset($data['date_depot']);
+        } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
+            $object->setDateDepot(null);
         }
-        if (\array_key_exists('mentions', $data)) {
+        if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values = [];
             foreach ($data['mentions'] as $value) {
                 $values[] = $value;
             }
             $object->setMentions($values);
             unset($data['mentions']);
+        } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
+            $object->setMentions(null);
         }
-        if (\array_key_exists('titres', $data)) {
+        if (\array_key_exists('titres', $data) && null !== $data['titres']) {
             $values_1 = [];
             foreach ($data['titres'] as $value_1) {
                 $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\DocumentActetitresItem', 'json', $context);
             }
             $object->setTitres($values_1);
             unset($data['titres']);
+        } elseif (\array_key_exists('titres', $data) && null === $data['titres']) {
+            $object->setTitres(null);
         }
         foreach ($data as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {

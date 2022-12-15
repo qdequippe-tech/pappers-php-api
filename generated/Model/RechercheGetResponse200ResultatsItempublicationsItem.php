@@ -18,32 +18,32 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Type de publication.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Date de publication, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $date;
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      *
-     * @var string
+     * @var string|null
      */
     protected $contenu;
     /**
      * Mentions de la recherche dans la publication.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $mentions;
 
     /**
      * Type de publication.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -51,7 +51,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Type de publication.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -62,7 +62,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Date de publication, au format AAAA-MM-JJ.
      */
-    public function getDate(): \DateTime
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
@@ -70,7 +70,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Date de publication, au format AAAA-MM-JJ.
      */
-    public function setDate(\DateTime $date): self
+    public function setDate(?\DateTime $date): self
     {
         $this->initialized['date'] = true;
         $this->date = $date;
@@ -81,7 +81,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      */
-    public function getContenu(): string
+    public function getContenu(): ?string
     {
         return $this->contenu;
     }
@@ -89,7 +89,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Contenu de la publication, avec les mentions correspondant à la recherche encerclée par une balise HTML <em>.
      */
-    public function setContenu(string $contenu): self
+    public function setContenu(?string $contenu): self
     {
         $this->initialized['contenu'] = true;
         $this->contenu = $contenu;
@@ -100,9 +100,9 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans la publication.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getMentions(): array
+    public function getMentions(): ?array
     {
         return $this->mentions;
     }
@@ -110,9 +110,9 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans la publication.
      *
-     * @param string[] $mentions
+     * @param string[]|null $mentions
      */
-    public function setMentions(array $mentions): self
+    public function setMentions(?array $mentions): self
     {
         $this->initialized['mentions'] = true;
         $this->mentions = $mentions;

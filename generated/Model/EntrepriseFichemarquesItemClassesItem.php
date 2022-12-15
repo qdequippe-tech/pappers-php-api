@@ -18,20 +18,20 @@ class EntrepriseFichemarquesItemClassesItem extends \ArrayObject
     /**
      * Code de la classe.
      *
-     * @var string
+     * @var string|null
      */
     protected $code;
     /**
      * Description de la classe.
      *
-     * @var string
+     * @var string|null
      */
     protected $description;
 
     /**
      * Code de la classe.
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }
@@ -39,7 +39,7 @@ class EntrepriseFichemarquesItemClassesItem extends \ArrayObject
     /**
      * Code de la classe.
      */
-    public function setCode(string $code): self
+    public function setCode(?string $code): self
     {
         $this->initialized['code'] = true;
         $this->code = $code;
@@ -50,7 +50,7 @@ class EntrepriseFichemarquesItemClassesItem extends \ArrayObject
     /**
      * Description de la classe.
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -58,7 +58,7 @@ class EntrepriseFichemarquesItemClassesItem extends \ArrayObject
     /**
      * Description de la classe.
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->initialized['description'] = true;
         $this->description = $description;

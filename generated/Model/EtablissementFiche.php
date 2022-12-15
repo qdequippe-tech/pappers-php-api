@@ -18,202 +18,202 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxxxxxxxxxxxxx.
      *
-     * @var string
+     * @var string|null
      */
     protected $siret;
     /**
      * Numéro siret de l'établissement au format xxx xxx xxx xxxxx.
      *
-     * @var string
+     * @var string|null
      */
     protected $siretFormate;
     /**
      * Numéro NIC de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $nic;
     /**
      * Code postal de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePostal;
     /**
      * Ville de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $ville;
     /**
      * Pays de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $pays;
     /**
      * Code du pays de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $codePays;
     /**
      * Latitude de l'établissement.
      *
-     * @var float
+     * @var float|null
      */
     protected $latitude;
     /**
      * Longitude de l'établissement.
      *
-     * @var float
+     * @var float|null
      */
     protected $longitude;
     /**
      * Vrai si l'établissement est cessé, faux si il est en activité.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $etablissementCesse;
     /**
      * Vrai si l'établissement est siège, faux s'il ne l'est pas.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $siege;
     /**
      * Si vrai, l'établissement a au moins un employé.
      *
-     * @var bool
+     * @var bool|null
      */
     protected $etablissementEmployeur;
     /**
      * Tranche d'effectif de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $effectif;
     /**
      * Effectif minimal de l'établissement.
      *
-     * @var int
+     * @var int|null
      */
     protected $effectifMin;
     /**
      * Effectif maximal de l'établissement.
      *
-     * @var int
+     * @var int|null
      */
     protected $effectifMax;
     /**
      * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
      *
-     * @var string
+     * @var string|null
      */
     protected $trancheEffectif;
     /**
      * Année correspondante à la tranche d'effectif de l'établissement.
      *
-     * @var int
+     * @var int|null
      */
     protected $anneeEffectif;
     /**
      * Code NAF de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $codeNaf;
     /**
      * Libellé du code NAF de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelleCodeNaf;
     /**
-     * @var string
+     * @var string|null
      */
     protected $dateDeCreation;
     /**
      * Numéro de voie de l'établissement.
      *
-     * @var int
+     * @var int|null
      */
     protected $numeroVoie;
     /**
      * Indice de répétition de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $indiceRepetition;
     /**
      * Type de voie de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $typeVoie;
     /**
      * Libellé de la voie de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $libelleVoie;
     /**
      * Complément d'adresse de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $complementAdresse;
     /**
      * Première ligne de l'adresse de l'établissement. Correspond à l'ensemble des données numero_voie, indice_repetition, type_voie et libelle_voie.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne1;
     /**
      * Seconde ligne de l'adresse de l'établissement. Est égal à complement_adresse.
      *
-     * @var string
+     * @var string|null
      */
     protected $adresseLigne2;
     /**
      * Date de fermeture de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateCessation;
     /**
      * Enseigne de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $enseigne;
     /**
      * Nom commercial de l'établissement.
      *
-     * @var string
+     * @var string|null
      */
     protected $nomCommercial;
     /**
-     * @var EtablissementFicheDomiciliation
+     * @var EtablissementFicheDomiciliation|null
      */
     protected $domiciliation;
     /**
      * Liste des prédécesseurs de l'établissement.
      *
-     * @var LienSuccession[]
+     * @var LienSuccession[]|null
      */
     protected $predecesseurs;
     /**
      * Liste des successeurs de l'établissement.
      *
-     * @var LienSuccession[]
+     * @var LienSuccession[]|null
      */
     protected $successeurs;
 
     /**
      * Numéro siret de l'établissement au format xxxxxxxxxxxxxx.
      */
-    public function getSiret(): string
+    public function getSiret(): ?string
     {
         return $this->siret;
     }
@@ -221,7 +221,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxxxxxxxxxxxxx.
      */
-    public function setSiret(string $siret): self
+    public function setSiret(?string $siret): self
     {
         $this->initialized['siret'] = true;
         $this->siret = $siret;
@@ -232,7 +232,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxx xxx xxx xxxxx.
      */
-    public function getSiretFormate(): string
+    public function getSiretFormate(): ?string
     {
         return $this->siretFormate;
     }
@@ -240,7 +240,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro siret de l'établissement au format xxx xxx xxx xxxxx.
      */
-    public function setSiretFormate(string $siretFormate): self
+    public function setSiretFormate(?string $siretFormate): self
     {
         $this->initialized['siretFormate'] = true;
         $this->siretFormate = $siretFormate;
@@ -251,7 +251,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro NIC de l'établissement.
      */
-    public function getNic(): string
+    public function getNic(): ?string
     {
         return $this->nic;
     }
@@ -259,7 +259,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro NIC de l'établissement.
      */
-    public function setNic(string $nic): self
+    public function setNic(?string $nic): self
     {
         $this->initialized['nic'] = true;
         $this->nic = $nic;
@@ -270,7 +270,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Code postal de l'établissement.
      */
-    public function getCodePostal(): string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
@@ -278,7 +278,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Code postal de l'établissement.
      */
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(?string $codePostal): self
     {
         $this->initialized['codePostal'] = true;
         $this->codePostal = $codePostal;
@@ -289,7 +289,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Ville de l'établissement.
      */
-    public function getVille(): string
+    public function getVille(): ?string
     {
         return $this->ville;
     }
@@ -297,7 +297,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Ville de l'établissement.
      */
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->initialized['ville'] = true;
         $this->ville = $ville;
@@ -308,7 +308,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Pays de l'établissement.
      */
-    public function getPays(): string
+    public function getPays(): ?string
     {
         return $this->pays;
     }
@@ -316,7 +316,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Pays de l'établissement.
      */
-    public function setPays(string $pays): self
+    public function setPays(?string $pays): self
     {
         $this->initialized['pays'] = true;
         $this->pays = $pays;
@@ -327,7 +327,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Code du pays de l'établissement.
      */
-    public function getCodePays(): string
+    public function getCodePays(): ?string
     {
         return $this->codePays;
     }
@@ -335,7 +335,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Code du pays de l'établissement.
      */
-    public function setCodePays(string $codePays): self
+    public function setCodePays(?string $codePays): self
     {
         $this->initialized['codePays'] = true;
         $this->codePays = $codePays;
@@ -346,7 +346,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Latitude de l'établissement.
      */
-    public function getLatitude(): float
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
@@ -354,7 +354,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Latitude de l'établissement.
      */
-    public function setLatitude(float $latitude): self
+    public function setLatitude(?float $latitude): self
     {
         $this->initialized['latitude'] = true;
         $this->latitude = $latitude;
@@ -365,7 +365,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Longitude de l'établissement.
      */
-    public function getLongitude(): float
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
@@ -373,7 +373,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Longitude de l'établissement.
      */
-    public function setLongitude(float $longitude): self
+    public function setLongitude(?float $longitude): self
     {
         $this->initialized['longitude'] = true;
         $this->longitude = $longitude;
@@ -384,7 +384,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Vrai si l'établissement est cessé, faux si il est en activité.
      */
-    public function getEtablissementCesse(): bool
+    public function getEtablissementCesse(): ?bool
     {
         return $this->etablissementCesse;
     }
@@ -392,7 +392,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Vrai si l'établissement est cessé, faux si il est en activité.
      */
-    public function setEtablissementCesse(bool $etablissementCesse): self
+    public function setEtablissementCesse(?bool $etablissementCesse): self
     {
         $this->initialized['etablissementCesse'] = true;
         $this->etablissementCesse = $etablissementCesse;
@@ -403,7 +403,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Vrai si l'établissement est siège, faux s'il ne l'est pas.
      */
-    public function getSiege(): bool
+    public function getSiege(): ?bool
     {
         return $this->siege;
     }
@@ -411,7 +411,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Vrai si l'établissement est siège, faux s'il ne l'est pas.
      */
-    public function setSiege(bool $siege): self
+    public function setSiege(?bool $siege): self
     {
         $this->initialized['siege'] = true;
         $this->siege = $siege;
@@ -422,7 +422,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Si vrai, l'établissement a au moins un employé.
      */
-    public function getEtablissementEmployeur(): bool
+    public function getEtablissementEmployeur(): ?bool
     {
         return $this->etablissementEmployeur;
     }
@@ -430,7 +430,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Si vrai, l'établissement a au moins un employé.
      */
-    public function setEtablissementEmployeur(bool $etablissementEmployeur): self
+    public function setEtablissementEmployeur(?bool $etablissementEmployeur): self
     {
         $this->initialized['etablissementEmployeur'] = true;
         $this->etablissementEmployeur = $etablissementEmployeur;
@@ -441,7 +441,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Tranche d'effectif de l'établissement.
      */
-    public function getEffectif(): string
+    public function getEffectif(): ?string
     {
         return $this->effectif;
     }
@@ -449,7 +449,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Tranche d'effectif de l'établissement.
      */
-    public function setEffectif(string $effectif): self
+    public function setEffectif(?string $effectif): self
     {
         $this->initialized['effectif'] = true;
         $this->effectif = $effectif;
@@ -460,7 +460,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Effectif minimal de l'établissement.
      */
-    public function getEffectifMin(): int
+    public function getEffectifMin(): ?int
     {
         return $this->effectifMin;
     }
@@ -468,7 +468,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Effectif minimal de l'établissement.
      */
-    public function setEffectifMin(int $effectifMin): self
+    public function setEffectifMin(?int $effectifMin): self
     {
         $this->initialized['effectifMin'] = true;
         $this->effectifMin = $effectifMin;
@@ -479,7 +479,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Effectif maximal de l'établissement.
      */
-    public function getEffectifMax(): int
+    public function getEffectifMax(): ?int
     {
         return $this->effectifMax;
     }
@@ -487,7 +487,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Effectif maximal de l'établissement.
      */
-    public function setEffectifMax(int $effectifMax): self
+    public function setEffectifMax(?int $effectifMax): self
     {
         $this->initialized['effectifMax'] = true;
         $this->effectifMax = $effectifMax;
@@ -498,7 +498,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
      */
-    public function getTrancheEffectif(): string
+    public function getTrancheEffectif(): ?string
     {
         return $this->trancheEffectif;
     }
@@ -506,7 +506,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
      */
-    public function setTrancheEffectif(string $trancheEffectif): self
+    public function setTrancheEffectif(?string $trancheEffectif): self
     {
         $this->initialized['trancheEffectif'] = true;
         $this->trancheEffectif = $trancheEffectif;
@@ -517,7 +517,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Année correspondante à la tranche d'effectif de l'établissement.
      */
-    public function getAnneeEffectif(): int
+    public function getAnneeEffectif(): ?int
     {
         return $this->anneeEffectif;
     }
@@ -525,7 +525,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Année correspondante à la tranche d'effectif de l'établissement.
      */
-    public function setAnneeEffectif(int $anneeEffectif): self
+    public function setAnneeEffectif(?int $anneeEffectif): self
     {
         $this->initialized['anneeEffectif'] = true;
         $this->anneeEffectif = $anneeEffectif;
@@ -536,7 +536,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Code NAF de l'établissement.
      */
-    public function getCodeNaf(): string
+    public function getCodeNaf(): ?string
     {
         return $this->codeNaf;
     }
@@ -544,7 +544,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Code NAF de l'établissement.
      */
-    public function setCodeNaf(string $codeNaf): self
+    public function setCodeNaf(?string $codeNaf): self
     {
         $this->initialized['codeNaf'] = true;
         $this->codeNaf = $codeNaf;
@@ -555,7 +555,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Libellé du code NAF de l'établissement.
      */
-    public function getLibelleCodeNaf(): string
+    public function getLibelleCodeNaf(): ?string
     {
         return $this->libelleCodeNaf;
     }
@@ -563,7 +563,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Libellé du code NAF de l'établissement.
      */
-    public function setLibelleCodeNaf(string $libelleCodeNaf): self
+    public function setLibelleCodeNaf(?string $libelleCodeNaf): self
     {
         $this->initialized['libelleCodeNaf'] = true;
         $this->libelleCodeNaf = $libelleCodeNaf;
@@ -571,12 +571,12 @@ class EtablissementFiche extends \ArrayObject
         return $this;
     }
 
-    public function getDateDeCreation(): string
+    public function getDateDeCreation(): ?string
     {
         return $this->dateDeCreation;
     }
 
-    public function setDateDeCreation(string $dateDeCreation): self
+    public function setDateDeCreation(?string $dateDeCreation): self
     {
         $this->initialized['dateDeCreation'] = true;
         $this->dateDeCreation = $dateDeCreation;
@@ -587,7 +587,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro de voie de l'établissement.
      */
-    public function getNumeroVoie(): int
+    public function getNumeroVoie(): ?int
     {
         return $this->numeroVoie;
     }
@@ -595,7 +595,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Numéro de voie de l'établissement.
      */
-    public function setNumeroVoie(int $numeroVoie): self
+    public function setNumeroVoie(?int $numeroVoie): self
     {
         $this->initialized['numeroVoie'] = true;
         $this->numeroVoie = $numeroVoie;
@@ -606,7 +606,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Indice de répétition de l'établissement.
      */
-    public function getIndiceRepetition(): string
+    public function getIndiceRepetition(): ?string
     {
         return $this->indiceRepetition;
     }
@@ -614,7 +614,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Indice de répétition de l'établissement.
      */
-    public function setIndiceRepetition(string $indiceRepetition): self
+    public function setIndiceRepetition(?string $indiceRepetition): self
     {
         $this->initialized['indiceRepetition'] = true;
         $this->indiceRepetition = $indiceRepetition;
@@ -625,7 +625,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Type de voie de l'établissement.
      */
-    public function getTypeVoie(): string
+    public function getTypeVoie(): ?string
     {
         return $this->typeVoie;
     }
@@ -633,7 +633,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Type de voie de l'établissement.
      */
-    public function setTypeVoie(string $typeVoie): self
+    public function setTypeVoie(?string $typeVoie): self
     {
         $this->initialized['typeVoie'] = true;
         $this->typeVoie = $typeVoie;
@@ -644,7 +644,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Libellé de la voie de l'établissement.
      */
-    public function getLibelleVoie(): string
+    public function getLibelleVoie(): ?string
     {
         return $this->libelleVoie;
     }
@@ -652,7 +652,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Libellé de la voie de l'établissement.
      */
-    public function setLibelleVoie(string $libelleVoie): self
+    public function setLibelleVoie(?string $libelleVoie): self
     {
         $this->initialized['libelleVoie'] = true;
         $this->libelleVoie = $libelleVoie;
@@ -663,7 +663,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Complément d'adresse de l'établissement.
      */
-    public function getComplementAdresse(): string
+    public function getComplementAdresse(): ?string
     {
         return $this->complementAdresse;
     }
@@ -671,7 +671,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Complément d'adresse de l'établissement.
      */
-    public function setComplementAdresse(string $complementAdresse): self
+    public function setComplementAdresse(?string $complementAdresse): self
     {
         $this->initialized['complementAdresse'] = true;
         $this->complementAdresse = $complementAdresse;
@@ -682,7 +682,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Première ligne de l'adresse de l'établissement. Correspond à l'ensemble des données numero_voie, indice_repetition, type_voie et libelle_voie.
      */
-    public function getAdresseLigne1(): string
+    public function getAdresseLigne1(): ?string
     {
         return $this->adresseLigne1;
     }
@@ -690,7 +690,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Première ligne de l'adresse de l'établissement. Correspond à l'ensemble des données numero_voie, indice_repetition, type_voie et libelle_voie.
      */
-    public function setAdresseLigne1(string $adresseLigne1): self
+    public function setAdresseLigne1(?string $adresseLigne1): self
     {
         $this->initialized['adresseLigne1'] = true;
         $this->adresseLigne1 = $adresseLigne1;
@@ -701,7 +701,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Seconde ligne de l'adresse de l'établissement. Est égal à complement_adresse.
      */
-    public function getAdresseLigne2(): string
+    public function getAdresseLigne2(): ?string
     {
         return $this->adresseLigne2;
     }
@@ -709,7 +709,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Seconde ligne de l'adresse de l'établissement. Est égal à complement_adresse.
      */
-    public function setAdresseLigne2(string $adresseLigne2): self
+    public function setAdresseLigne2(?string $adresseLigne2): self
     {
         $this->initialized['adresseLigne2'] = true;
         $this->adresseLigne2 = $adresseLigne2;
@@ -720,7 +720,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Date de fermeture de l'établissement.
      */
-    public function getDateCessation(): string
+    public function getDateCessation(): ?string
     {
         return $this->dateCessation;
     }
@@ -728,7 +728,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Date de fermeture de l'établissement.
      */
-    public function setDateCessation(string $dateCessation): self
+    public function setDateCessation(?string $dateCessation): self
     {
         $this->initialized['dateCessation'] = true;
         $this->dateCessation = $dateCessation;
@@ -739,7 +739,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Enseigne de l'établissement.
      */
-    public function getEnseigne(): string
+    public function getEnseigne(): ?string
     {
         return $this->enseigne;
     }
@@ -747,7 +747,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Enseigne de l'établissement.
      */
-    public function setEnseigne(string $enseigne): self
+    public function setEnseigne(?string $enseigne): self
     {
         $this->initialized['enseigne'] = true;
         $this->enseigne = $enseigne;
@@ -758,7 +758,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Nom commercial de l'établissement.
      */
-    public function getNomCommercial(): string
+    public function getNomCommercial(): ?string
     {
         return $this->nomCommercial;
     }
@@ -766,7 +766,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Nom commercial de l'établissement.
      */
-    public function setNomCommercial(string $nomCommercial): self
+    public function setNomCommercial(?string $nomCommercial): self
     {
         $this->initialized['nomCommercial'] = true;
         $this->nomCommercial = $nomCommercial;
@@ -774,12 +774,12 @@ class EtablissementFiche extends \ArrayObject
         return $this;
     }
 
-    public function getDomiciliation(): EtablissementFicheDomiciliation
+    public function getDomiciliation(): ?EtablissementFicheDomiciliation
     {
         return $this->domiciliation;
     }
 
-    public function setDomiciliation(EtablissementFicheDomiciliation $domiciliation): self
+    public function setDomiciliation(?EtablissementFicheDomiciliation $domiciliation): self
     {
         $this->initialized['domiciliation'] = true;
         $this->domiciliation = $domiciliation;
@@ -790,9 +790,9 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des prédécesseurs de l'établissement.
      *
-     * @return LienSuccession[]
+     * @return LienSuccession[]|null
      */
-    public function getPredecesseurs(): array
+    public function getPredecesseurs(): ?array
     {
         return $this->predecesseurs;
     }
@@ -800,9 +800,9 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des prédécesseurs de l'établissement.
      *
-     * @param LienSuccession[] $predecesseurs
+     * @param LienSuccession[]|null $predecesseurs
      */
-    public function setPredecesseurs(array $predecesseurs): self
+    public function setPredecesseurs(?array $predecesseurs): self
     {
         $this->initialized['predecesseurs'] = true;
         $this->predecesseurs = $predecesseurs;
@@ -813,9 +813,9 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des successeurs de l'établissement.
      *
-     * @return LienSuccession[]
+     * @return LienSuccession[]|null
      */
-    public function getSuccesseurs(): array
+    public function getSuccesseurs(): ?array
     {
         return $this->successeurs;
     }
@@ -823,9 +823,9 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des successeurs de l'établissement.
      *
-     * @param LienSuccession[] $successeurs
+     * @param LienSuccession[]|null $successeurs
      */
-    public function setSuccesseurs(array $successeurs): self
+    public function setSuccesseurs(?array $successeurs): self
     {
         $this->initialized['successeurs'] = true;
         $this->successeurs = $successeurs;

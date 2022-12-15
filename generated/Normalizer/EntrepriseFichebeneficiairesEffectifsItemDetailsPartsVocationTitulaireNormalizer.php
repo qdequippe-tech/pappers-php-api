@@ -56,21 +56,29 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireNorm
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('pourcentage_directes', $data)) {
+        if (\array_key_exists('pourcentage_directes', $data) && null !== $data['pourcentage_directes']) {
             $object->setPourcentageDirectes($data['pourcentage_directes']);
             unset($data['pourcentage_directes']);
+        } elseif (\array_key_exists('pourcentage_directes', $data) && null === $data['pourcentage_directes']) {
+            $object->setPourcentageDirectes(null);
         }
-        if (\array_key_exists('pourcentage_indirectes', $data)) {
+        if (\array_key_exists('pourcentage_indirectes', $data) && null !== $data['pourcentage_indirectes']) {
             $object->setPourcentageIndirectes($data['pourcentage_indirectes']);
             unset($data['pourcentage_indirectes']);
+        } elseif (\array_key_exists('pourcentage_indirectes', $data) && null === $data['pourcentage_indirectes']) {
+            $object->setPourcentageIndirectes(null);
         }
-        if (\array_key_exists('details_directes', $data)) {
+        if (\array_key_exists('details_directes', $data) && null !== $data['details_directes']) {
             $object->setDetailsDirectes($this->denormalizer->denormalize($data['details_directes'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes', 'json', $context));
             unset($data['details_directes']);
+        } elseif (\array_key_exists('details_directes', $data) && null === $data['details_directes']) {
+            $object->setDetailsDirectes(null);
         }
-        if (\array_key_exists('details_indirectes', $data)) {
+        if (\array_key_exists('details_indirectes', $data) && null !== $data['details_indirectes']) {
             $object->setDetailsIndirectes($this->denormalizer->denormalize($data['details_indirectes'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes', 'json', $context));
             unset($data['details_indirectes']);
+        } elseif (\array_key_exists('details_indirectes', $data) && null === $data['details_indirectes']) {
+            $object->setDetailsIndirectes(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

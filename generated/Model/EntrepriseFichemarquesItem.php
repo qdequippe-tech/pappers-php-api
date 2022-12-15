@@ -18,82 +18,82 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Numéro de la marque.
      *
-     * @var string
+     * @var string|null
      */
     protected $numero;
     /**
      * Date d'enregistrement de la marque, au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateEnregistrement;
     /**
      * Date d'expiration de la marque au format AAAA-MM-JJ.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateExpiration;
     /**
      * Lieu d'enregistrement de la marque.
      *
-     * @var string
+     * @var string|null
      */
     protected $lieuEnregistrement;
     /**
      * Statut de la marque. La description des différents types est disponible en page 14 du document suivant : https://www.inpi.fr/sites/default/files/doctech_marques_v1.6.pdf.
      *
-     * @var string
+     * @var string|null
      */
     protected $statut;
     /**
      * Texte de la marque.
      *
-     * @var string
+     * @var string|null
      */
     protected $texte;
     /**
      * Type de la marque.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Lien vers l'image déposée.
      *
-     * @var string
+     * @var string|null
      */
     protected $lienImage;
     /**
      * Liste des descriptions de la marque.
      *
-     * @var string[]
+     * @var string[]|null
      */
     protected $descriptions;
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @var EntrepriseFichemarquesItemClassesItem[]
+     * @var EntrepriseFichemarquesItemClassesItem[]|null
      */
     protected $classes;
     /**
-     * @var PersonneMarque
+     * @var PersonneMarque|null
      */
     protected $deposant;
     /**
-     * @var PersonneMarque
+     * @var PersonneMarque|null
      */
     protected $mandataire;
     /**
      * Liste des événements associés à la marque.
      *
-     * @var EntrepriseFichemarquesItemEvenementsItem[]
+     * @var EntrepriseFichemarquesItemEvenementsItem[]|null
      */
     protected $evenements;
 
     /**
      * Numéro de la marque.
      */
-    public function getNumero(): string
+    public function getNumero(): ?string
     {
         return $this->numero;
     }
@@ -101,7 +101,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Numéro de la marque.
      */
-    public function setNumero(string $numero): self
+    public function setNumero(?string $numero): self
     {
         $this->initialized['numero'] = true;
         $this->numero = $numero;
@@ -112,7 +112,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Date d'enregistrement de la marque, au format AAAA-MM-JJ.
      */
-    public function getDateEnregistrement(): string
+    public function getDateEnregistrement(): ?string
     {
         return $this->dateEnregistrement;
     }
@@ -120,7 +120,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Date d'enregistrement de la marque, au format AAAA-MM-JJ.
      */
-    public function setDateEnregistrement(string $dateEnregistrement): self
+    public function setDateEnregistrement(?string $dateEnregistrement): self
     {
         $this->initialized['dateEnregistrement'] = true;
         $this->dateEnregistrement = $dateEnregistrement;
@@ -131,7 +131,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Date d'expiration de la marque au format AAAA-MM-JJ.
      */
-    public function getDateExpiration(): string
+    public function getDateExpiration(): ?string
     {
         return $this->dateExpiration;
     }
@@ -139,7 +139,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Date d'expiration de la marque au format AAAA-MM-JJ.
      */
-    public function setDateExpiration(string $dateExpiration): self
+    public function setDateExpiration(?string $dateExpiration): self
     {
         $this->initialized['dateExpiration'] = true;
         $this->dateExpiration = $dateExpiration;
@@ -150,7 +150,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Lieu d'enregistrement de la marque.
      */
-    public function getLieuEnregistrement(): string
+    public function getLieuEnregistrement(): ?string
     {
         return $this->lieuEnregistrement;
     }
@@ -158,7 +158,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Lieu d'enregistrement de la marque.
      */
-    public function setLieuEnregistrement(string $lieuEnregistrement): self
+    public function setLieuEnregistrement(?string $lieuEnregistrement): self
     {
         $this->initialized['lieuEnregistrement'] = true;
         $this->lieuEnregistrement = $lieuEnregistrement;
@@ -169,7 +169,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Statut de la marque. La description des différents types est disponible en page 14 du document suivant : https://www.inpi.fr/sites/default/files/doctech_marques_v1.6.pdf.
      */
-    public function getStatut(): string
+    public function getStatut(): ?string
     {
         return $this->statut;
     }
@@ -177,7 +177,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Statut de la marque. La description des différents types est disponible en page 14 du document suivant : https://www.inpi.fr/sites/default/files/doctech_marques_v1.6.pdf.
      */
-    public function setStatut(string $statut): self
+    public function setStatut(?string $statut): self
     {
         $this->initialized['statut'] = true;
         $this->statut = $statut;
@@ -188,7 +188,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Texte de la marque.
      */
-    public function getTexte(): string
+    public function getTexte(): ?string
     {
         return $this->texte;
     }
@@ -196,7 +196,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Texte de la marque.
      */
-    public function setTexte(string $texte): self
+    public function setTexte(?string $texte): self
     {
         $this->initialized['texte'] = true;
         $this->texte = $texte;
@@ -207,7 +207,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Type de la marque.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -215,7 +215,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Type de la marque.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -226,7 +226,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Lien vers l'image déposée.
      */
-    public function getLienImage(): string
+    public function getLienImage(): ?string
     {
         return $this->lienImage;
     }
@@ -234,7 +234,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Lien vers l'image déposée.
      */
-    public function setLienImage(string $lienImage): self
+    public function setLienImage(?string $lienImage): self
     {
         $this->initialized['lienImage'] = true;
         $this->lienImage = $lienImage;
@@ -245,9 +245,9 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des descriptions de la marque.
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getDescriptions(): array
+    public function getDescriptions(): ?array
     {
         return $this->descriptions;
     }
@@ -255,9 +255,9 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des descriptions de la marque.
      *
-     * @param string[] $descriptions
+     * @param string[]|null $descriptions
      */
-    public function setDescriptions(array $descriptions): self
+    public function setDescriptions(?array $descriptions): self
     {
         $this->initialized['descriptions'] = true;
         $this->descriptions = $descriptions;
@@ -268,9 +268,9 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @return EntrepriseFichemarquesItemClassesItem[]
+     * @return EntrepriseFichemarquesItemClassesItem[]|null
      */
-    public function getClasses(): array
+    public function getClasses(): ?array
     {
         return $this->classes;
     }
@@ -278,9 +278,9 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @param EntrepriseFichemarquesItemClassesItem[] $classes
+     * @param EntrepriseFichemarquesItemClassesItem[]|null $classes
      */
-    public function setClasses(array $classes): self
+    public function setClasses(?array $classes): self
     {
         $this->initialized['classes'] = true;
         $this->classes = $classes;
@@ -288,12 +288,12 @@ class EntrepriseFichemarquesItem extends \ArrayObject
         return $this;
     }
 
-    public function getDeposant(): PersonneMarque
+    public function getDeposant(): ?PersonneMarque
     {
         return $this->deposant;
     }
 
-    public function setDeposant(PersonneMarque $deposant): self
+    public function setDeposant(?PersonneMarque $deposant): self
     {
         $this->initialized['deposant'] = true;
         $this->deposant = $deposant;
@@ -301,12 +301,12 @@ class EntrepriseFichemarquesItem extends \ArrayObject
         return $this;
     }
 
-    public function getMandataire(): PersonneMarque
+    public function getMandataire(): ?PersonneMarque
     {
         return $this->mandataire;
     }
 
-    public function setMandataire(PersonneMarque $mandataire): self
+    public function setMandataire(?PersonneMarque $mandataire): self
     {
         $this->initialized['mandataire'] = true;
         $this->mandataire = $mandataire;
@@ -317,9 +317,9 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @return EntrepriseFichemarquesItemEvenementsItem[]
+     * @return EntrepriseFichemarquesItemEvenementsItem[]|null
      */
-    public function getEvenements(): array
+    public function getEvenements(): ?array
     {
         return $this->evenements;
     }
@@ -327,9 +327,9 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @param EntrepriseFichemarquesItemEvenementsItem[] $evenements
+     * @param EntrepriseFichemarquesItemEvenementsItem[]|null $evenements
      */
-    public function setEvenements(array $evenements): self
+    public function setEvenements(?array $evenements): self
     {
         $this->initialized['evenements'] = true;
         $this->evenements = $evenements;

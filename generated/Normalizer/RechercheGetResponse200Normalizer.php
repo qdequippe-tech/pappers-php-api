@@ -50,25 +50,33 @@ class RechercheGetResponse200Normalizer implements DenormalizerInterface, Normal
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('resultats', $data)) {
+        if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
             $values = [];
             foreach ($data['resultats'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200ResultatsItem', 'json', $context);
             }
             $object->setResultats($values);
             unset($data['resultats']);
+        } elseif (\array_key_exists('resultats', $data) && null === $data['resultats']) {
+            $object->setResultats(null);
         }
-        if (\array_key_exists('total', $data)) {
+        if (\array_key_exists('total', $data) && null !== $data['total']) {
             $object->setTotal($data['total']);
             unset($data['total']);
+        } elseif (\array_key_exists('total', $data) && null === $data['total']) {
+            $object->setTotal(null);
         }
-        if (\array_key_exists('page', $data)) {
+        if (\array_key_exists('page', $data) && null !== $data['page']) {
             $object->setPage($data['page']);
             unset($data['page']);
+        } elseif (\array_key_exists('page', $data) && null === $data['page']) {
+            $object->setPage(null);
         }
-        if (\array_key_exists('curseurSuivant', $data)) {
+        if (\array_key_exists('curseurSuivant', $data) && null !== $data['curseurSuivant']) {
             $object->setCurseurSuivant($data['curseurSuivant']);
             unset($data['curseurSuivant']);
+        } elseif (\array_key_exists('curseurSuivant', $data) && null === $data['curseurSuivant']) {
+            $object->setCurseurSuivant(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

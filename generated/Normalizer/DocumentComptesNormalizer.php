@@ -50,25 +50,33 @@ class DocumentComptesNormalizer implements DenormalizerInterface, NormalizerInte
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('date_depot', $data)) {
+        if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
             $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
             unset($data['date_depot']);
+        } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
+            $object->setDateDepot(null);
         }
-        if (\array_key_exists('mentions', $data)) {
+        if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values = [];
             foreach ($data['mentions'] as $value) {
                 $values[] = $value;
             }
             $object->setMentions($values);
             unset($data['mentions']);
+        } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
+            $object->setMentions(null);
         }
-        if (\array_key_exists('date_cloture', $data)) {
+        if (\array_key_exists('date_cloture', $data) && null !== $data['date_cloture']) {
             $object->setDateCloture(\DateTime::createFromFormat('Y-m-d', $data['date_cloture'])->setTime(0, 0, 0));
             unset($data['date_cloture']);
+        } elseif (\array_key_exists('date_cloture', $data) && null === $data['date_cloture']) {
+            $object->setDateCloture(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

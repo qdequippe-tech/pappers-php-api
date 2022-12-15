@@ -18,32 +18,32 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Type de l'acte.
      *
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
      * Décision de l'acte.
      *
-     * @var string
+     * @var string|null
      */
     protected $decision;
     /**
      * Date de l'acte, au format AAAA-MM-JJ.
      *
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $dateActe;
     /**
      * Date formatée de l'acte, au format JJ/MM/AAAA.
      *
-     * @var string
+     * @var string|null
      */
     protected $dateActeFormate;
 
     /**
      * Type de l'acte.
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -51,7 +51,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Type de l'acte.
      */
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -62,7 +62,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Décision de l'acte.
      */
-    public function getDecision(): string
+    public function getDecision(): ?string
     {
         return $this->decision;
     }
@@ -70,7 +70,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Décision de l'acte.
      */
-    public function setDecision(string $decision): self
+    public function setDecision(?string $decision): self
     {
         $this->initialized['decision'] = true;
         $this->decision = $decision;
@@ -81,7 +81,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Date de l'acte, au format AAAA-MM-JJ.
      */
-    public function getDateActe(): \DateTime
+    public function getDateActe(): ?\DateTime
     {
         return $this->dateActe;
     }
@@ -89,7 +89,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Date de l'acte, au format AAAA-MM-JJ.
      */
-    public function setDateActe(\DateTime $dateActe): self
+    public function setDateActe(?\DateTime $dateActe): self
     {
         $this->initialized['dateActe'] = true;
         $this->dateActe = $dateActe;
@@ -100,7 +100,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Date formatée de l'acte, au format JJ/MM/AAAA.
      */
-    public function getDateActeFormate(): string
+    public function getDateActeFormate(): ?string
     {
         return $this->dateActeFormate;
     }
@@ -108,7 +108,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Date formatée de l'acte, au format JJ/MM/AAAA.
      */
-    public function setDateActeFormate(string $dateActeFormate): self
+    public function setDateActeFormate(?string $dateActeFormate): self
     {
         $this->initialized['dateActeFormate'] = true;
         $this->dateActeFormate = $dateActeFormate;

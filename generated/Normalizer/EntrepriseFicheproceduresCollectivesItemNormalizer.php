@@ -50,25 +50,33 @@ class EntrepriseFicheproceduresCollectivesItemNormalizer implements Denormalizer
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('type', $data)) {
+        if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
+        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
+            $object->setType(null);
         }
-        if (\array_key_exists('date_debut', $data)) {
+        if (\array_key_exists('date_debut', $data) && null !== $data['date_debut']) {
             $object->setDateDebut($data['date_debut']);
             unset($data['date_debut']);
+        } elseif (\array_key_exists('date_debut', $data) && null === $data['date_debut']) {
+            $object->setDateDebut(null);
         }
-        if (\array_key_exists('date_fin', $data)) {
+        if (\array_key_exists('date_fin', $data) && null !== $data['date_fin']) {
             $object->setDateFin($data['date_fin']);
             unset($data['date_fin']);
+        } elseif (\array_key_exists('date_fin', $data) && null === $data['date_fin']) {
+            $object->setDateFin(null);
         }
-        if (\array_key_exists('publications_bodacc', $data)) {
+        if (\array_key_exists('publications_bodacc', $data) && null !== $data['publications_bodacc']) {
             $values = [];
             foreach ($data['publications_bodacc'] as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Bodacc', 'json', $context);
             }
             $object->setPublicationsBodacc($values);
             unset($data['publications_bodacc']);
+        } elseif (\array_key_exists('publications_bodacc', $data) && null === $data['publications_bodacc']) {
+            $object->setPublicationsBodacc(null);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

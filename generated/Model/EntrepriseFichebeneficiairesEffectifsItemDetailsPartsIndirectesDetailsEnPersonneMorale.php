@@ -18,20 +18,20 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPe
     /**
      * Parts détenues de façon indirecte par le biais d'une personne morale en pleine propriété par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentagePleinePropriete;
     /**
      * Parts détenues de façon indirecte par le biais d'une personne morale en nue propriété par le bénéficiaire effectif, en pourcentage des parts totales.
      *
-     * @var float
+     * @var float|null
      */
     protected $pourcentageNuePropriete;
 
     /**
      * Parts détenues de façon indirecte par le biais d'une personne morale en pleine propriété par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentagePleinePropriete(): float
+    public function getPourcentagePleinePropriete(): ?float
     {
         return $this->pourcentagePleinePropriete;
     }
@@ -39,7 +39,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPe
     /**
      * Parts détenues de façon indirecte par le biais d'une personne morale en pleine propriété par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentagePleinePropriete(float $pourcentagePleinePropriete): self
+    public function setPourcentagePleinePropriete(?float $pourcentagePleinePropriete): self
     {
         $this->initialized['pourcentagePleinePropriete'] = true;
         $this->pourcentagePleinePropriete = $pourcentagePleinePropriete;
@@ -50,7 +50,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPe
     /**
      * Parts détenues de façon indirecte par le biais d'une personne morale en nue propriété par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function getPourcentageNuePropriete(): float
+    public function getPourcentageNuePropriete(): ?float
     {
         return $this->pourcentageNuePropriete;
     }
@@ -58,7 +58,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPe
     /**
      * Parts détenues de façon indirecte par le biais d'une personne morale en nue propriété par le bénéficiaire effectif, en pourcentage des parts totales.
      */
-    public function setPourcentageNuePropriete(float $pourcentageNuePropriete): self
+    public function setPourcentageNuePropriete(?float $pourcentageNuePropriete): self
     {
         $this->initialized['pourcentageNuePropriete'] = true;
         $this->pourcentageNuePropriete = $pourcentageNuePropriete;

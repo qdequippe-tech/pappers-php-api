@@ -50,17 +50,23 @@ class EntrepriseBaseConventionsCollectivesItemNormalizer implements Denormalizer
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('nom', $data)) {
+        if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
+        } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
+            $object->setNom(null);
         }
-        if (\array_key_exists('idcc', $data)) {
+        if (\array_key_exists('idcc', $data) && null !== $data['idcc']) {
             $object->setIdcc($data['idcc']);
             unset($data['idcc']);
+        } elseif (\array_key_exists('idcc', $data) && null === $data['idcc']) {
+            $object->setIdcc(null);
         }
-        if (\array_key_exists('confirmee', $data)) {
+        if (\array_key_exists('confirmee', $data) && null !== $data['confirmee']) {
             $object->setConfirmee($data['confirmee']);
             unset($data['confirmee']);
+        } elseif (\array_key_exists('confirmee', $data) && null === $data['confirmee']) {
+            $object->setConfirmee(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
