@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of QDEQUIPPE's Slack PHP API project.
- * (c) Quentin Dequippe <quentin@dequippe.tech>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Qdequippe\Pappers\Api\Endpoint;
 
 class DocumentTelechargement extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
@@ -49,11 +42,6 @@ class DocumentTelechargement extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
         return ['Accept' => ['application/pdf']];
     }
 
-    public function getAuthenticationScopes(): array
-    {
-        return [];
-    }
-
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
@@ -90,5 +78,10 @@ class DocumentTelechargement extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
         if (503 === $status) {
             throw new \Qdequippe\Pappers\Api\Exception\DocumentTelechargementServiceUnavailableException();
         }
+    }
+
+    public function getAuthenticationScopes(): array
+    {
+        return [];
     }
 }

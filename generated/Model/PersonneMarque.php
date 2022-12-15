@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of QDEQUIPPE's Slack PHP API project.
- * (c) Quentin Dequippe <quentin@dequippe.tech>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Qdequippe\Pappers\Api\Model;
 
 class PersonneMarque extends \ArrayObject
@@ -17,6 +10,11 @@ class PersonneMarque extends \ArrayObject
      * @var array
      */
     protected $initialized = [];
+
+    public function isInitialized($property): bool
+    {
+        return \array_key_exists($property, $this->initialized);
+    }
     /**
      * Siren de l'entité, dans le cas d'une personne morale.
      *
@@ -71,11 +69,6 @@ class PersonneMarque extends \ArrayObject
      * @var string
      */
     protected $codePays;
-
-    public function isInitialized($property): bool
-    {
-        return \array_key_exists($property, $this->initialized);
-    }
 
     /**
      * Siren de l'entité, dans le cas d'une personne morale.

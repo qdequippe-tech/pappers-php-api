@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of QDEQUIPPE's Slack PHP API project.
- * (c) Quentin Dequippe <quentin@dequippe.tech>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Qdequippe\Pappers\Api\Model;
 
 class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes extends \ArrayObject
@@ -17,6 +10,11 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes extends \Arr
      * @var array
      */
     protected $initialized = [];
+
+    public function isInitialized($property): bool
+    {
+        return \array_key_exists($property, $this->initialized);
+    }
     /**
      * Parts détenues de façon directe en pleine propriété par le bénéficiaire effectif, en pourcentage des parts totales.
      *
@@ -29,11 +27,6 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes extends \Arr
      * @var float
      */
     protected $pourcentageNuePropriete;
-
-    public function isInitialized($property): bool
-    {
-        return \array_key_exists($property, $this->initialized);
-    }
 
     /**
      * Parts détenues de façon directe en pleine propriété par le bénéficiaire effectif, en pourcentage des parts totales.

@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of QDEQUIPPE's Slack PHP API project.
- * (c) Quentin Dequippe <quentin@dequippe.tech>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Qdequippe\Pappers\Api\Runtime\Client;
 
 use Http\Message\MultipartStream\MultipartStreamBuilder;
@@ -29,6 +22,13 @@ abstract class BaseEndpoint implements Endpoint
 
     abstract public function getAuthenticationScopes(): array;
 
+    abstract protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null);
+
+    protected function getExtraHeaders(): array
+    {
+        return [];
+    }
+
     public function getQueryString(): string
     {
         $optionsResolved = $this->getQueryOptionsResolver()->resolve($this->queryParameters);
@@ -42,13 +42,6 @@ abstract class BaseEndpoint implements Endpoint
     public function getHeaders(array $baseHeaders = []): array
     {
         return array_merge($this->getExtraHeaders(), $baseHeaders, $this->getHeadersOptionsResolver()->resolve($this->headerParameters));
-    }
-
-    abstract protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null);
-
-    protected function getExtraHeaders(): array
-    {
-        return [];
     }
 
     protected function getQueryOptionsResolver(): OptionsResolver

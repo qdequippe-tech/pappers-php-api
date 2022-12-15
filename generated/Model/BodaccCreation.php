@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of QDEQUIPPE's Slack PHP API project.
- * (c) Quentin Dequippe <quentin@dequippe.tech>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Qdequippe\Pappers\Api\Model;
 
 class BodaccCreation extends Bodacc
@@ -17,6 +10,11 @@ class BodaccCreation extends Bodacc
      * @var array
      */
     protected $initialized = [];
+
+    public function isInitialized($property): bool
+    {
+        return \array_key_exists($property, $this->initialized);
+    }
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.
      *
@@ -77,11 +75,6 @@ class BodaccCreation extends Bodacc
      * @var string
      */
     protected $dateDebutActivite;
-
-    public function isInitialized($property): bool
-    {
-        return \array_key_exists($property, $this->initialized);
-    }
 
     /**
      * Nom de l'entreprise concernée par la publication. Correspond à la dénomination en cas de personne morale et à nom + prenom en cas de personne physique.

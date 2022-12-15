@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of QDEQUIPPE's Slack PHP API project.
- * (c) Quentin Dequippe <quentin@dequippe.tech>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Qdequippe\Pappers\Api\Model;
 
 class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \ArrayObject
@@ -17,6 +10,11 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
      * @var array
      */
     protected $initialized = [];
+
+    public function isInitialized($property): bool
+    {
+        return \array_key_exists($property, $this->initialized);
+    }
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
      *
@@ -41,11 +39,6 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
      * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale
      */
     protected $detailsEnPersonneMorale;
-
-    public function isInitialized($property): bool
-    {
-        return \array_key_exists($property, $this->initialized);
-    }
 
     /**
      * Droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif, en pourcentage des droits de vote totaux.
