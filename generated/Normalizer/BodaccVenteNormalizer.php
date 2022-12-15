@@ -1,0 +1,233 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of QDEQUIPPE's Slack PHP API project.
+ * (c) Quentin Dequippe <quentin@dequippe.tech>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Qdequippe\Pappers\Api\Normalizer;
+
+use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+class BodaccVenteNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization($data, $type, $format = null): bool
+    {
+        return 'Qdequippe\\Pappers\\Api\\Model\\BodaccVente' === $type;
+    }
+
+    public function supportsNormalization($data, $format = null): bool
+    {
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\BodaccVente' === \get_class($data);
+    }
+
+    /**
+     * @param mixed      $data
+     * @param mixed      $class
+     * @param mixed|null $format
+     *
+     * @return mixed
+     */
+    public function denormalize($data, $class, $format = null, array $context = [])
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+        $object = new \Qdequippe\Pappers\Api\Model\BodaccVente();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (\array_key_exists('numero_parution', $data)) {
+            $object->setNumeroParution($data['numero_parution']);
+            unset($data['numero_parution']);
+        }
+        if (\array_key_exists('date', $data)) {
+            $object->setDate($data['date']);
+            unset($data['date']);
+        }
+        if (\array_key_exists('numero_annonce', $data)) {
+            $object->setNumeroAnnonce($data['numero_annonce']);
+            unset($data['numero_annonce']);
+        }
+        if (\array_key_exists('bodacc', $data)) {
+            $object->setBodacc($data['bodacc']);
+            unset($data['bodacc']);
+        }
+        if (\array_key_exists('type', $data)) {
+            $object->setType($data['type']);
+            unset($data['type']);
+        }
+        if (\array_key_exists('greffe', $data)) {
+            $object->setGreffe($data['greffe']);
+            unset($data['greffe']);
+        }
+        if (\array_key_exists('nom_entreprise', $data)) {
+            $object->setNomEntreprise($data['nom_entreprise']);
+            unset($data['nom_entreprise']);
+        }
+        if (\array_key_exists('personne_morale', $data)) {
+            $object->setPersonneMorale($data['personne_morale']);
+            unset($data['personne_morale']);
+        }
+        if (\array_key_exists('denomination', $data)) {
+            $object->setDenomination($data['denomination']);
+            unset($data['denomination']);
+        }
+        if (\array_key_exists('nom', $data)) {
+            $object->setNom($data['nom']);
+            unset($data['nom']);
+        }
+        if (\array_key_exists('prenom', $data)) {
+            $object->setPrenom($data['prenom']);
+            unset($data['prenom']);
+        }
+        if (\array_key_exists('administration', $data)) {
+            $object->setAdministration($data['administration']);
+            unset($data['administration']);
+        }
+        if (\array_key_exists('adresse', $data)) {
+            $object->setAdresse($data['adresse']);
+            unset($data['adresse']);
+        }
+        if (\array_key_exists('commentaires', $data)) {
+            $object->setCommentaires($data['commentaires']);
+            unset($data['commentaires']);
+        }
+        if (\array_key_exists('oppositions', $data)) {
+            $object->setOppositions($data['oppositions']);
+            unset($data['oppositions']);
+        }
+        if (\array_key_exists('declaration_creance', $data)) {
+            $object->setDeclarationCreance($data['declaration_creance']);
+            unset($data['declaration_creance']);
+        }
+        if (\array_key_exists('publication_legale', $data)) {
+            $object->setPublicationLegale($data['publication_legale']);
+            unset($data['publication_legale']);
+        }
+        if (\array_key_exists('denomination_nouveau_proprietaire', $data)) {
+            $object->setDenominationNouveauProprietaire($data['denomination_nouveau_proprietaire']);
+            unset($data['denomination_nouveau_proprietaire']);
+        }
+        if (\array_key_exists('siren_nouveau_proprietaire', $data)) {
+            $object->setSirenNouveauProprietaire($data['siren_nouveau_proprietaire']);
+            unset($data['siren_nouveau_proprietaire']);
+        }
+        if (\array_key_exists('denomination_nouvel_exploitant', $data)) {
+            $object->setDenominationNouvelExploitant($data['denomination_nouvel_exploitant']);
+            unset($data['denomination_nouvel_exploitant']);
+        }
+        if (\array_key_exists('siren_nouvel_exploitant', $data)) {
+            $object->setSirenNouvelExploitant($data['siren_nouvel_exploitant']);
+            unset($data['siren_nouvel_exploitant']);
+        }
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
+        }
+
+        return $object;
+    }
+
+    /**
+     * @param mixed      $object
+     * @param mixed|null $format
+     *
+     * @return array|string|int|float|bool|\ArrayObject|null
+     */
+    public function normalize($object, $format = null, array $context = [])
+    {
+        $data = [];
+        if ($object->isInitialized('numeroParution') && null !== $object->getNumeroParution()) {
+            $data['numero_parution'] = $object->getNumeroParution();
+        }
+        if ($object->isInitialized('date') && null !== $object->getDate()) {
+            $data['date'] = $object->getDate();
+        }
+        if ($object->isInitialized('numeroAnnonce') && null !== $object->getNumeroAnnonce()) {
+            $data['numero_annonce'] = $object->getNumeroAnnonce();
+        }
+        if ($object->isInitialized('bodacc') && null !== $object->getBodacc()) {
+            $data['bodacc'] = $object->getBodacc();
+        }
+        if ($object->isInitialized('type') && null !== $object->getType()) {
+            $data['type'] = $object->getType();
+        }
+        if ($object->isInitialized('greffe') && null !== $object->getGreffe()) {
+            $data['greffe'] = $object->getGreffe();
+        }
+        if ($object->isInitialized('nomEntreprise') && null !== $object->getNomEntreprise()) {
+            $data['nom_entreprise'] = $object->getNomEntreprise();
+        }
+        if ($object->isInitialized('personneMorale') && null !== $object->getPersonneMorale()) {
+            $data['personne_morale'] = $object->getPersonneMorale();
+        }
+        if ($object->isInitialized('denomination') && null !== $object->getDenomination()) {
+            $data['denomination'] = $object->getDenomination();
+        }
+        if ($object->isInitialized('nom') && null !== $object->getNom()) {
+            $data['nom'] = $object->getNom();
+        }
+        if ($object->isInitialized('prenom') && null !== $object->getPrenom()) {
+            $data['prenom'] = $object->getPrenom();
+        }
+        if ($object->isInitialized('administration') && null !== $object->getAdministration()) {
+            $data['administration'] = $object->getAdministration();
+        }
+        if ($object->isInitialized('adresse') && null !== $object->getAdresse()) {
+            $data['adresse'] = $object->getAdresse();
+        }
+        if ($object->isInitialized('commentaires') && null !== $object->getCommentaires()) {
+            $data['commentaires'] = $object->getCommentaires();
+        }
+        if ($object->isInitialized('oppositions') && null !== $object->getOppositions()) {
+            $data['oppositions'] = $object->getOppositions();
+        }
+        if ($object->isInitialized('declarationCreance') && null !== $object->getDeclarationCreance()) {
+            $data['declaration_creance'] = $object->getDeclarationCreance();
+        }
+        if ($object->isInitialized('publicationLegale') && null !== $object->getPublicationLegale()) {
+            $data['publication_legale'] = $object->getPublicationLegale();
+        }
+        if ($object->isInitialized('denominationNouveauProprietaire') && null !== $object->getDenominationNouveauProprietaire()) {
+            $data['denomination_nouveau_proprietaire'] = $object->getDenominationNouveauProprietaire();
+        }
+        if ($object->isInitialized('sirenNouveauProprietaire') && null !== $object->getSirenNouveauProprietaire()) {
+            $data['siren_nouveau_proprietaire'] = $object->getSirenNouveauProprietaire();
+        }
+        if ($object->isInitialized('denominationNouvelExploitant') && null !== $object->getDenominationNouvelExploitant()) {
+            $data['denomination_nouvel_exploitant'] = $object->getDenominationNouvelExploitant();
+        }
+        if ($object->isInitialized('sirenNouvelExploitant') && null !== $object->getSirenNouvelExploitant()) {
+            $data['siren_nouvel_exploitant'] = $object->getSirenNouvelExploitant();
+        }
+        foreach ($object as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value;
+            }
+        }
+
+        return $data;
+    }
+}

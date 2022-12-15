@@ -1,0 +1,33 @@
+{
+    "name": "qdequippe/pappers-php-sdk",
+    "description": "Pappers PHP SDK",
+    "keywords": ["pappers", "pappersapi", "api", "client", "openapi", "swagger", "sdk"],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Qdequippe\\Pappers\\Api": "generated/",
+            "Qdequippe\\Pappers\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Qdequippe\\Pappers\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Quentin Dequippe",
+            "email": "quentin@dequippe.tech"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.1",
+        "jane-php/open-api-runtime": "^7.4"
+    },
+    "require-dev": {
+        "jane-php/open-api-3": "^7.4",
+        "friendsofphp/php-cs-fixer": "^3.13"
+    }
+}

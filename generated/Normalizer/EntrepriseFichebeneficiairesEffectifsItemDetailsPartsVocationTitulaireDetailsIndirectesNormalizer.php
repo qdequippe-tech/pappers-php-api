@@ -1,0 +1,120 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of QDEQUIPPE's Slack PHP API project.
+ * (c) Quentin Dequippe <quentin@dequippe.tech>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Qdequippe\Pappers\Api\Normalizer;
+
+use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization($data, $type, $format = null): bool
+    {
+        return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes' === $type;
+    }
+
+    public function supportsNormalization($data, $format = null): bool
+    {
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes' === \get_class($data);
+    }
+
+    /**
+     * @param mixed      $data
+     * @param mixed      $class
+     * @param mixed|null $format
+     *
+     * @return mixed
+     */
+    public function denormalize($data, $class, $format = null, array $context = [])
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+        $object = new \Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes();
+        if (\array_key_exists('pourcentage_en_indivision', $data) && \is_int($data['pourcentage_en_indivision'])) {
+            $data['pourcentage_en_indivision'] = (float) $data['pourcentage_en_indivision'];
+        }
+        if (\array_key_exists('pourcentage_en_personne_morale', $data) && \is_int($data['pourcentage_en_personne_morale'])) {
+            $data['pourcentage_en_personne_morale'] = (float) $data['pourcentage_en_personne_morale'];
+        }
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (\array_key_exists('pourcentage_en_indivision', $data)) {
+            $object->setPourcentageEnIndivision($data['pourcentage_en_indivision']);
+            unset($data['pourcentage_en_indivision']);
+        }
+        if (\array_key_exists('pourcentage_en_personne_morale', $data)) {
+            $object->setPourcentageEnPersonneMorale($data['pourcentage_en_personne_morale']);
+            unset($data['pourcentage_en_personne_morale']);
+        }
+        if (\array_key_exists('details_en_indivision', $data)) {
+            $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision', 'json', $context));
+            unset($data['details_en_indivision']);
+        }
+        if (\array_key_exists('details_en_personne_morale', $data)) {
+            $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale', 'json', $context));
+            unset($data['details_en_personne_morale']);
+        }
+        foreach ($data as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value;
+            }
+        }
+
+        return $object;
+    }
+
+    /**
+     * @param mixed      $object
+     * @param mixed|null $format
+     *
+     * @return array|string|int|float|bool|\ArrayObject|null
+     */
+    public function normalize($object, $format = null, array $context = [])
+    {
+        $data = [];
+        if ($object->isInitialized('pourcentageEnIndivision') && null !== $object->getPourcentageEnIndivision()) {
+            $data['pourcentage_en_indivision'] = $object->getPourcentageEnIndivision();
+        }
+        if ($object->isInitialized('pourcentageEnPersonneMorale') && null !== $object->getPourcentageEnPersonneMorale()) {
+            $data['pourcentage_en_personne_morale'] = $object->getPourcentageEnPersonneMorale();
+        }
+        if ($object->isInitialized('detailsEnIndivision') && null !== $object->getDetailsEnIndivision()) {
+            $data['details_en_indivision'] = $this->normalizer->normalize($object->getDetailsEnIndivision(), 'json', $context);
+        }
+        if ($object->isInitialized('detailsEnPersonneMorale') && null !== $object->getDetailsEnPersonneMorale()) {
+            $data['details_en_personne_morale'] = $this->normalizer->normalize($object->getDetailsEnPersonneMorale(), 'json', $context);
+        }
+        foreach ($object as $key => $value) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value;
+            }
+        }
+
+        return $data;
+    }
+}

@@ -1,0 +1,228 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of QDEQUIPPE's Slack PHP API project.
+ * (c) Quentin Dequippe <quentin@dequippe.tech>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Qdequippe\Pappers\Api\Normalizer;
+
+use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use CheckArray;
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use ValidatorTrait;
+
+    public function supportsDenormalization($data, $type, $format = null): bool
+    {
+        return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' === $type;
+    }
+
+    public function supportsNormalization($data, $format = null): bool
+    {
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' === \get_class($data);
+    }
+
+    /**
+     * @param mixed      $data
+     * @param mixed      $class
+     * @param mixed|null $format
+     *
+     * @return mixed
+     */
+    public function denormalize($data, $class, $format = null, array $context = [])
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+        $object = new \Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (\array_key_exists('date_depot', $data)) {
+            $object->setDateDepot($data['date_depot']);
+            unset($data['date_depot']);
+        }
+        if (\array_key_exists('code_greffe', $data)) {
+            $object->setCodeGreffe($data['code_greffe']);
+            unset($data['code_greffe']);
+        }
+        if (\array_key_exists('numero_depot', $data)) {
+            $object->setNumeroDepot($data['numero_depot']);
+            unset($data['numero_depot']);
+        }
+        if (\array_key_exists('numero_gestion', $data)) {
+            $object->setNumeroGestion($data['numero_gestion']);
+            unset($data['numero_gestion']);
+        }
+        if (\array_key_exists('date_cloture', $data)) {
+            $object->setDateCloture($data['date_cloture']);
+            unset($data['date_cloture']);
+        }
+        if (\array_key_exists('date_cloture_n-1', $data)) {
+            $object->setDateClotureN1($data['date_cloture_n-1']);
+            unset($data['date_cloture_n-1']);
+        }
+        if (\array_key_exists('duree_exercice_n', $data)) {
+            $object->setDureeExerciceN($data['duree_exercice_n']);
+            unset($data['duree_exercice_n']);
+        }
+        if (\array_key_exists('duree_exercice_n-1', $data)) {
+            $object->setDureeExerciceN1($data['duree_exercice_n-1']);
+            unset($data['duree_exercice_n-1']);
+        }
+        if (\array_key_exists('type_comptes', $data)) {
+            $object->setTypeComptes($data['type_comptes']);
+            unset($data['type_comptes']);
+        }
+        if (\array_key_exists('libelle_type_comptes', $data)) {
+            $object->setLibelleTypeComptes($data['libelle_type_comptes']);
+            unset($data['libelle_type_comptes']);
+        }
+        if (\array_key_exists('devise', $data)) {
+            $object->setDevise($data['devise']);
+            unset($data['devise']);
+        }
+        if (\array_key_exists('devise_origine', $data)) {
+            $object->setDeviseOrigine($data['devise_origine']);
+            unset($data['devise_origine']);
+        }
+        if (\array_key_exists('confidentialite', $data)) {
+            $object->setConfidentialite($data['confidentialite']);
+            unset($data['confidentialite']);
+        }
+        if (\array_key_exists('confidentialite_compte_de_resultat', $data)) {
+            $object->setConfidentialiteCompteDeResultat($data['confidentialite_compte_de_resultat']);
+            unset($data['confidentialite_compte_de_resultat']);
+        }
+        if (\array_key_exists('type_saisie', $data)) {
+            $object->setTypeSaisie($data['type_saisie']);
+            unset($data['type_saisie']);
+        }
+        if (\array_key_exists('informations_traitement', $data)) {
+            $values = [];
+            foreach ($data['informations_traitement'] as $value) {
+                $values[] = $value;
+            }
+            $object->setInformationsTraitement($values);
+            unset($data['informations_traitement']);
+        }
+        if (\array_key_exists('sections', $data)) {
+            $values_1 = [];
+            foreach ($data['sections'] as $value_1) {
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItemSectionsItem', 'json', $context);
+            }
+            $object->setSections($values_1);
+            unset($data['sections']);
+        }
+        if (\array_key_exists('ratios', $data)) {
+            $object->setRatios($this->denormalizer->denormalize($data['ratios'], 'Qdequippe\\Pappers\\Api\\Model\\Ratios', 'json', $context));
+            unset($data['ratios']);
+        }
+        foreach ($data as $key => $value_2) {
+            if (preg_match('/.*/', (string) $key)) {
+                $object[$key] = $value_2;
+            }
+        }
+
+        return $object;
+    }
+
+    /**
+     * @param mixed      $object
+     * @param mixed|null $format
+     *
+     * @return array|string|int|float|bool|\ArrayObject|null
+     */
+    public function normalize($object, $format = null, array $context = [])
+    {
+        $data = [];
+        if ($object->isInitialized('dateDepot') && null !== $object->getDateDepot()) {
+            $data['date_depot'] = $object->getDateDepot();
+        }
+        if ($object->isInitialized('codeGreffe') && null !== $object->getCodeGreffe()) {
+            $data['code_greffe'] = $object->getCodeGreffe();
+        }
+        if ($object->isInitialized('numeroDepot') && null !== $object->getNumeroDepot()) {
+            $data['numero_depot'] = $object->getNumeroDepot();
+        }
+        if ($object->isInitialized('numeroGestion') && null !== $object->getNumeroGestion()) {
+            $data['numero_gestion'] = $object->getNumeroGestion();
+        }
+        if ($object->isInitialized('dateCloture') && null !== $object->getDateCloture()) {
+            $data['date_cloture'] = $object->getDateCloture();
+        }
+        if ($object->isInitialized('dateClotureN1') && null !== $object->getDateClotureN1()) {
+            $data['date_cloture_n-1'] = $object->getDateClotureN1();
+        }
+        if ($object->isInitialized('dureeExerciceN') && null !== $object->getDureeExerciceN()) {
+            $data['duree_exercice_n'] = $object->getDureeExerciceN();
+        }
+        if ($object->isInitialized('dureeExerciceN1') && null !== $object->getDureeExerciceN1()) {
+            $data['duree_exercice_n-1'] = $object->getDureeExerciceN1();
+        }
+        if ($object->isInitialized('typeComptes') && null !== $object->getTypeComptes()) {
+            $data['type_comptes'] = $object->getTypeComptes();
+        }
+        if ($object->isInitialized('libelleTypeComptes') && null !== $object->getLibelleTypeComptes()) {
+            $data['libelle_type_comptes'] = $object->getLibelleTypeComptes();
+        }
+        if ($object->isInitialized('devise') && null !== $object->getDevise()) {
+            $data['devise'] = $object->getDevise();
+        }
+        if ($object->isInitialized('deviseOrigine') && null !== $object->getDeviseOrigine()) {
+            $data['devise_origine'] = $object->getDeviseOrigine();
+        }
+        if ($object->isInitialized('confidentialite') && null !== $object->getConfidentialite()) {
+            $data['confidentialite'] = $object->getConfidentialite();
+        }
+        if ($object->isInitialized('confidentialiteCompteDeResultat') && null !== $object->getConfidentialiteCompteDeResultat()) {
+            $data['confidentialite_compte_de_resultat'] = $object->getConfidentialiteCompteDeResultat();
+        }
+        if ($object->isInitialized('typeSaisie') && null !== $object->getTypeSaisie()) {
+            $data['type_saisie'] = $object->getTypeSaisie();
+        }
+        if ($object->isInitialized('informationsTraitement') && null !== $object->getInformationsTraitement()) {
+            $values = [];
+            foreach ($object->getInformationsTraitement() as $value) {
+                $values[] = $value;
+            }
+            $data['informations_traitement'] = $values;
+        }
+        if ($object->isInitialized('sections') && null !== $object->getSections()) {
+            $values_1 = [];
+            foreach ($object->getSections() as $value_1) {
+                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+            }
+            $data['sections'] = $values_1;
+        }
+        if ($object->isInitialized('ratios') && null !== $object->getRatios()) {
+            $data['ratios'] = $this->normalizer->normalize($object->getRatios(), 'json', $context);
+        }
+        foreach ($object as $key => $value_2) {
+            if (preg_match('/.*/', (string) $key)) {
+                $data[$key] = $value_2;
+            }
+        }
+
+        return $data;
+    }
+}
