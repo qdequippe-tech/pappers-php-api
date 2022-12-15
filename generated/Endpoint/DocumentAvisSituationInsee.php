@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Qdequippe\Pappers\Api\Endpoint;
 
 class DocumentAvisSituationInsee extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint

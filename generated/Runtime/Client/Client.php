@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Qdequippe\Pappers\Api\Runtime\Client;
 
 use Jane\Component\OpenApiRuntime\Client\Plugin\AuthenticationRegistry;

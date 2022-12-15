@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Qdequippe\Pappers\Api;
 
 class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client

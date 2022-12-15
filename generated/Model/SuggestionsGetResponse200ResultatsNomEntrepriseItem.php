@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Qdequippe\Pappers\Api\Model;
 
 class SuggestionsGetResponse200ResultatsNomEntrepriseItem extends \ArrayObject

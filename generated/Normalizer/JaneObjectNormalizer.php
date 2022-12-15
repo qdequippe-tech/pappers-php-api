@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
