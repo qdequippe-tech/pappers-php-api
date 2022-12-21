@@ -6,6 +6,9 @@ vendor: vendor/composer/installed.php
 cs: vendor ## Fix code style
 	PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix
 
+rector: vendor ## Run Rector
+	./vendor/bin/rector
+
 jane: vendor ## Generate the SDK
 	./vendor/bin/jane-openapi generate --config-file=.jane-openapi.php
 

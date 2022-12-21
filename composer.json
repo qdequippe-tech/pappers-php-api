@@ -1,6 +1,6 @@
 {
-    "name": "qdequippe/pappers-php-sdk",
-    "description": "Pappers PHP SDK",
+    "name": "qdequippe/pappers-php-api",
+    "description": "PHP Client for Pappers API",
     "keywords": ["pappers", "pappersapi", "api", "client", "openapi", "swagger", "sdk"],
     "type": "library",
     "license": "MIT",
