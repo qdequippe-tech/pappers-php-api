@@ -1,4 +1,4 @@
-name: CI
+name: Diff spec
 
 on:
     workflow_dispatch:
@@ -18,11 +18,6 @@ jobs:
 
             - name: Regenerate SDK library
               run: rm -rf generated && vendor/bin/jane-openapi generate --config-file=.jane-openapi.php
-
-#            - name: Check is something changed
-#              run: |
-#                  set -e
-#                  git diff --exit-code
 
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v4
