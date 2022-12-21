@@ -691,7 +691,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance
-     *     @var bool $delete_all Suppression de toutes les notifications de la liste
+     *     @var bool $supprimer_totalite Suppression de toutes les notifications de la liste
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
