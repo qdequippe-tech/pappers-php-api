@@ -14,7 +14,7 @@ class SurveillanceNotificationsDelete extends \Qdequippe\Pappers\Api\Runtime\Cli
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance
-     *     @var bool $delete_all Suppression de toutes les notifications de la liste
+     *     @var bool $supprimer_totalite Suppression de toutes les notifications de la liste
      * }
      */
     public function __construct(?array $requestBody = null, array $queryParameters = [])
@@ -50,12 +50,12 @@ class SurveillanceNotificationsDelete extends \Qdequippe\Pappers\Api\Runtime\Cli
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'id_liste', 'delete_all']);
+        $optionsResolver->setDefined(['api_token', 'id_liste', 'supprimer_totalite']);
         $optionsResolver->setRequired(['api_token', 'id_liste']);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('id_liste', ['string']);
-        $optionsResolver->addAllowedTypes('delete_all', ['bool']);
+        $optionsResolver->addAllowedTypes('supprimer_totalite', ['bool']);
 
         return $optionsResolver;
     }
