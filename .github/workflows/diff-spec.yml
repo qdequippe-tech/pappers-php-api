@@ -1,0 +1,28 @@
+name: CI
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: '0 0 * * MON'
+
+jobs:
+    check-spec:
+        name: Check SDK is in sync with spec
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Install dependencies
+              run: composer update --no-interaction
+
+            - name: Regenerate SDK library
+              run: rm -rf generated && vendor/bin/jane-openapi generate --config-file=.jane-openapi.php
+
+#            - name: Check is something changed
+#              run: |
+#                  set -e
+#                  git diff --exit-code
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v4
