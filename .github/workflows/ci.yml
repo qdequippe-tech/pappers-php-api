@@ -37,3 +37,6 @@ jobs:
               run: |
                   set -e
                   git diff --exit-code
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v4
