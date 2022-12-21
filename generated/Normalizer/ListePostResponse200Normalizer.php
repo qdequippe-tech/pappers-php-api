@@ -3,6 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\ListePostResponse200;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -44,7 +45,7 @@ class ListePostResponse200Normalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Qdequippe\Pappers\Api\Model\ListePostResponse200();
+        $object = new ListePostResponse200();
         if (\array_key_exists('notifications_ajoutees', $data) && \is_int($data['notifications_ajoutees'])) {
             $data['notifications_ajoutees'] = (float) $data['notifications_ajoutees'];
         }

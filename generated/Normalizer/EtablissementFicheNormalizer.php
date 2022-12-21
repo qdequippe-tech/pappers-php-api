@@ -3,6 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\EtablissementFiche;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -44,7 +45,7 @@ class EtablissementFicheNormalizer implements DenormalizerInterface, NormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Qdequippe\Pappers\Api\Model\EtablissementFiche();
+        $object = new EtablissementFiche();
         if (\array_key_exists('latitude', $data) && \is_int($data['latitude'])) {
             $data['latitude'] = (float) $data['latitude'];
         }

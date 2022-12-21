@@ -2,9 +2,20 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class DocumentBeneficiairesEffectifs extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsForbiddenException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsUnauthorizedException;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class DocumentBeneficiairesEffectifs extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir le SIREN. Le document vous sera envoyé au format PDF.
@@ -34,7 +45,7 @@ class DocumentBeneficiairesEffectifs extends \Qdequippe\Pappers\Api\Runtime\Clie
         return '/document/declaration_beneficiaires_effectifs';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -44,7 +55,7 @@ class DocumentBeneficiairesEffectifs extends \Qdequippe\Pappers\Api\Runtime\Clie
         return ['Accept' => ['application/pdf']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'siren']);
@@ -59,30 +70,30 @@ class DocumentBeneficiairesEffectifs extends \Qdequippe\Pappers\Api\Runtime\Clie
     /**
      * {@inheritdoc}
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsForbiddenException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsServiceUnavailableException
+     * @throws DocumentBeneficiairesEffectifsBadRequestException
+     * @throws DocumentBeneficiairesEffectifsUnauthorizedException
+     * @throws DocumentBeneficiairesEffectifsForbiddenException
+     * @throws DocumentBeneficiairesEffectifsNotFoundException
+     * @throws DocumentBeneficiairesEffectifsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsBadRequestException();
+            throw new DocumentBeneficiairesEffectifsBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsUnauthorizedException();
+            throw new DocumentBeneficiairesEffectifsUnauthorizedException();
         }
         if (403 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsForbiddenException();
+            throw new DocumentBeneficiairesEffectifsForbiddenException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsNotFoundException();
+            throw new DocumentBeneficiairesEffectifsNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsServiceUnavailableException();
+            throw new DocumentBeneficiairesEffectifsServiceUnavailableException();
         }
     }
 

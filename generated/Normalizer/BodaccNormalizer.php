@@ -3,6 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\Bodacc;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -68,7 +69,7 @@ class BodaccNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Qdequippe\Pappers\Api\Model\Bodacc();
+        $object = new Bodacc();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }

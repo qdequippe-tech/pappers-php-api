@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class RechercheDocuments extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\RechercheDocumentsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\RechercheDocumentsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\RechercheDocumentsUnauthorizedException;
+use Qdequippe\Pappers\Api\Model\RechercheDocumentsGetResponse200;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class RechercheDocuments extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Tous les paramètres sont optionnels et servent à filtrer la recherche. Les différents documents seront renvoyées dans un tableau `resultats`.
@@ -82,7 +92,7 @@ class RechercheDocuments extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpo
         return '/recherche-documents';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -92,7 +102,7 @@ class RechercheDocuments extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpo
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'par_page', 'page', 'precision', 'q', 'date_depot_document_min', 'date_depot_document_max', 'code_naf', 'departement', 'region', 'code_postal', 'convention_collective', 'categorie_juridique', 'entreprise_cessee', 'statut_rcs', 'objet_social', 'date_immatriculation_rcs_min', 'date_immatriculation_rcs_max', 'date_radiation_rcs_min', 'date_radiation_rcs_max', 'capital_min', 'capital_max', 'chiffre_affaires_min', 'chiffre_affaires_max', 'resultat_min', 'resultat_max', 'date_creation_min', 'date_creation_max', 'tranche_effectif_min', 'tranche_effectif_max', 'type_dirigeant', 'qualite_dirigeant', 'nationalite_dirigeant', 'prenom_dirigeant', 'age_dirigeant_min', 'age_dirigeant_max', 'date_de_naissance_dirigeant_min', 'date_de_naissance_dirigeant_max', 'age_beneficiaire_min', 'age_beneficiaire_max', 'date_de_naissance_beneficiaire_min', 'date_de_naissance_beneficiaire_max', 'nationalite_beneficiaire', 'type_publication', 'date_publication_min', 'date_publication_max', 'siren']);
@@ -152,25 +162,25 @@ class RechercheDocuments extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpo
     /**
      * {@inheritdoc}
      *
-     * @return \Qdequippe\Pappers\Api\Model\RechercheDocumentsGetResponse200|null
+     * @return RechercheDocumentsGetResponse200|null
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\RechercheDocumentsUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\RechercheDocumentsNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\RechercheDocumentsServiceUnavailableException
+     * @throws RechercheDocumentsUnauthorizedException
+     * @throws RechercheDocumentsNotFoundException
+     * @throws RechercheDocumentsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\RechercheDocumentsGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\RechercheDocumentsUnauthorizedException();
+            throw new RechercheDocumentsUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\RechercheDocumentsNotFoundException();
+            throw new RechercheDocumentsNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\RechercheDocumentsServiceUnavailableException();
+            throw new RechercheDocumentsServiceUnavailableException();
         }
     }
 

@@ -3,6 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\EntrepriseBase;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -44,7 +45,7 @@ class EntrepriseBaseNormalizer implements DenormalizerInterface, NormalizerInter
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Qdequippe\Pappers\Api\Model\EntrepriseBase();
+        $object = new EntrepriseBase();
         if (\array_key_exists('capital', $data) && \is_int($data['capital'])) {
             $data['capital'] = (float) $data['capital'];
         }

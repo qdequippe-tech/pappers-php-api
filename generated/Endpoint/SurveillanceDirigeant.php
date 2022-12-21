@@ -2,15 +2,29 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class SurveillanceDirigeant extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantBadRequestException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantForbiddenException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantNotFoundException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantUnauthorizedException;
+use Qdequippe\Pappers\Api\Model\ListePostBodyItem;
+use Qdequippe\Pappers\Api\Model\ListePostResponse200;
+use Qdequippe\Pappers\Api\Model\ListePostResponse201;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class SurveillanceDirigeant extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste. Les informations à renseigner sont différentes selon le type de personne à ajouter (morale ou physique).
      *
-     * @param \Qdequippe\Pappers\Api\Model\ListePostBodyItem[]|null $requestBody
-     * @param array                                                 $queryParameters {
+     * @param ListePostBodyItem[]|null $requestBody
+     * @param array                    $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
@@ -32,9 +46,9 @@ class SurveillanceDirigeant extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEn
         return '/liste/';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
-        if (\is_array($this->body) && isset($this->body[0]) && $this->body[0] instanceof \Qdequippe\Pappers\Api\Model\ListePostBodyItem) {
+        if (\is_array($this->body) && isset($this->body[0]) && $this->body[0] instanceof ListePostBodyItem) {
             return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
 
@@ -46,7 +60,7 @@ class SurveillanceDirigeant extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEn
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'id_liste']);
@@ -61,15 +75,15 @@ class SurveillanceDirigeant extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEn
     /**
      * {@inheritdoc}
      *
-     * @return \Qdequippe\Pappers\Api\Model\ListePostResponse200|\Qdequippe\Pappers\Api\Model\ListePostResponse201|null
+     * @return ListePostResponse200|ListePostResponse201|null
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantForbiddenException
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantServiceUnavailableException
+     * @throws SurveillanceDirigeantBadRequestException
+     * @throws SurveillanceDirigeantUnauthorizedException
+     * @throws SurveillanceDirigeantForbiddenException
+     * @throws SurveillanceDirigeantNotFoundException
+     * @throws SurveillanceDirigeantServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse200', 'json');
@@ -78,19 +92,19 @@ class SurveillanceDirigeant extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEn
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse201', 'json');
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantBadRequestException();
+            throw new SurveillanceDirigeantBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantUnauthorizedException();
+            throw new SurveillanceDirigeantUnauthorizedException();
         }
         if (403 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantForbiddenException();
+            throw new SurveillanceDirigeantForbiddenException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantNotFoundException();
+            throw new SurveillanceDirigeantNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantServiceUnavailableException();
+            throw new SurveillanceDirigeantServiceUnavailableException();
         }
     }
 

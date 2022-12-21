@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class Entreprise extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\EntrepriseBadRequestException;
+use Qdequippe\Pappers\Api\Exception\EntrepriseNotFoundException;
+use Qdequippe\Pappers\Api\Exception\EntrepriseUnauthorizedException;
+use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class Entreprise extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Si vous indiquez le SIREN, tous les établissements associés à ce SIREN seront renvoyés dans la clé `etablissements`. Si vous indiquez le SIRET, seul l'établissement associé sera renvoyé dans la clé `etablissement`.
@@ -35,7 +45,7 @@ class Entreprise extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint impl
         return '/entreprise';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -45,7 +55,7 @@ class Entreprise extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint impl
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'siren', 'siret', 'format_publications_bodacc', 'marques', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes']);
@@ -65,13 +75,13 @@ class Entreprise extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint impl
     /**
      * {@inheritdoc}
      *
-     * @return \Qdequippe\Pappers\Api\Model\EntrepriseFiche|null
+     * @return EntrepriseFiche|null
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\EntrepriseBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\EntrepriseUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\EntrepriseNotFoundException
+     * @throws EntrepriseBadRequestException
+     * @throws EntrepriseUnauthorizedException
+     * @throws EntrepriseNotFoundException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFiche', 'json');
@@ -80,13 +90,13 @@ class Entreprise extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint impl
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFiche', 'json');
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\EntrepriseBadRequestException();
+            throw new EntrepriseBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\EntrepriseUnauthorizedException();
+            throw new EntrepriseUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\EntrepriseNotFoundException();
+            throw new EntrepriseNotFoundException();
         }
     }
 

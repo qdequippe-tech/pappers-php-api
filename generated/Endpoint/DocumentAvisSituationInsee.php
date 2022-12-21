@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class DocumentAvisSituationInsee extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeUnauthorizedException;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class DocumentAvisSituationInsee extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
@@ -31,7 +41,7 @@ class DocumentAvisSituationInsee extends \Qdequippe\Pappers\Api\Runtime\Client\B
         return '/document/avis_situation_insee';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -41,7 +51,7 @@ class DocumentAvisSituationInsee extends \Qdequippe\Pappers\Api\Runtime\Client\B
         return ['Accept' => ['application/pdf']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'siren', 'siret']);
@@ -57,26 +67,26 @@ class DocumentAvisSituationInsee extends \Qdequippe\Pappers\Api\Runtime\Client\B
     /**
      * {@inheritdoc}
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeServiceUnavailableException
+     * @throws DocumentAvisSituationInseeBadRequestException
+     * @throws DocumentAvisSituationInseeUnauthorizedException
+     * @throws DocumentAvisSituationInseeNotFoundException
+     * @throws DocumentAvisSituationInseeServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeBadRequestException();
+            throw new DocumentAvisSituationInseeBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeUnauthorizedException();
+            throw new DocumentAvisSituationInseeUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeNotFoundException();
+            throw new DocumentAvisSituationInseeNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeServiceUnavailableException();
+            throw new DocumentAvisSituationInseeServiceUnavailableException();
         }
     }
 

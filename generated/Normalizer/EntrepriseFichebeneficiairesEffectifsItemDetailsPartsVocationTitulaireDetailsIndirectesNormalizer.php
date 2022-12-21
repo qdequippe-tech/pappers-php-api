@@ -3,6 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -44,7 +45,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes();
+        $object = new EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes();
         if (\array_key_exists('pourcentage_en_indivision', $data) && \is_int($data['pourcentage_en_indivision'])) {
             $data['pourcentage_en_indivision'] = (float) $data['pourcentage_en_indivision'];
         }

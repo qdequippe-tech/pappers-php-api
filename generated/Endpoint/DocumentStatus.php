@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class DocumentStatus extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\DocumentStatusBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentStatusNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentStatusServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentStatusUnauthorizedException;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class DocumentStatus extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
@@ -31,7 +41,7 @@ class DocumentStatus extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint 
         return '/document/statuts';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -41,7 +51,7 @@ class DocumentStatus extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint 
         return ['Accept' => ['application/pdf']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'siren', 'siret']);
@@ -57,26 +67,26 @@ class DocumentStatus extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint 
     /**
      * {@inheritdoc}
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentStatusBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentStatusUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentStatusNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentStatusServiceUnavailableException
+     * @throws DocumentStatusBadRequestException
+     * @throws DocumentStatusUnauthorizedException
+     * @throws DocumentStatusNotFoundException
+     * @throws DocumentStatusServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentStatusBadRequestException();
+            throw new DocumentStatusBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentStatusUnauthorizedException();
+            throw new DocumentStatusUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentStatusNotFoundException();
+            throw new DocumentStatusNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentStatusServiceUnavailableException();
+            throw new DocumentStatusServiceUnavailableException();
         }
     }
 

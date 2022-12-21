@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class Association extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\AssociationBadRequestException;
+use Qdequippe\Pappers\Api\Exception\AssociationNotFoundException;
+use Qdequippe\Pappers\Api\Exception\AssociationServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\AssociationUnauthorizedException;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class Association extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir soit l'identifiant de l'association, soit le SIREN, soit le SIRET.
@@ -32,7 +42,7 @@ class Association extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint imp
         return '/association';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -42,7 +52,7 @@ class Association extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint imp
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'id_association', 'siret', 'siren']);
@@ -61,27 +71,27 @@ class Association extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint imp
      *
      * @return \Qdequippe\Pappers\Api\Model\Association|null
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\AssociationBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\AssociationUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\AssociationNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\AssociationServiceUnavailableException
+     * @throws AssociationBadRequestException
+     * @throws AssociationUnauthorizedException
+     * @throws AssociationNotFoundException
+     * @throws AssociationServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\Association', 'json');
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\AssociationBadRequestException();
+            throw new AssociationBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\AssociationUnauthorizedException();
+            throw new AssociationUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\AssociationNotFoundException();
+            throw new AssociationNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\AssociationServiceUnavailableException();
+            throw new AssociationServiceUnavailableException();
         }
     }
 

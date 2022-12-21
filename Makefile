@@ -4,7 +4,7 @@ vendor/composer/installed.php: composer.lock
 vendor: vendor/composer/installed.php
 
 cs: vendor ## Fix code style
-	PHP_CS_FIXER_IGNORE_ENV=1  ./vendor/bin/php-cs-fixer fix
+	PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix
 
 jane: vendor ## Generate the SDK
 	./vendor/bin/jane-openapi generate --config-file=.jane-openapi.php

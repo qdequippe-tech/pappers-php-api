@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class ComptesAnnuels extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException;
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsUnauthorizedException;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class ComptesAnnuels extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir le SIREN de l'entreprise pour laquelle vous souhaitez obtenir les comptes annuels.
@@ -31,7 +41,7 @@ class ComptesAnnuels extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint 
         return '/entreprise/comptes';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -41,7 +51,7 @@ class ComptesAnnuels extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint 
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'siren', 'annee']);
@@ -57,27 +67,27 @@ class ComptesAnnuels extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint 
     /**
      * {@inheritdoc}
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsServiceUnavailableException
+     * @throws ComptesAnnuelsBadRequestException
+     * @throws ComptesAnnuelsUnauthorizedException
+     * @throws ComptesAnnuelsNotFoundException
+     * @throws ComptesAnnuelsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return json_decode($body);
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException();
+            throw new ComptesAnnuelsBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsUnauthorizedException();
+            throw new ComptesAnnuelsUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException();
+            throw new ComptesAnnuelsNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\ComptesAnnuelsServiceUnavailableException();
+            throw new ComptesAnnuelsServiceUnavailableException();
         }
     }
 

@@ -2,9 +2,18 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class SuiviJetons extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\SuiviJetonsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SuiviJetonsUnauthorizedException;
+use Qdequippe\Pappers\Api\Model\SuiviJetonsGetResponse200;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class SuiviJetons extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir la clé d'utilisation de l'API.
@@ -29,7 +38,7 @@ class SuiviJetons extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint imp
         return '/suivi-jetons';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -39,7 +48,7 @@ class SuiviJetons extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint imp
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token']);
@@ -53,21 +62,21 @@ class SuiviJetons extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint imp
     /**
      * {@inheritdoc}
      *
-     * @return \Qdequippe\Pappers\Api\Model\SuiviJetonsGetResponse200|null
+     * @return SuiviJetonsGetResponse200|null
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\SuiviJetonsUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\SuiviJetonsServiceUnavailableException
+     * @throws SuiviJetonsUnauthorizedException
+     * @throws SuiviJetonsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\SuiviJetonsGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SuiviJetonsUnauthorizedException();
+            throw new SuiviJetonsUnauthorizedException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SuiviJetonsServiceUnavailableException();
+            throw new SuiviJetonsServiceUnavailableException();
         }
     }
 

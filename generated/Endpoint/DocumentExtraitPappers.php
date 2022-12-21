@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class DocumentExtraitPappers extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersUnauthorizedException;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class DocumentExtraitPappers extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
@@ -31,7 +41,7 @@ class DocumentExtraitPappers extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
         return '/document/extrait_pappers';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -41,7 +51,7 @@ class DocumentExtraitPappers extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
         return ['Accept' => ['application/pdf']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'siren', 'siret']);
@@ -57,26 +67,26 @@ class DocumentExtraitPappers extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
     /**
      * {@inheritdoc}
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersServiceUnavailableException
+     * @throws DocumentExtraitPappersBadRequestException
+     * @throws DocumentExtraitPappersUnauthorizedException
+     * @throws DocumentExtraitPappersNotFoundException
+     * @throws DocumentExtraitPappersServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersBadRequestException();
+            throw new DocumentExtraitPappersBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersUnauthorizedException();
+            throw new DocumentExtraitPappersUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersNotFoundException();
+            throw new DocumentExtraitPappersNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersServiceUnavailableException();
+            throw new DocumentExtraitPappersServiceUnavailableException();
         }
     }
 

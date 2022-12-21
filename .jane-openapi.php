@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'openapi-file' => 'https://www.pappers.fr/api_v2.yaml?20223223404',
+    'openapi-file' => 'https://www.pappers.fr/api_v2.yaml',
     'namespace' => 'Qdequippe\Pappers\Api',
     'directory' => __DIR__ . '/generated/',
     'strict' => false,

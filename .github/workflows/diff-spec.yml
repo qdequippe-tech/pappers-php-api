@@ -19,5 +19,11 @@ jobs:
             - name: Regenerate SDK library
               run: rm -rf generated && vendor/bin/jane-openapi generate --config-file=.jane-openapi.php
 
+            - name: Rector
+              run: vendor/bin/rector
+
+            - name: Code style
+              run: PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix
+
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v4

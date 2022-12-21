@@ -2,9 +2,20 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class SurveillanceNotificationsDelete extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteBadRequestException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteNotFoundException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteUnauthorizedException;
+use Qdequippe\Pappers\Api\Model\ListeDeleteResponse200;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
@@ -33,7 +44,7 @@ class SurveillanceNotificationsDelete extends \Qdequippe\Pappers\Api\Runtime\Cli
         return '/liste/';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         if (\is_array($this->body) && isset($this->body[0]) && \is_array($this->body[0])) {
             return [['Content-Type' => ['application/json']], json_encode($this->body)];
@@ -47,7 +58,7 @@ class SurveillanceNotificationsDelete extends \Qdequippe\Pappers\Api\Runtime\Cli
         return ['Accept' => ['application/json']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'id_liste', 'supprimer_totalite']);
@@ -63,29 +74,29 @@ class SurveillanceNotificationsDelete extends \Qdequippe\Pappers\Api\Runtime\Cli
     /**
      * {@inheritdoc}
      *
-     * @return \Qdequippe\Pappers\Api\Model\ListeDeleteResponse200|null
+     * @return ListeDeleteResponse200|null
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteServiceUnavailableException
+     * @throws SurveillanceNotificationsDeleteBadRequestException
+     * @throws SurveillanceNotificationsDeleteUnauthorizedException
+     * @throws SurveillanceNotificationsDeleteNotFoundException
+     * @throws SurveillanceNotificationsDeleteServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\ListeDeleteResponse200', 'json');
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteBadRequestException();
+            throw new SurveillanceNotificationsDeleteBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteUnauthorizedException();
+            throw new SurveillanceNotificationsDeleteUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteNotFoundException();
+            throw new SurveillanceNotificationsDeleteNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteServiceUnavailableException();
+            throw new SurveillanceNotificationsDeleteServiceUnavailableException();
         }
     }
 

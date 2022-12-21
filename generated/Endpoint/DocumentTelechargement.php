@@ -2,9 +2,19 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
-class DocumentTelechargement extends \Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint implements \Qdequippe\Pappers\Api\Runtime\Client\Endpoint
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementUnauthorizedException;
+use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
+use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Serializer\SerializerInterface;
+
+class DocumentTelechargement extends BaseEndpoint implements Endpoint
 {
-    use \Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+    use EndpointTrait;
 
     /**
      * Vous devez fournir le token du document. Le document vous sera envoyé au format PDF ou XLSX.
@@ -30,7 +40,7 @@ class DocumentTelechargement extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
         return '/document/telechargement';
     }
 
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         return [[], null];
     }
@@ -40,7 +50,7 @@ class DocumentTelechargement extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
         return ['Accept' => ['application/pdf']];
     }
 
-    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
         $optionsResolver->setDefined(['api_token', 'token']);
@@ -55,26 +65,26 @@ class DocumentTelechargement extends \Qdequippe\Pappers\Api\Runtime\Client\BaseE
     /**
      * {@inheritdoc}
      *
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentTelechargementBadRequestException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentTelechargementUnauthorizedException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentTelechargementNotFoundException
-     * @throws \Qdequippe\Pappers\Api\Exception\DocumentTelechargementServiceUnavailableException
+     * @throws DocumentTelechargementBadRequestException
+     * @throws DocumentTelechargementUnauthorizedException
+     * @throws DocumentTelechargementNotFoundException
+     * @throws DocumentTelechargementServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentTelechargementBadRequestException();
+            throw new DocumentTelechargementBadRequestException();
         }
         if (401 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentTelechargementUnauthorizedException();
+            throw new DocumentTelechargementUnauthorizedException();
         }
         if (404 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentTelechargementNotFoundException();
+            throw new DocumentTelechargementNotFoundException();
         }
         if (503 === $status) {
-            throw new \Qdequippe\Pappers\Api\Exception\DocumentTelechargementServiceUnavailableException();
+            throw new DocumentTelechargementServiceUnavailableException();
         }
     }
 
