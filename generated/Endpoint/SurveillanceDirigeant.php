@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantBadRequestException;
 use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantForbiddenException;
 use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantNotFoundException;
@@ -83,8 +84,10 @@ class SurveillanceDirigeant extends BaseEndpoint implements Endpoint
      * @throws SurveillanceDirigeantNotFoundException
      * @throws SurveillanceDirigeantServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse200', 'json');
         }
@@ -92,19 +95,19 @@ class SurveillanceDirigeant extends BaseEndpoint implements Endpoint
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse201', 'json');
         }
         if (400 === $status) {
-            throw new SurveillanceDirigeantBadRequestException();
+            throw new SurveillanceDirigeantBadRequestException($response);
         }
         if (401 === $status) {
-            throw new SurveillanceDirigeantUnauthorizedException();
+            throw new SurveillanceDirigeantUnauthorizedException($response);
         }
         if (403 === $status) {
-            throw new SurveillanceDirigeantForbiddenException();
+            throw new SurveillanceDirigeantForbiddenException($response);
         }
         if (404 === $status) {
-            throw new SurveillanceDirigeantNotFoundException();
+            throw new SurveillanceDirigeantNotFoundException($response);
         }
         if (503 === $status) {
-            throw new SurveillanceDirigeantServiceUnavailableException();
+            throw new SurveillanceDirigeantServiceUnavailableException($response);
         }
     }
 

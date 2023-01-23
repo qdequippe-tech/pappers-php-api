@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\RechercheNotFoundException;
 use Qdequippe\Pappers\Api\Exception\RechercheServiceUnavailableException;
 use Qdequippe\Pappers\Api\Exception\RechercheUnauthorizedException;
@@ -193,19 +194,21 @@ class Recherche extends BaseEndpoint implements Endpoint
      * @throws RechercheNotFoundException
      * @throws RechercheServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new RechercheUnauthorizedException();
+            throw new RechercheUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new RechercheNotFoundException();
+            throw new RechercheNotFoundException($response);
         }
         if (503 === $status) {
-            throw new RechercheServiceUnavailableException();
+            throw new RechercheServiceUnavailableException($response);
         }
     }
 

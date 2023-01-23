@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\DocumentStatusBadRequestException;
 use Qdequippe\Pappers\Api\Exception\DocumentStatusNotFoundException;
 use Qdequippe\Pappers\Api\Exception\DocumentStatusServiceUnavailableException;
@@ -72,21 +73,23 @@ class DocumentStatus extends BaseEndpoint implements Endpoint
      * @throws DocumentStatusNotFoundException
      * @throws DocumentStatusServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new DocumentStatusBadRequestException();
+            throw new DocumentStatusBadRequestException($response);
         }
         if (401 === $status) {
-            throw new DocumentStatusUnauthorizedException();
+            throw new DocumentStatusUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new DocumentStatusNotFoundException();
+            throw new DocumentStatusNotFoundException($response);
         }
         if (503 === $status) {
-            throw new DocumentStatusServiceUnavailableException();
+            throw new DocumentStatusServiceUnavailableException($response);
         }
     }
 

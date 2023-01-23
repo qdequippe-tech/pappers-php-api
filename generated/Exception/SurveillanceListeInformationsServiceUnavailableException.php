@@ -2,10 +2,23 @@
 
 namespace Qdequippe\Pappers\Api\Exception;
 
+use Psr\Http\Message\ResponseInterface;
+
 class SurveillanceListeInformationsServiceUnavailableException extends ServiceUnavailableException
 {
-    public function __construct()
+    /**
+     * @var ResponseInterface
+     */
+    private $response;
+
+    public function __construct(ResponseInterface $response = null)
     {
         parent::__construct('Service momentanément indisponible.');
+        $this->response = $response;
+    }
+
+    public function getResponse(): ?ResponseInterface
+    {
+        return $this->response;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\SuggestionsBadRequestException;
 use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200;
 use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
@@ -69,13 +70,15 @@ class Suggestions extends BaseEndpoint implements Endpoint
      *
      * @throws SuggestionsBadRequestException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200', 'json');
         }
         if (400 === $status) {
-            throw new SuggestionsBadRequestException();
+            throw new SuggestionsBadRequestException($response);
         }
     }
 

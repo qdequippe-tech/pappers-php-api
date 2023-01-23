@@ -804,11 +804,12 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param array[]|null $requestBody
-     * @param array        $queryParameters {
+     * @param array $queryParameters {
      *
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $id_liste Identifiant unique de votre liste de surveillance
+     *     @var string $siren Liste des sirens des notifications à supprimer, séparés par une virgule
+     *     @var string $id Liste des ids des notifications à supprimer, séparés par une virgule
      *     @var bool $supprimer_totalite Suppression de toutes les notifications de la liste
      * }
      *
@@ -821,9 +822,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws SurveillanceNotificationsDeleteNotFoundException
      * @throws SurveillanceNotificationsDeleteServiceUnavailableException
      */
-    public function surveillanceNotificationsDelete(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceNotificationsDelete(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new SurveillanceNotificationsDelete($requestBody, $queryParameters), $fetch);
+        return $this->executeEndpoint(new SurveillanceNotificationsDelete($queryParameters), $fetch);
     }
 
     /**

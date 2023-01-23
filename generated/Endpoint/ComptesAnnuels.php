@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsServiceUnavailableException;
@@ -72,22 +73,24 @@ class ComptesAnnuels extends BaseEndpoint implements Endpoint
      * @throws ComptesAnnuelsNotFoundException
      * @throws ComptesAnnuelsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return json_decode($body);
         }
         if (400 === $status) {
-            throw new ComptesAnnuelsBadRequestException();
+            throw new ComptesAnnuelsBadRequestException($response);
         }
         if (401 === $status) {
-            throw new ComptesAnnuelsUnauthorizedException();
+            throw new ComptesAnnuelsUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new ComptesAnnuelsNotFoundException();
+            throw new ComptesAnnuelsNotFoundException($response);
         }
         if (503 === $status) {
-            throw new ComptesAnnuelsServiceUnavailableException();
+            throw new ComptesAnnuelsServiceUnavailableException($response);
         }
     }
 

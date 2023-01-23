@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\AssociationBadRequestException;
 use Qdequippe\Pappers\Api\Exception\AssociationNotFoundException;
 use Qdequippe\Pappers\Api\Exception\AssociationServiceUnavailableException;
@@ -76,22 +77,24 @@ class Association extends BaseEndpoint implements Endpoint
      * @throws AssociationNotFoundException
      * @throws AssociationServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\Association', 'json');
         }
         if (400 === $status) {
-            throw new AssociationBadRequestException();
+            throw new AssociationBadRequestException($response);
         }
         if (401 === $status) {
-            throw new AssociationUnauthorizedException();
+            throw new AssociationUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new AssociationNotFoundException();
+            throw new AssociationNotFoundException($response);
         }
         if (503 === $status) {
-            throw new AssociationServiceUnavailableException();
+            throw new AssociationServiceUnavailableException($response);
         }
     }
 

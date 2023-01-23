@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeBadRequestException;
 use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeNotFoundException;
 use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeServiceUnavailableException;
@@ -72,21 +73,23 @@ class DocumentAvisSituationInsee extends BaseEndpoint implements Endpoint
      * @throws DocumentAvisSituationInseeNotFoundException
      * @throws DocumentAvisSituationInseeServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new DocumentAvisSituationInseeBadRequestException();
+            throw new DocumentAvisSituationInseeBadRequestException($response);
         }
         if (401 === $status) {
-            throw new DocumentAvisSituationInseeUnauthorizedException();
+            throw new DocumentAvisSituationInseeUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new DocumentAvisSituationInseeNotFoundException();
+            throw new DocumentAvisSituationInseeNotFoundException($response);
         }
         if (503 === $status) {
-            throw new DocumentAvisSituationInseeServiceUnavailableException();
+            throw new DocumentAvisSituationInseeServiceUnavailableException($response);
         }
     }
 

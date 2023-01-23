@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\EntrepriseBadRequestException;
 use Qdequippe\Pappers\Api\Exception\EntrepriseNotFoundException;
 use Qdequippe\Pappers\Api\Exception\EntrepriseUnauthorizedException;
@@ -81,8 +82,10 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * @throws EntrepriseUnauthorizedException
      * @throws EntrepriseNotFoundException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFiche', 'json');
         }
@@ -90,13 +93,13 @@ class Entreprise extends BaseEndpoint implements Endpoint
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFiche', 'json');
         }
         if (400 === $status) {
-            throw new EntrepriseBadRequestException();
+            throw new EntrepriseBadRequestException($response);
         }
         if (401 === $status) {
-            throw new EntrepriseUnauthorizedException();
+            throw new EntrepriseUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new EntrepriseNotFoundException();
+            throw new EntrepriseNotFoundException($response);
         }
     }
 

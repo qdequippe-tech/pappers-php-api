@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiBadRequestException;
 use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiNotFoundException;
 use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiServiceUnavailableException;
@@ -72,21 +73,23 @@ class DocumentExtraitInpi extends BaseEndpoint implements Endpoint
      * @throws DocumentExtraitInpiNotFoundException
      * @throws DocumentExtraitInpiServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new DocumentExtraitInpiBadRequestException();
+            throw new DocumentExtraitInpiBadRequestException($response);
         }
         if (401 === $status) {
-            throw new DocumentExtraitInpiUnauthorizedException();
+            throw new DocumentExtraitInpiUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new DocumentExtraitInpiNotFoundException();
+            throw new DocumentExtraitInpiNotFoundException($response);
         }
         if (503 === $status) {
-            throw new DocumentExtraitInpiServiceUnavailableException();
+            throw new DocumentExtraitInpiServiceUnavailableException($response);
         }
     }
 

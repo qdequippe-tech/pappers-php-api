@@ -2,10 +2,23 @@
 
 namespace Qdequippe\Pappers\Api\Exception;
 
+use Psr\Http\Message\ResponseInterface;
+
 class ComptesAnnuelsNotFoundException extends NotFoundException
 {
-    public function __construct()
+    /**
+     * @var ResponseInterface
+     */
+    private $response;
+
+    public function __construct(ResponseInterface $response = null)
     {
         parent::__construct('Comptes annuels indisponibles.');
+        $this->response = $response;
+    }
+
+    public function getResponse(): ?ResponseInterface
+    {
+        return $this->response;
     }
 }
