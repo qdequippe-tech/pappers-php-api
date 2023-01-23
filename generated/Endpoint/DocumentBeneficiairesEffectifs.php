@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsBadRequestException;
 use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsForbiddenException;
 use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsNotFoundException;
@@ -76,24 +77,26 @@ class DocumentBeneficiairesEffectifs extends BaseEndpoint implements Endpoint
      * @throws DocumentBeneficiairesEffectifsNotFoundException
      * @throws DocumentBeneficiairesEffectifsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new DocumentBeneficiairesEffectifsBadRequestException();
+            throw new DocumentBeneficiairesEffectifsBadRequestException($response);
         }
         if (401 === $status) {
-            throw new DocumentBeneficiairesEffectifsUnauthorizedException();
+            throw new DocumentBeneficiairesEffectifsUnauthorizedException($response);
         }
         if (403 === $status) {
-            throw new DocumentBeneficiairesEffectifsForbiddenException();
+            throw new DocumentBeneficiairesEffectifsForbiddenException($response);
         }
         if (404 === $status) {
-            throw new DocumentBeneficiairesEffectifsNotFoundException();
+            throw new DocumentBeneficiairesEffectifsNotFoundException($response);
         }
         if (503 === $status) {
-            throw new DocumentBeneficiairesEffectifsServiceUnavailableException();
+            throw new DocumentBeneficiairesEffectifsServiceUnavailableException($response);
         }
     }
 

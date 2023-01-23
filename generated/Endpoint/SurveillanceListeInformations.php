@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsBadRequestException;
 use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsNotFoundException;
 use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsServiceUnavailableException;
@@ -71,22 +72,24 @@ class SurveillanceListeInformations extends BaseEndpoint implements Endpoint
      * @throws SurveillanceListeInformationsNotFoundException
      * @throws SurveillanceListeInformationsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
             return null;
         }
         if (400 === $status) {
-            throw new SurveillanceListeInformationsBadRequestException();
+            throw new SurveillanceListeInformationsBadRequestException($response);
         }
         if (401 === $status) {
-            throw new SurveillanceListeInformationsUnauthorizedException();
+            throw new SurveillanceListeInformationsUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new SurveillanceListeInformationsNotFoundException();
+            throw new SurveillanceListeInformationsNotFoundException($response);
         }
         if (503 === $status) {
-            throw new SurveillanceListeInformationsServiceUnavailableException();
+            throw new SurveillanceListeInformationsServiceUnavailableException($response);
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseBadRequestException;
 use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseForbiddenException;
 use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseNotFoundException;
@@ -83,8 +84,10 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
      * @throws SurveillanceEntrepriseNotFoundException
      * @throws SurveillanceEntrepriseServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse200', 'json');
         }
@@ -92,19 +95,19 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse201', 'json');
         }
         if (400 === $status) {
-            throw new SurveillanceEntrepriseBadRequestException();
+            throw new SurveillanceEntrepriseBadRequestException($response);
         }
         if (401 === $status) {
-            throw new SurveillanceEntrepriseUnauthorizedException();
+            throw new SurveillanceEntrepriseUnauthorizedException($response);
         }
         if (403 === $status) {
-            throw new SurveillanceEntrepriseForbiddenException();
+            throw new SurveillanceEntrepriseForbiddenException($response);
         }
         if (404 === $status) {
-            throw new SurveillanceEntrepriseNotFoundException();
+            throw new SurveillanceEntrepriseNotFoundException($response);
         }
         if (503 === $status) {
-            throw new SurveillanceEntrepriseServiceUnavailableException();
+            throw new SurveillanceEntrepriseServiceUnavailableException($response);
         }
     }
 

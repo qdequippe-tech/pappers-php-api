@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesNotFoundException;
 use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesServiceUnavailableException;
 use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesUnauthorizedException;
@@ -168,19 +169,21 @@ class RechercheBeneficiaires extends BaseEndpoint implements Endpoint
      * @throws RechercheBeneficiairesNotFoundException
      * @throws RechercheBeneficiairesServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\RechercheBeneficiairesGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new RechercheBeneficiairesUnauthorizedException();
+            throw new RechercheBeneficiairesUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new RechercheBeneficiairesNotFoundException();
+            throw new RechercheBeneficiairesNotFoundException($response);
         }
         if (503 === $status) {
-            throw new RechercheBeneficiairesServiceUnavailableException();
+            throw new RechercheBeneficiairesServiceUnavailableException($response);
         }
     }
 

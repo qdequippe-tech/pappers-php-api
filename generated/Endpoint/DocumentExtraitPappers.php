@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersBadRequestException;
 use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersNotFoundException;
 use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersServiceUnavailableException;
@@ -72,21 +73,23 @@ class DocumentExtraitPappers extends BaseEndpoint implements Endpoint
      * @throws DocumentExtraitPappersNotFoundException
      * @throws DocumentExtraitPappersServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new DocumentExtraitPappersBadRequestException();
+            throw new DocumentExtraitPappersBadRequestException($response);
         }
         if (401 === $status) {
-            throw new DocumentExtraitPappersUnauthorizedException();
+            throw new DocumentExtraitPappersUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new DocumentExtraitPappersNotFoundException();
+            throw new DocumentExtraitPappersNotFoundException($response);
         }
         if (503 === $status) {
-            throw new DocumentExtraitPappersServiceUnavailableException();
+            throw new DocumentExtraitPappersServiceUnavailableException($response);
         }
     }
 

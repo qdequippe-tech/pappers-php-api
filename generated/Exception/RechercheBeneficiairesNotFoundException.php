@@ -2,10 +2,23 @@
 
 namespace Qdequippe\Pappers\Api\Exception;
 
+use Psr\Http\Message\ResponseInterface;
+
 class RechercheBeneficiairesNotFoundException extends NotFoundException
 {
-    public function __construct()
+    /**
+     * @var ResponseInterface
+     */
+    private $response;
+
+    public function __construct(ResponseInterface $response = null)
     {
         parent::__construct('Aucun bénéficiaire effectif ne correspond aux critères indiqués.');
+        $this->response = $response;
+    }
+
+    public function getResponse(): ?ResponseInterface
+    {
+        return $this->response;
     }
 }

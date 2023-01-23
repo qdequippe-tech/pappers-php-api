@@ -103,9 +103,7 @@ class ListePostBodyItemNormalizer implements DenormalizerInterface, NormalizerIn
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if ($object->isInitialized('siren') && null !== $object->getSiren()) {
-            $data['siren'] = $object->getSiren();
-        }
+        $data['siren'] = $object->getSiren();
         if ($object->isInitialized('denomination') && null !== $object->getDenomination()) {
             $data['denomination'] = $object->getDenomination();
         }

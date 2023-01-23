@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsNotFoundException;
 use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsServiceUnavailableException;
 use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsUnauthorizedException;
@@ -168,19 +169,21 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
      * @throws RechercheDirigeantsNotFoundException
      * @throws RechercheDirigeantsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new RechercheDirigeantsUnauthorizedException();
+            throw new RechercheDirigeantsUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new RechercheDirigeantsNotFoundException();
+            throw new RechercheDirigeantsNotFoundException($response);
         }
         if (503 === $status) {
-            throw new RechercheDirigeantsServiceUnavailableException();
+            throw new RechercheDirigeantsServiceUnavailableException($response);
         }
     }
 

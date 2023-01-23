@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\DocumentTelechargementBadRequestException;
 use Qdequippe\Pappers\Api\Exception\DocumentTelechargementNotFoundException;
 use Qdequippe\Pappers\Api\Exception\DocumentTelechargementServiceUnavailableException;
@@ -70,21 +71,23 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
      * @throws DocumentTelechargementNotFoundException
      * @throws DocumentTelechargementServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if (200 === $status) {
         }
         if (400 === $status) {
-            throw new DocumentTelechargementBadRequestException();
+            throw new DocumentTelechargementBadRequestException($response);
         }
         if (401 === $status) {
-            throw new DocumentTelechargementUnauthorizedException();
+            throw new DocumentTelechargementUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new DocumentTelechargementNotFoundException();
+            throw new DocumentTelechargementNotFoundException($response);
         }
         if (503 === $status) {
-            throw new DocumentTelechargementServiceUnavailableException();
+            throw new DocumentTelechargementServiceUnavailableException($response);
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\RechercheDocumentsNotFoundException;
 use Qdequippe\Pappers\Api\Exception\RechercheDocumentsServiceUnavailableException;
 use Qdequippe\Pappers\Api\Exception\RechercheDocumentsUnauthorizedException;
@@ -168,19 +169,21 @@ class RechercheDocuments extends BaseEndpoint implements Endpoint
      * @throws RechercheDocumentsNotFoundException
      * @throws RechercheDocumentsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\RechercheDocumentsGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new RechercheDocumentsUnauthorizedException();
+            throw new RechercheDocumentsUnauthorizedException($response);
         }
         if (404 === $status) {
-            throw new RechercheDocumentsNotFoundException();
+            throw new RechercheDocumentsNotFoundException($response);
         }
         if (503 === $status) {
-            throw new RechercheDocumentsServiceUnavailableException();
+            throw new RechercheDocumentsServiceUnavailableException($response);
         }
     }
 

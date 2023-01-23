@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\SuiviJetonsServiceUnavailableException;
 use Qdequippe\Pappers\Api\Exception\SuiviJetonsUnauthorizedException;
 use Qdequippe\Pappers\Api\Model\SuiviJetonsGetResponse200;
@@ -67,16 +68,18 @@ class SuiviJetons extends BaseEndpoint implements Endpoint
      * @throws SuiviJetonsUnauthorizedException
      * @throws SuiviJetonsServiceUnavailableException
      */
-    protected function transformResponseBody(string $body, int $status, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
+        $status = $response->getStatusCode();
+        $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\SuiviJetonsGetResponse200', 'json');
         }
         if (401 === $status) {
-            throw new SuiviJetonsUnauthorizedException();
+            throw new SuiviJetonsUnauthorizedException($response);
         }
         if (503 === $status) {
-            throw new SuiviJetonsServiceUnavailableException();
+            throw new SuiviJetonsServiceUnavailableException($response);
         }
     }
 
