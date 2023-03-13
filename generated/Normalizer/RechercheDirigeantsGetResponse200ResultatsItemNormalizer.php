@@ -20,12 +20,12 @@ class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements Denorm
     use NormalizerAwareTrait;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' === $type;
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' === \get_class($data);
     }

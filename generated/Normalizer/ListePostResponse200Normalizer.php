@@ -20,12 +20,12 @@ class ListePostResponse200Normalizer implements DenormalizerInterface, Normalize
     use NormalizerAwareTrait;
     use ValidatorTrait;
 
-    public function supportsDenormalization($data, $type, $format = null): bool
+    public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
         return 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse200' === $type;
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\ListePostResponse200' === \get_class($data);
     }
