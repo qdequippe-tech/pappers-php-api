@@ -31,6 +31,9 @@ use Qdequippe\Pappers\Api\Exception\AssociationBadRequestException;
 use Qdequippe\Pappers\Api\Exception\AssociationNotFoundException;
 use Qdequippe\Pappers\Api\Exception\AssociationServiceUnavailableException;
 use Qdequippe\Pappers\Api\Exception\AssociationUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\CartographieBadRequestException;
+use Qdequippe\Pappers\Api\Exception\CartographieNotFoundException;
+use Qdequippe\Pappers\Api\Exception\CartographieUnauthorizedException;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsServiceUnavailableException;
@@ -100,6 +103,7 @@ use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteNotFoundExcep
 use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteServiceUnavailableException;
 use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteUnauthorizedException;
 use Qdequippe\Pappers\Api\Model\Association;
+use Qdequippe\Pappers\Api\Model\Cartographie;
 use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
 use Qdequippe\Pappers\Api\Model\ListeDeleteResponse200;
 use Qdequippe\Pappers\Api\Model\ListeInformationsPostBody;
@@ -607,6 +611,38 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
     public function comptesAnnuels(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new ComptesAnnuels($queryParameters), $fetch);
+    }
+
+    /**
+     * Cette route fournit les données nécessaires à l'établissement de la cartographie Pappers d'une entreprise telle qu'elle apparaît sur les fiches Pappers (exemple https://www.pappers.fr/entreprise/google-france-443061841#cartographie).
+     *
+     * - La requête est gratuite (erreur 404) si seul le noeud principal (l'entreprise recherchée) est disponible.
+     * - La requête coûte 1 jeton si, en plus du noeud principal, des noeuds dirigeants directs de l'entreprise sont disponibles. Il est possible de rejeter ces cas avec le paramètre `rejeter_premier_degre`. La requête est alors gratuite (erreur 404).
+     * - La requête coûte 3 jetons si des noeuds supplémentaires sont disponibles.
+     *
+     * @param array $queryParameters {
+     *
+     *     @var string $api_token Clé d'utilisation de l'API
+     *     @var string $siren SIREN de l'entreprise
+     *     @var bool $inclure_entreprises_dirigees Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
+     *     @var bool $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
+     *     @var bool $inclure_sci Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
+     *     @var bool $autoriser_modifications Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
+     *     @var bool $rejeter_premier_degre Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de jetons. Valeur par défaut : `false`.
+     *     @var int $degre Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return Cartographie|ResponseInterface|null
+     *
+     * @throws CartographieBadRequestException
+     * @throws CartographieUnauthorizedException
+     * @throws CartographieNotFoundException
+     */
+    public function cartographie(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Qdequippe\Pappers\Api\Endpoint\Cartographie($queryParameters), $fetch);
     }
 
     /**
