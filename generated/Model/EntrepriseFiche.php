@@ -26,7 +26,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $sirenFormate;
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
      *
      * @var string|null
      */
@@ -116,6 +116,12 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $entrepriseEmployeuse;
     /**
+     * Si vrai, l'entreprise est société à mission.
+     *
+     * @var bool|null
+     */
+    protected $societeAMission;
+    /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *
@@ -175,7 +181,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $siege;
     /**
-     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une personne physique ayant demandé à être exclue de la diffusion. Aucune information n'est alors disponible. Cette modalité n'est visible que pour les organismes habilités au titre de l'article R. 123-224 ou les administrations.
+     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Aucune information n'est alors disponible, sauf si vous utilisez le paramètre `integrer_diffusions_partielles`.
      *
      * @var bool|null
      */
@@ -468,7 +474,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
      */
     public function getNomEntreprise(): ?string
     {
@@ -476,7 +482,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
      */
     public function setNomEntreprise(?string $nomEntreprise): self
     {
@@ -757,6 +763,25 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
+     * Si vrai, l'entreprise est société à mission.
+     */
+    public function getSocieteAMission(): ?bool
+    {
+        return $this->societeAMission;
+    }
+
+    /**
+     * Si vrai, l'entreprise est société à mission.
+     */
+    public function setSocieteAMission(?bool $societeAMission): self
+    {
+        $this->initialized['societeAMission'] = true;
+        $this->societeAMission = $societeAMission;
+
+        return $this;
+    }
+
+    /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      */
@@ -943,7 +968,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une personne physique ayant demandé à être exclue de la diffusion. Aucune information n'est alors disponible. Cette modalité n'est visible que pour les organismes habilités au titre de l'article R. 123-224 ou les administrations.
+     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Aucune information n'est alors disponible, sauf si vous utilisez le paramètre `integrer_diffusions_partielles`.
      */
     public function getDiffusable(): ?bool
     {
@@ -951,7 +976,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une personne physique ayant demandé à être exclue de la diffusion. Aucune information n'est alors disponible. Cette modalité n'est visible que pour les organismes habilités au titre de l'article R. 123-224 ou les administrations.
+     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Aucune information n'est alors disponible, sauf si vous utilisez le paramètre `integrer_diffusions_partielles`.
      */
     public function setDiffusable(?bool $diffusable): self
     {
