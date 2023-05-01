@@ -158,6 +158,12 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         } elseif (\array_key_exists('entreprise_employeuse', $data) && null === $data['entreprise_employeuse']) {
             $object->setEntrepriseEmployeuse(null);
         }
+        if (\array_key_exists('societe_a_mission', $data) && null !== $data['societe_a_mission']) {
+            $object->setSocieteAMission($data['societe_a_mission']);
+            unset($data['societe_a_mission']);
+        } elseif (\array_key_exists('societe_a_mission', $data) && null === $data['societe_a_mission']) {
+            $object->setSocieteAMission(null);
+        }
         if (\array_key_exists('categorie_juridique', $data) && null !== $data['categorie_juridique']) {
             $object->setCategorieJuridique($data['categorie_juridique']);
             unset($data['categorie_juridique']);
@@ -578,6 +584,9 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         }
         if ($object->isInitialized('entrepriseEmployeuse') && null !== $object->getEntrepriseEmployeuse()) {
             $data['entreprise_employeuse'] = $object->getEntrepriseEmployeuse();
+        }
+        if ($object->isInitialized('societeAMission') && null !== $object->getSocieteAMission()) {
+            $data['societe_a_mission'] = $object->getSocieteAMission();
         }
         if ($object->isInitialized('categorieJuridique') && null !== $object->getCategorieJuridique()) {
             $data['categorie_juridique'] = $object->getCategorieJuridique();

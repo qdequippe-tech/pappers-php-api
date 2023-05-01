@@ -67,6 +67,12 @@ class EtablissementFicheNormalizer implements DenormalizerInterface, NormalizerI
         } elseif (\array_key_exists('siret_formate', $data) && null === $data['siret_formate']) {
             $object->setSiretFormate(null);
         }
+        if (\array_key_exists('diffusion_partielle', $data) && null !== $data['diffusion_partielle']) {
+            $object->setDiffusionPartielle($data['diffusion_partielle']);
+            unset($data['diffusion_partielle']);
+        } elseif (\array_key_exists('diffusion_partielle', $data) && null === $data['diffusion_partielle']) {
+            $object->setDiffusionPartielle(null);
+        }
         if (\array_key_exists('nic', $data) && null !== $data['nic']) {
             $object->setNic($data['nic']);
             unset($data['nic']);
@@ -284,6 +290,9 @@ class EtablissementFicheNormalizer implements DenormalizerInterface, NormalizerI
         }
         if ($object->isInitialized('siretFormate') && null !== $object->getSiretFormate()) {
             $data['siret_formate'] = $object->getSiretFormate();
+        }
+        if ($object->isInitialized('diffusionPartielle') && null !== $object->getDiffusionPartielle()) {
+            $data['diffusion_partielle'] = $object->getDiffusionPartielle();
         }
         if ($object->isInitialized('nic') && null !== $object->getNic()) {
             $data['nic'] = $object->getNic();

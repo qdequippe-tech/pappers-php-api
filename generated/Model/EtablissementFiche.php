@@ -26,6 +26,12 @@ class EtablissementFiche extends \ArrayObject
      */
     protected $siretFormate;
     /**
+     * Si vrai, l'établissement est en diffusion partielle. Dans ce cas, tous les champs relatifs à son adresse - en dehors de la ville et du pays - sont à `null`.
+     *
+     * @var bool|null
+     */
+    protected $diffusionPartielle;
+    /**
      * Numéro NIC de l'établissement.
      *
      * @var string|null
@@ -242,6 +248,25 @@ class EtablissementFiche extends \ArrayObject
     {
         $this->initialized['siretFormate'] = true;
         $this->siretFormate = $siretFormate;
+
+        return $this;
+    }
+
+    /**
+     * Si vrai, l'établissement est en diffusion partielle. Dans ce cas, tous les champs relatifs à son adresse - en dehors de la ville et du pays - sont à `null`.
+     */
+    public function getDiffusionPartielle(): ?bool
+    {
+        return $this->diffusionPartielle;
+    }
+
+    /**
+     * Si vrai, l'établissement est en diffusion partielle. Dans ce cas, tous les champs relatifs à son adresse - en dehors de la ville et du pays - sont à `null`.
+     */
+    public function setDiffusionPartielle(?bool $diffusionPartielle): self
+    {
+        $this->initialized['diffusionPartielle'] = true;
+        $this->diffusionPartielle = $diffusionPartielle;
 
         return $this;
     }

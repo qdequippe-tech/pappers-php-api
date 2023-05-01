@@ -134,6 +134,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $siren SIREN de l'entreprise
      *     @var string $siret SIRET de l'entreprise
+     *     @var bool $integrer_diffusions_partielles Si vrai et si l'entreprise est en diffusion partielle, le retour renverra les informations partielles disponibles. Valeur par défaut : `false`.
      *     @var string $format_publications_bodacc Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
      *     @var bool $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      *     @var bool $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.

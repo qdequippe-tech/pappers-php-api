@@ -25,6 +25,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
      *     @var string $api_token Clé d'utilisation de l'API
      *     @var string $siren SIREN de l'entreprise
      *     @var string $siret SIRET de l'entreprise
+     *     @var bool $integrer_diffusions_partielles Si vrai et si l'entreprise est en diffusion partielle, le retour renverra les informations partielles disponibles. Valeur par défaut : `false`.
      *     @var string $format_publications_bodacc Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
      *     @var bool $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      *     @var bool $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
@@ -59,12 +60,13 @@ class Entreprise extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'siren', 'siret', 'format_publications_bodacc', 'marques', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes']);
+        $optionsResolver->setDefined(['api_token', 'siren', 'siret', 'integrer_diffusions_partielles', 'format_publications_bodacc', 'marques', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes']);
         $optionsResolver->setRequired(['api_token']);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('siren', ['string']);
         $optionsResolver->addAllowedTypes('siret', ['string']);
+        $optionsResolver->addAllowedTypes('integrer_diffusions_partielles', ['bool']);
         $optionsResolver->addAllowedTypes('format_publications_bodacc', ['string']);
         $optionsResolver->addAllowedTypes('marques', ['bool']);
         $optionsResolver->addAllowedTypes('validite_tva_intracommunautaire', ['bool']);
