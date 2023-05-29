@@ -27,15 +27,11 @@ class EntrepriseFicheextraitImmatriculationNormalizer implements DenormalizerInt
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFicheextraitImmatriculation' === \get_class($data);
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFicheextraitImmatriculation' === $data::class;
     }
 
     /**
-     * @param mixed      $data
-     * @param mixed      $class
      * @param mixed|null $format
-     *
-     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -65,7 +61,6 @@ class EntrepriseFicheextraitImmatriculationNormalizer implements DenormalizerInt
     }
 
     /**
-     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null

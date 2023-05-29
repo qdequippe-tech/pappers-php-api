@@ -27,15 +27,11 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireNorm
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' === \get_class($data);
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' === $data::class;
     }
 
     /**
-     * @param mixed      $data
-     * @param mixed      $class
      * @param mixed|null $format
-     *
-     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -89,7 +85,6 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireNorm
     }
 
     /**
-     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null

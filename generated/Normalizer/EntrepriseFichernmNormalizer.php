@@ -27,15 +27,11 @@ class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerI
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichernm' === \get_class($data);
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichernm' === $data::class;
     }
 
     /**
-     * @param mixed      $data
-     * @param mixed      $class
      * @param mixed|null $format
-     *
-     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -101,7 +97,6 @@ class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerI
     }
 
     /**
-     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null

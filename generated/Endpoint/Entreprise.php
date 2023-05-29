@@ -76,15 +76,13 @@ class Entreprise extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return EntrepriseFiche|null
      *
      * @throws EntrepriseBadRequestException
      * @throws EntrepriseUnauthorizedException
      * @throws EntrepriseNotFoundException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

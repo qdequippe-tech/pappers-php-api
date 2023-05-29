@@ -27,15 +27,11 @@ class DocumentNormalizer implements DenormalizerInterface, NormalizerInterface, 
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Document' === \get_class($data);
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Document' === $data::class;
     }
 
     /**
-     * @param mixed      $data
-     * @param mixed      $class
      * @param mixed|null $format
-     *
-     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -87,7 +83,6 @@ class DocumentNormalizer implements DenormalizerInterface, NormalizerInterface, 
     }
 
     /**
-     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null

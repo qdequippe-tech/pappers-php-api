@@ -833,7 +833,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws SurveillanceEntrepriseNotFoundException
      * @throws SurveillanceEntrepriseServiceUnavailableException
      */
-    public function surveillanceEntreprise(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceEntreprise(array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SurveillanceEntreprise($requestBody, $queryParameters), $fetch);
     }
@@ -884,7 +884,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws SurveillanceDirigeantNotFoundException
      * @throws SurveillanceDirigeantServiceUnavailableException
      */
-    public function surveillanceDirigeant(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceDirigeant(array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SurveillanceDirigeant($requestBody, $queryParameters), $fetch);
     }
@@ -907,7 +907,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @throws SurveillanceListeInformationsNotFoundException
      * @throws SurveillanceListeInformationsServiceUnavailableException
      */
-    public function surveillanceListeInformations(?ListeInformationsPostBody $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceListeInformations(ListeInformationsPostBody $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SurveillanceListeInformations($requestBody, $queryParameters), $fetch);
     }

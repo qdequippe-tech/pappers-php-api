@@ -27,15 +27,11 @@ class RechercheBeneficiairesGetResponse200Normalizer implements DenormalizerInte
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RechercheBeneficiairesGetResponse200' === \get_class($data);
+        return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RechercheBeneficiairesGetResponse200' === $data::class;
     }
 
     /**
-     * @param mixed      $data
-     * @param mixed      $class
      * @param mixed|null $format
-     *
-     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -81,7 +77,6 @@ class RechercheBeneficiairesGetResponse200Normalizer implements DenormalizerInte
     }
 
     /**
-     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null

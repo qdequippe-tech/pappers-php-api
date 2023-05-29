@@ -161,15 +161,13 @@ class RecherchePublications extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return RecherchePublicationsGetResponse200|null
      *
      * @throws RecherchePublicationsUnauthorizedException
      * @throws RecherchePublicationsNotFoundException
      * @throws RecherchePublicationsServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

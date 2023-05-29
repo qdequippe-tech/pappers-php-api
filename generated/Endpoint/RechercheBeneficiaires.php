@@ -161,15 +161,13 @@ class RechercheBeneficiaires extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return RechercheBeneficiairesGetResponse200|null
      *
      * @throws RechercheBeneficiairesUnauthorizedException
      * @throws RechercheBeneficiairesNotFoundException
      * @throws RechercheBeneficiairesServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

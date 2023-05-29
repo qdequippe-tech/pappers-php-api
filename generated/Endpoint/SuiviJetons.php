@@ -61,14 +61,12 @@ class SuiviJetons extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return SuiviJetonsGetResponse200|null
      *
      * @throws SuiviJetonsUnauthorizedException
      * @throws SuiviJetonsServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
