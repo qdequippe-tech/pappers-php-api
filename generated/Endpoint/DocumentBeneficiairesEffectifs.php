@@ -69,15 +69,13 @@ class DocumentBeneficiairesEffectifs extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws DocumentBeneficiairesEffectifsBadRequestException
      * @throws DocumentBeneficiairesEffectifsUnauthorizedException
      * @throws DocumentBeneficiairesEffectifsForbiddenException
      * @throws DocumentBeneficiairesEffectifsNotFoundException
      * @throws DocumentBeneficiairesEffectifsServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

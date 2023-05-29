@@ -66,14 +66,12 @@ class DocumentExtraitPappers extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws DocumentExtraitPappersBadRequestException
      * @throws DocumentExtraitPappersUnauthorizedException
      * @throws DocumentExtraitPappersNotFoundException
      * @throws DocumentExtraitPappersServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

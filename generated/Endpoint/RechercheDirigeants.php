@@ -161,15 +161,13 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return RechercheDirigeantsGetResponse200|null
      *
      * @throws RechercheDirigeantsUnauthorizedException
      * @throws RechercheDirigeantsNotFoundException
      * @throws RechercheDirigeantsServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

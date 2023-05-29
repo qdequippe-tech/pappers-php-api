@@ -66,14 +66,12 @@ class DocumentAvisSituationInsee extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws DocumentAvisSituationInseeBadRequestException
      * @throws DocumentAvisSituationInseeUnauthorizedException
      * @throws DocumentAvisSituationInseeNotFoundException
      * @throws DocumentAvisSituationInseeServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

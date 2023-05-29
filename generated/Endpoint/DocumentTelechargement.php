@@ -64,14 +64,12 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws DocumentTelechargementBadRequestException
      * @throws DocumentTelechargementUnauthorizedException
      * @throws DocumentTelechargementNotFoundException
      * @throws DocumentTelechargementServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

@@ -79,15 +79,13 @@ class Cartographie extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return \Qdequippe\Pappers\Api\Model\Cartographie|null
      *
      * @throws CartographieBadRequestException
      * @throws CartographieUnauthorizedException
      * @throws CartographieNotFoundException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

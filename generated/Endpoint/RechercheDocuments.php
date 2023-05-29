@@ -161,15 +161,13 @@ class RechercheDocuments extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return RechercheDocumentsGetResponse200|null
      *
      * @throws RechercheDocumentsUnauthorizedException
      * @throws RechercheDocumentsNotFoundException
      * @throws RechercheDocumentsServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

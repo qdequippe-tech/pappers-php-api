@@ -71,8 +71,6 @@ class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @return ListeDeleteResponse200|null
      *
      * @throws SurveillanceNotificationsDeleteBadRequestException
@@ -80,7 +78,7 @@ class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
      * @throws SurveillanceNotificationsDeleteNotFoundException
      * @throws SurveillanceNotificationsDeleteServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
