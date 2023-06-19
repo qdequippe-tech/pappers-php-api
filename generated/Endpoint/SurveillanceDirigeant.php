@@ -27,9 +27,9 @@ class SurveillanceDirigeant extends BaseEndpoint implements Endpoint
      * @param ListePostBodyItem[]|null $requestBody
      * @param array                    $queryParameters {
      *
-     *     @var string $api_token Clé d'utilisation de l'API
-     *     @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
-     * }
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
+     *             }
      */
     public function __construct(array $requestBody = null, array $queryParameters = [])
     {

@@ -22,11 +22,11 @@ class Association extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $api_token Clé d'utilisation de l'API
-     *     @var string $id_association Identifiant de l'association
-     *     @var string $siret SIRET de l'association
-     *     @var string $siren SIREN de l'association
-     * }
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $id_association Identifiant de l'association
+     * @var string $siret SIRET de l'association
+     * @var string $siren SIREN de l'association
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

@@ -25,15 +25,15 @@ class Cartographie extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $api_token Clé d'utilisation de l'API
-     *     @var string $siren SIREN de l'entreprise
-     *     @var bool $inclure_entreprises_dirigees Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
-     *     @var bool $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
-     *     @var bool $inclure_sci Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
-     *     @var bool $autoriser_modifications Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
-     *     @var bool $rejeter_premier_degre Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de jetons. Valeur par défaut : `false`.
-     *     @var int $degre Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
-     * }
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $siren SIREN de l'entreprise
+     * @var bool   $inclure_entreprises_dirigees Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
+     * @var bool   $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
+     * @var bool   $inclure_sci Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
+     * @var bool   $autoriser_modifications Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
+     * @var bool   $rejeter_premier_degre Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de jetons. Valeur par défaut : `false`.
+     * @var int    $degre Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

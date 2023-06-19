@@ -22,10 +22,10 @@ class DocumentStatus extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $api_token Clé d'utilisation de l'API
-     *     @var string $siren SIREN de l'entreprise
-     *     @var string $siret SIRET de l'entreprise
-     * }
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $siren SIREN de l'entreprise
+     * @var string $siret SIRET de l'entreprise
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {
