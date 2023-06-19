@@ -22,10 +22,10 @@ class ComptesAnnuels extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $api_token Clé d'utilisation de l'API
-     *     @var string $siren SIREN de l'entreprise
-     *     @var string $annee Année de cloture des comptes souhaités. Il est possible d'indiquer plusieurs années en les séparant par des virgules. Si le paramètre n'est pas fourni, toutes les années disponibles seront retournées.
-     * }
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $siren SIREN de l'entreprise
+     * @var string $annee Année de cloture des comptes souhaités. Il est possible d'indiquer plusieurs années en les séparant par des virgules. Si le paramètre n'est pas fourni, toutes les années disponibles seront retournées.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

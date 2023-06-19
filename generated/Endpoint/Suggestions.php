@@ -20,10 +20,10 @@ class Suggestions extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $q Début de recherche textuelle
-     *     @var int $longueur Nombre de résultats. Maximum 100. Valeur par défaut : `10`.
-     *     @var string $cibles Cibles de la recherche, séparées par des virgules. Valeur par défaut : `"nom_entreprise"`.
-     * }
+     * @var string $q Début de recherche textuelle
+     * @var int    $longueur Nombre de résultats. Maximum 100. Valeur par défaut : `10`.
+     * @var string $cibles Cibles de la recherche, séparées par des virgules. Valeur par défaut : `"nom_entreprise"`.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

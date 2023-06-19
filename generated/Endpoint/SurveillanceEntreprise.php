@@ -27,9 +27,9 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
      * @param ListePostBodyItem[]|null $requestBody
      * @param array                    $queryParameters {
      *
-     *     @var string $api_token Clé d'utilisation de l'API
-     *     @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
-     * }
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
+     *             }
      */
     public function __construct(array $requestBody = null, array $queryParameters = [])
     {

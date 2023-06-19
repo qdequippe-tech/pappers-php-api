@@ -22,9 +22,9 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $api_token Clé d'utilisation de l'API
-     *     @var string $token Token du document
-     * }
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $token Token du document
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {
