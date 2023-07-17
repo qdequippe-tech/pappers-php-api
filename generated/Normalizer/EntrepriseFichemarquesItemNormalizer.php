@@ -211,4 +211,9 @@ class EntrepriseFichemarquesItemNormalizer implements DenormalizerInterface, Nor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichemarquesItem' => false];
+    }
 }

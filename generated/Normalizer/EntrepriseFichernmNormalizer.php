@@ -133,4 +133,9 @@ class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichernm' => false];
+    }
 }

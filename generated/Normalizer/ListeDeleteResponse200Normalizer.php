@@ -82,4 +82,9 @@ class ListeDeleteResponse200Normalizer implements DenormalizerInterface, Normali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\ListeDeleteResponse200' => false];
+    }
 }

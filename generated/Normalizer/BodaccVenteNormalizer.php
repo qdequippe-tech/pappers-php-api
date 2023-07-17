@@ -259,4 +259,9 @@ class BodaccVenteNormalizer implements DenormalizerInterface, NormalizerInterfac
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\BodaccVente' => false];
+    }
 }

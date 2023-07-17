@@ -286,4 +286,9 @@ class SuggestionsGetResponse200ResultatsRepresentantItemNormalizer implements De
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsRepresentantItem' => false];
+    }
 }

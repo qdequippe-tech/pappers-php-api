@@ -330,4 +330,9 @@ class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements Denorm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' => false];
+    }
 }

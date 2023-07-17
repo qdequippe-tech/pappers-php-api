@@ -395,4 +395,9 @@ class SuggestionsGetResponse200ResultatsSiretItemNormalizer implements Denormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSiretItem' => false];
+    }
 }

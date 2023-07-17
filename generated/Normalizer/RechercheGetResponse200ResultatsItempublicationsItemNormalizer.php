@@ -114,4 +114,9 @@ class RechercheGetResponse200ResultatsItempublicationsItemNormalizer implements 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200ResultatsItempublicationsItem' => false];
+    }
 }

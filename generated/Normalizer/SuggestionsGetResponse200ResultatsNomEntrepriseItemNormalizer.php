@@ -395,4 +395,9 @@ class SuggestionsGetResponse200ResultatsNomEntrepriseItemNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsNomEntrepriseItem' => false];
+    }
 }

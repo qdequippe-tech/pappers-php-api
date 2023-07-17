@@ -106,4 +106,9 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale' => false];
+    }
 }

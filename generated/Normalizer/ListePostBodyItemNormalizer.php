@@ -122,4 +122,9 @@ class ListePostBodyItemNormalizer implements DenormalizerInterface, NormalizerIn
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\ListePostBodyItem' => false];
+    }
 }

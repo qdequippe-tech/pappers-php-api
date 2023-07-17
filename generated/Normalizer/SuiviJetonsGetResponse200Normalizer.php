@@ -106,4 +106,9 @@ class SuiviJetonsGetResponse200Normalizer implements DenormalizerInterface, Norm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\SuiviJetonsGetResponse200' => false];
+    }
 }

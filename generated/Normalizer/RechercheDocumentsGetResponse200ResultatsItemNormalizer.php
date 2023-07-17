@@ -114,4 +114,9 @@ class RechercheDocumentsGetResponse200ResultatsItemNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\RechercheDocumentsGetResponse200ResultatsItem' => false];
+    }
 }

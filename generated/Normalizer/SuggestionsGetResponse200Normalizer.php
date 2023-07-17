@@ -172,4 +172,9 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200' => false];
+    }
 }
