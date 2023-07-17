@@ -277,4 +277,9 @@ class RepresentantNormalizer implements DenormalizerInterface, NormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\Representant' => false];
+    }
 }

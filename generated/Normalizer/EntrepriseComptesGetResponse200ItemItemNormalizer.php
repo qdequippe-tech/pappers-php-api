@@ -248,4 +248,9 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' => false];
+    }
 }

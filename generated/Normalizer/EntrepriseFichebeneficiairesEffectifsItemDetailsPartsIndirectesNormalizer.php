@@ -112,4 +112,9 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesNormalizer 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' => false];
+    }
 }

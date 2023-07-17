@@ -105,4 +105,9 @@ class RecherchePublicationsGetResponse200Normalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\RecherchePublicationsGetResponse200' => false];
+    }
 }

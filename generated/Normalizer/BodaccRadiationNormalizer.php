@@ -124,4 +124,9 @@ class BodaccRadiationNormalizer implements DenormalizerInterface, NormalizerInte
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\BodaccRadiation' => false];
+    }
 }

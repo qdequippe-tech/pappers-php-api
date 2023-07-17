@@ -82,4 +82,9 @@ class ListePostResponse201Normalizer implements DenormalizerInterface, Normalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\ListePostResponse201' => false];
+    }
 }

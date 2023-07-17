@@ -370,4 +370,9 @@ class BeneficiaireNormalizer implements DenormalizerInterface, NormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\Beneficiaire' => false];
+    }
 }

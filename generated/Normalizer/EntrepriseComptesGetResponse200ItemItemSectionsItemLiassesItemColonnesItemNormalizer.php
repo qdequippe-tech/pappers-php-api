@@ -88,4 +88,9 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem' => false];
+    }
 }

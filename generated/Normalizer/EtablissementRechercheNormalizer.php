@@ -202,4 +202,9 @@ class EtablissementRechercheNormalizer implements DenormalizerInterface, Normali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EtablissementRecherche' => false];
+    }
 }

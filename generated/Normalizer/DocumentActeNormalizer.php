@@ -122,4 +122,9 @@ class DocumentActeNormalizer implements DenormalizerInterface, NormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\DocumentActe' => false];
+    }
 }

@@ -395,4 +395,9 @@ class SuggestionsGetResponse200ResultatsDenominationItemNormalizer implements De
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsDenominationItem' => false];
+    }
 }

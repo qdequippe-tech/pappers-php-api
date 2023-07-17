@@ -214,4 +214,9 @@ class BodaccModificationNormalizer implements DenormalizerInterface, NormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\BodaccModification' => false];
+    }
 }

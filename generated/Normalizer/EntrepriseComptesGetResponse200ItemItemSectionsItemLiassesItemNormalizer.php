@@ -105,4 +105,9 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemNormalizer i
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem' => false];
+    }
 }

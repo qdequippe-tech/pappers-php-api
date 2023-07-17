@@ -178,4 +178,9 @@ class EntrepriseFichecomptesItemNormalizer implements DenormalizerInterface, Nor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichecomptesItem' => false];
+    }
 }
