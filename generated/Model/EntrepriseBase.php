@@ -135,6 +135,12 @@ class EntrepriseBase extends \ArrayObject
      */
     protected $formeJuridique;
     /**
+     * Forme d'exercice de l'activité principale.
+     *
+     * @var string|null
+     */
+    protected $formeExercice;
+    /**
      * Tranche d'effectif de l'entreprise.
      *
      * @var string|null
@@ -559,6 +565,25 @@ class EntrepriseBase extends \ArrayObject
     {
         $this->initialized['formeJuridique'] = true;
         $this->formeJuridique = $formeJuridique;
+
+        return $this;
+    }
+
+    /**
+     * Forme d'exercice de l'activité principale.
+     */
+    public function getFormeExercice(): ?string
+    {
+        return $this->formeExercice;
+    }
+
+    /**
+     * Forme d'exercice de l'activité principale.
+     */
+    public function setFormeExercice(?string $formeExercice): self
+    {
+        $this->initialized['formeExercice'] = true;
+        $this->formeExercice = $formeExercice;
 
         return $this;
     }

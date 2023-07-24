@@ -172,6 +172,12 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
             $object->setFormeJuridique(null);
         }
+        if (\array_key_exists('forme_exercice', $data) && null !== $data['forme_exercice']) {
+            $object->setFormeExercice($data['forme_exercice']);
+            unset($data['forme_exercice']);
+        } elseif (\array_key_exists('forme_exercice', $data) && null === $data['forme_exercice']) {
+            $object->setFormeExercice(null);
+        }
         if (\array_key_exists('effectif', $data) && null !== $data['effectif']) {
             $object->setEffectif($data['effectif']);
             unset($data['effectif']);
@@ -363,6 +369,24 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             unset($data['date_radiation_rcs']);
         } elseif (\array_key_exists('date_radiation_rcs', $data) && null === $data['date_radiation_rcs']) {
             $object->setDateRadiationRcs(null);
+        }
+        if (\array_key_exists('statut_rne', $data) && null !== $data['statut_rne']) {
+            $object->setStatutRne($data['statut_rne']);
+            unset($data['statut_rne']);
+        } elseif (\array_key_exists('statut_rne', $data) && null === $data['statut_rne']) {
+            $object->setStatutRne(null);
+        }
+        if (\array_key_exists('date_immatriculation_rne', $data) && null !== $data['date_immatriculation_rne']) {
+            $object->setDateImmatriculationRne($data['date_immatriculation_rne']);
+            unset($data['date_immatriculation_rne']);
+        } elseif (\array_key_exists('date_immatriculation_rne', $data) && null === $data['date_immatriculation_rne']) {
+            $object->setDateImmatriculationRne(null);
+        }
+        if (\array_key_exists('date_radiation_rne', $data) && null !== $data['date_radiation_rne']) {
+            $object->setDateRadiationRne($data['date_radiation_rne']);
+            unset($data['date_radiation_rne']);
+        } elseif (\array_key_exists('date_radiation_rne', $data) && null === $data['date_radiation_rne']) {
+            $object->setDateRadiationRne(null);
         }
         if (\array_key_exists('numero_tva_intracommunautaire', $data) && null !== $data['numero_tva_intracommunautaire']) {
             $object->setNumeroTvaIntracommunautaire($data['numero_tva_intracommunautaire']);
@@ -589,6 +613,9 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         if ($object->isInitialized('formeJuridique') && null !== $object->getFormeJuridique()) {
             $data['forme_juridique'] = $object->getFormeJuridique();
         }
+        if ($object->isInitialized('formeExercice') && null !== $object->getFormeExercice()) {
+            $data['forme_exercice'] = $object->getFormeExercice();
+        }
         if ($object->isInitialized('effectif') && null !== $object->getEffectif()) {
             $data['effectif'] = $object->getEffectif();
         }
@@ -684,6 +711,15 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         }
         if ($object->isInitialized('dateRadiationRcs') && null !== $object->getDateRadiationRcs()) {
             $data['date_radiation_rcs'] = $object->getDateRadiationRcs();
+        }
+        if ($object->isInitialized('statutRne') && null !== $object->getStatutRne()) {
+            $data['statut_rne'] = $object->getStatutRne();
+        }
+        if ($object->isInitialized('dateImmatriculationRne') && null !== $object->getDateImmatriculationRne()) {
+            $data['date_immatriculation_rne'] = $object->getDateImmatriculationRne();
+        }
+        if ($object->isInitialized('dateRadiationRne') && null !== $object->getDateRadiationRne()) {
+            $data['date_radiation_rne'] = $object->getDateRadiationRne();
         }
         if ($object->isInitialized('numeroTvaIntracommunautaire') && null !== $object->getNumeroTvaIntracommunautaire()) {
             $data['numero_tva_intracommunautaire'] = $object->getNumeroTvaIntracommunautaire();

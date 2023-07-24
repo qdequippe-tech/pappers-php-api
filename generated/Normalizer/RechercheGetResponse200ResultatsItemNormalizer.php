@@ -172,6 +172,12 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
         } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
             $object->setFormeJuridique(null);
         }
+        if (\array_key_exists('forme_exercice', $data) && null !== $data['forme_exercice']) {
+            $object->setFormeExercice($data['forme_exercice']);
+            unset($data['forme_exercice']);
+        } elseif (\array_key_exists('forme_exercice', $data) && null === $data['forme_exercice']) {
+            $object->setFormeExercice(null);
+        }
         if (\array_key_exists('effectif', $data) && null !== $data['effectif']) {
             $object->setEffectif($data['effectif']);
             unset($data['effectif']);
@@ -410,6 +416,9 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
         }
         if ($object->isInitialized('formeJuridique') && null !== $object->getFormeJuridique()) {
             $data['forme_juridique'] = $object->getFormeJuridique();
+        }
+        if ($object->isInitialized('formeExercice') && null !== $object->getFormeExercice()) {
+            $data['forme_exercice'] = $object->getFormeExercice();
         }
         if ($object->isInitialized('effectif') && null !== $object->getEffectif()) {
             $data['effectif'] = $object->getEffectif();
