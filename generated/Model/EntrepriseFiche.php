@@ -135,6 +135,12 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $formeJuridique;
     /**
+     * Forme d'exercice de l'activité principale.
+     *
+     * @var string|null
+     */
+    protected $formeExercice;
+    /**
      * Tranche d'effectif de l'entreprise.
      *
      * @var string|null
@@ -171,7 +177,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $capital;
     /**
-     * Statut de l'entreprise au RCS. Peut valoir "Inscrit", "Non inscrit" ou "Radié".
+     * Statut de l'entreprise au RCS.
      *
      * @var string|null
      */
@@ -324,6 +330,24 @@ class EntrepriseFiche extends \ArrayObject
      * @var string|null
      */
     protected $dateRadiationRcs;
+    /**
+     * Statut de l'entreprise au RNE.
+     *
+     * @var string|null
+     */
+    protected $statutRne;
+    /**
+     * Date d'immatriculation de l'entreprise au RNE.
+     *
+     * @var string|null
+     */
+    protected $dateImmatriculationRne;
+    /**
+     * Date de radiation de l'entreprise au RNE.
+     *
+     * @var string|null
+     */
+    protected $dateRadiationRne;
     /**
      * Numéro de TVA intracommunautaire de l'entreprise.
      *
@@ -822,6 +846,25 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
+     * Forme d'exercice de l'activité principale.
+     */
+    public function getFormeExercice(): ?string
+    {
+        return $this->formeExercice;
+    }
+
+    /**
+     * Forme d'exercice de l'activité principale.
+     */
+    public function setFormeExercice(?string $formeExercice): self
+    {
+        $this->initialized['formeExercice'] = true;
+        $this->formeExercice = $formeExercice;
+
+        return $this;
+    }
+
+    /**
      * Tranche d'effectif de l'entreprise.
      */
     public function getEffectif(): ?string
@@ -936,7 +979,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Statut de l'entreprise au RCS. Peut valoir "Inscrit", "Non inscrit" ou "Radié".
+     * Statut de l'entreprise au RCS.
      */
     public function getStatutRcs(): ?string
     {
@@ -944,7 +987,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Statut de l'entreprise au RCS. Peut valoir "Inscrit", "Non inscrit" ou "Radié".
+     * Statut de l'entreprise au RCS.
      */
     public function setStatutRcs(?string $statutRcs): self
     {
@@ -1419,6 +1462,63 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['dateRadiationRcs'] = true;
         $this->dateRadiationRcs = $dateRadiationRcs;
+
+        return $this;
+    }
+
+    /**
+     * Statut de l'entreprise au RNE.
+     */
+    public function getStatutRne(): ?string
+    {
+        return $this->statutRne;
+    }
+
+    /**
+     * Statut de l'entreprise au RNE.
+     */
+    public function setStatutRne(?string $statutRne): self
+    {
+        $this->initialized['statutRne'] = true;
+        $this->statutRne = $statutRne;
+
+        return $this;
+    }
+
+    /**
+     * Date d'immatriculation de l'entreprise au RNE.
+     */
+    public function getDateImmatriculationRne(): ?string
+    {
+        return $this->dateImmatriculationRne;
+    }
+
+    /**
+     * Date d'immatriculation de l'entreprise au RNE.
+     */
+    public function setDateImmatriculationRne(?string $dateImmatriculationRne): self
+    {
+        $this->initialized['dateImmatriculationRne'] = true;
+        $this->dateImmatriculationRne = $dateImmatriculationRne;
+
+        return $this;
+    }
+
+    /**
+     * Date de radiation de l'entreprise au RNE.
+     */
+    public function getDateRadiationRne(): ?string
+    {
+        return $this->dateRadiationRne;
+    }
+
+    /**
+     * Date de radiation de l'entreprise au RNE.
+     */
+    public function setDateRadiationRne(?string $dateRadiationRne): self
+    {
+        $this->initialized['dateRadiationRne'] = true;
+        $this->dateRadiationRne = $dateRadiationRne;
 
         return $this;
     }
