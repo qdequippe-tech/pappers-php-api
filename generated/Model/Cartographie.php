@@ -40,7 +40,7 @@ class Cartographie extends \ArrayObject
     /**
      * Description des paramètres ayant été automatiquement modifiés.
      *
-     * @var mixed[]|null
+     * @var array<string, mixed>|null
      */
     protected $modificationsEffectuees;
 
@@ -139,7 +139,7 @@ class Cartographie extends \ArrayObject
     /**
      * Description des paramètres ayant été automatiquement modifiés.
      *
-     * @return mixed[]|null
+     * @return array<string, mixed>|null
      */
     public function getModificationsEffectuees(): ?iterable
     {
@@ -149,7 +149,7 @@ class Cartographie extends \ArrayObject
     /**
      * Description des paramètres ayant été automatiquement modifiés.
      *
-     * @param mixed[]|null $modificationsEffectuees
+     * @param array<string, mixed>|null $modificationsEffectuees
      */
     public function setModificationsEffectuees(?iterable $modificationsEffectuees): self
     {

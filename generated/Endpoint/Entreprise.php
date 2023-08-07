@@ -30,7 +30,28 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * @var bool   $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
-     *             }
+     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de jetons supplémentaires.
+     *
+     * Champs supplémentaires disponibles :
+     * - `sites_internet` : 1 jeton supplémentaire
+     * - `telephone` : 1 jeton supplémentaire *
+     * - `email` : 1 jeton supplémentaire *
+     * - `enseigne_1` : gratuit
+     * - `enseigne_2` : gratuit
+     * - `enseigne_3` : gratuit
+     * - `distribution_speciale` : gratuit
+     * - `code_cedex` : gratuit
+     * - `libelle_cedex` : gratuit
+     * - `code_commune` : gratuit
+     * - `code_region` : gratuit
+     * - `region` : gratuit
+     * - `code_departement` : gratuit
+     * - `departement` : gratuit
+     * - `nomenclature_code_naf` : gratuit
+     *
+     * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
+     *
+     * }
      */
     public function __construct(array $queryParameters = [])
     {
@@ -60,7 +81,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'siren', 'siret', 'integrer_diffusions_partielles', 'format_publications_bodacc', 'marques', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes']);
+        $optionsResolver->setDefined(['api_token', 'siren', 'siret', 'integrer_diffusions_partielles', 'format_publications_bodacc', 'marques', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes', 'champs_supplementaires']);
         $optionsResolver->setRequired(['api_token']);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('api_token', ['string']);
@@ -71,6 +92,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
         $optionsResolver->addAllowedTypes('marques', ['bool']);
         $optionsResolver->addAllowedTypes('validite_tva_intracommunautaire', ['bool']);
         $optionsResolver->addAllowedTypes('publications_bodacc_brutes', ['bool']);
+        $optionsResolver->addAllowedTypes('champs_supplementaires', ['string']);
 
         return $optionsResolver;
     }
