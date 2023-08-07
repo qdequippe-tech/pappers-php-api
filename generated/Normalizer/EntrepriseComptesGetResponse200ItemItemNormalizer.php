@@ -129,6 +129,12 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
         } elseif (\array_key_exists('confidentialite_compte_de_resultat', $data) && null === $data['confidentialite_compte_de_resultat']) {
             $object->setConfidentialiteCompteDeResultat(null);
         }
+        if (\array_key_exists('coherence_comptable', $data) && null !== $data['coherence_comptable']) {
+            $object->setCoherenceComptable($data['coherence_comptable']);
+            unset($data['coherence_comptable']);
+        } elseif (\array_key_exists('coherence_comptable', $data) && null === $data['coherence_comptable']) {
+            $object->setCoherenceComptable(null);
+        }
         if (\array_key_exists('type_saisie', $data) && null !== $data['type_saisie']) {
             $object->setTypeSaisie($data['type_saisie']);
             unset($data['type_saisie']);
@@ -219,6 +225,9 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
         }
         if ($object->isInitialized('confidentialiteCompteDeResultat') && null !== $object->getConfidentialiteCompteDeResultat()) {
             $data['confidentialite_compte_de_resultat'] = $object->getConfidentialiteCompteDeResultat();
+        }
+        if ($object->isInitialized('coherenceComptable') && null !== $object->getCoherenceComptable()) {
+            $data['coherence_comptable'] = $object->getCoherenceComptable();
         }
         if ($object->isInitialized('typeSaisie') && null !== $object->getTypeSaisie()) {
             $data['type_saisie'] = $object->getTypeSaisie();

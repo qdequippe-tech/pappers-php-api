@@ -98,6 +98,12 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
      */
     protected $confidentialiteCompteDeResultat;
     /**
+     * Vrai si les comptes sont cohérents d'un point de vue comptable (équilibre du bilan par exemple).
+     *
+     * @var bool|null
+     */
+    protected $coherenceComptable;
+    /**
      * Description du type de saisie des comptes.
      *
      * @var string|null
@@ -382,6 +388,25 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     {
         $this->initialized['confidentialiteCompteDeResultat'] = true;
         $this->confidentialiteCompteDeResultat = $confidentialiteCompteDeResultat;
+
+        return $this;
+    }
+
+    /**
+     * Vrai si les comptes sont cohérents d'un point de vue comptable (équilibre du bilan par exemple).
+     */
+    public function getCoherenceComptable(): ?bool
+    {
+        return $this->coherenceComptable;
+    }
+
+    /**
+     * Vrai si les comptes sont cohérents d'un point de vue comptable (équilibre du bilan par exemple).
+     */
+    public function setCoherenceComptable(?bool $coherenceComptable): self
+    {
+        $this->initialized['coherenceComptable'] = true;
+        $this->coherenceComptable = $coherenceComptable;
 
         return $this;
     }

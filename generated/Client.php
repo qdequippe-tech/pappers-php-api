@@ -139,7 +139,28 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @var bool   $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
-     *             }
+     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de jetons supplémentaires.
+     *
+     * Champs supplémentaires disponibles :
+     * - `sites_internet` : 1 jeton supplémentaire
+     * - `telephone` : 1 jeton supplémentaire *
+     * - `email` : 1 jeton supplémentaire *
+     * - `enseigne_1` : gratuit
+     * - `enseigne_2` : gratuit
+     * - `enseigne_3` : gratuit
+     * - `distribution_speciale` : gratuit
+     * - `code_cedex` : gratuit
+     * - `libelle_cedex` : gratuit
+     * - `code_commune` : gratuit
+     * - `code_region` : gratuit
+     * - `region` : gratuit
+     * - `code_departement` : gratuit
+     * - `departement` : gratuit
+     * - `nomenclature_code_naf` : gratuit
+     *
+     * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
+     *
+     * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
