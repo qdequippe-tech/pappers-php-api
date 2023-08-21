@@ -31,7 +31,11 @@ class BodaccAchatNormalizer implements DenormalizerInterface, NormalizerInterfac
     }
 
     /**
+     * @param mixed      $data
+     * @param mixed      $class
      * @param mixed|null $format
+     *
+     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -181,6 +185,7 @@ class BodaccAchatNormalizer implements DenormalizerInterface, NormalizerInterfac
     }
 
     /**
+     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null

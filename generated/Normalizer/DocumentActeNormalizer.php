@@ -31,7 +31,11 @@ class DocumentActeNormalizer implements DenormalizerInterface, NormalizerInterfa
     }
 
     /**
+     * @param mixed      $data
+     * @param mixed      $class
      * @param mixed|null $format
+     *
+     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -87,6 +91,7 @@ class DocumentActeNormalizer implements DenormalizerInterface, NormalizerInterfa
     }
 
     /**
+     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null
