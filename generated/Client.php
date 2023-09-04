@@ -157,6 +157,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * - `code_departement` : gratuit
      * - `departement` : gratuit
      * - `nomenclature_code_naf` : gratuit
+     * - `labels` : gratuit
      *
      * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
      *
@@ -274,8 +275,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      * @var string $date_depot_document_max date de dépôt maximale du document, au format JJ-MM-AAAA
      * @var string $type_publication Type de publication
      * @var string $date_publication_min date publication minimale de la publication, au format JJ-MM-AAAA
-     * @var string $date_publication_max date de publication maximale de la publication, au format JJ-MM-AAAA
-     * @var string $siren SIREN de l'entreprise.
+     * @var string $date_publication_max Date de publication maximale de la publication, au format JJ-MM-AAAA.
      *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)

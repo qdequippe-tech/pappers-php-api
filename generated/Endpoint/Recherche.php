@@ -91,8 +91,7 @@ class Recherche extends BaseEndpoint implements Endpoint
      * @var string $date_depot_document_max date de dépôt maximale du document, au format JJ-MM-AAAA
      * @var string $type_publication Type de publication
      * @var string $date_publication_min date publication minimale de la publication, au format JJ-MM-AAAA
-     * @var string $date_publication_max date de publication maximale de la publication, au format JJ-MM-AAAA
-     * @var string $siren SIREN de l'entreprise.
+     * @var string $date_publication_max Date de publication maximale de la publication, au format JJ-MM-AAAA.
      *             }
      */
     public function __construct(array $queryParameters = [])
@@ -123,7 +122,7 @@ class Recherche extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'page', 'par_page', 'curseur', 'par_curseur', 'bases', 'precision', 'q', 'siege', 'code_naf', 'departement', 'region', 'code_postal', 'convention_collective', 'categorie_juridique', 'entreprise_cessee', 'statut_rcs', 'objet_social', 'date_immatriculation_rcs_min', 'date_immatriculation_rcs_max', 'date_radiation_rcs_min', 'date_radiation_rcs_max', 'capital_min', 'capital_max', 'chiffre_affaires_min', 'chiffre_affaires_max', 'resultat_min', 'resultat_max', 'date_creation_min', 'date_creation_max', 'tranche_effectif_min', 'tranche_effectif_max', 'type_dirigeant', 'qualite_dirigeant', 'nationalite_dirigeant', 'prenom_dirigeant', 'age_dirigeant_min', 'age_dirigeant_max', 'date_de_naissance_dirigeant_min', 'date_de_naissance_dirigeant_max', 'age_beneficiaire_min', 'age_beneficiaire_max', 'date_de_naissance_beneficiaire_min', 'date_de_naissance_beneficiaire_max', 'nationalite_beneficiaire', 'date_depot_document_min', 'date_depot_document_max', 'type_publication', 'date_publication_min', 'date_publication_max', 'siren']);
+        $optionsResolver->setDefined(['api_token', 'page', 'par_page', 'curseur', 'par_curseur', 'bases', 'precision', 'q', 'siege', 'code_naf', 'departement', 'region', 'code_postal', 'convention_collective', 'categorie_juridique', 'entreprise_cessee', 'statut_rcs', 'objet_social', 'date_immatriculation_rcs_min', 'date_immatriculation_rcs_max', 'date_radiation_rcs_min', 'date_radiation_rcs_max', 'capital_min', 'capital_max', 'chiffre_affaires_min', 'chiffre_affaires_max', 'resultat_min', 'resultat_max', 'date_creation_min', 'date_creation_max', 'tranche_effectif_min', 'tranche_effectif_max', 'type_dirigeant', 'qualite_dirigeant', 'nationalite_dirigeant', 'prenom_dirigeant', 'age_dirigeant_min', 'age_dirigeant_max', 'date_de_naissance_dirigeant_min', 'date_de_naissance_dirigeant_max', 'age_beneficiaire_min', 'age_beneficiaire_max', 'date_de_naissance_beneficiaire_min', 'date_de_naissance_beneficiaire_max', 'nationalite_beneficiaire', 'date_depot_document_min', 'date_depot_document_max', 'type_publication', 'date_publication_min', 'date_publication_max']);
         $optionsResolver->setRequired(['api_token']);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('api_token', ['string']);
@@ -176,7 +175,6 @@ class Recherche extends BaseEndpoint implements Endpoint
         $optionsResolver->addAllowedTypes('type_publication', ['string']);
         $optionsResolver->addAllowedTypes('date_publication_min', ['string']);
         $optionsResolver->addAllowedTypes('date_publication_max', ['string']);
-        $optionsResolver->addAllowedTypes('siren', ['string']);
 
         return $optionsResolver;
     }
