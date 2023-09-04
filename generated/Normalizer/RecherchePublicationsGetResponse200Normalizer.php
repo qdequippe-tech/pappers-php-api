@@ -31,11 +31,7 @@ class RecherchePublicationsGetResponse200Normalizer implements DenormalizerInter
     }
 
     /**
-     * @param mixed      $data
-     * @param mixed      $class
      * @param mixed|null $format
-     *
-     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -81,7 +77,6 @@ class RecherchePublicationsGetResponse200Normalizer implements DenormalizerInter
     }
 
     /**
-     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null

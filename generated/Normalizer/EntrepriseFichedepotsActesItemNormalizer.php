@@ -31,11 +31,7 @@ class EntrepriseFichedepotsActesItemNormalizer implements DenormalizerInterface,
     }
 
     /**
-     * @param mixed      $data
-     * @param mixed      $class
      * @param mixed|null $format
-     *
-     * @return mixed
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
@@ -99,7 +95,6 @@ class EntrepriseFichedepotsActesItemNormalizer implements DenormalizerInterface,
     }
 
     /**
-     * @param mixed      $object
      * @param mixed|null $format
      *
      * @return array|string|int|float|bool|\ArrayObject|null
