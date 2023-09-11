@@ -2,6 +2,4 @@
 
 namespace Qdequippe\Pappers\Api\Exception;
 
-interface ApiException extends \Throwable
-{
-}
+interface ApiException extends \Throwable {}
