@@ -935,7 +935,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
         if (null === $httpClient) {
             $httpClient = Psr18ClientDiscovery::find();
             $plugins = [];
-            $uri = Psr17FactoryDiscovery::findUrlFactory()->createUri('https://api.pappers.fr/v2');
+            $uri = Psr17FactoryDiscovery::findUriFactory()->createUri('https://api.pappers.fr/v2');
             $plugins[] = new AddHostPlugin($uri);
             $plugins[] = new AddPathPlugin($uri);
             if (\count($additionalPlugins) > 0) {

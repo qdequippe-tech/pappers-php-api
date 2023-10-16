@@ -63,6 +63,24 @@ class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements Denorm
         } elseif (\array_key_exists('date_prise_de_poste', $data) && null === $data['date_prise_de_poste']) {
             $object->setDatePriseDePoste(null);
         }
+        if (\array_key_exists('denomination', $data) && null !== $data['denomination']) {
+            $object->setDenomination($data['denomination']);
+            unset($data['denomination']);
+        } elseif (\array_key_exists('denomination', $data) && null === $data['denomination']) {
+            $object->setDenomination(null);
+        }
+        if (\array_key_exists('siren', $data) && null !== $data['siren']) {
+            $object->setSiren($data['siren']);
+            unset($data['siren']);
+        } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
+            $object->setSiren(null);
+        }
+        if (\array_key_exists('forme_juridique', $data) && null !== $data['forme_juridique']) {
+            $object->setFormeJuridique($data['forme_juridique']);
+            unset($data['forme_juridique']);
+        } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
+            $object->setFormeJuridique(null);
+        }
         if (\array_key_exists('sexe', $data) && null !== $data['sexe']) {
             $object->setSexe($data['sexe']);
             unset($data['sexe']);
@@ -195,12 +213,6 @@ class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements Denorm
         } elseif (\array_key_exists('date_depart_de_poste', $data) && null === $data['date_depart_de_poste']) {
             $object->setDateDepartDePoste(null);
         }
-        if (\array_key_exists('forme_juridique', $data) && null !== $data['forme_juridique']) {
-            $object->setFormeJuridique($data['forme_juridique']);
-            unset($data['forme_juridique']);
-        } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
-            $object->setFormeJuridique(null);
-        }
         if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
             $values = [];
             foreach ($data['entreprises'] as $value) {
@@ -242,6 +254,15 @@ class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements Denorm
         }
         if ($object->isInitialized('datePriseDePoste') && null !== $object->getDatePriseDePoste()) {
             $data['date_prise_de_poste'] = $object->getDatePriseDePoste();
+        }
+        if ($object->isInitialized('denomination') && null !== $object->getDenomination()) {
+            $data['denomination'] = $object->getDenomination();
+        }
+        if ($object->isInitialized('siren') && null !== $object->getSiren()) {
+            $data['siren'] = $object->getSiren();
+        }
+        if ($object->isInitialized('formeJuridique') && null !== $object->getFormeJuridique()) {
+            $data['forme_juridique'] = $object->getFormeJuridique();
         }
         if ($object->isInitialized('sexe') && null !== $object->getSexe()) {
             $data['sexe'] = $object->getSexe();
@@ -308,9 +329,6 @@ class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements Denorm
         }
         if ($object->isInitialized('dateDepartDePoste') && null !== $object->getDateDepartDePoste()) {
             $data['date_depart_de_poste'] = $object->getDateDepartDePoste();
-        }
-        if ($object->isInitialized('formeJuridique') && null !== $object->getFormeJuridique()) {
-            $data['forme_juridique'] = $object->getFormeJuridique();
         }
         if ($object->isInitialized('entreprises') && null !== $object->getEntreprises()) {
             $values = [];

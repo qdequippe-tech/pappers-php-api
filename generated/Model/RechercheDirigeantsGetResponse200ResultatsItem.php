@@ -32,7 +32,25 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $datePriseDePoste;
     /**
-     * Sexe supposé du dirigeant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du dirigeant.
+     * Dénomination du représentant si personne morale.
+     *
+     * @var string|null
+     */
+    protected $denomination;
+    /**
+     * Siren du représentant si personne morale.
+     *
+     * @var string|null
+     */
+    protected $siren;
+    /**
+     * Forme juridique du représentant dans le cas d'une personne morale.
+     *
+     * @var string|null
+     */
+    protected $formeJuridique;
+    /**
+     * Sexe supposé du représentant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du représentant.
      *
      * @var string|null
      */
@@ -164,12 +182,6 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $dateDepartDePoste;
     /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
-     *
-     * @var string|null
-     */
-    protected $formeJuridique;
-    /**
      * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
      *
      * @var EntrepriseRecherche[]|null
@@ -240,7 +252,64 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     }
 
     /**
-     * Sexe supposé du dirigeant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du dirigeant.
+     * Dénomination du représentant si personne morale.
+     */
+    public function getDenomination(): ?string
+    {
+        return $this->denomination;
+    }
+
+    /**
+     * Dénomination du représentant si personne morale.
+     */
+    public function setDenomination(?string $denomination): self
+    {
+        $this->initialized['denomination'] = true;
+        $this->denomination = $denomination;
+
+        return $this;
+    }
+
+    /**
+     * Siren du représentant si personne morale.
+     */
+    public function getSiren(): ?string
+    {
+        return $this->siren;
+    }
+
+    /**
+     * Siren du représentant si personne morale.
+     */
+    public function setSiren(?string $siren): self
+    {
+        $this->initialized['siren'] = true;
+        $this->siren = $siren;
+
+        return $this;
+    }
+
+    /**
+     * Forme juridique du représentant dans le cas d'une personne morale.
+     */
+    public function getFormeJuridique(): ?string
+    {
+        return $this->formeJuridique;
+    }
+
+    /**
+     * Forme juridique du représentant dans le cas d'une personne morale.
+     */
+    public function setFormeJuridique(?string $formeJuridique): self
+    {
+        $this->initialized['formeJuridique'] = true;
+        $this->formeJuridique = $formeJuridique;
+
+        return $this;
+    }
+
+    /**
+     * Sexe supposé du représentant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du représentant.
      */
     public function getSexe(): ?string
     {
@@ -248,7 +317,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     }
 
     /**
-     * Sexe supposé du dirigeant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du dirigeant.
+     * Sexe supposé du représentant si personne physique. F pour féminin, M pour masculin. Ce champ est estimé à partir du prénom du représentant.
      */
     public function setSexe(?string $sexe): self
     {
@@ -653,25 +722,6 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     {
         $this->initialized['dateDepartDePoste'] = true;
         $this->dateDepartDePoste = $dateDepartDePoste;
-
-        return $this;
-    }
-
-    /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
-     */
-    public function getFormeJuridique(): ?string
-    {
-        return $this->formeJuridique;
-    }
-
-    /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
-     */
-    public function setFormeJuridique(?string $formeJuridique): self
-    {
-        $this->initialized['formeJuridique'] = true;
-        $this->formeJuridique = $formeJuridique;
 
         return $this;
     }
