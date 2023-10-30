@@ -42,6 +42,9 @@ class BodaccModificationNormalizer implements DenormalizerInterface, NormalizerI
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new BodaccModification();
+        if (\array_key_exists('capital', $data) && \is_int($data['capital'])) {
+            $data['capital'] = (float) $data['capital'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }

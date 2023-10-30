@@ -42,6 +42,123 @@ class RatiosNormalizer implements DenormalizerInterface, NormalizerInterface, De
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new Ratios();
+        if (\array_key_exists('chiffre_affaires', $data) && \is_int($data['chiffre_affaires'])) {
+            $data['chiffre_affaires'] = (float) $data['chiffre_affaires'];
+        }
+        if (\array_key_exists('resultat', $data) && \is_int($data['resultat'])) {
+            $data['resultat'] = (float) $data['resultat'];
+        }
+        if (\array_key_exists('marge_brute', $data) && \is_int($data['marge_brute'])) {
+            $data['marge_brute'] = (float) $data['marge_brute'];
+        }
+        if (\array_key_exists('excedent_brut_exploitation', $data) && \is_int($data['excedent_brut_exploitation'])) {
+            $data['excedent_brut_exploitation'] = (float) $data['excedent_brut_exploitation'];
+        }
+        if (\array_key_exists('resultat_exploitation', $data) && \is_int($data['resultat_exploitation'])) {
+            $data['resultat_exploitation'] = (float) $data['resultat_exploitation'];
+        }
+        if (\array_key_exists('taux_croissance_chiffre_affaires', $data) && \is_int($data['taux_croissance_chiffre_affaires'])) {
+            $data['taux_croissance_chiffre_affaires'] = (float) $data['taux_croissance_chiffre_affaires'];
+        }
+        if (\array_key_exists('taux_marge_brute', $data) && \is_int($data['taux_marge_brute'])) {
+            $data['taux_marge_brute'] = (float) $data['taux_marge_brute'];
+        }
+        if (\array_key_exists('taux_marge_EBITDA', $data) && \is_int($data['taux_marge_EBITDA'])) {
+            $data['taux_marge_EBITDA'] = (float) $data['taux_marge_EBITDA'];
+        }
+        if (\array_key_exists('taux_marge_operationnelle', $data) && \is_int($data['taux_marge_operationnelle'])) {
+            $data['taux_marge_operationnelle'] = (float) $data['taux_marge_operationnelle'];
+        }
+        if (\array_key_exists('BFR', $data) && \is_int($data['BFR'])) {
+            $data['BFR'] = (float) $data['BFR'];
+        }
+        if (\array_key_exists('BFR_exploitation', $data) && \is_int($data['BFR_exploitation'])) {
+            $data['BFR_exploitation'] = (float) $data['BFR_exploitation'];
+        }
+        if (\array_key_exists('BFR_hors_exploitation', $data) && \is_int($data['BFR_hors_exploitation'])) {
+            $data['BFR_hors_exploitation'] = (float) $data['BFR_hors_exploitation'];
+        }
+        if (\array_key_exists('BFR_jours_CA', $data) && \is_int($data['BFR_jours_CA'])) {
+            $data['BFR_jours_CA'] = (float) $data['BFR_jours_CA'];
+        }
+        if (\array_key_exists('BFR_exploitation_jours_CA', $data) && \is_int($data['BFR_exploitation_jours_CA'])) {
+            $data['BFR_exploitation_jours_CA'] = (float) $data['BFR_exploitation_jours_CA'];
+        }
+        if (\array_key_exists('BFR_hors_exploitation_jours_CA', $data) && \is_int($data['BFR_hors_exploitation_jours_CA'])) {
+            $data['BFR_hors_exploitation_jours_CA'] = (float) $data['BFR_hors_exploitation_jours_CA'];
+        }
+        if (\array_key_exists('delai_paiement_clients_jours', $data) && \is_int($data['delai_paiement_clients_jours'])) {
+            $data['delai_paiement_clients_jours'] = (float) $data['delai_paiement_clients_jours'];
+        }
+        if (\array_key_exists('delai_paiement_fournisseurs_jours', $data) && \is_int($data['delai_paiement_fournisseurs_jours'])) {
+            $data['delai_paiement_fournisseurs_jours'] = (float) $data['delai_paiement_fournisseurs_jours'];
+        }
+        if (\array_key_exists('ratio_stock_CA_jours', $data) && \is_int($data['ratio_stock_CA_jours'])) {
+            $data['ratio_stock_CA_jours'] = (float) $data['ratio_stock_CA_jours'];
+        }
+        if (\array_key_exists('capacite_autofinancement', $data) && \is_int($data['capacite_autofinancement'])) {
+            $data['capacite_autofinancement'] = (float) $data['capacite_autofinancement'];
+        }
+        if (\array_key_exists('capacite_autofinancement_CA', $data) && \is_int($data['capacite_autofinancement_CA'])) {
+            $data['capacite_autofinancement_CA'] = (float) $data['capacite_autofinancement_CA'];
+        }
+        if (\array_key_exists('fonds_roulement_net_global', $data) && \is_int($data['fonds_roulement_net_global'])) {
+            $data['fonds_roulement_net_global'] = (float) $data['fonds_roulement_net_global'];
+        }
+        if (\array_key_exists('couverture_BFR', $data) && \is_int($data['couverture_BFR'])) {
+            $data['couverture_BFR'] = (float) $data['couverture_BFR'];
+        }
+        if (\array_key_exists('tresorerie', $data) && \is_int($data['tresorerie'])) {
+            $data['tresorerie'] = (float) $data['tresorerie'];
+        }
+        if (\array_key_exists('dettes_financieres', $data) && \is_int($data['dettes_financieres'])) {
+            $data['dettes_financieres'] = (float) $data['dettes_financieres'];
+        }
+        if (\array_key_exists('capacite_remboursement', $data) && \is_int($data['capacite_remboursement'])) {
+            $data['capacite_remboursement'] = (float) $data['capacite_remboursement'];
+        }
+        if (\array_key_exists('ratio_endettement', $data) && \is_int($data['ratio_endettement'])) {
+            $data['ratio_endettement'] = (float) $data['ratio_endettement'];
+        }
+        if (\array_key_exists('autonomie_financiere', $data) && \is_int($data['autonomie_financiere'])) {
+            $data['autonomie_financiere'] = (float) $data['autonomie_financiere'];
+        }
+        if (\array_key_exists('taux_levier', $data) && \is_int($data['taux_levier'])) {
+            $data['taux_levier'] = (float) $data['taux_levier'];
+        }
+        if (\array_key_exists('etat_dettes_1_an_au_plus', $data) && \is_int($data['etat_dettes_1_an_au_plus'])) {
+            $data['etat_dettes_1_an_au_plus'] = (float) $data['etat_dettes_1_an_au_plus'];
+        }
+        if (\array_key_exists('liquidite_generale', $data) && \is_int($data['liquidite_generale'])) {
+            $data['liquidite_generale'] = (float) $data['liquidite_generale'];
+        }
+        if (\array_key_exists('couverture_dettes', $data) && \is_int($data['couverture_dettes'])) {
+            $data['couverture_dettes'] = (float) $data['couverture_dettes'];
+        }
+        if (\array_key_exists('marge_nette', $data) && \is_int($data['marge_nette'])) {
+            $data['marge_nette'] = (float) $data['marge_nette'];
+        }
+        if (\array_key_exists('rentabilite_fonds_propres', $data) && \is_int($data['rentabilite_fonds_propres'])) {
+            $data['rentabilite_fonds_propres'] = (float) $data['rentabilite_fonds_propres'];
+        }
+        if (\array_key_exists('rentabilite_economique', $data) && \is_int($data['rentabilite_economique'])) {
+            $data['rentabilite_economique'] = (float) $data['rentabilite_economique'];
+        }
+        if (\array_key_exists('valeur_ajoutee', $data) && \is_int($data['valeur_ajoutee'])) {
+            $data['valeur_ajoutee'] = (float) $data['valeur_ajoutee'];
+        }
+        if (\array_key_exists('valeur_ajoutee_CA', $data) && \is_int($data['valeur_ajoutee_CA'])) {
+            $data['valeur_ajoutee_CA'] = (float) $data['valeur_ajoutee_CA'];
+        }
+        if (\array_key_exists('salaires_charges_sociales', $data) && \is_int($data['salaires_charges_sociales'])) {
+            $data['salaires_charges_sociales'] = (float) $data['salaires_charges_sociales'];
+        }
+        if (\array_key_exists('salaires_CA', $data) && \is_int($data['salaires_CA'])) {
+            $data['salaires_CA'] = (float) $data['salaires_CA'];
+        }
+        if (\array_key_exists('impots_taxes', $data) && \is_int($data['impots_taxes'])) {
+            $data['impots_taxes'] = (float) $data['impots_taxes'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }

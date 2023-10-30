@@ -28,7 +28,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Date de l'acte, au format AAAA-MM-JJ.
      *
-     * @var \DateTime|null
+     * @var string|null
      */
     protected $dateActe;
     /**
@@ -79,7 +79,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Date de l'acte, au format AAAA-MM-JJ.
      */
-    public function getDateActe(): ?\DateTime
+    public function getDateActe(): ?string
     {
         return $this->dateActe;
     }
@@ -87,7 +87,7 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
     /**
      * Date de l'acte, au format AAAA-MM-JJ.
      */
-    public function setDateActe(?\DateTime $dateActe): self
+    public function setDateActe(?string $dateActe): self
     {
         $this->initialized['dateActe'] = true;
         $this->dateActe = $dateActe;

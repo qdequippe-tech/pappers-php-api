@@ -58,7 +58,7 @@ class BodaccModification extends Bodacc
     /**
      * Capital de l'entreprise concernée par la publication.
      *
-     * @var int|null
+     * @var float|null
      */
     protected $capital;
     /**
@@ -210,7 +210,7 @@ class BodaccModification extends Bodacc
     /**
      * Capital de l'entreprise concernée par la publication.
      */
-    public function getCapital(): ?int
+    public function getCapital(): ?float
     {
         return $this->capital;
     }
@@ -218,7 +218,7 @@ class BodaccModification extends Bodacc
     /**
      * Capital de l'entreprise concernée par la publication.
      */
-    public function setCapital(?int $capital): self
+    public function setCapital(?float $capital): self
     {
         $this->initialized['capital'] = true;
         $this->capital = $capital;
