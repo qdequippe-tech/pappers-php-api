@@ -16,7 +16,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de génération des bénéficiaires effectifs, au format AAAA-MM-JJ.
      *
-     * @var \DateTime|null
+     * @var string|null
      */
     protected $dateGreffe;
     /**
@@ -56,7 +56,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      *
-     * @var \DateTime|null
+     * @var string|null
      */
     protected $dateDeNaissanceCompleteFormatee;
     /**
@@ -243,7 +243,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de génération des bénéficiaires effectifs, au format AAAA-MM-JJ.
      */
-    public function getDateGreffe(): ?\DateTime
+    public function getDateGreffe(): ?string
     {
         return $this->dateGreffe;
     }
@@ -251,7 +251,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de génération des bénéficiaires effectifs, au format AAAA-MM-JJ.
      */
-    public function setDateGreffe(?\DateTime $dateGreffe): self
+    public function setDateGreffe(?string $dateGreffe): self
     {
         $this->initialized['dateGreffe'] = true;
         $this->dateGreffe = $dateGreffe;
@@ -370,7 +370,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      */
-    public function getDateDeNaissanceCompleteFormatee(): ?\DateTime
+    public function getDateDeNaissanceCompleteFormatee(): ?string
     {
         return $this->dateDeNaissanceCompleteFormatee;
     }
@@ -378,7 +378,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
      */
-    public function setDateDeNaissanceCompleteFormatee(?\DateTime $dateDeNaissanceCompleteFormatee): self
+    public function setDateDeNaissanceCompleteFormatee(?string $dateDeNaissanceCompleteFormatee): self
     {
         $this->initialized['dateDeNaissanceCompleteFormatee'] = true;
         $this->dateDeNaissanceCompleteFormatee = $dateDeNaissanceCompleteFormatee;

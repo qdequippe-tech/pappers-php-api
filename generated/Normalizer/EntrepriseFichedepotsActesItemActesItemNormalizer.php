@@ -58,7 +58,7 @@ class EntrepriseFichedepotsActesItemActesItemNormalizer implements DenormalizerI
             $object->setDecision(null);
         }
         if (\array_key_exists('date_acte', $data) && null !== $data['date_acte']) {
-            $object->setDateActe(\DateTime::createFromFormat('Y-m-d', $data['date_acte'])->setTime(0, 0, 0));
+            $object->setDateActe($data['date_acte']);
             unset($data['date_acte']);
         } elseif (\array_key_exists('date_acte', $data) && null === $data['date_acte']) {
             $object->setDateActe(null);
@@ -93,7 +93,7 @@ class EntrepriseFichedepotsActesItemActesItemNormalizer implements DenormalizerI
             $data['decision'] = $object->getDecision();
         }
         if ($object->isInitialized('dateActe') && null !== $object->getDateActe()) {
-            $data['date_acte'] = $object->getDateActe()->format('Y-m-d');
+            $data['date_acte'] = $object->getDateActe();
         }
         if ($object->isInitialized('dateActeFormate') && null !== $object->getDateActeFormate()) {
             $data['date_acte_formate'] = $object->getDateActeFormate();

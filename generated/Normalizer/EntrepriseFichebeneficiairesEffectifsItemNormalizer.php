@@ -67,7 +67,7 @@ class EntrepriseFichebeneficiairesEffectifsItemNormalizer implements Denormalize
             return $object;
         }
         if (\array_key_exists('date_greffe', $data) && null !== $data['date_greffe']) {
-            $object->setDateGreffe(\DateTime::createFromFormat('Y-m-d', $data['date_greffe'])->setTime(0, 0, 0));
+            $object->setDateGreffe($data['date_greffe']);
             unset($data['date_greffe']);
         } elseif (\array_key_exists('date_greffe', $data) && null === $data['date_greffe']) {
             $object->setDateGreffe(null);
@@ -109,7 +109,7 @@ class EntrepriseFichebeneficiairesEffectifsItemNormalizer implements Denormalize
             $object->setDateDeNaissanceFormatee(null);
         }
         if (\array_key_exists('date_de_naissance_complete_formatee', $data) && null !== $data['date_de_naissance_complete_formatee']) {
-            $object->setDateDeNaissanceCompleteFormatee(\DateTime::createFromFormat('Y-m-d', $data['date_de_naissance_complete_formatee'])->setTime(0, 0, 0));
+            $object->setDateDeNaissanceCompleteFormatee($data['date_de_naissance_complete_formatee']);
             unset($data['date_de_naissance_complete_formatee']);
         } elseif (\array_key_exists('date_de_naissance_complete_formatee', $data) && null === $data['date_de_naissance_complete_formatee']) {
             $object->setDateDeNaissanceCompleteFormatee(null);
@@ -312,7 +312,7 @@ class EntrepriseFichebeneficiairesEffectifsItemNormalizer implements Denormalize
     {
         $data = [];
         if ($object->isInitialized('dateGreffe') && null !== $object->getDateGreffe()) {
-            $data['date_greffe'] = $object->getDateGreffe()->format('Y-m-d');
+            $data['date_greffe'] = $object->getDateGreffe();
         }
         if ($object->isInitialized('type') && null !== $object->getType()) {
             $data['type'] = $object->getType();
@@ -333,7 +333,7 @@ class EntrepriseFichebeneficiairesEffectifsItemNormalizer implements Denormalize
             $data['date_de_naissance_formatee'] = $object->getDateDeNaissanceFormatee();
         }
         if ($object->isInitialized('dateDeNaissanceCompleteFormatee') && null !== $object->getDateDeNaissanceCompleteFormatee()) {
-            $data['date_de_naissance_complete_formatee'] = $object->getDateDeNaissanceCompleteFormatee()->format('Y-m-d');
+            $data['date_de_naissance_complete_formatee'] = $object->getDateDeNaissanceCompleteFormatee();
         }
         if ($object->isInitialized('nationalite') && null !== $object->getNationalite()) {
             $data['nationalite'] = $object->getNationalite();
