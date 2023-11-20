@@ -34,7 +34,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des d'autres noeuds entreprises.
      *
-     * @var mixed[][]|null
+     * @var string[][]|null
      */
     protected $liensEntreprisesEntreprises;
     /**
@@ -116,7 +116,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des d'autres noeuds entreprises.
      *
-     * @return mixed[][]|null
+     * @return string[][]|null
      */
     public function getLiensEntreprisesEntreprises(): ?array
     {
@@ -126,7 +126,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des d'autres noeuds entreprises.
      *
-     * @param mixed[][]|null $liensEntreprisesEntreprises
+     * @param string[][]|null $liensEntreprisesEntreprises
      */
     public function setLiensEntreprisesEntreprises(?array $liensEntreprisesEntreprises): self
     {
