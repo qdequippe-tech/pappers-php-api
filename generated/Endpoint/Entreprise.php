@@ -49,6 +49,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `departement` : gratuit
      * - `nomenclature_code_naf` : gratuit
      * - `labels` : gratuit
+     * - `micro_entreprise`: gratuit
      *
      * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
      *

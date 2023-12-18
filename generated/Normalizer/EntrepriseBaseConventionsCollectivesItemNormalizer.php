@@ -42,6 +42,9 @@ class EntrepriseBaseConventionsCollectivesItemNormalizer implements Denormalizer
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new EntrepriseBaseConventionsCollectivesItem();
+        if (\array_key_exists('pourcentage', $data) && \is_int($data['pourcentage'])) {
+            $data['pourcentage'] = (float) $data['pourcentage'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -62,6 +65,12 @@ class EntrepriseBaseConventionsCollectivesItemNormalizer implements Denormalizer
             unset($data['confirmee']);
         } elseif (\array_key_exists('confirmee', $data) && null === $data['confirmee']) {
             $object->setConfirmee(null);
+        }
+        if (\array_key_exists('pourcentage', $data) && null !== $data['pourcentage']) {
+            $object->setPourcentage($data['pourcentage']);
+            unset($data['pourcentage']);
+        } elseif (\array_key_exists('pourcentage', $data) && null === $data['pourcentage']) {
+            $object->setPourcentage(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -88,6 +97,9 @@ class EntrepriseBaseConventionsCollectivesItemNormalizer implements Denormalizer
         }
         if ($object->isInitialized('confirmee') && null !== $object->getConfirmee()) {
             $data['confirmee'] = $object->getConfirmee();
+        }
+        if ($object->isInitialized('pourcentage') && null !== $object->getPourcentage()) {
+            $data['pourcentage'] = $object->getPourcentage();
         }
         foreach ($object as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

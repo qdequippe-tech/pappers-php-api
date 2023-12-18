@@ -369,6 +369,12 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $associeUnique;
     /**
+     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
+     *
+     * @var bool|null
+     */
+    protected $microEntreprise;
+    /**
      * Liste des établissements de l'entreprise.
      *
      * @var EtablissementFiche[]|null
@@ -1580,6 +1586,25 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['associeUnique'] = true;
         $this->associeUnique = $associeUnique;
+
+        return $this;
+    }
+
+    /**
+     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
+     */
+    public function getMicroEntreprise(): ?bool
+    {
+        return $this->microEntreprise;
+    }
+
+    /**
+     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
+     */
+    public function setMicroEntreprise(?bool $microEntreprise): self
+    {
+        $this->initialized['microEntreprise'] = true;
+        $this->microEntreprise = $microEntreprise;
 
         return $this;
     }
