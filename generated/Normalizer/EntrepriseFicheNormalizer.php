@@ -406,6 +406,12 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         } elseif (\array_key_exists('associe_unique', $data) && null === $data['associe_unique']) {
             $object->setAssocieUnique(null);
         }
+        if (\array_key_exists('micro_entreprise', $data) && null !== $data['micro_entreprise']) {
+            $object->setMicroEntreprise($data['micro_entreprise']);
+            unset($data['micro_entreprise']);
+        } elseif (\array_key_exists('micro_entreprise', $data) && null === $data['micro_entreprise']) {
+            $object->setMicroEntreprise(null);
+        }
         if (\array_key_exists('etablissements', $data) && null !== $data['etablissements']) {
             $values_1 = [];
             foreach ($data['etablissements'] as $value_1) {
@@ -729,6 +735,9 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         }
         if ($object->isInitialized('associeUnique') && null !== $object->getAssocieUnique()) {
             $data['associe_unique'] = $object->getAssocieUnique();
+        }
+        if ($object->isInitialized('microEntreprise') && null !== $object->getMicroEntreprise()) {
+            $data['micro_entreprise'] = $object->getMicroEntreprise();
         }
         if ($object->isInitialized('etablissements') && null !== $object->getEtablissements()) {
             $values_1 = [];

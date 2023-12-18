@@ -31,6 +31,12 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
      * @var bool|null
      */
     protected $confirmee;
+    /**
+     * Pourcentage de fiabilité de l'estimation. Si la convention est confirmée, vaut null.
+     *
+     * @var float|null
+     */
+    protected $pourcentage;
 
     /**
      * Nom de la convention collective.
@@ -85,6 +91,25 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
     {
         $this->initialized['confirmee'] = true;
         $this->confirmee = $confirmee;
+
+        return $this;
+    }
+
+    /**
+     * Pourcentage de fiabilité de l'estimation. Si la convention est confirmée, vaut null.
+     */
+    public function getPourcentage(): ?float
+    {
+        return $this->pourcentage;
+    }
+
+    /**
+     * Pourcentage de fiabilité de l'estimation. Si la convention est confirmée, vaut null.
+     */
+    public function setPourcentage(?float $pourcentage): self
+    {
+        $this->initialized['pourcentage'] = true;
+        $this->pourcentage = $pourcentage;
 
         return $this;
     }
