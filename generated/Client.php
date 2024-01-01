@@ -27,81 +27,6 @@ use Qdequippe\Pappers\Api\Endpoint\SurveillanceDirigeant;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceEntreprise;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceListeInformations;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceNotificationsDelete;
-use Qdequippe\Pappers\Api\Exception\AssociationBadRequestException;
-use Qdequippe\Pappers\Api\Exception\AssociationNotFoundException;
-use Qdequippe\Pappers\Api\Exception\AssociationServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\AssociationUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\CartographieBadRequestException;
-use Qdequippe\Pappers\Api\Exception\CartographieNotFoundException;
-use Qdequippe\Pappers\Api\Exception\CartographieUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException;
-use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException;
-use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeBadRequestException;
-use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeNotFoundException;
-use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsBadRequestException;
-use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsForbiddenException;
-use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsNotFoundException;
-use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiBadRequestException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiNotFoundException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersBadRequestException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersNotFoundException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\DocumentStatusBadRequestException;
-use Qdequippe\Pappers\Api\Exception\DocumentStatusNotFoundException;
-use Qdequippe\Pappers\Api\Exception\DocumentStatusServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\DocumentStatusUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\DocumentTelechargementBadRequestException;
-use Qdequippe\Pappers\Api\Exception\DocumentTelechargementNotFoundException;
-use Qdequippe\Pappers\Api\Exception\DocumentTelechargementServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\DocumentTelechargementUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\EntrepriseBadRequestException;
-use Qdequippe\Pappers\Api\Exception\EntrepriseNotFoundException;
-use Qdequippe\Pappers\Api\Exception\EntrepriseUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesNotFoundException;
-use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsNotFoundException;
-use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\RechercheDocumentsNotFoundException;
-use Qdequippe\Pappers\Api\Exception\RechercheDocumentsServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\RechercheDocumentsUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\RechercheNotFoundException;
-use Qdequippe\Pappers\Api\Exception\RecherchePublicationsNotFoundException;
-use Qdequippe\Pappers\Api\Exception\RecherchePublicationsServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\RecherchePublicationsUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\RechercheServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\RechercheUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\SuggestionsBadRequestException;
-use Qdequippe\Pappers\Api\Exception\SuiviJetonsServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\SuiviJetonsUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantBadRequestException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantForbiddenException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantNotFoundException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseBadRequestException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseForbiddenException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseNotFoundException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsBadRequestException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsNotFoundException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsUnauthorizedException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteBadRequestException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteNotFoundException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteServiceUnavailableException;
-use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteUnauthorizedException;
 use Qdequippe\Pappers\Api\Model\Association;
 use Qdequippe\Pappers\Api\Model\Cartographie;
 use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
@@ -124,7 +49,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
+class Client extends Runtime\Client\Client
 {
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Si vous indiquez le SIREN, tous les établissements associés à ce SIREN seront renvoyés dans la clé `etablissements`. Si vous indiquez le SIRET, seul l'établissement associé sera renvoyé dans la clé `etablissement`.
@@ -168,9 +93,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return EntrepriseFiche|ResponseInterface|null
      *
-     * @throws EntrepriseBadRequestException
-     * @throws EntrepriseUnauthorizedException
-     * @throws EntrepriseNotFoundException
+     * @throws Exception\EntrepriseBadRequestException
+     * @throws Exception\EntrepriseUnauthorizedException
+     * @throws Exception\EntrepriseNotFoundException
      */
     public function entreprise(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -192,10 +117,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return Association|ResponseInterface|null
      *
-     * @throws AssociationBadRequestException
-     * @throws AssociationUnauthorizedException
-     * @throws AssociationNotFoundException
-     * @throws AssociationServiceUnavailableException
+     * @throws Exception\AssociationBadRequestException
+     * @throws Exception\AssociationUnauthorizedException
+     * @throws Exception\AssociationNotFoundException
+     * @throws Exception\AssociationServiceUnavailableException
      */
     public function association(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -283,9 +208,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return RechercheGetResponse200|ResponseInterface|null
      *
-     * @throws RechercheUnauthorizedException
-     * @throws RechercheNotFoundException
-     * @throws RechercheServiceUnavailableException
+     * @throws Exception\RechercheUnauthorizedException
+     * @throws Exception\RechercheNotFoundException
+     * @throws Exception\RechercheServiceUnavailableException
      */
     public function recherche(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -357,9 +282,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return RechercheDirigeantsGetResponse200|ResponseInterface|null
      *
-     * @throws RechercheDirigeantsUnauthorizedException
-     * @throws RechercheDirigeantsNotFoundException
-     * @throws RechercheDirigeantsServiceUnavailableException
+     * @throws Exception\RechercheDirigeantsUnauthorizedException
+     * @throws Exception\RechercheDirigeantsNotFoundException
+     * @throws Exception\RechercheDirigeantsServiceUnavailableException
      */
     public function rechercheDirigeants(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -431,9 +356,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return RechercheBeneficiairesGetResponse200|ResponseInterface|null
      *
-     * @throws RechercheBeneficiairesUnauthorizedException
-     * @throws RechercheBeneficiairesNotFoundException
-     * @throws RechercheBeneficiairesServiceUnavailableException
+     * @throws Exception\RechercheBeneficiairesUnauthorizedException
+     * @throws Exception\RechercheBeneficiairesNotFoundException
+     * @throws Exception\RechercheBeneficiairesServiceUnavailableException
      */
     public function rechercheBeneficiaires(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -505,9 +430,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return RechercheDocumentsGetResponse200|ResponseInterface|null
      *
-     * @throws RechercheDocumentsUnauthorizedException
-     * @throws RechercheDocumentsNotFoundException
-     * @throws RechercheDocumentsServiceUnavailableException
+     * @throws Exception\RechercheDocumentsUnauthorizedException
+     * @throws Exception\RechercheDocumentsNotFoundException
+     * @throws Exception\RechercheDocumentsServiceUnavailableException
      */
     public function rechercheDocuments(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -579,9 +504,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return RecherchePublicationsGetResponse200|ResponseInterface|null
      *
-     * @throws RecherchePublicationsUnauthorizedException
-     * @throws RecherchePublicationsNotFoundException
-     * @throws RecherchePublicationsServiceUnavailableException
+     * @throws Exception\RecherchePublicationsUnauthorizedException
+     * @throws Exception\RecherchePublicationsNotFoundException
+     * @throws Exception\RecherchePublicationsServiceUnavailableException
      */
     public function recherchePublications(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -602,7 +527,7 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return SuggestionsGetResponse200|ResponseInterface|null
      *
-     * @throws SuggestionsBadRequestException
+     * @throws Exception\SuggestionsBadRequestException
      */
     public function suggestions(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -623,10 +548,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws ComptesAnnuelsBadRequestException
-     * @throws ComptesAnnuelsUnauthorizedException
-     * @throws ComptesAnnuelsNotFoundException
-     * @throws ComptesAnnuelsServiceUnavailableException
+     * @throws Exception\ComptesAnnuelsBadRequestException
+     * @throws Exception\ComptesAnnuelsUnauthorizedException
+     * @throws Exception\ComptesAnnuelsNotFoundException
+     * @throws Exception\ComptesAnnuelsServiceUnavailableException
      */
     public function comptesAnnuels(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -656,9 +581,9 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return Cartographie|ResponseInterface|null
      *
-     * @throws CartographieBadRequestException
-     * @throws CartographieUnauthorizedException
-     * @throws CartographieNotFoundException
+     * @throws Exception\CartographieBadRequestException
+     * @throws Exception\CartographieUnauthorizedException
+     * @throws Exception\CartographieNotFoundException
      */
     public function cartographie(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -678,10 +603,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws DocumentTelechargementBadRequestException
-     * @throws DocumentTelechargementUnauthorizedException
-     * @throws DocumentTelechargementNotFoundException
-     * @throws DocumentTelechargementServiceUnavailableException
+     * @throws Exception\DocumentTelechargementBadRequestException
+     * @throws Exception\DocumentTelechargementUnauthorizedException
+     * @throws Exception\DocumentTelechargementNotFoundException
+     * @throws Exception\DocumentTelechargementServiceUnavailableException
      */
     public function documentTelechargement(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -702,10 +627,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws DocumentExtraitPappersBadRequestException
-     * @throws DocumentExtraitPappersUnauthorizedException
-     * @throws DocumentExtraitPappersNotFoundException
-     * @throws DocumentExtraitPappersServiceUnavailableException
+     * @throws Exception\DocumentExtraitPappersBadRequestException
+     * @throws Exception\DocumentExtraitPappersUnauthorizedException
+     * @throws Exception\DocumentExtraitPappersNotFoundException
+     * @throws Exception\DocumentExtraitPappersServiceUnavailableException
      */
     public function documentExtraitPappers(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -726,10 +651,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws DocumentExtraitInpiBadRequestException
-     * @throws DocumentExtraitInpiUnauthorizedException
-     * @throws DocumentExtraitInpiNotFoundException
-     * @throws DocumentExtraitInpiServiceUnavailableException
+     * @throws Exception\DocumentExtraitInpiBadRequestException
+     * @throws Exception\DocumentExtraitInpiUnauthorizedException
+     * @throws Exception\DocumentExtraitInpiNotFoundException
+     * @throws Exception\DocumentExtraitInpiServiceUnavailableException
      */
     public function documentExtraitInpi(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -750,10 +675,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws DocumentAvisSituationInseeBadRequestException
-     * @throws DocumentAvisSituationInseeUnauthorizedException
-     * @throws DocumentAvisSituationInseeNotFoundException
-     * @throws DocumentAvisSituationInseeServiceUnavailableException
+     * @throws Exception\DocumentAvisSituationInseeBadRequestException
+     * @throws Exception\DocumentAvisSituationInseeUnauthorizedException
+     * @throws Exception\DocumentAvisSituationInseeNotFoundException
+     * @throws Exception\DocumentAvisSituationInseeServiceUnavailableException
      */
     public function documentAvisSituationInsee(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -774,10 +699,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws DocumentStatusBadRequestException
-     * @throws DocumentStatusUnauthorizedException
-     * @throws DocumentStatusNotFoundException
-     * @throws DocumentStatusServiceUnavailableException
+     * @throws Exception\DocumentStatusBadRequestException
+     * @throws Exception\DocumentStatusUnauthorizedException
+     * @throws Exception\DocumentStatusNotFoundException
+     * @throws Exception\DocumentStatusServiceUnavailableException
      */
     public function documentStatus(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -801,11 +726,11 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws DocumentBeneficiairesEffectifsBadRequestException
-     * @throws DocumentBeneficiairesEffectifsUnauthorizedException
-     * @throws DocumentBeneficiairesEffectifsForbiddenException
-     * @throws DocumentBeneficiairesEffectifsNotFoundException
-     * @throws DocumentBeneficiairesEffectifsServiceUnavailableException
+     * @throws Exception\DocumentBeneficiairesEffectifsBadRequestException
+     * @throws Exception\DocumentBeneficiairesEffectifsUnauthorizedException
+     * @throws Exception\DocumentBeneficiairesEffectifsForbiddenException
+     * @throws Exception\DocumentBeneficiairesEffectifsNotFoundException
+     * @throws Exception\DocumentBeneficiairesEffectifsServiceUnavailableException
      */
     public function documentBeneficiairesEffectifs(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -824,8 +749,8 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return SuiviJetonsGetResponse200|ResponseInterface|null
      *
-     * @throws SuiviJetonsUnauthorizedException
-     * @throws SuiviJetonsServiceUnavailableException
+     * @throws Exception\SuiviJetonsUnauthorizedException
+     * @throws Exception\SuiviJetonsServiceUnavailableException
      */
     public function suiviJetons(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -846,11 +771,11 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ListePostResponse200|ListePostResponse201|ResponseInterface|null
      *
-     * @throws SurveillanceEntrepriseBadRequestException
-     * @throws SurveillanceEntrepriseUnauthorizedException
-     * @throws SurveillanceEntrepriseForbiddenException
-     * @throws SurveillanceEntrepriseNotFoundException
-     * @throws SurveillanceEntrepriseServiceUnavailableException
+     * @throws Exception\SurveillanceEntrepriseBadRequestException
+     * @throws Exception\SurveillanceEntrepriseUnauthorizedException
+     * @throws Exception\SurveillanceEntrepriseForbiddenException
+     * @throws Exception\SurveillanceEntrepriseNotFoundException
+     * @throws Exception\SurveillanceEntrepriseServiceUnavailableException
      */
     public function surveillanceEntreprise(array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -873,10 +798,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ListeDeleteResponse200|ResponseInterface|null
      *
-     * @throws SurveillanceNotificationsDeleteBadRequestException
-     * @throws SurveillanceNotificationsDeleteUnauthorizedException
-     * @throws SurveillanceNotificationsDeleteNotFoundException
-     * @throws SurveillanceNotificationsDeleteServiceUnavailableException
+     * @throws Exception\SurveillanceNotificationsDeleteBadRequestException
+     * @throws Exception\SurveillanceNotificationsDeleteUnauthorizedException
+     * @throws Exception\SurveillanceNotificationsDeleteNotFoundException
+     * @throws Exception\SurveillanceNotificationsDeleteServiceUnavailableException
      */
     public function surveillanceNotificationsDelete(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -897,11 +822,11 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ListePostResponse200|ListePostResponse201|ResponseInterface|null
      *
-     * @throws SurveillanceDirigeantBadRequestException
-     * @throws SurveillanceDirigeantUnauthorizedException
-     * @throws SurveillanceDirigeantForbiddenException
-     * @throws SurveillanceDirigeantNotFoundException
-     * @throws SurveillanceDirigeantServiceUnavailableException
+     * @throws Exception\SurveillanceDirigeantBadRequestException
+     * @throws Exception\SurveillanceDirigeantUnauthorizedException
+     * @throws Exception\SurveillanceDirigeantForbiddenException
+     * @throws Exception\SurveillanceDirigeantNotFoundException
+     * @throws Exception\SurveillanceDirigeantServiceUnavailableException
      */
     public function surveillanceDirigeant(array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -921,10 +846,10 @@ class Client extends \Qdequippe\Pappers\Api\Runtime\Client\Client
      *
      * @return ResponseInterface|null
      *
-     * @throws SurveillanceListeInformationsBadRequestException
-     * @throws SurveillanceListeInformationsUnauthorizedException
-     * @throws SurveillanceListeInformationsNotFoundException
-     * @throws SurveillanceListeInformationsServiceUnavailableException
+     * @throws Exception\SurveillanceListeInformationsBadRequestException
+     * @throws Exception\SurveillanceListeInformationsUnauthorizedException
+     * @throws Exception\SurveillanceListeInformationsNotFoundException
+     * @throws Exception\SurveillanceListeInformationsServiceUnavailableException
      */
     public function surveillanceListeInformations(ListeInformationsPostBody $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
