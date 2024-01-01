@@ -2,4 +2,6 @@
 
 namespace Qdequippe\Pappers\Api\Exception;
 
-interface ClientException extends ApiException {}
+interface ClientException extends ApiException
+{
+}
