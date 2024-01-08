@@ -124,7 +124,7 @@ class Client extends Runtime\Client\Client
      */
     public function association(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Qdequippe\Pappers\Api\Endpoint\Association($queryParameters), $fetch);
+        return $this->executeEndpoint(new Endpoint\Association($queryParameters), $fetch);
     }
 
     /**
@@ -587,7 +587,7 @@ class Client extends Runtime\Client\Client
      */
     public function cartographie(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new \Qdequippe\Pappers\Api\Endpoint\Cartographie($queryParameters), $fetch);
+        return $this->executeEndpoint(new Endpoint\Cartographie($queryParameters), $fetch);
     }
 
     /**
