@@ -26,4 +26,4 @@ jobs:
               run: PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix
 
             - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v5
+              uses: peter-evans/create-pull-request@v6
