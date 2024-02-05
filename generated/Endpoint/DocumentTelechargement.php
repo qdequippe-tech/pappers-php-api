@@ -69,7 +69,7 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
      * @throws DocumentTelechargementNotFoundException
      * @throws DocumentTelechargementServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

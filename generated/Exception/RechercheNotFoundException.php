@@ -11,7 +11,7 @@ class RechercheNotFoundException extends NotFoundException
      */
     private $response;
 
-    public function __construct(ResponseInterface $response = null)
+    public function __construct(?ResponseInterface $response = null)
     {
         parent::__construct('Aucune entreprise ne correspond aux critères indiqués.');
         $this->response = $response;

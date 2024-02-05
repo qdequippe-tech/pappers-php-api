@@ -30,6 +30,7 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
      * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
+     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
@@ -106,7 +107,7 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'par_page', 'page', 'precision', 'q', 'type_dirigeant', 'qualite_dirigeant', 'nationalite_dirigeant', 'prenom_dirigeant', 'age_dirigeant_min', 'age_dirigeant_max', 'date_de_naissance_dirigeant_min', 'date_de_naissance_dirigeant_max', 'code_naf', 'departement', 'region', 'code_postal', 'convention_collective', 'categorie_juridique', 'entreprise_cessee', 'statut_rcs', 'objet_social', 'date_immatriculation_rcs_min', 'date_immatriculation_rcs_max', 'date_radiation_rcs_min', 'date_radiation_rcs_max', 'capital_min', 'capital_max', 'chiffre_affaires_min', 'chiffre_affaires_max', 'resultat_min', 'resultat_max', 'date_creation_min', 'date_creation_max', 'tranche_effectif_min', 'tranche_effectif_max', 'age_beneficiaire_min', 'age_beneficiaire_max', 'date_de_naissance_beneficiaire_min', 'date_de_naissance_beneficiaire_max', 'nationalite_beneficiaire', 'date_depot_document_min', 'date_depot_document_max', 'type_publication', 'date_publication_min', 'date_publication_max', 'siren']);
+        $optionsResolver->setDefined(['api_token', 'par_page', 'page', 'precision', 'q', 'type_dirigeant', 'qualite_dirigeant', 'nationalite_dirigeant', 'nom_dirigeant', 'prenom_dirigeant', 'age_dirigeant_min', 'age_dirigeant_max', 'date_de_naissance_dirigeant_min', 'date_de_naissance_dirigeant_max', 'code_naf', 'departement', 'region', 'code_postal', 'convention_collective', 'categorie_juridique', 'entreprise_cessee', 'statut_rcs', 'objet_social', 'date_immatriculation_rcs_min', 'date_immatriculation_rcs_max', 'date_radiation_rcs_min', 'date_radiation_rcs_max', 'capital_min', 'capital_max', 'chiffre_affaires_min', 'chiffre_affaires_max', 'resultat_min', 'resultat_max', 'date_creation_min', 'date_creation_max', 'tranche_effectif_min', 'tranche_effectif_max', 'age_beneficiaire_min', 'age_beneficiaire_max', 'date_de_naissance_beneficiaire_min', 'date_de_naissance_beneficiaire_max', 'nationalite_beneficiaire', 'date_depot_document_min', 'date_depot_document_max', 'type_publication', 'date_publication_min', 'date_publication_max', 'siren']);
         $optionsResolver->setRequired(['api_token']);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('api_token', ['string']);
@@ -117,6 +118,7 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
         $optionsResolver->addAllowedTypes('type_dirigeant', ['string']);
         $optionsResolver->addAllowedTypes('qualite_dirigeant', ['string']);
         $optionsResolver->addAllowedTypes('nationalite_dirigeant', ['string']);
+        $optionsResolver->addAllowedTypes('nom_dirigeant', ['string']);
         $optionsResolver->addAllowedTypes('prenom_dirigeant', ['string']);
         $optionsResolver->addAllowedTypes('age_dirigeant_min', ['int']);
         $optionsResolver->addAllowedTypes('age_dirigeant_max', ['int']);
@@ -167,7 +169,7 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
      * @throws RechercheDirigeantsNotFoundException
      * @throws RechercheDirigeantsServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

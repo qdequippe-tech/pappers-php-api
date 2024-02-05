@@ -187,6 +187,7 @@ class Client extends Runtime\Client\Client
      * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
+     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
@@ -230,6 +231,7 @@ class Client extends Runtime\Client\Client
      * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
+     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
@@ -339,6 +341,7 @@ class Client extends Runtime\Client\Client
      * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
+     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
@@ -410,6 +413,7 @@ class Client extends Runtime\Client\Client
      * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
+     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
@@ -482,6 +486,7 @@ class Client extends Runtime\Client\Client
      * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
+     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
      * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
@@ -777,7 +782,7 @@ class Client extends Runtime\Client\Client
      * @throws Exception\SurveillanceEntrepriseNotFoundException
      * @throws Exception\SurveillanceEntrepriseServiceUnavailableException
      */
-    public function surveillanceEntreprise(array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceEntreprise(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SurveillanceEntreprise($requestBody, $queryParameters), $fetch);
     }
@@ -828,7 +833,7 @@ class Client extends Runtime\Client\Client
      * @throws Exception\SurveillanceDirigeantNotFoundException
      * @throws Exception\SurveillanceDirigeantServiceUnavailableException
      */
-    public function surveillanceDirigeant(array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceDirigeant(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SurveillanceDirigeant($requestBody, $queryParameters), $fetch);
     }
@@ -851,7 +856,7 @@ class Client extends Runtime\Client\Client
      * @throws Exception\SurveillanceListeInformationsNotFoundException
      * @throws Exception\SurveillanceListeInformationsServiceUnavailableException
      */
-    public function surveillanceListeInformations(ListeInformationsPostBody $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function surveillanceListeInformations(?ListeInformationsPostBody $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SurveillanceListeInformations($requestBody, $queryParameters), $fetch);
     }

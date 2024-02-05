@@ -11,7 +11,7 @@ class EntrepriseNotFoundException extends NotFoundException
      */
     private $response;
 
-    public function __construct(ResponseInterface $response = null)
+    public function __construct(?ResponseInterface $response = null)
     {
         parent::__construct('Entreprise inexistante.');
         $this->response = $response;
