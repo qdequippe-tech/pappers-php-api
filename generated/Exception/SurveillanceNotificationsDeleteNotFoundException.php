@@ -11,7 +11,7 @@ class SurveillanceNotificationsDeleteNotFoundException extends NotFoundException
      */
     private $response;
 
-    public function __construct(ResponseInterface $response = null)
+    public function __construct(?ResponseInterface $response = null)
     {
         parent::__construct('Liste non trouvée.');
         $this->response = $response;

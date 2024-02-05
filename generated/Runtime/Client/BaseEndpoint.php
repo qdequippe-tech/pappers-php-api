@@ -9,6 +9,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class BaseEndpoint implements Endpoint
 {
+    protected $formParameters = [];
     protected $queryParameters = [];
     protected $headerParameters = [];
     protected $body;
@@ -21,7 +22,7 @@ abstract class BaseEndpoint implements Endpoint
 
     abstract public function getAuthenticationScopes(): array;
 
-    abstract protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null);
+    abstract protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null);
 
     protected function getExtraHeaders(): array
     {

@@ -11,7 +11,7 @@ class SurveillanceListeInformationsUnauthorizedException extends UnauthorizedExc
      */
     private $response;
 
-    public function __construct(ResponseInterface $response = null)
+    public function __construct(?ResponseInterface $response = null)
     {
         parent::__construct('Clé API incorrecte.');
         $this->response = $response;

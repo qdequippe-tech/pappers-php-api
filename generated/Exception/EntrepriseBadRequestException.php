@@ -11,7 +11,7 @@ class EntrepriseBadRequestException extends BadRequestException
      */
     private $response;
 
-    public function __construct(ResponseInterface $response = null)
+    public function __construct(?ResponseInterface $response = null)
     {
         parent::__construct('Paramètres de la requête incorrects.');
         $this->response = $response;

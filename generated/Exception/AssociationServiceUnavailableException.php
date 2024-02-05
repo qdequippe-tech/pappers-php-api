@@ -11,7 +11,7 @@ class AssociationServiceUnavailableException extends ServiceUnavailableException
      */
     private $response;
 
-    public function __construct(ResponseInterface $response = null)
+    public function __construct(?ResponseInterface $response = null)
     {
         parent::__construct('Service momentanément indisponible.');
         $this->response = $response;

@@ -11,7 +11,7 @@ class RechercheDirigeantsNotFoundException extends NotFoundException
      */
     private $response;
 
-    public function __construct(ResponseInterface $response = null)
+    public function __construct(?ResponseInterface $response = null)
     {
         parent::__construct('Aucun dirigeant ne correspond aux critères indiqués.');
         $this->response = $response;

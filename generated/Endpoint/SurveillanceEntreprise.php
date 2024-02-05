@@ -31,7 +31,7 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
      * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
      *             }
      */
-    public function __construct(array $requestBody = null, array $queryParameters = [])
+    public function __construct(?array $requestBody = null, array $queryParameters = [])
     {
         $this->body = $requestBody;
         $this->queryParameters = $queryParameters;
@@ -82,7 +82,7 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
      * @throws SurveillanceEntrepriseNotFoundException
      * @throws SurveillanceEntrepriseServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
