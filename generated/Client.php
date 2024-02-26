@@ -8,6 +8,8 @@ use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Message\ResponseInterface;
+use Qdequippe\Pappers\Api\Endpoint\Association;
+use Qdequippe\Pappers\Api\Endpoint\Cartographie;
 use Qdequippe\Pappers\Api\Endpoint\ComptesAnnuels;
 use Qdequippe\Pappers\Api\Endpoint\DocumentAvisSituationInsee;
 use Qdequippe\Pappers\Api\Endpoint\DocumentBeneficiairesEffectifs;
@@ -27,21 +29,8 @@ use Qdequippe\Pappers\Api\Endpoint\SurveillanceDirigeant;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceEntreprise;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceListeInformations;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceNotificationsDelete;
-use Qdequippe\Pappers\Api\Model\Association;
-use Qdequippe\Pappers\Api\Model\Cartographie;
-use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
-use Qdequippe\Pappers\Api\Model\ListeDeleteResponse200;
 use Qdequippe\Pappers\Api\Model\ListeInformationsPostBody;
 use Qdequippe\Pappers\Api\Model\ListePostBodyItem;
-use Qdequippe\Pappers\Api\Model\ListePostResponse200;
-use Qdequippe\Pappers\Api\Model\ListePostResponse201;
-use Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200;
-use Qdequippe\Pappers\Api\Model\RechercheDirigeantsGetResponse200;
-use Qdequippe\Pappers\Api\Model\RechercheDocumentsGetResponse200;
-use Qdequippe\Pappers\Api\Model\RechercheGetResponse200;
-use Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200;
-use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200;
-use Qdequippe\Pappers\Api\Model\SuiviJetonsGetResponse200;
 use Qdequippe\Pappers\Api\Normalizer\JaneObjectNormalizer;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
@@ -91,7 +80,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return EntrepriseFiche|ResponseInterface|null
+     * @return Model\EntrepriseFiche|ResponseInterface|null
      *
      * @throws Exception\EntrepriseBadRequestException
      * @throws Exception\EntrepriseUnauthorizedException
@@ -115,7 +104,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Association|ResponseInterface|null
+     * @return Model\Association|ResponseInterface|null
      *
      * @throws Exception\AssociationBadRequestException
      * @throws Exception\AssociationUnauthorizedException
@@ -124,7 +113,7 @@ class Client extends Runtime\Client\Client
      */
     public function association(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new Endpoint\Association($queryParameters), $fetch);
+        return $this->executeEndpoint(new Association($queryParameters), $fetch);
     }
 
     /**
@@ -207,7 +196,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RechercheGetResponse200|ResponseInterface|null
+     * @return Model\RechercheGetResponse200|ResponseInterface|null
      *
      * @throws Exception\RechercheUnauthorizedException
      * @throws Exception\RechercheNotFoundException
@@ -282,7 +271,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RechercheDirigeantsGetResponse200|ResponseInterface|null
+     * @return Model\RechercheDirigeantsGetResponse200|ResponseInterface|null
      *
      * @throws Exception\RechercheDirigeantsUnauthorizedException
      * @throws Exception\RechercheDirigeantsNotFoundException
@@ -357,7 +346,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RechercheBeneficiairesGetResponse200|ResponseInterface|null
+     * @return Model\RechercheBeneficiairesGetResponse200|ResponseInterface|null
      *
      * @throws Exception\RechercheBeneficiairesUnauthorizedException
      * @throws Exception\RechercheBeneficiairesNotFoundException
@@ -432,7 +421,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RechercheDocumentsGetResponse200|ResponseInterface|null
+     * @return Model\RechercheDocumentsGetResponse200|ResponseInterface|null
      *
      * @throws Exception\RechercheDocumentsUnauthorizedException
      * @throws Exception\RechercheDocumentsNotFoundException
@@ -507,7 +496,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return RecherchePublicationsGetResponse200|ResponseInterface|null
+     * @return Model\RecherchePublicationsGetResponse200|ResponseInterface|null
      *
      * @throws Exception\RecherchePublicationsUnauthorizedException
      * @throws Exception\RecherchePublicationsNotFoundException
@@ -530,7 +519,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SuggestionsGetResponse200|ResponseInterface|null
+     * @return Model\SuggestionsGetResponse200|ResponseInterface|null
      *
      * @throws Exception\SuggestionsBadRequestException
      */
@@ -584,7 +573,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Cartographie|ResponseInterface|null
+     * @return Model\Cartographie|ResponseInterface|null
      *
      * @throws Exception\CartographieBadRequestException
      * @throws Exception\CartographieUnauthorizedException
@@ -592,7 +581,7 @@ class Client extends Runtime\Client\Client
      */
     public function cartographie(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new Endpoint\Cartographie($queryParameters), $fetch);
+        return $this->executeEndpoint(new Cartographie($queryParameters), $fetch);
     }
 
     /**
@@ -752,7 +741,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return SuiviJetonsGetResponse200|ResponseInterface|null
+     * @return Model\SuiviJetonsGetResponse200|ResponseInterface|null
      *
      * @throws Exception\SuiviJetonsUnauthorizedException
      * @throws Exception\SuiviJetonsServiceUnavailableException
@@ -774,7 +763,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListePostResponse200|ListePostResponse201|ResponseInterface|null
+     * @return Model\ListePostResponse200|Model\ListePostResponse201|ResponseInterface|null
      *
      * @throws Exception\SurveillanceEntrepriseBadRequestException
      * @throws Exception\SurveillanceEntrepriseUnauthorizedException
@@ -801,7 +790,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListeDeleteResponse200|ResponseInterface|null
+     * @return Model\ListeDeleteResponse200|ResponseInterface|null
      *
      * @throws Exception\SurveillanceNotificationsDeleteBadRequestException
      * @throws Exception\SurveillanceNotificationsDeleteUnauthorizedException
@@ -825,7 +814,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ListePostResponse200|ListePostResponse201|ResponseInterface|null
+     * @return Model\ListePostResponse200|Model\ListePostResponse201|ResponseInterface|null
      *
      * @throws Exception\SurveillanceDirigeantBadRequestException
      * @throws Exception\SurveillanceDirigeantUnauthorizedException
