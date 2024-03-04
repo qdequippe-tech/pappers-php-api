@@ -537,9 +537,31 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('association', $data) && null === $data['association']) {
                 $object->setAssociation(null);
             }
-            foreach ($data as $key => $value_10) {
+            if (\array_key_exists('labels', $data) && null !== $data['labels']) {
+                $values_10 = [];
+                foreach ($data['labels'] as $value_10) {
+                    $values_10[] = $this->denormalizer->denormalize($value_10, 'Qdequippe\\Pappers\\Api\\Model\\Labels', 'json', $context);
+                }
+                $object->setLabels($values_10);
+                unset($data['labels']);
+            } elseif (\array_key_exists('labels', $data) && null === $data['labels']) {
+                $object->setLabels(null);
+            }
+            if (\array_key_exists('scoring_non_financier', $data) && null !== $data['scoring_non_financier']) {
+                $object->setScoringNonFinancier($this->denormalizer->denormalize($data['scoring_non_financier'], 'Qdequippe\\Pappers\\Api\\Model\\ScoringNonFinancier', 'json', $context));
+                unset($data['scoring_non_financier']);
+            } elseif (\array_key_exists('scoring_non_financier', $data) && null === $data['scoring_non_financier']) {
+                $object->setScoringNonFinancier(null);
+            }
+            if (\array_key_exists('scoring_financier', $data) && null !== $data['scoring_financier']) {
+                $object->setScoringFinancier($this->denormalizer->denormalize($data['scoring_financier'], 'Qdequippe\\Pappers\\Api\\Model\\ScoringFinancier', 'json', $context));
+                unset($data['scoring_financier']);
+            } elseif (\array_key_exists('scoring_financier', $data) && null === $data['scoring_financier']) {
+                $object->setScoringFinancier(null);
+            }
+            foreach ($data as $key => $value_11) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_10;
+                    $object[$key] = $value_11;
                 }
             }
 
@@ -814,9 +836,22 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('association') && null !== $object->getAssociation()) {
                 $data['association'] = $this->normalizer->normalize($object->getAssociation(), 'json', $context);
             }
-            foreach ($object as $key => $value_10) {
+            if ($object->isInitialized('labels') && null !== $object->getLabels()) {
+                $values_10 = [];
+                foreach ($object->getLabels() as $value_10) {
+                    $values_10[] = $this->normalizer->normalize($value_10, 'json', $context);
+                }
+                $data['labels'] = $values_10;
+            }
+            if ($object->isInitialized('scoringNonFinancier') && null !== $object->getScoringNonFinancier()) {
+                $data['scoring_non_financier'] = $this->normalizer->normalize($object->getScoringNonFinancier(), 'json', $context);
+            }
+            if ($object->isInitialized('scoringFinancier') && null !== $object->getScoringFinancier()) {
+                $data['scoring_financier'] = $this->normalizer->normalize($object->getScoringFinancier(), 'json', $context);
+            }
+            foreach ($object as $key => $value_11) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_10;
+                    $data[$key] = $value_11;
                 }
             }
 
@@ -1354,9 +1389,31 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('association', $data) && null === $data['association']) {
                 $object->setAssociation(null);
             }
-            foreach ($data as $key => $value_10) {
+            if (\array_key_exists('labels', $data) && null !== $data['labels']) {
+                $values_10 = [];
+                foreach ($data['labels'] as $value_10) {
+                    $values_10[] = $this->denormalizer->denormalize($value_10, 'Qdequippe\\Pappers\\Api\\Model\\Labels', 'json', $context);
+                }
+                $object->setLabels($values_10);
+                unset($data['labels']);
+            } elseif (\array_key_exists('labels', $data) && null === $data['labels']) {
+                $object->setLabels(null);
+            }
+            if (\array_key_exists('scoring_non_financier', $data) && null !== $data['scoring_non_financier']) {
+                $object->setScoringNonFinancier($this->denormalizer->denormalize($data['scoring_non_financier'], 'Qdequippe\\Pappers\\Api\\Model\\ScoringNonFinancier', 'json', $context));
+                unset($data['scoring_non_financier']);
+            } elseif (\array_key_exists('scoring_non_financier', $data) && null === $data['scoring_non_financier']) {
+                $object->setScoringNonFinancier(null);
+            }
+            if (\array_key_exists('scoring_financier', $data) && null !== $data['scoring_financier']) {
+                $object->setScoringFinancier($this->denormalizer->denormalize($data['scoring_financier'], 'Qdequippe\\Pappers\\Api\\Model\\ScoringFinancier', 'json', $context));
+                unset($data['scoring_financier']);
+            } elseif (\array_key_exists('scoring_financier', $data) && null === $data['scoring_financier']) {
+                $object->setScoringFinancier(null);
+            }
+            foreach ($data as $key => $value_11) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_10;
+                    $object[$key] = $value_11;
                 }
             }
 
@@ -1636,9 +1693,22 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('association') && null !== $object->getAssociation()) {
                 $data['association'] = $this->normalizer->normalize($object->getAssociation(), 'json', $context);
             }
-            foreach ($object as $key => $value_10) {
+            if ($object->isInitialized('labels') && null !== $object->getLabels()) {
+                $values_10 = [];
+                foreach ($object->getLabels() as $value_10) {
+                    $values_10[] = $this->normalizer->normalize($value_10, 'json', $context);
+                }
+                $data['labels'] = $values_10;
+            }
+            if ($object->isInitialized('scoringNonFinancier') && null !== $object->getScoringNonFinancier()) {
+                $data['scoring_non_financier'] = $this->normalizer->normalize($object->getScoringNonFinancier(), 'json', $context);
+            }
+            if ($object->isInitialized('scoringFinancier') && null !== $object->getScoringFinancier()) {
+                $data['scoring_financier'] = $this->normalizer->normalize($object->getScoringFinancier(), 'json', $context);
+            }
+            foreach ($object as $key => $value_11) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_10;
+                    $data[$key] = $value_11;
                 }
             }
 

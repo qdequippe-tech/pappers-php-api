@@ -2,7 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class RepresentantRecherche extends \ArrayObject
+class RepresentantSuggestions extends \ArrayObject
 {
     /**
      * @var array
@@ -44,7 +44,7 @@ class RepresentantRecherche extends \ArrayObject
      */
     protected $siren;
     /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
+     * Forme juridique du représentant si personne morale.
      *
      * @var string|null
      */
@@ -169,36 +169,6 @@ class RepresentantRecherche extends \ArrayObject
      * @var string|null
      */
     protected $codePays;
-    /**
-     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
-     *
-     * @var PersonnePolitiquementExposee|null
-     */
-    protected $personnePolitiquementExposee;
-    /**
-     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
-     *
-     * @var bool|null
-     */
-    protected $sanctionsEnCours;
-    /**
-     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
-     *
-     * @var Sanction[]|null
-     */
-    protected $sanctions;
-    /**
-     * Vaut vrai si le représentant est toujours à son poste.
-     *
-     * @var bool|null
-     */
-    protected $actuel;
-    /**
-     * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
-     *
-     * @var string|null
-     */
-    protected $dateDepartDePoste;
 
     /**
      * Qualité du représentant.
@@ -296,7 +266,7 @@ class RepresentantRecherche extends \ArrayObject
     }
 
     /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
+     * Forme juridique du représentant si personne morale.
      */
     public function getFormeJuridique(): ?string
     {
@@ -304,7 +274,7 @@ class RepresentantRecherche extends \ArrayObject
     }
 
     /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
+     * Forme juridique du représentant si personne morale.
      */
     public function setFormeJuridique(?string $formeJuridique): self
     {
@@ -690,105 +660,6 @@ class RepresentantRecherche extends \ArrayObject
     {
         $this->initialized['codePays'] = true;
         $this->codePays = $codePays;
-
-        return $this;
-    }
-
-    /**
-     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
-     */
-    public function getPersonnePolitiquementExposee(): ?PersonnePolitiquementExposee
-    {
-        return $this->personnePolitiquementExposee;
-    }
-
-    /**
-     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
-     */
-    public function setPersonnePolitiquementExposee(?PersonnePolitiquementExposee $personnePolitiquementExposee): self
-    {
-        $this->initialized['personnePolitiquementExposee'] = true;
-        $this->personnePolitiquementExposee = $personnePolitiquementExposee;
-
-        return $this;
-    }
-
-    /**
-     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
-     */
-    public function getSanctionsEnCours(): ?bool
-    {
-        return $this->sanctionsEnCours;
-    }
-
-    /**
-     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
-     */
-    public function setSanctionsEnCours(?bool $sanctionsEnCours): self
-    {
-        $this->initialized['sanctionsEnCours'] = true;
-        $this->sanctionsEnCours = $sanctionsEnCours;
-
-        return $this;
-    }
-
-    /**
-     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
-     *
-     * @return Sanction[]|null
-     */
-    public function getSanctions(): ?array
-    {
-        return $this->sanctions;
-    }
-
-    /**
-     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
-     *
-     * @param Sanction[]|null $sanctions
-     */
-    public function setSanctions(?array $sanctions): self
-    {
-        $this->initialized['sanctions'] = true;
-        $this->sanctions = $sanctions;
-
-        return $this;
-    }
-
-    /**
-     * Vaut vrai si le représentant est toujours à son poste.
-     */
-    public function getActuel(): ?bool
-    {
-        return $this->actuel;
-    }
-
-    /**
-     * Vaut vrai si le représentant est toujours à son poste.
-     */
-    public function setActuel(?bool $actuel): self
-    {
-        $this->initialized['actuel'] = true;
-        $this->actuel = $actuel;
-
-        return $this;
-    }
-
-    /**
-     * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
-     */
-    public function getDateDepartDePoste(): ?string
-    {
-        return $this->dateDepartDePoste;
-    }
-
-    /**
-     * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
-     */
-    public function setDateDepartDePoste(?string $dateDepartDePoste): self
-    {
-        $this->initialized['dateDepartDePoste'] = true;
-        $this->dateDepartDePoste = $dateDepartDePoste;
 
         return $this;
     }
