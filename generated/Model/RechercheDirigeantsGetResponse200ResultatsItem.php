@@ -170,6 +170,24 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $codePays;
     /**
+     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var PersonnePolitiquementExposee|null
+     */
+    protected $personnePolitiquementExposee;
+    /**
+     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var bool|null
+     */
+    protected $sanctionsEnCours;
+    /**
+     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var Sanction[]|null
+     */
+    protected $sanctions;
+    /**
      * Vaut vrai si le représentant est toujours à son poste.
      *
      * @var bool|null
@@ -684,6 +702,67 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     {
         $this->initialized['codePays'] = true;
         $this->codePays = $codePays;
+
+        return $this;
+    }
+
+    /**
+     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getPersonnePolitiquementExposee(): ?PersonnePolitiquementExposee
+    {
+        return $this->personnePolitiquementExposee;
+    }
+
+    /**
+     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setPersonnePolitiquementExposee(?PersonnePolitiquementExposee $personnePolitiquementExposee): self
+    {
+        $this->initialized['personnePolitiquementExposee'] = true;
+        $this->personnePolitiquementExposee = $personnePolitiquementExposee;
+
+        return $this;
+    }
+
+    /**
+     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getSanctionsEnCours(): ?bool
+    {
+        return $this->sanctionsEnCours;
+    }
+
+    /**
+     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setSanctionsEnCours(?bool $sanctionsEnCours): self
+    {
+        $this->initialized['sanctionsEnCours'] = true;
+        $this->sanctionsEnCours = $sanctionsEnCours;
+
+        return $this;
+    }
+
+    /**
+     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return Sanction[]|null
+     */
+    public function getSanctions(): ?array
+    {
+        return $this->sanctions;
+    }
+
+    /**
+     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param Sanction[]|null $sanctions
+     */
+    public function setSanctions(?array $sanctions): self
+    {
+        $this->initialized['sanctions'] = true;
+        $this->sanctions = $sanctions;
 
         return $this;
     }

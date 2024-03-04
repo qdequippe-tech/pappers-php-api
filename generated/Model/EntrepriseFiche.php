@@ -464,6 +464,24 @@ class EntrepriseFiche extends \ArrayObject
      * @var Association|null
      */
     protected $association;
+    /**
+     * Liste des labels de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var Labels[]|null
+     */
+    protected $labels;
+    /**
+     * Score extra-financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var ScoringNonFinancier|null
+     */
+    protected $scoringNonFinancier;
+    /**
+     * Score financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var ScoringFinancier|null
+     */
+    protected $scoringFinancier;
 
     /**
      * Le numéro SIREN de l'entreprise au format xxxxxxxxx.
@@ -1926,6 +1944,67 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['association'] = true;
         $this->association = $association;
+
+        return $this;
+    }
+
+    /**
+     * Liste des labels de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return Labels[]|null
+     */
+    public function getLabels(): ?array
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Liste des labels de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param Labels[]|null $labels
+     */
+    public function setLabels(?array $labels): self
+    {
+        $this->initialized['labels'] = true;
+        $this->labels = $labels;
+
+        return $this;
+    }
+
+    /**
+     * Score extra-financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getScoringNonFinancier(): ?ScoringNonFinancier
+    {
+        return $this->scoringNonFinancier;
+    }
+
+    /**
+     * Score extra-financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setScoringNonFinancier(?ScoringNonFinancier $scoringNonFinancier): self
+    {
+        $this->initialized['scoringNonFinancier'] = true;
+        $this->scoringNonFinancier = $scoringNonFinancier;
+
+        return $this;
+    }
+
+    /**
+     * Score financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getScoringFinancier(): ?ScoringFinancier
+    {
+        return $this->scoringFinancier;
+    }
+
+    /**
+     * Score financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setScoringFinancier(?ScoringFinancier $scoringFinancier): self
+    {
+        $this->initialized['scoringFinancier'] = true;
+        $this->scoringFinancier = $scoringFinancier;
 
         return $this;
     }
