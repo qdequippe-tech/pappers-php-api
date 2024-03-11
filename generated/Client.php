@@ -11,6 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Endpoint\Association;
 use Qdequippe\Pappers\Api\Endpoint\Cartographie;
 use Qdequippe\Pappers\Api\Endpoint\ComptesAnnuels;
+use Qdequippe\Pappers\Api\Endpoint\Conformite;
 use Qdequippe\Pappers\Api\Endpoint\DocumentAvisSituationInsee;
 use Qdequippe\Pappers\Api\Endpoint\DocumentBeneficiairesEffectifs;
 use Qdequippe\Pappers\Api\Endpoint\DocumentExtraitInpi;
@@ -758,6 +759,32 @@ class Client extends Runtime\Client\Client
     public function documentScoringFinancier(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new DocumentScoringFinancier($queryParameters), $fetch);
+    }
+
+    /**
+     * Cette route vérifie le statut de personne politiquement exposée et la présence de sanctions internationales pour une personne physique.
+     *
+     * Pour vérifier le statut de dirigeants et bénéficiaires effectifs d'entreprises, vous pouvez directement utiliser la route `/entreprise` avec les champs supplémentaires `personne_politiquement_exposee` et `sanctions`.
+     *
+     * @param array $queryParameters {
+     *
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $nom Nom de la personne physique
+     * @var string $prenom Prénom de la personne physique
+     * @var string $date_de_naissance Date de naissance de la personne physique, au format AAAA-MM-JJ ou AAAA-MM
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return Model\ConformitePersonnePhysiqueGetResponse200|ResponseInterface|null
+     *
+     * @throws Exception\ConformiteBadRequestException
+     * @throws Exception\ConformiteUnauthorizedException
+     * @throws Exception\ConformiteServiceUnavailableException
+     */
+    public function conformite(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new Conformite($queryParameters), $fetch);
     }
 
     /**
