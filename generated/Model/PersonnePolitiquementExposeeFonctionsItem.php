@@ -52,7 +52,7 @@ class PersonnePolitiquementExposeeFonctionsItem extends \ArrayObject
     /**
      * Liste des sources.
      *
-     * @var PersonnePolitiquementExposeeFonctionsItemSourcesItem[]|null
+     * @var list<PersonnePolitiquementExposeeFonctionsItemSourcesItem>|null
      */
     protected $sources;
 
@@ -173,7 +173,7 @@ class PersonnePolitiquementExposeeFonctionsItem extends \ArrayObject
     /**
      * Liste des sources.
      *
-     * @return PersonnePolitiquementExposeeFonctionsItemSourcesItem[]|null
+     * @return list<PersonnePolitiquementExposeeFonctionsItemSourcesItem>|null
      */
     public function getSources(): ?array
     {
@@ -183,7 +183,7 @@ class PersonnePolitiquementExposeeFonctionsItem extends \ArrayObject
     /**
      * Liste des sources.
      *
-     * @param PersonnePolitiquementExposeeFonctionsItemSourcesItem[]|null $sources
+     * @param list<PersonnePolitiquementExposeeFonctionsItemSourcesItem>|null $sources
      */
     public function setSources(?array $sources): self
     {

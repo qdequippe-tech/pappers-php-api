@@ -46,7 +46,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Détails de l'acte.
      *
-     * @var EntrepriseFichedepotsActesItemActesItem[]|null
+     * @var list<EntrepriseFichedepotsActesItemActesItem>|null
      */
     protected $actes;
 
@@ -148,7 +148,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Détails de l'acte.
      *
-     * @return EntrepriseFichedepotsActesItemActesItem[]|null
+     * @return list<EntrepriseFichedepotsActesItemActesItem>|null
      */
     public function getActes(): ?array
     {
@@ -158,7 +158,7 @@ class EntrepriseFichedepotsActesItem extends \ArrayObject
     /**
      * Détails de l'acte.
      *
-     * @param EntrepriseFichedepotsActesItemActesItem[]|null $actes
+     * @param list<EntrepriseFichedepotsActesItemActesItem>|null $actes
      */
     public function setActes(?array $actes): self
     {

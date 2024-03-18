@@ -82,7 +82,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @var EntrepriseBaseConventionsCollectivesItem[]|null
+     * @var list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     protected $conventionsCollectives;
     /**
@@ -377,49 +377,49 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des établissements de l'entreprise.
      *
-     * @var EtablissementFiche[]|null
+     * @var list<EtablissementFiche>|null
      */
     protected $etablissements;
     /**
      * Liste des finances de l'entreprise.
      *
-     * @var EntrepriseFichefinancesItem[]|null
+     * @var list<EntrepriseFichefinancesItem>|null
      */
     protected $finances;
     /**
      * Liste des représentants de l'entreprise.
      *
-     * @var Representant[]|null
+     * @var list<Representant>|null
      */
     protected $representants;
     /**
      * Liste des bénéficiaires effectifs de l'entreprise (si disponibles).
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItem[]|null
+     * @var list<EntrepriseFichebeneficiairesEffectifsItem>|null
      */
     protected $beneficiairesEffectifs;
     /**
      * Liste des actes de l'entreprise.
      *
-     * @var EntrepriseFichedepotsActesItem[]|null
+     * @var list<EntrepriseFichedepotsActesItem>|null
      */
     protected $depotsActes;
     /**
      * Liste des comptes de l'entreprise.
      *
-     * @var EntrepriseFichecomptesItem[]|null
+     * @var list<EntrepriseFichecomptesItem>|null
      */
     protected $comptes;
     /**
      * Liste des publications au Bodacc de l'entreprise.
      *
-     * @var Bodacc[]|null
+     * @var list<Bodacc>|null
      */
     protected $publicationsBodacc;
     /**
      * Liste des procédures collectives de l'entreprise.
      *
-     * @var EntrepriseFicheproceduresCollectivesItem[]|null
+     * @var list<EntrepriseFicheproceduresCollectivesItem>|null
      */
     protected $proceduresCollectives;
     /**
@@ -455,7 +455,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des marques françaises déposées par l'entreprise. Uniquement présent si le paramètre "marques" a été mis à vrai.
      *
-     * @var EntrepriseFichemarquesItem[]|null
+     * @var list<EntrepriseFichemarquesItem>|null
      */
     protected $marques;
     /**
@@ -467,7 +467,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des labels de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var Labels[]|null
+     * @var list<Labels>|null
      */
     protected $labels;
     /**
@@ -695,7 +695,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @return EntrepriseBaseConventionsCollectivesItem[]|null
+     * @return list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     public function getConventionsCollectives(): ?array
     {
@@ -705,7 +705,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @param EntrepriseBaseConventionsCollectivesItem[]|null $conventionsCollectives
+     * @param list<EntrepriseBaseConventionsCollectivesItem>|null $conventionsCollectives
      */
     public function setConventionsCollectives(?array $conventionsCollectives): self
     {
@@ -1630,7 +1630,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des établissements de l'entreprise.
      *
-     * @return EtablissementFiche[]|null
+     * @return list<EtablissementFiche>|null
      */
     public function getEtablissements(): ?array
     {
@@ -1640,7 +1640,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des établissements de l'entreprise.
      *
-     * @param EtablissementFiche[]|null $etablissements
+     * @param list<EtablissementFiche>|null $etablissements
      */
     public function setEtablissements(?array $etablissements): self
     {
@@ -1653,7 +1653,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des finances de l'entreprise.
      *
-     * @return EntrepriseFichefinancesItem[]|null
+     * @return list<EntrepriseFichefinancesItem>|null
      */
     public function getFinances(): ?array
     {
@@ -1663,7 +1663,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des finances de l'entreprise.
      *
-     * @param EntrepriseFichefinancesItem[]|null $finances
+     * @param list<EntrepriseFichefinancesItem>|null $finances
      */
     public function setFinances(?array $finances): self
     {
@@ -1676,7 +1676,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des représentants de l'entreprise.
      *
-     * @return Representant[]|null
+     * @return list<Representant>|null
      */
     public function getRepresentants(): ?array
     {
@@ -1686,7 +1686,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des représentants de l'entreprise.
      *
-     * @param Representant[]|null $representants
+     * @param list<Representant>|null $representants
      */
     public function setRepresentants(?array $representants): self
     {
@@ -1699,7 +1699,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs de l'entreprise (si disponibles).
      *
-     * @return EntrepriseFichebeneficiairesEffectifsItem[]|null
+     * @return list<EntrepriseFichebeneficiairesEffectifsItem>|null
      */
     public function getBeneficiairesEffectifs(): ?array
     {
@@ -1709,7 +1709,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs de l'entreprise (si disponibles).
      *
-     * @param EntrepriseFichebeneficiairesEffectifsItem[]|null $beneficiairesEffectifs
+     * @param list<EntrepriseFichebeneficiairesEffectifsItem>|null $beneficiairesEffectifs
      */
     public function setBeneficiairesEffectifs(?array $beneficiairesEffectifs): self
     {
@@ -1722,7 +1722,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des actes de l'entreprise.
      *
-     * @return EntrepriseFichedepotsActesItem[]|null
+     * @return list<EntrepriseFichedepotsActesItem>|null
      */
     public function getDepotsActes(): ?array
     {
@@ -1732,7 +1732,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des actes de l'entreprise.
      *
-     * @param EntrepriseFichedepotsActesItem[]|null $depotsActes
+     * @param list<EntrepriseFichedepotsActesItem>|null $depotsActes
      */
     public function setDepotsActes(?array $depotsActes): self
     {
@@ -1745,7 +1745,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des comptes de l'entreprise.
      *
-     * @return EntrepriseFichecomptesItem[]|null
+     * @return list<EntrepriseFichecomptesItem>|null
      */
     public function getComptes(): ?array
     {
@@ -1755,7 +1755,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des comptes de l'entreprise.
      *
-     * @param EntrepriseFichecomptesItem[]|null $comptes
+     * @param list<EntrepriseFichecomptesItem>|null $comptes
      */
     public function setComptes(?array $comptes): self
     {
@@ -1768,7 +1768,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des publications au Bodacc de l'entreprise.
      *
-     * @return Bodacc[]|null
+     * @return list<Bodacc>|null
      */
     public function getPublicationsBodacc(): ?array
     {
@@ -1778,7 +1778,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des publications au Bodacc de l'entreprise.
      *
-     * @param Bodacc[]|null $publicationsBodacc
+     * @param list<Bodacc>|null $publicationsBodacc
      */
     public function setPublicationsBodacc(?array $publicationsBodacc): self
     {
@@ -1791,7 +1791,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des procédures collectives de l'entreprise.
      *
-     * @return EntrepriseFicheproceduresCollectivesItem[]|null
+     * @return list<EntrepriseFicheproceduresCollectivesItem>|null
      */
     public function getProceduresCollectives(): ?array
     {
@@ -1801,7 +1801,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des procédures collectives de l'entreprise.
      *
-     * @param EntrepriseFicheproceduresCollectivesItem[]|null $proceduresCollectives
+     * @param list<EntrepriseFicheproceduresCollectivesItem>|null $proceduresCollectives
      */
     public function setProceduresCollectives(?array $proceduresCollectives): self
     {
@@ -1909,7 +1909,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des marques françaises déposées par l'entreprise. Uniquement présent si le paramètre "marques" a été mis à vrai.
      *
-     * @return EntrepriseFichemarquesItem[]|null
+     * @return list<EntrepriseFichemarquesItem>|null
      */
     public function getMarques(): ?array
     {
@@ -1919,7 +1919,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des marques françaises déposées par l'entreprise. Uniquement présent si le paramètre "marques" a été mis à vrai.
      *
-     * @param EntrepriseFichemarquesItem[]|null $marques
+     * @param list<EntrepriseFichemarquesItem>|null $marques
      */
     public function setMarques(?array $marques): self
     {
@@ -1951,7 +1951,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des labels de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return Labels[]|null
+     * @return list<Labels>|null
      */
     public function getLabels(): ?array
     {
@@ -1961,7 +1961,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des labels de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param Labels[]|null $labels
+     * @param list<Labels>|null $labels
      */
     public function setLabels(?array $labels): self
     {

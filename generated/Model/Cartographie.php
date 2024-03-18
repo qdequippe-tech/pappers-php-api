@@ -16,25 +16,25 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des noeuds entreprises.
      *
-     * @var CartographieEntreprisesItem[]|null
+     * @var list<CartographieEntreprisesItem>|null
      */
     protected $entreprises;
     /**
      * Liste des noeuds personnes (dirigeants ou bénéficiaires effectifs).
      *
-     * @var CartographiePersonnesItem[]|null
+     * @var list<CartographiePersonnesItem>|null
      */
     protected $personnes;
     /**
      * Liste des arêtes liant les noeuds entreprises avec des noeuds personnes.
      *
-     * @var mixed[][]|null
+     * @var list<list<mixed>>|null
      */
     protected $liensEntreprisesPersonnes;
     /**
      * Liste des arêtes liant les noeuds entreprises avec des d'autres noeuds entreprises.
      *
-     * @var string[][]|null
+     * @var list<list<string>>|null
      */
     protected $liensEntreprisesEntreprises;
     /**
@@ -47,7 +47,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des noeuds entreprises.
      *
-     * @return CartographieEntreprisesItem[]|null
+     * @return list<CartographieEntreprisesItem>|null
      */
     public function getEntreprises(): ?array
     {
@@ -57,7 +57,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des noeuds entreprises.
      *
-     * @param CartographieEntreprisesItem[]|null $entreprises
+     * @param list<CartographieEntreprisesItem>|null $entreprises
      */
     public function setEntreprises(?array $entreprises): self
     {
@@ -70,7 +70,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des noeuds personnes (dirigeants ou bénéficiaires effectifs).
      *
-     * @return CartographiePersonnesItem[]|null
+     * @return list<CartographiePersonnesItem>|null
      */
     public function getPersonnes(): ?array
     {
@@ -80,7 +80,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des noeuds personnes (dirigeants ou bénéficiaires effectifs).
      *
-     * @param CartographiePersonnesItem[]|null $personnes
+     * @param list<CartographiePersonnesItem>|null $personnes
      */
     public function setPersonnes(?array $personnes): self
     {
@@ -93,7 +93,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des noeuds personnes.
      *
-     * @return mixed[][]|null
+     * @return list<list<mixed>>|null
      */
     public function getLiensEntreprisesPersonnes(): ?array
     {
@@ -103,7 +103,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des noeuds personnes.
      *
-     * @param mixed[][]|null $liensEntreprisesPersonnes
+     * @param list<list<mixed>>|null $liensEntreprisesPersonnes
      */
     public function setLiensEntreprisesPersonnes(?array $liensEntreprisesPersonnes): self
     {
@@ -116,7 +116,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des d'autres noeuds entreprises.
      *
-     * @return string[][]|null
+     * @return list<list<string>>|null
      */
     public function getLiensEntreprisesEntreprises(): ?array
     {
@@ -126,7 +126,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des d'autres noeuds entreprises.
      *
-     * @param string[][]|null $liensEntreprisesEntreprises
+     * @param list<list<string>>|null $liensEntreprisesEntreprises
      */
     public function setLiensEntreprisesEntreprises(?array $liensEntreprisesEntreprises): self
     {

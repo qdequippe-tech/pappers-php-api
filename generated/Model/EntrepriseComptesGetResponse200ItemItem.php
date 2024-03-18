@@ -112,13 +112,13 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Informations complémentaires sur le traitement des comptes.
      *
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $informationsTraitement;
     /**
      * Liste des sections de liasses fiscales.
      *
-     * @var EntrepriseComptesGetResponse200ItemItemSectionsItem[]|null
+     * @var list<EntrepriseComptesGetResponse200ItemItemSectionsItem>|null
      */
     protected $sections;
     /**
@@ -433,7 +433,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Informations complémentaires sur le traitement des comptes.
      *
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getInformationsTraitement(): ?array
     {
@@ -443,7 +443,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Informations complémentaires sur le traitement des comptes.
      *
-     * @param string[]|null $informationsTraitement
+     * @param list<string>|null $informationsTraitement
      */
     public function setInformationsTraitement(?array $informationsTraitement): self
     {
@@ -456,7 +456,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Liste des sections de liasses fiscales.
      *
-     * @return EntrepriseComptesGetResponse200ItemItemSectionsItem[]|null
+     * @return list<EntrepriseComptesGetResponse200ItemItemSectionsItem>|null
      */
     public function getSections(): ?array
     {
@@ -466,7 +466,7 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
     /**
      * Liste des sections de liasses fiscales.
      *
-     * @param EntrepriseComptesGetResponse200ItemItemSectionsItem[]|null $sections
+     * @param list<EntrepriseComptesGetResponse200ItemItemSectionsItem>|null $sections
      */
     public function setSections(?array $sections): self
     {

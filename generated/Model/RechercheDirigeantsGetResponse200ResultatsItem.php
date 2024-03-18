@@ -184,7 +184,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var Sanction[]|null
+     * @var list<Sanction>|null
      */
     protected $sanctions;
     /**
@@ -202,7 +202,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
      *
-     * @var EntrepriseRecherche[]|null
+     * @var list<EntrepriseRecherche>|null
      */
     protected $entreprises;
     /**
@@ -747,7 +747,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return Sanction[]|null
+     * @return list<Sanction>|null
      */
     public function getSanctions(): ?array
     {
@@ -757,7 +757,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param Sanction[]|null $sanctions
+     * @param list<Sanction>|null $sanctions
      */
     public function setSanctions(?array $sanctions): self
     {
@@ -808,7 +808,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
      *
-     * @return EntrepriseRecherche[]|null
+     * @return list<EntrepriseRecherche>|null
      */
     public function getEntreprises(): ?array
     {
@@ -818,7 +818,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
      *
-     * @param EntrepriseRecherche[]|null $entreprises
+     * @param list<EntrepriseRecherche>|null $entreprises
      */
     public function setEntreprises(?array $entreprises): self
     {

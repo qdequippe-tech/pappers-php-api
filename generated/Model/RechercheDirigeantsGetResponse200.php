@@ -16,7 +16,7 @@ class RechercheDirigeantsGetResponse200 extends \ArrayObject
     /**
      * Liste des dirigeants qui correspondent à la recherche.
      *
-     * @var RechercheDirigeantsGetResponse200ResultatsItem[]|null
+     * @var list<RechercheDirigeantsGetResponse200ResultatsItem>|null
      */
     protected $resultats;
     /**
@@ -35,7 +35,7 @@ class RechercheDirigeantsGetResponse200 extends \ArrayObject
     /**
      * Liste des dirigeants qui correspondent à la recherche.
      *
-     * @return RechercheDirigeantsGetResponse200ResultatsItem[]|null
+     * @return list<RechercheDirigeantsGetResponse200ResultatsItem>|null
      */
     public function getResultats(): ?array
     {
@@ -45,7 +45,7 @@ class RechercheDirigeantsGetResponse200 extends \ArrayObject
     /**
      * Liste des dirigeants qui correspondent à la recherche.
      *
-     * @param RechercheDirigeantsGetResponse200ResultatsItem[]|null $resultats
+     * @param list<RechercheDirigeantsGetResponse200ResultatsItem>|null $resultats
      */
     public function setResultats(?array $resultats): self
     {

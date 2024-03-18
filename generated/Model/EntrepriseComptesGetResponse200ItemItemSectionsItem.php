@@ -22,7 +22,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
     /**
      * Liste des liasses fiscales de la section.
      *
-     * @var EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]|null
+     * @var list<EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem>|null
      */
     protected $liasses;
 
@@ -48,7 +48,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
     /**
      * Liste des liasses fiscales de la section.
      *
-     * @return EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]|null
+     * @return list<EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem>|null
      */
     public function getLiasses(): ?array
     {
@@ -58,7 +58,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
     /**
      * Liste des liasses fiscales de la section.
      *
-     * @param EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem[]|null $liasses
+     * @param list<EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem>|null $liasses
      */
     public function setLiasses(?array $liasses): self
     {

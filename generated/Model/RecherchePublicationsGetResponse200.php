@@ -16,7 +16,7 @@ class RecherchePublicationsGetResponse200 extends \ArrayObject
     /**
      * Liste des publications qui correspondent à la recherche.
      *
-     * @var RecherchePublicationsGetResponse200ResultatsItem[]|null
+     * @var list<RecherchePublicationsGetResponse200ResultatsItem>|null
      */
     protected $resultats;
     /**
@@ -35,7 +35,7 @@ class RecherchePublicationsGetResponse200 extends \ArrayObject
     /**
      * Liste des publications qui correspondent à la recherche.
      *
-     * @return RecherchePublicationsGetResponse200ResultatsItem[]|null
+     * @return list<RecherchePublicationsGetResponse200ResultatsItem>|null
      */
     public function getResultats(): ?array
     {
@@ -45,7 +45,7 @@ class RecherchePublicationsGetResponse200 extends \ArrayObject
     /**
      * Liste des publications qui correspondent à la recherche.
      *
-     * @param RecherchePublicationsGetResponse200ResultatsItem[]|null $resultats
+     * @param list<RecherchePublicationsGetResponse200ResultatsItem>|null $resultats
      */
     public function setResultats(?array $resultats): self
     {

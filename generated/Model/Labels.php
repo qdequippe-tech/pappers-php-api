@@ -28,19 +28,19 @@ class Labels extends \ArrayObject
     /**
      * Label RGE seulement : Liste des certificats.
      *
-     * @var mixed[]|null
+     * @var list<mixed>|null
      */
     protected $certificats;
     /**
      * Label QUALIOPI seulement : Liste des spécialités.
      *
-     * @var mixed[]|null
+     * @var list<mixed>|null
      */
     protected $specialites;
     /**
      * Label EGALITE seulement : Liste des notes.
      *
-     * @var mixed[]|null
+     * @var list<mixed>|null
      */
     protected $notes;
     /**
@@ -52,7 +52,7 @@ class Labels extends \ArrayObject
     /**
      * Label ORIAS seulement : Liste des inscriptions ORIAS.
      *
-     * @var mixed[]|null
+     * @var list<mixed>|null
      */
     protected $inscriptions;
 
@@ -97,7 +97,7 @@ class Labels extends \ArrayObject
     /**
      * Label RGE seulement : Liste des certificats.
      *
-     * @return mixed[]|null
+     * @return list<mixed>|null
      */
     public function getCertificats(): ?array
     {
@@ -107,7 +107,7 @@ class Labels extends \ArrayObject
     /**
      * Label RGE seulement : Liste des certificats.
      *
-     * @param mixed[]|null $certificats
+     * @param list<mixed>|null $certificats
      */
     public function setCertificats(?array $certificats): self
     {
@@ -120,7 +120,7 @@ class Labels extends \ArrayObject
     /**
      * Label QUALIOPI seulement : Liste des spécialités.
      *
-     * @return mixed[]|null
+     * @return list<mixed>|null
      */
     public function getSpecialites(): ?array
     {
@@ -130,7 +130,7 @@ class Labels extends \ArrayObject
     /**
      * Label QUALIOPI seulement : Liste des spécialités.
      *
-     * @param mixed[]|null $specialites
+     * @param list<mixed>|null $specialites
      */
     public function setSpecialites(?array $specialites): self
     {
@@ -143,7 +143,7 @@ class Labels extends \ArrayObject
     /**
      * Label EGALITE seulement : Liste des notes.
      *
-     * @return mixed[]|null
+     * @return list<mixed>|null
      */
     public function getNotes(): ?array
     {
@@ -153,7 +153,7 @@ class Labels extends \ArrayObject
     /**
      * Label EGALITE seulement : Liste des notes.
      *
-     * @param mixed[]|null $notes
+     * @param list<mixed>|null $notes
      */
     public function setNotes(?array $notes): self
     {
@@ -185,7 +185,7 @@ class Labels extends \ArrayObject
     /**
      * Label ORIAS seulement : Liste des inscriptions ORIAS.
      *
-     * @return mixed[]|null
+     * @return list<mixed>|null
      */
     public function getInscriptions(): ?array
     {
@@ -195,7 +195,7 @@ class Labels extends \ArrayObject
     /**
      * Label ORIAS seulement : Liste des inscriptions ORIAS.
      *
-     * @param mixed[]|null $inscriptions
+     * @param list<mixed>|null $inscriptions
      */
     public function setInscriptions(?array $inscriptions): self
     {

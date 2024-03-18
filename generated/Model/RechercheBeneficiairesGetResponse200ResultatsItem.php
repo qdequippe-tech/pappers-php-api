@@ -202,7 +202,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est bénéficiaire effectif, dans la limite de 100 entreprises.
      *
-     * @var EntrepriseRecherche[]|null
+     * @var list<EntrepriseRecherche>|null
      */
     protected $entreprises;
     /**
@@ -214,7 +214,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est dirigeant (sans forcément en être bénéficiaire effectif), dans la limite de 100 entreprises.
      *
-     * @var EntrepriseRecherche[]|null
+     * @var list<EntrepriseRecherche>|null
      */
     protected $entreprisesDirigeant;
     /**
@@ -816,7 +816,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est bénéficiaire effectif, dans la limite de 100 entreprises.
      *
-     * @return EntrepriseRecherche[]|null
+     * @return list<EntrepriseRecherche>|null
      */
     public function getEntreprises(): ?array
     {
@@ -826,7 +826,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est bénéficiaire effectif, dans la limite de 100 entreprises.
      *
-     * @param EntrepriseRecherche[]|null $entreprises
+     * @param list<EntrepriseRecherche>|null $entreprises
      */
     public function setEntreprises(?array $entreprises): self
     {
@@ -858,7 +858,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est dirigeant (sans forcément en être bénéficiaire effectif), dans la limite de 100 entreprises.
      *
-     * @return EntrepriseRecherche[]|null
+     * @return list<EntrepriseRecherche>|null
      */
     public function getEntreprisesDirigeant(): ?array
     {
@@ -868,7 +868,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des entreprises dont le bénéficiaire effectif est dirigeant (sans forcément en être bénéficiaire effectif), dans la limite de 100 entreprises.
      *
-     * @param EntrepriseRecherche[]|null $entreprisesDirigeant
+     * @param list<EntrepriseRecherche>|null $entreprisesDirigeant
      */
     public function setEntreprisesDirigeant(?array $entreprisesDirigeant): self
     {

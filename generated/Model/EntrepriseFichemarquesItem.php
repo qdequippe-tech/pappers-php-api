@@ -64,13 +64,13 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des descriptions de la marque.
      *
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $descriptions;
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @var EntrepriseFichemarquesItemClassesItem[]|null
+     * @var list<EntrepriseFichemarquesItemClassesItem>|null
      */
     protected $classes;
     /**
@@ -84,7 +84,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @var EntrepriseFichemarquesItemEvenementsItem[]|null
+     * @var list<EntrepriseFichemarquesItemEvenementsItem>|null
      */
     protected $evenements;
 
@@ -243,7 +243,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des descriptions de la marque.
      *
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getDescriptions(): ?array
     {
@@ -253,7 +253,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des descriptions de la marque.
      *
-     * @param string[]|null $descriptions
+     * @param list<string>|null $descriptions
      */
     public function setDescriptions(?array $descriptions): self
     {
@@ -266,7 +266,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @return EntrepriseFichemarquesItemClassesItem[]|null
+     * @return list<EntrepriseFichemarquesItemClassesItem>|null
      */
     public function getClasses(): ?array
     {
@@ -276,7 +276,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @param EntrepriseFichemarquesItemClassesItem[]|null $classes
+     * @param list<EntrepriseFichemarquesItemClassesItem>|null $classes
      */
     public function setClasses(?array $classes): self
     {
@@ -315,7 +315,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @return EntrepriseFichemarquesItemEvenementsItem[]|null
+     * @return list<EntrepriseFichemarquesItemEvenementsItem>|null
      */
     public function getEvenements(): ?array
     {
@@ -325,7 +325,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @param EntrepriseFichemarquesItemEvenementsItem[]|null $evenements
+     * @param list<EntrepriseFichemarquesItemEvenementsItem>|null $evenements
      */
     public function setEvenements(?array $evenements): self
     {

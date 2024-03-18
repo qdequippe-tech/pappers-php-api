@@ -204,13 +204,13 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des prédécesseurs de l'établissement.
      *
-     * @var LienSuccession[]|null
+     * @var list<LienSuccession>|null
      */
     protected $predecesseurs;
     /**
      * Liste des successeurs de l'établissement.
      *
-     * @var LienSuccession[]|null
+     * @var list<LienSuccession>|null
      */
     protected $successeurs;
 
@@ -813,7 +813,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des prédécesseurs de l'établissement.
      *
-     * @return LienSuccession[]|null
+     * @return list<LienSuccession>|null
      */
     public function getPredecesseurs(): ?array
     {
@@ -823,7 +823,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des prédécesseurs de l'établissement.
      *
-     * @param LienSuccession[]|null $predecesseurs
+     * @param list<LienSuccession>|null $predecesseurs
      */
     public function setPredecesseurs(?array $predecesseurs): self
     {
@@ -836,7 +836,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des successeurs de l'établissement.
      *
-     * @return LienSuccession[]|null
+     * @return list<LienSuccession>|null
      */
     public function getSuccesseurs(): ?array
     {
@@ -846,7 +846,7 @@ class EtablissementFiche extends \ArrayObject
     /**
      * Liste des successeurs de l'établissement.
      *
-     * @param LienSuccession[]|null $successeurs
+     * @param list<LienSuccession>|null $successeurs
      */
     public function setSuccesseurs(?array $successeurs): self
     {

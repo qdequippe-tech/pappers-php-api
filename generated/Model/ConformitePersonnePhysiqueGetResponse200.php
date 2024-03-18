@@ -28,7 +28,7 @@ class ConformitePersonnePhysiqueGetResponse200 extends \ArrayObject
     /**
      * Liste des sanctions du bénéficiaire effectif. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var Sanction[]|null
+     * @var list<Sanction>|null
      */
     protected $sanctions;
 
@@ -73,7 +73,7 @@ class ConformitePersonnePhysiqueGetResponse200 extends \ArrayObject
     /**
      * Liste des sanctions du bénéficiaire effectif. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return Sanction[]|null
+     * @return list<Sanction>|null
      */
     public function getSanctions(): ?array
     {
@@ -83,7 +83,7 @@ class ConformitePersonnePhysiqueGetResponse200 extends \ArrayObject
     /**
      * Liste des sanctions du bénéficiaire effectif. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param Sanction[]|null $sanctions
+     * @param list<Sanction>|null $sanctions
      */
     public function setSanctions(?array $sanctions): self
     {

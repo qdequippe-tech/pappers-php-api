@@ -82,7 +82,7 @@ class EntrepriseBase extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @var EntrepriseBaseConventionsCollectivesItem[]|null
+     * @var list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     protected $conventionsCollectives;
     /**
@@ -395,7 +395,7 @@ class EntrepriseBase extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @return EntrepriseBaseConventionsCollectivesItem[]|null
+     * @return list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     public function getConventionsCollectives(): ?array
     {
@@ -405,7 +405,7 @@ class EntrepriseBase extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @param EntrepriseBaseConventionsCollectivesItem[]|null $conventionsCollectives
+     * @param list<EntrepriseBaseConventionsCollectivesItem>|null $conventionsCollectives
      */
     public function setConventionsCollectives(?array $conventionsCollectives): self
     {

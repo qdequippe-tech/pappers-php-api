@@ -34,7 +34,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Liste des publications relatives à la procédure collective.
      *
-     * @var Bodacc[]|null
+     * @var list<Bodacc>|null
      */
     protected $publicationsBodacc;
 
@@ -98,7 +98,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Liste des publications relatives à la procédure collective.
      *
-     * @return Bodacc[]|null
+     * @return list<Bodacc>|null
      */
     public function getPublicationsBodacc(): ?array
     {
@@ -108,7 +108,7 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
     /**
      * Liste des publications relatives à la procédure collective.
      *
-     * @param Bodacc[]|null $publicationsBodacc
+     * @param list<Bodacc>|null $publicationsBodacc
      */
     public function setPublicationsBodacc(?array $publicationsBodacc): self
     {

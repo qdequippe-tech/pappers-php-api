@@ -16,7 +16,7 @@ class RechercheBeneficiairesGetResponse200 extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs qui correspondent à la recherche.
      *
-     * @var RechercheBeneficiairesGetResponse200ResultatsItem[]|null
+     * @var list<RechercheBeneficiairesGetResponse200ResultatsItem>|null
      */
     protected $resultats;
     /**
@@ -35,7 +35,7 @@ class RechercheBeneficiairesGetResponse200 extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs qui correspondent à la recherche.
      *
-     * @return RechercheBeneficiairesGetResponse200ResultatsItem[]|null
+     * @return list<RechercheBeneficiairesGetResponse200ResultatsItem>|null
      */
     public function getResultats(): ?array
     {
@@ -45,7 +45,7 @@ class RechercheBeneficiairesGetResponse200 extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs qui correspondent à la recherche.
      *
-     * @param RechercheBeneficiairesGetResponse200ResultatsItem[]|null $resultats
+     * @param list<RechercheBeneficiairesGetResponse200ResultatsItem>|null $resultats
      */
     public function setResultats(?array $resultats): self
     {
