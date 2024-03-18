@@ -58,7 +58,7 @@ class Sanction extends \ArrayObject
     /**
      * Liste des sources.
      *
-     * @var SanctionSourcesItem[]|null
+     * @var list<SanctionSourcesItem>|null
      */
     protected $sources;
 
@@ -198,7 +198,7 @@ class Sanction extends \ArrayObject
     /**
      * Liste des sources.
      *
-     * @return SanctionSourcesItem[]|null
+     * @return list<SanctionSourcesItem>|null
      */
     public function getSources(): ?array
     {
@@ -208,7 +208,7 @@ class Sanction extends \ArrayObject
     /**
      * Liste des sources.
      *
-     * @param SanctionSourcesItem[]|null $sources
+     * @param list<SanctionSourcesItem>|null $sources
      */
     public function setSources(?array $sources): self
     {

@@ -82,7 +82,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @var EntrepriseBaseConventionsCollectivesItem[]|null
+     * @var list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     protected $conventionsCollectives;
     /**
@@ -189,7 +189,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $villes;
     /**
@@ -429,7 +429,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @return EntrepriseBaseConventionsCollectivesItem[]|null
+     * @return list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     public function getConventionsCollectives(): ?array
     {
@@ -439,7 +439,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @param EntrepriseBaseConventionsCollectivesItem[]|null $conventionsCollectives
+     * @param list<EntrepriseBaseConventionsCollectivesItem>|null $conventionsCollectives
      */
     public function setConventionsCollectives(?array $conventionsCollectives): self
     {
@@ -771,7 +771,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getVilles(): ?array
     {
@@ -781,7 +781,7 @@ class EntrepriseRecherche extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @param string[]|null $villes
+     * @param list<string>|null $villes
      */
     public function setVilles(?array $villes): self
     {

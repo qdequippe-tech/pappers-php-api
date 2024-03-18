@@ -16,44 +16,44 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le nom (dénomination ou nom/prénom) peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `nom_entreprise`.
      *
-     * @var SuggestionsGetResponse200ResultatsNomEntrepriseItem[]|null
+     * @var list<SuggestionsGetResponse200ResultatsNomEntrepriseItem>|null
      */
     protected $resultatsNomEntreprise;
     /**
      * Liste des entreprises dont la dénomination peut compléter la recherche textuelle (concerne les personnes morales seulement). Uniquement présent si le paramètre `cibles` contient `denomination`.
      *
-     * @var SuggestionsGetResponse200ResultatsDenominationItem[]|null
+     * @var list<SuggestionsGetResponse200ResultatsDenominationItem>|null
      */
     protected $resultatsDenomination;
     /**
      * Liste des entreprises dont le nom complet (nom + prénom ou prénom + nom) peut compléter la recherche textuelle (concerne les personnes physiques seulement). Uniquement présent si le paramètre `cibles` contient `nom_complet`.
      *
-     * @var SuggestionsGetResponse200ResultatsNomCompletItem[]|null
+     * @var list<SuggestionsGetResponse200ResultatsNomCompletItem>|null
      */
     protected $resultatsNomComplet;
     /**
      * Liste des représentants dont le nom complet (nom + prénom ou prénom + nom) peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `representant`.
      *
-     * @var SuggestionsGetResponse200ResultatsRepresentantItem[]|null
+     * @var list<SuggestionsGetResponse200ResultatsRepresentantItem>|null
      */
     protected $resultatsRepresentant;
     /**
      * Liste des entreprises dont le numéro SIREN peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `siren`.
      *
-     * @var SuggestionsGetResponse200ResultatsSirenItem[]|null
+     * @var list<SuggestionsGetResponse200ResultatsSirenItem>|null
      */
     protected $resultatsSiren;
     /**
      * Liste des entreprises dont le numéro SIRET peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `siret`.
      *
-     * @var SuggestionsGetResponse200ResultatsSiretItem[]|null
+     * @var list<SuggestionsGetResponse200ResultatsSiretItem>|null
      */
     protected $resultatsSiret;
 
     /**
      * Liste des entreprises dont le nom (dénomination ou nom/prénom) peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `nom_entreprise`.
      *
-     * @return SuggestionsGetResponse200ResultatsNomEntrepriseItem[]|null
+     * @return list<SuggestionsGetResponse200ResultatsNomEntrepriseItem>|null
      */
     public function getResultatsNomEntreprise(): ?array
     {
@@ -63,7 +63,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le nom (dénomination ou nom/prénom) peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `nom_entreprise`.
      *
-     * @param SuggestionsGetResponse200ResultatsNomEntrepriseItem[]|null $resultatsNomEntreprise
+     * @param list<SuggestionsGetResponse200ResultatsNomEntrepriseItem>|null $resultatsNomEntreprise
      */
     public function setResultatsNomEntreprise(?array $resultatsNomEntreprise): self
     {
@@ -76,7 +76,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont la dénomination peut compléter la recherche textuelle (concerne les personnes morales seulement). Uniquement présent si le paramètre `cibles` contient `denomination`.
      *
-     * @return SuggestionsGetResponse200ResultatsDenominationItem[]|null
+     * @return list<SuggestionsGetResponse200ResultatsDenominationItem>|null
      */
     public function getResultatsDenomination(): ?array
     {
@@ -86,7 +86,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont la dénomination peut compléter la recherche textuelle (concerne les personnes morales seulement). Uniquement présent si le paramètre `cibles` contient `denomination`.
      *
-     * @param SuggestionsGetResponse200ResultatsDenominationItem[]|null $resultatsDenomination
+     * @param list<SuggestionsGetResponse200ResultatsDenominationItem>|null $resultatsDenomination
      */
     public function setResultatsDenomination(?array $resultatsDenomination): self
     {
@@ -99,7 +99,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le nom complet (nom + prénom ou prénom + nom) peut compléter la recherche textuelle (concerne les personnes physiques seulement). Uniquement présent si le paramètre `cibles` contient `nom_complet`.
      *
-     * @return SuggestionsGetResponse200ResultatsNomCompletItem[]|null
+     * @return list<SuggestionsGetResponse200ResultatsNomCompletItem>|null
      */
     public function getResultatsNomComplet(): ?array
     {
@@ -109,7 +109,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le nom complet (nom + prénom ou prénom + nom) peut compléter la recherche textuelle (concerne les personnes physiques seulement). Uniquement présent si le paramètre `cibles` contient `nom_complet`.
      *
-     * @param SuggestionsGetResponse200ResultatsNomCompletItem[]|null $resultatsNomComplet
+     * @param list<SuggestionsGetResponse200ResultatsNomCompletItem>|null $resultatsNomComplet
      */
     public function setResultatsNomComplet(?array $resultatsNomComplet): self
     {
@@ -122,7 +122,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des représentants dont le nom complet (nom + prénom ou prénom + nom) peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `representant`.
      *
-     * @return SuggestionsGetResponse200ResultatsRepresentantItem[]|null
+     * @return list<SuggestionsGetResponse200ResultatsRepresentantItem>|null
      */
     public function getResultatsRepresentant(): ?array
     {
@@ -132,7 +132,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des représentants dont le nom complet (nom + prénom ou prénom + nom) peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `representant`.
      *
-     * @param SuggestionsGetResponse200ResultatsRepresentantItem[]|null $resultatsRepresentant
+     * @param list<SuggestionsGetResponse200ResultatsRepresentantItem>|null $resultatsRepresentant
      */
     public function setResultatsRepresentant(?array $resultatsRepresentant): self
     {
@@ -145,7 +145,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le numéro SIREN peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `siren`.
      *
-     * @return SuggestionsGetResponse200ResultatsSirenItem[]|null
+     * @return list<SuggestionsGetResponse200ResultatsSirenItem>|null
      */
     public function getResultatsSiren(): ?array
     {
@@ -155,7 +155,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le numéro SIREN peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `siren`.
      *
-     * @param SuggestionsGetResponse200ResultatsSirenItem[]|null $resultatsSiren
+     * @param list<SuggestionsGetResponse200ResultatsSirenItem>|null $resultatsSiren
      */
     public function setResultatsSiren(?array $resultatsSiren): self
     {
@@ -168,7 +168,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le numéro SIRET peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `siret`.
      *
-     * @return SuggestionsGetResponse200ResultatsSiretItem[]|null
+     * @return list<SuggestionsGetResponse200ResultatsSiretItem>|null
      */
     public function getResultatsSiret(): ?array
     {
@@ -178,7 +178,7 @@ class SuggestionsGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises dont le numéro SIRET peut compléter la recherche textuelle. Uniquement présent si le paramètre `cibles` contient `siret`.
      *
-     * @param SuggestionsGetResponse200ResultatsSiretItem[]|null $resultatsSiret
+     * @param list<SuggestionsGetResponse200ResultatsSiretItem>|null $resultatsSiret
      */
     public function setResultatsSiret(?array $resultatsSiret): self
     {

@@ -28,7 +28,7 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans le document.
      *
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $mentions;
     /**
@@ -77,7 +77,7 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans le document.
      *
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getMentions(): ?array
     {
@@ -87,7 +87,7 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans le document.
      *
-     * @param string[]|null $mentions
+     * @param list<string>|null $mentions
      */
     public function setMentions(?array $mentions): self
     {

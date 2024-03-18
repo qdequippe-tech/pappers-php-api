@@ -34,7 +34,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans la publication.
      *
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $mentions;
 
@@ -98,7 +98,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans la publication.
      *
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getMentions(): ?array
     {
@@ -108,7 +108,7 @@ class RechercheGetResponse200ResultatsItempublicationsItem extends \ArrayObject
     /**
      * Mentions de la recherche dans la publication.
      *
-     * @param string[]|null $mentions
+     * @param list<string>|null $mentions
      */
     public function setMentions(?array $mentions): self
     {

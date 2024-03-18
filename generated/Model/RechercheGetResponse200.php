@@ -16,7 +16,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises qui correspondent à la recherche.
      *
-     * @var RechercheGetResponse200ResultatsItem[]|null
+     * @var list<RechercheGetResponse200ResultatsItem>|null
      */
     protected $resultats;
     /**
@@ -41,7 +41,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises qui correspondent à la recherche.
      *
-     * @return RechercheGetResponse200ResultatsItem[]|null
+     * @return list<RechercheGetResponse200ResultatsItem>|null
      */
     public function getResultats(): ?array
     {
@@ -51,7 +51,7 @@ class RechercheGetResponse200 extends \ArrayObject
     /**
      * Liste des entreprises qui correspondent à la recherche.
      *
-     * @param RechercheGetResponse200ResultatsItem[]|null $resultats
+     * @param list<RechercheGetResponse200ResultatsItem>|null $resultats
      */
     public function setResultats(?array $resultats): self
     {

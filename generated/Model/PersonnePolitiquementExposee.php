@@ -22,7 +22,7 @@ class PersonnePolitiquementExposee extends \ArrayObject
     /**
      * Liste des fonctions actuelles et passées de la personne politiquement exposée.
      *
-     * @var PersonnePolitiquementExposeeFonctionsItem[]|null
+     * @var list<PersonnePolitiquementExposeeFonctionsItem>|null
      */
     protected $fonctions;
 
@@ -48,7 +48,7 @@ class PersonnePolitiquementExposee extends \ArrayObject
     /**
      * Liste des fonctions actuelles et passées de la personne politiquement exposée.
      *
-     * @return PersonnePolitiquementExposeeFonctionsItem[]|null
+     * @return list<PersonnePolitiquementExposeeFonctionsItem>|null
      */
     public function getFonctions(): ?array
     {
@@ -58,7 +58,7 @@ class PersonnePolitiquementExposee extends \ArrayObject
     /**
      * Liste des fonctions actuelles et passées de la personne politiquement exposée.
      *
-     * @param PersonnePolitiquementExposeeFonctionsItem[]|null $fonctions
+     * @param list<PersonnePolitiquementExposeeFonctionsItem>|null $fonctions
      */
     public function setFonctions(?array $fonctions): self
     {

@@ -16,7 +16,7 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Liste des documents qui correspondent à la recherche.
      *
-     * @var RechercheDocumentsGetResponse200ResultatsItem[]|null
+     * @var list<RechercheDocumentsGetResponse200ResultatsItem>|null
      */
     protected $resultats;
     /**
@@ -35,7 +35,7 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Liste des documents qui correspondent à la recherche.
      *
-     * @return RechercheDocumentsGetResponse200ResultatsItem[]|null
+     * @return list<RechercheDocumentsGetResponse200ResultatsItem>|null
      */
     public function getResultats(): ?array
     {
@@ -45,7 +45,7 @@ class RechercheDocumentsGetResponse200 extends \ArrayObject
     /**
      * Liste des documents qui correspondent à la recherche.
      *
-     * @param RechercheDocumentsGetResponse200ResultatsItem[]|null $resultats
+     * @param list<RechercheDocumentsGetResponse200ResultatsItem>|null $resultats
      */
     public function setResultats(?array $resultats): self
     {

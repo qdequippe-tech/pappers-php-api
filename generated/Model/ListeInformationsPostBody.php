@@ -16,7 +16,7 @@ class ListeInformationsPostBody extends \ArrayObject
     /**
      * Tableau d'identifiant de notifications.
      *
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $notifications;
     /**
@@ -29,7 +29,7 @@ class ListeInformationsPostBody extends \ArrayObject
     /**
      * Tableau d'identifiant de notifications.
      *
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getNotifications(): ?array
     {
@@ -39,7 +39,7 @@ class ListeInformationsPostBody extends \ArrayObject
     /**
      * Tableau d'identifiant de notifications.
      *
-     * @param string[]|null $notifications
+     * @param list<string>|null $notifications
      */
     public function setNotifications(?array $notifications): self
     {

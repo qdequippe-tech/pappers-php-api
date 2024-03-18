@@ -184,7 +184,7 @@ class Representant extends \ArrayObject
     /**
      * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var Sanction[]|null
+     * @var list<Sanction>|null
      */
     protected $sanctions;
 
@@ -723,7 +723,7 @@ class Representant extends \ArrayObject
     /**
      * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return Sanction[]|null
+     * @return list<Sanction>|null
      */
     public function getSanctions(): ?array
     {
@@ -733,7 +733,7 @@ class Representant extends \ArrayObject
     /**
      * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param Sanction[]|null $sanctions
+     * @param list<Sanction>|null $sanctions
      */
     public function setSanctions(?array $sanctions): self
     {

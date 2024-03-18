@@ -28,7 +28,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Colonnes de la liasse.
      *
-     * @var EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]|null
+     * @var list<EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem>|null
      */
     protected $colonnes;
 
@@ -73,7 +73,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Colonnes de la liasse.
      *
-     * @return EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]|null
+     * @return list<EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem>|null
      */
     public function getColonnes(): ?array
     {
@@ -83,7 +83,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
     /**
      * Colonnes de la liasse.
      *
-     * @param EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem[]|null $colonnes
+     * @param list<EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem>|null $colonnes
      */
     public function setColonnes(?array $colonnes): self
     {

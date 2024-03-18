@@ -82,7 +82,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @var EntrepriseBaseConventionsCollectivesItem[]|null
+     * @var list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     protected $conventionsCollectives;
     /**
@@ -189,7 +189,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @var string[]|null
+     * @var list<string>|null
      */
     protected $villes;
     /**
@@ -219,25 +219,25 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Dirigeants de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base dirigeants).
      *
-     * @var RepresentantRecherche[]|null
+     * @var list<RepresentantRecherche>|null
      */
     protected $dirigeants;
     /**
      * Bénéficiaires effectifs de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base bénéficiaires effectifs).
      *
-     * @var Beneficiaire[]|null
+     * @var list<Beneficiaire>|null
      */
     protected $beneficiaires;
     /**
      * Documents de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base documents).
      *
-     * @var Document[]|null
+     * @var list<Document>|null
      */
     protected $documents;
     /**
      * Publications de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base publications).
      *
-     * @var RechercheGetResponse200ResultatsItempublicationsItem[]|null
+     * @var list<RechercheGetResponse200ResultatsItempublicationsItem>|null
      */
     protected $publications;
     /**
@@ -489,7 +489,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @return EntrepriseBaseConventionsCollectivesItem[]|null
+     * @return list<EntrepriseBaseConventionsCollectivesItem>|null
      */
     public function getConventionsCollectives(): ?array
     {
@@ -499,7 +499,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des conventions collectives de l'entreprise.
      *
-     * @param EntrepriseBaseConventionsCollectivesItem[]|null $conventionsCollectives
+     * @param list<EntrepriseBaseConventionsCollectivesItem>|null $conventionsCollectives
      */
     public function setConventionsCollectives(?array $conventionsCollectives): self
     {
@@ -831,7 +831,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @return string[]|null
+     * @return list<string>|null
      */
     public function getVilles(): ?array
     {
@@ -841,7 +841,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
-     * @param string[]|null $villes
+     * @param list<string>|null $villes
      */
     public function setVilles(?array $villes): self
     {
@@ -930,7 +930,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Dirigeants de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base dirigeants).
      *
-     * @return RepresentantRecherche[]|null
+     * @return list<RepresentantRecherche>|null
      */
     public function getDirigeants(): ?array
     {
@@ -940,7 +940,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Dirigeants de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base dirigeants).
      *
-     * @param RepresentantRecherche[]|null $dirigeants
+     * @param list<RepresentantRecherche>|null $dirigeants
      */
     public function setDirigeants(?array $dirigeants): self
     {
@@ -953,7 +953,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Bénéficiaires effectifs de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base bénéficiaires effectifs).
      *
-     * @return Beneficiaire[]|null
+     * @return list<Beneficiaire>|null
      */
     public function getBeneficiaires(): ?array
     {
@@ -963,7 +963,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Bénéficiaires effectifs de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base bénéficiaires effectifs).
      *
-     * @param Beneficiaire[]|null $beneficiaires
+     * @param list<Beneficiaire>|null $beneficiaires
      */
     public function setBeneficiaires(?array $beneficiaires): self
     {
@@ -976,7 +976,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Documents de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base documents).
      *
-     * @return Document[]|null
+     * @return list<Document>|null
      */
     public function getDocuments(): ?array
     {
@@ -986,7 +986,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Documents de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base documents).
      *
-     * @param Document[]|null $documents
+     * @param list<Document>|null $documents
      */
     public function setDocuments(?array $documents): self
     {
@@ -999,7 +999,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Publications de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base publications).
      *
-     * @return RechercheGetResponse200ResultatsItempublicationsItem[]|null
+     * @return list<RechercheGetResponse200ResultatsItempublicationsItem>|null
      */
     public function getPublications(): ?array
     {
@@ -1009,7 +1009,7 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     /**
      * Publications de l'entreprise qui correspondent à la recherche (si vous recherchez dans la base publications).
      *
-     * @param RechercheGetResponse200ResultatsItempublicationsItem[]|null $publications
+     * @param list<RechercheGetResponse200ResultatsItempublicationsItem>|null $publications
      */
     public function setPublications(?array $publications): self
     {
