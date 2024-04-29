@@ -56,6 +56,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('type', $data) && null === $data['type']) {
                 $object->setType(null);
             }
+            if (\array_key_exists('token', $data) && null !== $data['token']) {
+                $object->setToken($data['token']);
+                unset($data['token']);
+            } elseif (\array_key_exists('token', $data) && null === $data['token']) {
+                $object->setToken(null);
+            }
             if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
                 $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
                 unset($data['date_depot']);
@@ -92,6 +98,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
             if ($object->isInitialized('type') && null !== $object->getType()) {
                 $data['type'] = $object->getType();
+            }
+            if ($object->isInitialized('token') && null !== $object->getToken()) {
+                $data['token'] = $object->getToken();
             }
             if ($object->isInitialized('dateDepot') && null !== $object->getDateDepot()) {
                 $data['date_depot'] = $object->getDateDepot()->format('Y-m-d');
@@ -162,6 +171,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('type', $data) && null === $data['type']) {
                 $object->setType(null);
             }
+            if (\array_key_exists('token', $data) && null !== $data['token']) {
+                $object->setToken($data['token']);
+                unset($data['token']);
+            } elseif (\array_key_exists('token', $data) && null === $data['token']) {
+                $object->setToken(null);
+            }
             if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
                 $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
                 unset($data['date_depot']);
@@ -203,6 +218,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
             if ($object->isInitialized('type') && null !== $object->getType()) {
                 $data['type'] = $object->getType();
+            }
+            if ($object->isInitialized('token') && null !== $object->getToken()) {
+                $data['token'] = $object->getToken();
             }
             if ($object->isInitialized('dateDepot') && null !== $object->getDateDepot()) {
                 $data['date_depot'] = $object->getDateDepot()->format('Y-m-d');

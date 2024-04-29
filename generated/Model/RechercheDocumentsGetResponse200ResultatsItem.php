@@ -20,6 +20,12 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $type;
     /**
+     * Token du document.
+     *
+     * @var string|null
+     */
+    protected $token;
+    /**
      * Date de dépôt du document.
      *
      * @var \DateTime|null
@@ -51,6 +57,25 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
     {
         $this->initialized['type'] = true;
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Token du document.
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * Token du document.
+     */
+    public function setToken(?string $token): self
+    {
+        $this->initialized['token'] = true;
+        $this->token = $token;
 
         return $this;
     }
