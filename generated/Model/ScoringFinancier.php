@@ -14,13 +14,13 @@ class ScoringFinancier extends \ArrayObject
         return \array_key_exists($property, $this->initialized);
     }
     /**
-     * Note du score extra-financier de l'entreprise.
+     * Note du score non financier de l'entreprise.
      *
      * @var string|null
      */
     protected $note;
     /**
-     * Score extra-financier de l'entreprise.
+     * Score non financier de l'entreprise.
      *
      * @var float|null
      */
@@ -38,20 +38,20 @@ class ScoringFinancier extends \ArrayObject
      */
     protected $detailsScore;
     /**
-     * Date de calcul du score extra-financier de l'entreprise.
+     * Date de calcul du score non financier de l'entreprise.
      *
      * @var string|null
      */
     protected $dateCalcul;
     /**
-     * Erreur lors du calcul du score extra-financier de l'entreprise.
+     * Erreur lors du calcul du score non financier de l'entreprise.
      *
      * @var string|null
      */
     protected $erreur;
 
     /**
-     * Note du score extra-financier de l'entreprise.
+     * Note du score non financier de l'entreprise.
      */
     public function getNote(): ?string
     {
@@ -59,7 +59,7 @@ class ScoringFinancier extends \ArrayObject
     }
 
     /**
-     * Note du score extra-financier de l'entreprise.
+     * Note du score non financier de l'entreprise.
      */
     public function setNote(?string $note): self
     {
@@ -70,7 +70,7 @@ class ScoringFinancier extends \ArrayObject
     }
 
     /**
-     * Score extra-financier de l'entreprise.
+     * Score non financier de l'entreprise.
      */
     public function getScore(): ?float
     {
@@ -78,7 +78,7 @@ class ScoringFinancier extends \ArrayObject
     }
 
     /**
-     * Score extra-financier de l'entreprise.
+     * Score non financier de l'entreprise.
      */
     public function setScore(?float $score): self
     {
@@ -127,7 +127,7 @@ class ScoringFinancier extends \ArrayObject
     }
 
     /**
-     * Date de calcul du score extra-financier de l'entreprise.
+     * Date de calcul du score non financier de l'entreprise.
      */
     public function getDateCalcul(): ?string
     {
@@ -135,7 +135,7 @@ class ScoringFinancier extends \ArrayObject
     }
 
     /**
-     * Date de calcul du score extra-financier de l'entreprise.
+     * Date de calcul du score non financier de l'entreprise.
      */
     public function setDateCalcul(?string $dateCalcul): self
     {
@@ -146,7 +146,7 @@ class ScoringFinancier extends \ArrayObject
     }
 
     /**
-     * Erreur lors du calcul du score extra-financier de l'entreprise.
+     * Erreur lors du calcul du score non financier de l'entreprise.
      */
     public function getErreur(): ?string
     {
@@ -154,7 +154,7 @@ class ScoringFinancier extends \ArrayObject
     }
 
     /**
-     * Erreur lors du calcul du score extra-financier de l'entreprise.
+     * Erreur lors du calcul du score non financier de l'entreprise.
      */
     public function setErreur(?string $erreur): self
     {

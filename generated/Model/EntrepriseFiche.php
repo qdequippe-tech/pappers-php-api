@@ -471,7 +471,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $labels;
     /**
-     * Score extra-financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     * Score non financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
      * @var ScoringNonFinancier|null
      */
@@ -1972,7 +1972,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Score extra-financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     * Score non financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      */
     public function getScoringNonFinancier(): ?ScoringNonFinancier
     {
@@ -1980,7 +1980,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Score extra-financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     * Score non financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      */
     public function setScoringNonFinancier(?ScoringNonFinancier $scoringNonFinancier): self
     {
