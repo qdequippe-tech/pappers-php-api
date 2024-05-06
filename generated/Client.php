@@ -17,6 +17,7 @@ use Qdequippe\Pappers\Api\Endpoint\DocumentBeneficiairesEffectifs;
 use Qdequippe\Pappers\Api\Endpoint\DocumentExtraitInpi;
 use Qdequippe\Pappers\Api\Endpoint\DocumentExtraitPappers;
 use Qdequippe\Pappers\Api\Endpoint\DocumentScoringFinancier;
+use Qdequippe\Pappers\Api\Endpoint\DocumentScoringNonFinancier;
 use Qdequippe\Pappers\Api\Endpoint\DocumentStatus;
 use Qdequippe\Pappers\Api\Endpoint\DocumentTelechargement;
 use Qdequippe\Pappers\Api\Endpoint\Entreprise;
@@ -759,6 +760,29 @@ class Client extends Runtime\Client\Client
     public function documentScoringFinancier(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new DocumentScoringFinancier($queryParameters), $fetch);
+    }
+
+    /**
+     * Vous devez fournir le SIREN. Le document vous sera envoyé au format PDF.
+     *
+     * @param array $queryParameters {
+     *
+     * @var string $api_token Clé d'utilisation de l'API
+     * @var string $siren SIREN de l'entreprise
+     *             }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return ResponseInterface|null
+     *
+     * @throws Exception\DocumentScoringNonFinancierBadRequestException
+     * @throws Exception\DocumentScoringNonFinancierUnauthorizedException
+     * @throws Exception\DocumentScoringNonFinancierNotFoundException
+     * @throws Exception\DocumentScoringNonFinancierServiceUnavailableException
+     */
+    public function documentScoringNonFinancier(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new DocumentScoringNonFinancier($queryParameters), $fetch);
     }
 
     /**
