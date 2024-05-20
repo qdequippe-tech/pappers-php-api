@@ -20,9 +20,9 @@ class ScoringNonFinancier extends \ArrayObject
      */
     protected $note;
     /**
-     * Score non financier de l'entreprise.
+     * Score non financier de l'entreprise, entre 0 et 20.
      *
-     * @var float|null
+     * @var int|null
      */
     protected $score;
     /**
@@ -58,17 +58,17 @@ class ScoringNonFinancier extends \ArrayObject
     }
 
     /**
-     * Score non financier de l'entreprise.
+     * Score non financier de l'entreprise, entre 0 et 20.
      */
-    public function getScore(): ?float
+    public function getScore(): ?int
     {
         return $this->score;
     }
 
     /**
-     * Score non financier de l'entreprise.
+     * Score non financier de l'entreprise, entre 0 et 20.
      */
-    public function setScore(?float $score): self
+    public function setScore(?int $score): self
     {
         $this->initialized['score'] = true;
         $this->score = $score;
