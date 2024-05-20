@@ -79,8 +79,8 @@ class Client extends Runtime\Client\Client
      * - `micro_entreprise` : gratuit
      * - `sanctions` : 1 jeton supplémentaire
      * - `personne_politiquement_exposee` : 1 jeton supplémentaire
-     * - `scoring_financier` : 10 jetons supplémentaires
-     * - `scoring_non_financier` : 10 jetons supplémentaires
+     * - `scoring_financier` : 30 jetons supplémentaires
+     * - `scoring_non_financier` : 30 jetons supplémentaires
      *
      * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
      *

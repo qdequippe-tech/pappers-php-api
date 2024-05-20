@@ -41,9 +41,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
             $object = new ScoringFinancier();
-            if (\array_key_exists('score', $data) && \is_int($data['score'])) {
-                $data['score'] = (float) $data['score'];
-            }
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -157,9 +154,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
             $object = new ScoringFinancier();
-            if (\array_key_exists('score', $data) && \is_int($data['score'])) {
-                $data['score'] = (float) $data['score'];
-            }
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
