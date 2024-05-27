@@ -3,7 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\RechercheDirigeantsGetResponse200ResultatsItem;
+use Qdequippe\Pappers\Api\Model\RepresentantEntreprise;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class RepresentantEntrepriseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' === $type;
+            return 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -40,7 +40,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (isset($data['$recursiveRef'])) {
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
-            $object = new RechercheDirigeantsGetResponse200ResultatsItem();
+            $object = new RepresentantEntreprise();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -200,33 +200,39 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
                 $object->setCodePays(null);
             }
-            if (\array_key_exists('actuel', $data) && null !== $data['actuel']) {
-                $object->setActuel($data['actuel']);
-                unset($data['actuel']);
-            } elseif (\array_key_exists('actuel', $data) && null === $data['actuel']) {
-                $object->setActuel(null);
+            if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
+                unset($data['personne_politiquement_exposee']);
+            } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
+                $object->setPersonnePolitiquementExposee(null);
             }
-            if (\array_key_exists('date_depart_de_poste', $data) && null !== $data['date_depart_de_poste']) {
-                $object->setDateDepartDePoste($data['date_depart_de_poste']);
-                unset($data['date_depart_de_poste']);
-            } elseif (\array_key_exists('date_depart_de_poste', $data) && null === $data['date_depart_de_poste']) {
-                $object->setDateDepartDePoste(null);
+            if (\array_key_exists('sanctions_en_cours', $data) && null !== $data['sanctions_en_cours']) {
+                $object->setSanctionsEnCours($data['sanctions_en_cours']);
+                unset($data['sanctions_en_cours']);
+            } elseif (\array_key_exists('sanctions_en_cours', $data) && null === $data['sanctions_en_cours']) {
+                $object->setSanctionsEnCours(null);
             }
-            if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
+            if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
-                foreach ($data['entreprises'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseRecherche', 'json', $context);
+                foreach ($data['sanctions'] as $value) {
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
                 }
-                $object->setEntreprises($values);
-                unset($data['entreprises']);
-            } elseif (\array_key_exists('entreprises', $data) && null === $data['entreprises']) {
-                $object->setEntreprises(null);
+                $object->setSanctions($values);
+                unset($data['sanctions']);
+            } elseif (\array_key_exists('sanctions', $data) && null === $data['sanctions']) {
+                $object->setSanctions(null);
             }
-            if (\array_key_exists('nb_entreprises_total', $data) && null !== $data['nb_entreprises_total']) {
-                $object->setNbEntreprisesTotal($data['nb_entreprises_total']);
-                unset($data['nb_entreprises_total']);
-            } elseif (\array_key_exists('nb_entreprises_total', $data) && null === $data['nb_entreprises_total']) {
-                $object->setNbEntreprisesTotal(null);
+            if (\array_key_exists('decede', $data) && null !== $data['decede']) {
+                $object->setDecede($data['decede']);
+                unset($data['decede']);
+            } elseif (\array_key_exists('decede', $data) && null === $data['decede']) {
+                $object->setDecede(null);
+            }
+            if (\array_key_exists('date_de_deces', $data) && null !== $data['date_de_deces']) {
+                $object->setDateDeDeces($data['date_de_deces']);
+                unset($data['date_de_deces']);
+            } elseif (\array_key_exists('date_de_deces', $data) && null === $data['date_de_deces']) {
+                $object->setDateDeDeces(null);
             }
             foreach ($data as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
@@ -318,21 +324,24 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('codePays') && null !== $object->getCodePays()) {
                 $data['code_pays'] = $object->getCodePays();
             }
-            if ($object->isInitialized('actuel') && null !== $object->getActuel()) {
-                $data['actuel'] = $object->getActuel();
+            if ($object->isInitialized('personnePolitiquementExposee') && null !== $object->getPersonnePolitiquementExposee()) {
+                $data['personne_politiquement_exposee'] = $this->normalizer->normalize($object->getPersonnePolitiquementExposee(), 'json', $context);
             }
-            if ($object->isInitialized('dateDepartDePoste') && null !== $object->getDateDepartDePoste()) {
-                $data['date_depart_de_poste'] = $object->getDateDepartDePoste();
+            if ($object->isInitialized('sanctionsEnCours') && null !== $object->getSanctionsEnCours()) {
+                $data['sanctions_en_cours'] = $object->getSanctionsEnCours();
             }
-            if ($object->isInitialized('entreprises') && null !== $object->getEntreprises()) {
+            if ($object->isInitialized('sanctions') && null !== $object->getSanctions()) {
                 $values = [];
-                foreach ($object->getEntreprises() as $value) {
+                foreach ($object->getSanctions() as $value) {
                     $values[] = $this->normalizer->normalize($value, 'json', $context);
                 }
-                $data['entreprises'] = $values;
+                $data['sanctions'] = $values;
             }
-            if ($object->isInitialized('nbEntreprisesTotal') && null !== $object->getNbEntreprisesTotal()) {
-                $data['nb_entreprises_total'] = $object->getNbEntreprisesTotal();
+            if ($object->isInitialized('decede') && null !== $object->getDecede()) {
+                $data['decede'] = $object->getDecede();
+            }
+            if ($object->isInitialized('dateDeDeces') && null !== $object->getDateDeDeces()) {
+                $data['date_de_deces'] = $object->getDateDeDeces();
             }
             foreach ($object as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
@@ -345,11 +354,11 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' => false];
+            return ['Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' => false];
         }
     }
 } else {
-    class RechercheDirigeantsGetResponse200ResultatsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class RepresentantEntrepriseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -358,12 +367,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' === $type;
+            return 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $data::class;
         }
 
         /**
@@ -377,7 +386,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (isset($data['$recursiveRef'])) {
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
-            $object = new RechercheDirigeantsGetResponse200ResultatsItem();
+            $object = new RepresentantEntreprise();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -537,33 +546,39 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
                 $object->setCodePays(null);
             }
-            if (\array_key_exists('actuel', $data) && null !== $data['actuel']) {
-                $object->setActuel($data['actuel']);
-                unset($data['actuel']);
-            } elseif (\array_key_exists('actuel', $data) && null === $data['actuel']) {
-                $object->setActuel(null);
+            if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
+                unset($data['personne_politiquement_exposee']);
+            } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
+                $object->setPersonnePolitiquementExposee(null);
             }
-            if (\array_key_exists('date_depart_de_poste', $data) && null !== $data['date_depart_de_poste']) {
-                $object->setDateDepartDePoste($data['date_depart_de_poste']);
-                unset($data['date_depart_de_poste']);
-            } elseif (\array_key_exists('date_depart_de_poste', $data) && null === $data['date_depart_de_poste']) {
-                $object->setDateDepartDePoste(null);
+            if (\array_key_exists('sanctions_en_cours', $data) && null !== $data['sanctions_en_cours']) {
+                $object->setSanctionsEnCours($data['sanctions_en_cours']);
+                unset($data['sanctions_en_cours']);
+            } elseif (\array_key_exists('sanctions_en_cours', $data) && null === $data['sanctions_en_cours']) {
+                $object->setSanctionsEnCours(null);
             }
-            if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
+            if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
-                foreach ($data['entreprises'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseRecherche', 'json', $context);
+                foreach ($data['sanctions'] as $value) {
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
                 }
-                $object->setEntreprises($values);
-                unset($data['entreprises']);
-            } elseif (\array_key_exists('entreprises', $data) && null === $data['entreprises']) {
-                $object->setEntreprises(null);
+                $object->setSanctions($values);
+                unset($data['sanctions']);
+            } elseif (\array_key_exists('sanctions', $data) && null === $data['sanctions']) {
+                $object->setSanctions(null);
             }
-            if (\array_key_exists('nb_entreprises_total', $data) && null !== $data['nb_entreprises_total']) {
-                $object->setNbEntreprisesTotal($data['nb_entreprises_total']);
-                unset($data['nb_entreprises_total']);
-            } elseif (\array_key_exists('nb_entreprises_total', $data) && null === $data['nb_entreprises_total']) {
-                $object->setNbEntreprisesTotal(null);
+            if (\array_key_exists('decede', $data) && null !== $data['decede']) {
+                $object->setDecede($data['decede']);
+                unset($data['decede']);
+            } elseif (\array_key_exists('decede', $data) && null === $data['decede']) {
+                $object->setDecede(null);
+            }
+            if (\array_key_exists('date_de_deces', $data) && null !== $data['date_de_deces']) {
+                $object->setDateDeDeces($data['date_de_deces']);
+                unset($data['date_de_deces']);
+            } elseif (\array_key_exists('date_de_deces', $data) && null === $data['date_de_deces']) {
+                $object->setDateDeDeces(null);
             }
             foreach ($data as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
@@ -660,21 +675,24 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('codePays') && null !== $object->getCodePays()) {
                 $data['code_pays'] = $object->getCodePays();
             }
-            if ($object->isInitialized('actuel') && null !== $object->getActuel()) {
-                $data['actuel'] = $object->getActuel();
+            if ($object->isInitialized('personnePolitiquementExposee') && null !== $object->getPersonnePolitiquementExposee()) {
+                $data['personne_politiquement_exposee'] = $this->normalizer->normalize($object->getPersonnePolitiquementExposee(), 'json', $context);
             }
-            if ($object->isInitialized('dateDepartDePoste') && null !== $object->getDateDepartDePoste()) {
-                $data['date_depart_de_poste'] = $object->getDateDepartDePoste();
+            if ($object->isInitialized('sanctionsEnCours') && null !== $object->getSanctionsEnCours()) {
+                $data['sanctions_en_cours'] = $object->getSanctionsEnCours();
             }
-            if ($object->isInitialized('entreprises') && null !== $object->getEntreprises()) {
+            if ($object->isInitialized('sanctions') && null !== $object->getSanctions()) {
                 $values = [];
-                foreach ($object->getEntreprises() as $value) {
+                foreach ($object->getSanctions() as $value) {
                     $values[] = $this->normalizer->normalize($value, 'json', $context);
                 }
-                $data['entreprises'] = $values;
+                $data['sanctions'] = $values;
             }
-            if ($object->isInitialized('nbEntreprisesTotal') && null !== $object->getNbEntreprisesTotal()) {
-                $data['nb_entreprises_total'] = $object->getNbEntreprisesTotal();
+            if ($object->isInitialized('decede') && null !== $object->getDecede()) {
+                $data['decede'] = $object->getDecede();
+            }
+            if ($object->isInitialized('dateDeDeces') && null !== $object->getDateDeDeces()) {
+                $data['date_de_deces'] = $object->getDateDeDeces();
             }
             foreach ($object as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
@@ -687,7 +705,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200ResultatsItem' => false];
+            return ['Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' => false];
         }
     }
 }

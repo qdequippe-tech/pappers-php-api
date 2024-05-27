@@ -200,28 +200,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
                 $object->setCodePays(null);
             }
-            if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
-                unset($data['personne_politiquement_exposee']);
-            } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee(null);
-            }
-            if (\array_key_exists('sanctions_en_cours', $data) && null !== $data['sanctions_en_cours']) {
-                $object->setSanctionsEnCours($data['sanctions_en_cours']);
-                unset($data['sanctions_en_cours']);
-            } elseif (\array_key_exists('sanctions_en_cours', $data) && null === $data['sanctions_en_cours']) {
-                $object->setSanctionsEnCours(null);
-            }
-            if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
-                $values = [];
-                foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
-                }
-                $object->setSanctions($values);
-                unset($data['sanctions']);
-            } elseif (\array_key_exists('sanctions', $data) && null === $data['sanctions']) {
-                $object->setSanctions(null);
-            }
             if (\array_key_exists('actuel', $data) && null !== $data['actuel']) {
                 $object->setActuel($data['actuel']);
                 unset($data['actuel']);
@@ -234,9 +212,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('date_depart_de_poste', $data) && null === $data['date_depart_de_poste']) {
                 $object->setDateDepartDePoste(null);
             }
-            foreach ($data as $key => $value_1) {
+            foreach ($data as $key => $value) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_1;
+                    $object[$key] = $value;
                 }
             }
 
@@ -324,28 +302,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('codePays') && null !== $object->getCodePays()) {
                 $data['code_pays'] = $object->getCodePays();
             }
-            if ($object->isInitialized('personnePolitiquementExposee') && null !== $object->getPersonnePolitiquementExposee()) {
-                $data['personne_politiquement_exposee'] = $this->normalizer->normalize($object->getPersonnePolitiquementExposee(), 'json', $context);
-            }
-            if ($object->isInitialized('sanctionsEnCours') && null !== $object->getSanctionsEnCours()) {
-                $data['sanctions_en_cours'] = $object->getSanctionsEnCours();
-            }
-            if ($object->isInitialized('sanctions') && null !== $object->getSanctions()) {
-                $values = [];
-                foreach ($object->getSanctions() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
-                }
-                $data['sanctions'] = $values;
-            }
             if ($object->isInitialized('actuel') && null !== $object->getActuel()) {
                 $data['actuel'] = $object->getActuel();
             }
             if ($object->isInitialized('dateDepartDePoste') && null !== $object->getDateDepartDePoste()) {
                 $data['date_depart_de_poste'] = $object->getDateDepartDePoste();
             }
-            foreach ($object as $key => $value_1) {
+            foreach ($object as $key => $value) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_1;
+                    $data[$key] = $value;
                 }
             }
 
@@ -546,28 +511,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
                 $object->setCodePays(null);
             }
-            if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
-                unset($data['personne_politiquement_exposee']);
-            } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee(null);
-            }
-            if (\array_key_exists('sanctions_en_cours', $data) && null !== $data['sanctions_en_cours']) {
-                $object->setSanctionsEnCours($data['sanctions_en_cours']);
-                unset($data['sanctions_en_cours']);
-            } elseif (\array_key_exists('sanctions_en_cours', $data) && null === $data['sanctions_en_cours']) {
-                $object->setSanctionsEnCours(null);
-            }
-            if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
-                $values = [];
-                foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
-                }
-                $object->setSanctions($values);
-                unset($data['sanctions']);
-            } elseif (\array_key_exists('sanctions', $data) && null === $data['sanctions']) {
-                $object->setSanctions(null);
-            }
             if (\array_key_exists('actuel', $data) && null !== $data['actuel']) {
                 $object->setActuel($data['actuel']);
                 unset($data['actuel']);
@@ -580,9 +523,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('date_depart_de_poste', $data) && null === $data['date_depart_de_poste']) {
                 $object->setDateDepartDePoste(null);
             }
-            foreach ($data as $key => $value_1) {
+            foreach ($data as $key => $value) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_1;
+                    $object[$key] = $value;
                 }
             }
 
@@ -675,28 +618,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('codePays') && null !== $object->getCodePays()) {
                 $data['code_pays'] = $object->getCodePays();
             }
-            if ($object->isInitialized('personnePolitiquementExposee') && null !== $object->getPersonnePolitiquementExposee()) {
-                $data['personne_politiquement_exposee'] = $this->normalizer->normalize($object->getPersonnePolitiquementExposee(), 'json', $context);
-            }
-            if ($object->isInitialized('sanctionsEnCours') && null !== $object->getSanctionsEnCours()) {
-                $data['sanctions_en_cours'] = $object->getSanctionsEnCours();
-            }
-            if ($object->isInitialized('sanctions') && null !== $object->getSanctions()) {
-                $values = [];
-                foreach ($object->getSanctions() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
-                }
-                $data['sanctions'] = $values;
-            }
             if ($object->isInitialized('actuel') && null !== $object->getActuel()) {
                 $data['actuel'] = $object->getActuel();
             }
             if ($object->isInitialized('dateDepartDePoste') && null !== $object->getDateDepartDePoste()) {
                 $data['date_depart_de_poste'] = $object->getDateDepartDePoste();
             }
-            foreach ($object as $key => $value_1) {
+            foreach ($object as $key => $value) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_1;
+                    $data[$key] = $value;
                 }
             }
 
