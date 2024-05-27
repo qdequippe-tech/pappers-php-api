@@ -2,7 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
+class RepresentantEntreprise extends \ArrayObject
 {
     /**
      * @var array
@@ -44,7 +44,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $siren;
     /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
+     * Forme juridique du représentant si personne morale.
      *
      * @var string|null
      */
@@ -170,29 +170,35 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $codePays;
     /**
-     * Vaut vrai si le représentant est toujours à son poste.
+     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var PersonnePolitiquementExposee|null
+     */
+    protected $personnePolitiquementExposee;
+    /**
+     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
      *
      * @var bool|null
      */
-    protected $actuel;
+    protected $sanctionsEnCours;
     /**
-     * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
+     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<Sanction>|null
+     */
+    protected $sanctions;
+    /**
+     * Indique si une personne avec le même nom et la même date de naissance est présente dans le fichier des personnes décédées. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var bool|null
+     */
+    protected $decede;
+    /**
+     * Indique, si le champ decede est vrai, la date de décès précisée dans le fichier des personnes décédées. Uniquement présent si demandé dans les champs supplémentaires.
      *
      * @var string|null
      */
-    protected $dateDepartDePoste;
-    /**
-     * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
-     *
-     * @var list<EntrepriseRecherche>|null
-     */
-    protected $entreprises;
-    /**
-     * Nombre d'entreprises du dirigeant au total.
-     *
-     * @var int|null
-     */
-    protected $nbEntreprisesTotal;
+    protected $dateDeDeces;
 
     /**
      * Qualité du représentant.
@@ -290,7 +296,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     }
 
     /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
+     * Forme juridique du représentant si personne morale.
      */
     public function getFormeJuridique(): ?string
     {
@@ -298,7 +304,7 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     }
 
     /**
-     * Forme juridique du représentant dans le cas d'une personne morale.
+     * Forme juridique du représentant si personne morale.
      */
     public function setFormeJuridique(?string $formeJuridique): self
     {
@@ -689,81 +695,100 @@ class RechercheDirigeantsGetResponse200ResultatsItem extends \ArrayObject
     }
 
     /**
-     * Vaut vrai si le représentant est toujours à son poste.
+     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function getActuel(): ?bool
+    public function getPersonnePolitiquementExposee(): ?PersonnePolitiquementExposee
     {
-        return $this->actuel;
+        return $this->personnePolitiquementExposee;
     }
 
     /**
-     * Vaut vrai si le représentant est toujours à son poste.
+     * Informations sur le statut de personne politiquement exposée. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function setActuel(?bool $actuel): self
+    public function setPersonnePolitiquementExposee(?PersonnePolitiquementExposee $personnePolitiquementExposee): self
     {
-        $this->initialized['actuel'] = true;
-        $this->actuel = $actuel;
+        $this->initialized['personnePolitiquementExposee'] = true;
+        $this->personnePolitiquementExposee = $personnePolitiquementExposee;
 
         return $this;
     }
 
     /**
-     * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
+     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function getDateDepartDePoste(): ?string
+    public function getSanctionsEnCours(): ?bool
     {
-        return $this->dateDepartDePoste;
+        return $this->sanctionsEnCours;
     }
 
     /**
-     * Date de départ de poste dans le cas où le représentant n'est plus un représentant actuel, au format AAAA-MM-JJ.
+     * Vaut vrai si le représentant est actuellement sous sanction. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function setDateDepartDePoste(?string $dateDepartDePoste): self
+    public function setSanctionsEnCours(?bool $sanctionsEnCours): self
     {
-        $this->initialized['dateDepartDePoste'] = true;
-        $this->dateDepartDePoste = $dateDepartDePoste;
+        $this->initialized['sanctionsEnCours'] = true;
+        $this->sanctionsEnCours = $sanctionsEnCours;
 
         return $this;
     }
 
     /**
-     * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
+     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return list<EntrepriseRecherche>|null
+     * @return list<Sanction>|null
      */
-    public function getEntreprises(): ?array
+    public function getSanctions(): ?array
     {
-        return $this->entreprises;
+        return $this->sanctions;
     }
 
     /**
-     * Liste des entreprises du dirigeant, dans la limite de 100 entreprises.
+     * Liste des sanctions du représentant. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param list<EntrepriseRecherche>|null $entreprises
+     * @param list<Sanction>|null $sanctions
      */
-    public function setEntreprises(?array $entreprises): self
+    public function setSanctions(?array $sanctions): self
     {
-        $this->initialized['entreprises'] = true;
-        $this->entreprises = $entreprises;
+        $this->initialized['sanctions'] = true;
+        $this->sanctions = $sanctions;
 
         return $this;
     }
 
     /**
-     * Nombre d'entreprises du dirigeant au total.
+     * Indique si une personne avec le même nom et la même date de naissance est présente dans le fichier des personnes décédées. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function getNbEntreprisesTotal(): ?int
+    public function getDecede(): ?bool
     {
-        return $this->nbEntreprisesTotal;
+        return $this->decede;
     }
 
     /**
-     * Nombre d'entreprises du dirigeant au total.
+     * Indique si une personne avec le même nom et la même date de naissance est présente dans le fichier des personnes décédées. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function setNbEntreprisesTotal(?int $nbEntreprisesTotal): self
+    public function setDecede(?bool $decede): self
     {
-        $this->initialized['nbEntreprisesTotal'] = true;
-        $this->nbEntreprisesTotal = $nbEntreprisesTotal;
+        $this->initialized['decede'] = true;
+        $this->decede = $decede;
+
+        return $this;
+    }
+
+    /**
+     * Indique, si le champ decede est vrai, la date de décès précisée dans le fichier des personnes décédées. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getDateDeDeces(): ?string
+    {
+        return $this->dateDeDeces;
+    }
+
+    /**
+     * Indique, si le champ decede est vrai, la date de décès précisée dans le fichier des personnes décédées. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setDateDeDeces(?string $dateDeDeces): self
+    {
+        $this->initialized['dateDeDeces'] = true;
+        $this->dateDeDeces = $dateDeDeces;
 
         return $this;
     }

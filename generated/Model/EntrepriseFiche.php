@@ -389,7 +389,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des représentants de l'entreprise.
      *
-     * @var list<Representant>|null
+     * @var list<RepresentantEntreprise>|null
      */
     protected $representants;
     /**
@@ -1676,7 +1676,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des représentants de l'entreprise.
      *
-     * @return list<Representant>|null
+     * @return list<RepresentantEntreprise>|null
      */
     public function getRepresentants(): ?array
     {
@@ -1686,7 +1686,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des représentants de l'entreprise.
      *
-     * @param list<Representant>|null $representants
+     * @param list<RepresentantEntreprise>|null $representants
      */
     public function setRepresentants(?array $representants): self
     {

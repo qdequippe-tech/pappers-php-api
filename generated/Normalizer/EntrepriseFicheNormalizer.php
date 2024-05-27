@@ -434,7 +434,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('representants', $data) && null !== $data['representants']) {
                 $values_3 = [];
                 foreach ($data['representants'] as $value_3) {
-                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\\Pappers\\Api\\Model\\Representant', 'json', $context);
+                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise', 'json', $context);
                 }
                 $object->setRepresentants($values_3);
                 unset($data['representants']);
@@ -1286,7 +1286,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('representants', $data) && null !== $data['representants']) {
                 $values_3 = [];
                 foreach ($data['representants'] as $value_3) {
-                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\\Pappers\\Api\\Model\\Representant', 'json', $context);
+                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise', 'json', $context);
                 }
                 $object->setRepresentants($values_3);
                 unset($data['representants']);
