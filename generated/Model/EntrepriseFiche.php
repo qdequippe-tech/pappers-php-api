@@ -135,6 +135,12 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $formeJuridique;
     /**
+     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
+     *
+     * @var bool|null
+     */
+    protected $microEntreprise;
+    /**
      * Forme d'exercice de l'activité principale.
      *
      * @var string|null
@@ -369,17 +375,15 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $associeUnique;
     /**
-     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
-     *
-     * @var bool|null
-     */
-    protected $microEntreprise;
-    /**
-     * Liste des établissements de l'entreprise.
+     * Liste des établissements de l'entreprise. (uniquement si le paramètre `siren` est utilisé).
      *
      * @var list<EtablissementFiche>|null
      */
     protected $etablissements;
+    /**
+     * @var EntrepriseFicheetablissement|null
+     */
+    protected $etablissement;
     /**
      * Liste des finances de l'entreprise.
      *
@@ -470,6 +474,24 @@ class EntrepriseFiche extends \ArrayObject
      * @var list<Labels>|null
      */
     protected $labels;
+    /**
+     * Liste des sites internet de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<string>|null
+     */
+    protected $sitesInternet;
+    /**
+     * Numéro de téléphone de l'entreprise au format 0123456789. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var string|null
+     */
+    protected $telephone;
+    /**
+     * Adresse email de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var string|null
+     */
+    protected $email;
     /**
      * Score non financier de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
@@ -865,6 +887,25 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['formeJuridique'] = true;
         $this->formeJuridique = $formeJuridique;
+
+        return $this;
+    }
+
+    /**
+     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
+     */
+    public function getMicroEntreprise(): ?bool
+    {
+        return $this->microEntreprise;
+    }
+
+    /**
+     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
+     */
+    public function setMicroEntreprise(?bool $microEntreprise): self
+    {
+        $this->initialized['microEntreprise'] = true;
+        $this->microEntreprise = $microEntreprise;
 
         return $this;
     }
@@ -1609,26 +1650,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
-     */
-    public function getMicroEntreprise(): ?bool
-    {
-        return $this->microEntreprise;
-    }
-
-    /**
-     * Si vrai, l'entreprise possède le statut de micro-entrepreneur.
-     */
-    public function setMicroEntreprise(?bool $microEntreprise): self
-    {
-        $this->initialized['microEntreprise'] = true;
-        $this->microEntreprise = $microEntreprise;
-
-        return $this;
-    }
-
-    /**
-     * Liste des établissements de l'entreprise.
+     * Liste des établissements de l'entreprise. (uniquement si le paramètre `siren` est utilisé).
      *
      * @return list<EtablissementFiche>|null
      */
@@ -1638,7 +1660,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Liste des établissements de l'entreprise.
+     * Liste des établissements de l'entreprise. (uniquement si le paramètre `siren` est utilisé).
      *
      * @param list<EtablissementFiche>|null $etablissements
      */
@@ -1646,6 +1668,19 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['etablissements'] = true;
         $this->etablissements = $etablissements;
+
+        return $this;
+    }
+
+    public function getEtablissement(): ?EntrepriseFicheetablissement
+    {
+        return $this->etablissement;
+    }
+
+    public function setEtablissement(?EntrepriseFicheetablissement $etablissement): self
+    {
+        $this->initialized['etablissement'] = true;
+        $this->etablissement = $etablissement;
 
         return $this;
     }
@@ -1967,6 +2002,67 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['labels'] = true;
         $this->labels = $labels;
+
+        return $this;
+    }
+
+    /**
+     * Liste des sites internet de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<string>|null
+     */
+    public function getSitesInternet(): ?array
+    {
+        return $this->sitesInternet;
+    }
+
+    /**
+     * Liste des sites internet de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<string>|null $sitesInternet
+     */
+    public function setSitesInternet(?array $sitesInternet): self
+    {
+        $this->initialized['sitesInternet'] = true;
+        $this->sitesInternet = $sitesInternet;
+
+        return $this;
+    }
+
+    /**
+     * Numéro de téléphone de l'entreprise au format 0123456789. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Numéro de téléphone de l'entreprise au format 0123456789. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setTelephone(?string $telephone): self
+    {
+        $this->initialized['telephone'] = true;
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Adresse email de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Adresse email de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setEmail(?string $email): self
+    {
+        $this->initialized['email'] = true;
+        $this->email = $email;
 
         return $this;
     }

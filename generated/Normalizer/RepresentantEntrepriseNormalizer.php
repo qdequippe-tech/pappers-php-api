@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $type;
+            return 'Qdequippe\Pappers\Api\Model\RepresentantEntreprise' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RepresentantEntreprise' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -201,7 +201,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setCodePays(null);
             }
             if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee', 'json', $context));
                 unset($data['personne_politiquement_exposee']);
             } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
                 $object->setPersonnePolitiquementExposee(null);
@@ -215,7 +215,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
                 foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Sanction', 'json', $context);
                 }
                 $object->setSanctions($values);
                 unset($data['sanctions']);
@@ -354,7 +354,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' => false];
+            return ['Qdequippe\Pappers\Api\Model\RepresentantEntreprise' => false];
         }
     }
 } else {
@@ -367,12 +367,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $type;
+            return 'Qdequippe\Pappers\Api\Model\RepresentantEntreprise' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RepresentantEntreprise' === $data::class;
         }
 
         /**
@@ -547,7 +547,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setCodePays(null);
             }
             if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee', 'json', $context));
                 unset($data['personne_politiquement_exposee']);
             } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
                 $object->setPersonnePolitiquementExposee(null);
@@ -561,7 +561,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
                 foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Sanction', 'json', $context);
                 }
                 $object->setSanctions($values);
                 unset($data['sanctions']);
@@ -705,7 +705,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\RepresentantEntreprise' => false];
+            return ['Qdequippe\Pappers\Api\Model\RepresentantEntreprise' => false];
         }
     }
 }

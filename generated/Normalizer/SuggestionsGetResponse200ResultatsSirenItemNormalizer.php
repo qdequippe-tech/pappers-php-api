@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSirenItem' === $type;
+            return 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSirenItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -122,7 +122,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('conventions_collectives', $data) && null !== $data['conventions_collectives']) {
                 $values = [];
                 foreach ($data['conventions_collectives'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseBaseConventionsCollectivesItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem', 'json', $context);
                 }
                 $object->setConventionsCollectives($values);
                 unset($data['conventions_collectives']);
@@ -177,6 +177,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
                 $object->setFormeJuridique(null);
             }
+            if (\array_key_exists('micro_entreprise', $data) && null !== $data['micro_entreprise']) {
+                $object->setMicroEntreprise($data['micro_entreprise']);
+                unset($data['micro_entreprise']);
+            } elseif (\array_key_exists('micro_entreprise', $data) && null === $data['micro_entreprise']) {
+                $object->setMicroEntreprise(null);
+            }
             if (\array_key_exists('forme_exercice', $data) && null !== $data['forme_exercice']) {
                 $object->setFormeExercice($data['forme_exercice']);
                 unset($data['forme_exercice']);
@@ -226,7 +232,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setStatutRcs(null);
             }
             if (\array_key_exists('siege', $data) && null !== $data['siege']) {
-                $object->setSiege($this->denormalizer->denormalize($data['siege'], 'Qdequippe\\Pappers\\Api\\Model\\EtablissementRecherche', 'json', $context));
+                $object->setSiege($this->denormalizer->denormalize($data['siege'], 'Qdequippe\Pappers\Api\Model\EtablissementRecherche', 'json', $context));
                 unset($data['siege']);
             } elseif (\array_key_exists('siege', $data) && null === $data['siege']) {
                 $object->setSiege(null);
@@ -344,6 +350,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('formeJuridique') && null !== $object->getFormeJuridique()) {
                 $data['forme_juridique'] = $object->getFormeJuridique();
             }
+            if ($object->isInitialized('microEntreprise') && null !== $object->getMicroEntreprise()) {
+                $data['micro_entreprise'] = $object->getMicroEntreprise();
+            }
             if ($object->isInitialized('formeExercice') && null !== $object->getFormeExercice()) {
                 $data['forme_exercice'] = $object->getFormeExercice();
             }
@@ -401,7 +410,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSirenItem' => false];
+            return ['Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem' => false];
         }
     }
 } else {
@@ -414,12 +423,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSirenItem' === $type;
+            return 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSirenItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem' === $data::class;
         }
 
         /**
@@ -515,7 +524,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('conventions_collectives', $data) && null !== $data['conventions_collectives']) {
                 $values = [];
                 foreach ($data['conventions_collectives'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseBaseConventionsCollectivesItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem', 'json', $context);
                 }
                 $object->setConventionsCollectives($values);
                 unset($data['conventions_collectives']);
@@ -570,6 +579,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
                 $object->setFormeJuridique(null);
             }
+            if (\array_key_exists('micro_entreprise', $data) && null !== $data['micro_entreprise']) {
+                $object->setMicroEntreprise($data['micro_entreprise']);
+                unset($data['micro_entreprise']);
+            } elseif (\array_key_exists('micro_entreprise', $data) && null === $data['micro_entreprise']) {
+                $object->setMicroEntreprise(null);
+            }
             if (\array_key_exists('forme_exercice', $data) && null !== $data['forme_exercice']) {
                 $object->setFormeExercice($data['forme_exercice']);
                 unset($data['forme_exercice']);
@@ -619,7 +634,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setStatutRcs(null);
             }
             if (\array_key_exists('siege', $data) && null !== $data['siege']) {
-                $object->setSiege($this->denormalizer->denormalize($data['siege'], 'Qdequippe\\Pappers\\Api\\Model\\EtablissementRecherche', 'json', $context));
+                $object->setSiege($this->denormalizer->denormalize($data['siege'], 'Qdequippe\Pappers\Api\Model\EtablissementRecherche', 'json', $context));
                 unset($data['siege']);
             } elseif (\array_key_exists('siege', $data) && null === $data['siege']) {
                 $object->setSiege(null);
@@ -742,6 +757,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('formeJuridique') && null !== $object->getFormeJuridique()) {
                 $data['forme_juridique'] = $object->getFormeJuridique();
             }
+            if ($object->isInitialized('microEntreprise') && null !== $object->getMicroEntreprise()) {
+                $data['micro_entreprise'] = $object->getMicroEntreprise();
+            }
             if ($object->isInitialized('formeExercice') && null !== $object->getFormeExercice()) {
                 $data['forme_exercice'] = $object->getFormeExercice();
             }
@@ -799,7 +817,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\SuggestionsGetResponse200ResultatsSirenItem' => false];
+            return ['Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem' => false];
         }
     }
 }

@@ -38,15 +38,27 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
      */
     protected $nomUsage;
     /**
-     * Prénom du bénéficiaire effectif.
+     * Prénoms du bénéficiaire effectif.
      *
      * @var string|null
      */
     protected $prenom;
     /**
+     * Prénom usuel du bénéficiaire effectif.
+     *
+     * @var string|null
+     */
+    protected $prenomUsuel;
+    /**
      * @var string|null
      */
     protected $pseudonyme;
+    /**
+     * Sexe du bénéficiaire si personne physique. F pour féminin, M pour masculin.
+     *
+     * @var string|null
+     */
+    protected $sexe;
     /**
      * Mois et année de naissance du bénéficiaire effectif, au format MM/AAAA.
      *
@@ -335,7 +347,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Prénom du bénéficiaire effectif.
+     * Prénoms du bénéficiaire effectif.
      */
     public function getPrenom(): ?string
     {
@@ -343,12 +355,31 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Prénom du bénéficiaire effectif.
+     * Prénoms du bénéficiaire effectif.
      */
     public function setPrenom(?string $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Prénom usuel du bénéficiaire effectif.
+     */
+    public function getPrenomUsuel(): ?string
+    {
+        return $this->prenomUsuel;
+    }
+
+    /**
+     * Prénom usuel du bénéficiaire effectif.
+     */
+    public function setPrenomUsuel(?string $prenomUsuel): self
+    {
+        $this->initialized['prenomUsuel'] = true;
+        $this->prenomUsuel = $prenomUsuel;
 
         return $this;
     }
@@ -362,6 +393,25 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     {
         $this->initialized['pseudonyme'] = true;
         $this->pseudonyme = $pseudonyme;
+
+        return $this;
+    }
+
+    /**
+     * Sexe du bénéficiaire si personne physique. F pour féminin, M pour masculin.
+     */
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Sexe du bénéficiaire si personne physique. F pour féminin, M pour masculin.
+     */
+    public function setSexe(?string $sexe): self
+    {
+        $this->initialized['sexe'] = true;
+        $this->sexe = $sexe;
 
         return $this;
     }

@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItem' === $type;
+            return 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -95,11 +95,23 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
                 $object->setPrenom(null);
             }
+            if (\array_key_exists('prenom_usuel', $data) && null !== $data['prenom_usuel']) {
+                $object->setPrenomUsuel($data['prenom_usuel']);
+                unset($data['prenom_usuel']);
+            } elseif (\array_key_exists('prenom_usuel', $data) && null === $data['prenom_usuel']) {
+                $object->setPrenomUsuel(null);
+            }
             if (\array_key_exists('pseudonyme', $data) && null !== $data['pseudonyme']) {
                 $object->setPseudonyme($data['pseudonyme']);
                 unset($data['pseudonyme']);
             } elseif (\array_key_exists('pseudonyme', $data) && null === $data['pseudonyme']) {
                 $object->setPseudonyme(null);
+            }
+            if (\array_key_exists('sexe', $data) && null !== $data['sexe']) {
+                $object->setSexe($data['sexe']);
+                unset($data['sexe']);
+            } elseif (\array_key_exists('sexe', $data) && null === $data['sexe']) {
+                $object->setSexe(null);
             }
             if (\array_key_exists('date_de_naissance_formatee', $data) && null !== $data['date_de_naissance_formatee']) {
                 $object->setDateDeNaissanceFormatee($data['date_de_naissance_formatee']);
@@ -210,19 +222,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentagePartsVocationTitulaire(null);
             }
             if (\array_key_exists('details_parts_directes', $data) && null !== $data['details_parts_directes']) {
-                $object->setDetailsPartsDirectes($this->denormalizer->denormalize($data['details_parts_directes'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes', 'json', $context));
+                $object->setDetailsPartsDirectes($this->denormalizer->denormalize($data['details_parts_directes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes', 'json', $context));
                 unset($data['details_parts_directes']);
             } elseif (\array_key_exists('details_parts_directes', $data) && null === $data['details_parts_directes']) {
                 $object->setDetailsPartsDirectes(null);
             }
             if (\array_key_exists('details_parts_indirectes', $data) && null !== $data['details_parts_indirectes']) {
-                $object->setDetailsPartsIndirectes($this->denormalizer->denormalize($data['details_parts_indirectes'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes', 'json', $context));
+                $object->setDetailsPartsIndirectes($this->denormalizer->denormalize($data['details_parts_indirectes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes', 'json', $context));
                 unset($data['details_parts_indirectes']);
             } elseif (\array_key_exists('details_parts_indirectes', $data) && null === $data['details_parts_indirectes']) {
                 $object->setDetailsPartsIndirectes(null);
             }
             if (\array_key_exists('details_parts_vocation_titulaire', $data) && null !== $data['details_parts_vocation_titulaire']) {
-                $object->setDetailsPartsVocationTitulaire($this->denormalizer->denormalize($data['details_parts_vocation_titulaire'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire', 'json', $context));
+                $object->setDetailsPartsVocationTitulaire($this->denormalizer->denormalize($data['details_parts_vocation_titulaire'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire', 'json', $context));
                 unset($data['details_parts_vocation_titulaire']);
             } elseif (\array_key_exists('details_parts_vocation_titulaire', $data) && null === $data['details_parts_vocation_titulaire']) {
                 $object->setDetailsPartsVocationTitulaire(null);
@@ -246,19 +258,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentageVotesIndirect(null);
             }
             if (\array_key_exists('details_votes_directs', $data) && null !== $data['details_votes_directs']) {
-                $object->setDetailsVotesDirects($this->denormalizer->denormalize($data['details_votes_directs'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects', 'json', $context));
+                $object->setDetailsVotesDirects($this->denormalizer->denormalize($data['details_votes_directs'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects', 'json', $context));
                 unset($data['details_votes_directs']);
             } elseif (\array_key_exists('details_votes_directs', $data) && null === $data['details_votes_directs']) {
                 $object->setDetailsVotesDirects(null);
             }
             if (\array_key_exists('details_votes_indirects', $data) && null !== $data['details_votes_indirects']) {
-                $object->setDetailsVotesIndirects($this->denormalizer->denormalize($data['details_votes_indirects'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects', 'json', $context));
+                $object->setDetailsVotesIndirects($this->denormalizer->denormalize($data['details_votes_indirects'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects', 'json', $context));
                 unset($data['details_votes_indirects']);
             } elseif (\array_key_exists('details_votes_indirects', $data) && null === $data['details_votes_indirects']) {
                 $object->setDetailsVotesIndirects(null);
             }
             if (\array_key_exists('details_societe_de_gestion', $data) && null !== $data['details_societe_de_gestion']) {
-                $object->setDetailsSocieteDeGestion($this->denormalizer->denormalize($data['details_societe_de_gestion'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion', 'json', $context));
+                $object->setDetailsSocieteDeGestion($this->denormalizer->denormalize($data['details_societe_de_gestion'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion', 'json', $context));
                 unset($data['details_societe_de_gestion']);
             } elseif (\array_key_exists('details_societe_de_gestion', $data) && null === $data['details_societe_de_gestion']) {
                 $object->setDetailsSocieteDeGestion(null);
@@ -294,7 +306,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setRepresentantLegalPlacementSansGestionDelegation(null);
             }
             if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee', 'json', $context));
                 unset($data['personne_politiquement_exposee']);
             } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
                 $object->setPersonnePolitiquementExposee(null);
@@ -308,7 +320,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
                 foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Sanction', 'json', $context);
                 }
                 $object->setSanctions($values);
                 unset($data['sanctions']);
@@ -342,8 +354,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('prenom') && null !== $object->getPrenom()) {
                 $data['prenom'] = $object->getPrenom();
             }
+            if ($object->isInitialized('prenomUsuel') && null !== $object->getPrenomUsuel()) {
+                $data['prenom_usuel'] = $object->getPrenomUsuel();
+            }
             if ($object->isInitialized('pseudonyme') && null !== $object->getPseudonyme()) {
                 $data['pseudonyme'] = $object->getPseudonyme();
+            }
+            if ($object->isInitialized('sexe') && null !== $object->getSexe()) {
+                $data['sexe'] = $object->getSexe();
             }
             if ($object->isInitialized('dateDeNaissanceFormatee') && null !== $object->getDateDeNaissanceFormatee()) {
                 $data['date_de_naissance_formatee'] = $object->getDateDeNaissanceFormatee();
@@ -465,7 +483,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItem' => false];
+            return ['Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem' => false];
         }
     }
 } else {
@@ -478,12 +496,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItem' === $type;
+            return 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem' === $data::class;
         }
 
         /**
@@ -552,11 +570,23 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
                 $object->setPrenom(null);
             }
+            if (\array_key_exists('prenom_usuel', $data) && null !== $data['prenom_usuel']) {
+                $object->setPrenomUsuel($data['prenom_usuel']);
+                unset($data['prenom_usuel']);
+            } elseif (\array_key_exists('prenom_usuel', $data) && null === $data['prenom_usuel']) {
+                $object->setPrenomUsuel(null);
+            }
             if (\array_key_exists('pseudonyme', $data) && null !== $data['pseudonyme']) {
                 $object->setPseudonyme($data['pseudonyme']);
                 unset($data['pseudonyme']);
             } elseif (\array_key_exists('pseudonyme', $data) && null === $data['pseudonyme']) {
                 $object->setPseudonyme(null);
+            }
+            if (\array_key_exists('sexe', $data) && null !== $data['sexe']) {
+                $object->setSexe($data['sexe']);
+                unset($data['sexe']);
+            } elseif (\array_key_exists('sexe', $data) && null === $data['sexe']) {
+                $object->setSexe(null);
             }
             if (\array_key_exists('date_de_naissance_formatee', $data) && null !== $data['date_de_naissance_formatee']) {
                 $object->setDateDeNaissanceFormatee($data['date_de_naissance_formatee']);
@@ -667,19 +697,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentagePartsVocationTitulaire(null);
             }
             if (\array_key_exists('details_parts_directes', $data) && null !== $data['details_parts_directes']) {
-                $object->setDetailsPartsDirectes($this->denormalizer->denormalize($data['details_parts_directes'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes', 'json', $context));
+                $object->setDetailsPartsDirectes($this->denormalizer->denormalize($data['details_parts_directes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes', 'json', $context));
                 unset($data['details_parts_directes']);
             } elseif (\array_key_exists('details_parts_directes', $data) && null === $data['details_parts_directes']) {
                 $object->setDetailsPartsDirectes(null);
             }
             if (\array_key_exists('details_parts_indirectes', $data) && null !== $data['details_parts_indirectes']) {
-                $object->setDetailsPartsIndirectes($this->denormalizer->denormalize($data['details_parts_indirectes'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes', 'json', $context));
+                $object->setDetailsPartsIndirectes($this->denormalizer->denormalize($data['details_parts_indirectes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes', 'json', $context));
                 unset($data['details_parts_indirectes']);
             } elseif (\array_key_exists('details_parts_indirectes', $data) && null === $data['details_parts_indirectes']) {
                 $object->setDetailsPartsIndirectes(null);
             }
             if (\array_key_exists('details_parts_vocation_titulaire', $data) && null !== $data['details_parts_vocation_titulaire']) {
-                $object->setDetailsPartsVocationTitulaire($this->denormalizer->denormalize($data['details_parts_vocation_titulaire'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire', 'json', $context));
+                $object->setDetailsPartsVocationTitulaire($this->denormalizer->denormalize($data['details_parts_vocation_titulaire'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire', 'json', $context));
                 unset($data['details_parts_vocation_titulaire']);
             } elseif (\array_key_exists('details_parts_vocation_titulaire', $data) && null === $data['details_parts_vocation_titulaire']) {
                 $object->setDetailsPartsVocationTitulaire(null);
@@ -703,19 +733,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentageVotesIndirect(null);
             }
             if (\array_key_exists('details_votes_directs', $data) && null !== $data['details_votes_directs']) {
-                $object->setDetailsVotesDirects($this->denormalizer->denormalize($data['details_votes_directs'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects', 'json', $context));
+                $object->setDetailsVotesDirects($this->denormalizer->denormalize($data['details_votes_directs'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects', 'json', $context));
                 unset($data['details_votes_directs']);
             } elseif (\array_key_exists('details_votes_directs', $data) && null === $data['details_votes_directs']) {
                 $object->setDetailsVotesDirects(null);
             }
             if (\array_key_exists('details_votes_indirects', $data) && null !== $data['details_votes_indirects']) {
-                $object->setDetailsVotesIndirects($this->denormalizer->denormalize($data['details_votes_indirects'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects', 'json', $context));
+                $object->setDetailsVotesIndirects($this->denormalizer->denormalize($data['details_votes_indirects'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects', 'json', $context));
                 unset($data['details_votes_indirects']);
             } elseif (\array_key_exists('details_votes_indirects', $data) && null === $data['details_votes_indirects']) {
                 $object->setDetailsVotesIndirects(null);
             }
             if (\array_key_exists('details_societe_de_gestion', $data) && null !== $data['details_societe_de_gestion']) {
-                $object->setDetailsSocieteDeGestion($this->denormalizer->denormalize($data['details_societe_de_gestion'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion', 'json', $context));
+                $object->setDetailsSocieteDeGestion($this->denormalizer->denormalize($data['details_societe_de_gestion'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion', 'json', $context));
                 unset($data['details_societe_de_gestion']);
             } elseif (\array_key_exists('details_societe_de_gestion', $data) && null === $data['details_societe_de_gestion']) {
                 $object->setDetailsSocieteDeGestion(null);
@@ -751,7 +781,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setRepresentantLegalPlacementSansGestionDelegation(null);
             }
             if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\\Pappers\\Api\\Model\\PersonnePolitiquementExposee', 'json', $context));
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee', 'json', $context));
                 unset($data['personne_politiquement_exposee']);
             } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
                 $object->setPersonnePolitiquementExposee(null);
@@ -765,7 +795,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
                 foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\Sanction', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Sanction', 'json', $context);
                 }
                 $object->setSanctions($values);
                 unset($data['sanctions']);
@@ -804,8 +834,14 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('prenom') && null !== $object->getPrenom()) {
                 $data['prenom'] = $object->getPrenom();
             }
+            if ($object->isInitialized('prenomUsuel') && null !== $object->getPrenomUsuel()) {
+                $data['prenom_usuel'] = $object->getPrenomUsuel();
+            }
             if ($object->isInitialized('pseudonyme') && null !== $object->getPseudonyme()) {
                 $data['pseudonyme'] = $object->getPseudonyme();
+            }
+            if ($object->isInitialized('sexe') && null !== $object->getSexe()) {
+                $data['sexe'] = $object->getSexe();
             }
             if ($object->isInitialized('dateDeNaissanceFormatee') && null !== $object->getDateDeNaissanceFormatee()) {
                 $data['date_de_naissance_formatee'] = $object->getDateDeNaissanceFormatee();
@@ -927,7 +963,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItem' => false];
+            return ['Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem' => false];
         }
     }
 }

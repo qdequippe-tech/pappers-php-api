@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200' === $type;
+            return 'Qdequippe\Pappers\Api\Model\RechercheGetResponse200' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RechercheGetResponse200' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -47,7 +47,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
                 $values = [];
                 foreach ($data['resultats'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200ResultatsItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItem', 'json', $context);
                 }
                 $object->setResultats($values);
                 unset($data['resultats']);
@@ -111,7 +111,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200' => false];
+            return ['Qdequippe\Pappers\Api\Model\RechercheGetResponse200' => false];
         }
     }
 } else {
@@ -124,12 +124,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200' === $type;
+            return 'Qdequippe\Pappers\Api\Model\RechercheGetResponse200' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RechercheGetResponse200' === $data::class;
         }
 
         /**
@@ -150,7 +150,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
                 $values = [];
                 foreach ($data['resultats'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200ResultatsItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItem', 'json', $context);
                 }
                 $object->setResultats($values);
                 unset($data['resultats']);
@@ -219,7 +219,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\RechercheGetResponse200' => false];
+            return ['Qdequippe\Pappers\Api\Model\RechercheGetResponse200' => false];
         }
     }
 }

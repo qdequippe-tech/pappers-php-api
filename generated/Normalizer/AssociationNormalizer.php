@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Association' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Association' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Association' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Association' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -171,13 +171,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEmail(null);
             }
             if (\array_key_exists('adresse_siege', $data) && null !== $data['adresse_siege']) {
-                $object->setAdresseSiege($this->denormalizer->denormalize($data['adresse_siege'], 'Qdequippe\\Pappers\\Api\\Model\\AssociationAdresseSiege', 'json', $context));
+                $object->setAdresseSiege($this->denormalizer->denormalize($data['adresse_siege'], 'Qdequippe\Pappers\Api\Model\AssociationAdresseSiege', 'json', $context));
                 unset($data['adresse_siege']);
             } elseif (\array_key_exists('adresse_siege', $data) && null === $data['adresse_siege']) {
                 $object->setAdresseSiege(null);
             }
             if (\array_key_exists('adresse_gestionnaire', $data) && null !== $data['adresse_gestionnaire']) {
-                $object->setAdresseGestionnaire($this->denormalizer->denormalize($data['adresse_gestionnaire'], 'Qdequippe\\Pappers\\Api\\Model\\AssociationAdresseGestionnaire', 'json', $context));
+                $object->setAdresseGestionnaire($this->denormalizer->denormalize($data['adresse_gestionnaire'], 'Qdequippe\Pappers\Api\Model\AssociationAdresseGestionnaire', 'json', $context));
                 unset($data['adresse_gestionnaire']);
             } elseif (\array_key_exists('adresse_gestionnaire', $data) && null === $data['adresse_gestionnaire']) {
                 $object->setAdresseGestionnaire(null);
@@ -207,7 +207,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDerniereMaj(null);
             }
             if (\array_key_exists('publications_joafe', $data) && null !== $data['publications_joafe']) {
-                $object->setPublicationsJoafe($this->denormalizer->denormalize($data['publications_joafe'], 'Qdequippe\\Pappers\\Api\\Model\\AssociationPublicationsJoafe', 'json', $context));
+                $object->setPublicationsJoafe($this->denormalizer->denormalize($data['publications_joafe'], 'Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafe', 'json', $context));
                 unset($data['publications_joafe']);
             } elseif (\array_key_exists('publications_joafe', $data) && null === $data['publications_joafe']) {
                 $object->setPublicationsJoafe(null);
@@ -319,7 +319,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Association' => false];
+            return ['Qdequippe\Pappers\Api\Model\Association' => false];
         }
     }
 } else {
@@ -332,12 +332,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Association' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Association' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Association' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Association' === $data::class;
         }
 
         /**
@@ -482,13 +482,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEmail(null);
             }
             if (\array_key_exists('adresse_siege', $data) && null !== $data['adresse_siege']) {
-                $object->setAdresseSiege($this->denormalizer->denormalize($data['adresse_siege'], 'Qdequippe\\Pappers\\Api\\Model\\AssociationAdresseSiege', 'json', $context));
+                $object->setAdresseSiege($this->denormalizer->denormalize($data['adresse_siege'], 'Qdequippe\Pappers\Api\Model\AssociationAdresseSiege', 'json', $context));
                 unset($data['adresse_siege']);
             } elseif (\array_key_exists('adresse_siege', $data) && null === $data['adresse_siege']) {
                 $object->setAdresseSiege(null);
             }
             if (\array_key_exists('adresse_gestionnaire', $data) && null !== $data['adresse_gestionnaire']) {
-                $object->setAdresseGestionnaire($this->denormalizer->denormalize($data['adresse_gestionnaire'], 'Qdequippe\\Pappers\\Api\\Model\\AssociationAdresseGestionnaire', 'json', $context));
+                $object->setAdresseGestionnaire($this->denormalizer->denormalize($data['adresse_gestionnaire'], 'Qdequippe\Pappers\Api\Model\AssociationAdresseGestionnaire', 'json', $context));
                 unset($data['adresse_gestionnaire']);
             } elseif (\array_key_exists('adresse_gestionnaire', $data) && null === $data['adresse_gestionnaire']) {
                 $object->setAdresseGestionnaire(null);
@@ -518,7 +518,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDerniereMaj(null);
             }
             if (\array_key_exists('publications_joafe', $data) && null !== $data['publications_joafe']) {
-                $object->setPublicationsJoafe($this->denormalizer->denormalize($data['publications_joafe'], 'Qdequippe\\Pappers\\Api\\Model\\AssociationPublicationsJoafe', 'json', $context));
+                $object->setPublicationsJoafe($this->denormalizer->denormalize($data['publications_joafe'], 'Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafe', 'json', $context));
                 unset($data['publications_joafe']);
             } elseif (\array_key_exists('publications_joafe', $data) && null === $data['publications_joafe']) {
                 $object->setPublicationsJoafe(null);
@@ -635,7 +635,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Association' => false];
+            return ['Qdequippe\Pappers\Api\Model\Association' => false];
         }
     }
 }

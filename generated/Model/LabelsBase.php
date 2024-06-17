@@ -2,7 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class Labels extends \ArrayObject
+class LabelsBase extends \ArrayObject
 {
     /**
      * @var array
@@ -49,12 +49,6 @@ class Labels extends \ArrayObject
      * @var list<LabelsBaseInscriptionsItem>|null
      */
     protected $inscriptions;
-    /**
-     * Nombre d'établissements concernés par le label, dans le cas d'un label lié aux établissements. Null sinon.
-     *
-     * @var int|null
-     */
-    protected $nbEtablissementsConcernes;
 
     /**
      * Nom du label.
@@ -182,25 +176,6 @@ class Labels extends \ArrayObject
     {
         $this->initialized['inscriptions'] = true;
         $this->inscriptions = $inscriptions;
-
-        return $this;
-    }
-
-    /**
-     * Nombre d'établissements concernés par le label, dans le cas d'un label lié aux établissements. Null sinon.
-     */
-    public function getNbEtablissementsConcernes(): ?int
-    {
-        return $this->nbEtablissementsConcernes;
-    }
-
-    /**
-     * Nombre d'établissements concernés par le label, dans le cas d'un label lié aux établissements. Null sinon.
-     */
-    public function setNbEtablissementsConcernes(?int $nbEtablissementsConcernes): self
-    {
-        $this->initialized['nbEtablissementsConcernes'] = true;
-        $this->nbEtablissementsConcernes = $nbEtablissementsConcernes;
 
         return $this;
     }

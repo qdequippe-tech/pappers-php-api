@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes' === $type;
+            return 'Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -148,7 +148,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes' => false];
+            return ['Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes' => false];
         }
     }
 } else {
@@ -161,12 +161,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes' === $type;
+            return 'Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes' === $data::class;
         }
 
         /**
@@ -293,7 +293,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes' => false];
+            return ['Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes' => false];
         }
     }
 }
