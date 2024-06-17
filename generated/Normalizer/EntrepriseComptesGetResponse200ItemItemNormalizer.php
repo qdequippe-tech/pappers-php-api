@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' === $type;
+            return 'Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -153,7 +153,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sections', $data) && null !== $data['sections']) {
                 $values_1 = [];
                 foreach ($data['sections'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItemSectionsItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItem', 'json', $context);
                 }
                 $object->setSections($values_1);
                 unset($data['sections']);
@@ -161,7 +161,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setSections(null);
             }
             if (\array_key_exists('ratios', $data) && null !== $data['ratios']) {
-                $object->setRatios($this->denormalizer->denormalize($data['ratios'], 'Qdequippe\\Pappers\\Api\\Model\\Ratios', 'json', $context));
+                $object->setRatios($this->denormalizer->denormalize($data['ratios'], 'Qdequippe\Pappers\Api\Model\Ratios', 'json', $context));
                 unset($data['ratios']);
             } elseif (\array_key_exists('ratios', $data) && null === $data['ratios']) {
                 $object->setRatios(null);
@@ -254,7 +254,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' => false];
+            return ['Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem' => false];
         }
     }
 } else {
@@ -267,12 +267,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' === $type;
+            return 'Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem' === $data::class;
         }
 
         /**
@@ -399,7 +399,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sections', $data) && null !== $data['sections']) {
                 $values_1 = [];
                 foreach ($data['sections'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItemSectionsItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItem', 'json', $context);
                 }
                 $object->setSections($values_1);
                 unset($data['sections']);
@@ -407,7 +407,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setSections(null);
             }
             if (\array_key_exists('ratios', $data) && null !== $data['ratios']) {
-                $object->setRatios($this->denormalizer->denormalize($data['ratios'], 'Qdequippe\\Pappers\\Api\\Model\\Ratios', 'json', $context));
+                $object->setRatios($this->denormalizer->denormalize($data['ratios'], 'Qdequippe\Pappers\Api\Model\Ratios', 'json', $context));
                 unset($data['ratios']);
             } elseif (\array_key_exists('ratios', $data) && null === $data['ratios']) {
                 $object->setRatios(null);
@@ -505,7 +505,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseComptesGetResponse200ItemItem' => false];
+            return ['Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem' => false];
         }
     }
 }

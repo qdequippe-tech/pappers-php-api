@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $type;
+            return 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -63,13 +63,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentageEnPersonneMorale(null);
             }
             if (\array_key_exists('details_en_indivision', $data) && null !== $data['details_en_indivision']) {
-                $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision', 'json', $context));
+                $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision', 'json', $context));
                 unset($data['details_en_indivision']);
             } elseif (\array_key_exists('details_en_indivision', $data) && null === $data['details_en_indivision']) {
                 $object->setDetailsEnIndivision(null);
             }
             if (\array_key_exists('details_en_personne_morale', $data) && null !== $data['details_en_personne_morale']) {
-                $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale', 'json', $context));
+                $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale', 'json', $context));
                 unset($data['details_en_personne_morale']);
             } elseif (\array_key_exists('details_en_personne_morale', $data) && null === $data['details_en_personne_morale']) {
                 $object->setDetailsEnPersonneMorale(null);
@@ -109,7 +109,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' => false];
+            return ['Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' => false];
         }
     }
 } else {
@@ -122,12 +122,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $type;
+            return 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' === $data::class;
         }
 
         /**
@@ -164,13 +164,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentageEnPersonneMorale(null);
             }
             if (\array_key_exists('details_en_indivision', $data) && null !== $data['details_en_indivision']) {
-                $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision', 'json', $context));
+                $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision', 'json', $context));
                 unset($data['details_en_indivision']);
             } elseif (\array_key_exists('details_en_indivision', $data) && null === $data['details_en_indivision']) {
                 $object->setDetailsEnIndivision(null);
             }
             if (\array_key_exists('details_en_personne_morale', $data) && null !== $data['details_en_personne_morale']) {
-                $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], 'Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale', 'json', $context));
+                $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale', 'json', $context));
                 unset($data['details_en_personne_morale']);
             } elseif (\array_key_exists('details_en_personne_morale', $data) && null === $data['details_en_personne_morale']) {
                 $object->setDetailsEnPersonneMorale(null);
@@ -215,7 +215,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' => false];
+            return ['Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes' => false];
         }
     }
 }

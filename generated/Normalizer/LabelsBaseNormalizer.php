@@ -3,7 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\Labels;
+use Qdequippe\Pappers\Api\Model\LabelsBase;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class LabelsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\Labels' === $type;
+            return 'Qdequippe\Pappers\Api\Model\LabelsBase' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Labels' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\LabelsBase' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -40,7 +40,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (isset($data['$recursiveRef'])) {
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
-            $object = new Labels();
+            $object = new LabelsBase();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -95,12 +95,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 unset($data['inscriptions']);
             } elseif (\array_key_exists('inscriptions', $data) && null === $data['inscriptions']) {
                 $object->setInscriptions(null);
-            }
-            if (\array_key_exists('nb_etablissements_concernes', $data) && null !== $data['nb_etablissements_concernes']) {
-                $object->setNbEtablissementsConcernes($data['nb_etablissements_concernes']);
-                unset($data['nb_etablissements_concernes']);
-            } elseif (\array_key_exists('nb_etablissements_concernes', $data) && null === $data['nb_etablissements_concernes']) {
-                $object->setNbEtablissementsConcernes(null);
             }
             foreach ($data as $key => $value_4) {
                 if (preg_match('/.*/', (string) $key)) {
@@ -148,9 +142,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
                 $data['inscriptions'] = $values_3;
             }
-            if ($object->isInitialized('nbEtablissementsConcernes') && null !== $object->getNbEtablissementsConcernes()) {
-                $data['nb_etablissements_concernes'] = $object->getNbEtablissementsConcernes();
-            }
             foreach ($object as $key => $value_4) {
                 if (preg_match('/.*/', (string) $key)) {
                     $data[$key] = $value_4;
@@ -162,11 +153,11 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\Labels' => false];
+            return ['Qdequippe\Pappers\Api\Model\LabelsBase' => false];
         }
     }
 } else {
-    class LabelsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -175,12 +166,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\Labels' === $type;
+            return 'Qdequippe\Pappers\Api\Model\LabelsBase' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Labels' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\LabelsBase' === $data::class;
         }
 
         /**
@@ -194,7 +185,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (isset($data['$recursiveRef'])) {
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
-            $object = new Labels();
+            $object = new LabelsBase();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -249,12 +240,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 unset($data['inscriptions']);
             } elseif (\array_key_exists('inscriptions', $data) && null === $data['inscriptions']) {
                 $object->setInscriptions(null);
-            }
-            if (\array_key_exists('nb_etablissements_concernes', $data) && null !== $data['nb_etablissements_concernes']) {
-                $object->setNbEtablissementsConcernes($data['nb_etablissements_concernes']);
-                unset($data['nb_etablissements_concernes']);
-            } elseif (\array_key_exists('nb_etablissements_concernes', $data) && null === $data['nb_etablissements_concernes']) {
-                $object->setNbEtablissementsConcernes(null);
             }
             foreach ($data as $key => $value_4) {
                 if (preg_match('/.*/', (string) $key)) {
@@ -307,9 +292,6 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
                 $data['inscriptions'] = $values_3;
             }
-            if ($object->isInitialized('nbEtablissementsConcernes') && null !== $object->getNbEtablissementsConcernes()) {
-                $data['nb_etablissements_concernes'] = $object->getNbEtablissementsConcernes();
-            }
             foreach ($object as $key => $value_4) {
                 if (preg_match('/.*/', (string) $key)) {
                     $data[$key] = $value_4;
@@ -321,7 +303,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\Labels' => false];
+            return ['Qdequippe\Pappers\Api\Model\LabelsBase' => false];
         }
     }
 }

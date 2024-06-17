@@ -2,7 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EtablissementFiche extends \ArrayObject
+class EntrepriseFicheetablissement extends \ArrayObject
 {
     /**
      * @var array

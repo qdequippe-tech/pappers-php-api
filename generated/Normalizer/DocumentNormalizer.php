@@ -24,21 +24,21 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Document' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Document' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Document' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Document' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
         {
             if (\array_key_exists('type', $data) && 'acte' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\DocumentActe', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\DocumentActe', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'comptes' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\DocumentComptes', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\DocumentComptes', $format, $context);
             }
             if (isset($data['$ref'])) {
                 return new Reference($data['$ref'], $context['document-origin']);
@@ -123,7 +123,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Document' => false];
+            return ['Qdequippe\Pappers\Api\Model\Document' => false];
         }
     }
 } else {
@@ -136,12 +136,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Document' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Document' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Document' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Document' === $data::class;
         }
 
         /**
@@ -150,10 +150,10 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         public function denormalize($data, $type, $format = null, array $context = [])
         {
             if (\array_key_exists('type', $data) && 'acte' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\DocumentActe', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\DocumentActe', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'comptes' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\DocumentComptes', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\DocumentComptes', $format, $context);
             }
             if (isset($data['$ref'])) {
                 return new Reference($data['$ref'], $context['document-origin']);
@@ -243,7 +243,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Document' => false];
+            return ['Qdequippe\Pappers\Api\Model\Document' => false];
         }
     }
 }

@@ -24,39 +24,39 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Bodacc' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Bodacc' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Bodacc' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Bodacc' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
         {
             if (\array_key_exists('type', $data) && 'Création' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccCreation', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccCreation', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Immatriculation' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccImmatriculation', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccImmatriculation', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Modification' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccModification', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccModification', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Vente' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccVente', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccVente', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Achat' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccAchat', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccAchat', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Radiation' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccRadiation', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccRadiation', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Procédure collective' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccProcedureCollective', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccProcedureCollective', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Dépôt des comptes' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes', $format, $context);
             }
             if (isset($data['$ref'])) {
                 return new Reference($data['$ref'], $context['document-origin']);
@@ -169,7 +169,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Bodacc' => false];
+            return ['Qdequippe\Pappers\Api\Model\Bodacc' => false];
         }
     }
 } else {
@@ -182,12 +182,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Bodacc' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Bodacc' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Bodacc' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Bodacc' === $data::class;
         }
 
         /**
@@ -196,28 +196,28 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         public function denormalize($data, $type, $format = null, array $context = [])
         {
             if (\array_key_exists('type', $data) && 'Création' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccCreation', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccCreation', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Immatriculation' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccImmatriculation', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccImmatriculation', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Modification' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccModification', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccModification', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Vente' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccVente', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccVente', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Achat' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccAchat', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccAchat', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Radiation' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccRadiation', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccRadiation', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Procédure collective' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccProcedureCollective', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccProcedureCollective', $format, $context);
             }
             if (\array_key_exists('type', $data) && 'Dépôt des comptes' === $data['type']) {
-                return $this->denormalizer->denormalize($data, 'Qdequippe\\Pappers\\Api\\Model\\BodaccDepotDesComptes', $format, $context);
+                return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\BodaccDepotDesComptes', $format, $context);
             }
             if (isset($data['$ref'])) {
                 return new Reference($data['$ref'], $context['document-origin']);
@@ -335,7 +335,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Bodacc' => false];
+            return ['Qdequippe\Pappers\Api\Model\Bodacc' => false];
         }
     }
 }

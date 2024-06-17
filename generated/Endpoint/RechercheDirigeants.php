@@ -174,7 +174,7 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
         if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
-            return $serializer->deserialize($body, 'Qdequippe\\Pappers\\Api\\Model\\RechercheDirigeantsGetResponse200', 'json');
+            return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\RechercheDirigeantsGetResponse200', 'json');
         }
         if (401 === $status) {
             throw new RechercheDirigeantsUnauthorizedException($response);

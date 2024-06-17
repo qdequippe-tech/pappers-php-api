@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\DocumentActe' === $type;
+            return 'Qdequippe\Pappers\Api\Model\DocumentActe' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\DocumentActe' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\DocumentActe' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -75,7 +75,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('titres', $data) && null !== $data['titres']) {
                 $values_1 = [];
                 foreach ($data['titres'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\DocumentActetitresItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\DocumentActetitresItem', 'json', $context);
                 }
                 $object->setTitres($values_1);
                 unset($data['titres']);
@@ -128,7 +128,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\DocumentActe' => false];
+            return ['Qdequippe\Pappers\Api\Model\DocumentActe' => false];
         }
     }
 } else {
@@ -141,12 +141,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\DocumentActe' === $type;
+            return 'Qdequippe\Pappers\Api\Model\DocumentActe' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\DocumentActe' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\DocumentActe' === $data::class;
         }
 
         /**
@@ -195,7 +195,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('titres', $data) && null !== $data['titres']) {
                 $values_1 = [];
                 foreach ($data['titres'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\DocumentActetitresItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\DocumentActetitresItem', 'json', $context);
                 }
                 $object->setTitres($values_1);
                 unset($data['titres']);
@@ -253,7 +253,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\DocumentActe' => false];
+            return ['Qdequippe\Pappers\Api\Model\DocumentActe' => false];
         }
     }
 }

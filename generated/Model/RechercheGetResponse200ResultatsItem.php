@@ -135,6 +135,12 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $formeJuridique;
     /**
+     * Si vrai, l'entreprise est une micro-entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var bool|null
+     */
+    protected $microEntreprise;
+    /**
      * Forme d'exercice de l'activité principale.
      *
      * @var string|null
@@ -659,6 +665,25 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     {
         $this->initialized['formeJuridique'] = true;
         $this->formeJuridique = $formeJuridique;
+
+        return $this;
+    }
+
+    /**
+     * Si vrai, l'entreprise est une micro-entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getMicroEntreprise(): ?bool
+    {
+        return $this->microEntreprise;
+    }
+
+    /**
+     * Si vrai, l'entreprise est une micro-entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setMicroEntreprise(?bool $microEntreprise): self
+    {
+        $this->initialized['microEntreprise'] = true;
+        $this->microEntreprise = $microEntreprise;
 
         return $this;
     }

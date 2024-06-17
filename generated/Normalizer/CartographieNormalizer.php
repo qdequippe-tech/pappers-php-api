@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Cartographie' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Cartographie' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Cartographie' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Cartographie' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -47,7 +47,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
                 $values = [];
                 foreach ($data['entreprises'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\CartographieEntreprisesItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\CartographieEntreprisesItem', 'json', $context);
                 }
                 $object->setEntreprises($values);
                 unset($data['entreprises']);
@@ -57,7 +57,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('personnes', $data) && null !== $data['personnes']) {
                 $values_1 = [];
                 foreach ($data['personnes'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\CartographiePersonnesItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\CartographiePersonnesItem', 'json', $context);
                 }
                 $object->setPersonnes($values_1);
                 unset($data['personnes']);
@@ -168,7 +168,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Cartographie' => false];
+            return ['Qdequippe\Pappers\Api\Model\Cartographie' => false];
         }
     }
 } else {
@@ -181,12 +181,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Cartographie' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Cartographie' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Cartographie' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Cartographie' === $data::class;
         }
 
         /**
@@ -207,7 +207,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
                 $values = [];
                 foreach ($data['entreprises'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\\Pappers\\Api\\Model\\CartographieEntreprisesItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\CartographieEntreprisesItem', 'json', $context);
                 }
                 $object->setEntreprises($values);
                 unset($data['entreprises']);
@@ -217,7 +217,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('personnes', $data) && null !== $data['personnes']) {
                 $values_1 = [];
                 foreach ($data['personnes'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\\Pappers\\Api\\Model\\CartographiePersonnesItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\CartographiePersonnesItem', 'json', $context);
                 }
                 $object->setPersonnes($values_1);
                 unset($data['personnes']);
@@ -333,7 +333,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Cartographie' => false];
+            return ['Qdequippe\Pappers\Api\Model\Cartographie' => false];
         }
     }
 }

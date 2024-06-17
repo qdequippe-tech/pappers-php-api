@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Publication' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Publication' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Publication' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Publication' === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -94,7 +94,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Publication' => false];
+            return ['Qdequippe\Pappers\Api\Model\Publication' => false];
         }
     }
 } else {
@@ -107,12 +107,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\\Pappers\\Api\\Model\\Publication' === $type;
+            return 'Qdequippe\Pappers\Api\Model\Publication' === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\\Pappers\\Api\\Model\\Publication' === $data::class;
+            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\Publication' === $data::class;
         }
 
         /**
@@ -185,7 +185,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\\Pappers\\Api\\Model\\Publication' => false];
+            return ['Qdequippe\Pappers\Api\Model\Publication' => false];
         }
     }
 }
