@@ -504,6 +504,18 @@ class EntrepriseFiche extends \ArrayObject
      * @var ScoringFinancier|null
      */
     protected $scoringFinancier;
+    /**
+     * Catégorie de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var string|null
+     */
+    protected $categorieEntreprise;
+    /**
+     * Année de correspondance de la catégorie de l'entreprise. Uniquement présent si le champ supplémentaire `categorie_entreprise` est demandé.
+     *
+     * @var int|null
+     */
+    protected $anneeCategorieEntreprise;
 
     /**
      * Le numéro SIREN de l'entreprise au format xxxxxxxxx.
@@ -2101,6 +2113,44 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['scoringFinancier'] = true;
         $this->scoringFinancier = $scoringFinancier;
+
+        return $this;
+    }
+
+    /**
+     * Catégorie de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getCategorieEntreprise(): ?string
+    {
+        return $this->categorieEntreprise;
+    }
+
+    /**
+     * Catégorie de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setCategorieEntreprise(?string $categorieEntreprise): self
+    {
+        $this->initialized['categorieEntreprise'] = true;
+        $this->categorieEntreprise = $categorieEntreprise;
+
+        return $this;
+    }
+
+    /**
+     * Année de correspondance de la catégorie de l'entreprise. Uniquement présent si le champ supplémentaire `categorie_entreprise` est demandé.
+     */
+    public function getAnneeCategorieEntreprise(): ?int
+    {
+        return $this->anneeCategorieEntreprise;
+    }
+
+    /**
+     * Année de correspondance de la catégorie de l'entreprise. Uniquement présent si le champ supplémentaire `categorie_entreprise` est demandé.
+     */
+    public function setAnneeCategorieEntreprise(?int $anneeCategorieEntreprise): self
+    {
+        $this->initialized['anneeCategorieEntreprise'] = true;
+        $this->anneeCategorieEntreprise = $anneeCategorieEntreprise;
 
         return $this;
     }
