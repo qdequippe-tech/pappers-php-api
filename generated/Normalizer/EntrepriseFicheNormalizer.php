@@ -587,6 +587,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('scoring_financier', $data) && null === $data['scoring_financier']) {
                 $object->setScoringFinancier(null);
             }
+            if (\array_key_exists('categorie_entreprise', $data) && null !== $data['categorie_entreprise']) {
+                $object->setCategorieEntreprise($data['categorie_entreprise']);
+                unset($data['categorie_entreprise']);
+            } elseif (\array_key_exists('categorie_entreprise', $data) && null === $data['categorie_entreprise']) {
+                $object->setCategorieEntreprise(null);
+            }
+            if (\array_key_exists('annee_categorie_entreprise', $data) && null !== $data['annee_categorie_entreprise']) {
+                $object->setAnneeCategorieEntreprise($data['annee_categorie_entreprise']);
+                unset($data['annee_categorie_entreprise']);
+            } elseif (\array_key_exists('annee_categorie_entreprise', $data) && null === $data['annee_categorie_entreprise']) {
+                $object->setAnneeCategorieEntreprise(null);
+            }
             foreach ($data as $key => $value_12) {
                 if (preg_match('/.*/', (string) $key)) {
                     $object[$key] = $value_12;
@@ -892,6 +904,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
             if ($object->isInitialized('scoringFinancier') && null !== $object->getScoringFinancier()) {
                 $data['scoring_financier'] = $this->normalizer->normalize($object->getScoringFinancier(), 'json', $context);
+            }
+            if ($object->isInitialized('categorieEntreprise') && null !== $object->getCategorieEntreprise()) {
+                $data['categorie_entreprise'] = $object->getCategorieEntreprise();
+            }
+            if ($object->isInitialized('anneeCategorieEntreprise') && null !== $object->getAnneeCategorieEntreprise()) {
+                $data['annee_categorie_entreprise'] = $object->getAnneeCategorieEntreprise();
             }
             foreach ($object as $key => $value_12) {
                 if (preg_match('/.*/', (string) $key)) {
@@ -1483,6 +1501,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('scoring_financier', $data) && null === $data['scoring_financier']) {
                 $object->setScoringFinancier(null);
             }
+            if (\array_key_exists('categorie_entreprise', $data) && null !== $data['categorie_entreprise']) {
+                $object->setCategorieEntreprise($data['categorie_entreprise']);
+                unset($data['categorie_entreprise']);
+            } elseif (\array_key_exists('categorie_entreprise', $data) && null === $data['categorie_entreprise']) {
+                $object->setCategorieEntreprise(null);
+            }
+            if (\array_key_exists('annee_categorie_entreprise', $data) && null !== $data['annee_categorie_entreprise']) {
+                $object->setAnneeCategorieEntreprise($data['annee_categorie_entreprise']);
+                unset($data['annee_categorie_entreprise']);
+            } elseif (\array_key_exists('annee_categorie_entreprise', $data) && null === $data['annee_categorie_entreprise']) {
+                $object->setAnneeCategorieEntreprise(null);
+            }
             foreach ($data as $key => $value_12) {
                 if (preg_match('/.*/', (string) $key)) {
                     $object[$key] = $value_12;
@@ -1793,6 +1823,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
             if ($object->isInitialized('scoringFinancier') && null !== $object->getScoringFinancier()) {
                 $data['scoring_financier'] = $this->normalizer->normalize($object->getScoringFinancier(), 'json', $context);
+            }
+            if ($object->isInitialized('categorieEntreprise') && null !== $object->getCategorieEntreprise()) {
+                $data['categorie_entreprise'] = $object->getCategorieEntreprise();
+            }
+            if ($object->isInitialized('anneeCategorieEntreprise') && null !== $object->getAnneeCategorieEntreprise()) {
+                $data['annee_categorie_entreprise'] = $object->getAnneeCategorieEntreprise();
             }
             foreach ($object as $key => $value_12) {
                 if (preg_match('/.*/', (string) $key)) {

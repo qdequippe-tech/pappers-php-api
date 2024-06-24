@@ -82,6 +82,7 @@ class Client extends Runtime\Client\Client
      * - `deces` : 0.5 jeton supplémentaire
      * - `scoring_financier` : 30 jetons supplémentaires
      * - `scoring_non_financier` : 30 jetons supplémentaires
+     * - `categorie_entreprise` : gratuit
      *
      * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
      *
