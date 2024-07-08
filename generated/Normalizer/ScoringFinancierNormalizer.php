@@ -4,6 +4,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\ScoringFinancier;
+use Qdequippe\Pappers\Api\Model\ScoringFinancierDetailsScore;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +25,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\ScoringFinancier' === $type;
+            return ScoringFinancier::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\ScoringFinancier' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\ScoringFinancier::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -63,7 +64,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateClotureComptes(null);
             }
             if (\array_key_exists('details_score', $data) && null !== $data['details_score']) {
-                $object->setDetailsScore($this->denormalizer->denormalize($data['details_score'], 'Qdequippe\Pappers\Api\Model\ScoringFinancierDetailsScore', 'json', $context));
+                $object->setDetailsScore($this->denormalizer->denormalize($data['details_score'], ScoringFinancierDetailsScore::class, 'json', $context));
                 unset($data['details_score']);
             } elseif (\array_key_exists('details_score', $data) && null === $data['details_score']) {
                 $object->setDetailsScore(null);
@@ -121,7 +122,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\ScoringFinancier' => false];
+            return [ScoringFinancier::class => false];
         }
     }
 } else {
@@ -134,12 +135,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\ScoringFinancier' === $type;
+            return ScoringFinancier::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\ScoringFinancier' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\ScoringFinancier::class === $data::class;
         }
 
         /**
@@ -176,7 +177,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateClotureComptes(null);
             }
             if (\array_key_exists('details_score', $data) && null !== $data['details_score']) {
-                $object->setDetailsScore($this->denormalizer->denormalize($data['details_score'], 'Qdequippe\Pappers\Api\Model\ScoringFinancierDetailsScore', 'json', $context));
+                $object->setDetailsScore($this->denormalizer->denormalize($data['details_score'], ScoringFinancierDetailsScore::class, 'json', $context));
                 unset($data['details_score']);
             } elseif (\array_key_exists('details_score', $data) && null === $data['details_score']) {
                 $object->setDetailsScore(null);
@@ -239,7 +240,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\ScoringFinancier' => false];
+            return [ScoringFinancier::class => false];
         }
     }
 }

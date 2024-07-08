@@ -3,6 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\EntrepriseRecherche;
 use Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
@@ -24,12 +25,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem' === $type;
+            return RecherchePublicationsGetResponse200ResultatsItem::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -63,7 +64,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setContenu(null);
             }
             if (\array_key_exists('entreprise', $data) && null !== $data['entreprise']) {
-                $object->setEntreprise($this->denormalizer->denormalize($data['entreprise'], 'Qdequippe\Pappers\Api\Model\EntrepriseRecherche', 'json', $context));
+                $object->setEntreprise($this->denormalizer->denormalize($data['entreprise'], EntrepriseRecherche::class, 'json', $context));
                 unset($data['entreprise']);
             } elseif (\array_key_exists('entreprise', $data) && null === $data['entreprise']) {
                 $object->setEntreprise(null);
@@ -103,7 +104,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem' => false];
+            return [RecherchePublicationsGetResponse200ResultatsItem::class => false];
         }
     }
 } else {
@@ -116,12 +117,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem' === $type;
+            return RecherchePublicationsGetResponse200ResultatsItem::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem::class === $data::class;
         }
 
         /**
@@ -158,7 +159,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setContenu(null);
             }
             if (\array_key_exists('entreprise', $data) && null !== $data['entreprise']) {
-                $object->setEntreprise($this->denormalizer->denormalize($data['entreprise'], 'Qdequippe\Pappers\Api\Model\EntrepriseRecherche', 'json', $context));
+                $object->setEntreprise($this->denormalizer->denormalize($data['entreprise'], EntrepriseRecherche::class, 'json', $context));
                 unset($data['entreprise']);
             } elseif (\array_key_exists('entreprise', $data) && null === $data['entreprise']) {
                 $object->setEntreprise(null);
@@ -203,7 +204,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem' => false];
+            return [RecherchePublicationsGetResponse200ResultatsItem::class => false];
         }
     }
 }

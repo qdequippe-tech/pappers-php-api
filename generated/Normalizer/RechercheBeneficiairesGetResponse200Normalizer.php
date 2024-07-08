@@ -4,6 +4,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200;
+use Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200ResultatsItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +25,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200' === $type;
+            return RechercheBeneficiairesGetResponse200::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -47,7 +48,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
                 $values = [];
                 foreach ($data['resultats'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200ResultatsItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, RechercheBeneficiairesGetResponse200ResultatsItem::class, 'json', $context);
                 }
                 $object->setResultats($values);
                 unset($data['resultats']);
@@ -102,7 +103,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200' => false];
+            return [RechercheBeneficiairesGetResponse200::class => false];
         }
     }
 } else {
@@ -115,12 +116,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200' === $type;
+            return RechercheBeneficiairesGetResponse200::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200::class === $data::class;
         }
 
         /**
@@ -141,7 +142,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
                 $values = [];
                 foreach ($data['resultats'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200ResultatsItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, RechercheBeneficiairesGetResponse200ResultatsItem::class, 'json', $context);
                 }
                 $object->setResultats($values);
                 unset($data['resultats']);
@@ -201,7 +202,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200' => false];
+            return [RechercheBeneficiairesGetResponse200::class => false];
         }
     }
 }

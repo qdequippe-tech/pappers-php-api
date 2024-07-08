@@ -4,6 +4,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\DocumentActe;
+use Qdequippe\Pappers\Api\Model\DocumentActetitresItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +25,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\DocumentActe' === $type;
+            return DocumentActe::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\DocumentActe' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\DocumentActe::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -75,7 +76,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('titres', $data) && null !== $data['titres']) {
                 $values_1 = [];
                 foreach ($data['titres'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\DocumentActetitresItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, DocumentActetitresItem::class, 'json', $context);
                 }
                 $object->setTitres($values_1);
                 unset($data['titres']);
@@ -128,7 +129,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\DocumentActe' => false];
+            return [DocumentActe::class => false];
         }
     }
 } else {
@@ -141,12 +142,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\DocumentActe' === $type;
+            return DocumentActe::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\DocumentActe' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\DocumentActe::class === $data::class;
         }
 
         /**
@@ -195,7 +196,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('titres', $data) && null !== $data['titres']) {
                 $values_1 = [];
                 foreach ($data['titres'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\DocumentActetitresItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, DocumentActetitresItem::class, 'json', $context);
                 }
                 $object->setTitres($values_1);
                 unset($data['titres']);
@@ -253,7 +254,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\DocumentActe' => false];
+            return [DocumentActe::class => false];
         }
     }
 }

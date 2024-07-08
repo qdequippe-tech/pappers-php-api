@@ -4,6 +4,8 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200;
+use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee;
+use Qdequippe\Pappers\Api\Model\Sanction;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +26,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200' === $type;
+            return ConformitePersonnePhysiqueGetResponse200::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -45,7 +47,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return $object;
             }
             if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee', 'json', $context));
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], PersonnePolitiquementExposee::class, 'json', $context));
                 unset($data['personne_politiquement_exposee']);
             } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
                 $object->setPersonnePolitiquementExposee(null);
@@ -59,7 +61,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
                 foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Sanction', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, Sanction::class, 'json', $context);
                 }
                 $object->setSanctions($values);
                 unset($data['sanctions']);
@@ -102,7 +104,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200' => false];
+            return [ConformitePersonnePhysiqueGetResponse200::class => false];
         }
     }
 } else {
@@ -115,12 +117,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200' === $type;
+            return ConformitePersonnePhysiqueGetResponse200::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200::class === $data::class;
         }
 
         /**
@@ -139,7 +141,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 return $object;
             }
             if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
-                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], 'Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee', 'json', $context));
+                $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], PersonnePolitiquementExposee::class, 'json', $context));
                 unset($data['personne_politiquement_exposee']);
             } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
                 $object->setPersonnePolitiquementExposee(null);
@@ -153,7 +155,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
                 $values = [];
                 foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Sanction', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, Sanction::class, 'json', $context);
                 }
                 $object->setSanctions($values);
                 unset($data['sanctions']);
@@ -201,7 +203,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200' => false];
+            return [ConformitePersonnePhysiqueGetResponse200::class => false];
         }
     }
 }

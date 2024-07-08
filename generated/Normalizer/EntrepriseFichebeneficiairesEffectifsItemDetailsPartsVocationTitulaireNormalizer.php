@@ -4,6 +4,8 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +26,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' === $type;
+            return EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -63,13 +65,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentageIndirectes(null);
             }
             if (\array_key_exists('details_directes', $data) && null !== $data['details_directes']) {
-                $object->setDetailsDirectes($this->denormalizer->denormalize($data['details_directes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes', 'json', $context));
+                $object->setDetailsDirectes($this->denormalizer->denormalize($data['details_directes'], EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes::class, 'json', $context));
                 unset($data['details_directes']);
             } elseif (\array_key_exists('details_directes', $data) && null === $data['details_directes']) {
                 $object->setDetailsDirectes(null);
             }
             if (\array_key_exists('details_indirectes', $data) && null !== $data['details_indirectes']) {
-                $object->setDetailsIndirectes($this->denormalizer->denormalize($data['details_indirectes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes', 'json', $context));
+                $object->setDetailsIndirectes($this->denormalizer->denormalize($data['details_indirectes'], EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes::class, 'json', $context));
                 unset($data['details_indirectes']);
             } elseif (\array_key_exists('details_indirectes', $data) && null === $data['details_indirectes']) {
                 $object->setDetailsIndirectes(null);
@@ -109,7 +111,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' => false];
+            return [EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class => false];
         }
     }
 } else {
@@ -122,12 +124,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' === $type;
+            return EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class === $data::class;
         }
 
         /**
@@ -164,13 +166,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setPourcentageIndirectes(null);
             }
             if (\array_key_exists('details_directes', $data) && null !== $data['details_directes']) {
-                $object->setDetailsDirectes($this->denormalizer->denormalize($data['details_directes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes', 'json', $context));
+                $object->setDetailsDirectes($this->denormalizer->denormalize($data['details_directes'], EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes::class, 'json', $context));
                 unset($data['details_directes']);
             } elseif (\array_key_exists('details_directes', $data) && null === $data['details_directes']) {
                 $object->setDetailsDirectes(null);
             }
             if (\array_key_exists('details_indirectes', $data) && null !== $data['details_indirectes']) {
-                $object->setDetailsIndirectes($this->denormalizer->denormalize($data['details_indirectes'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes', 'json', $context));
+                $object->setDetailsIndirectes($this->denormalizer->denormalize($data['details_indirectes'], EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes::class, 'json', $context));
                 unset($data['details_indirectes']);
             } elseif (\array_key_exists('details_indirectes', $data) && null === $data['details_indirectes']) {
                 $object->setDetailsIndirectes(null);
@@ -215,7 +217,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire' => false];
+            return [EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class => false];
         }
     }
 }
