@@ -3,6 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\Bodacc;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
@@ -24,12 +25,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem' === $type;
+            return EntrepriseFicheproceduresCollectivesItem::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -65,7 +66,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('publications_bodacc', $data) && null !== $data['publications_bodacc']) {
                 $values = [];
                 foreach ($data['publications_bodacc'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Bodacc', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, Bodacc::class, 'json', $context);
                 }
                 $object->setPublicationsBodacc($values);
                 unset($data['publications_bodacc']);
@@ -111,7 +112,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem' => false];
+            return [EntrepriseFicheproceduresCollectivesItem::class => false];
         }
     }
 } else {
@@ -124,12 +125,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem' === $type;
+            return EntrepriseFicheproceduresCollectivesItem::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem::class === $data::class;
         }
 
         /**
@@ -168,7 +169,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('publications_bodacc', $data) && null !== $data['publications_bodacc']) {
                 $values = [];
                 foreach ($data['publications_bodacc'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\Bodacc', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, Bodacc::class, 'json', $context);
                 }
                 $object->setPublicationsBodacc($values);
                 unset($data['publications_bodacc']);
@@ -219,7 +220,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem' => false];
+            return [EntrepriseFicheproceduresCollectivesItem::class => false];
         }
     }
 }

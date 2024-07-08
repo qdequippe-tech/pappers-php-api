@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\BodaccCreation' === $type;
+            return BodaccCreation::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\BodaccCreation' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\BodaccCreation::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -214,7 +214,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\BodaccCreation' => false];
+            return [BodaccCreation::class => false];
         }
     }
 } else {
@@ -227,12 +227,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\BodaccCreation' === $type;
+            return BodaccCreation::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\BodaccCreation' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\BodaccCreation::class === $data::class;
         }
 
         /**
@@ -425,7 +425,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\BodaccCreation' => false];
+            return [BodaccCreation::class => false];
         }
     }
 }

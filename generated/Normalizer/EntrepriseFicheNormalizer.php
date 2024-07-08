@@ -3,7 +3,25 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\Association;
+use Qdequippe\Pappers\Api\Model\Bodacc;
+use Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichernm;
+use Qdequippe\Pappers\Api\Model\EtablissementFiche;
+use Qdequippe\Pappers\Api\Model\Labels;
+use Qdequippe\Pappers\Api\Model\RepresentantEntreprise;
+use Qdequippe\Pappers\Api\Model\ScoringFinancier;
+use Qdequippe\Pappers\Api\Model\ScoringNonFinancier;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +42,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EntrepriseFiche' === $type;
+            return EntrepriseFiche::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFiche' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFiche::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -116,7 +134,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('conventions_collectives', $data) && null !== $data['conventions_collectives']) {
                 $values = [];
                 foreach ($data['conventions_collectives'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, EntrepriseBaseConventionsCollectivesItem::class, 'json', $context);
                 }
                 $object->setConventionsCollectives($values);
                 unset($data['conventions_collectives']);
@@ -226,7 +244,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setStatutRcs(null);
             }
             if (\array_key_exists('siege', $data) && null !== $data['siege']) {
-                $object->setSiege($this->denormalizer->denormalize($data['siege'], 'Qdequippe\Pappers\Api\Model\EtablissementFiche', 'json', $context));
+                $object->setSiege($this->denormalizer->denormalize($data['siege'], EtablissementFiche::class, 'json', $context));
                 unset($data['siege']);
             } elseif (\array_key_exists('siege', $data) && null === $data['siege']) {
                 $object->setSiege(null);
@@ -414,7 +432,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('etablissements', $data) && null !== $data['etablissements']) {
                 $values_1 = [];
                 foreach ($data['etablissements'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\EtablissementFiche', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, EtablissementFiche::class, 'json', $context);
                 }
                 $object->setEtablissements($values_1);
                 unset($data['etablissements']);
@@ -422,7 +440,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEtablissements(null);
             }
             if (\array_key_exists('etablissement', $data) && null !== $data['etablissement']) {
-                $object->setEtablissement($this->denormalizer->denormalize($data['etablissement'], 'Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement', 'json', $context));
+                $object->setEtablissement($this->denormalizer->denormalize($data['etablissement'], EntrepriseFicheetablissement::class, 'json', $context));
                 unset($data['etablissement']);
             } elseif (\array_key_exists('etablissement', $data) && null === $data['etablissement']) {
                 $object->setEtablissement(null);
@@ -430,7 +448,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('finances', $data) && null !== $data['finances']) {
                 $values_2 = [];
                 foreach ($data['finances'] as $value_2) {
-                    $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem', 'json', $context);
+                    $values_2[] = $this->denormalizer->denormalize($value_2, EntrepriseFichefinancesItem::class, 'json', $context);
                 }
                 $object->setFinances($values_2);
                 unset($data['finances']);
@@ -440,7 +458,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('representants', $data) && null !== $data['representants']) {
                 $values_3 = [];
                 foreach ($data['representants'] as $value_3) {
-                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\Pappers\Api\Model\RepresentantEntreprise', 'json', $context);
+                    $values_3[] = $this->denormalizer->denormalize($value_3, RepresentantEntreprise::class, 'json', $context);
                 }
                 $object->setRepresentants($values_3);
                 unset($data['representants']);
@@ -450,7 +468,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('beneficiaires_effectifs', $data) && null !== $data['beneficiaires_effectifs']) {
                 $values_4 = [];
                 foreach ($data['beneficiaires_effectifs'] as $value_4) {
-                    $values_4[] = $this->denormalizer->denormalize($value_4, 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem', 'json', $context);
+                    $values_4[] = $this->denormalizer->denormalize($value_4, EntrepriseFichebeneficiairesEffectifsItem::class, 'json', $context);
                 }
                 $object->setBeneficiairesEffectifs($values_4);
                 unset($data['beneficiaires_effectifs']);
@@ -460,7 +478,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('depots_actes', $data) && null !== $data['depots_actes']) {
                 $values_5 = [];
                 foreach ($data['depots_actes'] as $value_5) {
-                    $values_5[] = $this->denormalizer->denormalize($value_5, 'Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItem', 'json', $context);
+                    $values_5[] = $this->denormalizer->denormalize($value_5, EntrepriseFichedepotsActesItem::class, 'json', $context);
                 }
                 $object->setDepotsActes($values_5);
                 unset($data['depots_actes']);
@@ -470,7 +488,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('comptes', $data) && null !== $data['comptes']) {
                 $values_6 = [];
                 foreach ($data['comptes'] as $value_6) {
-                    $values_6[] = $this->denormalizer->denormalize($value_6, 'Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem', 'json', $context);
+                    $values_6[] = $this->denormalizer->denormalize($value_6, EntrepriseFichecomptesItem::class, 'json', $context);
                 }
                 $object->setComptes($values_6);
                 unset($data['comptes']);
@@ -480,7 +498,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('publications_bodacc', $data) && null !== $data['publications_bodacc']) {
                 $values_7 = [];
                 foreach ($data['publications_bodacc'] as $value_7) {
-                    $values_7[] = $this->denormalizer->denormalize($value_7, 'Qdequippe\Pappers\Api\Model\Bodacc', 'json', $context);
+                    $values_7[] = $this->denormalizer->denormalize($value_7, Bodacc::class, 'json', $context);
                 }
                 $object->setPublicationsBodacc($values_7);
                 unset($data['publications_bodacc']);
@@ -490,7 +508,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('procedures_collectives', $data) && null !== $data['procedures_collectives']) {
                 $values_8 = [];
                 foreach ($data['procedures_collectives'] as $value_8) {
-                    $values_8[] = $this->denormalizer->denormalize($value_8, 'Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem', 'json', $context);
+                    $values_8[] = $this->denormalizer->denormalize($value_8, EntrepriseFicheproceduresCollectivesItem::class, 'json', $context);
                 }
                 $object->setProceduresCollectives($values_8);
                 unset($data['procedures_collectives']);
@@ -510,19 +528,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setProcedureCollectiveEnCours(null);
             }
             if (\array_key_exists('derniers_statuts', $data) && null !== $data['derniers_statuts']) {
-                $object->setDerniersStatuts($this->denormalizer->denormalize($data['derniers_statuts'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts', 'json', $context));
+                $object->setDerniersStatuts($this->denormalizer->denormalize($data['derniers_statuts'], EntrepriseFichederniersStatuts::class, 'json', $context));
                 unset($data['derniers_statuts']);
             } elseif (\array_key_exists('derniers_statuts', $data) && null === $data['derniers_statuts']) {
                 $object->setDerniersStatuts(null);
             }
             if (\array_key_exists('extrait_immatriculation', $data) && null !== $data['extrait_immatriculation']) {
-                $object->setExtraitImmatriculation($this->denormalizer->denormalize($data['extrait_immatriculation'], 'Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation', 'json', $context));
+                $object->setExtraitImmatriculation($this->denormalizer->denormalize($data['extrait_immatriculation'], EntrepriseFicheextraitImmatriculation::class, 'json', $context));
                 unset($data['extrait_immatriculation']);
             } elseif (\array_key_exists('extrait_immatriculation', $data) && null === $data['extrait_immatriculation']) {
                 $object->setExtraitImmatriculation(null);
             }
             if (\array_key_exists('rnm', $data) && null !== $data['rnm']) {
-                $object->setRnm($this->denormalizer->denormalize($data['rnm'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichernm', 'json', $context));
+                $object->setRnm($this->denormalizer->denormalize($data['rnm'], EntrepriseFichernm::class, 'json', $context));
                 unset($data['rnm']);
             } elseif (\array_key_exists('rnm', $data) && null === $data['rnm']) {
                 $object->setRnm(null);
@@ -530,7 +548,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('marques', $data) && null !== $data['marques']) {
                 $values_9 = [];
                 foreach ($data['marques'] as $value_9) {
-                    $values_9[] = $this->denormalizer->denormalize($value_9, 'Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItem', 'json', $context);
+                    $values_9[] = $this->denormalizer->denormalize($value_9, EntrepriseFichemarquesItem::class, 'json', $context);
                 }
                 $object->setMarques($values_9);
                 unset($data['marques']);
@@ -538,7 +556,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setMarques(null);
             }
             if (\array_key_exists('association', $data) && null !== $data['association']) {
-                $object->setAssociation($this->denormalizer->denormalize($data['association'], 'Qdequippe\Pappers\Api\Model\Association', 'json', $context));
+                $object->setAssociation($this->denormalizer->denormalize($data['association'], Association::class, 'json', $context));
                 unset($data['association']);
             } elseif (\array_key_exists('association', $data) && null === $data['association']) {
                 $object->setAssociation(null);
@@ -546,7 +564,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('labels', $data) && null !== $data['labels']) {
                 $values_10 = [];
                 foreach ($data['labels'] as $value_10) {
-                    $values_10[] = $this->denormalizer->denormalize($value_10, 'Qdequippe\Pappers\Api\Model\Labels', 'json', $context);
+                    $values_10[] = $this->denormalizer->denormalize($value_10, Labels::class, 'json', $context);
                 }
                 $object->setLabels($values_10);
                 unset($data['labels']);
@@ -576,13 +594,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEmail(null);
             }
             if (\array_key_exists('scoring_non_financier', $data) && null !== $data['scoring_non_financier']) {
-                $object->setScoringNonFinancier($this->denormalizer->denormalize($data['scoring_non_financier'], 'Qdequippe\Pappers\Api\Model\ScoringNonFinancier', 'json', $context));
+                $object->setScoringNonFinancier($this->denormalizer->denormalize($data['scoring_non_financier'], ScoringNonFinancier::class, 'json', $context));
                 unset($data['scoring_non_financier']);
             } elseif (\array_key_exists('scoring_non_financier', $data) && null === $data['scoring_non_financier']) {
                 $object->setScoringNonFinancier(null);
             }
             if (\array_key_exists('scoring_financier', $data) && null !== $data['scoring_financier']) {
-                $object->setScoringFinancier($this->denormalizer->denormalize($data['scoring_financier'], 'Qdequippe\Pappers\Api\Model\ScoringFinancier', 'json', $context));
+                $object->setScoringFinancier($this->denormalizer->denormalize($data['scoring_financier'], ScoringFinancier::class, 'json', $context));
                 unset($data['scoring_financier']);
             } elseif (\array_key_exists('scoring_financier', $data) && null === $data['scoring_financier']) {
                 $object->setScoringFinancier(null);
@@ -922,7 +940,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EntrepriseFiche' => false];
+            return [EntrepriseFiche::class => false];
         }
     }
 } else {
@@ -935,12 +953,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EntrepriseFiche' === $type;
+            return EntrepriseFiche::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EntrepriseFiche' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFiche::class === $data::class;
         }
 
         /**
@@ -1030,7 +1048,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('conventions_collectives', $data) && null !== $data['conventions_collectives']) {
                 $values = [];
                 foreach ($data['conventions_collectives'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, EntrepriseBaseConventionsCollectivesItem::class, 'json', $context);
                 }
                 $object->setConventionsCollectives($values);
                 unset($data['conventions_collectives']);
@@ -1140,7 +1158,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setStatutRcs(null);
             }
             if (\array_key_exists('siege', $data) && null !== $data['siege']) {
-                $object->setSiege($this->denormalizer->denormalize($data['siege'], 'Qdequippe\Pappers\Api\Model\EtablissementFiche', 'json', $context));
+                $object->setSiege($this->denormalizer->denormalize($data['siege'], EtablissementFiche::class, 'json', $context));
                 unset($data['siege']);
             } elseif (\array_key_exists('siege', $data) && null === $data['siege']) {
                 $object->setSiege(null);
@@ -1328,7 +1346,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('etablissements', $data) && null !== $data['etablissements']) {
                 $values_1 = [];
                 foreach ($data['etablissements'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\EtablissementFiche', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, EtablissementFiche::class, 'json', $context);
                 }
                 $object->setEtablissements($values_1);
                 unset($data['etablissements']);
@@ -1336,7 +1354,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEtablissements(null);
             }
             if (\array_key_exists('etablissement', $data) && null !== $data['etablissement']) {
-                $object->setEtablissement($this->denormalizer->denormalize($data['etablissement'], 'Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement', 'json', $context));
+                $object->setEtablissement($this->denormalizer->denormalize($data['etablissement'], EntrepriseFicheetablissement::class, 'json', $context));
                 unset($data['etablissement']);
             } elseif (\array_key_exists('etablissement', $data) && null === $data['etablissement']) {
                 $object->setEtablissement(null);
@@ -1344,7 +1362,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('finances', $data) && null !== $data['finances']) {
                 $values_2 = [];
                 foreach ($data['finances'] as $value_2) {
-                    $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem', 'json', $context);
+                    $values_2[] = $this->denormalizer->denormalize($value_2, EntrepriseFichefinancesItem::class, 'json', $context);
                 }
                 $object->setFinances($values_2);
                 unset($data['finances']);
@@ -1354,7 +1372,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('representants', $data) && null !== $data['representants']) {
                 $values_3 = [];
                 foreach ($data['representants'] as $value_3) {
-                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\Pappers\Api\Model\RepresentantEntreprise', 'json', $context);
+                    $values_3[] = $this->denormalizer->denormalize($value_3, RepresentantEntreprise::class, 'json', $context);
                 }
                 $object->setRepresentants($values_3);
                 unset($data['representants']);
@@ -1364,7 +1382,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('beneficiaires_effectifs', $data) && null !== $data['beneficiaires_effectifs']) {
                 $values_4 = [];
                 foreach ($data['beneficiaires_effectifs'] as $value_4) {
-                    $values_4[] = $this->denormalizer->denormalize($value_4, 'Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem', 'json', $context);
+                    $values_4[] = $this->denormalizer->denormalize($value_4, EntrepriseFichebeneficiairesEffectifsItem::class, 'json', $context);
                 }
                 $object->setBeneficiairesEffectifs($values_4);
                 unset($data['beneficiaires_effectifs']);
@@ -1374,7 +1392,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('depots_actes', $data) && null !== $data['depots_actes']) {
                 $values_5 = [];
                 foreach ($data['depots_actes'] as $value_5) {
-                    $values_5[] = $this->denormalizer->denormalize($value_5, 'Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItem', 'json', $context);
+                    $values_5[] = $this->denormalizer->denormalize($value_5, EntrepriseFichedepotsActesItem::class, 'json', $context);
                 }
                 $object->setDepotsActes($values_5);
                 unset($data['depots_actes']);
@@ -1384,7 +1402,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('comptes', $data) && null !== $data['comptes']) {
                 $values_6 = [];
                 foreach ($data['comptes'] as $value_6) {
-                    $values_6[] = $this->denormalizer->denormalize($value_6, 'Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem', 'json', $context);
+                    $values_6[] = $this->denormalizer->denormalize($value_6, EntrepriseFichecomptesItem::class, 'json', $context);
                 }
                 $object->setComptes($values_6);
                 unset($data['comptes']);
@@ -1394,7 +1412,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('publications_bodacc', $data) && null !== $data['publications_bodacc']) {
                 $values_7 = [];
                 foreach ($data['publications_bodacc'] as $value_7) {
-                    $values_7[] = $this->denormalizer->denormalize($value_7, 'Qdequippe\Pappers\Api\Model\Bodacc', 'json', $context);
+                    $values_7[] = $this->denormalizer->denormalize($value_7, Bodacc::class, 'json', $context);
                 }
                 $object->setPublicationsBodacc($values_7);
                 unset($data['publications_bodacc']);
@@ -1404,7 +1422,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('procedures_collectives', $data) && null !== $data['procedures_collectives']) {
                 $values_8 = [];
                 foreach ($data['procedures_collectives'] as $value_8) {
-                    $values_8[] = $this->denormalizer->denormalize($value_8, 'Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem', 'json', $context);
+                    $values_8[] = $this->denormalizer->denormalize($value_8, EntrepriseFicheproceduresCollectivesItem::class, 'json', $context);
                 }
                 $object->setProceduresCollectives($values_8);
                 unset($data['procedures_collectives']);
@@ -1424,19 +1442,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setProcedureCollectiveEnCours(null);
             }
             if (\array_key_exists('derniers_statuts', $data) && null !== $data['derniers_statuts']) {
-                $object->setDerniersStatuts($this->denormalizer->denormalize($data['derniers_statuts'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts', 'json', $context));
+                $object->setDerniersStatuts($this->denormalizer->denormalize($data['derniers_statuts'], EntrepriseFichederniersStatuts::class, 'json', $context));
                 unset($data['derniers_statuts']);
             } elseif (\array_key_exists('derniers_statuts', $data) && null === $data['derniers_statuts']) {
                 $object->setDerniersStatuts(null);
             }
             if (\array_key_exists('extrait_immatriculation', $data) && null !== $data['extrait_immatriculation']) {
-                $object->setExtraitImmatriculation($this->denormalizer->denormalize($data['extrait_immatriculation'], 'Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation', 'json', $context));
+                $object->setExtraitImmatriculation($this->denormalizer->denormalize($data['extrait_immatriculation'], EntrepriseFicheextraitImmatriculation::class, 'json', $context));
                 unset($data['extrait_immatriculation']);
             } elseif (\array_key_exists('extrait_immatriculation', $data) && null === $data['extrait_immatriculation']) {
                 $object->setExtraitImmatriculation(null);
             }
             if (\array_key_exists('rnm', $data) && null !== $data['rnm']) {
-                $object->setRnm($this->denormalizer->denormalize($data['rnm'], 'Qdequippe\Pappers\Api\Model\EntrepriseFichernm', 'json', $context));
+                $object->setRnm($this->denormalizer->denormalize($data['rnm'], EntrepriseFichernm::class, 'json', $context));
                 unset($data['rnm']);
             } elseif (\array_key_exists('rnm', $data) && null === $data['rnm']) {
                 $object->setRnm(null);
@@ -1444,7 +1462,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('marques', $data) && null !== $data['marques']) {
                 $values_9 = [];
                 foreach ($data['marques'] as $value_9) {
-                    $values_9[] = $this->denormalizer->denormalize($value_9, 'Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItem', 'json', $context);
+                    $values_9[] = $this->denormalizer->denormalize($value_9, EntrepriseFichemarquesItem::class, 'json', $context);
                 }
                 $object->setMarques($values_9);
                 unset($data['marques']);
@@ -1452,7 +1470,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setMarques(null);
             }
             if (\array_key_exists('association', $data) && null !== $data['association']) {
-                $object->setAssociation($this->denormalizer->denormalize($data['association'], 'Qdequippe\Pappers\Api\Model\Association', 'json', $context));
+                $object->setAssociation($this->denormalizer->denormalize($data['association'], Association::class, 'json', $context));
                 unset($data['association']);
             } elseif (\array_key_exists('association', $data) && null === $data['association']) {
                 $object->setAssociation(null);
@@ -1460,7 +1478,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('labels', $data) && null !== $data['labels']) {
                 $values_10 = [];
                 foreach ($data['labels'] as $value_10) {
-                    $values_10[] = $this->denormalizer->denormalize($value_10, 'Qdequippe\Pappers\Api\Model\Labels', 'json', $context);
+                    $values_10[] = $this->denormalizer->denormalize($value_10, Labels::class, 'json', $context);
                 }
                 $object->setLabels($values_10);
                 unset($data['labels']);
@@ -1490,13 +1508,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setEmail(null);
             }
             if (\array_key_exists('scoring_non_financier', $data) && null !== $data['scoring_non_financier']) {
-                $object->setScoringNonFinancier($this->denormalizer->denormalize($data['scoring_non_financier'], 'Qdequippe\Pappers\Api\Model\ScoringNonFinancier', 'json', $context));
+                $object->setScoringNonFinancier($this->denormalizer->denormalize($data['scoring_non_financier'], ScoringNonFinancier::class, 'json', $context));
                 unset($data['scoring_non_financier']);
             } elseif (\array_key_exists('scoring_non_financier', $data) && null === $data['scoring_non_financier']) {
                 $object->setScoringNonFinancier(null);
             }
             if (\array_key_exists('scoring_financier', $data) && null !== $data['scoring_financier']) {
-                $object->setScoringFinancier($this->denormalizer->denormalize($data['scoring_financier'], 'Qdequippe\Pappers\Api\Model\ScoringFinancier', 'json', $context));
+                $object->setScoringFinancier($this->denormalizer->denormalize($data['scoring_financier'], ScoringFinancier::class, 'json', $context));
                 unset($data['scoring_financier']);
             } elseif (\array_key_exists('scoring_financier', $data) && null === $data['scoring_financier']) {
                 $object->setScoringFinancier(null);
@@ -1841,7 +1859,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EntrepriseFiche' => false];
+            return [EntrepriseFiche::class => false];
         }
     }
 }

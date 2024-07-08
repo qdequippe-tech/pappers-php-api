@@ -4,6 +4,12 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200;
+use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsDenominationItem;
+use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsNomCompletItem;
+use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsNomEntrepriseItem;
+use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsRepresentantItem;
+use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem;
+use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSiretItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +30,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200' === $type;
+            return SuggestionsGetResponse200::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -47,7 +53,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_nom_entreprise', $data) && null !== $data['resultats_nom_entreprise']) {
                 $values = [];
                 foreach ($data['resultats_nom_entreprise'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsNomEntrepriseItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, SuggestionsGetResponse200ResultatsNomEntrepriseItem::class, 'json', $context);
                 }
                 $object->setResultatsNomEntreprise($values);
                 unset($data['resultats_nom_entreprise']);
@@ -57,7 +63,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_denomination', $data) && null !== $data['resultats_denomination']) {
                 $values_1 = [];
                 foreach ($data['resultats_denomination'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsDenominationItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, SuggestionsGetResponse200ResultatsDenominationItem::class, 'json', $context);
                 }
                 $object->setResultatsDenomination($values_1);
                 unset($data['resultats_denomination']);
@@ -67,7 +73,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_nom_complet', $data) && null !== $data['resultats_nom_complet']) {
                 $values_2 = [];
                 foreach ($data['resultats_nom_complet'] as $value_2) {
-                    $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsNomCompletItem', 'json', $context);
+                    $values_2[] = $this->denormalizer->denormalize($value_2, SuggestionsGetResponse200ResultatsNomCompletItem::class, 'json', $context);
                 }
                 $object->setResultatsNomComplet($values_2);
                 unset($data['resultats_nom_complet']);
@@ -77,7 +83,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_representant', $data) && null !== $data['resultats_representant']) {
                 $values_3 = [];
                 foreach ($data['resultats_representant'] as $value_3) {
-                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsRepresentantItem', 'json', $context);
+                    $values_3[] = $this->denormalizer->denormalize($value_3, SuggestionsGetResponse200ResultatsRepresentantItem::class, 'json', $context);
                 }
                 $object->setResultatsRepresentant($values_3);
                 unset($data['resultats_representant']);
@@ -87,7 +93,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_siren', $data) && null !== $data['resultats_siren']) {
                 $values_4 = [];
                 foreach ($data['resultats_siren'] as $value_4) {
-                    $values_4[] = $this->denormalizer->denormalize($value_4, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem', 'json', $context);
+                    $values_4[] = $this->denormalizer->denormalize($value_4, SuggestionsGetResponse200ResultatsSirenItem::class, 'json', $context);
                 }
                 $object->setResultatsSiren($values_4);
                 unset($data['resultats_siren']);
@@ -97,7 +103,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_siret', $data) && null !== $data['resultats_siret']) {
                 $values_5 = [];
                 foreach ($data['resultats_siret'] as $value_5) {
-                    $values_5[] = $this->denormalizer->denormalize($value_5, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSiretItem', 'json', $context);
+                    $values_5[] = $this->denormalizer->denormalize($value_5, SuggestionsGetResponse200ResultatsSiretItem::class, 'json', $context);
                 }
                 $object->setResultatsSiret($values_5);
                 unset($data['resultats_siret']);
@@ -169,7 +175,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200' => false];
+            return [SuggestionsGetResponse200::class => false];
         }
     }
 } else {
@@ -182,12 +188,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200' === $type;
+            return SuggestionsGetResponse200::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200::class === $data::class;
         }
 
         /**
@@ -208,7 +214,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_nom_entreprise', $data) && null !== $data['resultats_nom_entreprise']) {
                 $values = [];
                 foreach ($data['resultats_nom_entreprise'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsNomEntrepriseItem', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, SuggestionsGetResponse200ResultatsNomEntrepriseItem::class, 'json', $context);
                 }
                 $object->setResultatsNomEntreprise($values);
                 unset($data['resultats_nom_entreprise']);
@@ -218,7 +224,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_denomination', $data) && null !== $data['resultats_denomination']) {
                 $values_1 = [];
                 foreach ($data['resultats_denomination'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsDenominationItem', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, SuggestionsGetResponse200ResultatsDenominationItem::class, 'json', $context);
                 }
                 $object->setResultatsDenomination($values_1);
                 unset($data['resultats_denomination']);
@@ -228,7 +234,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_nom_complet', $data) && null !== $data['resultats_nom_complet']) {
                 $values_2 = [];
                 foreach ($data['resultats_nom_complet'] as $value_2) {
-                    $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsNomCompletItem', 'json', $context);
+                    $values_2[] = $this->denormalizer->denormalize($value_2, SuggestionsGetResponse200ResultatsNomCompletItem::class, 'json', $context);
                 }
                 $object->setResultatsNomComplet($values_2);
                 unset($data['resultats_nom_complet']);
@@ -238,7 +244,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_representant', $data) && null !== $data['resultats_representant']) {
                 $values_3 = [];
                 foreach ($data['resultats_representant'] as $value_3) {
-                    $values_3[] = $this->denormalizer->denormalize($value_3, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsRepresentantItem', 'json', $context);
+                    $values_3[] = $this->denormalizer->denormalize($value_3, SuggestionsGetResponse200ResultatsRepresentantItem::class, 'json', $context);
                 }
                 $object->setResultatsRepresentant($values_3);
                 unset($data['resultats_representant']);
@@ -248,7 +254,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_siren', $data) && null !== $data['resultats_siren']) {
                 $values_4 = [];
                 foreach ($data['resultats_siren'] as $value_4) {
-                    $values_4[] = $this->denormalizer->denormalize($value_4, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem', 'json', $context);
+                    $values_4[] = $this->denormalizer->denormalize($value_4, SuggestionsGetResponse200ResultatsSirenItem::class, 'json', $context);
                 }
                 $object->setResultatsSiren($values_4);
                 unset($data['resultats_siren']);
@@ -258,7 +264,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('resultats_siret', $data) && null !== $data['resultats_siret']) {
                 $values_5 = [];
                 foreach ($data['resultats_siret'] as $value_5) {
-                    $values_5[] = $this->denormalizer->denormalize($value_5, 'Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSiretItem', 'json', $context);
+                    $values_5[] = $this->denormalizer->denormalize($value_5, SuggestionsGetResponse200ResultatsSiretItem::class, 'json', $context);
                 }
                 $object->setResultatsSiret($values_5);
                 unset($data['resultats_siret']);
@@ -335,7 +341,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200' => false];
+            return [SuggestionsGetResponse200::class => false];
         }
     }
 }

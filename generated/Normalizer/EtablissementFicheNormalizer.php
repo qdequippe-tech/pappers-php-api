@@ -4,6 +4,9 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\EtablissementFiche;
+use Qdequippe\Pappers\Api\Model\EtablissementFicheDomiciliation;
+use Qdequippe\Pappers\Api\Model\LabelsBase;
+use Qdequippe\Pappers\Api\Model\LienSuccession;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -24,12 +27,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EtablissementFiche' === $type;
+            return EtablissementFiche::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EtablissementFiche' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EtablissementFiche::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -243,7 +246,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setNomCommercial(null);
             }
             if (\array_key_exists('domiciliation', $data) && null !== $data['domiciliation']) {
-                $object->setDomiciliation($this->denormalizer->denormalize($data['domiciliation'], 'Qdequippe\Pappers\Api\Model\EtablissementFicheDomiciliation', 'json', $context));
+                $object->setDomiciliation($this->denormalizer->denormalize($data['domiciliation'], EtablissementFicheDomiciliation::class, 'json', $context));
                 unset($data['domiciliation']);
             } elseif (\array_key_exists('domiciliation', $data) && null === $data['domiciliation']) {
                 $object->setDomiciliation(null);
@@ -251,7 +254,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('labels', $data) && null !== $data['labels']) {
                 $values = [];
                 foreach ($data['labels'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\LabelsBase', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, LabelsBase::class, 'json', $context);
                 }
                 $object->setLabels($values);
                 unset($data['labels']);
@@ -261,7 +264,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('predecesseurs', $data) && null !== $data['predecesseurs']) {
                 $values_1 = [];
                 foreach ($data['predecesseurs'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\LienSuccession', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, LienSuccession::class, 'json', $context);
                 }
                 $object->setPredecesseurs($values_1);
                 unset($data['predecesseurs']);
@@ -271,7 +274,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('successeurs', $data) && null !== $data['successeurs']) {
                 $values_2 = [];
                 foreach ($data['successeurs'] as $value_2) {
-                    $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\Pappers\Api\Model\LienSuccession', 'json', $context);
+                    $values_2[] = $this->denormalizer->denormalize($value_2, LienSuccession::class, 'json', $context);
                 }
                 $object->setSuccesseurs($values_2);
                 unset($data['successeurs']);
@@ -520,7 +523,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EtablissementFiche' => false];
+            return [EtablissementFiche::class => false];
         }
     }
 } else {
@@ -533,12 +536,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return 'Qdequippe\Pappers\Api\Model\EtablissementFiche' === $type;
+            return EtablissementFiche::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && 'Qdequippe\Pappers\Api\Model\EtablissementFiche' === $data::class;
+            return \is_object($data) && Qdequippe\Pappers\Api\Model\EtablissementFiche::class === $data::class;
         }
 
         /**
@@ -755,7 +758,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setNomCommercial(null);
             }
             if (\array_key_exists('domiciliation', $data) && null !== $data['domiciliation']) {
-                $object->setDomiciliation($this->denormalizer->denormalize($data['domiciliation'], 'Qdequippe\Pappers\Api\Model\EtablissementFicheDomiciliation', 'json', $context));
+                $object->setDomiciliation($this->denormalizer->denormalize($data['domiciliation'], EtablissementFicheDomiciliation::class, 'json', $context));
                 unset($data['domiciliation']);
             } elseif (\array_key_exists('domiciliation', $data) && null === $data['domiciliation']) {
                 $object->setDomiciliation(null);
@@ -763,7 +766,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('labels', $data) && null !== $data['labels']) {
                 $values = [];
                 foreach ($data['labels'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, 'Qdequippe\Pappers\Api\Model\LabelsBase', 'json', $context);
+                    $values[] = $this->denormalizer->denormalize($value, LabelsBase::class, 'json', $context);
                 }
                 $object->setLabels($values);
                 unset($data['labels']);
@@ -773,7 +776,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('predecesseurs', $data) && null !== $data['predecesseurs']) {
                 $values_1 = [];
                 foreach ($data['predecesseurs'] as $value_1) {
-                    $values_1[] = $this->denormalizer->denormalize($value_1, 'Qdequippe\Pappers\Api\Model\LienSuccession', 'json', $context);
+                    $values_1[] = $this->denormalizer->denormalize($value_1, LienSuccession::class, 'json', $context);
                 }
                 $object->setPredecesseurs($values_1);
                 unset($data['predecesseurs']);
@@ -783,7 +786,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (\array_key_exists('successeurs', $data) && null !== $data['successeurs']) {
                 $values_2 = [];
                 foreach ($data['successeurs'] as $value_2) {
-                    $values_2[] = $this->denormalizer->denormalize($value_2, 'Qdequippe\Pappers\Api\Model\LienSuccession', 'json', $context);
+                    $values_2[] = $this->denormalizer->denormalize($value_2, LienSuccession::class, 'json', $context);
                 }
                 $object->setSuccesseurs($values_2);
                 unset($data['successeurs']);
@@ -1037,7 +1040,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return ['Qdequippe\Pappers\Api\Model\EtablissementFiche' => false];
+            return [EtablissementFiche::class => false];
         }
     }
 }
