@@ -29,7 +29,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem::class === $data::class;
+            return \is_object($data) && EntrepriseFichecomptesItem::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -129,13 +129,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         {
             $data = [];
             if ($object->isInitialized('dateDepot') && null !== $object->getDateDepot()) {
-                $data['date_depot'] = $object->getDateDepot()->format('Y-m-d');
+                $data['date_depot'] = $object->getDateDepot()?->format('Y-m-d');
             }
             if ($object->isInitialized('dateDepotFormate') && null !== $object->getDateDepotFormate()) {
                 $data['date_depot_formate'] = $object->getDateDepotFormate();
             }
             if ($object->isInitialized('dateCloture') && null !== $object->getDateCloture()) {
-                $data['date_cloture'] = $object->getDateCloture()->format('Y-m-d');
+                $data['date_cloture'] = $object->getDateCloture()?->format('Y-m-d');
             }
             if ($object->isInitialized('anneeCloture') && null !== $object->getAnneeCloture()) {
                 $data['annee_cloture'] = $object->getAnneeCloture();
@@ -193,7 +193,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem::class === $data::class;
+            return \is_object($data) && EntrepriseFichecomptesItem::class === $data::class;
         }
 
         /**
@@ -301,13 +301,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         {
             $data = [];
             if ($object->isInitialized('dateDepot') && null !== $object->getDateDepot()) {
-                $data['date_depot'] = $object->getDateDepot()->format('Y-m-d');
+                $data['date_depot'] = $object->getDateDepot()?->format('Y-m-d');
             }
             if ($object->isInitialized('dateDepotFormate') && null !== $object->getDateDepotFormate()) {
                 $data['date_depot_formate'] = $object->getDateDepotFormate();
             }
             if ($object->isInitialized('dateCloture') && null !== $object->getDateCloture()) {
-                $data['date_cloture'] = $object->getDateCloture()->format('Y-m-d');
+                $data['date_cloture'] = $object->getDateCloture()?->format('Y-m-d');
             }
             if ($object->isInitialized('anneeCloture') && null !== $object->getAnneeCloture()) {
                 $data['annee_cloture'] = $object->getAnneeCloture();

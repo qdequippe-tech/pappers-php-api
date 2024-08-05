@@ -31,7 +31,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem::class === $data::class;
+            return \is_object($data) && EntrepriseComptesGetResponse200ItemItem::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -274,7 +274,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem::class === $data::class;
+            return \is_object($data) && EntrepriseComptesGetResponse200ItemItem::class === $data::class;
         }
 
         /**

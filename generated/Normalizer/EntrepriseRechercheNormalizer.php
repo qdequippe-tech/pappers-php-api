@@ -31,7 +31,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseRecherche::class === $data::class;
+            return \is_object($data) && EntrepriseRecherche::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -320,7 +320,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['conventions_collectives'] = $values;
             }
             if ($object->isInitialized('dateCreation') && null !== $object->getDateCreation()) {
-                $data['date_creation'] = $object->getDateCreation()->format('Y-m-d');
+                $data['date_creation'] = $object->getDateCreation()?->format('Y-m-d');
             }
             if ($object->isInitialized('dateCreationFormate') && null !== $object->getDateCreationFormate()) {
                 $data['date_creation_formate'] = $object->getDateCreationFormate();
@@ -421,7 +421,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseRecherche::class === $data::class;
+            return \is_object($data) && EntrepriseRecherche::class === $data::class;
         }
 
         /**
@@ -718,7 +718,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['conventions_collectives'] = $values;
             }
             if ($object->isInitialized('dateCreation') && null !== $object->getDateCreation()) {
-                $data['date_creation'] = $object->getDateCreation()->format('Y-m-d');
+                $data['date_creation'] = $object->getDateCreation()?->format('Y-m-d');
             }
             if ($object->isInitialized('dateCreationFormate') && null !== $object->getDateCreationFormate()) {
                 $data['date_creation_formate'] = $object->getDateCreationFormate();
