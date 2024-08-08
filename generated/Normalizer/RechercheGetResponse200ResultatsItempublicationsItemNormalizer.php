@@ -29,7 +29,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItempublicationsItem::class === $data::class;
+            return \is_object($data) && RechercheGetResponse200ResultatsItempublicationsItem::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -88,7 +88,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['type'] = $object->getType();
             }
             if ($object->isInitialized('date') && null !== $object->getDate()) {
-                $data['date'] = $object->getDate()->format('Y-m-d');
+                $data['date'] = $object->getDate()?->format('Y-m-d');
             }
             if ($object->isInitialized('contenu') && null !== $object->getContenu()) {
                 $data['contenu'] = $object->getContenu();
@@ -129,7 +129,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItempublicationsItem::class === $data::class;
+            return \is_object($data) && RechercheGetResponse200ResultatsItempublicationsItem::class === $data::class;
         }
 
         /**
@@ -196,7 +196,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['type'] = $object->getType();
             }
             if ($object->isInitialized('date') && null !== $object->getDate()) {
-                $data['date'] = $object->getDate()->format('Y-m-d');
+                $data['date'] = $object->getDate()?->format('Y-m-d');
             }
             if ($object->isInitialized('contenu') && null !== $object->getContenu()) {
                 $data['contenu'] = $object->getContenu();

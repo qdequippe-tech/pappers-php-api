@@ -47,7 +47,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFiche::class === $data::class;
+            return \is_object($data) && EntrepriseFiche::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -670,7 +670,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['conventions_collectives'] = $values;
             }
             if ($object->isInitialized('dateCreation') && null !== $object->getDateCreation()) {
-                $data['date_creation'] = $object->getDateCreation()->format('Y-m-d');
+                $data['date_creation'] = $object->getDateCreation()?->format('Y-m-d');
             }
             if ($object->isInitialized('dateCreationFormate') && null !== $object->getDateCreationFormate()) {
                 $data['date_creation_formate'] = $object->getDateCreationFormate();
@@ -766,13 +766,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['duree_personne_morale'] = $object->getDureePersonneMorale();
             }
             if ($object->isInitialized('dernierTraitement') && null !== $object->getDernierTraitement()) {
-                $data['dernier_traitement'] = $object->getDernierTraitement()->format('Y-m-d');
+                $data['dernier_traitement'] = $object->getDernierTraitement()?->format('Y-m-d');
             }
             if ($object->isInitialized('derniereMiseAJourSirene') && null !== $object->getDerniereMiseAJourSirene()) {
-                $data['derniere_mise_a_jour_sirene'] = $object->getDerniereMiseAJourSirene()->format('Y-m-d');
+                $data['derniere_mise_a_jour_sirene'] = $object->getDerniereMiseAJourSirene()?->format('Y-m-d');
             }
             if ($object->isInitialized('derniereMiseAJourRcs') && null !== $object->getDerniereMiseAJourRcs()) {
-                $data['derniere_mise_a_jour_rcs'] = $object->getDerniereMiseAJourRcs()->format('Y-m-d');
+                $data['derniere_mise_a_jour_rcs'] = $object->getDerniereMiseAJourRcs()?->format('Y-m-d');
             }
             if ($object->isInitialized('greffe') && null !== $object->getGreffe()) {
                 $data['greffe'] = $object->getGreffe();
@@ -958,7 +958,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\EntrepriseFiche::class === $data::class;
+            return \is_object($data) && EntrepriseFiche::class === $data::class;
         }
 
         /**
@@ -1589,7 +1589,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['conventions_collectives'] = $values;
             }
             if ($object->isInitialized('dateCreation') && null !== $object->getDateCreation()) {
-                $data['date_creation'] = $object->getDateCreation()->format('Y-m-d');
+                $data['date_creation'] = $object->getDateCreation()?->format('Y-m-d');
             }
             if ($object->isInitialized('dateCreationFormate') && null !== $object->getDateCreationFormate()) {
                 $data['date_creation_formate'] = $object->getDateCreationFormate();
@@ -1685,13 +1685,13 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['duree_personne_morale'] = $object->getDureePersonneMorale();
             }
             if ($object->isInitialized('dernierTraitement') && null !== $object->getDernierTraitement()) {
-                $data['dernier_traitement'] = $object->getDernierTraitement()->format('Y-m-d');
+                $data['dernier_traitement'] = $object->getDernierTraitement()?->format('Y-m-d');
             }
             if ($object->isInitialized('derniereMiseAJourSirene') && null !== $object->getDerniereMiseAJourSirene()) {
-                $data['derniere_mise_a_jour_sirene'] = $object->getDerniereMiseAJourSirene()->format('Y-m-d');
+                $data['derniere_mise_a_jour_sirene'] = $object->getDerniereMiseAJourSirene()?->format('Y-m-d');
             }
             if ($object->isInitialized('derniereMiseAJourRcs') && null !== $object->getDerniereMiseAJourRcs()) {
-                $data['derniere_mise_a_jour_rcs'] = $object->getDerniereMiseAJourRcs()->format('Y-m-d');
+                $data['derniere_mise_a_jour_rcs'] = $object->getDerniereMiseAJourRcs()?->format('Y-m-d');
             }
             if ($object->isInitialized('greffe') && null !== $object->getGreffe()) {
                 $data['greffe'] = $object->getGreffe();

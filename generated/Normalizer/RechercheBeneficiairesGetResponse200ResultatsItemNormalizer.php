@@ -30,7 +30,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200ResultatsItem::class === $data::class;
+            return \is_object($data) && RechercheBeneficiairesGetResponse200ResultatsItem::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -360,7 +360,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['ville'] = $object->getVille();
             }
             if ($object->isInitialized('dateDeNaissanceCompleteFormatee') && null !== $object->getDateDeNaissanceCompleteFormatee()) {
-                $data['date_de_naissance_complete_formatee'] = $object->getDateDeNaissanceCompleteFormatee()->format('Y-m-d');
+                $data['date_de_naissance_complete_formatee'] = $object->getDateDeNaissanceCompleteFormatee()?->format('Y-m-d');
             }
             if ($object->isInitialized('pourcentagePartsDirectes') && null !== $object->getPourcentagePartsDirectes()) {
                 $data['pourcentage_parts_directes'] = $object->getPourcentagePartsDirectes();
@@ -438,7 +438,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200ResultatsItem::class === $data::class;
+            return \is_object($data) && RechercheBeneficiairesGetResponse200ResultatsItem::class === $data::class;
         }
 
         /**
@@ -776,7 +776,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['ville'] = $object->getVille();
             }
             if ($object->isInitialized('dateDeNaissanceCompleteFormatee') && null !== $object->getDateDeNaissanceCompleteFormatee()) {
-                $data['date_de_naissance_complete_formatee'] = $object->getDateDeNaissanceCompleteFormatee()->format('Y-m-d');
+                $data['date_de_naissance_complete_formatee'] = $object->getDateDeNaissanceCompleteFormatee()?->format('Y-m-d');
             }
             if ($object->isInitialized('pourcentagePartsDirectes') && null !== $object->getPourcentagePartsDirectes()) {
                 $data['pourcentage_parts_directes'] = $object->getPourcentagePartsDirectes();
