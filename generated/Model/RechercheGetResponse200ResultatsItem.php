@@ -26,6 +26,12 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $sirenFormate;
     /**
+     * Indique si l'entreprise s'oppose à l'utilisation commerciale de ses données.
+     *
+     * @var bool|null
+     */
+    protected $oppositionUtilisationCommerciale;
+    /**
      * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
      *
      * @var string|null
@@ -317,6 +323,25 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     {
         $this->initialized['sirenFormate'] = true;
         $this->sirenFormate = $sirenFormate;
+
+        return $this;
+    }
+
+    /**
+     * Indique si l'entreprise s'oppose à l'utilisation commerciale de ses données.
+     */
+    public function getOppositionUtilisationCommerciale(): ?bool
+    {
+        return $this->oppositionUtilisationCommerciale;
+    }
+
+    /**
+     * Indique si l'entreprise s'oppose à l'utilisation commerciale de ses données.
+     */
+    public function setOppositionUtilisationCommerciale(?bool $oppositionUtilisationCommerciale): self
+    {
+        $this->initialized['oppositionUtilisationCommerciale'] = true;
+        $this->oppositionUtilisationCommerciale = $oppositionUtilisationCommerciale;
 
         return $this;
     }

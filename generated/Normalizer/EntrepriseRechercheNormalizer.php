@@ -61,6 +61,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('siren_formate', $data) && null === $data['siren_formate']) {
                 $object->setSirenFormate(null);
             }
+            if (\array_key_exists('opposition_utilisation_commerciale', $data) && null !== $data['opposition_utilisation_commerciale']) {
+                $object->setOppositionUtilisationCommerciale($data['opposition_utilisation_commerciale']);
+                unset($data['opposition_utilisation_commerciale']);
+            } elseif (\array_key_exists('opposition_utilisation_commerciale', $data) && null === $data['opposition_utilisation_commerciale']) {
+                $object->setOppositionUtilisationCommerciale(null);
+            }
             if (\array_key_exists('nom_entreprise', $data) && null !== $data['nom_entreprise']) {
                 $object->setNomEntreprise($data['nom_entreprise']);
                 unset($data['nom_entreprise']);
@@ -285,6 +291,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('sirenFormate') && null !== $object->getSirenFormate()) {
                 $data['siren_formate'] = $object->getSirenFormate();
             }
+            if ($object->isInitialized('oppositionUtilisationCommerciale') && null !== $object->getOppositionUtilisationCommerciale()) {
+                $data['opposition_utilisation_commerciale'] = $object->getOppositionUtilisationCommerciale();
+            }
             if ($object->isInitialized('nomEntreprise') && null !== $object->getNomEntreprise()) {
                 $data['nom_entreprise'] = $object->getNomEntreprise();
             }
@@ -453,6 +462,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 unset($data['siren_formate']);
             } elseif (\array_key_exists('siren_formate', $data) && null === $data['siren_formate']) {
                 $object->setSirenFormate(null);
+            }
+            if (\array_key_exists('opposition_utilisation_commerciale', $data) && null !== $data['opposition_utilisation_commerciale']) {
+                $object->setOppositionUtilisationCommerciale($data['opposition_utilisation_commerciale']);
+                unset($data['opposition_utilisation_commerciale']);
+            } elseif (\array_key_exists('opposition_utilisation_commerciale', $data) && null === $data['opposition_utilisation_commerciale']) {
+                $object->setOppositionUtilisationCommerciale(null);
             }
             if (\array_key_exists('nom_entreprise', $data) && null !== $data['nom_entreprise']) {
                 $object->setNomEntreprise($data['nom_entreprise']);
@@ -682,6 +697,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             }
             if ($object->isInitialized('sirenFormate') && null !== $object->getSirenFormate()) {
                 $data['siren_formate'] = $object->getSirenFormate();
+            }
+            if ($object->isInitialized('oppositionUtilisationCommerciale') && null !== $object->getOppositionUtilisationCommerciale()) {
+                $data['opposition_utilisation_commerciale'] = $object->getOppositionUtilisationCommerciale();
             }
             if ($object->isInitialized('nomEntreprise') && null !== $object->getNomEntreprise()) {
                 $data['nom_entreprise'] = $object->getNomEntreprise();
