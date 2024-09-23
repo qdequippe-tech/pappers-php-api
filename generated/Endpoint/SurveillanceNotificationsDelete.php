@@ -23,7 +23,6 @@ class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_liste Identifiant unique de votre liste de surveillance
      * @var string $siren Liste des sirens des notifications à supprimer, séparés par une virgule
      * @var string $id Liste des ids des notifications à supprimer, séparés par une virgule
@@ -58,10 +57,9 @@ class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'id_liste', 'siren', 'id', 'supprimer_totalite']);
-        $optionsResolver->setRequired(['api_token', 'id_liste']);
+        $optionsResolver->setDefined(['id_liste', 'siren', 'id', 'supprimer_totalite']);
+        $optionsResolver->setRequired(['id_liste']);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('id_liste', ['string']);
         $optionsResolver->addAllowedTypes('siren', ['string']);
         $optionsResolver->addAllowedTypes('id', ['string']);
@@ -101,6 +99,6 @@ class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

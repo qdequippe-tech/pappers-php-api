@@ -24,7 +24,6 @@ class Conformite extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $nom Nom de la personne physique
      * @var string $prenom Prénom de la personne physique
      * @var string $date_de_naissance Date de naissance de la personne physique, au format AAAA-MM-JJ ou AAAA-MM
@@ -58,10 +57,9 @@ class Conformite extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'nom', 'prenom', 'date_de_naissance']);
-        $optionsResolver->setRequired(['api_token', 'nom', 'prenom', 'date_de_naissance']);
+        $optionsResolver->setDefined(['nom', 'prenom', 'date_de_naissance']);
+        $optionsResolver->setRequired(['nom', 'prenom', 'date_de_naissance']);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('nom', ['string']);
         $optionsResolver->addAllowedTypes('prenom', ['string']);
         $optionsResolver->addAllowedTypes('date_de_naissance', ['string']);
@@ -96,6 +94,6 @@ class Conformite extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

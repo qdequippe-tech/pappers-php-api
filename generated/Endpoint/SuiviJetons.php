@@ -9,25 +9,11 @@ use Qdequippe\Pappers\Api\Model\SuiviJetonsGetResponse200;
 use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
 use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
 use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class SuiviJetons extends BaseEndpoint implements Endpoint
 {
     use EndpointTrait;
-
-    /**
-     * Vous devez fournir la clé d'utilisation de l'API.
-     *
-     * @param array $queryParameters {
-     *
-     * @var string $api_token Clé d'utilisation de l'API
-     *             }
-     */
-    public function __construct(array $queryParameters = [])
-    {
-        $this->queryParameters = $queryParameters;
-    }
 
     public function getMethod(): string
     {
@@ -47,17 +33,6 @@ class SuiviJetons extends BaseEndpoint implements Endpoint
     public function getExtraHeaders(): array
     {
         return ['Accept' => ['application/json']];
-    }
-
-    protected function getQueryOptionsResolver(): OptionsResolver
-    {
-        $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token']);
-        $optionsResolver->setRequired(['api_token']);
-        $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
-
-        return $optionsResolver;
     }
 
     /**
@@ -83,6 +58,6 @@ class SuiviJetons extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

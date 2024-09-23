@@ -22,7 +22,6 @@ class DocumentExtraitPappers extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
      *             }
@@ -55,10 +54,9 @@ class DocumentExtraitPappers extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'siren', 'siret']);
-        $optionsResolver->setRequired(['api_token']);
+        $optionsResolver->setDefined(['siren', 'siret']);
+        $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('siren', ['string']);
         $optionsResolver->addAllowedTypes('siret', ['string']);
 
@@ -93,6 +91,6 @@ class DocumentExtraitPappers extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

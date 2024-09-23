@@ -22,7 +22,6 @@ class Association extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_association Identifiant de l'association
      * @var string $siret SIRET de l'association
      * @var string $siren SIREN de l'association
@@ -56,10 +55,9 @@ class Association extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'id_association', 'siret', 'siren']);
-        $optionsResolver->setRequired(['api_token']);
+        $optionsResolver->setDefined(['id_association', 'siret', 'siren']);
+        $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('id_association', ['string']);
         $optionsResolver->addAllowedTypes('siret', ['string']);
         $optionsResolver->addAllowedTypes('siren', ['string']);
@@ -98,6 +96,6 @@ class Association extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

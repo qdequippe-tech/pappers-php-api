@@ -27,7 +27,6 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
      * @param ListePostBodyItem[]|null $requestBody
      * @param array                    $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
      *             }
      */
@@ -64,10 +63,9 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'id_liste']);
-        $optionsResolver->setRequired(['api_token', 'id_liste']);
+        $optionsResolver->setDefined(['id_liste']);
+        $optionsResolver->setRequired(['id_liste']);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('id_liste', ['string']);
 
         return $optionsResolver;
@@ -111,6 +109,6 @@ class SurveillanceEntreprise extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

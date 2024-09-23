@@ -16,7 +16,9 @@ class Suggestions extends BaseEndpoint implements Endpoint
     use EndpointTrait;
 
     /**
-     * Cette route nécessite généralement d'avoir un temps de réponse très faible. Une URL avec un temps de réponse plus faible a été mise en place : `https://suggestions.pappers.fr/v2?q=googl`. D'autre part, afin de permettre une intégration en front-end la plus directe, cette route ne nécessite pas de token d'authentification.
+     * Cette route est également accessible via le point d'accès suivant : `https://suggestions.pappers.fr/v2?q=googl`.
+     *
+     * D'autre part, afin de permettre une intégration en front-end la plus directe, cette route est également accessible sans clé API, avec des limitations quotidiennes du nombre d'appels.
      *
      * @param array $queryParameters {
      *
@@ -82,6 +84,6 @@ class Suggestions extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

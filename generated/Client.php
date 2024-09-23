@@ -48,7 +48,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
      * @var bool   $integrer_diffusions_partielles Si vrai et si l'entreprise est en diffusion partielle, le retour renverra les informations partielles disponibles. Valeur par défaut : `false`.
@@ -106,7 +105,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_association Identifiant de l'association
      * @var string $siret SIRET de l'association
      * @var string $siren SIREN de l'association
@@ -136,7 +134,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var int    $page Page de résultats. Valeur par défaut : `1`.
      * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
      * @var string $curseur Curseur servant à parcourir l'ensemble des résultats (alternativement à la pagination qui est limitée à 400 résultats maximum). Doit valoir `*` pour la première requête, et doit pour les requêtes suivantes reprendre la valeur `curseurSuivant` retournée par la dernière réponse.
@@ -222,7 +219,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
      * @var int    $page Page de résultats. Valeur par défaut : `1`.
      * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
@@ -297,7 +293,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
      * @var int    $page Page de résultats. Valeur par défaut : `1`.
      * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
@@ -372,7 +367,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
      * @var int    $page Page de résultats. Valeur par défaut : `1`.
      * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
@@ -447,7 +441,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
      * @var int    $page Page de résultats. Valeur par défaut : `1`.
      * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
@@ -518,7 +511,9 @@ class Client extends Runtime\Client\Client
     }
 
     /**
-     * Cette route nécessite généralement d'avoir un temps de réponse très faible. Une URL avec un temps de réponse plus faible a été mise en place : `https://suggestions.pappers.fr/v2?q=googl`. D'autre part, afin de permettre une intégration en front-end la plus directe, cette route ne nécessite pas de token d'authentification.
+     * Cette route est également accessible via le point d'accès suivant : `https://suggestions.pappers.fr/v2?q=googl`.
+     *
+     * D'autre part, afin de permettre une intégration en front-end la plus directe, cette route est également accessible sans clé API, avec des limitations quotidiennes du nombre d'appels.
      *
      * @param array $queryParameters {
      *
@@ -543,7 +538,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var string $annee Année de cloture des comptes souhaités. Il est possible d'indiquer plusieurs années en les séparant par des virgules. Si le paramètre n'est pas fourni, toutes les années disponibles seront retournées.
      *             }
@@ -571,7 +565,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var bool   $inclure_entreprises_dirigees Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
      * @var bool   $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
@@ -599,7 +592,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $token Token du document
      *             }
      *
@@ -622,7 +614,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
      *             }
@@ -646,7 +637,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
      *             }
@@ -670,7 +660,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
      *             }
@@ -694,7 +683,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
      *             }
@@ -722,7 +710,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      *             }
      *
@@ -746,7 +733,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      *             }
      *
@@ -769,7 +755,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      *             }
      *
@@ -794,7 +779,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $nom Nom de la personne physique
      * @var string $prenom Prénom de la personne physique
      * @var string $date_de_naissance Date de naissance de la personne physique, au format AAAA-MM-JJ ou AAAA-MM
@@ -814,13 +798,6 @@ class Client extends Runtime\Client\Client
     }
 
     /**
-     * Vous devez fournir la clé d'utilisation de l'API.
-     *
-     * @param array $queryParameters {
-     *
-     * @var string $api_token Clé d'utilisation de l'API
-     *             }
-     *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return Model\SuiviJetonsGetResponse200|ResponseInterface|null
@@ -828,9 +805,9 @@ class Client extends Runtime\Client\Client
      * @throws Exception\SuiviJetonsUnauthorizedException
      * @throws Exception\SuiviJetonsServiceUnavailableException
      */
-    public function suiviJetons(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
+    public function suiviJetons(string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executeEndpoint(new SuiviJetons($queryParameters), $fetch);
+        return $this->executeEndpoint(new SuiviJetons(), $fetch);
     }
 
     /**
@@ -839,7 +816,6 @@ class Client extends Runtime\Client\Client
      * @param ListePostBodyItem[]|null $requestBody
      * @param array                    $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
      *             }
      *
@@ -863,7 +839,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_liste Identifiant unique de votre liste de surveillance
      * @var string $siren Liste des sirens des notifications à supprimer, séparés par une virgule
      * @var string $id Liste des ids des notifications à supprimer, séparés par une virgule
@@ -890,7 +865,6 @@ class Client extends Runtime\Client\Client
      * @param ListePostBodyItem[]|null $requestBody
      * @param array                    $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
      *             }
      *
@@ -914,7 +888,6 @@ class Client extends Runtime\Client\Client
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
      *             }
      *
