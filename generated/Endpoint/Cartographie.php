@@ -25,7 +25,6 @@ class Cartographie extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      * @var bool   $inclure_entreprises_dirigees Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
      * @var bool   $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
@@ -63,10 +62,9 @@ class Cartographie extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'siren', 'inclure_entreprises_dirigees', 'inclure_entreprises_citees', 'inclure_sci', 'autoriser_modifications', 'rejeter_premier_degre', 'degre']);
-        $optionsResolver->setRequired(['api_token', 'siren']);
+        $optionsResolver->setDefined(['siren', 'inclure_entreprises_dirigees', 'inclure_entreprises_citees', 'inclure_sci', 'autoriser_modifications', 'rejeter_premier_degre', 'degre']);
+        $optionsResolver->setRequired(['siren']);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('siren', ['string']);
         $optionsResolver->addAllowedTypes('inclure_entreprises_dirigees', ['bool']);
         $optionsResolver->addAllowedTypes('inclure_entreprises_citees', ['bool']);
@@ -105,6 +103,6 @@ class Cartographie extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

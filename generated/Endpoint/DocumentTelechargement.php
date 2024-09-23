@@ -22,7 +22,6 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $token Token du document
      *             }
      */
@@ -54,10 +53,9 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'token']);
-        $optionsResolver->setRequired(['api_token', 'token']);
+        $optionsResolver->setDefined(['token']);
+        $optionsResolver->setRequired(['token']);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('token', ['string']);
 
         return $optionsResolver;
@@ -91,6 +89,6 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }

@@ -22,7 +22,6 @@ class DocumentScoringFinancier extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     * @var string $api_token Clé d'utilisation de l'API
      * @var string $siren SIREN de l'entreprise
      *             }
      */
@@ -54,10 +53,9 @@ class DocumentScoringFinancier extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['api_token', 'siren']);
-        $optionsResolver->setRequired(['api_token']);
+        $optionsResolver->setDefined(['siren']);
+        $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
-        $optionsResolver->addAllowedTypes('api_token', ['string']);
         $optionsResolver->addAllowedTypes('siren', ['string']);
 
         return $optionsResolver;
@@ -91,6 +89,6 @@ class DocumentScoringFinancier extends BaseEndpoint implements Endpoint
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['apiKey'];
     }
 }
