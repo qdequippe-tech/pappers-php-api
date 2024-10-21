@@ -110,7 +110,7 @@ class EtablissementFiche extends \ArrayObject
      */
     protected $effectifMax;
     /**
-     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
+     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      *
      * @var string|null
      */
@@ -597,7 +597,7 @@ class EtablissementFiche extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
+     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      */
     public function getTrancheEffectif(): ?string
     {
@@ -605,7 +605,7 @@ class EtablissementFiche extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/sirene/public/variable/tefen#:~:text=Cette%20variable%20correspond%20%C3%A0%20la,effectif%20salari%C3%A9%20de%20l'entreprise.).
+     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      */
     public function setTrancheEffectif(?string $trancheEffectif): self
     {
