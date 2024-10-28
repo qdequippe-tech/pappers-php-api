@@ -75,6 +75,7 @@ class Client extends Runtime\Client\Client
      * - `nomenclature_code_naf` : gratuit
      * - `labels` : gratuit
      * - `labels:orias` : 0.5 jeton supplémentaire
+     * - `labels:cci` : 0.5 jeton supplémentaire
      * - `micro_entreprise` : gratuit
      * - `sanctions` : 1 jeton supplémentaire
      * - `personne_politiquement_exposee` : 1 jeton supplémentaire

@@ -38,7 +38,7 @@ class Labels extends \ArrayObject
      */
     protected $notes;
     /**
-     * Label ORIAS seulement : Numéro d'immatriculation ORIAS. Uniquement présent si demandé avec le champ supplémentaire `label:orias`.
+     * Label ORIAS et CCI seulement : Numéro d'immatriculation ORIAS ou CCI. Uniquement présent si demandé avec le champ supplémentaire `label:orias` ou `label:cci`.
      *
      * @var string|null
      */
@@ -49,6 +49,12 @@ class Labels extends \ArrayObject
      * @var list<LabelsBaseInscriptionsItem>|null
      */
     protected $inscriptions;
+    /**
+     * Label CCI seulement : Liste des mentions.
+     *
+     * @var list<string>|null
+     */
+    protected $mentions;
     /**
      * Nombre d'établissements concernés par le label, dans le cas d'un label lié aux établissements. Null sinon.
      *
@@ -145,7 +151,7 @@ class Labels extends \ArrayObject
     }
 
     /**
-     * Label ORIAS seulement : Numéro d'immatriculation ORIAS. Uniquement présent si demandé avec le champ supplémentaire `label:orias`.
+     * Label ORIAS et CCI seulement : Numéro d'immatriculation ORIAS ou CCI. Uniquement présent si demandé avec le champ supplémentaire `label:orias` ou `label:cci`.
      */
     public function getNumeroImmatriculation(): ?string
     {
@@ -153,7 +159,7 @@ class Labels extends \ArrayObject
     }
 
     /**
-     * Label ORIAS seulement : Numéro d'immatriculation ORIAS. Uniquement présent si demandé avec le champ supplémentaire `label:orias`.
+     * Label ORIAS et CCI seulement : Numéro d'immatriculation ORIAS ou CCI. Uniquement présent si demandé avec le champ supplémentaire `label:orias` ou `label:cci`.
      */
     public function setNumeroImmatriculation(?string $numeroImmatriculation): self
     {
@@ -182,6 +188,29 @@ class Labels extends \ArrayObject
     {
         $this->initialized['inscriptions'] = true;
         $this->inscriptions = $inscriptions;
+
+        return $this;
+    }
+
+    /**
+     * Label CCI seulement : Liste des mentions.
+     *
+     * @return list<string>|null
+     */
+    public function getMentions(): ?array
+    {
+        return $this->mentions;
+    }
+
+    /**
+     * Label CCI seulement : Liste des mentions.
+     *
+     * @param list<string>|null $mentions
+     */
+    public function setMentions(?array $mentions): self
+    {
+        $this->initialized['mentions'] = true;
+        $this->mentions = $mentions;
 
         return $this;
     }

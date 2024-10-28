@@ -97,9 +97,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('inscriptions', $data) && null === $data['inscriptions']) {
                 $object->setInscriptions(null);
             }
-            foreach ($data as $key => $value_4) {
+            if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
+                $values_4 = [];
+                foreach ($data['mentions'] as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $object->setMentions($values_4);
+                unset($data['mentions']);
+            } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
+                $object->setMentions(null);
+            }
+            foreach ($data as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_4;
+                    $object[$key] = $value_5;
                 }
             }
 
@@ -143,9 +153,16 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
                 $data['inscriptions'] = $values_3;
             }
-            foreach ($object as $key => $value_4) {
+            if ($object->isInitialized('mentions') && null !== $object->getMentions()) {
+                $values_4 = [];
+                foreach ($object->getMentions() as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $data['mentions'] = $values_4;
+            }
+            foreach ($object as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_4;
+                    $data[$key] = $value_5;
                 }
             }
 
@@ -242,9 +259,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('inscriptions', $data) && null === $data['inscriptions']) {
                 $object->setInscriptions(null);
             }
-            foreach ($data as $key => $value_4) {
+            if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
+                $values_4 = [];
+                foreach ($data['mentions'] as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $object->setMentions($values_4);
+                unset($data['mentions']);
+            } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
+                $object->setMentions(null);
+            }
+            foreach ($data as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_4;
+                    $object[$key] = $value_5;
                 }
             }
 
@@ -293,9 +320,16 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
                 $data['inscriptions'] = $values_3;
             }
-            foreach ($object as $key => $value_4) {
+            if ($object->isInitialized('mentions') && null !== $object->getMentions()) {
+                $values_4 = [];
+                foreach ($object->getMentions() as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $data['mentions'] = $values_4;
+            }
+            foreach ($object as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_4;
+                    $data[$key] = $value_5;
                 }
             }
 
