@@ -97,15 +97,25 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('inscriptions', $data) && null === $data['inscriptions']) {
                 $object->setInscriptions(null);
             }
+            if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
+                $values_4 = [];
+                foreach ($data['mentions'] as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $object->setMentions($values_4);
+                unset($data['mentions']);
+            } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
+                $object->setMentions(null);
+            }
             if (\array_key_exists('nb_etablissements_concernes', $data) && null !== $data['nb_etablissements_concernes']) {
                 $object->setNbEtablissementsConcernes($data['nb_etablissements_concernes']);
                 unset($data['nb_etablissements_concernes']);
             } elseif (\array_key_exists('nb_etablissements_concernes', $data) && null === $data['nb_etablissements_concernes']) {
                 $object->setNbEtablissementsConcernes(null);
             }
-            foreach ($data as $key => $value_4) {
+            foreach ($data as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_4;
+                    $object[$key] = $value_5;
                 }
             }
 
@@ -149,12 +159,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
                 $data['inscriptions'] = $values_3;
             }
+            if ($object->isInitialized('mentions') && null !== $object->getMentions()) {
+                $values_4 = [];
+                foreach ($object->getMentions() as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $data['mentions'] = $values_4;
+            }
             if ($object->isInitialized('nbEtablissementsConcernes') && null !== $object->getNbEtablissementsConcernes()) {
                 $data['nb_etablissements_concernes'] = $object->getNbEtablissementsConcernes();
             }
-            foreach ($object as $key => $value_4) {
+            foreach ($object as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_4;
+                    $data[$key] = $value_5;
                 }
             }
 
@@ -251,15 +268,25 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('inscriptions', $data) && null === $data['inscriptions']) {
                 $object->setInscriptions(null);
             }
+            if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
+                $values_4 = [];
+                foreach ($data['mentions'] as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $object->setMentions($values_4);
+                unset($data['mentions']);
+            } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
+                $object->setMentions(null);
+            }
             if (\array_key_exists('nb_etablissements_concernes', $data) && null !== $data['nb_etablissements_concernes']) {
                 $object->setNbEtablissementsConcernes($data['nb_etablissements_concernes']);
                 unset($data['nb_etablissements_concernes']);
             } elseif (\array_key_exists('nb_etablissements_concernes', $data) && null === $data['nb_etablissements_concernes']) {
                 $object->setNbEtablissementsConcernes(null);
             }
-            foreach ($data as $key => $value_4) {
+            foreach ($data as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_4;
+                    $object[$key] = $value_5;
                 }
             }
 
@@ -308,12 +335,19 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 }
                 $data['inscriptions'] = $values_3;
             }
+            if ($object->isInitialized('mentions') && null !== $object->getMentions()) {
+                $values_4 = [];
+                foreach ($object->getMentions() as $value_4) {
+                    $values_4[] = $value_4;
+                }
+                $data['mentions'] = $values_4;
+            }
             if ($object->isInitialized('nbEtablissementsConcernes') && null !== $object->getNbEtablissementsConcernes()) {
                 $data['nb_etablissements_concernes'] = $object->getNbEtablissementsConcernes();
             }
-            foreach ($object as $key => $value_4) {
+            foreach ($object as $key => $value_5) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_4;
+                    $data[$key] = $value_5;
                 }
             }
 
