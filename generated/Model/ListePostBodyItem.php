@@ -44,7 +44,7 @@ class ListePostBodyItem extends \ArrayObject
      */
     protected $dateDeNaissance;
     /**
-     * Active la recherche élargie du dirigeant : <ul><li>Pour une personne physique : c'est un cas rare mais la date de naissance du dirigeant n'est pas toujours connue de Pappers. Si vous activer ce filtre et que la date de naissance est inconnue, l'alerte sera générée uniquement sur la base du nom et prénom.</li><li>Pour une personne morale : c'est un cas rare mais le SIREN du dirigeant n'est pas toujours connu de Pappers. Si vous activer ce filtre et que le SIREN est inconnu, l'alerte sera générée uniquement sur la base de la dénomination. Activable uniquement si le champ denomination est présent.</li></ul>.
+     * Active la recherche élargie du dirigeant : <ul><li>Pour une personne physique : c'est un cas rare mais la date de naissance du dirigeant n'est pas toujours connue de Pappers. Si vous activez ce filtre et que la date de naissance est inconnue, l'alerte sera générée uniquement sur la base du nom et prénom.</li><li>Pour une personne morale : c'est un cas rare mais le SIREN du dirigeant n'est pas toujours connu de Pappers. Si vous activez ce filtre et que le SIREN est inconnu, l'alerte sera générée uniquement sur la base de la dénomination. Activable uniquement si le champ denomination est présent.</li></ul>.
      *
      * @var bool|null
      */
@@ -146,7 +146,7 @@ class ListePostBodyItem extends \ArrayObject
     }
 
     /**
-     * Active la recherche élargie du dirigeant : <ul><li>Pour une personne physique : c'est un cas rare mais la date de naissance du dirigeant n'est pas toujours connue de Pappers. Si vous activer ce filtre et que la date de naissance est inconnue, l'alerte sera générée uniquement sur la base du nom et prénom.</li><li>Pour une personne morale : c'est un cas rare mais le SIREN du dirigeant n'est pas toujours connu de Pappers. Si vous activer ce filtre et que le SIREN est inconnu, l'alerte sera générée uniquement sur la base de la dénomination. Activable uniquement si le champ denomination est présent.</li></ul>.
+     * Active la recherche élargie du dirigeant : <ul><li>Pour une personne physique : c'est un cas rare mais la date de naissance du dirigeant n'est pas toujours connue de Pappers. Si vous activez ce filtre et que la date de naissance est inconnue, l'alerte sera générée uniquement sur la base du nom et prénom.</li><li>Pour une personne morale : c'est un cas rare mais le SIREN du dirigeant n'est pas toujours connu de Pappers. Si vous activez ce filtre et que le SIREN est inconnu, l'alerte sera générée uniquement sur la base de la dénomination. Activable uniquement si le champ denomination est présent.</li></ul>.
      */
     public function getRechercheElargie(): ?bool
     {
@@ -154,7 +154,7 @@ class ListePostBodyItem extends \ArrayObject
     }
 
     /**
-     * Active la recherche élargie du dirigeant : <ul><li>Pour une personne physique : c'est un cas rare mais la date de naissance du dirigeant n'est pas toujours connue de Pappers. Si vous activer ce filtre et que la date de naissance est inconnue, l'alerte sera générée uniquement sur la base du nom et prénom.</li><li>Pour une personne morale : c'est un cas rare mais le SIREN du dirigeant n'est pas toujours connu de Pappers. Si vous activer ce filtre et que le SIREN est inconnu, l'alerte sera générée uniquement sur la base de la dénomination. Activable uniquement si le champ denomination est présent.</li></ul>.
+     * Active la recherche élargie du dirigeant : <ul><li>Pour une personne physique : c'est un cas rare mais la date de naissance du dirigeant n'est pas toujours connue de Pappers. Si vous activez ce filtre et que la date de naissance est inconnue, l'alerte sera générée uniquement sur la base du nom et prénom.</li><li>Pour une personne morale : c'est un cas rare mais le SIREN du dirigeant n'est pas toujours connu de Pappers. Si vous activez ce filtre et que le SIREN est inconnu, l'alerte sera générée uniquement sur la base de la dénomination. Activable uniquement si le champ denomination est présent.</li></ul>.
      */
     public function setRechercheElargie(?bool $rechercheElargie): self
     {
