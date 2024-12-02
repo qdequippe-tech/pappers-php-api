@@ -33,7 +33,6 @@ use Qdequippe\Pappers\Api\Endpoint\SurveillanceEntreprise;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceListeInformations;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceNotificationsDelete;
 use Qdequippe\Pappers\Api\Model\ListeInformationsPostBody;
-use Qdequippe\Pappers\Api\Model\ListePostBodyItem;
 use Qdequippe\Pappers\Api\Normalizer\JaneObjectNormalizer;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
@@ -814,8 +813,8 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param ListePostBodyItem[]|null $requestBody
-     * @param array                    $queryParameters {
+     * @param Model\ListePostBodyItem[]|null $requestBody
+     * @param array                          $queryParameters {
      *
      * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
      *             }
@@ -863,8 +862,8 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste. Les informations à renseigner sont différentes selon le type de personne à ajouter (morale ou physique).
      *
-     * @param ListePostBodyItem[]|null $requestBody
-     * @param array                    $queryParameters {
+     * @param Model\ListePostBodyItem[]|null $requestBody
+     * @param array                          $queryParameters {
      *
      * @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
      *             }
