@@ -29,6 +29,6 @@
     "require-dev": {
         "jane-php/open-api-3": "^7.4",
         "friendsofphp/php-cs-fixer": "^3.13",
-        "rector/rector": "^0.17.0 || ^0.19.0 || ^1.0.0"
+        "rector/rector": "^0.17.0 || ^0.19.0 || ^1.0.0 || ^2.0.0"
     }
 }
