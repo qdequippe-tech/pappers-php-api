@@ -6,7 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\Association;
 use Qdequippe\Pappers\Api\Model\AssociationAdresseGestionnaire;
 use Qdequippe\Pappers\Api\Model\AssociationAdresseSiege;
-use Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafe;
+use Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafeItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -210,14 +210,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDerniereMaj(null);
             }
             if (\array_key_exists('publications_joafe', $data) && null !== $data['publications_joafe']) {
-                $object->setPublicationsJoafe($this->denormalizer->denormalize($data['publications_joafe'], AssociationPublicationsJoafe::class, 'json', $context));
+                $values = [];
+                foreach ($data['publications_joafe'] as $value) {
+                    $values[] = $this->denormalizer->denormalize($value, AssociationPublicationsJoafeItem::class, 'json', $context);
+                }
+                $object->setPublicationsJoafe($values);
                 unset($data['publications_joafe']);
             } elseif (\array_key_exists('publications_joafe', $data) && null === $data['publications_joafe']) {
                 $object->setPublicationsJoafe(null);
             }
-            foreach ($data as $key => $value) {
+            foreach ($data as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value;
+                    $object[$key] = $value_1;
                 }
             }
 
@@ -309,11 +313,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['derniere_maj'] = $object->getDerniereMaj();
             }
             if ($object->isInitialized('publicationsJoafe') && null !== $object->getPublicationsJoafe()) {
-                $data['publications_joafe'] = $this->normalizer->normalize($object->getPublicationsJoafe(), 'json', $context);
+                $values = [];
+                foreach ($object->getPublicationsJoafe() as $value) {
+                    $values[] = $this->normalizer->normalize($value, 'json', $context);
+                }
+                $data['publications_joafe'] = $values;
             }
-            foreach ($object as $key => $value) {
+            foreach ($object as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value;
+                    $data[$key] = $value_1;
                 }
             }
 
@@ -521,14 +529,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDerniereMaj(null);
             }
             if (\array_key_exists('publications_joafe', $data) && null !== $data['publications_joafe']) {
-                $object->setPublicationsJoafe($this->denormalizer->denormalize($data['publications_joafe'], AssociationPublicationsJoafe::class, 'json', $context));
+                $values = [];
+                foreach ($data['publications_joafe'] as $value) {
+                    $values[] = $this->denormalizer->denormalize($value, AssociationPublicationsJoafeItem::class, 'json', $context);
+                }
+                $object->setPublicationsJoafe($values);
                 unset($data['publications_joafe']);
             } elseif (\array_key_exists('publications_joafe', $data) && null === $data['publications_joafe']) {
                 $object->setPublicationsJoafe(null);
             }
-            foreach ($data as $key => $value) {
+            foreach ($data as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value;
+                    $object[$key] = $value_1;
                 }
             }
 
@@ -625,11 +637,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['derniere_maj'] = $object->getDerniereMaj();
             }
             if ($object->isInitialized('publicationsJoafe') && null !== $object->getPublicationsJoafe()) {
-                $data['publications_joafe'] = $this->normalizer->normalize($object->getPublicationsJoafe(), 'json', $context);
+                $values = [];
+                foreach ($object->getPublicationsJoafe() as $value) {
+                    $values[] = $this->normalizer->normalize($value, 'json', $context);
+                }
+                $data['publications_joafe'] = $values;
             }
-            foreach ($object as $key => $value) {
+            foreach ($object as $key => $value_1) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value;
+                    $data[$key] = $value_1;
                 }
             }
 

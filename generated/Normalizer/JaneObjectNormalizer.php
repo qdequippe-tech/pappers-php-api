@@ -6,7 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\Association;
 use Qdequippe\Pappers\Api\Model\AssociationAdresseGestionnaire;
 use Qdequippe\Pappers\Api\Model\AssociationAdresseSiege;
-use Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafe;
+use Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafeItem;
 use Qdequippe\Pappers\Api\Model\Beneficiaire;
 use Qdequippe\Pappers\Api\Model\Bodacc;
 use Qdequippe\Pappers\Api\Model\BodaccAchat;
@@ -251,7 +251,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             AssociationAdresseGestionnaire::class => AssociationAdresseGestionnaireNormalizer::class,
 
-            AssociationPublicationsJoafe::class => AssociationPublicationsJoafeNormalizer::class,
+            AssociationPublicationsJoafeItem::class => AssociationPublicationsJoafeItemNormalizer::class,
 
             ScoringNonFinancier::class => ScoringNonFinancierNormalizer::class,
 
@@ -442,7 +442,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 Association::class => false,
                 AssociationAdresseSiege::class => false,
                 AssociationAdresseGestionnaire::class => false,
-                AssociationPublicationsJoafe::class => false,
+                AssociationPublicationsJoafeItem::class => false,
                 ScoringNonFinancier::class => false,
                 ScoringFinancier::class => false,
                 ScoringFinancierDetailsScore::class => false,
@@ -620,7 +620,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             AssociationAdresseGestionnaire::class => AssociationAdresseGestionnaireNormalizer::class,
 
-            AssociationPublicationsJoafe::class => AssociationPublicationsJoafeNormalizer::class,
+            AssociationPublicationsJoafeItem::class => AssociationPublicationsJoafeItemNormalizer::class,
 
             ScoringNonFinancier::class => ScoringNonFinancierNormalizer::class,
 
@@ -819,7 +819,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 Association::class => false,
                 AssociationAdresseSiege::class => false,
                 AssociationAdresseGestionnaire::class => false,
-                AssociationPublicationsJoafe::class => false,
+                AssociationPublicationsJoafeItem::class => false,
                 ScoringNonFinancier::class => false,
                 ScoringFinancier::class => false,
                 ScoringFinancierDetailsScore::class => false,
