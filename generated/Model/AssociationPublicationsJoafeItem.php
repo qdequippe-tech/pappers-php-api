@@ -2,7 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class AssociationPublicationsJoafe extends \ArrayObject
+class AssociationPublicationsJoafeItem extends \ArrayObject
 {
     /**
      * @var array

@@ -174,7 +174,7 @@ class Association extends \ArrayObject
     /**
      * Publications JOAFE.
      *
-     * @var AssociationPublicationsJoafe|null
+     * @var list<AssociationPublicationsJoafeItem>|null
      */
     protected $publicationsJoafe;
 
@@ -681,16 +681,20 @@ class Association extends \ArrayObject
 
     /**
      * Publications JOAFE.
+     *
+     * @return list<AssociationPublicationsJoafeItem>|null
      */
-    public function getPublicationsJoafe(): ?AssociationPublicationsJoafe
+    public function getPublicationsJoafe(): ?array
     {
         return $this->publicationsJoafe;
     }
 
     /**
      * Publications JOAFE.
+     *
+     * @param list<AssociationPublicationsJoafeItem>|null $publicationsJoafe
      */
-    public function setPublicationsJoafe(?AssociationPublicationsJoafe $publicationsJoafe): self
+    public function setPublicationsJoafe(?array $publicationsJoafe): self
     {
         $this->initialized['publicationsJoafe'] = true;
         $this->publicationsJoafe = $publicationsJoafe;

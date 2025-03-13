@@ -3,7 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafe;
+use Qdequippe\Pappers\Api\Model\AssociationPublicationsJoafeItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\HttpKernel\Kernel;
@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR_VERSION === 6 && Kernel::MINOR_VERSION === 4)) {
-    class AssociationPublicationsJoafeNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class AssociationPublicationsJoafeItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -24,12 +24,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
         {
-            return AssociationPublicationsJoafe::class === $type;
+            return AssociationPublicationsJoafeItem::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && AssociationPublicationsJoafe::class === $data::class;
+            return \is_object($data) && AssociationPublicationsJoafeItem::class === $data::class;
         }
 
         public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -40,7 +40,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (isset($data['$recursiveRef'])) {
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
-            $object = new AssociationPublicationsJoafe();
+            $object = new AssociationPublicationsJoafeItem();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -157,11 +157,11 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return [AssociationPublicationsJoafe::class => false];
+            return [AssociationPublicationsJoafeItem::class => false];
         }
     }
 } else {
-    class AssociationPublicationsJoafeNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+    class AssociationPublicationsJoafeItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
     {
         use CheckArray;
         use DenormalizerAwareTrait;
@@ -170,12 +170,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function supportsDenormalization($data, $type, ?string $format = null, array $context = []): bool
         {
-            return AssociationPublicationsJoafe::class === $type;
+            return AssociationPublicationsJoafeItem::class === $type;
         }
 
         public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
         {
-            return \is_object($data) && AssociationPublicationsJoafe::class === $data::class;
+            return \is_object($data) && AssociationPublicationsJoafeItem::class === $data::class;
         }
 
         /**
@@ -189,7 +189,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (isset($data['$recursiveRef'])) {
                 return new Reference($data['$recursiveRef'], $context['document-origin']);
             }
-            $object = new AssociationPublicationsJoafe();
+            $object = new AssociationPublicationsJoafeItem();
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
@@ -311,7 +311,7 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
         public function getSupportedTypes(?string $format = null): array
         {
-            return [AssociationPublicationsJoafe::class => false];
+            return [AssociationPublicationsJoafeItem::class => false];
         }
     }
 }
