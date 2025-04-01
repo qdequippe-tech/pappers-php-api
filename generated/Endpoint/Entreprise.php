@@ -29,12 +29,12 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * @var bool   $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
-     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de jetons supplémentaires.
+     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :
-     * - `sites_internet` : 1 jeton supplémentaire
-     * - `telephone` : 1 jeton supplémentaire *
-     * - `email` : 1 jeton supplémentaire *
+     * - `sites_internet` : 1 crédit supplémentaire
+     * - `telephone` : 1 crédit supplémentaire *
+     * - `email` : 1 crédit supplémentaire *
      * - `enseigne_1` : gratuit
      * - `enseigne_2` : gratuit
      * - `enseigne_3` : gratuit
@@ -48,17 +48,17 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `departement` : gratuit
      * - `nomenclature_code_naf` : gratuit
      * - `labels` : gratuit
-     * - `labels:orias` : 0.5 jeton supplémentaire
-     * - `labels:cci` : 0.5 jeton supplémentaire
+     * - `labels:orias` : 0.5 crédit supplémentaire
+     * - `labels:cci` : 0.5 crédit supplémentaire
      * - `micro_entreprise` : gratuit
-     * - `sanctions` : 1 jeton supplémentaire
-     * - `personne_politiquement_exposee` : 1 jeton supplémentaire
-     * - `deces` : 0.5 jeton supplémentaire
-     * - `scoring_financier` : 30 jetons supplémentaires
-     * - `scoring_non_financier` : 30 jetons supplémentaires
+     * - `sanctions` : 1 crédit supplémentaire
+     * - `personne_politiquement_exposee` : 1 crédit supplémentaire
+     * - `deces` : 0.5 crédit supplémentaire
+     * - `scoring_financier` : 30 crédits supplémentaires
+     * - `scoring_non_financier` : 30 crédits supplémentaires
      * - `categorie_entreprise` : gratuit
      *
-     * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
+     * \* : le coût des champs `telephone` et `email` est de 1 crédit supplémentaire au total, même si les deux sont demandés.
      *
      * }
      */

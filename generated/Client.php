@@ -54,12 +54,12 @@ class Client extends Runtime\Client\Client
      * @var bool   $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
-     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de jetons supplémentaires.
+     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :
-     * - `sites_internet` : 1 jeton supplémentaire
-     * - `telephone` : 1 jeton supplémentaire *
-     * - `email` : 1 jeton supplémentaire *
+     * - `sites_internet` : 1 crédit supplémentaire
+     * - `telephone` : 1 crédit supplémentaire *
+     * - `email` : 1 crédit supplémentaire *
      * - `enseigne_1` : gratuit
      * - `enseigne_2` : gratuit
      * - `enseigne_3` : gratuit
@@ -73,17 +73,17 @@ class Client extends Runtime\Client\Client
      * - `departement` : gratuit
      * - `nomenclature_code_naf` : gratuit
      * - `labels` : gratuit
-     * - `labels:orias` : 0.5 jeton supplémentaire
-     * - `labels:cci` : 0.5 jeton supplémentaire
+     * - `labels:orias` : 0.5 crédit supplémentaire
+     * - `labels:cci` : 0.5 crédit supplémentaire
      * - `micro_entreprise` : gratuit
-     * - `sanctions` : 1 jeton supplémentaire
-     * - `personne_politiquement_exposee` : 1 jeton supplémentaire
-     * - `deces` : 0.5 jeton supplémentaire
-     * - `scoring_financier` : 30 jetons supplémentaires
-     * - `scoring_non_financier` : 30 jetons supplémentaires
+     * - `sanctions` : 1 crédit supplémentaire
+     * - `personne_politiquement_exposee` : 1 crédit supplémentaire
+     * - `deces` : 0.5 crédit supplémentaire
+     * - `scoring_financier` : 30 crédits supplémentaires
+     * - `scoring_non_financier` : 30 crédits supplémentaires
      * - `categorie_entreprise` : gratuit
      *
-     * \* : le coût des champs `telephone` et `email` est de 1 jeton supplémentaire au total, même si les deux sont demandés.
+     * \* : le coût des champs `telephone` et `email` est de 1 crédit supplémentaire au total, même si les deux sont demandés.
      *
      * }
      *
@@ -560,8 +560,8 @@ class Client extends Runtime\Client\Client
      * Cette route fournit les données nécessaires à l'établissement de la cartographie Pappers d'une entreprise telle qu'elle apparaît sur les fiches Pappers (exemple https://www.pappers.fr/entreprise/google-france-443061841#cartographie).
      *
      * - La requête est gratuite (erreur 404) si seul le noeud principal (l'entreprise recherchée) est disponible.
-     * - La requête coûte 1 jeton si, en plus du noeud principal, des noeuds dirigeants directs de l'entreprise sont disponibles. Il est possible de rejeter ces cas avec le paramètre `rejeter_premier_degre`. La requête est alors gratuite (erreur 404).
-     * - La requête coûte 3 jetons si des noeuds supplémentaires sont disponibles.
+     * - La requête coûte 1 crédit si, en plus du noeud principal, des noeuds dirigeants directs de l'entreprise sont disponibles. Il est possible de rejeter ces cas avec le paramètre `rejeter_premier_degre`. La requête est alors gratuite (erreur 404).
+     * - La requête coûte 3 crédits si des noeuds supplémentaires sont disponibles.
      *
      * @param array $queryParameters {
      *
@@ -570,7 +570,7 @@ class Client extends Runtime\Client\Client
      * @var bool   $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
      * @var bool   $inclure_sci Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
      * @var bool   $autoriser_modifications Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
-     * @var bool   $rejeter_premier_degre Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de jetons. Valeur par défaut : `false`.
+     * @var bool   $rejeter_premier_degre Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de crédits. Valeur par défaut : `false`.
      * @var int    $degre Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
      *             }
      *

@@ -50,7 +50,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $dateDeNaissanceFormate;
     /**
-     * Nationalité du bénéficiaire effectif.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
      *
      * @var string|null
      */
@@ -339,7 +339,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du bénéficiaire effectif.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
      */
     public function getNationalite(): ?string
     {
@@ -347,7 +347,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du bénéficiaire effectif.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
      */
     public function setNationalite(?string $nationalite): self
     {

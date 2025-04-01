@@ -20,11 +20,11 @@ class SuggestionsGetResponse200ResultatsRepresentantItem extends \ArrayObject
      */
     protected $mention;
     /**
-     * Qualité du représentant.
+     * Liste des qualités du représentant.
      *
-     * @var string|null
+     * @var list<string>|null
      */
-    protected $qualite;
+    protected $qualites;
     /**
      * Vrai si le représentant est une personne morale, faux si personne physique.
      *
@@ -104,17 +104,17 @@ class SuggestionsGetResponse200ResultatsRepresentantItem extends \ArrayObject
      */
     protected $age;
     /**
-     * Nationalité du représentant.
+     * Nationalité du représentant. Peut contenir plusieurs nationalités.
      *
      * @var string|null
      */
     protected $nationalite;
     /**
-     * Code nationalité du représentant.
+     * Code(s) nationalité(s) du représentant.
      *
-     * @var string|null
+     * @var list<string>|null
      */
-    protected $codeNationalite;
+    protected $codesNationalites;
     /**
      * Ville de naissance du représentant.
      *
@@ -196,20 +196,24 @@ class SuggestionsGetResponse200ResultatsRepresentantItem extends \ArrayObject
     }
 
     /**
-     * Qualité du représentant.
+     * Liste des qualités du représentant.
+     *
+     * @return list<string>|null
      */
-    public function getQualite(): ?string
+    public function getQualites(): ?array
     {
-        return $this->qualite;
+        return $this->qualites;
     }
 
     /**
-     * Qualité du représentant.
+     * Liste des qualités du représentant.
+     *
+     * @param list<string>|null $qualites
      */
-    public function setQualite(?string $qualite): self
+    public function setQualites(?array $qualites): self
     {
-        $this->initialized['qualite'] = true;
-        $this->qualite = $qualite;
+        $this->initialized['qualites'] = true;
+        $this->qualites = $qualites;
 
         return $this;
     }
@@ -462,7 +466,7 @@ class SuggestionsGetResponse200ResultatsRepresentantItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du représentant.
+     * Nationalité du représentant. Peut contenir plusieurs nationalités.
      */
     public function getNationalite(): ?string
     {
@@ -470,7 +474,7 @@ class SuggestionsGetResponse200ResultatsRepresentantItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du représentant.
+     * Nationalité du représentant. Peut contenir plusieurs nationalités.
      */
     public function setNationalite(?string $nationalite): self
     {
@@ -481,20 +485,24 @@ class SuggestionsGetResponse200ResultatsRepresentantItem extends \ArrayObject
     }
 
     /**
-     * Code nationalité du représentant.
+     * Code(s) nationalité(s) du représentant.
+     *
+     * @return list<string>|null
      */
-    public function getCodeNationalite(): ?string
+    public function getCodesNationalites(): ?array
     {
-        return $this->codeNationalite;
+        return $this->codesNationalites;
     }
 
     /**
-     * Code nationalité du représentant.
+     * Code(s) nationalité(s) du représentant.
+     *
+     * @param list<string>|null $codesNationalites
      */
-    public function setCodeNationalite(?string $codeNationalite): self
+    public function setCodesNationalites(?array $codesNationalites): self
     {
-        $this->initialized['codeNationalite'] = true;
-        $this->codeNationalite = $codeNationalite;
+        $this->initialized['codesNationalites'] = true;
+        $this->codesNationalites = $codesNationalites;
 
         return $this;
     }
