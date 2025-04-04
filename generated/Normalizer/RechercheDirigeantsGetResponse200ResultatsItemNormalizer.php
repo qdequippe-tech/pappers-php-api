@@ -45,11 +45,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
-            if (\array_key_exists('qualite', $data) && null !== $data['qualite']) {
-                $object->setQualite($data['qualite']);
-                unset($data['qualite']);
-            } elseif (\array_key_exists('qualite', $data) && null === $data['qualite']) {
-                $object->setQualite(null);
+            if (\array_key_exists('qualites', $data) && null !== $data['qualites']) {
+                $values = [];
+                foreach ($data['qualites'] as $value) {
+                    $values[] = $value;
+                }
+                $object->setQualites($values);
+                unset($data['qualites']);
+            } elseif (\array_key_exists('qualites', $data) && null === $data['qualites']) {
+                $object->setQualites(null);
             }
             if (\array_key_exists('personne_morale', $data) && null !== $data['personne_morale']) {
                 $object->setPersonneMorale($data['personne_morale']);
@@ -135,11 +139,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('nationalite', $data) && null === $data['nationalite']) {
                 $object->setNationalite(null);
             }
-            if (\array_key_exists('code_nationalite', $data) && null !== $data['code_nationalite']) {
-                $object->setCodeNationalite($data['code_nationalite']);
-                unset($data['code_nationalite']);
-            } elseif (\array_key_exists('code_nationalite', $data) && null === $data['code_nationalite']) {
-                $object->setCodeNationalite(null);
+            if (\array_key_exists('codes_nationalites', $data) && null !== $data['codes_nationalites']) {
+                $values_1 = [];
+                foreach ($data['codes_nationalites'] as $value_1) {
+                    $values_1[] = $value_1;
+                }
+                $object->setCodesNationalites($values_1);
+                unset($data['codes_nationalites']);
+            } elseif (\array_key_exists('codes_nationalites', $data) && null === $data['codes_nationalites']) {
+                $object->setCodesNationalites(null);
             }
             if (\array_key_exists('ville_de_naissance', $data) && null !== $data['ville_de_naissance']) {
                 $object->setVilleDeNaissance($data['ville_de_naissance']);
@@ -214,11 +222,11 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateDepartDePoste(null);
             }
             if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
-                $values = [];
-                foreach ($data['entreprises'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, EntrepriseRecherche::class, 'json', $context);
+                $values_2 = [];
+                foreach ($data['entreprises'] as $value_2) {
+                    $values_2[] = $this->denormalizer->denormalize($value_2, EntrepriseRecherche::class, 'json', $context);
                 }
-                $object->setEntreprises($values);
+                $object->setEntreprises($values_2);
                 unset($data['entreprises']);
             } elseif (\array_key_exists('entreprises', $data) && null === $data['entreprises']) {
                 $object->setEntreprises(null);
@@ -229,9 +237,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('nb_entreprises_total', $data) && null === $data['nb_entreprises_total']) {
                 $object->setNbEntreprisesTotal(null);
             }
-            foreach ($data as $key => $value_1) {
+            foreach ($data as $key => $value_3) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_1;
+                    $object[$key] = $value_3;
                 }
             }
 
@@ -241,8 +249,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
         {
             $data = [];
-            if ($object->isInitialized('qualite') && null !== $object->getQualite()) {
-                $data['qualite'] = $object->getQualite();
+            if ($object->isInitialized('qualites') && null !== $object->getQualites()) {
+                $values = [];
+                foreach ($object->getQualites() as $value) {
+                    $values[] = $value;
+                }
+                $data['qualites'] = $values;
             }
             if ($object->isInitialized('personneMorale') && null !== $object->getPersonneMorale()) {
                 $data['personne_morale'] = $object->getPersonneMorale();
@@ -286,8 +298,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('nationalite') && null !== $object->getNationalite()) {
                 $data['nationalite'] = $object->getNationalite();
             }
-            if ($object->isInitialized('codeNationalite') && null !== $object->getCodeNationalite()) {
-                $data['code_nationalite'] = $object->getCodeNationalite();
+            if ($object->isInitialized('codesNationalites') && null !== $object->getCodesNationalites()) {
+                $values_1 = [];
+                foreach ($object->getCodesNationalites() as $value_1) {
+                    $values_1[] = $value_1;
+                }
+                $data['codes_nationalites'] = $values_1;
             }
             if ($object->isInitialized('villeDeNaissance') && null !== $object->getVilleDeNaissance()) {
                 $data['ville_de_naissance'] = $object->getVilleDeNaissance();
@@ -326,18 +342,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['date_depart_de_poste'] = $object->getDateDepartDePoste();
             }
             if ($object->isInitialized('entreprises') && null !== $object->getEntreprises()) {
-                $values = [];
-                foreach ($object->getEntreprises() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values_2 = [];
+                foreach ($object->getEntreprises() as $value_2) {
+                    $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
                 }
-                $data['entreprises'] = $values;
+                $data['entreprises'] = $values_2;
             }
             if ($object->isInitialized('nbEntreprisesTotal') && null !== $object->getNbEntreprisesTotal()) {
                 $data['nb_entreprises_total'] = $object->getNbEntreprisesTotal();
             }
-            foreach ($object as $key => $value_1) {
+            foreach ($object as $key => $value_3) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_1;
+                    $data[$key] = $value_3;
                 }
             }
 
@@ -382,11 +398,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if (null === $data || false === \is_array($data)) {
                 return $object;
             }
-            if (\array_key_exists('qualite', $data) && null !== $data['qualite']) {
-                $object->setQualite($data['qualite']);
-                unset($data['qualite']);
-            } elseif (\array_key_exists('qualite', $data) && null === $data['qualite']) {
-                $object->setQualite(null);
+            if (\array_key_exists('qualites', $data) && null !== $data['qualites']) {
+                $values = [];
+                foreach ($data['qualites'] as $value) {
+                    $values[] = $value;
+                }
+                $object->setQualites($values);
+                unset($data['qualites']);
+            } elseif (\array_key_exists('qualites', $data) && null === $data['qualites']) {
+                $object->setQualites(null);
             }
             if (\array_key_exists('personne_morale', $data) && null !== $data['personne_morale']) {
                 $object->setPersonneMorale($data['personne_morale']);
@@ -472,11 +492,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('nationalite', $data) && null === $data['nationalite']) {
                 $object->setNationalite(null);
             }
-            if (\array_key_exists('code_nationalite', $data) && null !== $data['code_nationalite']) {
-                $object->setCodeNationalite($data['code_nationalite']);
-                unset($data['code_nationalite']);
-            } elseif (\array_key_exists('code_nationalite', $data) && null === $data['code_nationalite']) {
-                $object->setCodeNationalite(null);
+            if (\array_key_exists('codes_nationalites', $data) && null !== $data['codes_nationalites']) {
+                $values_1 = [];
+                foreach ($data['codes_nationalites'] as $value_1) {
+                    $values_1[] = $value_1;
+                }
+                $object->setCodesNationalites($values_1);
+                unset($data['codes_nationalites']);
+            } elseif (\array_key_exists('codes_nationalites', $data) && null === $data['codes_nationalites']) {
+                $object->setCodesNationalites(null);
             }
             if (\array_key_exists('ville_de_naissance', $data) && null !== $data['ville_de_naissance']) {
                 $object->setVilleDeNaissance($data['ville_de_naissance']);
@@ -551,11 +575,11 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setDateDepartDePoste(null);
             }
             if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
-                $values = [];
-                foreach ($data['entreprises'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, EntrepriseRecherche::class, 'json', $context);
+                $values_2 = [];
+                foreach ($data['entreprises'] as $value_2) {
+                    $values_2[] = $this->denormalizer->denormalize($value_2, EntrepriseRecherche::class, 'json', $context);
                 }
-                $object->setEntreprises($values);
+                $object->setEntreprises($values_2);
                 unset($data['entreprises']);
             } elseif (\array_key_exists('entreprises', $data) && null === $data['entreprises']) {
                 $object->setEntreprises(null);
@@ -566,9 +590,9 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('nb_entreprises_total', $data) && null === $data['nb_entreprises_total']) {
                 $object->setNbEntreprisesTotal(null);
             }
-            foreach ($data as $key => $value_1) {
+            foreach ($data as $key => $value_3) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_1;
+                    $object[$key] = $value_3;
                 }
             }
 
@@ -583,8 +607,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
         public function normalize($object, $format = null, array $context = [])
         {
             $data = [];
-            if ($object->isInitialized('qualite') && null !== $object->getQualite()) {
-                $data['qualite'] = $object->getQualite();
+            if ($object->isInitialized('qualites') && null !== $object->getQualites()) {
+                $values = [];
+                foreach ($object->getQualites() as $value) {
+                    $values[] = $value;
+                }
+                $data['qualites'] = $values;
             }
             if ($object->isInitialized('personneMorale') && null !== $object->getPersonneMorale()) {
                 $data['personne_morale'] = $object->getPersonneMorale();
@@ -628,8 +656,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('nationalite') && null !== $object->getNationalite()) {
                 $data['nationalite'] = $object->getNationalite();
             }
-            if ($object->isInitialized('codeNationalite') && null !== $object->getCodeNationalite()) {
-                $data['code_nationalite'] = $object->getCodeNationalite();
+            if ($object->isInitialized('codesNationalites') && null !== $object->getCodesNationalites()) {
+                $values_1 = [];
+                foreach ($object->getCodesNationalites() as $value_1) {
+                    $values_1[] = $value_1;
+                }
+                $data['codes_nationalites'] = $values_1;
             }
             if ($object->isInitialized('villeDeNaissance') && null !== $object->getVilleDeNaissance()) {
                 $data['ville_de_naissance'] = $object->getVilleDeNaissance();
@@ -668,18 +700,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['date_depart_de_poste'] = $object->getDateDepartDePoste();
             }
             if ($object->isInitialized('entreprises') && null !== $object->getEntreprises()) {
-                $values = [];
-                foreach ($object->getEntreprises() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values_2 = [];
+                foreach ($object->getEntreprises() as $value_2) {
+                    $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
                 }
-                $data['entreprises'] = $values;
+                $data['entreprises'] = $values_2;
             }
             if ($object->isInitialized('nbEntreprisesTotal') && null !== $object->getNbEntreprisesTotal()) {
                 $data['nb_entreprises_total'] = $object->getNbEntreprisesTotal();
             }
-            foreach ($object as $key => $value_1) {
+            foreach ($object as $key => $value_3) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_1;
+                    $data[$key] = $value_3;
                 }
             }
 

@@ -72,6 +72,73 @@ use Qdequippe\Pappers\Api\Model\ListeInformationsPostBody;
 use Qdequippe\Pappers\Api\Model\ListePostBodyItem;
 use Qdequippe\Pappers\Api\Model\ListePostResponse200;
 use Qdequippe\Pappers\Api\Model\ListePostResponse201;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeant;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantDetailsDirigeant;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItem;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemMandatSupprime;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemNouveauMandat;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemQualiteDirigeant;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantNouveauxMandatsPolitiquesItem;
+use Qdequippe\Pappers\Api\Model\NotificationDirigeantNouvellesSanctionsItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntreprise;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseCapital;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseChiffreAffairesItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseCodeNaf;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseDateClotureExercice;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseDetailsEntreprise;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseDirigeantPartantItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseEnseigneItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseEntrepriseCessee;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseEntrepriseEmployeuse;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseFermetureEtablissementItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseFormeJuridique;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNomCommercialItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNomEntreprise;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouveauDirigeantItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouveauxComptesDisponiblesItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouveauxComptesPubliesItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouveauxStatutsPubliesItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelActePublieItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelEtablissementItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnoncePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnonceVentePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseObjetSocial;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseQualiteDirigeantItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseResultatItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseSiegeSocial;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseStatutDiffusion;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseStatutRcs;
+use Qdequippe\Pappers\Api\Model\NotificationVeille;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleCapital;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleChiffreAffairesItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleCodeNaf;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleDateClotureExercice;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleDirigeantPartantItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleEnseigneItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleEntrepriseCessee;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleEntrepriseEmployeuse;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleFermetureEtablissementItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleFormeJuridique;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNomCommercialItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNomEntreprise;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouveauDirigeantItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouveauxComptesDisponiblesItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouveauxComptesPubliesItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouveauxStatutsPubliesItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouvelActePublieItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouvelEtablissementItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouvelleAnnoncePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouvelleAnnonceVentePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleObjetSocial;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleQualiteDirigeantItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleResultatItem;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleSiegeSocial;
+use Qdequippe\Pappers\Api\Model\NotificationVeilleStatutRcs;
 use Qdequippe\Pappers\Api\Model\PersonneMarque;
 use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee;
 use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposeeFonctionsItem;
@@ -273,6 +340,140 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             CartographiePersonnesItem::class => CartographiePersonnesItemNormalizer::class,
 
+            NotificationEntreprise::class => NotificationEntrepriseNormalizer::class,
+
+            NotificationEntrepriseDetailsEntreprise::class => NotificationEntrepriseDetailsEntrepriseNormalizer::class,
+
+            NotificationEntrepriseNomEntreprise::class => NotificationEntrepriseNomEntrepriseNormalizer::class,
+
+            NotificationEntrepriseNomCommercialItem::class => NotificationEntrepriseNomCommercialItemNormalizer::class,
+
+            NotificationEntrepriseFormeJuridique::class => NotificationEntrepriseFormeJuridiqueNormalizer::class,
+
+            NotificationEntrepriseSiegeSocial::class => NotificationEntrepriseSiegeSocialNormalizer::class,
+
+            NotificationEntrepriseEntrepriseCessee::class => NotificationEntrepriseEntrepriseCesseeNormalizer::class,
+
+            NotificationEntrepriseStatutDiffusion::class => NotificationEntrepriseStatutDiffusionNormalizer::class,
+
+            NotificationEntrepriseCodeNaf::class => NotificationEntrepriseCodeNafNormalizer::class,
+
+            NotificationEntrepriseEntrepriseEmployeuse::class => NotificationEntrepriseEntrepriseEmployeuseNormalizer::class,
+
+            NotificationEntrepriseEnseigneItem::class => NotificationEntrepriseEnseigneItemNormalizer::class,
+
+            NotificationEntrepriseNouvelEtablissementItem::class => NotificationEntrepriseNouvelEtablissementItemNormalizer::class,
+
+            NotificationEntrepriseFermetureEtablissementItem::class => NotificationEntrepriseFermetureEtablissementItemNormalizer::class,
+
+            NotificationEntrepriseStatutRcs::class => NotificationEntrepriseStatutRcsNormalizer::class,
+
+            NotificationEntrepriseObjetSocial::class => NotificationEntrepriseObjetSocialNormalizer::class,
+
+            NotificationEntrepriseCapital::class => NotificationEntrepriseCapitalNormalizer::class,
+
+            NotificationEntrepriseDateClotureExercice::class => NotificationEntrepriseDateClotureExerciceNormalizer::class,
+
+            NotificationEntrepriseChiffreAffairesItem::class => NotificationEntrepriseChiffreAffairesItemNormalizer::class,
+
+            NotificationEntrepriseResultatItem::class => NotificationEntrepriseResultatItemNormalizer::class,
+
+            NotificationEntrepriseNouveauxComptesDisponiblesItem::class => NotificationEntrepriseNouveauxComptesDisponiblesItemNormalizer::class,
+
+            NotificationEntrepriseNouveauxComptesPubliesItem::class => NotificationEntrepriseNouveauxComptesPubliesItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem::class => NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleAnnonceVentePublieeItem::class => NotificationEntrepriseNouvelleAnnonceVentePublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleAnnoncePublieeItem::class => NotificationEntrepriseNouvelleAnnoncePublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouveauxStatutsPubliesItem::class => NotificationEntrepriseNouveauxStatutsPubliesItemNormalizer::class,
+
+            NotificationEntrepriseNouvelActePublieItem::class => NotificationEntrepriseNouvelActePublieItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouveauDirigeantItem::class => NotificationEntrepriseNouveauDirigeantItemNormalizer::class,
+
+            NotificationEntrepriseDirigeantPartantItem::class => NotificationEntrepriseDirigeantPartantItemNormalizer::class,
+
+            NotificationEntrepriseQualiteDirigeantItem::class => NotificationEntrepriseQualiteDirigeantItemNormalizer::class,
+
+            NotificationDirigeant::class => NotificationDirigeantNormalizer::class,
+
+            NotificationDirigeantDetailsDirigeant::class => NotificationDirigeantDetailsDirigeantNormalizer::class,
+
+            NotificationDirigeantNouvellesSanctionsItem::class => NotificationDirigeantNouvellesSanctionsItemNormalizer::class,
+
+            NotificationDirigeantNouveauxMandatsPolitiquesItem::class => NotificationDirigeantNouveauxMandatsPolitiquesItemNormalizer::class,
+
+            NotificationDirigeantEntreprisesItem::class => NotificationDirigeantEntreprisesItemNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemNouveauMandat::class => NotificationDirigeantEntreprisesItemNouveauMandatNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemMandatSupprime::class => NotificationDirigeantEntreprisesItemMandatSupprimeNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemQualiteDirigeant::class => NotificationDirigeantEntreprisesItemQualiteDirigeantNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem::class => NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItemNormalizer::class,
+
+            NotificationVeille::class => NotificationVeilleNormalizer::class,
+
+            NotificationVeilleNomEntreprise::class => NotificationVeilleNomEntrepriseNormalizer::class,
+
+            NotificationVeilleNomCommercialItem::class => NotificationVeilleNomCommercialItemNormalizer::class,
+
+            NotificationVeilleFormeJuridique::class => NotificationVeilleFormeJuridiqueNormalizer::class,
+
+            NotificationVeilleSiegeSocial::class => NotificationVeilleSiegeSocialNormalizer::class,
+
+            NotificationVeilleEntrepriseCessee::class => NotificationVeilleEntrepriseCesseeNormalizer::class,
+
+            NotificationVeilleCodeNaf::class => NotificationVeilleCodeNafNormalizer::class,
+
+            NotificationVeilleEntrepriseEmployeuse::class => NotificationVeilleEntrepriseEmployeuseNormalizer::class,
+
+            NotificationVeilleEnseigneItem::class => NotificationVeilleEnseigneItemNormalizer::class,
+
+            NotificationVeilleNouvelEtablissementItem::class => NotificationVeilleNouvelEtablissementItemNormalizer::class,
+
+            NotificationVeilleFermetureEtablissementItem::class => NotificationVeilleFermetureEtablissementItemNormalizer::class,
+
+            NotificationVeilleStatutRcs::class => NotificationVeilleStatutRcsNormalizer::class,
+
+            NotificationVeilleObjetSocial::class => NotificationVeilleObjetSocialNormalizer::class,
+
+            NotificationVeilleCapital::class => NotificationVeilleCapitalNormalizer::class,
+
+            NotificationVeilleDateClotureExercice::class => NotificationVeilleDateClotureExerciceNormalizer::class,
+
+            NotificationVeilleChiffreAffairesItem::class => NotificationVeilleChiffreAffairesItemNormalizer::class,
+
+            NotificationVeilleResultatItem::class => NotificationVeilleResultatItemNormalizer::class,
+
+            NotificationVeilleNouveauxComptesDisponiblesItem::class => NotificationVeilleNouveauxComptesDisponiblesItemNormalizer::class,
+
+            NotificationVeilleNouveauxComptesPubliesItem::class => NotificationVeilleNouveauxComptesPubliesItemNormalizer::class,
+
+            NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItem::class => NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItemNormalizer::class,
+
+            NotificationVeilleNouvelleAnnonceVentePublieeItem::class => NotificationVeilleNouvelleAnnonceVentePublieeItemNormalizer::class,
+
+            NotificationVeilleNouvelleAnnoncePublieeItem::class => NotificationVeilleNouvelleAnnoncePublieeItemNormalizer::class,
+
+            NotificationVeilleNouveauxStatutsPubliesItem::class => NotificationVeilleNouveauxStatutsPubliesItemNormalizer::class,
+
+            NotificationVeilleNouvelActePublieItem::class => NotificationVeilleNouvelActePublieItemNormalizer::class,
+
+            NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItemNormalizer::class,
+
+            NotificationVeilleNouveauDirigeantItem::class => NotificationVeilleNouveauDirigeantItemNormalizer::class,
+
+            NotificationVeilleDirigeantPartantItem::class => NotificationVeilleDirigeantPartantItemNormalizer::class,
+
+            NotificationVeilleQualiteDirigeantItem::class => NotificationVeilleQualiteDirigeantItemNormalizer::class,
+
             RechercheGetResponse200::class => RechercheGetResponse200Normalizer::class,
 
             RechercheGetResponse200ResultatsItem::class => RechercheGetResponse200ResultatsItemNormalizer::class,
@@ -453,6 +654,73 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 Cartographie::class => false,
                 CartographieEntreprisesItem::class => false,
                 CartographiePersonnesItem::class => false,
+                NotificationEntreprise::class => false,
+                NotificationEntrepriseDetailsEntreprise::class => false,
+                NotificationEntrepriseNomEntreprise::class => false,
+                NotificationEntrepriseNomCommercialItem::class => false,
+                NotificationEntrepriseFormeJuridique::class => false,
+                NotificationEntrepriseSiegeSocial::class => false,
+                NotificationEntrepriseEntrepriseCessee::class => false,
+                NotificationEntrepriseStatutDiffusion::class => false,
+                NotificationEntrepriseCodeNaf::class => false,
+                NotificationEntrepriseEntrepriseEmployeuse::class => false,
+                NotificationEntrepriseEnseigneItem::class => false,
+                NotificationEntrepriseNouvelEtablissementItem::class => false,
+                NotificationEntrepriseFermetureEtablissementItem::class => false,
+                NotificationEntrepriseStatutRcs::class => false,
+                NotificationEntrepriseObjetSocial::class => false,
+                NotificationEntrepriseCapital::class => false,
+                NotificationEntrepriseDateClotureExercice::class => false,
+                NotificationEntrepriseChiffreAffairesItem::class => false,
+                NotificationEntrepriseResultatItem::class => false,
+                NotificationEntrepriseNouveauxComptesDisponiblesItem::class => false,
+                NotificationEntrepriseNouveauxComptesPubliesItem::class => false,
+                NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
+                NotificationEntrepriseNouvelleAnnonceVentePublieeItem::class => false,
+                NotificationEntrepriseNouvelleAnnoncePublieeItem::class => false,
+                NotificationEntrepriseNouveauxStatutsPubliesItem::class => false,
+                NotificationEntrepriseNouvelActePublieItem::class => false,
+                NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => false,
+                NotificationEntrepriseNouveauDirigeantItem::class => false,
+                NotificationEntrepriseDirigeantPartantItem::class => false,
+                NotificationEntrepriseQualiteDirigeantItem::class => false,
+                NotificationDirigeant::class => false,
+                NotificationDirigeantDetailsDirigeant::class => false,
+                NotificationDirigeantNouvellesSanctionsItem::class => false,
+                NotificationDirigeantNouveauxMandatsPolitiquesItem::class => false,
+                NotificationDirigeantEntreprisesItem::class => false,
+                NotificationDirigeantEntreprisesItemNouveauMandat::class => false,
+                NotificationDirigeantEntreprisesItemMandatSupprime::class => false,
+                NotificationDirigeantEntreprisesItemQualiteDirigeant::class => false,
+                NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
+                NotificationVeille::class => false,
+                NotificationVeilleNomEntreprise::class => false,
+                NotificationVeilleNomCommercialItem::class => false,
+                NotificationVeilleFormeJuridique::class => false,
+                NotificationVeilleSiegeSocial::class => false,
+                NotificationVeilleEntrepriseCessee::class => false,
+                NotificationVeilleCodeNaf::class => false,
+                NotificationVeilleEntrepriseEmployeuse::class => false,
+                NotificationVeilleEnseigneItem::class => false,
+                NotificationVeilleNouvelEtablissementItem::class => false,
+                NotificationVeilleFermetureEtablissementItem::class => false,
+                NotificationVeilleStatutRcs::class => false,
+                NotificationVeilleObjetSocial::class => false,
+                NotificationVeilleCapital::class => false,
+                NotificationVeilleDateClotureExercice::class => false,
+                NotificationVeilleChiffreAffairesItem::class => false,
+                NotificationVeilleResultatItem::class => false,
+                NotificationVeilleNouveauxComptesDisponiblesItem::class => false,
+                NotificationVeilleNouveauxComptesPubliesItem::class => false,
+                NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
+                NotificationVeilleNouvelleAnnonceVentePublieeItem::class => false,
+                NotificationVeilleNouvelleAnnoncePublieeItem::class => false,
+                NotificationVeilleNouveauxStatutsPubliesItem::class => false,
+                NotificationVeilleNouvelActePublieItem::class => false,
+                NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => false,
+                NotificationVeilleNouveauDirigeantItem::class => false,
+                NotificationVeilleDirigeantPartantItem::class => false,
+                NotificationVeilleQualiteDirigeantItem::class => false,
                 RechercheGetResponse200::class => false,
                 RechercheGetResponse200ResultatsItem::class => false,
                 RechercheGetResponse200ResultatsItempublicationsItem::class => false,
@@ -642,6 +910,140 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
 
             CartographiePersonnesItem::class => CartographiePersonnesItemNormalizer::class,
 
+            NotificationEntreprise::class => NotificationEntrepriseNormalizer::class,
+
+            NotificationEntrepriseDetailsEntreprise::class => NotificationEntrepriseDetailsEntrepriseNormalizer::class,
+
+            NotificationEntrepriseNomEntreprise::class => NotificationEntrepriseNomEntrepriseNormalizer::class,
+
+            NotificationEntrepriseNomCommercialItem::class => NotificationEntrepriseNomCommercialItemNormalizer::class,
+
+            NotificationEntrepriseFormeJuridique::class => NotificationEntrepriseFormeJuridiqueNormalizer::class,
+
+            NotificationEntrepriseSiegeSocial::class => NotificationEntrepriseSiegeSocialNormalizer::class,
+
+            NotificationEntrepriseEntrepriseCessee::class => NotificationEntrepriseEntrepriseCesseeNormalizer::class,
+
+            NotificationEntrepriseStatutDiffusion::class => NotificationEntrepriseStatutDiffusionNormalizer::class,
+
+            NotificationEntrepriseCodeNaf::class => NotificationEntrepriseCodeNafNormalizer::class,
+
+            NotificationEntrepriseEntrepriseEmployeuse::class => NotificationEntrepriseEntrepriseEmployeuseNormalizer::class,
+
+            NotificationEntrepriseEnseigneItem::class => NotificationEntrepriseEnseigneItemNormalizer::class,
+
+            NotificationEntrepriseNouvelEtablissementItem::class => NotificationEntrepriseNouvelEtablissementItemNormalizer::class,
+
+            NotificationEntrepriseFermetureEtablissementItem::class => NotificationEntrepriseFermetureEtablissementItemNormalizer::class,
+
+            NotificationEntrepriseStatutRcs::class => NotificationEntrepriseStatutRcsNormalizer::class,
+
+            NotificationEntrepriseObjetSocial::class => NotificationEntrepriseObjetSocialNormalizer::class,
+
+            NotificationEntrepriseCapital::class => NotificationEntrepriseCapitalNormalizer::class,
+
+            NotificationEntrepriseDateClotureExercice::class => NotificationEntrepriseDateClotureExerciceNormalizer::class,
+
+            NotificationEntrepriseChiffreAffairesItem::class => NotificationEntrepriseChiffreAffairesItemNormalizer::class,
+
+            NotificationEntrepriseResultatItem::class => NotificationEntrepriseResultatItemNormalizer::class,
+
+            NotificationEntrepriseNouveauxComptesDisponiblesItem::class => NotificationEntrepriseNouveauxComptesDisponiblesItemNormalizer::class,
+
+            NotificationEntrepriseNouveauxComptesPubliesItem::class => NotificationEntrepriseNouveauxComptesPubliesItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem::class => NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleAnnonceVentePublieeItem::class => NotificationEntrepriseNouvelleAnnonceVentePublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleAnnoncePublieeItem::class => NotificationEntrepriseNouvelleAnnoncePublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouveauxStatutsPubliesItem::class => NotificationEntrepriseNouveauxStatutsPubliesItemNormalizer::class,
+
+            NotificationEntrepriseNouvelActePublieItem::class => NotificationEntrepriseNouvelActePublieItemNormalizer::class,
+
+            NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItemNormalizer::class,
+
+            NotificationEntrepriseNouveauDirigeantItem::class => NotificationEntrepriseNouveauDirigeantItemNormalizer::class,
+
+            NotificationEntrepriseDirigeantPartantItem::class => NotificationEntrepriseDirigeantPartantItemNormalizer::class,
+
+            NotificationEntrepriseQualiteDirigeantItem::class => NotificationEntrepriseQualiteDirigeantItemNormalizer::class,
+
+            NotificationDirigeant::class => NotificationDirigeantNormalizer::class,
+
+            NotificationDirigeantDetailsDirigeant::class => NotificationDirigeantDetailsDirigeantNormalizer::class,
+
+            NotificationDirigeantNouvellesSanctionsItem::class => NotificationDirigeantNouvellesSanctionsItemNormalizer::class,
+
+            NotificationDirigeantNouveauxMandatsPolitiquesItem::class => NotificationDirigeantNouveauxMandatsPolitiquesItemNormalizer::class,
+
+            NotificationDirigeantEntreprisesItem::class => NotificationDirigeantEntreprisesItemNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemNouveauMandat::class => NotificationDirigeantEntreprisesItemNouveauMandatNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemMandatSupprime::class => NotificationDirigeantEntreprisesItemMandatSupprimeNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemQualiteDirigeant::class => NotificationDirigeantEntreprisesItemQualiteDirigeantNormalizer::class,
+
+            NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem::class => NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItemNormalizer::class,
+
+            NotificationVeille::class => NotificationVeilleNormalizer::class,
+
+            NotificationVeilleNomEntreprise::class => NotificationVeilleNomEntrepriseNormalizer::class,
+
+            NotificationVeilleNomCommercialItem::class => NotificationVeilleNomCommercialItemNormalizer::class,
+
+            NotificationVeilleFormeJuridique::class => NotificationVeilleFormeJuridiqueNormalizer::class,
+
+            NotificationVeilleSiegeSocial::class => NotificationVeilleSiegeSocialNormalizer::class,
+
+            NotificationVeilleEntrepriseCessee::class => NotificationVeilleEntrepriseCesseeNormalizer::class,
+
+            NotificationVeilleCodeNaf::class => NotificationVeilleCodeNafNormalizer::class,
+
+            NotificationVeilleEntrepriseEmployeuse::class => NotificationVeilleEntrepriseEmployeuseNormalizer::class,
+
+            NotificationVeilleEnseigneItem::class => NotificationVeilleEnseigneItemNormalizer::class,
+
+            NotificationVeilleNouvelEtablissementItem::class => NotificationVeilleNouvelEtablissementItemNormalizer::class,
+
+            NotificationVeilleFermetureEtablissementItem::class => NotificationVeilleFermetureEtablissementItemNormalizer::class,
+
+            NotificationVeilleStatutRcs::class => NotificationVeilleStatutRcsNormalizer::class,
+
+            NotificationVeilleObjetSocial::class => NotificationVeilleObjetSocialNormalizer::class,
+
+            NotificationVeilleCapital::class => NotificationVeilleCapitalNormalizer::class,
+
+            NotificationVeilleDateClotureExercice::class => NotificationVeilleDateClotureExerciceNormalizer::class,
+
+            NotificationVeilleChiffreAffairesItem::class => NotificationVeilleChiffreAffairesItemNormalizer::class,
+
+            NotificationVeilleResultatItem::class => NotificationVeilleResultatItemNormalizer::class,
+
+            NotificationVeilleNouveauxComptesDisponiblesItem::class => NotificationVeilleNouveauxComptesDisponiblesItemNormalizer::class,
+
+            NotificationVeilleNouveauxComptesPubliesItem::class => NotificationVeilleNouveauxComptesPubliesItemNormalizer::class,
+
+            NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItem::class => NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItemNormalizer::class,
+
+            NotificationVeilleNouvelleAnnonceVentePublieeItem::class => NotificationVeilleNouvelleAnnonceVentePublieeItemNormalizer::class,
+
+            NotificationVeilleNouvelleAnnoncePublieeItem::class => NotificationVeilleNouvelleAnnoncePublieeItemNormalizer::class,
+
+            NotificationVeilleNouveauxStatutsPubliesItem::class => NotificationVeilleNouveauxStatutsPubliesItemNormalizer::class,
+
+            NotificationVeilleNouvelActePublieItem::class => NotificationVeilleNouvelActePublieItemNormalizer::class,
+
+            NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItemNormalizer::class,
+
+            NotificationVeilleNouveauDirigeantItem::class => NotificationVeilleNouveauDirigeantItemNormalizer::class,
+
+            NotificationVeilleDirigeantPartantItem::class => NotificationVeilleDirigeantPartantItemNormalizer::class,
+
+            NotificationVeilleQualiteDirigeantItem::class => NotificationVeilleQualiteDirigeantItemNormalizer::class,
+
             RechercheGetResponse200::class => RechercheGetResponse200Normalizer::class,
 
             RechercheGetResponse200ResultatsItem::class => RechercheGetResponse200ResultatsItemNormalizer::class,
@@ -830,6 +1232,73 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 Cartographie::class => false,
                 CartographieEntreprisesItem::class => false,
                 CartographiePersonnesItem::class => false,
+                NotificationEntreprise::class => false,
+                NotificationEntrepriseDetailsEntreprise::class => false,
+                NotificationEntrepriseNomEntreprise::class => false,
+                NotificationEntrepriseNomCommercialItem::class => false,
+                NotificationEntrepriseFormeJuridique::class => false,
+                NotificationEntrepriseSiegeSocial::class => false,
+                NotificationEntrepriseEntrepriseCessee::class => false,
+                NotificationEntrepriseStatutDiffusion::class => false,
+                NotificationEntrepriseCodeNaf::class => false,
+                NotificationEntrepriseEntrepriseEmployeuse::class => false,
+                NotificationEntrepriseEnseigneItem::class => false,
+                NotificationEntrepriseNouvelEtablissementItem::class => false,
+                NotificationEntrepriseFermetureEtablissementItem::class => false,
+                NotificationEntrepriseStatutRcs::class => false,
+                NotificationEntrepriseObjetSocial::class => false,
+                NotificationEntrepriseCapital::class => false,
+                NotificationEntrepriseDateClotureExercice::class => false,
+                NotificationEntrepriseChiffreAffairesItem::class => false,
+                NotificationEntrepriseResultatItem::class => false,
+                NotificationEntrepriseNouveauxComptesDisponiblesItem::class => false,
+                NotificationEntrepriseNouveauxComptesPubliesItem::class => false,
+                NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
+                NotificationEntrepriseNouvelleAnnonceVentePublieeItem::class => false,
+                NotificationEntrepriseNouvelleAnnoncePublieeItem::class => false,
+                NotificationEntrepriseNouveauxStatutsPubliesItem::class => false,
+                NotificationEntrepriseNouvelActePublieItem::class => false,
+                NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => false,
+                NotificationEntrepriseNouveauDirigeantItem::class => false,
+                NotificationEntrepriseDirigeantPartantItem::class => false,
+                NotificationEntrepriseQualiteDirigeantItem::class => false,
+                NotificationDirigeant::class => false,
+                NotificationDirigeantDetailsDirigeant::class => false,
+                NotificationDirigeantNouvellesSanctionsItem::class => false,
+                NotificationDirigeantNouveauxMandatsPolitiquesItem::class => false,
+                NotificationDirigeantEntreprisesItem::class => false,
+                NotificationDirigeantEntreprisesItemNouveauMandat::class => false,
+                NotificationDirigeantEntreprisesItemMandatSupprime::class => false,
+                NotificationDirigeantEntreprisesItemQualiteDirigeant::class => false,
+                NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
+                NotificationVeille::class => false,
+                NotificationVeilleNomEntreprise::class => false,
+                NotificationVeilleNomCommercialItem::class => false,
+                NotificationVeilleFormeJuridique::class => false,
+                NotificationVeilleSiegeSocial::class => false,
+                NotificationVeilleEntrepriseCessee::class => false,
+                NotificationVeilleCodeNaf::class => false,
+                NotificationVeilleEntrepriseEmployeuse::class => false,
+                NotificationVeilleEnseigneItem::class => false,
+                NotificationVeilleNouvelEtablissementItem::class => false,
+                NotificationVeilleFermetureEtablissementItem::class => false,
+                NotificationVeilleStatutRcs::class => false,
+                NotificationVeilleObjetSocial::class => false,
+                NotificationVeilleCapital::class => false,
+                NotificationVeilleDateClotureExercice::class => false,
+                NotificationVeilleChiffreAffairesItem::class => false,
+                NotificationVeilleResultatItem::class => false,
+                NotificationVeilleNouveauxComptesDisponiblesItem::class => false,
+                NotificationVeilleNouveauxComptesPubliesItem::class => false,
+                NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
+                NotificationVeilleNouvelleAnnonceVentePublieeItem::class => false,
+                NotificationVeilleNouvelleAnnoncePublieeItem::class => false,
+                NotificationVeilleNouveauxStatutsPubliesItem::class => false,
+                NotificationVeilleNouvelActePublieItem::class => false,
+                NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => false,
+                NotificationVeilleNouveauDirigeantItem::class => false,
+                NotificationVeilleDirigeantPartantItem::class => false,
+                NotificationVeilleQualiteDirigeantItem::class => false,
                 RechercheGetResponse200::class => false,
                 RechercheGetResponse200ResultatsItem::class => false,
                 RechercheGetResponse200ResultatsItempublicationsItem::class => false,

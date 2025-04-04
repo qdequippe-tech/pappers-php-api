@@ -72,17 +72,17 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
      */
     protected $dateDeNaissanceCompleteFormatee;
     /**
-     * Nationalité du bénéficiaire effectif.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
      *
      * @var string|null
      */
     protected $nationalite;
     /**
-     * Code de la nationalité du bénéficiaire effectif.
+     * Code(s) nationalité(s) du bénéficiaire effectif.
      *
-     * @var string|null
+     * @var list<string>|null
      */
-    protected $codeNationalite;
+    protected $codesNationalites;
     /**
      * Ville de naissance du bénéficiaire effectif.
      *
@@ -455,7 +455,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du bénéficiaire effectif.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
      */
     public function getNationalite(): ?string
     {
@@ -463,7 +463,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du bénéficiaire effectif.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
      */
     public function setNationalite(?string $nationalite): self
     {
@@ -474,20 +474,24 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code de la nationalité du bénéficiaire effectif.
+     * Code(s) nationalité(s) du bénéficiaire effectif.
+     *
+     * @return list<string>|null
      */
-    public function getCodeNationalite(): ?string
+    public function getCodesNationalites(): ?array
     {
-        return $this->codeNationalite;
+        return $this->codesNationalites;
     }
 
     /**
-     * Code de la nationalité du bénéficiaire effectif.
+     * Code(s) nationalité(s) du bénéficiaire effectif.
+     *
+     * @param list<string>|null $codesNationalites
      */
-    public function setCodeNationalite(?string $codeNationalite): self
+    public function setCodesNationalites(?array $codesNationalites): self
     {
-        $this->initialized['codeNationalite'] = true;
-        $this->codeNationalite = $codeNationalite;
+        $this->initialized['codesNationalites'] = true;
+        $this->codesNationalites = $codesNationalites;
 
         return $this;
     }

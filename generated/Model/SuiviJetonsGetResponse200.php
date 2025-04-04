@@ -14,26 +14,26 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
         return \array_key_exists($property, $this->initialized);
     }
     /**
-     * Le nombre de jetons mensuels initiaux de votre abonnement.
+     * Le nombre de crédits mensuels initiaux de votre abonnement.
      *
      * @var float|null
      */
     protected $jetonsAbonnement;
     /**
-     * Le nombre de jetons mensuels de votre abonnement que vous avez utilisés.
+     * Le nombre de crédits mensuels de votre abonnement que vous avez utilisés.
      *
      * @var float|null
      */
     protected $jetonsAbonnementUtilises;
     /**
-     * Le nombre de jetons pay as you go qu'il vous reste.
+     * Le nombre de crédits pay as you go qu'il vous reste.
      *
      * @var float|null
      */
     protected $jetonsPayAsYouGoRestants;
 
     /**
-     * Le nombre de jetons mensuels initiaux de votre abonnement.
+     * Le nombre de crédits mensuels initiaux de votre abonnement.
      */
     public function getJetonsAbonnement(): ?float
     {
@@ -41,7 +41,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     }
 
     /**
-     * Le nombre de jetons mensuels initiaux de votre abonnement.
+     * Le nombre de crédits mensuels initiaux de votre abonnement.
      */
     public function setJetonsAbonnement(?float $jetonsAbonnement): self
     {
@@ -52,7 +52,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     }
 
     /**
-     * Le nombre de jetons mensuels de votre abonnement que vous avez utilisés.
+     * Le nombre de crédits mensuels de votre abonnement que vous avez utilisés.
      */
     public function getJetonsAbonnementUtilises(): ?float
     {
@@ -60,7 +60,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     }
 
     /**
-     * Le nombre de jetons mensuels de votre abonnement que vous avez utilisés.
+     * Le nombre de crédits mensuels de votre abonnement que vous avez utilisés.
      */
     public function setJetonsAbonnementUtilises(?float $jetonsAbonnementUtilises): self
     {
@@ -71,7 +71,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     }
 
     /**
-     * Le nombre de jetons pay as you go qu'il vous reste.
+     * Le nombre de crédits pay as you go qu'il vous reste.
      */
     public function getJetonsPayAsYouGoRestants(): ?float
     {
@@ -79,7 +79,7 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
     }
 
     /**
-     * Le nombre de jetons pay as you go qu'il vous reste.
+     * Le nombre de crédits pay as you go qu'il vous reste.
      */
     public function setJetonsPayAsYouGoRestants(?float $jetonsPayAsYouGoRestants): self
     {

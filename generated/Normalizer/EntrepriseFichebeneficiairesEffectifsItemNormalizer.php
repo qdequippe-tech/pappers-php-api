@@ -139,11 +139,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('nationalite', $data) && null === $data['nationalite']) {
                 $object->setNationalite(null);
             }
-            if (\array_key_exists('code_nationalite', $data) && null !== $data['code_nationalite']) {
-                $object->setCodeNationalite($data['code_nationalite']);
-                unset($data['code_nationalite']);
-            } elseif (\array_key_exists('code_nationalite', $data) && null === $data['code_nationalite']) {
-                $object->setCodeNationalite(null);
+            if (\array_key_exists('codes_nationalites', $data) && null !== $data['codes_nationalites']) {
+                $values = [];
+                foreach ($data['codes_nationalites'] as $value) {
+                    $values[] = $value;
+                }
+                $object->setCodesNationalites($values);
+                unset($data['codes_nationalites']);
+            } elseif (\array_key_exists('codes_nationalites', $data) && null === $data['codes_nationalites']) {
+                $object->setCodesNationalites(null);
             }
             if (\array_key_exists('ville_de_naissance', $data) && null !== $data['ville_de_naissance']) {
                 $object->setVilleDeNaissance($data['ville_de_naissance']);
@@ -326,18 +330,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setSanctionsEnCours(null);
             }
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
-                $values = [];
-                foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, Sanction::class, 'json', $context);
+                $values_1 = [];
+                foreach ($data['sanctions'] as $value_1) {
+                    $values_1[] = $this->denormalizer->denormalize($value_1, Sanction::class, 'json', $context);
                 }
-                $object->setSanctions($values);
+                $object->setSanctions($values_1);
                 unset($data['sanctions']);
             } elseif (\array_key_exists('sanctions', $data) && null === $data['sanctions']) {
                 $object->setSanctions(null);
             }
-            foreach ($data as $key => $value_1) {
+            foreach ($data as $key => $value_2) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_1;
+                    $object[$key] = $value_2;
                 }
             }
 
@@ -380,8 +384,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('nationalite') && null !== $object->getNationalite()) {
                 $data['nationalite'] = $object->getNationalite();
             }
-            if ($object->isInitialized('codeNationalite') && null !== $object->getCodeNationalite()) {
-                $data['code_nationalite'] = $object->getCodeNationalite();
+            if ($object->isInitialized('codesNationalites') && null !== $object->getCodesNationalites()) {
+                $values = [];
+                foreach ($object->getCodesNationalites() as $value) {
+                    $values[] = $value;
+                }
+                $data['codes_nationalites'] = $values;
             }
             if ($object->isInitialized('villeDeNaissance') && null !== $object->getVilleDeNaissance()) {
                 $data['ville_de_naissance'] = $object->getVilleDeNaissance();
@@ -474,15 +482,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['sanctions_en_cours'] = $object->getSanctionsEnCours();
             }
             if ($object->isInitialized('sanctions') && null !== $object->getSanctions()) {
-                $values = [];
-                foreach ($object->getSanctions() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values_1 = [];
+                foreach ($object->getSanctions() as $value_1) {
+                    $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
                 }
-                $data['sanctions'] = $values;
+                $data['sanctions'] = $values_1;
             }
-            foreach ($object as $key => $value_1) {
+            foreach ($object as $key => $value_2) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_1;
+                    $data[$key] = $value_2;
                 }
             }
 
@@ -614,11 +622,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             } elseif (\array_key_exists('nationalite', $data) && null === $data['nationalite']) {
                 $object->setNationalite(null);
             }
-            if (\array_key_exists('code_nationalite', $data) && null !== $data['code_nationalite']) {
-                $object->setCodeNationalite($data['code_nationalite']);
-                unset($data['code_nationalite']);
-            } elseif (\array_key_exists('code_nationalite', $data) && null === $data['code_nationalite']) {
-                $object->setCodeNationalite(null);
+            if (\array_key_exists('codes_nationalites', $data) && null !== $data['codes_nationalites']) {
+                $values = [];
+                foreach ($data['codes_nationalites'] as $value) {
+                    $values[] = $value;
+                }
+                $object->setCodesNationalites($values);
+                unset($data['codes_nationalites']);
+            } elseif (\array_key_exists('codes_nationalites', $data) && null === $data['codes_nationalites']) {
+                $object->setCodesNationalites(null);
             }
             if (\array_key_exists('ville_de_naissance', $data) && null !== $data['ville_de_naissance']) {
                 $object->setVilleDeNaissance($data['ville_de_naissance']);
@@ -801,18 +813,18 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $object->setSanctionsEnCours(null);
             }
             if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
-                $values = [];
-                foreach ($data['sanctions'] as $value) {
-                    $values[] = $this->denormalizer->denormalize($value, Sanction::class, 'json', $context);
+                $values_1 = [];
+                foreach ($data['sanctions'] as $value_1) {
+                    $values_1[] = $this->denormalizer->denormalize($value_1, Sanction::class, 'json', $context);
                 }
-                $object->setSanctions($values);
+                $object->setSanctions($values_1);
                 unset($data['sanctions']);
             } elseif (\array_key_exists('sanctions', $data) && null === $data['sanctions']) {
                 $object->setSanctions(null);
             }
-            foreach ($data as $key => $value_1) {
+            foreach ($data as $key => $value_2) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $object[$key] = $value_1;
+                    $object[$key] = $value_2;
                 }
             }
 
@@ -860,8 +872,12 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
             if ($object->isInitialized('nationalite') && null !== $object->getNationalite()) {
                 $data['nationalite'] = $object->getNationalite();
             }
-            if ($object->isInitialized('codeNationalite') && null !== $object->getCodeNationalite()) {
-                $data['code_nationalite'] = $object->getCodeNationalite();
+            if ($object->isInitialized('codesNationalites') && null !== $object->getCodesNationalites()) {
+                $values = [];
+                foreach ($object->getCodesNationalites() as $value) {
+                    $values[] = $value;
+                }
+                $data['codes_nationalites'] = $values;
             }
             if ($object->isInitialized('villeDeNaissance') && null !== $object->getVilleDeNaissance()) {
                 $data['ville_de_naissance'] = $object->getVilleDeNaissance();
@@ -954,15 +970,15 @@ if (!class_exists(Kernel::class) || (Kernel::MAJOR_VERSION >= 7 || Kernel::MAJOR
                 $data['sanctions_en_cours'] = $object->getSanctionsEnCours();
             }
             if ($object->isInitialized('sanctions') && null !== $object->getSanctions()) {
-                $values = [];
-                foreach ($object->getSanctions() as $value) {
-                    $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values_1 = [];
+                foreach ($object->getSanctions() as $value_1) {
+                    $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
                 }
-                $data['sanctions'] = $values;
+                $data['sanctions'] = $values_1;
             }
-            foreach ($object as $key => $value_1) {
+            foreach ($object as $key => $value_2) {
                 if (preg_match('/.*/', (string) $key)) {
-                    $data[$key] = $value_1;
+                    $data[$key] = $value_2;
                 }
             }
 
