@@ -32,9 +32,10 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :
-     * - `sites_internet` : 1 crédit supplémentaire
-     * - `telephone` : 1 crédit supplémentaire *
-     * - `email` : 1 crédit supplémentaire *
+     * - `sites_internet` : 1 crédit supplémentaire si disponible
+     * - `telephone` : 3 crédits supplémentaires si disponible
+     * - `email` : 3 crédits supplémentaires si disponible
+     * - `lien_linkedin` : 3 crédits supplémentaires si disponible
      * - `enseigne_1` : gratuit
      * - `enseigne_2` : gratuit
      * - `enseigne_3` : gratuit
@@ -57,8 +58,6 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `scoring_financier` : 30 crédits supplémentaires
      * - `scoring_non_financier` : 30 crédits supplémentaires
      * - `categorie_entreprise` : gratuit
-     *
-     * \* : le coût des champs `telephone` et `email` est de 1 crédit supplémentaire au total, même si les deux sont demandés.
      *
      * }
      */

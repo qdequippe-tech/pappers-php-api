@@ -199,6 +199,12 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
      */
     protected $siege;
     /**
+     * Statut consolidé de l'entreprise (prise en compte des statuts INSEE, RNE et RCS).
+     *
+     * @var string|null
+     */
+    protected $statutConsolide;
+    /**
      * Liste des villes où l'entreprise a au moins un établissement.
      *
      * @var list<string>|null
@@ -874,6 +880,25 @@ class RechercheGetResponse200ResultatsItem extends \ArrayObject
     {
         $this->initialized['siege'] = true;
         $this->siege = $siege;
+
+        return $this;
+    }
+
+    /**
+     * Statut consolidé de l'entreprise (prise en compte des statuts INSEE, RNE et RCS).
+     */
+    public function getStatutConsolide(): ?string
+    {
+        return $this->statutConsolide;
+    }
+
+    /**
+     * Statut consolidé de l'entreprise (prise en compte des statuts INSEE, RNE et RCS).
+     */
+    public function setStatutConsolide(?string $statutConsolide): self
+    {
+        $this->initialized['statutConsolide'] = true;
+        $this->statutConsolide = $statutConsolide;
 
         return $this;
     }
