@@ -301,6 +301,12 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $derniereMiseAJourRcs;
     /**
+     * Statut consolidé de l'entreprise (prise en compte des statuts INSEE, RNE et RCS).
+     *
+     * @var string|null
+     */
+    protected $statutConsolide;
+    /**
      * Greffe RCS de l'entreprise.
      *
      * @var string|null
@@ -1431,6 +1437,25 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['derniereMiseAJourRcs'] = true;
         $this->derniereMiseAJourRcs = $derniereMiseAJourRcs;
+
+        return $this;
+    }
+
+    /**
+     * Statut consolidé de l'entreprise (prise en compte des statuts INSEE, RNE et RCS).
+     */
+    public function getStatutConsolide(): ?string
+    {
+        return $this->statutConsolide;
+    }
+
+    /**
+     * Statut consolidé de l'entreprise (prise en compte des statuts INSEE, RNE et RCS).
+     */
+    public function setStatutConsolide(?string $statutConsolide): self
+    {
+        $this->initialized['statutConsolide'] = true;
+        $this->statutConsolide = $statutConsolide;
 
         return $this;
     }
