@@ -409,7 +409,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $representants;
     /**
-     * Liste des bénéficiaires effectifs de l'entreprise (si disponibles).
+     * Liste des bénéficiaires effectifs de l'entreprise (si disponibles). Nécessite une habilitation.
      *
      * @var list<EntrepriseFichebeneficiairesEffectifsItem>|null
      */
@@ -1794,7 +1794,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Liste des bénéficiaires effectifs de l'entreprise (si disponibles).
+     * Liste des bénéficiaires effectifs de l'entreprise (si disponibles). Nécessite une habilitation.
      *
      * @return list<EntrepriseFichebeneficiairesEffectifsItem>|null
      */
@@ -1804,7 +1804,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Liste des bénéficiaires effectifs de l'entreprise (si disponibles).
+     * Liste des bénéficiaires effectifs de l'entreprise (si disponibles). Nécessite une habilitation.
      *
      * @param list<EntrepriseFichebeneficiairesEffectifsItem>|null $beneficiairesEffectifs
      */

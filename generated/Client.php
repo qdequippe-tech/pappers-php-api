@@ -54,6 +54,7 @@ class Client extends Runtime\Client\Client
      * @var bool   $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
+     * @var bool   $beneficiaires_effectifs_complets Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
      * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :

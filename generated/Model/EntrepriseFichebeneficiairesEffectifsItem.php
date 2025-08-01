@@ -20,7 +20,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
      */
     protected $dateGreffe;
     /**
-     * Type du bénéficiaire effectif.
+     * Champ obsolète.
      *
      * @var string|null
      */
@@ -66,79 +66,79 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
      */
     protected $dateDeNaissanceFormatee;
     /**
-     * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
+     * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $dateDeNaissanceCompleteFormatee;
     /**
-     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $nationalite;
     /**
-     * Code(s) nationalité(s) du bénéficiaire effectif.
+     * Code(s) nationalité(s) du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var list<string>|null
      */
     protected $codesNationalites;
     /**
-     * Ville de naissance du bénéficiaire effectif.
+     * Ville de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $villeDeNaissance;
     /**
-     * Pays de naissance du bénéficiaire effectif.
+     * Pays de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $paysDeNaissance;
     /**
-     * Code du pays de naissance du bénéficiaire effectif.
+     * Code du pays de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $codePaysDeNaissance;
     /**
-     * Première ligne de l'adresse du bénéficiaire effectif.
+     * Première ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $adresseLigne1;
     /**
-     * Deuxième ligne de l'adresse du bénéficiaire effectif.
+     * Deuxième ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $adresseLigne2;
     /**
-     * Troisième ligne de l'adresse du bénéficiaire effectif.
+     * Troisième ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $adresseLigne3;
     /**
-     * Code postal du bénéficiaire effectif.
+     * Code postal du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $codePostal;
     /**
-     * Ville du bénéficiaire effectif.
+     * Ville du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $ville;
     /**
-     * Pays du bénéficiaire effectif.
+     * Pays du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
     protected $pays;
     /**
-     * Code du pays du bénéficiaire effectif.
+     * Code du pays du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @var string|null
      */
@@ -290,7 +290,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Type du bénéficiaire effectif.
+     * Champ obsolète.
      */
     public function getType(): ?string
     {
@@ -298,7 +298,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Type du bénéficiaire effectif.
+     * Champ obsolète.
      */
     public function setType(?string $type): self
     {
@@ -436,7 +436,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
+     * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getDateDeNaissanceCompleteFormatee(): ?string
     {
@@ -444,7 +444,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA.
+     * Date de naissance complète du bénéficiaire effectif, au format JJ/MM/AAAA. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setDateDeNaissanceCompleteFormatee(?string $dateDeNaissanceCompleteFormatee): self
     {
@@ -455,7 +455,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getNationalite(): ?string
     {
@@ -463,7 +463,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.
+     * Nationalité du bénéficiaire effectif. Peut contenir plusieurs nationalités.. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setNationalite(?string $nationalite): self
     {
@@ -474,7 +474,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code(s) nationalité(s) du bénéficiaire effectif.
+     * Code(s) nationalité(s) du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @return list<string>|null
      */
@@ -484,7 +484,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code(s) nationalité(s) du bénéficiaire effectif.
+     * Code(s) nationalité(s) du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      *
      * @param list<string>|null $codesNationalites
      */
@@ -497,7 +497,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Ville de naissance du bénéficiaire effectif.
+     * Ville de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getVilleDeNaissance(): ?string
     {
@@ -505,7 +505,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Ville de naissance du bénéficiaire effectif.
+     * Ville de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setVilleDeNaissance(?string $villeDeNaissance): self
     {
@@ -516,7 +516,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Pays de naissance du bénéficiaire effectif.
+     * Pays de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getPaysDeNaissance(): ?string
     {
@@ -524,7 +524,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Pays de naissance du bénéficiaire effectif.
+     * Pays de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setPaysDeNaissance(?string $paysDeNaissance): self
     {
@@ -535,7 +535,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code du pays de naissance du bénéficiaire effectif.
+     * Code du pays de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getCodePaysDeNaissance(): ?string
     {
@@ -543,7 +543,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code du pays de naissance du bénéficiaire effectif.
+     * Code du pays de naissance du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setCodePaysDeNaissance(?string $codePaysDeNaissance): self
     {
@@ -554,7 +554,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Première ligne de l'adresse du bénéficiaire effectif.
+     * Première ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getAdresseLigne1(): ?string
     {
@@ -562,7 +562,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Première ligne de l'adresse du bénéficiaire effectif.
+     * Première ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setAdresseLigne1(?string $adresseLigne1): self
     {
@@ -573,7 +573,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Deuxième ligne de l'adresse du bénéficiaire effectif.
+     * Deuxième ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getAdresseLigne2(): ?string
     {
@@ -581,7 +581,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Deuxième ligne de l'adresse du bénéficiaire effectif.
+     * Deuxième ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setAdresseLigne2(?string $adresseLigne2): self
     {
@@ -592,7 +592,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Troisième ligne de l'adresse du bénéficiaire effectif.
+     * Troisième ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getAdresseLigne3(): ?string
     {
@@ -600,7 +600,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Troisième ligne de l'adresse du bénéficiaire effectif.
+     * Troisième ligne de l'adresse du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setAdresseLigne3(?string $adresseLigne3): self
     {
@@ -611,7 +611,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code postal du bénéficiaire effectif.
+     * Code postal du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getCodePostal(): ?string
     {
@@ -619,7 +619,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code postal du bénéficiaire effectif.
+     * Code postal du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setCodePostal(?string $codePostal): self
     {
@@ -630,7 +630,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Ville du bénéficiaire effectif.
+     * Ville du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getVille(): ?string
     {
@@ -638,7 +638,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Ville du bénéficiaire effectif.
+     * Ville du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setVille(?string $ville): self
     {
@@ -649,7 +649,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Pays du bénéficiaire effectif.
+     * Pays du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getPays(): ?string
     {
@@ -657,7 +657,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Pays du bénéficiaire effectif.
+     * Pays du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setPays(?string $pays): self
     {
@@ -668,7 +668,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code du pays du bénéficiaire effectif.
+     * Code du pays du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function getCodePays(): ?string
     {
@@ -676,7 +676,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     }
 
     /**
-     * Code du pays du bénéficiaire effectif.
+     * Code du pays du bénéficiaire effectif. Nécessite une habilitation supplémentaire ainsi que la query `beneficiaires_effectifs_complets`.
      */
     public function setCodePays(?string $codePays): self
     {
