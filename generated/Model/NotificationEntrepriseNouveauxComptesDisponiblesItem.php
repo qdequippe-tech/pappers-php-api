@@ -16,7 +16,7 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
     /**
      * Année de clôture des comptes.
      *
-     * @var string|null
+     * @var float|null
      */
     protected $anneeCloture;
     /**
@@ -26,7 +26,13 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
      */
     protected $date;
     /**
-     * Type de comptes (Consolidés ou Sociaux).
+     * Token.
+     *
+     * @var string|null
+     */
+    protected $token;
+    /**
+     * Type de comptes.
      *
      * @var string|null
      */
@@ -35,7 +41,7 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
     /**
      * Année de clôture des comptes.
      */
-    public function getAnneeCloture(): ?string
+    public function getAnneeCloture(): ?float
     {
         return $this->anneeCloture;
     }
@@ -43,7 +49,7 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
     /**
      * Année de clôture des comptes.
      */
-    public function setAnneeCloture(?string $anneeCloture): self
+    public function setAnneeCloture(?float $anneeCloture): self
     {
         $this->initialized['anneeCloture'] = true;
         $this->anneeCloture = $anneeCloture;
@@ -71,7 +77,26 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
     }
 
     /**
-     * Type de comptes (Consolidés ou Sociaux).
+     * Token.
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * Token.
+     */
+    public function setToken(?string $token): self
+    {
+        $this->initialized['token'] = true;
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Type de comptes.
      */
     public function getTypeComptes(): ?string
     {
@@ -79,7 +104,7 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
     }
 
     /**
-     * Type de comptes (Consolidés ou Sociaux).
+     * Type de comptes.
      */
     public function setTypeComptes(?string $typeComptes): self
     {

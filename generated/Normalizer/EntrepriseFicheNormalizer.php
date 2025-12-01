@@ -3,18 +3,28 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\AppelOffreGagne;
+use Qdequippe\Pappers\Api\Model\AppelOffreLance;
 use Qdequippe\Pappers\Api\Model\Association;
 use Qdequippe\Pappers\Api\Model\Bodacc;
+use Qdequippe\Pappers\Api\Model\Brevet;
+use Qdequippe\Pappers\Api\Model\Decisions;
+use Qdequippe\Pappers\Api\Model\Dessin;
 use Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseCitee;
 use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheentreprisesDirigeesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieres;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheobservationsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheparcellesDetenues;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichernm;
 use Qdequippe\Pappers\Api\Model\EtablissementFiche;
@@ -95,6 +105,9 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         }
         if (\array_key_exists('procedure_collective_en_cours', $data) && \is_int($data['procedure_collective_en_cours'])) {
             $data['procedure_collective_en_cours'] = (bool) $data['procedure_collective_en_cours'];
+        }
+        if (\array_key_exists('entreprises_citees_incomplet', $data) && \is_int($data['entreprises_citees_incomplet'])) {
+            $data['entreprises_citees_incomplet'] = (bool) $data['entreprises_citees_incomplet'];
         }
         if (null === $data || false === \is_array($data)) {
             return $object;
@@ -663,9 +676,141 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         } elseif (\array_key_exists('annee_categorie_entreprise', $data) && null === $data['annee_categorie_entreprise']) {
             $object->setAnneeCategorieEntreprise(null);
         }
-        foreach ($data as $key => $value_12) {
+        if (\array_key_exists('motif_cessation', $data) && null !== $data['motif_cessation']) {
+            $object->setMotifCessation($data['motif_cessation']);
+            unset($data['motif_cessation']);
+        } elseif (\array_key_exists('motif_cessation', $data) && null === $data['motif_cessation']) {
+            $object->setMotifCessation(null);
+        }
+        if (\array_key_exists('nom_usage', $data) && null !== $data['nom_usage']) {
+            $object->setNomUsage($data['nom_usage']);
+            unset($data['nom_usage']);
+        } elseif (\array_key_exists('nom_usage', $data) && null === $data['nom_usage']) {
+            $object->setNomUsage(null);
+        }
+        if (\array_key_exists('nom_patronymique', $data) && null !== $data['nom_patronymique']) {
+            $object->setNomPatronymique($data['nom_patronymique']);
+            unset($data['nom_patronymique']);
+        } elseif (\array_key_exists('nom_patronymique', $data) && null === $data['nom_patronymique']) {
+            $object->setNomPatronymique(null);
+        }
+        if (\array_key_exists('representants_legaux', $data) && null !== $data['representants_legaux']) {
+            $values_12 = [];
+            foreach ($data['representants_legaux'] as $value_12) {
+                $values_12[] = $this->denormalizer->denormalize($value_12, RepresentantEntreprise::class, 'json', $context);
+            }
+            $object->setRepresentantsLegaux($values_12);
+            unset($data['representants_legaux']);
+        } elseif (\array_key_exists('representants_legaux', $data) && null === $data['representants_legaux']) {
+            $object->setRepresentantsLegaux(null);
+        }
+        if (\array_key_exists('entreprises_dirigees', $data) && null !== $data['entreprises_dirigees']) {
+            $values_13 = [];
+            foreach ($data['entreprises_dirigees'] as $value_13) {
+                $values_13[] = $this->denormalizer->denormalize($value_13, EntrepriseFicheentreprisesDirigeesItem::class, 'json', $context);
+            }
+            $object->setEntreprisesDirigees($values_13);
+            unset($data['entreprises_dirigees']);
+        } elseif (\array_key_exists('entreprises_dirigees', $data) && null === $data['entreprises_dirigees']) {
+            $object->setEntreprisesDirigees(null);
+        }
+        if (\array_key_exists('observations', $data) && null !== $data['observations']) {
+            $values_14 = [];
+            foreach ($data['observations'] as $value_14) {
+                $values_14[] = $this->denormalizer->denormalize($value_14, EntrepriseFicheobservationsItem::class, 'json', $context);
+            }
+            $object->setObservations($values_14);
+            unset($data['observations']);
+        } elseif (\array_key_exists('observations', $data) && null === $data['observations']) {
+            $object->setObservations(null);
+        }
+        if (\array_key_exists('decisions', $data) && null !== $data['decisions']) {
+            $values_15 = [];
+            foreach ($data['decisions'] as $value_15) {
+                $values_15[] = $this->denormalizer->denormalize($value_15, Decisions::class, 'json', $context);
+            }
+            $object->setDecisions($values_15);
+            unset($data['decisions']);
+        } elseif (\array_key_exists('decisions', $data) && null === $data['decisions']) {
+            $object->setDecisions(null);
+        }
+        if (\array_key_exists('parcelles_detenues', $data) && null !== $data['parcelles_detenues']) {
+            $object->setParcellesDetenues($this->denormalizer->denormalize($data['parcelles_detenues'], EntrepriseFicheparcellesDetenues::class, 'json', $context));
+            unset($data['parcelles_detenues']);
+        } elseif (\array_key_exists('parcelles_detenues', $data) && null === $data['parcelles_detenues']) {
+            $object->setParcellesDetenues(null);
+        }
+        if (\array_key_exists('appels_offres_gagnes', $data) && null !== $data['appels_offres_gagnes']) {
+            $values_16 = [];
+            foreach ($data['appels_offres_gagnes'] as $value_16) {
+                $values_16[] = $this->denormalizer->denormalize($value_16, AppelOffreGagne::class, 'json', $context);
+            }
+            $object->setAppelsOffresGagnes($values_16);
+            unset($data['appels_offres_gagnes']);
+        } elseif (\array_key_exists('appels_offres_gagnes', $data) && null === $data['appels_offres_gagnes']) {
+            $object->setAppelsOffresGagnes(null);
+        }
+        if (\array_key_exists('appels_offres_lances', $data) && null !== $data['appels_offres_lances']) {
+            $values_17 = [];
+            foreach ($data['appels_offres_lances'] as $value_17) {
+                $values_17[] = $this->denormalizer->denormalize($value_17, AppelOffreLance::class, 'json', $context);
+            }
+            $object->setAppelsOffresLances($values_17);
+            unset($data['appels_offres_lances']);
+        } elseif (\array_key_exists('appels_offres_lances', $data) && null === $data['appels_offres_lances']) {
+            $object->setAppelsOffresLances(null);
+        }
+        if (\array_key_exists('entreprises_citees', $data) && null !== $data['entreprises_citees']) {
+            $values_18 = [];
+            foreach ($data['entreprises_citees'] as $value_18) {
+                $values_18[] = $this->denormalizer->denormalize($value_18, EntrepriseCitee::class, 'json', $context);
+            }
+            $object->setEntreprisesCitees($values_18);
+            unset($data['entreprises_citees']);
+        } elseif (\array_key_exists('entreprises_citees', $data) && null === $data['entreprises_citees']) {
+            $object->setEntreprisesCitees(null);
+        }
+        if (\array_key_exists('entreprises_citees_total', $data) && null !== $data['entreprises_citees_total']) {
+            $object->setEntreprisesCiteesTotal($data['entreprises_citees_total']);
+            unset($data['entreprises_citees_total']);
+        } elseif (\array_key_exists('entreprises_citees_total', $data) && null === $data['entreprises_citees_total']) {
+            $object->setEntreprisesCiteesTotal(null);
+        }
+        if (\array_key_exists('entreprises_citees_incomplet', $data) && null !== $data['entreprises_citees_incomplet']) {
+            $object->setEntreprisesCiteesIncomplet($data['entreprises_citees_incomplet']);
+            unset($data['entreprises_citees_incomplet']);
+        } elseif (\array_key_exists('entreprises_citees_incomplet', $data) && null === $data['entreprises_citees_incomplet']) {
+            $object->setEntreprisesCiteesIncomplet(null);
+        }
+        if (\array_key_exists('brevets', $data) && null !== $data['brevets']) {
+            $values_19 = [];
+            foreach ($data['brevets'] as $value_19) {
+                $values_19[] = $this->denormalizer->denormalize($value_19, Brevet::class, 'json', $context);
+            }
+            $object->setBrevets($values_19);
+            unset($data['brevets']);
+        } elseif (\array_key_exists('brevets', $data) && null === $data['brevets']) {
+            $object->setBrevets(null);
+        }
+        if (\array_key_exists('dessins', $data) && null !== $data['dessins']) {
+            $values_20 = [];
+            foreach ($data['dessins'] as $value_20) {
+                $values_20[] = $this->denormalizer->denormalize($value_20, Dessin::class, 'json', $context);
+            }
+            $object->setDessins($values_20);
+            unset($data['dessins']);
+        } elseif (\array_key_exists('dessins', $data) && null === $data['dessins']) {
+            $object->setDessins(null);
+        }
+        if (\array_key_exists('informations_boursieres', $data) && null !== $data['informations_boursieres']) {
+            $object->setInformationsBoursieres($this->denormalizer->denormalize($data['informations_boursieres'], EntrepriseFicheinformationsBoursieres::class, 'json', $context));
+            unset($data['informations_boursieres']);
+        } elseif (\array_key_exists('informations_boursieres', $data) && null === $data['informations_boursieres']) {
+            $object->setInformationsBoursieres(null);
+        }
+        foreach ($data as $key => $value_21) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value_12;
+                $object[$key] = $value_21;
             }
         }
 
@@ -981,9 +1126,93 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         if ($data->isInitialized('anneeCategorieEntreprise') && null !== $data->getAnneeCategorieEntreprise()) {
             $dataArray['annee_categorie_entreprise'] = $data->getAnneeCategorieEntreprise();
         }
-        foreach ($data as $key => $value_12) {
+        if ($data->isInitialized('motifCessation') && null !== $data->getMotifCessation()) {
+            $dataArray['motif_cessation'] = $data->getMotifCessation();
+        }
+        if ($data->isInitialized('nomUsage') && null !== $data->getNomUsage()) {
+            $dataArray['nom_usage'] = $data->getNomUsage();
+        }
+        if ($data->isInitialized('nomPatronymique') && null !== $data->getNomPatronymique()) {
+            $dataArray['nom_patronymique'] = $data->getNomPatronymique();
+        }
+        if ($data->isInitialized('representantsLegaux') && null !== $data->getRepresentantsLegaux()) {
+            $values_12 = [];
+            foreach ($data->getRepresentantsLegaux() as $value_12) {
+                $values_12[] = $this->normalizer->normalize($value_12, 'json', $context);
+            }
+            $dataArray['representants_legaux'] = $values_12;
+        }
+        if ($data->isInitialized('entreprisesDirigees') && null !== $data->getEntreprisesDirigees()) {
+            $values_13 = [];
+            foreach ($data->getEntreprisesDirigees() as $value_13) {
+                $values_13[] = $this->normalizer->normalize($value_13, 'json', $context);
+            }
+            $dataArray['entreprises_dirigees'] = $values_13;
+        }
+        if ($data->isInitialized('observations') && null !== $data->getObservations()) {
+            $values_14 = [];
+            foreach ($data->getObservations() as $value_14) {
+                $values_14[] = $this->normalizer->normalize($value_14, 'json', $context);
+            }
+            $dataArray['observations'] = $values_14;
+        }
+        if ($data->isInitialized('decisions') && null !== $data->getDecisions()) {
+            $values_15 = [];
+            foreach ($data->getDecisions() as $value_15) {
+                $values_15[] = $this->normalizer->normalize($value_15, 'json', $context);
+            }
+            $dataArray['decisions'] = $values_15;
+        }
+        if ($data->isInitialized('parcellesDetenues') && null !== $data->getParcellesDetenues()) {
+            $dataArray['parcelles_detenues'] = $this->normalizer->normalize($data->getParcellesDetenues(), 'json', $context);
+        }
+        if ($data->isInitialized('appelsOffresGagnes') && null !== $data->getAppelsOffresGagnes()) {
+            $values_16 = [];
+            foreach ($data->getAppelsOffresGagnes() as $value_16) {
+                $values_16[] = $this->normalizer->normalize($value_16, 'json', $context);
+            }
+            $dataArray['appels_offres_gagnes'] = $values_16;
+        }
+        if ($data->isInitialized('appelsOffresLances') && null !== $data->getAppelsOffresLances()) {
+            $values_17 = [];
+            foreach ($data->getAppelsOffresLances() as $value_17) {
+                $values_17[] = $this->normalizer->normalize($value_17, 'json', $context);
+            }
+            $dataArray['appels_offres_lances'] = $values_17;
+        }
+        if ($data->isInitialized('entreprisesCitees') && null !== $data->getEntreprisesCitees()) {
+            $values_18 = [];
+            foreach ($data->getEntreprisesCitees() as $value_18) {
+                $values_18[] = $this->normalizer->normalize($value_18, 'json', $context);
+            }
+            $dataArray['entreprises_citees'] = $values_18;
+        }
+        if ($data->isInitialized('entreprisesCiteesTotal') && null !== $data->getEntreprisesCiteesTotal()) {
+            $dataArray['entreprises_citees_total'] = $data->getEntreprisesCiteesTotal();
+        }
+        if ($data->isInitialized('entreprisesCiteesIncomplet') && null !== $data->getEntreprisesCiteesIncomplet()) {
+            $dataArray['entreprises_citees_incomplet'] = $data->getEntreprisesCiteesIncomplet();
+        }
+        if ($data->isInitialized('brevets') && null !== $data->getBrevets()) {
+            $values_19 = [];
+            foreach ($data->getBrevets() as $value_19) {
+                $values_19[] = $this->normalizer->normalize($value_19, 'json', $context);
+            }
+            $dataArray['brevets'] = $values_19;
+        }
+        if ($data->isInitialized('dessins') && null !== $data->getDessins()) {
+            $values_20 = [];
+            foreach ($data->getDessins() as $value_20) {
+                $values_20[] = $this->normalizer->normalize($value_20, 'json', $context);
+            }
+            $dataArray['dessins'] = $values_20;
+        }
+        if ($data->isInitialized('informationsBoursieres') && null !== $data->getInformationsBoursieres()) {
+            $dataArray['informations_boursieres'] = $this->normalizer->normalize($data->getInformationsBoursieres(), 'json', $context);
+        }
+        foreach ($data as $key => $value_21) {
             if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value_12;
+                $dataArray[$key] = $value_21;
             }
         }
 

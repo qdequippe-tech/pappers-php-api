@@ -78,6 +78,12 @@ class EntrepriseFichecomptesItemNormalizer implements DenormalizerInterface, Nor
         } elseif (\array_key_exists('annee_cloture', $data) && null === $data['annee_cloture']) {
             $object->setAnneeCloture(null);
         }
+        if (\array_key_exists('type_comptes', $data) && null !== $data['type_comptes']) {
+            $object->setTypeComptes($data['type_comptes']);
+            unset($data['type_comptes']);
+        } elseif (\array_key_exists('type_comptes', $data) && null === $data['type_comptes']) {
+            $object->setTypeComptes(null);
+        }
         if (\array_key_exists('confidentialite', $data) && null !== $data['confidentialite']) {
             $object->setConfidentialite($data['confidentialite']);
             unset($data['confidentialite']);
@@ -149,6 +155,9 @@ class EntrepriseFichecomptesItemNormalizer implements DenormalizerInterface, Nor
         }
         if ($data->isInitialized('anneeCloture') && null !== $data->getAnneeCloture()) {
             $dataArray['annee_cloture'] = $data->getAnneeCloture();
+        }
+        if ($data->isInitialized('typeComptes') && null !== $data->getTypeComptes()) {
+            $dataArray['type_comptes'] = $data->getTypeComptes();
         }
         if ($data->isInitialized('confidentialite') && null !== $data->getConfidentialite()) {
             $dataArray['confidentialite'] = $data->getConfidentialite();

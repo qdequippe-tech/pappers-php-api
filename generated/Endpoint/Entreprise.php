@@ -26,7 +26,6 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * @var string $siret SIRET de l'entreprise
      * @var bool   $integrer_diffusions_partielles Si vrai et si l'entreprise est en diffusion partielle, le retour renverra les informations partielles disponibles. Valeur par défaut : `false`.
      * @var string $format_publications_bodacc Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
-     * @var bool   $marques Si vrai, le retour inclura les marques éventuelles de l'entreprise. Valeur par défaut : `false`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
      * @var bool   $beneficiaires_effectifs_complets Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
@@ -59,6 +58,18 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `scoring_financier` : 30 crédits supplémentaires
      * - `scoring_non_financier` : 30 crédits supplémentaires
      * - `categorie_entreprise` : gratuit
+     * - `motif_cessation` : gratuit
+     * - `nom_personne_physique` : gratuit
+     * - `representants_legaux` : gratuit
+     * - `entreprises_dirigees` : 1 crédit supplémentaire si disponible
+     * - `observations` : 0.5 crédit supplémentaire
+     * - `decisions` : 5 crédits supplémentaires si disponible (si l'entreprise n'a pas de décision, 0.5 crédit supplémentaire)
+     * - `parcelles_detenues`: 5 crédits supplémentaires si disponible
+     * - `appels_offres_gagnes`, `appels_offres_lances`: 2 crédits supplémentaires au total (même si les deux champs sont demandés), si disponible
+     * - `entreprises_citees`: 3 crédits supplémentaires si disponible
+     * - `marques`, `brevets`, `dessins`: 1 crédit supplémentaire au total (même si plusieurs de ces trois champs sont demandés), si disponible
+     * - `informations_boursieres`: 5 crédits supplémentaires si disponible
+     * - `informations_boursieres:documents`: 10 crédits supplémentaires si disponible (donc un total de 15 crédits supplémentaires car ce champ inclut également le champ `informations_boursieres`)
      *
      * }
      */
@@ -90,14 +101,13 @@ class Entreprise extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['siren', 'siret', 'integrer_diffusions_partielles', 'format_publications_bodacc', 'marques', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes', 'beneficiaires_effectifs_complets', 'champs_supplementaires']);
+        $optionsResolver->setDefined(['siren', 'siret', 'integrer_diffusions_partielles', 'format_publications_bodacc', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes', 'beneficiaires_effectifs_complets', 'champs_supplementaires']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('siren', ['string']);
         $optionsResolver->addAllowedTypes('siret', ['string']);
         $optionsResolver->addAllowedTypes('integrer_diffusions_partielles', ['bool']);
         $optionsResolver->addAllowedTypes('format_publications_bodacc', ['string']);
-        $optionsResolver->addAllowedTypes('marques', ['bool']);
         $optionsResolver->addAllowedTypes('validite_tva_intracommunautaire', ['bool']);
         $optionsResolver->addAllowedTypes('publications_bodacc_brutes', ['bool']);
         $optionsResolver->addAllowedTypes('beneficiaires_effectifs_complets', ['bool']);

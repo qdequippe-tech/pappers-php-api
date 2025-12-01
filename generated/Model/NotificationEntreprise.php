@@ -199,6 +199,12 @@ class NotificationEntreprise extends \ArrayObject
      * @var list<NotificationEntrepriseQualiteDirigeantItem>|null
      */
     protected $qualiteDirigeant;
+    /**
+     * Nouvelle décision de justice concernant l'entreprise.
+     *
+     * @var list<NotificationEntrepriseNouvelleDecisionJusticeItem>|null
+     */
+    protected $nouvelleDecisionJustice;
 
     /**
      * SIREN de l’entreprise.
@@ -853,6 +859,29 @@ class NotificationEntreprise extends \ArrayObject
     {
         $this->initialized['qualiteDirigeant'] = true;
         $this->qualiteDirigeant = $qualiteDirigeant;
+
+        return $this;
+    }
+
+    /**
+     * Nouvelle décision de justice concernant l'entreprise.
+     *
+     * @return list<NotificationEntrepriseNouvelleDecisionJusticeItem>|null
+     */
+    public function getNouvelleDecisionJustice(): ?array
+    {
+        return $this->nouvelleDecisionJustice;
+    }
+
+    /**
+     * Nouvelle décision de justice concernant l'entreprise.
+     *
+     * @param list<NotificationEntrepriseNouvelleDecisionJusticeItem>|null $nouvelleDecisionJustice
+     */
+    public function setNouvelleDecisionJustice(?array $nouvelleDecisionJustice): self
+    {
+        $this->initialized['nouvelleDecisionJustice'] = true;
+        $this->nouvelleDecisionJustice = $nouvelleDecisionJustice;
 
         return $this;
     }

@@ -3,6 +3,10 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
+use Qdequippe\Pappers\Api\Model\AppelOffre;
+use Qdequippe\Pappers\Api\Model\AppelOffreEntreprise;
+use Qdequippe\Pappers\Api\Model\AppelOffreGagne;
+use Qdequippe\Pappers\Api\Model\AppelOffreLance;
 use Qdequippe\Pappers\Api\Model\Association;
 use Qdequippe\Pappers\Api\Model\AssociationAdresseGestionnaire;
 use Qdequippe\Pappers\Api\Model\AssociationAdresseSiege;
@@ -17,16 +21,27 @@ use Qdequippe\Pappers\Api\Model\BodaccModification;
 use Qdequippe\Pappers\Api\Model\BodaccProcedureCollective;
 use Qdequippe\Pappers\Api\Model\BodaccRadiation;
 use Qdequippe\Pappers\Api\Model\BodaccVente;
+use Qdequippe\Pappers\Api\Model\Brevet;
+use Qdequippe\Pappers\Api\Model\BrevetClassificationsItem;
+use Qdequippe\Pappers\Api\Model\BrevetPrioritesItem;
+use Qdequippe\Pappers\Api\Model\BrevetPublication;
 use Qdequippe\Pappers\Api\Model\Cartographie;
 use Qdequippe\Pappers\Api\Model\CartographieEntreprisesItem;
 use Qdequippe\Pappers\Api\Model\CartographiePersonnesItem;
 use Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200;
+use Qdequippe\Pappers\Api\Model\Decisions;
+use Qdequippe\Pappers\Api\Model\DecisionsAutresPartiesItem;
+use Qdequippe\Pappers\Api\Model\Dessin;
+use Qdequippe\Pappers\Api\Model\DessinDesignsItem;
 use Qdequippe\Pappers\Api\Model\Document;
 use Qdequippe\Pappers\Api\Model\DocumentActe;
 use Qdequippe\Pappers\Api\Model\DocumentActetitresItem;
 use Qdequippe\Pappers\Api\Model\DocumentComptes;
 use Qdequippe\Pappers\Api\Model\EntrepriseBase;
 use Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseCitee;
+use Qdequippe\Pappers\Api\Model\EntrepriseCiteeMentionsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseCiteePersonnesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem;
@@ -51,12 +66,18 @@ use Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItemActesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheentreprisesDirigeesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieres;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieresDocumentsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItemClassesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItemEvenementsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheobservationsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheparcellesDetenues;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheparcellesDetenuesResultatsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichernm;
 use Qdequippe\Pappers\Api\Model\EntrepriseRecherche;
@@ -104,6 +125,7 @@ use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelEtablissementItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnoncePublieeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnonceVentePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleDecisionJusticeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseObjetSocial;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseQualiteDirigeantItem;
@@ -139,6 +161,8 @@ use Qdequippe\Pappers\Api\Model\NotificationVeilleQualiteDirigeantItem;
 use Qdequippe\Pappers\Api\Model\NotificationVeilleResultatItem;
 use Qdequippe\Pappers\Api\Model\NotificationVeilleSiegeSocial;
 use Qdequippe\Pappers\Api\Model\NotificationVeilleStatutRcs;
+use Qdequippe\Pappers\Api\Model\PersonneBrevet;
+use Qdequippe\Pappers\Api\Model\PersonneDessin;
 use Qdequippe\Pappers\Api\Model\PersonneMarque;
 use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee;
 use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposeeFonctionsItem;
@@ -249,6 +273,18 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         EntrepriseFichemarquesItemClassesItem::class => EntrepriseFichemarquesItemClassesItemNormalizer::class,
 
         EntrepriseFichemarquesItemEvenementsItem::class => EntrepriseFichemarquesItemEvenementsItemNormalizer::class,
+
+        EntrepriseFicheentreprisesDirigeesItem::class => EntrepriseFicheentreprisesDirigeesItemNormalizer::class,
+
+        EntrepriseFicheobservationsItem::class => EntrepriseFicheobservationsItemNormalizer::class,
+
+        EntrepriseFicheparcellesDetenues::class => EntrepriseFicheparcellesDetenuesNormalizer::class,
+
+        EntrepriseFicheparcellesDetenuesResultatsItem::class => EntrepriseFicheparcellesDetenuesResultatsItemNormalizer::class,
+
+        EntrepriseFicheinformationsBoursieres::class => EntrepriseFicheinformationsBoursieresNormalizer::class,
+
+        EntrepriseFicheinformationsBoursieresDocumentsItem::class => EntrepriseFicheinformationsBoursieresDocumentsItemNormalizer::class,
 
         EntrepriseRecherche::class => EntrepriseRechercheNormalizer::class,
 
@@ -398,6 +434,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         NotificationEntrepriseQualiteDirigeantItem::class => NotificationEntrepriseQualiteDirigeantItemNormalizer::class,
 
+        NotificationEntrepriseNouvelleDecisionJusticeItem::class => NotificationEntrepriseNouvelleDecisionJusticeItemNormalizer::class,
+
         NotificationDirigeant::class => NotificationDirigeantNormalizer::class,
 
         NotificationDirigeantDetailsDirigeant::class => NotificationDirigeantDetailsDirigeantNormalizer::class,
@@ -471,6 +509,40 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         NotificationVeilleDirigeantPartantItem::class => NotificationVeilleDirigeantPartantItemNormalizer::class,
 
         NotificationVeilleQualiteDirigeantItem::class => NotificationVeilleQualiteDirigeantItemNormalizer::class,
+
+        Decisions::class => DecisionsNormalizer::class,
+
+        DecisionsAutresPartiesItem::class => DecisionsAutresPartiesItemNormalizer::class,
+
+        AppelOffre::class => AppelOffreNormalizer::class,
+
+        AppelOffreEntreprise::class => AppelOffreEntrepriseNormalizer::class,
+
+        AppelOffreLance::class => AppelOffreLanceNormalizer::class,
+
+        AppelOffreGagne::class => AppelOffreGagneNormalizer::class,
+
+        EntrepriseCitee::class => EntrepriseCiteeNormalizer::class,
+
+        EntrepriseCiteeMentionsItem::class => EntrepriseCiteeMentionsItemNormalizer::class,
+
+        EntrepriseCiteePersonnesItem::class => EntrepriseCiteePersonnesItemNormalizer::class,
+
+        PersonneBrevet::class => PersonneBrevetNormalizer::class,
+
+        Brevet::class => BrevetNormalizer::class,
+
+        BrevetPublication::class => BrevetPublicationNormalizer::class,
+
+        BrevetPrioritesItem::class => BrevetPrioritesItemNormalizer::class,
+
+        BrevetClassificationsItem::class => BrevetClassificationsItemNormalizer::class,
+
+        PersonneDessin::class => PersonneDessinNormalizer::class,
+
+        Dessin::class => DessinNormalizer::class,
+
+        DessinDesignsItem::class => DessinDesignsItemNormalizer::class,
 
         RechercheGetResponse200::class => RechercheGetResponse200Normalizer::class,
 
@@ -608,6 +680,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             EntrepriseFichemarquesItem::class => false,
             EntrepriseFichemarquesItemClassesItem::class => false,
             EntrepriseFichemarquesItemEvenementsItem::class => false,
+            EntrepriseFicheentreprisesDirigeesItem::class => false,
+            EntrepriseFicheobservationsItem::class => false,
+            EntrepriseFicheparcellesDetenues::class => false,
+            EntrepriseFicheparcellesDetenuesResultatsItem::class => false,
+            EntrepriseFicheinformationsBoursieres::class => false,
+            EntrepriseFicheinformationsBoursieresDocumentsItem::class => false,
             EntrepriseRecherche::class => false,
             EtablissementFiche::class => false,
             EtablissementFicheDomiciliation::class => false,
@@ -682,6 +760,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             NotificationEntrepriseNouveauDirigeantItem::class => false,
             NotificationEntrepriseDirigeantPartantItem::class => false,
             NotificationEntrepriseQualiteDirigeantItem::class => false,
+            NotificationEntrepriseNouvelleDecisionJusticeItem::class => false,
             NotificationDirigeant::class => false,
             NotificationDirigeantDetailsDirigeant::class => false,
             NotificationDirigeantNouvellesSanctionsItem::class => false,
@@ -719,6 +798,23 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             NotificationVeilleNouveauDirigeantItem::class => false,
             NotificationVeilleDirigeantPartantItem::class => false,
             NotificationVeilleQualiteDirigeantItem::class => false,
+            Decisions::class => false,
+            DecisionsAutresPartiesItem::class => false,
+            AppelOffre::class => false,
+            AppelOffreEntreprise::class => false,
+            AppelOffreLance::class => false,
+            AppelOffreGagne::class => false,
+            EntrepriseCitee::class => false,
+            EntrepriseCiteeMentionsItem::class => false,
+            EntrepriseCiteePersonnesItem::class => false,
+            PersonneBrevet::class => false,
+            Brevet::class => false,
+            BrevetPublication::class => false,
+            BrevetPrioritesItem::class => false,
+            BrevetClassificationsItem::class => false,
+            PersonneDessin::class => false,
+            Dessin::class => false,
+            DessinDesignsItem::class => false,
             RechercheGetResponse200::class => false,
             RechercheGetResponse200ResultatsItem::class => false,
             RechercheGetResponse200ResultatsItempublicationsItem::class => false,

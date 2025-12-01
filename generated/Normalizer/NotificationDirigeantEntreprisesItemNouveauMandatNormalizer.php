@@ -43,7 +43,11 @@ class NotificationDirigeantEntreprisesItemNouveauMandatNormalizer implements Den
             return $object;
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
-            $object->setPrenom($data['prenom']);
+            $values = [];
+            foreach ($data['prenom'] as $value) {
+                $values[] = $value;
+            }
+            $object->setPrenom($values);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
@@ -73,11 +77,11 @@ class NotificationDirigeantEntreprisesItemNouveauMandatNormalizer implements Den
             $object->setSiren(null);
         }
         if (\array_key_exists('qualite', $data) && null !== $data['qualite']) {
-            $values = [];
-            foreach ($data['qualite'] as $value) {
-                $values[] = $value;
+            $values_1 = [];
+            foreach ($data['qualite'] as $value_1) {
+                $values_1[] = $value_1;
             }
-            $object->setQualite($values);
+            $object->setQualite($values_1);
             unset($data['qualite']);
         } elseif (\array_key_exists('qualite', $data) && null === $data['qualite']) {
             $object->setQualite(null);
@@ -88,9 +92,9 @@ class NotificationDirigeantEntreprisesItemNouveauMandatNormalizer implements Den
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value_1;
+                $object[$key] = $value_2;
             }
         }
 
@@ -101,7 +105,11 @@ class NotificationDirigeantEntreprisesItemNouveauMandatNormalizer implements Den
     {
         $dataArray = [];
         if ($data->isInitialized('prenom') && null !== $data->getPrenom()) {
-            $dataArray['prenom'] = $data->getPrenom();
+            $values = [];
+            foreach ($data->getPrenom() as $value) {
+                $values[] = $value;
+            }
+            $dataArray['prenom'] = $values;
         }
         if ($data->isInitialized('nom') && null !== $data->getNom()) {
             $dataArray['nom'] = $data->getNom();
@@ -116,18 +124,18 @@ class NotificationDirigeantEntreprisesItemNouveauMandatNormalizer implements Den
             $dataArray['siren'] = $data->getSiren();
         }
         if ($data->isInitialized('qualite') && null !== $data->getQualite()) {
-            $values = [];
-            foreach ($data->getQualite() as $value) {
-                $values[] = $value;
+            $values_1 = [];
+            foreach ($data->getQualite() as $value_1) {
+                $values_1[] = $value_1;
             }
-            $dataArray['qualite'] = $values;
+            $dataArray['qualite'] = $values_1;
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value_1;
+                $dataArray[$key] = $value_2;
             }
         }
 

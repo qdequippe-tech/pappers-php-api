@@ -43,7 +43,11 @@ class NotificationEntrepriseNouveauDirigeantItemNormalizer implements Denormaliz
             return $object;
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
-            $object->setPrenom($data['prenom']);
+            $values = [];
+            foreach ($data['prenom'] as $value) {
+                $values[] = $value;
+            }
+            $object->setPrenom($values);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
@@ -78,9 +82,9 @@ class NotificationEntrepriseNouveauDirigeantItemNormalizer implements Denormaliz
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
-        foreach ($data as $key => $value) {
+        foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value;
+                $object[$key] = $value_1;
             }
         }
 
@@ -91,7 +95,11 @@ class NotificationEntrepriseNouveauDirigeantItemNormalizer implements Denormaliz
     {
         $dataArray = [];
         if ($data->isInitialized('prenom') && null !== $data->getPrenom()) {
-            $dataArray['prenom'] = $data->getPrenom();
+            $values = [];
+            foreach ($data->getPrenom() as $value) {
+                $values[] = $value;
+            }
+            $dataArray['prenom'] = $values;
         }
         if ($data->isInitialized('nom') && null !== $data->getNom()) {
             $dataArray['nom'] = $data->getNom();
@@ -108,9 +116,9 @@ class NotificationEntrepriseNouveauDirigeantItemNormalizer implements Denormaliz
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value;
+                $dataArray[$key] = $value_1;
             }
         }
 

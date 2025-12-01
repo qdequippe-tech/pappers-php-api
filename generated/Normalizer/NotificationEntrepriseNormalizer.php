@@ -26,6 +26,7 @@ use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelEtablissementItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnoncePublieeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleAnnonceVentePublieeItem;
+use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleDecisionJusticeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseObjetSocial;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseQualiteDirigeantItem;
@@ -325,9 +326,19 @@ class NotificationEntrepriseNormalizer implements DenormalizerInterface, Normali
         } elseif (\array_key_exists('qualite_dirigeant', $data) && null === $data['qualite_dirigeant']) {
             $object->setQualiteDirigeant(null);
         }
-        foreach ($data as $key => $value_17) {
+        if (\array_key_exists('nouvelle_decision_justice', $data) && null !== $data['nouvelle_decision_justice']) {
+            $values_17 = [];
+            foreach ($data['nouvelle_decision_justice'] as $value_17) {
+                $values_17[] = $this->denormalizer->denormalize($value_17, NotificationEntrepriseNouvelleDecisionJusticeItem::class, 'json', $context);
+            }
+            $object->setNouvelleDecisionJustice($values_17);
+            unset($data['nouvelle_decision_justice']);
+        } elseif (\array_key_exists('nouvelle_decision_justice', $data) && null === $data['nouvelle_decision_justice']) {
+            $object->setNouvelleDecisionJustice(null);
+        }
+        foreach ($data as $key => $value_18) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value_17;
+                $object[$key] = $value_18;
             }
         }
 
@@ -498,9 +509,16 @@ class NotificationEntrepriseNormalizer implements DenormalizerInterface, Normali
             }
             $dataArray['qualite_dirigeant'] = $values_16;
         }
-        foreach ($data as $key => $value_17) {
+        if ($data->isInitialized('nouvelleDecisionJustice') && null !== $data->getNouvelleDecisionJustice()) {
+            $values_17 = [];
+            foreach ($data->getNouvelleDecisionJustice() as $value_17) {
+                $values_17[] = $this->normalizer->normalize($value_17, 'json', $context);
+            }
+            $dataArray['nouvelle_decision_justice'] = $values_17;
+        }
+        foreach ($data as $key => $value_18) {
             if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value_17;
+                $dataArray[$key] = $value_18;
             }
         }
 

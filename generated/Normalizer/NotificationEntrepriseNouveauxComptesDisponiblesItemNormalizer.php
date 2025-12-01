@@ -39,6 +39,9 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItemNormalizer implements 
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
         $object = new NotificationEntrepriseNouveauxComptesDisponiblesItem();
+        if (\array_key_exists('annee_cloture', $data) && \is_int($data['annee_cloture'])) {
+            $data['annee_cloture'] = (float) $data['annee_cloture'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -53,6 +56,12 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItemNormalizer implements 
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+        }
+        if (\array_key_exists('token', $data) && null !== $data['token']) {
+            $object->setToken($data['token']);
+            unset($data['token']);
+        } elseif (\array_key_exists('token', $data) && null === $data['token']) {
+            $object->setToken(null);
         }
         if (\array_key_exists('type_comptes', $data) && null !== $data['type_comptes']) {
             $object->setTypeComptes($data['type_comptes']);
@@ -77,6 +86,9 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItemNormalizer implements 
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
+        }
+        if ($data->isInitialized('token') && null !== $data->getToken()) {
+            $dataArray['token'] = $data->getToken();
         }
         if ($data->isInitialized('typeComptes') && null !== $data->getTypeComptes()) {
             $dataArray['type_comptes'] = $data->getTypeComptes();

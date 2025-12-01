@@ -38,6 +38,12 @@ class EntrepriseFichecomptesItem extends \ArrayObject
      */
     protected $anneeCloture;
     /**
+     * Type de comptes (Comptes Sociaux ou Comptes Consolidés).
+     *
+     * @var string|null
+     */
+    protected $typeComptes;
+    /**
      * Confidentialité totale des comptes.
      *
      * @var bool|null
@@ -158,6 +164,25 @@ class EntrepriseFichecomptesItem extends \ArrayObject
     {
         $this->initialized['anneeCloture'] = true;
         $this->anneeCloture = $anneeCloture;
+
+        return $this;
+    }
+
+    /**
+     * Type de comptes (Comptes Sociaux ou Comptes Consolidés).
+     */
+    public function getTypeComptes(): ?string
+    {
+        return $this->typeComptes;
+    }
+
+    /**
+     * Type de comptes (Comptes Sociaux ou Comptes Consolidés).
+     */
+    public function setTypeComptes(?string $typeComptes): self
+    {
+        $this->initialized['typeComptes'] = true;
+        $this->typeComptes = $typeComptes;
 
         return $this;
     }
