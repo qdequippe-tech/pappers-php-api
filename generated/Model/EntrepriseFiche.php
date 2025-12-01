@@ -469,7 +469,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $rnm;
     /**
-     * Liste des marques françaises déposées par l'entreprise. Uniquement présent si le paramètre "marques" a été mis à vrai.
+     * Liste des marques françaises déposées par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
      * @var list<EntrepriseFichemarquesItem>|null
      */
@@ -528,6 +528,102 @@ class EntrepriseFiche extends \ArrayObject
      * @var int|null
      */
     protected $anneeCategorieEntreprise;
+    /**
+     * Motif de cessation de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var string|null
+     */
+    protected $motifCessation;
+    /**
+     * Nom d'usage de la personne physique dirigeant l'entreprise. Uniquement présent si le champ supplémentaire `nom_personne_physique` est demandé.
+     *
+     * @var string|null
+     */
+    protected $nomUsage;
+    /**
+     * Nom patronymique de la personne physique dirigeant l'entreprise. Uniquement présent si le champ supplémentaire `nom_personne_physique` est demandé.
+     *
+     * @var string|null
+     */
+    protected $nomPatronymique;
+    /**
+     * Liste des représentants légaux de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<RepresentantEntreprise>|null
+     */
+    protected $representantsLegaux;
+    /**
+     * Liste des entreprises dirigées par l'entreprise ou la personne physique. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<EntrepriseFicheentreprisesDirigeesItem>|null
+     */
+    protected $entreprisesDirigees;
+    /**
+     * Liste des observations du greffe. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<EntrepriseFicheobservationsItem>|null
+     */
+    protected $observations;
+    /**
+     * Liste des décisions de justice concernant l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<Decisions>|null
+     */
+    protected $decisions;
+    /**
+     * Informations sur les parcelles détenues. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var EntrepriseFicheparcellesDetenues|null
+     */
+    protected $parcellesDetenues;
+    /**
+     * Liste des appels d'offres gagnés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<AppelOffreGagne>|null
+     */
+    protected $appelsOffresGagnes;
+    /**
+     * Liste des appels d'offres lancés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<AppelOffreLance>|null
+     */
+    protected $appelsOffresLances;
+    /**
+     * Liste des entreprises citées dans les documents de l'entreprise, ou des entreprises qui citent l'entreprise dans leurs documents. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<EntrepriseCitee>|null
+     */
+    protected $entreprisesCitees;
+    /**
+     * Nombre total d'entreprises citées par l'entreprise. Uniquement présent si le champ supplémentaire `entreprises_citees` est demandé.
+     *
+     * @var int|null
+     */
+    protected $entreprisesCiteesTotal;
+    /**
+     * Vrai si le nombre total d'entreprises citées est supérieur à 200, faux sinon. Uniquement présent si le champ supplémentaire `entreprises_citees` est demandé.
+     *
+     * @var bool|null
+     */
+    protected $entreprisesCiteesIncomplet;
+    /**
+     * Liste des brevets français déposés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<Brevet>|null
+     */
+    protected $brevets;
+    /**
+     * Liste des dessins déposés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var list<Dessin>|null
+     */
+    protected $dessins;
+    /**
+     * Informations boursières de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var EntrepriseFicheinformationsBoursieres|null
+     */
+    protected $informationsBoursieres;
 
     /**
      * Le numéro SIREN de l'entreprise au format xxxxxxxxx.
@@ -2004,7 +2100,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Liste des marques françaises déposées par l'entreprise. Uniquement présent si le paramètre "marques" a été mis à vrai.
+     * Liste des marques françaises déposées par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
      * @return list<EntrepriseFichemarquesItem>|null
      */
@@ -2014,7 +2110,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Liste des marques françaises déposées par l'entreprise. Uniquement présent si le paramètre "marques" a été mis à vrai.
+     * Liste des marques françaises déposées par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
      * @param list<EntrepriseFichemarquesItem>|null $marques
      */
@@ -2201,6 +2297,346 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['anneeCategorieEntreprise'] = true;
         $this->anneeCategorieEntreprise = $anneeCategorieEntreprise;
+
+        return $this;
+    }
+
+    /**
+     * Motif de cessation de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getMotifCessation(): ?string
+    {
+        return $this->motifCessation;
+    }
+
+    /**
+     * Motif de cessation de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setMotifCessation(?string $motifCessation): self
+    {
+        $this->initialized['motifCessation'] = true;
+        $this->motifCessation = $motifCessation;
+
+        return $this;
+    }
+
+    /**
+     * Nom d'usage de la personne physique dirigeant l'entreprise. Uniquement présent si le champ supplémentaire `nom_personne_physique` est demandé.
+     */
+    public function getNomUsage(): ?string
+    {
+        return $this->nomUsage;
+    }
+
+    /**
+     * Nom d'usage de la personne physique dirigeant l'entreprise. Uniquement présent si le champ supplémentaire `nom_personne_physique` est demandé.
+     */
+    public function setNomUsage(?string $nomUsage): self
+    {
+        $this->initialized['nomUsage'] = true;
+        $this->nomUsage = $nomUsage;
+
+        return $this;
+    }
+
+    /**
+     * Nom patronymique de la personne physique dirigeant l'entreprise. Uniquement présent si le champ supplémentaire `nom_personne_physique` est demandé.
+     */
+    public function getNomPatronymique(): ?string
+    {
+        return $this->nomPatronymique;
+    }
+
+    /**
+     * Nom patronymique de la personne physique dirigeant l'entreprise. Uniquement présent si le champ supplémentaire `nom_personne_physique` est demandé.
+     */
+    public function setNomPatronymique(?string $nomPatronymique): self
+    {
+        $this->initialized['nomPatronymique'] = true;
+        $this->nomPatronymique = $nomPatronymique;
+
+        return $this;
+    }
+
+    /**
+     * Liste des représentants légaux de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<RepresentantEntreprise>|null
+     */
+    public function getRepresentantsLegaux(): ?array
+    {
+        return $this->representantsLegaux;
+    }
+
+    /**
+     * Liste des représentants légaux de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<RepresentantEntreprise>|null $representantsLegaux
+     */
+    public function setRepresentantsLegaux(?array $representantsLegaux): self
+    {
+        $this->initialized['representantsLegaux'] = true;
+        $this->representantsLegaux = $representantsLegaux;
+
+        return $this;
+    }
+
+    /**
+     * Liste des entreprises dirigées par l'entreprise ou la personne physique. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<EntrepriseFicheentreprisesDirigeesItem>|null
+     */
+    public function getEntreprisesDirigees(): ?array
+    {
+        return $this->entreprisesDirigees;
+    }
+
+    /**
+     * Liste des entreprises dirigées par l'entreprise ou la personne physique. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<EntrepriseFicheentreprisesDirigeesItem>|null $entreprisesDirigees
+     */
+    public function setEntreprisesDirigees(?array $entreprisesDirigees): self
+    {
+        $this->initialized['entreprisesDirigees'] = true;
+        $this->entreprisesDirigees = $entreprisesDirigees;
+
+        return $this;
+    }
+
+    /**
+     * Liste des observations du greffe. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<EntrepriseFicheobservationsItem>|null
+     */
+    public function getObservations(): ?array
+    {
+        return $this->observations;
+    }
+
+    /**
+     * Liste des observations du greffe. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<EntrepriseFicheobservationsItem>|null $observations
+     */
+    public function setObservations(?array $observations): self
+    {
+        $this->initialized['observations'] = true;
+        $this->observations = $observations;
+
+        return $this;
+    }
+
+    /**
+     * Liste des décisions de justice concernant l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<Decisions>|null
+     */
+    public function getDecisions(): ?array
+    {
+        return $this->decisions;
+    }
+
+    /**
+     * Liste des décisions de justice concernant l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<Decisions>|null $decisions
+     */
+    public function setDecisions(?array $decisions): self
+    {
+        $this->initialized['decisions'] = true;
+        $this->decisions = $decisions;
+
+        return $this;
+    }
+
+    /**
+     * Informations sur les parcelles détenues. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getParcellesDetenues(): ?EntrepriseFicheparcellesDetenues
+    {
+        return $this->parcellesDetenues;
+    }
+
+    /**
+     * Informations sur les parcelles détenues. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setParcellesDetenues(?EntrepriseFicheparcellesDetenues $parcellesDetenues): self
+    {
+        $this->initialized['parcellesDetenues'] = true;
+        $this->parcellesDetenues = $parcellesDetenues;
+
+        return $this;
+    }
+
+    /**
+     * Liste des appels d'offres gagnés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<AppelOffreGagne>|null
+     */
+    public function getAppelsOffresGagnes(): ?array
+    {
+        return $this->appelsOffresGagnes;
+    }
+
+    /**
+     * Liste des appels d'offres gagnés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<AppelOffreGagne>|null $appelsOffresGagnes
+     */
+    public function setAppelsOffresGagnes(?array $appelsOffresGagnes): self
+    {
+        $this->initialized['appelsOffresGagnes'] = true;
+        $this->appelsOffresGagnes = $appelsOffresGagnes;
+
+        return $this;
+    }
+
+    /**
+     * Liste des appels d'offres lancés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<AppelOffreLance>|null
+     */
+    public function getAppelsOffresLances(): ?array
+    {
+        return $this->appelsOffresLances;
+    }
+
+    /**
+     * Liste des appels d'offres lancés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<AppelOffreLance>|null $appelsOffresLances
+     */
+    public function setAppelsOffresLances(?array $appelsOffresLances): self
+    {
+        $this->initialized['appelsOffresLances'] = true;
+        $this->appelsOffresLances = $appelsOffresLances;
+
+        return $this;
+    }
+
+    /**
+     * Liste des entreprises citées dans les documents de l'entreprise, ou des entreprises qui citent l'entreprise dans leurs documents. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<EntrepriseCitee>|null
+     */
+    public function getEntreprisesCitees(): ?array
+    {
+        return $this->entreprisesCitees;
+    }
+
+    /**
+     * Liste des entreprises citées dans les documents de l'entreprise, ou des entreprises qui citent l'entreprise dans leurs documents. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<EntrepriseCitee>|null $entreprisesCitees
+     */
+    public function setEntreprisesCitees(?array $entreprisesCitees): self
+    {
+        $this->initialized['entreprisesCitees'] = true;
+        $this->entreprisesCitees = $entreprisesCitees;
+
+        return $this;
+    }
+
+    /**
+     * Nombre total d'entreprises citées par l'entreprise. Uniquement présent si le champ supplémentaire `entreprises_citees` est demandé.
+     */
+    public function getEntreprisesCiteesTotal(): ?int
+    {
+        return $this->entreprisesCiteesTotal;
+    }
+
+    /**
+     * Nombre total d'entreprises citées par l'entreprise. Uniquement présent si le champ supplémentaire `entreprises_citees` est demandé.
+     */
+    public function setEntreprisesCiteesTotal(?int $entreprisesCiteesTotal): self
+    {
+        $this->initialized['entreprisesCiteesTotal'] = true;
+        $this->entreprisesCiteesTotal = $entreprisesCiteesTotal;
+
+        return $this;
+    }
+
+    /**
+     * Vrai si le nombre total d'entreprises citées est supérieur à 200, faux sinon. Uniquement présent si le champ supplémentaire `entreprises_citees` est demandé.
+     */
+    public function getEntreprisesCiteesIncomplet(): ?bool
+    {
+        return $this->entreprisesCiteesIncomplet;
+    }
+
+    /**
+     * Vrai si le nombre total d'entreprises citées est supérieur à 200, faux sinon. Uniquement présent si le champ supplémentaire `entreprises_citees` est demandé.
+     */
+    public function setEntreprisesCiteesIncomplet(?bool $entreprisesCiteesIncomplet): self
+    {
+        $this->initialized['entreprisesCiteesIncomplet'] = true;
+        $this->entreprisesCiteesIncomplet = $entreprisesCiteesIncomplet;
+
+        return $this;
+    }
+
+    /**
+     * Liste des brevets français déposés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<Brevet>|null
+     */
+    public function getBrevets(): ?array
+    {
+        return $this->brevets;
+    }
+
+    /**
+     * Liste des brevets français déposés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<Brevet>|null $brevets
+     */
+    public function setBrevets(?array $brevets): self
+    {
+        $this->initialized['brevets'] = true;
+        $this->brevets = $brevets;
+
+        return $this;
+    }
+
+    /**
+     * Liste des dessins déposés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @return list<Dessin>|null
+     */
+    public function getDessins(): ?array
+    {
+        return $this->dessins;
+    }
+
+    /**
+     * Liste des dessins déposés par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @param list<Dessin>|null $dessins
+     */
+    public function setDessins(?array $dessins): self
+    {
+        $this->initialized['dessins'] = true;
+        $this->dessins = $dessins;
+
+        return $this;
+    }
+
+    /**
+     * Informations boursières de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getInformationsBoursieres(): ?EntrepriseFicheinformationsBoursieres
+    {
+        return $this->informationsBoursieres;
+    }
+
+    /**
+     * Informations boursières de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setInformationsBoursieres(?EntrepriseFicheinformationsBoursieres $informationsBoursieres): self
+    {
+        $this->initialized['informationsBoursieres'] = true;
+        $this->informationsBoursieres = $informationsBoursieres;
 
         return $this;
     }

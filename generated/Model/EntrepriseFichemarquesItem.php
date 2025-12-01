@@ -38,7 +38,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
      */
     protected $lieuEnregistrement;
     /**
-     * Statut de la marque. La description des différents types est disponible en page 14 du document suivant : https://www.inpi.fr/sites/default/files/doctech_marques_v1.6.pdf.
+     * Statut de la marque. La description des différents statuts est disponible en page 15 du document suivant : https://www.inpi.fr/sites/default/files/2025-06/DocTech_Marques_v2.0.pdf.
      *
      * @var string|null
      */
@@ -165,7 +165,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     }
 
     /**
-     * Statut de la marque. La description des différents types est disponible en page 14 du document suivant : https://www.inpi.fr/sites/default/files/doctech_marques_v1.6.pdf.
+     * Statut de la marque. La description des différents statuts est disponible en page 15 du document suivant : https://www.inpi.fr/sites/default/files/2025-06/DocTech_Marques_v2.0.pdf.
      */
     public function getStatut(): ?string
     {
@@ -173,7 +173,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     }
 
     /**
-     * Statut de la marque. La description des différents types est disponible en page 14 du document suivant : https://www.inpi.fr/sites/default/files/doctech_marques_v1.6.pdf.
+     * Statut de la marque. La description des différents statuts est disponible en page 15 du document suivant : https://www.inpi.fr/sites/default/files/2025-06/DocTech_Marques_v2.0.pdf.
      */
     public function setStatut(?string $statut): self
     {

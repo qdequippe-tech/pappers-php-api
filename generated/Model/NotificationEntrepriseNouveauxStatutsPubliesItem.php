@@ -25,6 +25,12 @@ class NotificationEntrepriseNouveauxStatutsPubliesItem extends \ArrayObject
      * @var string|null
      */
     protected $date;
+    /**
+     * Token.
+     *
+     * @var string|null
+     */
+    protected $token;
 
     /**
      * Acte publié.
@@ -60,6 +66,25 @@ class NotificationEntrepriseNouveauxStatutsPubliesItem extends \ArrayObject
     {
         $this->initialized['date'] = true;
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Token.
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * Token.
+     */
+    public function setToken(?string $token): self
+    {
+        $this->initialized['token'] = true;
+        $this->token = $token;
 
         return $this;
     }

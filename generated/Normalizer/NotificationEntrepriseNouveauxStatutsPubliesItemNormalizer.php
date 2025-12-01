@@ -54,6 +54,12 @@ class NotificationEntrepriseNouveauxStatutsPubliesItemNormalizer implements Deno
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
+        if (\array_key_exists('token', $data) && null !== $data['token']) {
+            $object->setToken($data['token']);
+            unset($data['token']);
+        } elseif (\array_key_exists('token', $data) && null === $data['token']) {
+            $object->setToken(null);
+        }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $object[$key] = $value;
@@ -71,6 +77,9 @@ class NotificationEntrepriseNouveauxStatutsPubliesItemNormalizer implements Deno
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
+        }
+        if ($data->isInitialized('token') && null !== $data->getToken()) {
+            $dataArray['token'] = $data->getToken();
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

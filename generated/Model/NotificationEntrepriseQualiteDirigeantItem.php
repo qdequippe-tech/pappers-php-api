@@ -16,7 +16,7 @@ class NotificationEntrepriseQualiteDirigeantItem extends \ArrayObject
     /**
      * Prénom du dirigeant (si personne physique).
      *
-     * @var string|null
+     * @var list<string>|null
      */
     protected $prenom;
     /**
@@ -60,16 +60,20 @@ class NotificationEntrepriseQualiteDirigeantItem extends \ArrayObject
 
     /**
      * Prénom du dirigeant (si personne physique).
+     *
+     * @return list<string>|null
      */
-    public function getPrenom(): ?string
+    public function getPrenom(): ?array
     {
         return $this->prenom;
     }
 
     /**
      * Prénom du dirigeant (si personne physique).
+     *
+     * @param list<string>|null $prenom
      */
-    public function setPrenom(?string $prenom): self
+    public function setPrenom(?array $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;

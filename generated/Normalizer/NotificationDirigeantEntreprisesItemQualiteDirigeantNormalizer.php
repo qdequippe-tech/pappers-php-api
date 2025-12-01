@@ -43,7 +43,11 @@ class NotificationDirigeantEntreprisesItemQualiteDirigeantNormalizer implements 
             return $object;
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
-            $object->setPrenom($data['prenom']);
+            $values = [];
+            foreach ($data['prenom'] as $value) {
+                $values[] = $value;
+            }
+            $object->setPrenom($values);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
@@ -73,21 +77,21 @@ class NotificationDirigeantEntreprisesItemQualiteDirigeantNormalizer implements 
             $object->setSiren(null);
         }
         if (\array_key_exists('valeur', $data) && null !== $data['valeur']) {
-            $values = [];
-            foreach ($data['valeur'] as $value) {
-                $values[] = $value;
+            $values_1 = [];
+            foreach ($data['valeur'] as $value_1) {
+                $values_1[] = $value_1;
             }
-            $object->setValeur($values);
+            $object->setValeur($values_1);
             unset($data['valeur']);
         } elseif (\array_key_exists('valeur', $data) && null === $data['valeur']) {
             $object->setValeur(null);
         }
         if (\array_key_exists('ancienne_valeur', $data) && null !== $data['ancienne_valeur']) {
-            $values_1 = [];
-            foreach ($data['ancienne_valeur'] as $value_1) {
-                $values_1[] = $value_1;
+            $values_2 = [];
+            foreach ($data['ancienne_valeur'] as $value_2) {
+                $values_2[] = $value_2;
             }
-            $object->setAncienneValeur($values_1);
+            $object->setAncienneValeur($values_2);
             unset($data['ancienne_valeur']);
         } elseif (\array_key_exists('ancienne_valeur', $data) && null === $data['ancienne_valeur']) {
             $object->setAncienneValeur(null);
@@ -98,9 +102,9 @@ class NotificationDirigeantEntreprisesItemQualiteDirigeantNormalizer implements 
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
         }
-        foreach ($data as $key => $value_2) {
+        foreach ($data as $key => $value_3) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value_2;
+                $object[$key] = $value_3;
             }
         }
 
@@ -111,7 +115,11 @@ class NotificationDirigeantEntreprisesItemQualiteDirigeantNormalizer implements 
     {
         $dataArray = [];
         if ($data->isInitialized('prenom') && null !== $data->getPrenom()) {
-            $dataArray['prenom'] = $data->getPrenom();
+            $values = [];
+            foreach ($data->getPrenom() as $value) {
+                $values[] = $value;
+            }
+            $dataArray['prenom'] = $values;
         }
         if ($data->isInitialized('nom') && null !== $data->getNom()) {
             $dataArray['nom'] = $data->getNom();
@@ -126,25 +134,25 @@ class NotificationDirigeantEntreprisesItemQualiteDirigeantNormalizer implements 
             $dataArray['siren'] = $data->getSiren();
         }
         if ($data->isInitialized('valeur') && null !== $data->getValeur()) {
-            $values = [];
-            foreach ($data->getValeur() as $value) {
-                $values[] = $value;
-            }
-            $dataArray['valeur'] = $values;
-        }
-        if ($data->isInitialized('ancienneValeur') && null !== $data->getAncienneValeur()) {
             $values_1 = [];
-            foreach ($data->getAncienneValeur() as $value_1) {
+            foreach ($data->getValeur() as $value_1) {
                 $values_1[] = $value_1;
             }
-            $dataArray['ancienne_valeur'] = $values_1;
+            $dataArray['valeur'] = $values_1;
+        }
+        if ($data->isInitialized('ancienneValeur') && null !== $data->getAncienneValeur()) {
+            $values_2 = [];
+            foreach ($data->getAncienneValeur() as $value_2) {
+                $values_2[] = $value_2;
+            }
+            $dataArray['ancienne_valeur'] = $values_2;
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        foreach ($data as $key => $value_2) {
+        foreach ($data as $key => $value_3) {
             if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value_2;
+                $dataArray[$key] = $value_3;
             }
         }
 
