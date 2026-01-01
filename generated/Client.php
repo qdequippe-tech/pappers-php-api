@@ -43,13 +43,22 @@ use Symfony\Component\Serializer\Serializer;
 class Client extends Runtime\Client\Client
 {
     /**
-     * Vous devez fournir soit le SIREN, soit le SIRET. Si vous indiquez le SIREN, tous les établissements associés à ce SIREN seront renvoyés dans la clé `etablissements`. Si vous indiquez le SIRET, seul l'établissement associé sera renvoyé dans la clé `etablissement`.
+     * Vous devez fournir soit le SIREN, soit le SIRET.
+     *
+     * Si vous indiquez le SIREN, tous les établissements associés à ce SIREN seront renvoyés dans la clé `etablissements`.
+     *
+     * Si vous indiquez le SIRET, seul l'établissement associé sera renvoyé dans la clé `etablissement`
+     *
+     * > ⚠️ **Attention : Certaines entreprises sont en diffusion partielle auprès de l'Insee**
+     * >
+     * > Ce statut est signalé par le champ `diffusable=false`.
+     * >
+     * > Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      *
      * @param array $queryParameters {
      *
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
-     * @var bool   $integrer_diffusions_partielles Si vrai et si l'entreprise est en diffusion partielle, le retour renverra les informations partielles disponibles. Valeur par défaut : `false`.
      * @var string $format_publications_bodacc Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
@@ -95,12 +104,12 @@ class Client extends Runtime\Client\Client
      * - `marques`, `brevets`, `dessins`: 1 crédit supplémentaire au total (même si plusieurs de ces trois champs sont demandés), si disponible
      * - `informations_boursieres`: 5 crédits supplémentaires si disponible
      * - `informations_boursieres:documents`: 10 crédits supplémentaires si disponible (donc un total de 15 crédits supplémentaires car ce champ inclut également le champ `informations_boursieres`)
-     *
+     * - `finances_estimations` : 5 crédits supplémentaires si disponible
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\EntrepriseFiche|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\EntrepriseFiche|null : ResponseInterface)
      *
      * @throws Exception\EntrepriseBadRequestException
      * @throws Exception\EntrepriseUnauthorizedException
@@ -123,7 +132,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\Association|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\Association|null : ResponseInterface)
      *
      * @throws Exception\AssociationBadRequestException
      * @throws Exception\AssociationUnauthorizedException
@@ -214,7 +223,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\RechercheGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\RechercheGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\RechercheUnauthorizedException
      * @throws Exception\RechercheNotFoundException
@@ -288,7 +297,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\RechercheDirigeantsGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\RechercheDirigeantsGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\RechercheDirigeantsUnauthorizedException
      * @throws Exception\RechercheDirigeantsNotFoundException
@@ -362,7 +371,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\RechercheBeneficiairesGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\RechercheBeneficiairesGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\RechercheBeneficiairesUnauthorizedException
      * @throws Exception\RechercheBeneficiairesNotFoundException
@@ -436,7 +445,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\RechercheDocumentsGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\RechercheDocumentsGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\RechercheDocumentsUnauthorizedException
      * @throws Exception\RechercheDocumentsNotFoundException
@@ -510,7 +519,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\RecherchePublicationsGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\RecherchePublicationsGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\RecherchePublicationsUnauthorizedException
      * @throws Exception\RecherchePublicationsNotFoundException
@@ -535,7 +544,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\SuggestionsGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\SuggestionsGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\SuggestionsBadRequestException
      */
@@ -555,7 +564,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\ComptesAnnuelsBadRequestException
      * @throws Exception\ComptesAnnuelsUnauthorizedException
@@ -587,7 +596,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\Cartographie|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\Cartographie|null : ResponseInterface)
      *
      * @throws Exception\CartographieBadRequestException
      * @throws Exception\CartographieUnauthorizedException
@@ -608,7 +617,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentTelechargementBadRequestException
      * @throws Exception\DocumentTelechargementUnauthorizedException
@@ -631,7 +640,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentExtraitPappersBadRequestException
      * @throws Exception\DocumentExtraitPappersUnauthorizedException
@@ -654,7 +663,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentExtraitInpiBadRequestException
      * @throws Exception\DocumentExtraitInpiUnauthorizedException
@@ -677,7 +686,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentAvisSituationInseeBadRequestException
      * @throws Exception\DocumentAvisSituationInseeUnauthorizedException
@@ -700,7 +709,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentStatusBadRequestException
      * @throws Exception\DocumentStatusUnauthorizedException
@@ -726,7 +735,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentBeneficiairesEffectifsBadRequestException
      * @throws Exception\DocumentBeneficiairesEffectifsUnauthorizedException
@@ -749,7 +758,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentScoringFinancierBadRequestException
      * @throws Exception\DocumentScoringFinancierUnauthorizedException
@@ -771,7 +780,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\DocumentScoringNonFinancierBadRequestException
      * @throws Exception\DocumentScoringNonFinancierUnauthorizedException
@@ -797,7 +806,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\ConformitePersonnePhysiqueGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\ConformitePersonnePhysiqueGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\ConformiteBadRequestException
      * @throws Exception\ConformiteUnauthorizedException
@@ -811,7 +820,7 @@ class Client extends Runtime\Client\Client
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\SuiviJetonsGetResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\SuiviJetonsGetResponse200|null : ResponseInterface)
      *
      * @throws Exception\SuiviJetonsUnauthorizedException
      * @throws Exception\SuiviJetonsServiceUnavailableException
@@ -832,7 +841,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\ListePostResponse200|Model\ListePostResponse201|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\ListePostResponse200|Model\ListePostResponse201|null : ResponseInterface)
      *
      * @throws Exception\SurveillanceEntrepriseBadRequestException
      * @throws Exception\SurveillanceEntrepriseUnauthorizedException
@@ -858,7 +867,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\ListeDeleteResponse200|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\ListeDeleteResponse200|null : ResponseInterface)
      *
      * @throws Exception\SurveillanceNotificationsDeleteBadRequestException
      * @throws Exception\SurveillanceNotificationsDeleteUnauthorizedException
@@ -881,7 +890,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return Model\ListePostResponse200|Model\ListePostResponse201|ResponseInterface|null
+     * @return ($fetch is 'object' ? Model\ListePostResponse200|Model\ListePostResponse201|null : ResponseInterface)
      *
      * @throws Exception\SurveillanceDirigeantBadRequestException
      * @throws Exception\SurveillanceDirigeantUnauthorizedException
@@ -904,7 +913,7 @@ class Client extends Runtime\Client\Client
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ResponseInterface|null
+     * @return ($fetch is 'object' ? null : ResponseInterface)
      *
      * @throws Exception\SurveillanceListeInformationsBadRequestException
      * @throws Exception\SurveillanceListeInformationsUnauthorizedException

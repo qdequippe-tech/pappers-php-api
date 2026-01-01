@@ -194,29 +194,29 @@ class BrevetNormalizer implements DenormalizerInterface, NormalizerInterface, De
             }
             $dataArray['agents'] = $values_3;
         }
-        if ($data->isInitialized('titreInvention') && null !== $data->getTitreInvention()) {
+        if ($data->isInitialized('titreInvention')) {
             $dataArray['titre_invention'] = $data->getTitreInvention();
         }
-        if ($data->isInitialized('description') && null !== $data->getDescription()) {
+        if ($data->isInitialized('description')) {
             $dataArray['description'] = $data->getDescription();
         }
-        if ($data->isInitialized('statut') && null !== $data->getStatut()) {
+        if ($data->isInitialized('statut')) {
             $dataArray['statut'] = $data->getStatut();
         }
         if ($data->isInitialized('publication') && null !== $data->getPublication()) {
             $dataArray['publication'] = $this->normalizer->normalize($data->getPublication(), 'json', $context);
         }
-        if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
+        if ($data->isInitialized('codePays')) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
-        if ($data->isInitialized('dateDepot') && null !== $data->getDateDepot()) {
-            $dataArray['date_depot'] = $data->getDateDepot()->format('Y-m-d');
+        if ($data->isInitialized('dateDepot')) {
+            $dataArray['date_depot'] = $data->getDateDepot()?->format('Y-m-d');
         }
-        if ($data->isInitialized('numeroDepot') && null !== $data->getNumeroDepot()) {
+        if ($data->isInitialized('numeroDepot')) {
             $dataArray['numero_depot'] = $data->getNumeroDepot();
         }
-        if ($data->isInitialized('dateExpiration') && null !== $data->getDateExpiration()) {
-            $dataArray['date_expiration'] = $data->getDateExpiration()->format('Y-m-d');
+        if ($data->isInitialized('dateExpiration')) {
+            $dataArray['date_expiration'] = $data->getDateExpiration()?->format('Y-m-d');
         }
         if ($data->isInitialized('priorites') && null !== $data->getPriorites()) {
             $values_4 = [];

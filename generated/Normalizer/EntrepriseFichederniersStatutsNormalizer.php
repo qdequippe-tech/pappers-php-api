@@ -112,7 +112,7 @@ class EntrepriseFichederniersStatutsNormalizer implements DenormalizerInterface,
     {
         $dataArray = [];
         if ($data->isInitialized('dateDepot') && null !== $data->getDateDepot()) {
-            $dataArray['date_depot'] = $data->getDateDepot()?->format('Y-m-d');
+            $dataArray['date_depot'] = $data->getDateDepot()->format('Y-m-d');
         }
         if ($data->isInitialized('dateDepotFormate') && null !== $data->getDateDepotFormate()) {
             $dataArray['date_depot_formate'] = $data->getDateDepotFormate();
@@ -133,7 +133,7 @@ class EntrepriseFichederniersStatutsNormalizer implements DenormalizerInterface,
             $dataArray['decision'] = $data->getDecision();
         }
         if ($data->isInitialized('dateActe') && null !== $data->getDateActe()) {
-            $dataArray['date_acte'] = $data->getDateActe()?->format('Y-m-d');
+            $dataArray['date_acte'] = $data->getDateActe()->format('Y-m-d');
         }
         if ($data->isInitialized('dateActeFormate') && null !== $data->getDateActeFormate()) {
             $dataArray['date_acte_formate'] = $data->getDateActeFormate();

@@ -94,23 +94,23 @@ class NotificationEntrepriseDirigeantPartantItemNormalizer implements Denormaliz
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('prenom') && null !== $data->getPrenom()) {
+        if ($data->isInitialized('prenom')) {
             $values = [];
             foreach ($data->getPrenom() as $value) {
                 $values[] = $value;
             }
             $dataArray['prenom'] = $values;
         }
-        if ($data->isInitialized('nom') && null !== $data->getNom()) {
+        if ($data->isInitialized('nom')) {
             $dataArray['nom'] = $data->getNom();
         }
-        if ($data->isInitialized('dateDeNaissanceRgpd') && null !== $data->getDateDeNaissanceRgpd()) {
+        if ($data->isInitialized('dateDeNaissanceRgpd')) {
             $dataArray['date_de_naissance_rgpd'] = $data->getDateDeNaissanceRgpd();
         }
-        if ($data->isInitialized('denomination') && null !== $data->getDenomination()) {
+        if ($data->isInitialized('denomination')) {
             $dataArray['denomination'] = $data->getDenomination();
         }
-        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
+        if ($data->isInitialized('siren')) {
             $dataArray['siren'] = $data->getSiren();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {

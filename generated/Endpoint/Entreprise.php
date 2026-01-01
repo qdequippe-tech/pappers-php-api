@@ -18,13 +18,22 @@ class Entreprise extends BaseEndpoint implements Endpoint
     use EndpointTrait;
 
     /**
-     * Vous devez fournir soit le SIREN, soit le SIRET. Si vous indiquez le SIREN, tous les établissements associés à ce SIREN seront renvoyés dans la clé `etablissements`. Si vous indiquez le SIRET, seul l'établissement associé sera renvoyé dans la clé `etablissement`.
+     * Vous devez fournir soit le SIREN, soit le SIRET.
+     *
+     * Si vous indiquez le SIREN, tous les établissements associés à ce SIREN seront renvoyés dans la clé `etablissements`.
+     *
+     * Si vous indiquez le SIRET, seul l'établissement associé sera renvoyé dans la clé `etablissement`
+     *
+     * > ⚠️ **Attention : Certaines entreprises sont en diffusion partielle auprès de l'Insee**
+     * >
+     * > Ce statut est signalé par le champ `diffusable=false`.
+     * >
+     * > Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      *
      * @param array $queryParameters {
      *
      * @var string $siren SIREN de l'entreprise
      * @var string $siret SIRET de l'entreprise
-     * @var bool   $integrer_diffusions_partielles Si vrai et si l'entreprise est en diffusion partielle, le retour renverra les informations partielles disponibles. Valeur par défaut : `false`.
      * @var string $format_publications_bodacc Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
      * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
@@ -70,7 +79,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `marques`, `brevets`, `dessins`: 1 crédit supplémentaire au total (même si plusieurs de ces trois champs sont demandés), si disponible
      * - `informations_boursieres`: 5 crédits supplémentaires si disponible
      * - `informations_boursieres:documents`: 10 crédits supplémentaires si disponible (donc un total de 15 crédits supplémentaires car ce champ inclut également le champ `informations_boursieres`)
-     *
+     * - `finances_estimations` : 5 crédits supplémentaires si disponible
      * }
      */
     public function __construct(array $queryParameters = [])
@@ -101,12 +110,11 @@ class Entreprise extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['siren', 'siret', 'integrer_diffusions_partielles', 'format_publications_bodacc', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes', 'beneficiaires_effectifs_complets', 'champs_supplementaires']);
+        $optionsResolver->setDefined(['siren', 'siret', 'format_publications_bodacc', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes', 'beneficiaires_effectifs_complets', 'champs_supplementaires']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('siren', ['string']);
         $optionsResolver->addAllowedTypes('siret', ['string']);
-        $optionsResolver->addAllowedTypes('integrer_diffusions_partielles', ['bool']);
         $optionsResolver->addAllowedTypes('format_publications_bodacc', ['string']);
         $optionsResolver->addAllowedTypes('validite_tva_intracommunautaire', ['bool']);
         $optionsResolver->addAllowedTypes('publications_bodacc_brutes', ['bool']);
@@ -127,10 +135,10 @@ class Entreprise extends BaseEndpoint implements Endpoint
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
+        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\EntrepriseFiche', 'json');
         }
-        if ((null === $contentType) === false && (206 === $status && false !== mb_strpos($contentType, 'application/json'))) {
+        if ((null === $contentType) === false && (206 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\EntrepriseFiche', 'json');
         }
         if (400 === $status) {

@@ -82,10 +82,10 @@ class DecisionsAutresPartiesItemNormalizer implements DenormalizerInterface, Nor
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('nom') && null !== $data->getNom()) {
+        if ($data->isInitialized('nom')) {
             $dataArray['nom'] = $data->getNom();
         }
-        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
+        if ($data->isInitialized('siren')) {
             $dataArray['siren'] = $data->getSiren();
         }
         if ($data->isInitialized('position') && null !== $data->getPosition()) {

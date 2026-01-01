@@ -80,7 +80,7 @@ class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos($contentType, 'application/json'))) {
+        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\ListeDeleteResponse200', 'json');
         }
         if (400 === $status) {

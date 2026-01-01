@@ -110,7 +110,7 @@ class DessinNormalizer implements DenormalizerInterface, NormalizerInterface, De
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('numero') && null !== $data->getNumero()) {
+        if ($data->isInitialized('numero')) {
             $dataArray['numero'] = $data->getNumero();
         }
         if ($data->isInitialized('depositaires') && null !== $data->getDepositaires()) {
@@ -127,14 +127,14 @@ class DessinNormalizer implements DenormalizerInterface, NormalizerInterface, De
             }
             $dataArray['mandataires'] = $values_1;
         }
-        if ($data->isInitialized('lienImage') && null !== $data->getLienImage()) {
+        if ($data->isInitialized('lienImage')) {
             $dataArray['lien_image'] = $data->getLienImage();
         }
-        if ($data->isInitialized('lieuEnregistrement') && null !== $data->getLieuEnregistrement()) {
+        if ($data->isInitialized('lieuEnregistrement')) {
             $dataArray['lieu_enregistrement'] = $data->getLieuEnregistrement();
         }
-        if ($data->isInitialized('dateEnregistrement') && null !== $data->getDateEnregistrement()) {
-            $dataArray['date_enregistrement'] = $data->getDateEnregistrement()->format('Y-m-d');
+        if ($data->isInitialized('dateEnregistrement')) {
+            $dataArray['date_enregistrement'] = $data->getDateEnregistrement()?->format('Y-m-d');
         }
         if ($data->isInitialized('designs') && null !== $data->getDesigns()) {
             $values_2 = [];

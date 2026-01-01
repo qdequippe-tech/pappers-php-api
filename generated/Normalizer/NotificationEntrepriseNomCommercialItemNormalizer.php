@@ -81,10 +81,10 @@ class NotificationEntrepriseNomCommercialItemNormalizer implements DenormalizerI
         if ($data->isInitialized('siret') && null !== $data->getSiret()) {
             $dataArray['siret'] = $data->getSiret();
         }
-        if ($data->isInitialized('valeur') && null !== $data->getValeur()) {
+        if ($data->isInitialized('valeur')) {
             $dataArray['valeur'] = $data->getValeur();
         }
-        if ($data->isInitialized('ancienneValeur') && null !== $data->getAncienneValeur()) {
+        if ($data->isInitialized('ancienneValeur')) {
             $dataArray['ancienne_valeur'] = $data->getAncienneValeur();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {

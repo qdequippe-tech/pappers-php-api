@@ -90,22 +90,22 @@ class EntrepriseCiteePersonnesItemNormalizer implements DenormalizerInterface, N
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('nom') && null !== $data->getNom()) {
+        if ($data->isInitialized('nom')) {
             $dataArray['nom'] = $data->getNom();
         }
-        if ($data->isInitialized('nomUsage') && null !== $data->getNomUsage()) {
+        if ($data->isInitialized('nomUsage')) {
             $dataArray['nom_usage'] = $data->getNomUsage();
         }
-        if ($data->isInitialized('prenom') && null !== $data->getPrenom()) {
+        if ($data->isInitialized('prenom')) {
             $dataArray['prenom'] = $data->getPrenom();
         }
-        if ($data->isInitialized('dateDeNaissance') && null !== $data->getDateDeNaissance()) {
-            $dataArray['date_de_naissance'] = $data->getDateDeNaissance()->format('Y-m-d');
+        if ($data->isInitialized('dateDeNaissance')) {
+            $dataArray['date_de_naissance'] = $data->getDateDeNaissance()?->format('Y-m-d');
         }
-        if ($data->isInitialized('denomination') && null !== $data->getDenomination()) {
+        if ($data->isInitialized('denomination')) {
             $dataArray['denomination'] = $data->getDenomination();
         }
-        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
+        if ($data->isInitialized('siren')) {
             $dataArray['siren'] = $data->getSiren();
         }
         foreach ($data as $key => $value) {

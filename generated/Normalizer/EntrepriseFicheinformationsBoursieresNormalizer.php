@@ -94,7 +94,7 @@ class EntrepriseFicheinformationsBoursieresNormalizer implements DenormalizerInt
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('cac40') && null !== $data->getCac40()) {
+        if ($data->isInitialized('cac40')) {
             $dataArray['cac40'] = $data->getCac40();
         }
         if ($data->isInitialized('isin') && null !== $data->getIsin()) {

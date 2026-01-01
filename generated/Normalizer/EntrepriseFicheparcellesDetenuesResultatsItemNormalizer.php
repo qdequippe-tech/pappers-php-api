@@ -111,13 +111,13 @@ class EntrepriseFicheparcellesDetenuesResultatsItemNormalizer implements Denorma
         if ($data->isInitialized('type') && null !== $data->getType()) {
             $dataArray['type'] = $data->getType();
         }
-        if ($data->isInitialized('numeroVoie') && null !== $data->getNumeroVoie()) {
+        if ($data->isInitialized('numeroVoie')) {
             $dataArray['numero_voie'] = $data->getNumeroVoie();
         }
-        if ($data->isInitialized('typeVoie') && null !== $data->getTypeVoie()) {
+        if ($data->isInitialized('typeVoie')) {
             $dataArray['type_voie'] = $data->getTypeVoie();
         }
-        if ($data->isInitialized('libelleVoie') && null !== $data->getLibelleVoie()) {
+        if ($data->isInitialized('libelleVoie')) {
             $dataArray['libelle_voie'] = $data->getLibelleVoie();
         }
         if ($data->isInitialized('codeCommune') && null !== $data->getCodeCommune()) {
@@ -126,7 +126,7 @@ class EntrepriseFicheparcellesDetenuesResultatsItemNormalizer implements Denorma
         if ($data->isInitialized('nomCommune') && null !== $data->getNomCommune()) {
             $dataArray['nom_commune'] = $data->getNomCommune();
         }
-        if ($data->isInitialized('contenance') && null !== $data->getContenance()) {
+        if ($data->isInitialized('contenance')) {
             $dataArray['contenance'] = $data->getContenance();
         }
         foreach ($data as $key => $value) {

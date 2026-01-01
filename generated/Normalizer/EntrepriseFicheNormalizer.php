@@ -20,6 +20,7 @@ use Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheentreprisesDirigeesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesEstimationsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieres;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItem;
@@ -514,62 +515,72 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         } elseif (\array_key_exists('finances', $data) && null === $data['finances']) {
             $object->setFinances(null);
         }
-        if (\array_key_exists('representants', $data) && null !== $data['representants']) {
+        if (\array_key_exists('finances_estimations', $data) && null !== $data['finances_estimations']) {
             $values_3 = [];
-            foreach ($data['representants'] as $value_3) {
-                $values_3[] = $this->denormalizer->denormalize($value_3, RepresentantEntreprise::class, 'json', $context);
+            foreach ($data['finances_estimations'] as $value_3) {
+                $values_3[] = $this->denormalizer->denormalize($value_3, EntrepriseFichefinancesEstimationsItem::class, 'json', $context);
             }
-            $object->setRepresentants($values_3);
+            $object->setFinancesEstimations($values_3);
+            unset($data['finances_estimations']);
+        } elseif (\array_key_exists('finances_estimations', $data) && null === $data['finances_estimations']) {
+            $object->setFinancesEstimations(null);
+        }
+        if (\array_key_exists('representants', $data) && null !== $data['representants']) {
+            $values_4 = [];
+            foreach ($data['representants'] as $value_4) {
+                $values_4[] = $this->denormalizer->denormalize($value_4, RepresentantEntreprise::class, 'json', $context);
+            }
+            $object->setRepresentants($values_4);
             unset($data['representants']);
         } elseif (\array_key_exists('representants', $data) && null === $data['representants']) {
             $object->setRepresentants(null);
         }
         if (\array_key_exists('beneficiaires_effectifs', $data) && null !== $data['beneficiaires_effectifs']) {
-            $values_4 = [];
-            foreach ($data['beneficiaires_effectifs'] as $value_4) {
-                $values_4[] = $this->denormalizer->denormalize($value_4, EntrepriseFichebeneficiairesEffectifsItem::class, 'json', $context);
+            $values_5 = [];
+            foreach ($data['beneficiaires_effectifs'] as $value_5) {
+                $values_5[] = $this->denormalizer->denormalize($value_5, EntrepriseFichebeneficiairesEffectifsItem::class, 'json', $context);
             }
-            $object->setBeneficiairesEffectifs($values_4);
+            $object->setBeneficiairesEffectifs($values_5);
             unset($data['beneficiaires_effectifs']);
         } elseif (\array_key_exists('beneficiaires_effectifs', $data) && null === $data['beneficiaires_effectifs']) {
             $object->setBeneficiairesEffectifs(null);
         }
         if (\array_key_exists('depots_actes', $data) && null !== $data['depots_actes']) {
-            $values_5 = [];
-            foreach ($data['depots_actes'] as $value_5) {
-                $values_5[] = $this->denormalizer->denormalize($value_5, EntrepriseFichedepotsActesItem::class, 'json', $context);
+            $values_6 = [];
+            foreach ($data['depots_actes'] as $value_6) {
+                $values_6[] = $this->denormalizer->denormalize($value_6, EntrepriseFichedepotsActesItem::class, 'json', $context);
             }
-            $object->setDepotsActes($values_5);
+            $object->setDepotsActes($values_6);
             unset($data['depots_actes']);
         } elseif (\array_key_exists('depots_actes', $data) && null === $data['depots_actes']) {
             $object->setDepotsActes(null);
         }
         if (\array_key_exists('comptes', $data) && null !== $data['comptes']) {
-            $values_6 = [];
-            foreach ($data['comptes'] as $value_6) {
-                $values_6[] = $this->denormalizer->denormalize($value_6, EntrepriseFichecomptesItem::class, 'json', $context);
+            $values_7 = [];
+            foreach ($data['comptes'] as $value_7) {
+                $values_7[] = $this->denormalizer->denormalize($value_7, EntrepriseFichecomptesItem::class, 'json', $context);
             }
-            $object->setComptes($values_6);
+            $object->setComptes($values_7);
             unset($data['comptes']);
         } elseif (\array_key_exists('comptes', $data) && null === $data['comptes']) {
             $object->setComptes(null);
         }
         if (\array_key_exists('publications_bodacc', $data) && null !== $data['publications_bodacc']) {
-            $values_7 = [];
-            foreach ($data['publications_bodacc'] as $value_7) {
-                $values_7[] = $this->denormalizer->denormalize($value_7, Bodacc::class, 'json', $context);
+            $values_8 = [];
+            foreach ($data['publications_bodacc'] as $value_8) {
+                $values_8[] = $this->denormalizer->denormalize($value_8, Bodacc::class, 'json', $context);
             }
-            $object->setPublicationsBodacc($values_7);
+            $object->setPublicationsBodacc($values_8);
             unset($data['publications_bodacc']);
         } elseif (\array_key_exists('publications_bodacc', $data) && null === $data['publications_bodacc']) {
             $object->setPublicationsBodacc(null);
         }
         if (\array_key_exists('procedures_collectives', $data) && null !== $data['procedures_collectives']) {
-            $values_8 = [];
-            foreach ($data['procedures_collectives'] as $value_8) {
-                $values_8[] = $this->denormalizer->denormalize($value_8, EntrepriseFicheproceduresCollectivesItem::class, 'json', $context);
+            $values_9 = [];
+            foreach ($data['procedures_collectives'] as $value_9) {
+                $values_9[] = $this->denormalizer->denormalize($value_9, EntrepriseFicheproceduresCollectivesItem::class, 'json', $context);
             }
-            $object->setProceduresCollectives($values_8);
+            $object->setProceduresCollectives($values_9);
             unset($data['procedures_collectives']);
         } elseif (\array_key_exists('procedures_collectives', $data) && null === $data['procedures_collectives']) {
             $object->setProceduresCollectives(null);
@@ -605,11 +616,11 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setRnm(null);
         }
         if (\array_key_exists('marques', $data) && null !== $data['marques']) {
-            $values_9 = [];
-            foreach ($data['marques'] as $value_9) {
-                $values_9[] = $this->denormalizer->denormalize($value_9, EntrepriseFichemarquesItem::class, 'json', $context);
+            $values_10 = [];
+            foreach ($data['marques'] as $value_10) {
+                $values_10[] = $this->denormalizer->denormalize($value_10, EntrepriseFichemarquesItem::class, 'json', $context);
             }
-            $object->setMarques($values_9);
+            $object->setMarques($values_10);
             unset($data['marques']);
         } elseif (\array_key_exists('marques', $data) && null === $data['marques']) {
             $object->setMarques(null);
@@ -621,21 +632,21 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setAssociation(null);
         }
         if (\array_key_exists('labels', $data) && null !== $data['labels']) {
-            $values_10 = [];
-            foreach ($data['labels'] as $value_10) {
-                $values_10[] = $this->denormalizer->denormalize($value_10, Labels::class, 'json', $context);
+            $values_11 = [];
+            foreach ($data['labels'] as $value_11) {
+                $values_11[] = $this->denormalizer->denormalize($value_11, Labels::class, 'json', $context);
             }
-            $object->setLabels($values_10);
+            $object->setLabels($values_11);
             unset($data['labels']);
         } elseif (\array_key_exists('labels', $data) && null === $data['labels']) {
             $object->setLabels(null);
         }
         if (\array_key_exists('sites_internet', $data) && null !== $data['sites_internet']) {
-            $values_11 = [];
-            foreach ($data['sites_internet'] as $value_11) {
-                $values_11[] = $value_11;
+            $values_12 = [];
+            foreach ($data['sites_internet'] as $value_12) {
+                $values_12[] = $value_12;
             }
-            $object->setSitesInternet($values_11);
+            $object->setSitesInternet($values_12);
             unset($data['sites_internet']);
         } elseif (\array_key_exists('sites_internet', $data) && null === $data['sites_internet']) {
             $object->setSitesInternet(null);
@@ -695,41 +706,41 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setNomPatronymique(null);
         }
         if (\array_key_exists('representants_legaux', $data) && null !== $data['representants_legaux']) {
-            $values_12 = [];
-            foreach ($data['representants_legaux'] as $value_12) {
-                $values_12[] = $this->denormalizer->denormalize($value_12, RepresentantEntreprise::class, 'json', $context);
+            $values_13 = [];
+            foreach ($data['representants_legaux'] as $value_13) {
+                $values_13[] = $this->denormalizer->denormalize($value_13, RepresentantEntreprise::class, 'json', $context);
             }
-            $object->setRepresentantsLegaux($values_12);
+            $object->setRepresentantsLegaux($values_13);
             unset($data['representants_legaux']);
         } elseif (\array_key_exists('representants_legaux', $data) && null === $data['representants_legaux']) {
             $object->setRepresentantsLegaux(null);
         }
         if (\array_key_exists('entreprises_dirigees', $data) && null !== $data['entreprises_dirigees']) {
-            $values_13 = [];
-            foreach ($data['entreprises_dirigees'] as $value_13) {
-                $values_13[] = $this->denormalizer->denormalize($value_13, EntrepriseFicheentreprisesDirigeesItem::class, 'json', $context);
+            $values_14 = [];
+            foreach ($data['entreprises_dirigees'] as $value_14) {
+                $values_14[] = $this->denormalizer->denormalize($value_14, EntrepriseFicheentreprisesDirigeesItem::class, 'json', $context);
             }
-            $object->setEntreprisesDirigees($values_13);
+            $object->setEntreprisesDirigees($values_14);
             unset($data['entreprises_dirigees']);
         } elseif (\array_key_exists('entreprises_dirigees', $data) && null === $data['entreprises_dirigees']) {
             $object->setEntreprisesDirigees(null);
         }
         if (\array_key_exists('observations', $data) && null !== $data['observations']) {
-            $values_14 = [];
-            foreach ($data['observations'] as $value_14) {
-                $values_14[] = $this->denormalizer->denormalize($value_14, EntrepriseFicheobservationsItem::class, 'json', $context);
+            $values_15 = [];
+            foreach ($data['observations'] as $value_15) {
+                $values_15[] = $this->denormalizer->denormalize($value_15, EntrepriseFicheobservationsItem::class, 'json', $context);
             }
-            $object->setObservations($values_14);
+            $object->setObservations($values_15);
             unset($data['observations']);
         } elseif (\array_key_exists('observations', $data) && null === $data['observations']) {
             $object->setObservations(null);
         }
         if (\array_key_exists('decisions', $data) && null !== $data['decisions']) {
-            $values_15 = [];
-            foreach ($data['decisions'] as $value_15) {
-                $values_15[] = $this->denormalizer->denormalize($value_15, Decisions::class, 'json', $context);
+            $values_16 = [];
+            foreach ($data['decisions'] as $value_16) {
+                $values_16[] = $this->denormalizer->denormalize($value_16, Decisions::class, 'json', $context);
             }
-            $object->setDecisions($values_15);
+            $object->setDecisions($values_16);
             unset($data['decisions']);
         } elseif (\array_key_exists('decisions', $data) && null === $data['decisions']) {
             $object->setDecisions(null);
@@ -741,31 +752,31 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setParcellesDetenues(null);
         }
         if (\array_key_exists('appels_offres_gagnes', $data) && null !== $data['appels_offres_gagnes']) {
-            $values_16 = [];
-            foreach ($data['appels_offres_gagnes'] as $value_16) {
-                $values_16[] = $this->denormalizer->denormalize($value_16, AppelOffreGagne::class, 'json', $context);
+            $values_17 = [];
+            foreach ($data['appels_offres_gagnes'] as $value_17) {
+                $values_17[] = $this->denormalizer->denormalize($value_17, AppelOffreGagne::class, 'json', $context);
             }
-            $object->setAppelsOffresGagnes($values_16);
+            $object->setAppelsOffresGagnes($values_17);
             unset($data['appels_offres_gagnes']);
         } elseif (\array_key_exists('appels_offres_gagnes', $data) && null === $data['appels_offres_gagnes']) {
             $object->setAppelsOffresGagnes(null);
         }
         if (\array_key_exists('appels_offres_lances', $data) && null !== $data['appels_offres_lances']) {
-            $values_17 = [];
-            foreach ($data['appels_offres_lances'] as $value_17) {
-                $values_17[] = $this->denormalizer->denormalize($value_17, AppelOffreLance::class, 'json', $context);
+            $values_18 = [];
+            foreach ($data['appels_offres_lances'] as $value_18) {
+                $values_18[] = $this->denormalizer->denormalize($value_18, AppelOffreLance::class, 'json', $context);
             }
-            $object->setAppelsOffresLances($values_17);
+            $object->setAppelsOffresLances($values_18);
             unset($data['appels_offres_lances']);
         } elseif (\array_key_exists('appels_offres_lances', $data) && null === $data['appels_offres_lances']) {
             $object->setAppelsOffresLances(null);
         }
         if (\array_key_exists('entreprises_citees', $data) && null !== $data['entreprises_citees']) {
-            $values_18 = [];
-            foreach ($data['entreprises_citees'] as $value_18) {
-                $values_18[] = $this->denormalizer->denormalize($value_18, EntrepriseCitee::class, 'json', $context);
+            $values_19 = [];
+            foreach ($data['entreprises_citees'] as $value_19) {
+                $values_19[] = $this->denormalizer->denormalize($value_19, EntrepriseCitee::class, 'json', $context);
             }
-            $object->setEntreprisesCitees($values_18);
+            $object->setEntreprisesCitees($values_19);
             unset($data['entreprises_citees']);
         } elseif (\array_key_exists('entreprises_citees', $data) && null === $data['entreprises_citees']) {
             $object->setEntreprisesCitees(null);
@@ -783,21 +794,21 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setEntreprisesCiteesIncomplet(null);
         }
         if (\array_key_exists('brevets', $data) && null !== $data['brevets']) {
-            $values_19 = [];
-            foreach ($data['brevets'] as $value_19) {
-                $values_19[] = $this->denormalizer->denormalize($value_19, Brevet::class, 'json', $context);
+            $values_20 = [];
+            foreach ($data['brevets'] as $value_20) {
+                $values_20[] = $this->denormalizer->denormalize($value_20, Brevet::class, 'json', $context);
             }
-            $object->setBrevets($values_19);
+            $object->setBrevets($values_20);
             unset($data['brevets']);
         } elseif (\array_key_exists('brevets', $data) && null === $data['brevets']) {
             $object->setBrevets(null);
         }
         if (\array_key_exists('dessins', $data) && null !== $data['dessins']) {
-            $values_20 = [];
-            foreach ($data['dessins'] as $value_20) {
-                $values_20[] = $this->denormalizer->denormalize($value_20, Dessin::class, 'json', $context);
+            $values_21 = [];
+            foreach ($data['dessins'] as $value_21) {
+                $values_21[] = $this->denormalizer->denormalize($value_21, Dessin::class, 'json', $context);
             }
-            $object->setDessins($values_20);
+            $object->setDessins($values_21);
             unset($data['dessins']);
         } elseif (\array_key_exists('dessins', $data) && null === $data['dessins']) {
             $object->setDessins(null);
@@ -808,9 +819,9 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         } elseif (\array_key_exists('informations_boursieres', $data) && null === $data['informations_boursieres']) {
             $object->setInformationsBoursieres(null);
         }
-        foreach ($data as $key => $value_21) {
+        foreach ($data as $key => $value_22) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value_21;
+                $object[$key] = $value_22;
             }
         }
 
@@ -864,7 +875,7 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $dataArray['conventions_collectives'] = $values;
         }
         if ($data->isInitialized('dateCreation') && null !== $data->getDateCreation()) {
-            $dataArray['date_creation'] = $data->getDateCreation()?->format('Y-m-d');
+            $dataArray['date_creation'] = $data->getDateCreation()->format('Y-m-d');
         }
         if ($data->isInitialized('dateCreationFormate') && null !== $data->getDateCreationFormate()) {
             $dataArray['date_creation_formate'] = $data->getDateCreationFormate();
@@ -960,13 +971,13 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $dataArray['duree_personne_morale'] = $data->getDureePersonneMorale();
         }
         if ($data->isInitialized('dernierTraitement') && null !== $data->getDernierTraitement()) {
-            $dataArray['dernier_traitement'] = $data->getDernierTraitement()?->format('Y-m-d');
+            $dataArray['dernier_traitement'] = $data->getDernierTraitement()->format('Y-m-d');
         }
         if ($data->isInitialized('derniereMiseAJourSirene') && null !== $data->getDerniereMiseAJourSirene()) {
-            $dataArray['derniere_mise_a_jour_sirene'] = $data->getDerniereMiseAJourSirene()?->format('Y-m-d');
+            $dataArray['derniere_mise_a_jour_sirene'] = $data->getDerniereMiseAJourSirene()->format('Y-m-d');
         }
         if ($data->isInitialized('derniereMiseAJourRcs') && null !== $data->getDerniereMiseAJourRcs()) {
-            $dataArray['derniere_mise_a_jour_rcs'] = $data->getDerniereMiseAJourRcs()?->format('Y-m-d');
+            $dataArray['derniere_mise_a_jour_rcs'] = $data->getDerniereMiseAJourRcs()->format('Y-m-d');
         }
         if ($data->isInitialized('statutConsolide') && null !== $data->getStatutConsolide()) {
             $dataArray['statut_consolide'] = $data->getStatutConsolide();
@@ -1027,47 +1038,54 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             }
             $dataArray['finances'] = $values_2;
         }
-        if ($data->isInitialized('representants') && null !== $data->getRepresentants()) {
+        if ($data->isInitialized('financesEstimations') && null !== $data->getFinancesEstimations()) {
             $values_3 = [];
-            foreach ($data->getRepresentants() as $value_3) {
+            foreach ($data->getFinancesEstimations() as $value_3) {
                 $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);
             }
-            $dataArray['representants'] = $values_3;
+            $dataArray['finances_estimations'] = $values_3;
         }
-        if ($data->isInitialized('beneficiairesEffectifs') && null !== $data->getBeneficiairesEffectifs()) {
+        if ($data->isInitialized('representants') && null !== $data->getRepresentants()) {
             $values_4 = [];
-            foreach ($data->getBeneficiairesEffectifs() as $value_4) {
+            foreach ($data->getRepresentants() as $value_4) {
                 $values_4[] = $this->normalizer->normalize($value_4, 'json', $context);
             }
-            $dataArray['beneficiaires_effectifs'] = $values_4;
+            $dataArray['representants'] = $values_4;
         }
-        if ($data->isInitialized('depotsActes') && null !== $data->getDepotsActes()) {
+        if ($data->isInitialized('beneficiairesEffectifs') && null !== $data->getBeneficiairesEffectifs()) {
             $values_5 = [];
-            foreach ($data->getDepotsActes() as $value_5) {
+            foreach ($data->getBeneficiairesEffectifs() as $value_5) {
                 $values_5[] = $this->normalizer->normalize($value_5, 'json', $context);
             }
-            $dataArray['depots_actes'] = $values_5;
+            $dataArray['beneficiaires_effectifs'] = $values_5;
         }
-        if ($data->isInitialized('comptes') && null !== $data->getComptes()) {
+        if ($data->isInitialized('depotsActes') && null !== $data->getDepotsActes()) {
             $values_6 = [];
-            foreach ($data->getComptes() as $value_6) {
+            foreach ($data->getDepotsActes() as $value_6) {
                 $values_6[] = $this->normalizer->normalize($value_6, 'json', $context);
             }
-            $dataArray['comptes'] = $values_6;
+            $dataArray['depots_actes'] = $values_6;
         }
-        if ($data->isInitialized('publicationsBodacc') && null !== $data->getPublicationsBodacc()) {
+        if ($data->isInitialized('comptes') && null !== $data->getComptes()) {
             $values_7 = [];
-            foreach ($data->getPublicationsBodacc() as $value_7) {
+            foreach ($data->getComptes() as $value_7) {
                 $values_7[] = $this->normalizer->normalize($value_7, 'json', $context);
             }
-            $dataArray['publications_bodacc'] = $values_7;
+            $dataArray['comptes'] = $values_7;
         }
-        if ($data->isInitialized('proceduresCollectives') && null !== $data->getProceduresCollectives()) {
+        if ($data->isInitialized('publicationsBodacc') && null !== $data->getPublicationsBodacc()) {
             $values_8 = [];
-            foreach ($data->getProceduresCollectives() as $value_8) {
+            foreach ($data->getPublicationsBodacc() as $value_8) {
                 $values_8[] = $this->normalizer->normalize($value_8, 'json', $context);
             }
-            $dataArray['procedures_collectives'] = $values_8;
+            $dataArray['publications_bodacc'] = $values_8;
+        }
+        if ($data->isInitialized('proceduresCollectives') && null !== $data->getProceduresCollectives()) {
+            $values_9 = [];
+            foreach ($data->getProceduresCollectives() as $value_9) {
+                $values_9[] = $this->normalizer->normalize($value_9, 'json', $context);
+            }
+            $dataArray['procedures_collectives'] = $values_9;
         }
         if ($data->isInitialized('procedureCollectiveExiste') && null !== $data->getProcedureCollectiveExiste()) {
             $dataArray['procedure_collective_existe'] = $data->getProcedureCollectiveExiste();
@@ -1085,28 +1103,28 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $dataArray['rnm'] = $this->normalizer->normalize($data->getRnm(), 'json', $context);
         }
         if ($data->isInitialized('marques') && null !== $data->getMarques()) {
-            $values_9 = [];
-            foreach ($data->getMarques() as $value_9) {
-                $values_9[] = $this->normalizer->normalize($value_9, 'json', $context);
+            $values_10 = [];
+            foreach ($data->getMarques() as $value_10) {
+                $values_10[] = $this->normalizer->normalize($value_10, 'json', $context);
             }
-            $dataArray['marques'] = $values_9;
+            $dataArray['marques'] = $values_10;
         }
         if ($data->isInitialized('association') && null !== $data->getAssociation()) {
             $dataArray['association'] = $this->normalizer->normalize($data->getAssociation(), 'json', $context);
         }
         if ($data->isInitialized('labels') && null !== $data->getLabels()) {
-            $values_10 = [];
-            foreach ($data->getLabels() as $value_10) {
-                $values_10[] = $this->normalizer->normalize($value_10, 'json', $context);
+            $values_11 = [];
+            foreach ($data->getLabels() as $value_11) {
+                $values_11[] = $this->normalizer->normalize($value_11, 'json', $context);
             }
-            $dataArray['labels'] = $values_10;
+            $dataArray['labels'] = $values_11;
         }
         if ($data->isInitialized('sitesInternet') && null !== $data->getSitesInternet()) {
-            $values_11 = [];
-            foreach ($data->getSitesInternet() as $value_11) {
-                $values_11[] = $value_11;
+            $values_12 = [];
+            foreach ($data->getSitesInternet() as $value_12) {
+                $values_12[] = $value_12;
             }
-            $dataArray['sites_internet'] = $values_11;
+            $dataArray['sites_internet'] = $values_12;
         }
         if ($data->isInitialized('telephone') && null !== $data->getTelephone()) {
             $dataArray['telephone'] = $data->getTelephone();
@@ -1126,66 +1144,66 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         if ($data->isInitialized('anneeCategorieEntreprise') && null !== $data->getAnneeCategorieEntreprise()) {
             $dataArray['annee_categorie_entreprise'] = $data->getAnneeCategorieEntreprise();
         }
-        if ($data->isInitialized('motifCessation') && null !== $data->getMotifCessation()) {
+        if ($data->isInitialized('motifCessation')) {
             $dataArray['motif_cessation'] = $data->getMotifCessation();
         }
-        if ($data->isInitialized('nomUsage') && null !== $data->getNomUsage()) {
+        if ($data->isInitialized('nomUsage')) {
             $dataArray['nom_usage'] = $data->getNomUsage();
         }
-        if ($data->isInitialized('nomPatronymique') && null !== $data->getNomPatronymique()) {
+        if ($data->isInitialized('nomPatronymique')) {
             $dataArray['nom_patronymique'] = $data->getNomPatronymique();
         }
         if ($data->isInitialized('representantsLegaux') && null !== $data->getRepresentantsLegaux()) {
-            $values_12 = [];
-            foreach ($data->getRepresentantsLegaux() as $value_12) {
-                $values_12[] = $this->normalizer->normalize($value_12, 'json', $context);
-            }
-            $dataArray['representants_legaux'] = $values_12;
-        }
-        if ($data->isInitialized('entreprisesDirigees') && null !== $data->getEntreprisesDirigees()) {
             $values_13 = [];
-            foreach ($data->getEntreprisesDirigees() as $value_13) {
+            foreach ($data->getRepresentantsLegaux() as $value_13) {
                 $values_13[] = $this->normalizer->normalize($value_13, 'json', $context);
             }
-            $dataArray['entreprises_dirigees'] = $values_13;
+            $dataArray['representants_legaux'] = $values_13;
         }
-        if ($data->isInitialized('observations') && null !== $data->getObservations()) {
+        if ($data->isInitialized('entreprisesDirigees') && null !== $data->getEntreprisesDirigees()) {
             $values_14 = [];
-            foreach ($data->getObservations() as $value_14) {
+            foreach ($data->getEntreprisesDirigees() as $value_14) {
                 $values_14[] = $this->normalizer->normalize($value_14, 'json', $context);
             }
-            $dataArray['observations'] = $values_14;
+            $dataArray['entreprises_dirigees'] = $values_14;
         }
-        if ($data->isInitialized('decisions') && null !== $data->getDecisions()) {
+        if ($data->isInitialized('observations') && null !== $data->getObservations()) {
             $values_15 = [];
-            foreach ($data->getDecisions() as $value_15) {
+            foreach ($data->getObservations() as $value_15) {
                 $values_15[] = $this->normalizer->normalize($value_15, 'json', $context);
             }
-            $dataArray['decisions'] = $values_15;
+            $dataArray['observations'] = $values_15;
+        }
+        if ($data->isInitialized('decisions') && null !== $data->getDecisions()) {
+            $values_16 = [];
+            foreach ($data->getDecisions() as $value_16) {
+                $values_16[] = $this->normalizer->normalize($value_16, 'json', $context);
+            }
+            $dataArray['decisions'] = $values_16;
         }
         if ($data->isInitialized('parcellesDetenues') && null !== $data->getParcellesDetenues()) {
             $dataArray['parcelles_detenues'] = $this->normalizer->normalize($data->getParcellesDetenues(), 'json', $context);
         }
         if ($data->isInitialized('appelsOffresGagnes') && null !== $data->getAppelsOffresGagnes()) {
-            $values_16 = [];
-            foreach ($data->getAppelsOffresGagnes() as $value_16) {
-                $values_16[] = $this->normalizer->normalize($value_16, 'json', $context);
-            }
-            $dataArray['appels_offres_gagnes'] = $values_16;
-        }
-        if ($data->isInitialized('appelsOffresLances') && null !== $data->getAppelsOffresLances()) {
             $values_17 = [];
-            foreach ($data->getAppelsOffresLances() as $value_17) {
+            foreach ($data->getAppelsOffresGagnes() as $value_17) {
                 $values_17[] = $this->normalizer->normalize($value_17, 'json', $context);
             }
-            $dataArray['appels_offres_lances'] = $values_17;
+            $dataArray['appels_offres_gagnes'] = $values_17;
         }
-        if ($data->isInitialized('entreprisesCitees') && null !== $data->getEntreprisesCitees()) {
+        if ($data->isInitialized('appelsOffresLances') && null !== $data->getAppelsOffresLances()) {
             $values_18 = [];
-            foreach ($data->getEntreprisesCitees() as $value_18) {
+            foreach ($data->getAppelsOffresLances() as $value_18) {
                 $values_18[] = $this->normalizer->normalize($value_18, 'json', $context);
             }
-            $dataArray['entreprises_citees'] = $values_18;
+            $dataArray['appels_offres_lances'] = $values_18;
+        }
+        if ($data->isInitialized('entreprisesCitees') && null !== $data->getEntreprisesCitees()) {
+            $values_19 = [];
+            foreach ($data->getEntreprisesCitees() as $value_19) {
+                $values_19[] = $this->normalizer->normalize($value_19, 'json', $context);
+            }
+            $dataArray['entreprises_citees'] = $values_19;
         }
         if ($data->isInitialized('entreprisesCiteesTotal') && null !== $data->getEntreprisesCiteesTotal()) {
             $dataArray['entreprises_citees_total'] = $data->getEntreprisesCiteesTotal();
@@ -1194,25 +1212,25 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $dataArray['entreprises_citees_incomplet'] = $data->getEntreprisesCiteesIncomplet();
         }
         if ($data->isInitialized('brevets') && null !== $data->getBrevets()) {
-            $values_19 = [];
-            foreach ($data->getBrevets() as $value_19) {
-                $values_19[] = $this->normalizer->normalize($value_19, 'json', $context);
-            }
-            $dataArray['brevets'] = $values_19;
-        }
-        if ($data->isInitialized('dessins') && null !== $data->getDessins()) {
             $values_20 = [];
-            foreach ($data->getDessins() as $value_20) {
+            foreach ($data->getBrevets() as $value_20) {
                 $values_20[] = $this->normalizer->normalize($value_20, 'json', $context);
             }
-            $dataArray['dessins'] = $values_20;
+            $dataArray['brevets'] = $values_20;
         }
-        if ($data->isInitialized('informationsBoursieres') && null !== $data->getInformationsBoursieres()) {
+        if ($data->isInitialized('dessins') && null !== $data->getDessins()) {
+            $values_21 = [];
+            foreach ($data->getDessins() as $value_21) {
+                $values_21[] = $this->normalizer->normalize($value_21, 'json', $context);
+            }
+            $dataArray['dessins'] = $values_21;
+        }
+        if ($data->isInitialized('informationsBoursieres')) {
             $dataArray['informations_boursieres'] = $this->normalizer->normalize($data->getInformationsBoursieres(), 'json', $context);
         }
-        foreach ($data as $key => $value_21) {
+        foreach ($data as $key => $value_22) {
             if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value_21;
+                $dataArray[$key] = $value_22;
             }
         }
 

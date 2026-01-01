@@ -32,7 +32,7 @@ class EntrepriseRecherche extends \ArrayObject
      */
     protected $oppositionUtilisationCommerciale;
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable pour les entreprises en diffusion partielle.
      *
      * @var string|null
      */
@@ -129,7 +129,8 @@ class EntrepriseRecherche extends \ArrayObject
     protected $societeAMission;
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
-     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     *
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *
      * @var string|null
      */
@@ -293,7 +294,7 @@ class EntrepriseRecherche extends \ArrayObject
     }
 
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable pour les entreprises en diffusion partielle.
      */
     public function getNomEntreprise(): ?string
     {
@@ -301,7 +302,7 @@ class EntrepriseRecherche extends \ArrayObject
     }
 
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable pour les entreprises en diffusion partielle.
      */
     public function setNomEntreprise(?string $nomEntreprise): self
     {
@@ -602,7 +603,8 @@ class EntrepriseRecherche extends \ArrayObject
 
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
-     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     *
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      */
     public function getCategorieJuridique(): ?string
     {

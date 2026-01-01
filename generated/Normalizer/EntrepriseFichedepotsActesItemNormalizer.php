@@ -99,7 +99,7 @@ class EntrepriseFichedepotsActesItemNormalizer implements DenormalizerInterface,
     {
         $dataArray = [];
         if ($data->isInitialized('dateDepot') && null !== $data->getDateDepot()) {
-            $dataArray['date_depot'] = $data->getDateDepot()?->format('Y-m-d');
+            $dataArray['date_depot'] = $data->getDateDepot()->format('Y-m-d');
         }
         if ($data->isInitialized('dateDepotFormate') && null !== $data->getDateDepotFormate()) {
             $dataArray['date_depot_formate'] = $data->getDateDepotFormate();

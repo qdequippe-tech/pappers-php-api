@@ -141,43 +141,43 @@ class NotificationEntrepriseSiegeSocialNormalizer implements DenormalizerInterfa
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('valeur') && null !== $data->getValeur()) {
+        if ($data->isInitialized('valeur')) {
             $dataArray['valeur'] = $data->getValeur();
         }
-        if ($data->isInitialized('ancienneValeur') && null !== $data->getAncienneValeur()) {
+        if ($data->isInitialized('ancienneValeur')) {
             $dataArray['ancienne_valeur'] = $data->getAncienneValeur();
         }
-        if ($data->isInitialized('numeroVoie') && null !== $data->getNumeroVoie()) {
+        if ($data->isInitialized('numeroVoie')) {
             $dataArray['numero_voie'] = $data->getNumeroVoie();
         }
-        if ($data->isInitialized('indiceRepetition') && null !== $data->getIndiceRepetition()) {
+        if ($data->isInitialized('indiceRepetition')) {
             $dataArray['indice_repetition'] = $data->getIndiceRepetition();
         }
-        if ($data->isInitialized('typeVoie') && null !== $data->getTypeVoie()) {
+        if ($data->isInitialized('typeVoie')) {
             $dataArray['type_voie'] = $data->getTypeVoie();
         }
-        if ($data->isInitialized('libelleVoie') && null !== $data->getLibelleVoie()) {
+        if ($data->isInitialized('libelleVoie')) {
             $dataArray['libelle_voie'] = $data->getLibelleVoie();
         }
-        if ($data->isInitialized('complementAdresse') && null !== $data->getComplementAdresse()) {
+        if ($data->isInitialized('complementAdresse')) {
             $dataArray['complement_adresse'] = $data->getComplementAdresse();
         }
-        if ($data->isInitialized('adresseLigne1') && null !== $data->getAdresseLigne1()) {
+        if ($data->isInitialized('adresseLigne1')) {
             $dataArray['adresse_ligne_1'] = $data->getAdresseLigne1();
         }
-        if ($data->isInitialized('adresseLigne2') && null !== $data->getAdresseLigne2()) {
+        if ($data->isInitialized('adresseLigne2')) {
             $dataArray['adresse_ligne_2'] = $data->getAdresseLigne2();
         }
-        if ($data->isInitialized('codePostal') && null !== $data->getCodePostal()) {
+        if ($data->isInitialized('codePostal')) {
             $dataArray['code_postal'] = $data->getCodePostal();
         }
-        if ($data->isInitialized('ville') && null !== $data->getVille()) {
+        if ($data->isInitialized('ville')) {
             $dataArray['ville'] = $data->getVille();
         }
-        if ($data->isInitialized('pays') && null !== $data->getPays()) {
+        if ($data->isInitialized('pays')) {
             $dataArray['pays'] = $data->getPays();
         }
-        if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
+        if ($data->isInitialized('codePays')) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {

@@ -351,7 +351,7 @@ class EntrepriseRechercheNormalizer implements DenormalizerInterface, Normalizer
             $dataArray['conventions_collectives'] = $values;
         }
         if ($data->isInitialized('dateCreation') && null !== $data->getDateCreation()) {
-            $dataArray['date_creation'] = $data->getDateCreation()?->format('Y-m-d');
+            $dataArray['date_creation'] = $data->getDateCreation()->format('Y-m-d');
         }
         if ($data->isInitialized('dateCreationFormate') && null !== $data->getDateCreationFormate()) {
             $dataArray['date_creation_formate'] = $data->getDateCreationFormate();

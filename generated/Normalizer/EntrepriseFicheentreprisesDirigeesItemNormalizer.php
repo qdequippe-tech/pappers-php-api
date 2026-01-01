@@ -107,13 +107,13 @@ class EntrepriseFicheentreprisesDirigeesItemNormalizer implements DenormalizerIn
             }
             $dataArray['qualites'] = $values;
         }
-        if ($data->isInitialized('datePriseDePoste') && null !== $data->getDatePriseDePoste()) {
-            $dataArray['date_prise_de_poste'] = $data->getDatePriseDePoste()->format('Y-m-d');
+        if ($data->isInitialized('datePriseDePoste')) {
+            $dataArray['date_prise_de_poste'] = $data->getDatePriseDePoste()?->format('Y-m-d');
         }
-        if ($data->isInitialized('dateDepartDePoste') && null !== $data->getDateDepartDePoste()) {
-            $dataArray['date_depart_de_poste'] = $data->getDateDepartDePoste()->format('Y-m-d');
+        if ($data->isInitialized('dateDepartDePoste')) {
+            $dataArray['date_depart_de_poste'] = $data->getDateDepartDePoste()?->format('Y-m-d');
         }
-        if ($data->isInitialized('denomination') && null !== $data->getDenomination()) {
+        if ($data->isInitialized('denomination')) {
             $dataArray['denomination'] = $data->getDenomination();
         }
         foreach ($data as $key => $value_1) {

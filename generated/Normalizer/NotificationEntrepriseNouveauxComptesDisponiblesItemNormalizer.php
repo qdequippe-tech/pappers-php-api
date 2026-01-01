@@ -87,7 +87,7 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItemNormalizer implements 
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        if ($data->isInitialized('token') && null !== $data->getToken()) {
+        if ($data->isInitialized('token')) {
             $dataArray['token'] = $data->getToken();
         }
         if ($data->isInitialized('typeComptes') && null !== $data->getTypeComptes()) {

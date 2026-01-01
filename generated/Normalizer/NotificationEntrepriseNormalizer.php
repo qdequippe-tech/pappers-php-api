@@ -354,7 +354,7 @@ class NotificationEntrepriseNormalizer implements DenormalizerInterface, Normali
         if ($data->isInitialized('detailsEntreprise') && null !== $data->getDetailsEntreprise()) {
             $dataArray['details_entreprise'] = $this->normalizer->normalize($data->getDetailsEntreprise(), 'json', $context);
         }
-        if ($data->isInitialized('information') && null !== $data->getInformation()) {
+        if ($data->isInitialized('information')) {
             $dataArray['information'] = $data->getInformation();
         }
         if ($data->isInitialized('nomEntreprise') && null !== $data->getNomEntreprise()) {
@@ -467,28 +467,28 @@ class NotificationEntrepriseNormalizer implements DenormalizerInterface, Normali
             }
             $dataArray['nouvelle_annonce_publiee'] = $values_10;
         }
-        if ($data->isInitialized('nouveauxStatutsPublies') && null !== $data->getNouveauxStatutsPublies()) {
+        if ($data->isInitialized('nouveauxStatutsPublies')) {
             $values_11 = [];
             foreach ($data->getNouveauxStatutsPublies() as $value_11) {
                 $values_11[] = $this->normalizer->normalize($value_11, 'json', $context);
             }
             $dataArray['nouveaux_statuts_publies'] = $values_11;
         }
-        if ($data->isInitialized('nouvelActePublie') && null !== $data->getNouvelActePublie()) {
+        if ($data->isInitialized('nouvelActePublie')) {
             $values_12 = [];
             foreach ($data->getNouvelActePublie() as $value_12) {
                 $values_12[] = $this->normalizer->normalize($value_12, 'json', $context);
             }
             $dataArray['nouvel_acte_publie'] = $values_12;
         }
-        if ($data->isInitialized('nouvelleDeclarationBeneficiairesEffectifPubliee') && null !== $data->getNouvelleDeclarationBeneficiairesEffectifPubliee()) {
+        if ($data->isInitialized('nouvelleDeclarationBeneficiairesEffectifPubliee')) {
             $values_13 = [];
             foreach ($data->getNouvelleDeclarationBeneficiairesEffectifPubliee() as $value_13) {
                 $values_13[] = $this->normalizer->normalize($value_13, 'json', $context);
             }
             $dataArray['nouvelle_declaration_beneficiaires_effectif_publiee'] = $values_13;
         }
-        if ($data->isInitialized('nouveauDirigeant') && null !== $data->getNouveauDirigeant()) {
+        if ($data->isInitialized('nouveauDirigeant')) {
             $values_14 = [];
             foreach ($data->getNouveauDirigeant() as $value_14) {
                 $values_14[] = $this->normalizer->normalize($value_14, 'json', $context);
