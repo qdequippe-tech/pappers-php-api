@@ -433,7 +433,7 @@ class EntrepriseFichefinancesItemNormalizer implements DenormalizerInterface, No
             $dataArray['annee'] = $data->getAnnee();
         }
         if ($data->isInitialized('dateDeClotureExercice') && null !== $data->getDateDeClotureExercice()) {
-            $dataArray['date_de_cloture_exercice'] = $data->getDateDeClotureExercice()?->format('Y-m-d');
+            $dataArray['date_de_cloture_exercice'] = $data->getDateDeClotureExercice()->format('Y-m-d');
         }
         if ($data->isInitialized('dureeExercice') && null !== $data->getDureeExercice()) {
             $dataArray['duree_exercice'] = $data->getDureeExercice();

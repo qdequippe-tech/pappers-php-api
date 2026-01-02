@@ -124,16 +124,16 @@ class DecisionsNormalizer implements DenormalizerInterface, NormalizerInterface,
             $dataArray['juridiction'] = $data->getJuridiction();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
-            $dataArray['date'] = $data->getDate()?->format('Y-m-d');
+            $dataArray['date'] = $data->getDate()->format('Y-m-d');
         }
-        if ($data->isInitialized('numero') && null !== $data->getNumero()) {
+        if ($data->isInitialized('numero')) {
             $dataArray['numero'] = $data->getNumero();
         }
-        if ($data->isInitialized('dispositif') && null !== $data->getDispositif()) {
+        if ($data->isInitialized('dispositif')) {
             $dataArray['dispositif'] = $data->getDispositif();
         }
-        if ($data->isInitialized('dateDebutAffaire') && null !== $data->getDateDebutAffaire()) {
-            $dataArray['date_debut_affaire'] = $data->getDateDebutAffaire()->format('Y-m-d');
+        if ($data->isInitialized('dateDebutAffaire')) {
+            $dataArray['date_debut_affaire'] = $data->getDateDebutAffaire()?->format('Y-m-d');
         }
         if ($data->isInitialized('position') && null !== $data->getPosition()) {
             $dataArray['position'] = $data->getPosition();

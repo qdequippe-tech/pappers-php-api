@@ -32,7 +32,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $oppositionUtilisationCommerciale;
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable pour les entreprises en diffusion partielle.
      *
      * @var string|null
      */
@@ -129,7 +129,8 @@ class EntrepriseFiche extends \ArrayObject
     protected $societeAMission;
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
-     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     *
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *
      * @var string|null
      */
@@ -199,7 +200,7 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $siege;
     /**
-     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Aucune information n'est alors disponible, sauf si vous utilisez le paramètre `integrer_diffusions_partielles`.
+     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      *
      * @var bool|null
      */
@@ -402,6 +403,12 @@ class EntrepriseFiche extends \ArrayObject
      * @var list<EntrepriseFichefinancesItem>|null
      */
     protected $finances;
+    /**
+     * Liste des finances estimées de l'entreprise.
+     *
+     * @var list<EntrepriseFichefinancesEstimationsItem>|null
+     */
+    protected $financesEstimations;
     /**
      * Liste des représentants de l'entreprise.
      *
@@ -683,7 +690,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable pour les entreprises en diffusion partielle.
      */
     public function getNomEntreprise(): ?string
     {
@@ -691,7 +698,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable si le paramètre `integrer_diffusions_partielles` est à vrai.
+     * Le nom de l'entreprise. Il est égal à sigle + dénomination en cas de personne morale, ou à nom + prénom en cas de personne physique. Nullable pour les entreprises en diffusion partielle.
      */
     public function setNomEntreprise(?string $nomEntreprise): self
     {
@@ -992,7 +999,8 @@ class EntrepriseFiche extends \ArrayObject
 
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
-     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     *
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      */
     public function getCategorieJuridique(): ?string
     {
@@ -1215,7 +1223,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Aucune information n'est alors disponible, sauf si vous utilisez le paramètre `integrer_diffusions_partielles`.
+     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      */
     public function getDiffusable(): ?bool
     {
@@ -1223,7 +1231,7 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Aucune information n'est alors disponible, sauf si vous utilisez le paramètre `integrer_diffusions_partielles`.
+     * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      */
     public function setDiffusable(?bool $diffusable): self
     {
@@ -1862,6 +1870,29 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['finances'] = true;
         $this->finances = $finances;
+
+        return $this;
+    }
+
+    /**
+     * Liste des finances estimées de l'entreprise.
+     *
+     * @return list<EntrepriseFichefinancesEstimationsItem>|null
+     */
+    public function getFinancesEstimations(): ?array
+    {
+        return $this->financesEstimations;
+    }
+
+    /**
+     * Liste des finances estimées de l'entreprise.
+     *
+     * @param list<EntrepriseFichefinancesEstimationsItem>|null $financesEstimations
+     */
+    public function setFinancesEstimations(?array $financesEstimations): self
+    {
+        $this->initialized['financesEstimations'] = true;
+        $this->financesEstimations = $financesEstimations;
 
         return $this;
     }

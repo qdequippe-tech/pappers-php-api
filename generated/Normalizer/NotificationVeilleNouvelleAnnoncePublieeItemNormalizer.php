@@ -102,10 +102,10 @@ class NotificationVeilleNouvelleAnnoncePublieeItemNormalizer implements Denormal
         if ($data->isInitialized('numeroParution') && null !== $data->getNumeroParution()) {
             $dataArray['numero_parution'] = $data->getNumeroParution();
         }
-        if ($data->isInitialized('bodacc') && null !== $data->getBodacc()) {
+        if ($data->isInitialized('bodacc')) {
             $dataArray['bodacc'] = $data->getBodacc();
         }
-        if ($data->isInitialized('numeroAnnonce') && null !== $data->getNumeroAnnonce()) {
+        if ($data->isInitialized('numeroAnnonce')) {
             $dataArray['numero_annonce'] = $data->getNumeroAnnonce();
         }
         foreach ($data as $key => $value) {

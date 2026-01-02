@@ -93,20 +93,20 @@ class EntrepriseFicheobservationsItemNormalizer implements DenormalizerInterface
         if ($data->isInitialized('numero') && null !== $data->getNumero()) {
             $dataArray['numero'] = $data->getNumero();
         }
-        if ($data->isInitialized('dateAjout') && null !== $data->getDateAjout()) {
-            $dataArray['date_ajout'] = $data->getDateAjout()->format('Y-m-d');
+        if ($data->isInitialized('dateAjout')) {
+            $dataArray['date_ajout'] = $data->getDateAjout()?->format('Y-m-d');
         }
-        if ($data->isInitialized('texte') && null !== $data->getTexte()) {
+        if ($data->isInitialized('texte')) {
             $dataArray['texte'] = $data->getTexte();
         }
         if ($data->isInitialized('etat') && null !== $data->getEtat()) {
             $dataArray['etat'] = $data->getEtat();
         }
-        if ($data->isInitialized('dateModification') && null !== $data->getDateModification()) {
-            $dataArray['date_modification'] = $data->getDateModification()->format('Y-m-d');
+        if ($data->isInitialized('dateModification')) {
+            $dataArray['date_modification'] = $data->getDateModification()?->format('Y-m-d');
         }
-        if ($data->isInitialized('dateSuppression') && null !== $data->getDateSuppression()) {
-            $dataArray['date_suppression'] = $data->getDateSuppression()->format('Y-m-d');
+        if ($data->isInitialized('dateSuppression')) {
+            $dataArray['date_suppression'] = $data->getDateSuppression()?->format('Y-m-d');
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

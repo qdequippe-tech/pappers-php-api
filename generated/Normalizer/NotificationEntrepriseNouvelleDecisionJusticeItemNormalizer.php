@@ -110,22 +110,22 @@ class NotificationEntrepriseNouvelleDecisionJusticeItemNormalizer implements Den
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('id') && null !== $data->getId()) {
+        if ($data->isInitialized('id')) {
             $dataArray['id'] = $data->getId();
         }
-        if ($data->isInitialized('juridiction') && null !== $data->getJuridiction()) {
+        if ($data->isInitialized('juridiction')) {
             $dataArray['juridiction'] = $data->getJuridiction();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
-            $dataArray['date'] = $data->getDate()?->format('Y-m-d');
+            $dataArray['date'] = $data->getDate()->format('Y-m-d');
         }
-        if ($data->isInitialized('numero') && null !== $data->getNumero()) {
+        if ($data->isInitialized('numero')) {
             $dataArray['numero'] = $data->getNumero();
         }
         if ($data->isInitialized('dateDebutAffaire') && null !== $data->getDateDebutAffaire()) {
-            $dataArray['date_debut_affaire'] = $data->getDateDebutAffaire()?->format('Y-m-d');
+            $dataArray['date_debut_affaire'] = $data->getDateDebutAffaire()->format('Y-m-d');
         }
-        if ($data->isInitialized('position') && null !== $data->getPosition()) {
+        if ($data->isInitialized('position')) {
             $dataArray['position'] = $data->getPosition();
         }
         if ($data->isInitialized('avocats') && null !== $data->getAvocats()) {

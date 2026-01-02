@@ -111,31 +111,31 @@ class AppelOffreNormalizer implements DenormalizerInterface, NormalizerInterface
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('montant') && null !== $data->getMontant()) {
+        if ($data->isInitialized('montant')) {
             $dataArray['montant'] = $data->getMontant();
         }
-        if ($data->isInitialized('dureeMois') && null !== $data->getDureeMois()) {
+        if ($data->isInitialized('dureeMois')) {
             $dataArray['duree_mois'] = $data->getDureeMois();
         }
-        if ($data->isInitialized('dateNotification') && null !== $data->getDateNotification()) {
-            $dataArray['date_notification'] = $data->getDateNotification()->format('Y-m-d');
+        if ($data->isInitialized('dateNotification')) {
+            $dataArray['date_notification'] = $data->getDateNotification()?->format('Y-m-d');
         }
-        if ($data->isInitialized('datePublication') && null !== $data->getDatePublication()) {
-            $dataArray['date_publication'] = $data->getDatePublication()->format('Y-m-d');
+        if ($data->isInitialized('datePublication')) {
+            $dataArray['date_publication'] = $data->getDatePublication()?->format('Y-m-d');
         }
-        if ($data->isInitialized('objet') && null !== $data->getObjet()) {
+        if ($data->isInitialized('objet')) {
             $dataArray['objet'] = $data->getObjet();
         }
-        if ($data->isInitialized('codeCategorie') && null !== $data->getCodeCategorie()) {
+        if ($data->isInitialized('codeCategorie')) {
             $dataArray['code_categorie'] = $data->getCodeCategorie();
         }
-        if ($data->isInitialized('libelleCategorie') && null !== $data->getLibelleCategorie()) {
+        if ($data->isInitialized('libelleCategorie')) {
             $dataArray['libelle_categorie'] = $data->getLibelleCategorie();
         }
-        if ($data->isInitialized('idMacellum') && null !== $data->getIdMacellum()) {
+        if ($data->isInitialized('idMacellum')) {
             $dataArray['id_macellum'] = $data->getIdMacellum();
         }
-        if ($data->isInitialized('statutProcedure') && null !== $data->getStatutProcedure()) {
+        if ($data->isInitialized('statutProcedure')) {
             $dataArray['statut_procedure'] = $data->getStatutProcedure();
         }
         foreach ($data as $key => $value) {

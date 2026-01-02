@@ -101,7 +101,7 @@ class DocumentNormalizer implements DenormalizerInterface, NormalizerInterface, 
             $dataArray['token'] = $data->getToken();
         }
         if ($data->isInitialized('dateDepot') && null !== $data->getDateDepot()) {
-            $dataArray['date_depot'] = $data->getDateDepot()?->format('Y-m-d');
+            $dataArray['date_depot'] = $data->getDateDepot()->format('Y-m-d');
         }
         if ($data->isInitialized('mentions') && null !== $data->getMentions()) {
             $values = [];

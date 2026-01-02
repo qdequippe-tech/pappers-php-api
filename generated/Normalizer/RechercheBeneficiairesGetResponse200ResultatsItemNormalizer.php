@@ -373,7 +373,7 @@ class RechercheBeneficiairesGetResponse200ResultatsItemNormalizer implements Den
             $dataArray['ville'] = $data->getVille();
         }
         if ($data->isInitialized('dateDeNaissanceCompleteFormatee') && null !== $data->getDateDeNaissanceCompleteFormatee()) {
-            $dataArray['date_de_naissance_complete_formatee'] = $data->getDateDeNaissanceCompleteFormatee()?->format('Y-m-d');
+            $dataArray['date_de_naissance_complete_formatee'] = $data->getDateDeNaissanceCompleteFormatee()->format('Y-m-d');
         }
         if ($data->isInitialized('pourcentagePartsDirectes') && null !== $data->getPourcentagePartsDirectes()) {
             $dataArray['pourcentage_parts_directes'] = $data->getPourcentagePartsDirectes();

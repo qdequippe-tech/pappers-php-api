@@ -66,10 +66,10 @@ class BrevetClassificationsItemNormalizer implements DenormalizerInterface, Norm
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('symbole') && null !== $data->getSymbole()) {
+        if ($data->isInitialized('symbole')) {
             $dataArray['symbole'] = $data->getSymbole();
         }
-        if ($data->isInitialized('label') && null !== $data->getLabel()) {
+        if ($data->isInitialized('label')) {
             $dataArray['label'] = $data->getLabel();
         }
         foreach ($data as $key => $value) {

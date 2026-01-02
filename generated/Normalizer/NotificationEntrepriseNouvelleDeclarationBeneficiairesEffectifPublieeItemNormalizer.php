@@ -66,7 +66,7 @@ class NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItemN
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('acte') && null !== $data->getActe()) {
+        if ($data->isInitialized('acte')) {
             $dataArray['acte'] = $data->getActe();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {

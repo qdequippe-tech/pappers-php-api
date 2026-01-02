@@ -84,19 +84,19 @@ class NotificationDirigeantNouvellesSanctionsItemNormalizer implements Denormali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('date') && null !== $data->getDate()) {
+        if ($data->isInitialized('date')) {
             $dataArray['date'] = $data->getDate();
         }
-        if ($data->isInitialized('autorite') && null !== $data->getAutorite()) {
+        if ($data->isInitialized('autorite')) {
             $dataArray['autorite'] = $data->getAutorite();
         }
-        if ($data->isInitialized('description') && null !== $data->getDescription()) {
+        if ($data->isInitialized('description')) {
             $dataArray['description'] = $data->getDescription();
         }
-        if ($data->isInitialized('pays') && null !== $data->getPays()) {
+        if ($data->isInitialized('pays')) {
             $dataArray['pays'] = $data->getPays();
         }
-        if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
+        if ($data->isInitialized('codePays')) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
         foreach ($data as $key => $value) {

@@ -96,25 +96,25 @@ class PersonneDessinNormalizer implements DenormalizerInterface, NormalizerInter
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
+        if ($data->isInitialized('siren')) {
             $dataArray['siren'] = $data->getSiren();
         }
-        if ($data->isInitialized('nom') && null !== $data->getNom()) {
+        if ($data->isInitialized('nom')) {
             $dataArray['nom'] = $data->getNom();
         }
-        if ($data->isInitialized('rue') && null !== $data->getRue()) {
+        if ($data->isInitialized('rue')) {
             $dataArray['rue'] = $data->getRue();
         }
-        if ($data->isInitialized('ville') && null !== $data->getVille()) {
+        if ($data->isInitialized('ville')) {
             $dataArray['ville'] = $data->getVille();
         }
-        if ($data->isInitialized('codePostal') && null !== $data->getCodePostal()) {
+        if ($data->isInitialized('codePostal')) {
             $dataArray['code_postal'] = $data->getCodePostal();
         }
-        if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
+        if ($data->isInitialized('codePays')) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
-        if ($data->isInitialized('adresseLigne1') && null !== $data->getAdresseLigne1()) {
+        if ($data->isInitialized('adresseLigne1')) {
             $dataArray['adresse_ligne_1'] = $data->getAdresseLigne1();
         }
         foreach ($data as $key => $value) {

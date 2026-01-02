@@ -72,14 +72,14 @@ class DessinDesignsItemNormalizer implements DenormalizerInterface, NormalizerIn
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('titre') && null !== $data->getTitre()) {
+        if ($data->isInitialized('titre')) {
             $dataArray['titre'] = $data->getTitre();
         }
-        if ($data->isInitialized('ref') && null !== $data->getRef()) {
+        if ($data->isInitialized('ref')) {
             $dataArray['ref'] = $data->getRef();
         }
-        if ($data->isInitialized('dateExpiration') && null !== $data->getDateExpiration()) {
-            $dataArray['date_expiration'] = $data->getDateExpiration()->format('Y-m-d');
+        if ($data->isInitialized('dateExpiration')) {
+            $dataArray['date_expiration'] = $data->getDateExpiration()?->format('Y-m-d');
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {

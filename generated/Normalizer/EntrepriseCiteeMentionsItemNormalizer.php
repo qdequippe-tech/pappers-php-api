@@ -82,16 +82,16 @@ class EntrepriseCiteeMentionsItemNormalizer implements DenormalizerInterface, No
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
+        if ($data->isInitialized('siren')) {
             $dataArray['siren'] = $data->getSiren();
         }
-        if ($data->isInitialized('date') && null !== $data->getDate()) {
-            $dataArray['date'] = $data->getDate()->format('Y-m-d');
+        if ($data->isInitialized('date')) {
+            $dataArray['date'] = $data->getDate()?->format('Y-m-d');
         }
-        if ($data->isInitialized('token') && null !== $data->getToken()) {
+        if ($data->isInitialized('token')) {
             $dataArray['token'] = $data->getToken();
         }
-        if ($data->isInitialized('mentions') && null !== $data->getMentions()) {
+        if ($data->isInitialized('mentions')) {
             $values = [];
             foreach ($data->getMentions() as $value) {
                 $values[] = $value;

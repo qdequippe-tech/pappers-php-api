@@ -83,7 +83,7 @@ class RecherchePublicationsGetResponse200ResultatsItemNormalizer implements Deno
             $dataArray['type'] = $data->getType();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
-            $dataArray['date'] = $data->getDate()?->format('Y-m-d');
+            $dataArray['date'] = $data->getDate()->format('Y-m-d');
         }
         if ($data->isInitialized('contenu') && null !== $data->getContenu()) {
             $dataArray['contenu'] = $data->getContenu();

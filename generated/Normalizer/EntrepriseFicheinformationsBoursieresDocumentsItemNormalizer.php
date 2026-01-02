@@ -90,22 +90,22 @@ class EntrepriseFicheinformationsBoursieresDocumentsItemNormalizer implements De
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('nom') && null !== $data->getNom()) {
+        if ($data->isInitialized('nom')) {
             $dataArray['nom'] = $data->getNom();
         }
-        if ($data->isInitialized('type') && null !== $data->getType()) {
+        if ($data->isInitialized('type')) {
             $dataArray['type'] = $data->getType();
         }
-        if ($data->isInitialized('sousType') && null !== $data->getSousType()) {
+        if ($data->isInitialized('sousType')) {
             $dataArray['sous_type'] = $data->getSousType();
         }
-        if ($data->isInitialized('url') && null !== $data->getUrl()) {
+        if ($data->isInitialized('url')) {
             $dataArray['url'] = $data->getUrl();
         }
-        if ($data->isInitialized('langue') && null !== $data->getLangue()) {
+        if ($data->isInitialized('langue')) {
             $dataArray['langue'] = $data->getLangue();
         }
-        if ($data->isInitialized('date') && null !== $data->getDate()) {
+        if ($data->isInitialized('date')) {
             $dataArray['date'] = $data->getDate();
         }
         foreach ($data as $key => $value) {

@@ -72,13 +72,13 @@ class BrevetPrioritesItemNormalizer implements DenormalizerInterface, Normalizer
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('numero') && null !== $data->getNumero()) {
+        if ($data->isInitialized('numero')) {
             $dataArray['numero'] = $data->getNumero();
         }
-        if ($data->isInitialized('date') && null !== $data->getDate()) {
-            $dataArray['date'] = $data->getDate()->format('Y-m-d');
+        if ($data->isInitialized('date')) {
+            $dataArray['date'] = $data->getDate()?->format('Y-m-d');
         }
-        if ($data->isInitialized('type') && null !== $data->getType()) {
+        if ($data->isInitialized('type')) {
             $dataArray['type'] = $data->getType();
         }
         foreach ($data as $key => $value) {

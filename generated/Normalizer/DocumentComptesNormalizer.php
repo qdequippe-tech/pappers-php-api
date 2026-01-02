@@ -95,7 +95,7 @@ class DocumentComptesNormalizer implements DenormalizerInterface, NormalizerInte
             $dataArray['token'] = $data->getToken();
         }
         if ($data->isInitialized('dateDepot') && null !== $data->getDateDepot()) {
-            $dataArray['date_depot'] = $data->getDateDepot()?->format('Y-m-d');
+            $dataArray['date_depot'] = $data->getDateDepot()->format('Y-m-d');
         }
         if ($data->isInitialized('mentions') && null !== $data->getMentions()) {
             $values = [];
@@ -105,7 +105,7 @@ class DocumentComptesNormalizer implements DenormalizerInterface, NormalizerInte
             $dataArray['mentions'] = $values;
         }
         if ($data->isInitialized('dateCloture') && null !== $data->getDateCloture()) {
-            $dataArray['date_cloture'] = $data->getDateCloture()?->format('Y-m-d');
+            $dataArray['date_cloture'] = $data->getDateCloture()->format('Y-m-d');
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

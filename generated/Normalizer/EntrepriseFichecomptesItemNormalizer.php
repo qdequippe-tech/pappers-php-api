@@ -145,13 +145,13 @@ class EntrepriseFichecomptesItemNormalizer implements DenormalizerInterface, Nor
     {
         $dataArray = [];
         if ($data->isInitialized('dateDepot') && null !== $data->getDateDepot()) {
-            $dataArray['date_depot'] = $data->getDateDepot()?->format('Y-m-d');
+            $dataArray['date_depot'] = $data->getDateDepot()->format('Y-m-d');
         }
         if ($data->isInitialized('dateDepotFormate') && null !== $data->getDateDepotFormate()) {
             $dataArray['date_depot_formate'] = $data->getDateDepotFormate();
         }
         if ($data->isInitialized('dateCloture') && null !== $data->getDateCloture()) {
-            $dataArray['date_cloture'] = $data->getDateCloture()?->format('Y-m-d');
+            $dataArray['date_cloture'] = $data->getDateCloture()->format('Y-m-d');
         }
         if ($data->isInitialized('anneeCloture') && null !== $data->getAnneeCloture()) {
             $dataArray['annee_cloture'] = $data->getAnneeCloture();

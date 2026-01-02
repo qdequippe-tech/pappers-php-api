@@ -69,6 +69,7 @@ use Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheentreprisesDirigeesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesEstimationsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieres;
 use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieresDocumentsItem;
@@ -223,6 +224,8 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         EntrepriseFicheetablissement::class => EntrepriseFicheetablissementNormalizer::class,
 
         EntrepriseFichefinancesItem::class => EntrepriseFichefinancesItemNormalizer::class,
+
+        EntrepriseFichefinancesEstimationsItem::class => EntrepriseFichefinancesEstimationsItemNormalizer::class,
 
         EntrepriseFichebeneficiairesEffectifsItem::class => EntrepriseFichebeneficiairesEffectifsItemNormalizer::class,
 
@@ -655,6 +658,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             EntrepriseFiche::class => false,
             EntrepriseFicheetablissement::class => false,
             EntrepriseFichefinancesItem::class => false,
+            EntrepriseFichefinancesEstimationsItem::class => false,
             EntrepriseFichebeneficiairesEffectifsItem::class => false,
             EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes::class => false,
             EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes::class => false,

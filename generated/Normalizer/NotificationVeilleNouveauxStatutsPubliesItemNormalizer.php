@@ -66,10 +66,10 @@ class NotificationVeilleNouveauxStatutsPubliesItemNormalizer implements Denormal
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('acte') && null !== $data->getActe()) {
+        if ($data->isInitialized('acte')) {
             $dataArray['acte'] = $data->getActe();
         }
-        if ($data->isInitialized('date') && null !== $data->getDate()) {
+        if ($data->isInitialized('date')) {
             $dataArray['date'] = $data->getDate();
         }
         foreach ($data as $key => $value) {

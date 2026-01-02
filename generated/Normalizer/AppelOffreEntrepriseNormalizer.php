@@ -72,13 +72,13 @@ class AppelOffreEntrepriseNormalizer implements DenormalizerInterface, Normalize
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('id') && null !== $data->getId()) {
+        if ($data->isInitialized('id')) {
             $dataArray['id'] = $data->getId();
         }
-        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
+        if ($data->isInitialized('siren')) {
             $dataArray['siren'] = $data->getSiren();
         }
-        if ($data->isInitialized('nomEntreprise') && null !== $data->getNomEntreprise()) {
+        if ($data->isInitialized('nomEntreprise')) {
             $dataArray['nom_entreprise'] = $data->getNomEntreprise();
         }
         foreach ($data as $key => $value) {

@@ -96,25 +96,25 @@ class NotificationEntrepriseNouveauxComptesPubliesItemNormalizer implements Deno
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('annonce') && null !== $data->getAnnonce()) {
+        if ($data->isInitialized('annonce')) {
             $dataArray['annonce'] = $data->getAnnonce();
         }
-        if ($data->isInitialized('type') && null !== $data->getType()) {
+        if ($data->isInitialized('type')) {
             $dataArray['type'] = $data->getType();
         }
-        if ($data->isInitialized('date') && null !== $data->getDate()) {
+        if ($data->isInitialized('date')) {
             $dataArray['date'] = $data->getDate();
         }
-        if ($data->isInitialized('anneeCloture') && null !== $data->getAnneeCloture()) {
+        if ($data->isInitialized('anneeCloture')) {
             $dataArray['annee_cloture'] = $data->getAnneeCloture();
         }
-        if ($data->isInitialized('numeroParution') && null !== $data->getNumeroParution()) {
+        if ($data->isInitialized('numeroParution')) {
             $dataArray['numero_parution'] = $data->getNumeroParution();
         }
-        if ($data->isInitialized('bodacc') && null !== $data->getBodacc()) {
+        if ($data->isInitialized('bodacc')) {
             $dataArray['bodacc'] = $data->getBodacc();
         }
-        if ($data->isInitialized('numeroAnnonce') && null !== $data->getNumeroAnnonce()) {
+        if ($data->isInitialized('numeroAnnonce')) {
             $dataArray['numero_annonce'] = $data->getNumeroAnnonce();
         }
         foreach ($data as $key => $value) {

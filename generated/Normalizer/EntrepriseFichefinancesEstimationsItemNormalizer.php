@@ -3,7 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\NotificationVeilleNouvelActePublieItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesEstimationsItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class NotificationVeilleNouvelActePublieItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EntrepriseFichefinancesEstimationsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -22,12 +22,12 @@ class NotificationVeilleNouvelActePublieItemNormalizer implements DenormalizerIn
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return NotificationVeilleNouvelActePublieItem::class === $type;
+        return EntrepriseFichefinancesEstimationsItem::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && NotificationVeilleNouvelActePublieItem::class === $data::class;
+        return \is_object($data) && EntrepriseFichefinancesEstimationsItem::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
@@ -38,21 +38,21 @@ class NotificationVeilleNouvelActePublieItemNormalizer implements DenormalizerIn
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new NotificationVeilleNouvelActePublieItem();
+        $object = new EntrepriseFichefinancesEstimationsItem();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('acte', $data) && null !== $data['acte']) {
-            $object->setActe($data['acte']);
-            unset($data['acte']);
-        } elseif (\array_key_exists('acte', $data) && null === $data['acte']) {
-            $object->setActe(null);
+        if (\array_key_exists('annee', $data) && null !== $data['annee']) {
+            $object->setAnnee($data['annee']);
+            unset($data['annee']);
+        } elseif (\array_key_exists('annee', $data) && null === $data['annee']) {
+            $object->setAnnee(null);
         }
-        if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate($data['date']);
-            unset($data['date']);
-        } elseif (\array_key_exists('date', $data) && null === $data['date']) {
-            $object->setDate(null);
+        if (\array_key_exists('chiffre_affaires', $data) && null !== $data['chiffre_affaires']) {
+            $object->setChiffreAffaires($data['chiffre_affaires']);
+            unset($data['chiffre_affaires']);
+        } elseif (\array_key_exists('chiffre_affaires', $data) && null === $data['chiffre_affaires']) {
+            $object->setChiffreAffaires(null);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -66,11 +66,11 @@ class NotificationVeilleNouvelActePublieItemNormalizer implements DenormalizerIn
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('acte')) {
-            $dataArray['acte'] = $data->getActe();
+        if ($data->isInitialized('annee') && null !== $data->getAnnee()) {
+            $dataArray['annee'] = $data->getAnnee();
         }
-        if ($data->isInitialized('date')) {
-            $dataArray['date'] = $data->getDate();
+        if ($data->isInitialized('chiffreAffaires') && null !== $data->getChiffreAffaires()) {
+            $dataArray['chiffre_affaires'] = $data->getChiffreAffaires();
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -83,6 +83,6 @@ class NotificationVeilleNouvelActePublieItemNormalizer implements DenormalizerIn
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [NotificationVeilleNouvelActePublieItem::class => false];
+        return [EntrepriseFichefinancesEstimationsItem::class => false];
     }
 }
