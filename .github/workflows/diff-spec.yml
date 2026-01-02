@@ -9,6 +9,9 @@ jobs:
     check-spec:
         name: Check SDK is in sync with spec
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: write
         steps:
             - name: Checkout
               uses: actions/checkout@v6
