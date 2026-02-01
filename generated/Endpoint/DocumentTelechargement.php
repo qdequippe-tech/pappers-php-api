@@ -20,10 +20,9 @@ class DocumentTelechargement extends BaseEndpoint implements Endpoint
     /**
      * Vous devez fournir le token du document. Le document vous sera envoyé au format PDF ou XLSX.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $token Token du document
-     *             }
+     * @param array{
+     *    "token": string, //Token du document
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

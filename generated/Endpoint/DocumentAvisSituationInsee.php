@@ -20,11 +20,10 @@ class DocumentAvisSituationInsee extends BaseEndpoint implements Endpoint
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $siret SIRET de l'entreprise
-     *             }
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "siret"?: string, //SIRET de l'entreprise
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

@@ -25,10 +25,9 @@ class DocumentBeneficiairesEffectifs extends BaseEndpoint implements Endpoint
      *
      * Pour pouvoir utiliser cette route veuillez nous contacter au préalable à api@pappers.fr
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     *             }
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

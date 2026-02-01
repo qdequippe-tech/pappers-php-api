@@ -196,7 +196,7 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $object->setConventionsCollectives(null);
         }
         if (\array_key_exists('date_creation', $data) && null !== $data['date_creation']) {
-            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d', $data['date_creation'])->setTime(0, 0, 0));
+            $object->setDateCreation($data['date_creation']);
             unset($data['date_creation']);
         } elseif (\array_key_exists('date_creation', $data) && null === $data['date_creation']) {
             $object->setDateCreation(null);
@@ -410,6 +410,12 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             unset($data['statut_consolide']);
         } elseif (\array_key_exists('statut_consolide', $data) && null === $data['statut_consolide']) {
             $object->setStatutConsolide(null);
+        }
+        if (\array_key_exists('date_reouverture', $data) && null !== $data['date_reouverture']) {
+            $object->setDateReouverture(\DateTime::createFromFormat('Y-m-d', $data['date_reouverture'])->setTime(0, 0, 0));
+            unset($data['date_reouverture']);
+        } elseif (\array_key_exists('date_reouverture', $data) && null === $data['date_reouverture']) {
+            $object->setDateReouverture(null);
         }
         if (\array_key_exists('greffe', $data) && null !== $data['greffe']) {
             $object->setGreffe($data['greffe']);
@@ -875,7 +881,7 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
             $dataArray['conventions_collectives'] = $values;
         }
         if ($data->isInitialized('dateCreation') && null !== $data->getDateCreation()) {
-            $dataArray['date_creation'] = $data->getDateCreation()->format('Y-m-d');
+            $dataArray['date_creation'] = $data->getDateCreation();
         }
         if ($data->isInitialized('dateCreationFormate') && null !== $data->getDateCreationFormate()) {
             $dataArray['date_creation_formate'] = $data->getDateCreationFormate();
@@ -981,6 +987,9 @@ class EntrepriseFicheNormalizer implements DenormalizerInterface, NormalizerInte
         }
         if ($data->isInitialized('statutConsolide') && null !== $data->getStatutConsolide()) {
             $dataArray['statut_consolide'] = $data->getStatutConsolide();
+        }
+        if ($data->isInitialized('dateReouverture') && null !== $data->getDateReouverture()) {
+            $dataArray['date_reouverture'] = $data->getDateReouverture()->format('Y-m-d');
         }
         if ($data->isInitialized('greffe') && null !== $data->getGreffe()) {
             $dataArray['greffe'] = $data->getGreffe();

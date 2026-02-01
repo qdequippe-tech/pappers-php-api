@@ -20,10 +20,9 @@ class DocumentScoringNonFinancier extends BaseEndpoint implements Endpoint
     /**
      * Vous devez fournir le SIREN. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     *             }
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

@@ -94,7 +94,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      *
-     * @var \DateTime|null
+     * @var string|null
      */
     protected $dateCreation;
     /**
@@ -307,6 +307,12 @@ class EntrepriseFiche extends \ArrayObject
      * @var string|null
      */
     protected $statutConsolide;
+    /**
+     * Pour les entreprises individuelles réouvertes après une période sans activité, date de réouverture au format AAAA-MM-JJ.
+     *
+     * @var \DateTime|null
+     */
+    protected $dateReouverture;
     /**
      * Greffe RCS de l'entreprise.
      *
@@ -886,7 +892,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      */
-    public function getDateCreation(): ?\DateTime
+    public function getDateCreation(): ?string
     {
         return $this->dateCreation;
     }
@@ -894,7 +900,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      */
-    public function setDateCreation(?\DateTime $dateCreation): self
+    public function setDateCreation(?string $dateCreation): self
     {
         $this->initialized['dateCreation'] = true;
         $this->dateCreation = $dateCreation;
@@ -1560,6 +1566,25 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['statutConsolide'] = true;
         $this->statutConsolide = $statutConsolide;
+
+        return $this;
+    }
+
+    /**
+     * Pour les entreprises individuelles réouvertes après une période sans activité, date de réouverture au format AAAA-MM-JJ.
+     */
+    public function getDateReouverture(): ?\DateTime
+    {
+        return $this->dateReouverture;
+    }
+
+    /**
+     * Pour les entreprises individuelles réouvertes après une période sans activité, date de réouverture au format AAAA-MM-JJ.
+     */
+    public function setDateReouverture(?\DateTime $dateReouverture): self
+    {
+        $this->initialized['dateReouverture'] = true;
+        $this->dateReouverture = $dateReouverture;
 
         return $this;
     }

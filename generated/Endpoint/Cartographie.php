@@ -23,16 +23,15 @@ class Cartographie extends BaseEndpoint implements Endpoint
      * - La requête coûte 1 crédit si, en plus du noeud principal, des noeuds dirigeants directs de l'entreprise sont disponibles. Il est possible de rejeter ces cas avec le paramètre `rejeter_premier_degre`. La requête est alors gratuite (erreur 404).
      * - La requête coûte 3 crédits si des noeuds supplémentaires sont disponibles.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var bool   $inclure_entreprises_dirigees Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
-     * @var bool   $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
-     * @var bool   $inclure_sci Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
-     * @var bool   $autoriser_modifications Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
-     * @var bool   $rejeter_premier_degre Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de crédits. Valeur par défaut : `false`.
-     * @var int    $degre Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
-     *             }
+     * @param array{
+     *    "siren": string, //SIREN de l'entreprise
+     *    "inclure_entreprises_dirigees"?: bool, //Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
+     *    "inclure_entreprises_citees"?: bool, //Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
+     *    "inclure_sci"?: bool, //Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
+     *    "autoriser_modifications"?: bool, //Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
+     *    "rejeter_premier_degre"?: bool, //Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de crédits. Valeur par défaut : `false`.
+     *    "degre"?: int, //Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {
