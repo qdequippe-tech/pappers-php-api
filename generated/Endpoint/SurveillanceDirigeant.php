@@ -25,10 +25,9 @@ class SurveillanceDirigeant extends BaseEndpoint implements Endpoint
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste. Les informations à renseigner sont différentes selon le type de personne à ajouter (morale ou physique).
      *
      * @param ListePostBodyItem[]|null $requestBody
-     * @param array                    $queryParameters {
-     *
-     * @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
-     *             }
+     * @param array{
+     *    "id_liste": string, //Identifiant unique de votre liste de surveillance de dirigeants
+     * } $queryParameters
      */
     public function __construct(?array $requestBody = null, array $queryParameters = [])
     {

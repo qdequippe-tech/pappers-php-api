@@ -55,15 +55,14 @@ class Client extends Runtime\Client\Client
      * >
      * > Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $siret SIRET de l'entreprise
-     * @var string $format_publications_bodacc Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
-     * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
-     * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
-     * @var bool   $beneficiaires_effectifs_complets Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
-     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "siret"?: string, //SIRET de l'entreprise
+     *    "format_publications_bodacc"?: string, //Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
+     *    "validite_tva_intracommunautaire"?: bool, //Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
+     *    "publications_bodacc_brutes"?: bool, //Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
+     *    "beneficiaires_effectifs_complets"?: bool, //Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
+     *    "champs_supplementaires"?: string, //Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :
      * - `sites_internet` : 1 crédit supplémentaire si disponible
@@ -105,8 +104,7 @@ class Client extends Runtime\Client\Client
      * - `informations_boursieres`: 5 crédits supplémentaires si disponible
      * - `informations_boursieres:documents`: 10 crédits supplémentaires si disponible (donc un total de 15 crédits supplémentaires car ce champ inclut également le champ `informations_boursieres`)
      * - `finances_estimations` : 5 crédits supplémentaires si disponible
-     * }
-     *
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\EntrepriseFiche|null : ResponseInterface)
@@ -123,13 +121,11 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir soit l'identifiant de l'association, soit le SIREN, soit le SIRET.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $id_association Identifiant de l'association
-     * @var string $siret SIRET de l'association
-     * @var string $siren SIREN de l'association
-     *             }
-     *
+     * @param array{
+     *    "id_association"?: string, //Identifiant de l'association
+     *    "siret"?: string, //SIRET de l'association
+     *    "siren"?: string, //SIREN de l'association
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\Association|null : ResponseInterface)
@@ -152,75 +148,73 @@ class Client extends Runtime\Client\Client
      * - La pagination (paramètres `page` et `par_page`), limitée aux 400 premiers résultats ;
      * - Les curseurs (paramètres `curseur` et `par_curseur`).
      *
-     * @param array $queryParameters {
-     *
-     * @var int    $page Page de résultats. Valeur par défaut : `1`.
-     * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
-     * @var string $curseur Curseur servant à parcourir l'ensemble des résultats (alternativement à la pagination qui est limitée à 400 résultats maximum). Doit valoir `*` pour la première requête, et doit pour les requêtes suivantes reprendre la valeur `curseurSuivant` retournée par la dernière réponse.
-     * @var int    $par_curseur Nombre de résultats affichés par curseur. Valeur par défaut : `50`. Valeur minimale: `1`. Valeur maximale : `1000`.
-     * @var string $bases Bases de données dans lesquelles rechercher. Il est possible d'indiquer plusieurs bases en les séparant par des virgules. Valeur par défaut : `"entreprises"`.
-     * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
-     * @var string $q Texte à rechercher. Dénomination pour une personne morale, nom et prénom pour une personne physique.
-     *             Si vous recherchez dans plusieurs bases, ce paramètre sera utilisé pour rechercher dans toutes les bases.
-     * @var string $siege Défini si la requête se base sur le siège
-     * @var string $code_naf Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
-     * @var string $departement Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
-     * @var string $region Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
-     * @var string $code_postal Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
-     * @var string $convention_collective convention collective de l'entreprise
-     * @var string $categorie_juridique Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     * @param array{
+     *    "page"?: int, //Page de résultats. Valeur par défaut : `1`.
+     *    "par_page"?: int, //Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
+     *    "curseur"?: string, //Curseur servant à parcourir l'ensemble des résultats (alternativement à la pagination qui est limitée à 400 résultats maximum). Doit valoir `*` pour la première requête, et doit pour les requêtes suivantes reprendre la valeur `curseurSuivant` retournée par la dernière réponse.
+     *    "par_curseur"?: int, //Nombre de résultats affichés par curseur. Valeur par défaut : `50`. Valeur minimale: `1`. Valeur maximale : `1000`.
+     *    "bases"?: string, //Bases de données dans lesquelles rechercher. Il est possible d'indiquer plusieurs bases en les séparant par des virgules. Valeur par défaut : `"entreprises"`.
+     *    "precision"?: string, //Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
+     *    "q"?: string, //Texte à rechercher. Dénomination pour une personne morale, nom et prénom pour une personne physique.
+     * Si vous recherchez dans plusieurs bases, ce paramètre sera utilisé pour rechercher dans toutes les bases.
+     *    "siege"?: string, //Défini si la requête se base sur le siège
+     *    "code_naf"?: string, //Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
+     *    "departement"?: string, //Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
+     *    "region"?: string, //Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
+     *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
+     *    "convention_collective"?: string, //Convention collective de l'entreprise.
+     *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      *
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
-     * @var bool   $entreprise_cessee activité de l'entreprise cessée ou non
-     * @var string $statut_rcs Statut au RCS
-     * @var string $objet_social objet social de l'entreprise déclaré au RCS
-     * @var string $date_immatriculation_rcs_min date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_immatriculation_rcs_max d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_min date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_max date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $capital_min capital minimum de l'entreprise
-     * @var string $capital_max capital maximum de l'entreprise
-     * @var string $chiffre_affaires_min Chiffre d'affaires minimum de l'entreprise.
+     *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
+     *    "statut_rcs"?: string, //Statut au RCS
+     *    "objet_social"?: string, //Objet social de l'entreprise déclaré au RCS.
+     *    "date_immatriculation_rcs_min"?: string, //Date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_immatriculation_rcs_max"?: string, //d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_min"?: string, //Date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_max"?: string, //Date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "capital_min"?: string, //Capital minimum de l'entreprise.
+     *    "capital_max"?: string, //Capital maximum de l'entreprise.
+     *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
      *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $chiffre_affaires_max Chiffre d'affaires maximum de l'entreprise.
+     *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
      *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_min Résultat minimum de l'entreprise.
+     *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
      *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_max Résultat maximum de l'entreprise.
+     *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
      *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $date_creation_min date de création minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_creation_max date de création maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $tranche_effectif_min Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $tranche_effectif_max Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_dirigeant_min date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_dirigeant_max date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var int    $age_beneficiaire_min âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_beneficiaire_max âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_beneficiaire_min date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_beneficiaire_max date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var string $nationalite_beneficiaire nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_depot_document_min date de dépôt minimale du document, au format JJ-MM-AAAA
-     * @var string $date_depot_document_max date de dépôt maximale du document, au format JJ-MM-AAAA
-     * @var string $type_publication Type de publication
-     * @var string $date_publication_min date publication minimale de la publication, au format JJ-MM-AAAA
-     * @var string $date_publication_max Date de publication maximale de la publication, au format JJ-MM-AAAA.
-     *             }
-     *
+     *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nationalite_dirigeant"?: string, //Nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nom_dirigeant"?: string, //Nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "prenom_dirigeant"?: string, //Prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_min"?: int, //Âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_max"?: int, //Âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_dirigeant_min"?: string, //Date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_dirigeant_max"?: string, //Date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "age_beneficiaire_min"?: int, //Âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "age_beneficiaire_max"?: int, //Âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_beneficiaire_min"?: string, //Date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_beneficiaire_max"?: string, //Date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "nationalite_beneficiaire"?: string, //Nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_depot_document_min"?: string, //Date de dépôt minimale du document, au format JJ-MM-AAAA.
+     *    "date_depot_document_max"?: string, //Date de dépôt maximale du document, au format JJ-MM-AAAA.
+     *    "type_publication"?: string, //Type de publication
+     *    "date_publication_min"?: string, //Date publication minimale de la publication, au format JJ-MM-AAAA.
+     *    "date_publication_max"?: string, //Date de publication maximale de la publication, au format JJ-MM-AAAA.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\RechercheGetResponse200|null : ResponseInterface)
@@ -237,64 +231,62 @@ class Client extends Runtime\Client\Client
     /**
      * Tous les paramètres sont optionnels et servent à filtrer la recherche. Les différents dirigeants seront renvoyées dans un tableau `resultats`.
      *
-     * @param array $queryParameters {
-     *
-     * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
-     * @var int    $page Page de résultats. Valeur par défaut : `1`.
-     * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
-     * @var string $q Texte à rechercher. Nom et prénom du dirigeant pour une personne physique, dénomination pour une personne morale.
-     * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_dirigeant_min date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_dirigeant_max date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var string $code_naf Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
-     * @var string $departement Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
-     * @var string $region Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
-     * @var string $code_postal Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
-     * @var string $convention_collective convention collective de l'entreprise
-     * @var string $categorie_juridique Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     * @param array{
+     *    "par_page"?: int, //Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
+     *    "page"?: int, //Page de résultats. Valeur par défaut : `1`.
+     *    "precision"?: string, //Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
+     *    "q"?: string, //Texte à rechercher. Nom et prénom du dirigeant pour une personne physique, dénomination pour une personne morale.
+     *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nationalite_dirigeant"?: string, //Nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nom_dirigeant"?: string, //Nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "prenom_dirigeant"?: string, //Prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_min"?: int, //Âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_max"?: int, //Âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_dirigeant_min"?: string, //Date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_dirigeant_max"?: string, //Date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "code_naf"?: string, //Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
+     *    "departement"?: string, //Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
+     *    "region"?: string, //Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
+     *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
+     *    "convention_collective"?: string, //Convention collective de l'entreprise.
+     *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
-     * @var bool   $entreprise_cessee activité de l'entreprise cessée ou non
-     * @var string $statut_rcs Statut au RCS
-     * @var string $objet_social objet social de l'entreprise déclaré au RCS
-     * @var string $date_immatriculation_rcs_min date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_immatriculation_rcs_max d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_min date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_max date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $capital_min capital minimum de l'entreprise
-     * @var string $capital_max capital maximum de l'entreprise
-     * @var string $chiffre_affaires_min Chiffre d'affaires minimum de l'entreprise.
+     *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
+     *    "statut_rcs"?: string, //Statut au RCS
+     *    "objet_social"?: string, //Objet social de l'entreprise déclaré au RCS.
+     *    "date_immatriculation_rcs_min"?: string, //Date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_immatriculation_rcs_max"?: string, //d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_min"?: string, //Date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_max"?: string, //Date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "capital_min"?: string, //Capital minimum de l'entreprise.
+     *    "capital_max"?: string, //Capital maximum de l'entreprise.
+     *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $chiffre_affaires_max Chiffre d'affaires maximum de l'entreprise.
+     *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_min Résultat minimum de l'entreprise.
+     *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_max Résultat maximum de l'entreprise.
+     *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $date_creation_min date de création minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_creation_max date de création maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $tranche_effectif_min Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $tranche_effectif_max Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var int    $age_beneficiaire_min âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_beneficiaire_max âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_beneficiaire_min date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_beneficiaire_max date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var string $nationalite_beneficiaire nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_depot_document_min date de dépôt minimale du document, au format JJ-MM-AAAA
-     * @var string $date_depot_document_max date de dépôt maximale du document, au format JJ-MM-AAAA
-     * @var string $type_publication Type de publication
-     * @var string $date_publication_min date publication minimale de la publication, au format JJ-MM-AAAA
-     * @var string $date_publication_max date de publication maximale de la publication, au format JJ-MM-AAAA
-     * @var string $siren SIREN de l'entreprise.
-     *             }
-     *
+     *    "age_beneficiaire_min"?: int, //Âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "age_beneficiaire_max"?: int, //Âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_beneficiaire_min"?: string, //Date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_beneficiaire_max"?: string, //Date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "nationalite_beneficiaire"?: string, //Nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_depot_document_min"?: string, //Date de dépôt minimale du document, au format JJ-MM-AAAA.
+     *    "date_depot_document_max"?: string, //Date de dépôt maximale du document, au format JJ-MM-AAAA.
+     *    "type_publication"?: string, //Type de publication
+     *    "date_publication_min"?: string, //Date publication minimale de la publication, au format JJ-MM-AAAA.
+     *    "date_publication_max"?: string, //Date de publication maximale de la publication, au format JJ-MM-AAAA.
+     *    "siren"?: string, //SIREN de l'entreprise.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\RechercheDirigeantsGetResponse200|null : ResponseInterface)
@@ -311,64 +303,62 @@ class Client extends Runtime\Client\Client
     /**
      * Tous les paramètres sont optionnels et servent à filtrer la recherche. Les différents bénéficiaires effectifs seront renvoyées dans un tableau `resultats`.
      *
-     * @param array $queryParameters {
-     *
-     * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
-     * @var int    $page Page de résultats. Valeur par défaut : `1`.
-     * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
-     * @var string $q nom et/ou prénom du bénéficiaire effectif
-     * @var int    $age_beneficiaire_min âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_beneficiaire_max âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_beneficiaire_min date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_beneficiaire_max date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var string $nationalite_beneficiaire nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $code_naf Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
-     * @var string $departement Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
-     * @var string $region Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
-     * @var string $code_postal Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
-     * @var string $convention_collective convention collective de l'entreprise
-     * @var string $categorie_juridique Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     * @param array{
+     *    "par_page"?: int, //Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
+     *    "page"?: int, //Page de résultats. Valeur par défaut : `1`.
+     *    "precision"?: string, //Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
+     *    "q"?: string, //Nom et/ou prénom du bénéficiaire effectif.
+     *    "age_beneficiaire_min"?: int, //Âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "age_beneficiaire_max"?: int, //Âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_beneficiaire_min"?: string, //Date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_beneficiaire_max"?: string, //Date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "nationalite_beneficiaire"?: string, //Nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "code_naf"?: string, //Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
+     *    "departement"?: string, //Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
+     *    "region"?: string, //Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
+     *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
+     *    "convention_collective"?: string, //Convention collective de l'entreprise.
+     *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
-     * @var bool   $entreprise_cessee activité de l'entreprise cessée ou non
-     * @var string $statut_rcs Statut au RCS
-     * @var string $objet_social objet social de l'entreprise déclaré au RCS
-     * @var string $date_immatriculation_rcs_min date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_immatriculation_rcs_max d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_min date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_max date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $capital_min capital minimum de l'entreprise
-     * @var string $capital_max capital maximum de l'entreprise
-     * @var string $chiffre_affaires_min Chiffre d'affaires minimum de l'entreprise.
+     *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
+     *    "statut_rcs"?: string, //Statut au RCS
+     *    "objet_social"?: string, //Objet social de l'entreprise déclaré au RCS.
+     *    "date_immatriculation_rcs_min"?: string, //Date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_immatriculation_rcs_max"?: string, //d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_min"?: string, //Date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_max"?: string, //Date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "capital_min"?: string, //Capital minimum de l'entreprise.
+     *    "capital_max"?: string, //Capital maximum de l'entreprise.
+     *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $chiffre_affaires_max Chiffre d'affaires maximum de l'entreprise.
+     *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_min Résultat minimum de l'entreprise.
+     *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_max Résultat maximum de l'entreprise.
+     *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $date_creation_min date de création minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_creation_max date de création maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $tranche_effectif_min Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $tranche_effectif_max Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_dirigeant_min date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_dirigeant_max date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_depot_document_min date de dépôt minimale du document, au format JJ-MM-AAAA
-     * @var string $date_depot_document_max date de dépôt maximale du document, au format JJ-MM-AAAA
-     * @var string $type_publication Type de publication
-     * @var string $date_publication_min date publication minimale de la publication, au format JJ-MM-AAAA
-     * @var string $date_publication_max date de publication maximale de la publication, au format JJ-MM-AAAA
-     * @var string $siren SIREN de l'entreprise.
-     *             }
-     *
+     *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nationalite_dirigeant"?: string, //Nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nom_dirigeant"?: string, //Nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "prenom_dirigeant"?: string, //Prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_min"?: int, //Âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_max"?: int, //Âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_dirigeant_min"?: string, //Date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_dirigeant_max"?: string, //Date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_depot_document_min"?: string, //Date de dépôt minimale du document, au format JJ-MM-AAAA.
+     *    "date_depot_document_max"?: string, //Date de dépôt maximale du document, au format JJ-MM-AAAA.
+     *    "type_publication"?: string, //Type de publication
+     *    "date_publication_min"?: string, //Date publication minimale de la publication, au format JJ-MM-AAAA.
+     *    "date_publication_max"?: string, //Date de publication maximale de la publication, au format JJ-MM-AAAA.
+     *    "siren"?: string, //SIREN de l'entreprise.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\RechercheBeneficiairesGetResponse200|null : ResponseInterface)
@@ -385,64 +375,62 @@ class Client extends Runtime\Client\Client
     /**
      * Tous les paramètres sont optionnels et servent à filtrer la recherche. Les différents documents seront renvoyées dans un tableau `resultats`.
      *
-     * @param array $queryParameters {
-     *
-     * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
-     * @var int    $page Page de résultats. Valeur par défaut : `1`.
-     * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
-     * @var string $q mot-clé à rechercher dans le contenu du document
-     * @var string $date_depot_document_min date de dépôt minimale du document, au format JJ-MM-AAAA
-     * @var string $date_depot_document_max date de dépôt maximale du document, au format JJ-MM-AAAA
-     * @var string $code_naf Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
-     * @var string $departement Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
-     * @var string $region Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
-     * @var string $code_postal Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
-     * @var string $convention_collective convention collective de l'entreprise
-     * @var string $categorie_juridique Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     * @param array{
+     *    "par_page"?: int, //Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
+     *    "page"?: int, //Page de résultats. Valeur par défaut : `1`.
+     *    "precision"?: string, //Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
+     *    "q"?: string, //Mot-clé à rechercher dans le contenu du document.
+     *    "date_depot_document_min"?: string, //Date de dépôt minimale du document, au format JJ-MM-AAAA.
+     *    "date_depot_document_max"?: string, //Date de dépôt maximale du document, au format JJ-MM-AAAA.
+     *    "code_naf"?: string, //Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
+     *    "departement"?: string, //Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
+     *    "region"?: string, //Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
+     *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
+     *    "convention_collective"?: string, //Convention collective de l'entreprise.
+     *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
-     * @var bool   $entreprise_cessee activité de l'entreprise cessée ou non
-     * @var string $statut_rcs Statut au RCS
-     * @var string $objet_social objet social de l'entreprise déclaré au RCS
-     * @var string $date_immatriculation_rcs_min date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_immatriculation_rcs_max d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_min date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_max date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $capital_min capital minimum de l'entreprise
-     * @var string $capital_max capital maximum de l'entreprise
-     * @var string $chiffre_affaires_min Chiffre d'affaires minimum de l'entreprise.
+     *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
+     *    "statut_rcs"?: string, //Statut au RCS
+     *    "objet_social"?: string, //Objet social de l'entreprise déclaré au RCS.
+     *    "date_immatriculation_rcs_min"?: string, //Date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_immatriculation_rcs_max"?: string, //d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_min"?: string, //Date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_max"?: string, //Date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "capital_min"?: string, //Capital minimum de l'entreprise.
+     *    "capital_max"?: string, //Capital maximum de l'entreprise.
+     *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $chiffre_affaires_max Chiffre d'affaires maximum de l'entreprise.
+     *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_min Résultat minimum de l'entreprise.
+     *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_max Résultat maximum de l'entreprise.
+     *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $date_creation_min date de création minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_creation_max date de création maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $tranche_effectif_min Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $tranche_effectif_max Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_dirigeant_min date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_dirigeant_max date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var int    $age_beneficiaire_min âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_beneficiaire_max âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_beneficiaire_min date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_beneficiaire_max date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var string $nationalite_beneficiaire nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $type_publication Type de publication
-     * @var string $date_publication_min date publication minimale de la publication, au format JJ-MM-AAAA
-     * @var string $date_publication_max date de publication maximale de la publication, au format JJ-MM-AAAA
-     * @var string $siren SIREN de l'entreprise.
-     *             }
-     *
+     *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nationalite_dirigeant"?: string, //Nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nom_dirigeant"?: string, //Nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "prenom_dirigeant"?: string, //Prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_min"?: int, //Âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_max"?: int, //Âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_dirigeant_min"?: string, //Date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_dirigeant_max"?: string, //Date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "age_beneficiaire_min"?: int, //Âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "age_beneficiaire_max"?: int, //Âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_beneficiaire_min"?: string, //Date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_beneficiaire_max"?: string, //Date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "nationalite_beneficiaire"?: string, //Nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "type_publication"?: string, //Type de publication
+     *    "date_publication_min"?: string, //Date publication minimale de la publication, au format JJ-MM-AAAA.
+     *    "date_publication_max"?: string, //Date de publication maximale de la publication, au format JJ-MM-AAAA.
+     *    "siren"?: string, //SIREN de l'entreprise.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\RechercheDocumentsGetResponse200|null : ResponseInterface)
@@ -459,64 +447,62 @@ class Client extends Runtime\Client\Client
     /**
      * Tous les paramètres sont optionnels et servent à filtrer la recherche. Les différentes publications seront renvoyées dans un tableau `resultats`.
      *
-     * @param array $queryParameters {
-     *
-     * @var int    $par_page Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
-     * @var int    $page Page de résultats. Valeur par défaut : `1`.
-     * @var string $precision Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
-     * @var string $q mot-clé à rechercher dans le contenu de la publication
-     * @var string $code_naf Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
-     * @var string $departement Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
-     * @var string $region Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
-     * @var string $code_postal Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
-     * @var string $convention_collective convention collective de l'entreprise
-     * @var string $categorie_juridique Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     * @param array{
+     *    "par_page"?: int, //Nombre de résultats affichés sur une page. Valeur par défaut : `10`.
+     *    "page"?: int, //Page de résultats. Valeur par défaut : `1`.
+     *    "precision"?: string, //Niveau de précision de la recherche. Valeur par défaut : `"standard"`.
+     *    "q"?: string, //Mot-clé à rechercher dans le contenu de la publication.
+     *    "code_naf"?: string, //Code NAF de l'entreprise. Il est possible d'indiquer plusieurs codes NAF en les séparant par des virgules.
+     *    "departement"?: string, //Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
+     *    "region"?: string, //Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
+     *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
+     *    "convention_collective"?: string, //Convention collective de l'entreprise.
+     *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
-     * @var bool   $entreprise_cessee activité de l'entreprise cessée ou non
-     * @var string $statut_rcs Statut au RCS
-     * @var string $objet_social objet social de l'entreprise déclaré au RCS
-     * @var string $date_immatriculation_rcs_min date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_immatriculation_rcs_max d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_min date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_radiation_rcs_max date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $capital_min capital minimum de l'entreprise
-     * @var string $capital_max capital maximum de l'entreprise
-     * @var string $chiffre_affaires_min Chiffre d'affaires minimum de l'entreprise.
+     *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
+     *    "statut_rcs"?: string, //Statut au RCS
+     *    "objet_social"?: string, //Objet social de l'entreprise déclaré au RCS.
+     *    "date_immatriculation_rcs_min"?: string, //Date d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_immatriculation_rcs_max"?: string, //d'immatriculation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_min"?: string, //Date de radiation au RCS minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_radiation_rcs_max"?: string, //Date de radiation au RCS maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "capital_min"?: string, //Capital minimum de l'entreprise.
+     *    "capital_max"?: string, //Capital maximum de l'entreprise.
+     *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $chiffre_affaires_max Chiffre d'affaires maximum de l'entreprise.
+     *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_min Résultat minimum de l'entreprise.
+     *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $resultat_max Résultat maximum de l'entreprise.
+     *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
-     * @var string $date_creation_min date de création minimale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $date_creation_max date de création maximale de l'entreprise, au format JJ-MM-AAAA
-     * @var string $tranche_effectif_min Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
+     *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $tranche_effectif_max Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     * @var string $type_dirigeant type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $qualite_dirigeant qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nationalite_dirigeant nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $nom_dirigeant nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $prenom_dirigeant prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_min âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_dirigeant_max âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_dirigeant_min date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_dirigeant_max date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var int    $age_beneficiaire_min âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var int    $age_beneficiaire_max âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_de_naissance_beneficiaire_min date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA
-     * @var string $date_de_naissance_beneficiaire_max date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA
-     * @var string $nationalite_beneficiaire nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises)
-     * @var string $date_depot_document_min date de dépôt minimale du document, au format JJ-MM-AAAA
-     * @var string $date_depot_document_max date de dépôt maximale du document, au format JJ-MM-AAAA
-     * @var string $type_publication Type de publication
-     * @var string $date_publication_min date publication minimale de la publication, au format JJ-MM-AAAA
-     * @var string $date_publication_max date de publication maximale de la publication, au format JJ-MM-AAAA
-     * @var string $siren SIREN de l'entreprise.
-     *             }
-     *
+     *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nationalite_dirigeant"?: string, //Nationalité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "nom_dirigeant"?: string, //Nom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "prenom_dirigeant"?: string, //Prénom du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_min"?: int, //Âge minimal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "age_dirigeant_max"?: int, //Âge maximal du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_dirigeant_min"?: string, //Date de naissance minimale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_dirigeant_max"?: string, //Date de naissance maximale du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "age_beneficiaire_min"?: int, //Âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "age_beneficiaire_max"?: int, //Âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_de_naissance_beneficiaire_min"?: string, //Date de naissance minimale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises), au format JJ-MM-AAAA.
+     *    "date_de_naissance_beneficiaire_max"?: string, //Date de naissance maximale du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises) de l'entreprise, au format JJ-MM-AAAA.
+     *    "nationalite_beneficiaire"?: string, //Nationalité du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
+     *    "date_depot_document_min"?: string, //Date de dépôt minimale du document, au format JJ-MM-AAAA.
+     *    "date_depot_document_max"?: string, //Date de dépôt maximale du document, au format JJ-MM-AAAA.
+     *    "type_publication"?: string, //Type de publication
+     *    "date_publication_min"?: string, //Date publication minimale de la publication, au format JJ-MM-AAAA.
+     *    "date_publication_max"?: string, //Date de publication maximale de la publication, au format JJ-MM-AAAA.
+     *    "siren"?: string, //SIREN de l'entreprise.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\RecherchePublicationsGetResponse200|null : ResponseInterface)
@@ -535,13 +521,11 @@ class Client extends Runtime\Client\Client
      *
      * D'autre part, afin de permettre une intégration en front-end la plus directe, cette route est également accessible sans clé API, avec des limitations quotidiennes du nombre d'appels.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $q Début de recherche textuelle
-     * @var int    $longueur Nombre de résultats. Maximum 100. Valeur par défaut : `10`.
-     * @var string $cibles Cibles de la recherche, séparées par des virgules. Valeur par défaut : `"nom_entreprise"`.
-     *             }
-     *
+     * @param array{
+     *    "q": string, //Début de recherche textuelle
+     *    "longueur"?: int, //Nombre de résultats. Maximum 100. Valeur par défaut : `10`.
+     *    "cibles"?: string, //Cibles de la recherche, séparées par des virgules. Valeur par défaut : `"nom_entreprise"`.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\SuggestionsGetResponse200|null : ResponseInterface)
@@ -556,12 +540,10 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir le SIREN de l'entreprise pour laquelle vous souhaitez obtenir les comptes annuels.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $annee Année de cloture des comptes souhaités. Il est possible d'indiquer plusieurs années en les séparant par des virgules. Si le paramètre n'est pas fourni, toutes les années disponibles seront retournées.
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "annee"?: string, //Année de cloture des comptes souhaités. Il est possible d'indiquer plusieurs années en les séparant par des virgules. Si le paramètre n'est pas fourni, toutes les années disponibles seront retournées.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -583,17 +565,15 @@ class Client extends Runtime\Client\Client
      * - La requête coûte 1 crédit si, en plus du noeud principal, des noeuds dirigeants directs de l'entreprise sont disponibles. Il est possible de rejeter ces cas avec le paramètre `rejeter_premier_degre`. La requête est alors gratuite (erreur 404).
      * - La requête coûte 3 crédits si des noeuds supplémentaires sont disponibles.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var bool   $inclure_entreprises_dirigees Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
-     * @var bool   $inclure_entreprises_citees Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
-     * @var bool   $inclure_sci Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
-     * @var bool   $autoriser_modifications Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
-     * @var bool   $rejeter_premier_degre Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de crédits. Valeur par défaut : `false`.
-     * @var int    $degre Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
-     *             }
-     *
+     * @param array{
+     *    "siren": string, //SIREN de l'entreprise
+     *    "inclure_entreprises_dirigees"?: bool, //Si vrai, la cartographie intègrera les entreprises dirigées par l'entreprise recherchée et les entreprises qui dirigent l'entreprise recherchée. Valeur par défaut : `true`.
+     *    "inclure_entreprises_citees"?: bool, //Si vrai, la cartographie intègrera les entreprises citées conjointement avec l'entreprise recherchée dans des actes et statuts. Valeur par défaut : `false`.
+     *    "inclure_sci"?: bool, //Si vrai, la cartographie intègrera les SCI. Valeur par défaut : `true`.
+     *    "autoriser_modifications"?: bool, //Si vrai, la cartographie pourra adapter automatiquement ses paramètres si ceux choisis manuellement ne sont pas idéaux. Valeur par défaut : `false`.
+     *    "rejeter_premier_degre"?: bool, //Si vrai et que la cartographie ne fait apparaître que l'entreprise recherchée ainsi que ses dirigeants directs, une erreur 404 sera renvoyée et la requête ne sera pas comptabilisée dans le quota de crédits. Valeur par défaut : `false`.
+     *    "degre"?: int, //Permet de choisir manuellement un degré pour la cartographie. Seuls deux états sont possibles : un nombre <= 2 ou bien un nombre > 2. Cela veut dire que 0, 1 ou 2 donneront la même cartographie, tout comme 3, 4 ou 5.
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\Cartographie|null : ResponseInterface)
@@ -610,11 +590,9 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir le token du document. Le document vous sera envoyé au format PDF ou XLSX.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $token Token du document
-     *             }
-     *
+     * @param array{
+     *    "token": string, //Token du document
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -632,12 +610,10 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $siret SIRET de l'entreprise
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "siret"?: string, //SIRET de l'entreprise
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -655,12 +631,10 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $siret SIRET de l'entreprise
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "siret"?: string, //SIRET de l'entreprise
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -678,12 +652,10 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $siret SIRET de l'entreprise
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "siret"?: string, //SIRET de l'entreprise
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -701,12 +673,10 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir soit le SIREN, soit le SIRET. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $siret SIRET de l'entreprise
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "siret"?: string, //SIRET de l'entreprise
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -728,11 +698,9 @@ class Client extends Runtime\Client\Client
      *
      * Pour pouvoir utiliser cette route veuillez nous contacter au préalable à api@pappers.fr
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -751,11 +719,9 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir le SIREN. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -773,11 +739,9 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir le SIREN. Le document vous sera envoyé au format PDF.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     *             }
-     *
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
@@ -797,13 +761,11 @@ class Client extends Runtime\Client\Client
      *
      * Pour vérifier le statut de dirigeants et bénéficiaires effectifs d'entreprises, vous pouvez directement utiliser la route `/entreprise` avec les champs supplémentaires `personne_politiquement_exposee` et `sanctions`.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $nom Nom de la personne physique
-     * @var string $prenom Prénom de la personne physique
-     * @var string $date_de_naissance Date de naissance de la personne physique, au format AAAA-MM-JJ ou AAAA-MM
-     *             }
-     *
+     * @param array{
+     *    "nom": string, //Nom de la personne physique
+     *    "prenom": string, //Prénom de la personne physique
+     *    "date_de_naissance": string, //Date de naissance de la personne physique, au format AAAA-MM-JJ ou AAAA-MM
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\ConformitePersonnePhysiqueGetResponse200|null : ResponseInterface)
@@ -834,11 +796,9 @@ class Client extends Runtime\Client\Client
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
      * @param Model\ListePostBodyItem[]|null $requestBody
-     * @param array                          $queryParameters {
-     *
-     * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
-     *             }
-     *
+     * @param array{
+     *    "id_liste": string, //Identifiant unique de votre liste de surveillance d'entreprises
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\ListePostResponse200|Model\ListePostResponse201|null : ResponseInterface)
@@ -857,14 +817,12 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $id_liste Identifiant unique de votre liste de surveillance
-     * @var string $siren Liste des sirens des notifications à supprimer, séparés par une virgule
-     * @var string $id Liste des ids des notifications à supprimer, séparés par une virgule
-     * @var bool   $supprimer_totalite Suppression de toutes les notifications de la liste
-     *             }
-     *
+     * @param array{
+     *    "id_liste": string, //Identifiant unique de votre liste de surveillance
+     *    "siren"?: string, //Liste des sirens des notifications à supprimer, séparés par une virgule
+     *    "id"?: string, //Liste des ids des notifications à supprimer, séparés par une virgule
+     *    "supprimer_totalite"?: bool, //Suppression de toutes les notifications de la liste
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\ListeDeleteResponse200|null : ResponseInterface)
@@ -883,11 +841,9 @@ class Client extends Runtime\Client\Client
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste. Les informations à renseigner sont différentes selon le type de personne à ajouter (morale ou physique).
      *
      * @param Model\ListePostBodyItem[]|null $requestBody
-     * @param array                          $queryParameters {
-     *
-     * @var string $id_liste Identifiant unique de votre liste de surveillance de dirigeants
-     *             }
-     *
+     * @param array{
+     *    "id_liste": string, //Identifiant unique de votre liste de surveillance de dirigeants
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? Model\ListePostResponse200|Model\ListePostResponse201|null : ResponseInterface)
@@ -906,11 +862,9 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
-     *             }
-     *
+     * @param array{
+     *    "id_liste": string, //Identifiant unique de votre liste de surveillance d'entreprises
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)

@@ -21,10 +21,9 @@ class SurveillanceListeInformations extends BaseEndpoint implements Endpoint
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $id_liste Identifiant unique de votre liste de surveillance d'entreprises
-     *             }
+     * @param array{
+     *    "id_liste": string, //Identifiant unique de votre liste de surveillance d'entreprises
+     * } $queryParameters
      */
     public function __construct(?ListeInformationsPostBody $requestBody = null, array $queryParameters = [])
     {

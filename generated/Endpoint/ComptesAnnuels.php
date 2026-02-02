@@ -20,11 +20,10 @@ class ComptesAnnuels extends BaseEndpoint implements Endpoint
     /**
      * Vous devez fournir le SIREN de l'entreprise pour laquelle vous souhaitez obtenir les comptes annuels.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $annee Année de cloture des comptes souhaités. Il est possible d'indiquer plusieurs années en les séparant par des virgules. Si le paramètre n'est pas fourni, toutes les années disponibles seront retournées.
-     *             }
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "annee"?: string, //Année de cloture des comptes souhaités. Il est possible d'indiquer plusieurs années en les séparant par des virgules. Si le paramètre n'est pas fourni, toutes les années disponibles seront retournées.
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

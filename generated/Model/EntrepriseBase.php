@@ -94,7 +94,7 @@ class EntrepriseBase extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      *
-     * @var \DateTime|null
+     * @var string|null
      */
     protected $dateCreation;
     /**
@@ -450,7 +450,7 @@ class EntrepriseBase extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      */
-    public function getDateCreation(): ?\DateTime
+    public function getDateCreation(): ?string
     {
         return $this->dateCreation;
     }
@@ -458,7 +458,7 @@ class EntrepriseBase extends \ArrayObject
     /**
      * Date de création de l'entreprise au format AAAA-MM-JJ.
      */
-    public function setDateCreation(?\DateTime $dateCreation): self
+    public function setDateCreation(?string $dateCreation): self
     {
         $this->initialized['dateCreation'] = true;
         $this->dateCreation = $dateCreation;

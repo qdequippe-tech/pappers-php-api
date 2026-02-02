@@ -20,12 +20,11 @@ class Suggestions extends BaseEndpoint implements Endpoint
      *
      * D'autre part, afin de permettre une intégration en front-end la plus directe, cette route est également accessible sans clé API, avec des limitations quotidiennes du nombre d'appels.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $q Début de recherche textuelle
-     * @var int    $longueur Nombre de résultats. Maximum 100. Valeur par défaut : `10`.
-     * @var string $cibles Cibles de la recherche, séparées par des virgules. Valeur par défaut : `"nom_entreprise"`.
-     *             }
+     * @param array{
+     *    "q": string, //Début de recherche textuelle
+     *    "longueur"?: int, //Nombre de résultats. Maximum 100. Valeur par défaut : `10`.
+     *    "cibles"?: string, //Cibles de la recherche, séparées par des virgules. Valeur par défaut : `"nom_entreprise"`.
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

@@ -30,15 +30,14 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * >
      * > Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $siren SIREN de l'entreprise
-     * @var string $siret SIRET de l'entreprise
-     * @var string $format_publications_bodacc Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
-     * @var bool   $validite_tva_intracommunautaire Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
-     * @var bool   $publications_bodacc_brutes Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
-     * @var bool   $beneficiaires_effectifs_complets Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
-     * @var string $champs_supplementaires Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
+     * @param array{
+     *    "siren"?: string, //SIREN de l'entreprise
+     *    "siret"?: string, //SIRET de l'entreprise
+     *    "format_publications_bodacc"?: string, //Format attendu pour les publications BODACC. Valeur par défaut : `"objet"`.
+     *    "validite_tva_intracommunautaire"?: bool, //Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
+     *    "publications_bodacc_brutes"?: bool, //Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
+     *    "beneficiaires_effectifs_complets"?: bool, //Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
+     *    "champs_supplementaires"?: string, //Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :
      * - `sites_internet` : 1 crédit supplémentaire si disponible
@@ -80,7 +79,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `informations_boursieres`: 5 crédits supplémentaires si disponible
      * - `informations_boursieres:documents`: 10 crédits supplémentaires si disponible (donc un total de 15 crédits supplémentaires car ce champ inclut également le champ `informations_boursieres`)
      * - `finances_estimations` : 5 crédits supplémentaires si disponible
-     * }
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

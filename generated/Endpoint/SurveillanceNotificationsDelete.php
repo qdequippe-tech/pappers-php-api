@@ -21,13 +21,12 @@ class SurveillanceNotificationsDelete extends BaseEndpoint implements Endpoint
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $id_liste Identifiant unique de votre liste de surveillance
-     * @var string $siren Liste des sirens des notifications à supprimer, séparés par une virgule
-     * @var string $id Liste des ids des notifications à supprimer, séparés par une virgule
-     * @var bool   $supprimer_totalite Suppression de toutes les notifications de la liste
-     *             }
+     * @param array{
+     *    "id_liste": string, //Identifiant unique de votre liste de surveillance
+     *    "siren"?: string, //Liste des sirens des notifications à supprimer, séparés par une virgule
+     *    "id"?: string, //Liste des ids des notifications à supprimer, séparés par une virgule
+     *    "supprimer_totalite"?: bool, //Suppression de toutes les notifications de la liste
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

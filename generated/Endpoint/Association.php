@@ -20,12 +20,11 @@ class Association extends BaseEndpoint implements Endpoint
     /**
      * Vous devez fournir soit l'identifiant de l'association, soit le SIREN, soit le SIRET.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $id_association Identifiant de l'association
-     * @var string $siret SIRET de l'association
-     * @var string $siren SIREN de l'association
-     *             }
+     * @param array{
+     *    "id_association"?: string, //Identifiant de l'association
+     *    "siret"?: string, //SIRET de l'association
+     *    "siren"?: string, //SIREN de l'association
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {

@@ -154,7 +154,7 @@ class SuggestionsGetResponse200ResultatsNomEntrepriseItemNormalizer implements D
             $object->setConventionsCollectives(null);
         }
         if (\array_key_exists('date_creation', $data) && null !== $data['date_creation']) {
-            $object->setDateCreation(\DateTime::createFromFormat('Y-m-d', $data['date_creation'])->setTime(0, 0, 0));
+            $object->setDateCreation($data['date_creation']);
             unset($data['date_creation']);
         } elseif (\array_key_exists('date_creation', $data) && null === $data['date_creation']) {
             $object->setDateCreation(null);
@@ -360,7 +360,7 @@ class SuggestionsGetResponse200ResultatsNomEntrepriseItemNormalizer implements D
             $dataArray['conventions_collectives'] = $values;
         }
         if ($data->isInitialized('dateCreation') && null !== $data->getDateCreation()) {
-            $dataArray['date_creation'] = $data->getDateCreation()->format('Y-m-d');
+            $dataArray['date_creation'] = $data->getDateCreation();
         }
         if ($data->isInitialized('dateCreationFormate') && null !== $data->getDateCreationFormate()) {
             $dataArray['date_creation_formate'] = $data->getDateCreationFormate();

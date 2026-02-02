@@ -22,12 +22,11 @@ class Conformite extends BaseEndpoint implements Endpoint
      *
      * Pour vérifier le statut de dirigeants et bénéficiaires effectifs d'entreprises, vous pouvez directement utiliser la route `/entreprise` avec les champs supplémentaires `personne_politiquement_exposee` et `sanctions`.
      *
-     * @param array $queryParameters {
-     *
-     * @var string $nom Nom de la personne physique
-     * @var string $prenom Prénom de la personne physique
-     * @var string $date_de_naissance Date de naissance de la personne physique, au format AAAA-MM-JJ ou AAAA-MM
-     *             }
+     * @param array{
+     *    "nom": string, //Nom de la personne physique
+     *    "prenom": string, //Prénom de la personne physique
+     *    "date_de_naissance": string, //Date de naissance de la personne physique, au format AAAA-MM-JJ ou AAAA-MM
+     * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
     {
