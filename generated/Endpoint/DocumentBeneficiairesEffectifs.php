@@ -72,7 +72,7 @@ class DocumentBeneficiairesEffectifs extends BaseEndpoint implements Endpoint
      * @throws DocumentBeneficiairesEffectifsNotFoundException
      * @throws DocumentBeneficiairesEffectifsServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): void
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

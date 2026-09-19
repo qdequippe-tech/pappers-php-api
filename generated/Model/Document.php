@@ -49,7 +49,7 @@ class Document extends \ArrayObject
     /**
      * Type de document.
      */
-    public function setType(?string $type)
+    public function setType(?string $type): void
     {
         $this->initialized['type'] = true;
         $this->type = $type;
@@ -66,7 +66,7 @@ class Document extends \ArrayObject
     /**
      * Token du document.
      */
-    public function setToken(?string $token)
+    public function setToken(?string $token): void
     {
         $this->initialized['token'] = true;
         $this->token = $token;
@@ -83,7 +83,7 @@ class Document extends \ArrayObject
     /**
      * Date de dépôt du document.
      */
-    public function setDateDepot(?\DateTime $dateDepot)
+    public function setDateDepot(?\DateTime $dateDepot): void
     {
         $this->initialized['dateDepot'] = true;
         $this->dateDepot = $dateDepot;
@@ -104,7 +104,7 @@ class Document extends \ArrayObject
      *
      * @param list<string>|null $mentions
      */
-    public function setMentions(?array $mentions)
+    public function setMentions(?array $mentions): void
     {
         $this->initialized['mentions'] = true;
         $this->mentions = $mentions;
