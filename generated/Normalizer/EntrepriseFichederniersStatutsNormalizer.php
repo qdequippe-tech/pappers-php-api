@@ -3,8 +3,9 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheDerniersStatuts;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -13,7 +14,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class EntrepriseFichederniersStatutsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EntrepriseFicheDerniersStatutsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -22,82 +23,99 @@ class EntrepriseFichederniersStatutsNormalizer implements DenormalizerInterface,
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return EntrepriseFichederniersStatuts::class === $type;
+        return EntrepriseFicheDerniersStatuts::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && EntrepriseFichederniersStatuts::class === $data::class;
+        return \is_object($data) && EntrepriseFicheDerniersStatuts::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseFicheDerniersStatuts();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new EntrepriseFichederniersStatuts();
         if (\array_key_exists('disponible', $data) && \is_int($data['disponible'])) {
             $data['disponible'] = (bool) $data['disponible'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
-            $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date_depot']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date_depot'], 'Y-m-d');
+            }
+            $object->setDateDepot($date->setTime(0, 0, 0));
             unset($data['date_depot']);
         } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
             $object->setDateDepot(null);
+            unset($data['date_depot']);
         }
         if (\array_key_exists('date_depot_formate', $data) && null !== $data['date_depot_formate']) {
             $object->setDateDepotFormate($data['date_depot_formate']);
             unset($data['date_depot_formate']);
         } elseif (\array_key_exists('date_depot_formate', $data) && null === $data['date_depot_formate']) {
             $object->setDateDepotFormate(null);
+            unset($data['date_depot_formate']);
         }
         if (\array_key_exists('disponible', $data) && null !== $data['disponible']) {
             $object->setDisponible($data['disponible']);
             unset($data['disponible']);
         } elseif (\array_key_exists('disponible', $data) && null === $data['disponible']) {
             $object->setDisponible(null);
+            unset($data['disponible']);
         }
         if (\array_key_exists('nom_fichier_pdf', $data) && null !== $data['nom_fichier_pdf']) {
             $object->setNomFichierPdf($data['nom_fichier_pdf']);
             unset($data['nom_fichier_pdf']);
         } elseif (\array_key_exists('nom_fichier_pdf', $data) && null === $data['nom_fichier_pdf']) {
             $object->setNomFichierPdf(null);
+            unset($data['nom_fichier_pdf']);
         }
         if (\array_key_exists('token', $data) && null !== $data['token']) {
             $object->setToken($data['token']);
             unset($data['token']);
         } elseif (\array_key_exists('token', $data) && null === $data['token']) {
             $object->setToken(null);
+            unset($data['token']);
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('decision', $data) && null !== $data['decision']) {
             $object->setDecision($data['decision']);
             unset($data['decision']);
         } elseif (\array_key_exists('decision', $data) && null === $data['decision']) {
             $object->setDecision(null);
+            unset($data['decision']);
         }
         if (\array_key_exists('date_acte', $data) && null !== $data['date_acte']) {
-            $object->setDateActe(\DateTime::createFromFormat('Y-m-d', $data['date_acte'])->setTime(0, 0, 0));
+            $date_1 = \DateTime::createFromFormat('Y-m-d', $data['date_acte']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['date_acte'], 'Y-m-d');
+            }
+            $object->setDateActe($date_1->setTime(0, 0, 0));
             unset($data['date_acte']);
         } elseif (\array_key_exists('date_acte', $data) && null === $data['date_acte']) {
             $object->setDateActe(null);
+            unset($data['date_acte']);
         }
         if (\array_key_exists('date_acte_formate', $data) && null !== $data['date_acte_formate']) {
             $object->setDateActeFormate($data['date_acte_formate']);
             unset($data['date_acte_formate']);
         } elseif (\array_key_exists('date_acte_formate', $data) && null === $data['date_acte_formate']) {
             $object->setDateActeFormate(null);
+            unset($data['date_acte_formate']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -138,7 +156,7 @@ class EntrepriseFichederniersStatutsNormalizer implements DenormalizerInterface,
         if ($data->isInitialized('dateActeFormate') && null !== $data->getDateActeFormate()) {
             $dataArray['date_acte_formate'] = $data->getDateActeFormate();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }
@@ -149,6 +167,6 @@ class EntrepriseFichederniersStatutsNormalizer implements DenormalizerInterface,
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [EntrepriseFichederniersStatuts::class => false];
+        return [EntrepriseFicheDerniersStatuts::class => false];
     }
 }

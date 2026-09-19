@@ -3,7 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItemActesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheDepotsActesItemActesItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class EntrepriseFichedepotsActesItemActesItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EntrepriseFicheDepotsActesItemActesItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -22,49 +22,53 @@ class EntrepriseFichedepotsActesItemActesItemNormalizer implements DenormalizerI
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return EntrepriseFichedepotsActesItemActesItem::class === $type;
+        return EntrepriseFicheDepotsActesItemActesItem::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && EntrepriseFichedepotsActesItemActesItem::class === $data::class;
+        return \is_object($data) && EntrepriseFicheDepotsActesItemActesItem::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseFicheDepotsActesItemActesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new EntrepriseFichedepotsActesItemActesItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('decision', $data) && null !== $data['decision']) {
             $object->setDecision($data['decision']);
             unset($data['decision']);
         } elseif (\array_key_exists('decision', $data) && null === $data['decision']) {
             $object->setDecision(null);
+            unset($data['decision']);
         }
         if (\array_key_exists('date_acte', $data) && null !== $data['date_acte']) {
             $object->setDateActe($data['date_acte']);
             unset($data['date_acte']);
         } elseif (\array_key_exists('date_acte', $data) && null === $data['date_acte']) {
             $object->setDateActe(null);
+            unset($data['date_acte']);
         }
         if (\array_key_exists('date_acte_formate', $data) && null !== $data['date_acte_formate']) {
             $object->setDateActeFormate($data['date_acte_formate']);
             unset($data['date_acte_formate']);
         } elseif (\array_key_exists('date_acte_formate', $data) && null === $data['date_acte_formate']) {
             $object->setDateActeFormate(null);
+            unset($data['date_acte_formate']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -90,7 +94,7 @@ class EntrepriseFichedepotsActesItemActesItemNormalizer implements DenormalizerI
         if ($data->isInitialized('dateActeFormate') && null !== $data->getDateActeFormate()) {
             $dataArray['date_acte_formate'] = $data->getDateActeFormate();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }
@@ -101,6 +105,6 @@ class EntrepriseFichedepotsActesItemActesItemNormalizer implements DenormalizerI
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [EntrepriseFichedepotsActesItemActesItem::class => false];
+        return [EntrepriseFicheDepotsActesItemActesItem::class => false];
     }
 }

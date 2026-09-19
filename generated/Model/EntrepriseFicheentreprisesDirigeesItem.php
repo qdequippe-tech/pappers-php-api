@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheentreprisesDirigeesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheEntreprisesDirigeesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -166,5 +170,10 @@ class EntrepriseFicheentreprisesDirigeesItem extends \ArrayObject
         $this->denomination = $denomination;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siren' => ['siren', 'getSiren', 'setSiren'], 'statut' => ['statut', 'getStatut', 'setStatut'], 'qualites' => ['qualites', 'getQualites', 'setQualites'], 'datePriseDePoste' => ['date_prise_de_poste', 'getDatePriseDePoste', 'setDatePriseDePoste'], 'dateDepartDePoste' => ['date_depart_de_poste', 'getDateDepartDePoste', 'setDateDepartDePoste'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination']];
     }
 }

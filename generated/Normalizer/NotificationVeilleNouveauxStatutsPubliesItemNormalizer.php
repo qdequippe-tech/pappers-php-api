@@ -32,27 +32,29 @@ class NotificationVeilleNouveauxStatutsPubliesItemNormalizer implements Denormal
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationVeilleNouveauxStatutsPubliesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationVeilleNouveauxStatutsPubliesItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('acte', $data) && null !== $data['acte']) {
             $object->setActe($data['acte']);
             unset($data['acte']);
         } elseif (\array_key_exists('acte', $data) && null === $data['acte']) {
             $object->setActe(null);
+            unset($data['acte']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -66,13 +68,13 @@ class NotificationVeilleNouveauxStatutsPubliesItemNormalizer implements Denormal
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('acte')) {
+        if ($data->isInitialized('acte') && null !== $data->getActe()) {
             $dataArray['acte'] = $data->getActe();
         }
-        if ($data->isInitialized('date')) {
+        if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

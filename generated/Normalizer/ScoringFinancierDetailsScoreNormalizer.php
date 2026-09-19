@@ -32,13 +32,16 @@ class ScoringFinancierDetailsScoreNormalizer implements DenormalizerInterface, N
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ScoringFinancierDetailsScore();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new ScoringFinancierDetailsScore();
         if (\array_key_exists('score_ebit_ca', $data) && \is_int($data['score_ebit_ca'])) {
             $data['score_ebit_ca'] = (float) $data['score_ebit_ca'];
         }
@@ -60,50 +63,54 @@ class ScoringFinancierDetailsScoreNormalizer implements DenormalizerInterface, N
         if (\array_key_exists('score_charges_financieres_nettes', $data) && \is_int($data['score_charges_financieres_nettes'])) {
             $data['score_charges_financieres_nettes'] = (float) $data['score_charges_financieres_nettes'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('score_ebit_ca', $data) && null !== $data['score_ebit_ca']) {
             $object->setScoreEbitCa($data['score_ebit_ca']);
             unset($data['score_ebit_ca']);
         } elseif (\array_key_exists('score_ebit_ca', $data) && null === $data['score_ebit_ca']) {
             $object->setScoreEbitCa(null);
+            unset($data['score_ebit_ca']);
         }
         if (\array_key_exists('score_fonds_de_roulement', $data) && null !== $data['score_fonds_de_roulement']) {
             $object->setScoreFondsDeRoulement($data['score_fonds_de_roulement']);
             unset($data['score_fonds_de_roulement']);
         } elseif (\array_key_exists('score_fonds_de_roulement', $data) && null === $data['score_fonds_de_roulement']) {
             $object->setScoreFondsDeRoulement(null);
+            unset($data['score_fonds_de_roulement']);
         }
         if (\array_key_exists('score_tresorerie_nette', $data) && null !== $data['score_tresorerie_nette']) {
             $object->setScoreTresorerieNette($data['score_tresorerie_nette']);
             unset($data['score_tresorerie_nette']);
         } elseif (\array_key_exists('score_tresorerie_nette', $data) && null === $data['score_tresorerie_nette']) {
             $object->setScoreTresorerieNette(null);
+            unset($data['score_tresorerie_nette']);
         }
         if (\array_key_exists('score_dettes_fiscales_va', $data) && null !== $data['score_dettes_fiscales_va']) {
             $object->setScoreDettesFiscalesVa($data['score_dettes_fiscales_va']);
             unset($data['score_dettes_fiscales_va']);
         } elseif (\array_key_exists('score_dettes_fiscales_va', $data) && null === $data['score_dettes_fiscales_va']) {
             $object->setScoreDettesFiscalesVa(null);
+            unset($data['score_dettes_fiscales_va']);
         }
         if (\array_key_exists('score_cash_flow', $data) && null !== $data['score_cash_flow']) {
             $object->setScoreCashFlow($data['score_cash_flow']);
             unset($data['score_cash_flow']);
         } elseif (\array_key_exists('score_cash_flow', $data) && null === $data['score_cash_flow']) {
             $object->setScoreCashFlow(null);
+            unset($data['score_cash_flow']);
         }
         if (\array_key_exists('score_dettes_fiscales_ca', $data) && null !== $data['score_dettes_fiscales_ca']) {
             $object->setScoreDettesFiscalesCa($data['score_dettes_fiscales_ca']);
             unset($data['score_dettes_fiscales_ca']);
         } elseif (\array_key_exists('score_dettes_fiscales_ca', $data) && null === $data['score_dettes_fiscales_ca']) {
             $object->setScoreDettesFiscalesCa(null);
+            unset($data['score_dettes_fiscales_ca']);
         }
         if (\array_key_exists('score_charges_financieres_nettes', $data) && null !== $data['score_charges_financieres_nettes']) {
             $object->setScoreChargesFinancieresNettes($data['score_charges_financieres_nettes']);
             unset($data['score_charges_financieres_nettes']);
         } elseif (\array_key_exists('score_charges_financieres_nettes', $data) && null === $data['score_charges_financieres_nettes']) {
             $object->setScoreChargesFinancieresNettes(null);
+            unset($data['score_charges_financieres_nettes']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -138,7 +145,7 @@ class ScoringFinancierDetailsScoreNormalizer implements DenormalizerInterface, N
         if ($data->isInitialized('scoreChargesFinancieresNettes') && null !== $data->getScoreChargesFinancieresNettes()) {
             $dataArray['score_charges_financieres_nettes'] = $data->getScoreChargesFinancieresNettes();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

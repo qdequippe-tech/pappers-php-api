@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class ScoringNonFinancier extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class ScoringNonFinancier implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class ScoringNonFinancier extends \ArrayObject
         $this->erreur = $erreur;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['note' => ['note', 'getNote', 'setNote'], 'score' => ['score', 'getScore', 'setScore'], 'dateCalcul' => ['date_calcul', 'getDateCalcul', 'setDateCalcul'], 'erreur' => ['erreur', 'getErreur', 'setErreur']];
     }
 }

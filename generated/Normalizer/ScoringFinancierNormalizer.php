@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\ScoringFinancier;
 use Qdequippe\Pappers\Api\Model\ScoringFinancierDetailsScore;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,51 +34,57 @@ class ScoringFinancierNormalizer implements DenormalizerInterface, NormalizerInt
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ScoringFinancier();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new ScoringFinancier();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('note', $data) && null !== $data['note']) {
             $object->setNote($data['note']);
             unset($data['note']);
         } elseif (\array_key_exists('note', $data) && null === $data['note']) {
             $object->setNote(null);
+            unset($data['note']);
         }
         if (\array_key_exists('score', $data) && null !== $data['score']) {
             $object->setScore($data['score']);
             unset($data['score']);
         } elseif (\array_key_exists('score', $data) && null === $data['score']) {
             $object->setScore(null);
+            unset($data['score']);
         }
         if (\array_key_exists('date_cloture_comptes', $data) && null !== $data['date_cloture_comptes']) {
             $object->setDateClotureComptes($data['date_cloture_comptes']);
             unset($data['date_cloture_comptes']);
         } elseif (\array_key_exists('date_cloture_comptes', $data) && null === $data['date_cloture_comptes']) {
             $object->setDateClotureComptes(null);
+            unset($data['date_cloture_comptes']);
         }
         if (\array_key_exists('details_score', $data) && null !== $data['details_score']) {
             $object->setDetailsScore($this->denormalizer->denormalize($data['details_score'], ScoringFinancierDetailsScore::class, 'json', $context));
             unset($data['details_score']);
         } elseif (\array_key_exists('details_score', $data) && null === $data['details_score']) {
             $object->setDetailsScore(null);
+            unset($data['details_score']);
         }
         if (\array_key_exists('date_calcul', $data) && null !== $data['date_calcul']) {
             $object->setDateCalcul($data['date_calcul']);
             unset($data['date_calcul']);
         } elseif (\array_key_exists('date_calcul', $data) && null === $data['date_calcul']) {
             $object->setDateCalcul(null);
+            unset($data['date_calcul']);
         }
         if (\array_key_exists('erreur', $data) && null !== $data['erreur']) {
             $object->setErreur($data['erreur']);
             unset($data['erreur']);
         } elseif (\array_key_exists('erreur', $data) && null === $data['erreur']) {
             $object->setErreur(null);
+            unset($data['erreur']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -101,7 +108,7 @@ class ScoringFinancierNormalizer implements DenormalizerInterface, NormalizerInt
             $dataArray['date_cloture_comptes'] = $data->getDateClotureComptes();
         }
         if ($data->isInitialized('detailsScore') && null !== $data->getDetailsScore()) {
-            $dataArray['details_score'] = $this->normalizer->normalize($data->getDetailsScore(), 'json', $context);
+            $dataArray['details_score'] = null === $data->getDetailsScore() ? null : new JsonObject($this->normalizer->normalize($data->getDetailsScore(), 'json', $context));
         }
         if ($data->isInitialized('dateCalcul') && null !== $data->getDateCalcul()) {
             $dataArray['date_calcul'] = $data->getDateCalcul();
@@ -109,7 +116,7 @@ class ScoringFinancierNormalizer implements DenormalizerInterface, NormalizerInt
         if ($data->isInitialized('erreur') && null !== $data->getErreur()) {
             $dataArray['erreur'] = $data->getErreur();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

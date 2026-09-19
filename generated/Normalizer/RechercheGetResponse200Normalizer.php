@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\RechercheGetResponse200;
 use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,15 +34,15 @@ class RechercheGetResponse200Normalizer implements DenormalizerInterface, Normal
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new RechercheGetResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new RechercheGetResponse200();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
             $values = [];
@@ -52,24 +53,28 @@ class RechercheGetResponse200Normalizer implements DenormalizerInterface, Normal
             unset($data['resultats']);
         } elseif (\array_key_exists('resultats', $data) && null === $data['resultats']) {
             $object->setResultats(null);
+            unset($data['resultats']);
         }
         if (\array_key_exists('total', $data) && null !== $data['total']) {
             $object->setTotal($data['total']);
             unset($data['total']);
         } elseif (\array_key_exists('total', $data) && null === $data['total']) {
             $object->setTotal(null);
+            unset($data['total']);
         }
         if (\array_key_exists('page', $data) && null !== $data['page']) {
             $object->setPage($data['page']);
             unset($data['page']);
         } elseif (\array_key_exists('page', $data) && null === $data['page']) {
             $object->setPage(null);
+            unset($data['page']);
         }
         if (\array_key_exists('curseurSuivant', $data) && null !== $data['curseurSuivant']) {
             $object->setCurseurSuivant($data['curseurSuivant']);
             unset($data['curseurSuivant']);
         } elseif (\array_key_exists('curseurSuivant', $data) && null === $data['curseurSuivant']) {
             $object->setCurseurSuivant(null);
+            unset($data['curseurSuivant']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -86,7 +91,7 @@ class RechercheGetResponse200Normalizer implements DenormalizerInterface, Normal
         if ($data->isInitialized('resultats') && null !== $data->getResultats()) {
             $values = [];
             foreach ($data->getResultats() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['resultats'] = $values;
         }
@@ -99,7 +104,7 @@ class RechercheGetResponse200Normalizer implements DenormalizerInterface, Normal
         if ($data->isInitialized('curseurSuivant') && null !== $data->getCurseurSuivant()) {
             $dataArray['curseurSuivant'] = $data->getCurseurSuivant();
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

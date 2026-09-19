@@ -3,8 +3,9 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItempublicationsItem;
+use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItemPublicationsItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -13,7 +14,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class RechercheGetResponse200ResultatsItempublicationsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class RechercheGetResponse200ResultatsItemPublicationsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -22,43 +23,50 @@ class RechercheGetResponse200ResultatsItempublicationsItemNormalizer implements 
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return RechercheGetResponse200ResultatsItempublicationsItem::class === $type;
+        return RechercheGetResponse200ResultatsItemPublicationsItem::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && RechercheGetResponse200ResultatsItempublicationsItem::class === $data::class;
+        return \is_object($data) && RechercheGetResponse200ResultatsItemPublicationsItem::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new RechercheGetResponse200ResultatsItemPublicationsItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new RechercheGetResponse200ResultatsItempublicationsItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d', $data['date'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date'], 'Y-m-d');
+            }
+            $object->setDate($date->setTime(0, 0, 0));
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('contenu', $data) && null !== $data['contenu']) {
             $object->setContenu($data['contenu']);
             unset($data['contenu']);
         } elseif (\array_key_exists('contenu', $data) && null === $data['contenu']) {
             $object->setContenu(null);
+            unset($data['contenu']);
         }
         if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values = [];
@@ -69,6 +77,7 @@ class RechercheGetResponse200ResultatsItempublicationsItemNormalizer implements 
             unset($data['mentions']);
         } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
             $object->setMentions(null);
+            unset($data['mentions']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -98,7 +107,7 @@ class RechercheGetResponse200ResultatsItempublicationsItemNormalizer implements 
             }
             $dataArray['mentions'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }
@@ -109,6 +118,6 @@ class RechercheGetResponse200ResultatsItempublicationsItemNormalizer implements 
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [RechercheGetResponse200ResultatsItempublicationsItem::class => false];
+        return [RechercheGetResponse200ResultatsItemPublicationsItem::class => false];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheinformationsBoursieres extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheInformationsBoursieres implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -34,7 +38,7 @@ class EntrepriseFicheinformationsBoursieres extends \ArrayObject
     /**
      * Liste des documents boursiers de l'entreprise. Uniquement présent si le champ supplémentaire `informations_boursieres:documents` est demandé.
      *
-     * @var list<EntrepriseFicheinformationsBoursieresDocumentsItem>|null
+     * @var list<EntrepriseFicheInformationsBoursieresDocumentsItem>|null
      */
     protected $documents;
 
@@ -106,7 +110,7 @@ class EntrepriseFicheinformationsBoursieres extends \ArrayObject
     /**
      * Liste des documents boursiers de l'entreprise. Uniquement présent si le champ supplémentaire `informations_boursieres:documents` est demandé.
      *
-     * @return list<EntrepriseFicheinformationsBoursieresDocumentsItem>|null
+     * @return list<EntrepriseFicheInformationsBoursieresDocumentsItem>|null
      */
     public function getDocuments(): ?array
     {
@@ -116,7 +120,7 @@ class EntrepriseFicheinformationsBoursieres extends \ArrayObject
     /**
      * Liste des documents boursiers de l'entreprise. Uniquement présent si le champ supplémentaire `informations_boursieres:documents` est demandé.
      *
-     * @param list<EntrepriseFicheinformationsBoursieresDocumentsItem>|null $documents
+     * @param list<EntrepriseFicheInformationsBoursieresDocumentsItem>|null $documents
      */
     public function setDocuments(?array $documents): self
     {
@@ -124,5 +128,10 @@ class EntrepriseFicheinformationsBoursieres extends \ArrayObject
         $this->documents = $documents;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['cac40' => ['cac40', 'getCac40', 'setCac40'], 'isin' => ['isin', 'getIsin', 'setIsin'], 'symboles' => ['symboles', 'getSymboles', 'setSymboles'], 'documents' => ['documents', 'getDocuments', 'setDocuments']];
     }
 }

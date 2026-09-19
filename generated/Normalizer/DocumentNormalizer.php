@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\Document;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -32,39 +33,46 @@ class DocumentNormalizer implements DenormalizerInterface, NormalizerInterface, 
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
+        $object = new Document();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
         if (\array_key_exists('type', $data) && 'acte' === $data['type']) {
             return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\DocumentActe', $format, $context);
         }
         if (\array_key_exists('type', $data) && 'comptes' === $data['type']) {
             return $this->denormalizer->denormalize($data, 'Qdequippe\Pappers\Api\Model\DocumentComptes', $format, $context);
         }
-        if (isset($data['$ref'])) {
-            return new Reference($data['$ref'], $context['document-origin']);
-        }
-        if (isset($data['$recursiveRef'])) {
-            return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new Document();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('token', $data) && null !== $data['token']) {
             $object->setToken($data['token']);
             unset($data['token']);
         } elseif (\array_key_exists('token', $data) && null === $data['token']) {
             $object->setToken(null);
+            unset($data['token']);
         }
         if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
-            $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date_depot']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date_depot'], 'Y-m-d');
+            }
+            $object->setDateDepot($date->setTime(0, 0, 0));
             unset($data['date_depot']);
         } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
             $object->setDateDepot(null);
+            unset($data['date_depot']);
         }
         if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values = [];
@@ -75,6 +83,7 @@ class DocumentNormalizer implements DenormalizerInterface, NormalizerInterface, 
             unset($data['mentions']);
         } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
             $object->setMentions(null);
+            unset($data['mentions']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -110,7 +119,7 @@ class DocumentNormalizer implements DenormalizerInterface, NormalizerInterface, 
             }
             $dataArray['mentions'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

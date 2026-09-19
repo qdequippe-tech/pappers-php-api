@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationEntrepriseNomCommercialItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationEntrepriseNomCommercialItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -96,5 +100,10 @@ class NotificationEntrepriseNomCommercialItem extends \ArrayObject
         $this->date = $date;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siret' => ['siret', 'getSiret', 'setSiret'], 'valeur' => ['valeur', 'getValeur', 'setValeur'], 'ancienneValeur' => ['ancienne_valeur', 'getAncienneValeur', 'setAncienneValeur'], 'date' => ['date', 'getDate', 'setDate']];
     }
 }

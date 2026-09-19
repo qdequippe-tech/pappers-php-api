@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -28,13 +32,13 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision|null
      */
     protected $detailsEnIndivision;
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale|null
      */
     protected $detailsEnPersonneMorale;
 
@@ -79,7 +83,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif.
      */
-    public function getDetailsEnIndivision(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision
+    public function getDetailsEnIndivision(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision
     {
         return $this->detailsEnIndivision;
     }
@@ -87,7 +91,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une indivision par le bénéficiaire effectif.
      */
-    public function setDetailsEnIndivision(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision $detailsEnIndivision): self
+    public function setDetailsEnIndivision(?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision $detailsEnIndivision): self
     {
         $this->initialized['detailsEnIndivision'] = true;
         $this->detailsEnIndivision = $detailsEnIndivision;
@@ -98,7 +102,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif.
      */
-    public function getDetailsEnPersonneMorale(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale
+    public function getDetailsEnPersonneMorale(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale
     {
         return $this->detailsEnPersonneMorale;
     }
@@ -106,11 +110,16 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects extends \Ar
     /**
      * Détails des droits de vote détenus de façon indirecte par le biais d'une personne morale par le bénéficiaire effectif.
      */
-    public function setDetailsEnPersonneMorale(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale $detailsEnPersonneMorale): self
+    public function setDetailsEnPersonneMorale(?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale $detailsEnPersonneMorale): self
     {
         $this->initialized['detailsEnPersonneMorale'] = true;
         $this->detailsEnPersonneMorale = $detailsEnPersonneMorale;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['pourcentageEnIndivision' => ['pourcentage_en_indivision', 'getPourcentageEnIndivision', 'setPourcentageEnIndivision'], 'pourcentageEnPersonneMorale' => ['pourcentage_en_personne_morale', 'getPourcentageEnPersonneMorale', 'setPourcentageEnPersonneMorale'], 'detailsEnIndivision' => ['details_en_indivision', 'getDetailsEnIndivision', 'setDetailsEnIndivision'], 'detailsEnPersonneMorale' => ['details_en_personne_morale', 'getDetailsEnPersonneMorale', 'setDetailsEnPersonneMorale']];
     }
 }

@@ -8,6 +8,7 @@ use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemMandatSuppri
 use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemNouveauMandat;
 use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem;
 use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItemQualiteDirigeant;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -36,39 +37,43 @@ class NotificationDirigeantEntreprisesItemNormalizer implements DenormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationDirigeantEntreprisesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationDirigeantEntreprisesItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         if (\array_key_exists('nouveau_mandat', $data) && null !== $data['nouveau_mandat']) {
             $object->setNouveauMandat($this->denormalizer->denormalize($data['nouveau_mandat'], NotificationDirigeantEntreprisesItemNouveauMandat::class, 'json', $context));
             unset($data['nouveau_mandat']);
         } elseif (\array_key_exists('nouveau_mandat', $data) && null === $data['nouveau_mandat']) {
             $object->setNouveauMandat(null);
+            unset($data['nouveau_mandat']);
         }
         if (\array_key_exists('mandat_supprime', $data) && null !== $data['mandat_supprime']) {
             $object->setMandatSupprime($this->denormalizer->denormalize($data['mandat_supprime'], NotificationDirigeantEntreprisesItemMandatSupprime::class, 'json', $context));
             unset($data['mandat_supprime']);
         } elseif (\array_key_exists('mandat_supprime', $data) && null === $data['mandat_supprime']) {
             $object->setMandatSupprime(null);
+            unset($data['mandat_supprime']);
         }
         if (\array_key_exists('qualite_dirigeant', $data) && null !== $data['qualite_dirigeant']) {
             $object->setQualiteDirigeant($this->denormalizer->denormalize($data['qualite_dirigeant'], NotificationDirigeantEntreprisesItemQualiteDirigeant::class, 'json', $context));
             unset($data['qualite_dirigeant']);
         } elseif (\array_key_exists('qualite_dirigeant', $data) && null === $data['qualite_dirigeant']) {
             $object->setQualiteDirigeant(null);
+            unset($data['qualite_dirigeant']);
         }
         if (\array_key_exists('nouvelle_annonce_procedure_collective_publiee', $data) && null !== $data['nouvelle_annonce_procedure_collective_publiee']) {
             $values = [];
@@ -79,6 +84,7 @@ class NotificationDirigeantEntreprisesItemNormalizer implements DenormalizerInte
             unset($data['nouvelle_annonce_procedure_collective_publiee']);
         } elseif (\array_key_exists('nouvelle_annonce_procedure_collective_publiee', $data) && null === $data['nouvelle_annonce_procedure_collective_publiee']) {
             $object->setNouvelleAnnonceProcedureCollectivePubliee(null);
+            unset($data['nouvelle_annonce_procedure_collective_publiee']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -96,22 +102,22 @@ class NotificationDirigeantEntreprisesItemNormalizer implements DenormalizerInte
             $dataArray['siren'] = $data->getSiren();
         }
         if ($data->isInitialized('nouveauMandat') && null !== $data->getNouveauMandat()) {
-            $dataArray['nouveau_mandat'] = $this->normalizer->normalize($data->getNouveauMandat(), 'json', $context);
+            $dataArray['nouveau_mandat'] = null === $data->getNouveauMandat() ? null : new JsonObject($this->normalizer->normalize($data->getNouveauMandat(), 'json', $context));
         }
         if ($data->isInitialized('mandatSupprime') && null !== $data->getMandatSupprime()) {
-            $dataArray['mandat_supprime'] = $this->normalizer->normalize($data->getMandatSupprime(), 'json', $context);
+            $dataArray['mandat_supprime'] = null === $data->getMandatSupprime() ? null : new JsonObject($this->normalizer->normalize($data->getMandatSupprime(), 'json', $context));
         }
         if ($data->isInitialized('qualiteDirigeant') && null !== $data->getQualiteDirigeant()) {
-            $dataArray['qualite_dirigeant'] = $this->normalizer->normalize($data->getQualiteDirigeant(), 'json', $context);
+            $dataArray['qualite_dirigeant'] = null === $data->getQualiteDirigeant() ? null : new JsonObject($this->normalizer->normalize($data->getQualiteDirigeant(), 'json', $context));
         }
         if ($data->isInitialized('nouvelleAnnonceProcedureCollectivePubliee') && null !== $data->getNouvelleAnnonceProcedureCollectivePubliee()) {
             $values = [];
             foreach ($data->getNouvelleAnnonceProcedureCollectivePubliee() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['nouvelle_annonce_procedure_collective_publiee'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

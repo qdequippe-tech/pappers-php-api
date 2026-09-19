@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeantNouvellesSanctionsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeantNouvellesSanctionsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -137,5 +141,10 @@ class NotificationDirigeantNouvellesSanctionsItem extends \ArrayObject
         $this->codePays = $codePays;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['date' => ['date', 'getDate', 'setDate'], 'autorite' => ['autorite', 'getAutorite', 'setAutorite'], 'description' => ['description', 'getDescription', 'setDescription'], 'pays' => ['pays', 'getPays', 'setPays'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays']];
     }
 }

@@ -32,39 +32,43 @@ class ScoringNonFinancierNormalizer implements DenormalizerInterface, Normalizer
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ScoringNonFinancier();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new ScoringNonFinancier();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('note', $data) && null !== $data['note']) {
             $object->setNote($data['note']);
             unset($data['note']);
         } elseif (\array_key_exists('note', $data) && null === $data['note']) {
             $object->setNote(null);
+            unset($data['note']);
         }
         if (\array_key_exists('score', $data) && null !== $data['score']) {
             $object->setScore($data['score']);
             unset($data['score']);
         } elseif (\array_key_exists('score', $data) && null === $data['score']) {
             $object->setScore(null);
+            unset($data['score']);
         }
         if (\array_key_exists('date_calcul', $data) && null !== $data['date_calcul']) {
             $object->setDateCalcul($data['date_calcul']);
             unset($data['date_calcul']);
         } elseif (\array_key_exists('date_calcul', $data) && null === $data['date_calcul']) {
             $object->setDateCalcul(null);
+            unset($data['date_calcul']);
         }
         if (\array_key_exists('erreur', $data) && null !== $data['erreur']) {
             $object->setErreur($data['erreur']);
             unset($data['erreur']);
         } elseif (\array_key_exists('erreur', $data) && null === $data['erreur']) {
             $object->setErreur(null);
+            unset($data['erreur']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -90,7 +94,7 @@ class ScoringNonFinancierNormalizer implements DenormalizerInterface, Normalizer
         if ($data->isInitialized('erreur') && null !== $data->getErreur()) {
             $dataArray['erreur'] = $data->getErreur();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

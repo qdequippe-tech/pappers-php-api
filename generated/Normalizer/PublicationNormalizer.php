@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\Publication;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -32,33 +33,40 @@ class PublicationNormalizer implements DenormalizerInterface, NormalizerInterfac
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new Publication();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new Publication();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d', $data['date'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date'], 'Y-m-d');
+            }
+            $object->setDate($date->setTime(0, 0, 0));
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('contenu', $data) && null !== $data['contenu']) {
             $object->setContenu($data['contenu']);
             unset($data['contenu']);
         } elseif (\array_key_exists('contenu', $data) && null === $data['contenu']) {
             $object->setContenu(null);
+            unset($data['contenu']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -81,7 +89,7 @@ class PublicationNormalizer implements DenormalizerInterface, NormalizerInterfac
         if ($data->isInitialized('contenu') && null !== $data->getContenu()) {
             $dataArray['contenu'] = $data->getContenu();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

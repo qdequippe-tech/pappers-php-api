@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class AssociationAdresseGestionnaire extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class AssociationAdresseGestionnaire implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -212,5 +216,10 @@ class AssociationAdresseGestionnaire extends \ArrayObject
         $this->pays = $pays;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['gestionnaire' => ['gestionnaire', 'getGestionnaire', 'setGestionnaire'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'ville' => ['ville', 'getVille', 'setVille'], 'distribution' => ['distribution', 'getDistribution', 'setDistribution'], 'adresseLigne' => ['adresse_ligne', 'getAdresseLigne', 'setAdresseLigne'], 'complementAdresse' => ['complement_adresse', 'getComplementAdresse', 'setComplementAdresse'], 'indication' => ['indication', 'getIndication', 'setIndication'], 'pays' => ['pays', 'getPays', 'setPays']];
     }
 }

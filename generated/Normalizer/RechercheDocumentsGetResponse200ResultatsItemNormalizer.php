@@ -5,7 +5,9 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\EntrepriseRecherche;
 use Qdequippe\Pappers\Api\Model\RechercheDocumentsGetResponse200ResultatsItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -33,33 +35,40 @@ class RechercheDocumentsGetResponse200ResultatsItemNormalizer implements Denorma
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new RechercheDocumentsGetResponse200ResultatsItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new RechercheDocumentsGetResponse200ResultatsItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('token', $data) && null !== $data['token']) {
             $object->setToken($data['token']);
             unset($data['token']);
         } elseif (\array_key_exists('token', $data) && null === $data['token']) {
             $object->setToken(null);
+            unset($data['token']);
         }
         if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
-            $object->setDateDepot(\DateTime::createFromFormat('Y-m-d', $data['date_depot'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date_depot']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date_depot'], 'Y-m-d');
+            }
+            $object->setDateDepot($date->setTime(0, 0, 0));
             unset($data['date_depot']);
         } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
             $object->setDateDepot(null);
+            unset($data['date_depot']);
         }
         if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values = [];
@@ -70,12 +79,14 @@ class RechercheDocumentsGetResponse200ResultatsItemNormalizer implements Denorma
             unset($data['mentions']);
         } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
             $object->setMentions(null);
+            unset($data['mentions']);
         }
         if (\array_key_exists('entreprise', $data) && null !== $data['entreprise']) {
             $object->setEntreprise($this->denormalizer->denormalize($data['entreprise'], EntrepriseRecherche::class, 'json', $context));
             unset($data['entreprise']);
         } elseif (\array_key_exists('entreprise', $data) && null === $data['entreprise']) {
             $object->setEntreprise(null);
+            unset($data['entreprise']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -106,9 +117,9 @@ class RechercheDocumentsGetResponse200ResultatsItemNormalizer implements Denorma
             $dataArray['mentions'] = $values;
         }
         if ($data->isInitialized('entreprise') && null !== $data->getEntreprise()) {
-            $dataArray['entreprise'] = $this->normalizer->normalize($data->getEntreprise(), 'json', $context);
+            $dataArray['entreprise'] = null === $data->getEntreprise() ? null : new JsonObject($this->normalizer->normalize($data->getEntreprise(), 'json', $context));
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

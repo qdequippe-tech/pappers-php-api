@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichefinancesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheFinancesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -73,6 +77,12 @@ class EntrepriseFichefinancesItem extends \ArrayObject
      * @var float|null
      */
     protected $tauxCroissanceChiffreAffaires;
+    /**
+     * Taux de croissance de l'effectif (en %) de l'entreprise.
+     *
+     * @var float|null
+     */
+    protected $tauxCroissanceEffectif;
     /**
      * Taux de marge brute (en %) de l'entreprise.
      *
@@ -458,6 +468,25 @@ class EntrepriseFichefinancesItem extends \ArrayObject
     {
         $this->initialized['tauxCroissanceChiffreAffaires'] = true;
         $this->tauxCroissanceChiffreAffaires = $tauxCroissanceChiffreAffaires;
+
+        return $this;
+    }
+
+    /**
+     * Taux de croissance de l'effectif (en %) de l'entreprise.
+     */
+    public function getTauxCroissanceEffectif(): ?float
+    {
+        return $this->tauxCroissanceEffectif;
+    }
+
+    /**
+     * Taux de croissance de l'effectif (en %) de l'entreprise.
+     */
+    public function setTauxCroissanceEffectif(?float $tauxCroissanceEffectif): self
+    {
+        $this->initialized['tauxCroissanceEffectif'] = true;
+        $this->tauxCroissanceEffectif = $tauxCroissanceEffectif;
 
         return $this;
     }
@@ -1087,5 +1116,10 @@ class EntrepriseFichefinancesItem extends \ArrayObject
         $this->impotsTaxes = $impotsTaxes;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['annee' => ['annee', 'getAnnee', 'setAnnee'], 'dateDeClotureExercice' => ['date_de_cloture_exercice', 'getDateDeClotureExercice', 'setDateDeClotureExercice'], 'dureeExercice' => ['duree_exercice', 'getDureeExercice', 'setDureeExercice'], 'chiffreAffaires' => ['chiffre_affaires', 'getChiffreAffaires', 'setChiffreAffaires'], 'resultat' => ['resultat', 'getResultat', 'setResultat'], 'effectif' => ['effectif', 'getEffectif', 'setEffectif'], 'margeBrute' => ['marge_brute', 'getMargeBrute', 'setMargeBrute'], 'excedentBrutExploitation' => ['excedent_brut_exploitation', 'getExcedentBrutExploitation', 'setExcedentBrutExploitation'], 'resultatExploitation' => ['resultat_exploitation', 'getResultatExploitation', 'setResultatExploitation'], 'tauxCroissanceChiffreAffaires' => ['taux_croissance_chiffre_affaires', 'getTauxCroissanceChiffreAffaires', 'setTauxCroissanceChiffreAffaires'], 'tauxCroissanceEffectif' => ['taux_croissance_effectif', 'getTauxCroissanceEffectif', 'setTauxCroissanceEffectif'], 'tauxMargeBrute' => ['taux_marge_brute', 'getTauxMargeBrute', 'setTauxMargeBrute'], 'tauxMargeEBITDA' => ['taux_marge_EBITDA', 'getTauxMargeEBITDA', 'setTauxMargeEBITDA'], 'tauxMargeOperationnelle' => ['taux_marge_operationnelle', 'getTauxMargeOperationnelle', 'setTauxMargeOperationnelle'], 'bFR' => ['BFR', 'getBFR', 'setBFR'], 'bFRExploitation' => ['BFR_exploitation', 'getBFRExploitation', 'setBFRExploitation'], 'bFRHorsExploitation' => ['BFR_hors_exploitation', 'getBFRHorsExploitation', 'setBFRHorsExploitation'], 'bFRJoursCA' => ['BFR_jours_CA', 'getBFRJoursCA', 'setBFRJoursCA'], 'bFRExploitationJoursCA' => ['BFR_exploitation_jours_CA', 'getBFRExploitationJoursCA', 'setBFRExploitationJoursCA'], 'bFRHorsExploitationJoursCA' => ['BFR_hors_exploitation_jours_CA', 'getBFRHorsExploitationJoursCA', 'setBFRHorsExploitationJoursCA'], 'delaiPaiementClientsJours' => ['delai_paiement_clients_jours', 'getDelaiPaiementClientsJours', 'setDelaiPaiementClientsJours'], 'delaiPaiementFournisseursJours' => ['delai_paiement_fournisseurs_jours', 'getDelaiPaiementFournisseursJours', 'setDelaiPaiementFournisseursJours'], 'ratioStockCAJours' => ['ratio_stock_CA_jours', 'getRatioStockCAJours', 'setRatioStockCAJours'], 'capaciteAutofinancement' => ['capacite_autofinancement', 'getCapaciteAutofinancement', 'setCapaciteAutofinancement'], 'capaciteAutofinancementCA' => ['capacite_autofinancement_CA', 'getCapaciteAutofinancementCA', 'setCapaciteAutofinancementCA'], 'fondsRoulementNetGlobal' => ['fonds_roulement_net_global', 'getFondsRoulementNetGlobal', 'setFondsRoulementNetGlobal'], 'couvertureBFR' => ['couverture_BFR', 'getCouvertureBFR', 'setCouvertureBFR'], 'tresorerie' => ['tresorerie', 'getTresorerie', 'setTresorerie'], 'dettesFinancieres' => ['dettes_financieres', 'getDettesFinancieres', 'setDettesFinancieres'], 'capaciteRemboursement' => ['capacite_remboursement', 'getCapaciteRemboursement', 'setCapaciteRemboursement'], 'ratioEndettement' => ['ratio_endettement', 'getRatioEndettement', 'setRatioEndettement'], 'autonomieFinanciere' => ['autonomie_financiere', 'getAutonomieFinanciere', 'setAutonomieFinanciere'], 'tauxLevier' => ['taux_levier', 'getTauxLevier', 'setTauxLevier'], 'etatDettes1AnAuPlus' => ['etat_dettes_1_an_au_plus', 'getEtatDettes1AnAuPlus', 'setEtatDettes1AnAuPlus'], 'liquiditeGenerale' => ['liquidite_generale', 'getLiquiditeGenerale', 'setLiquiditeGenerale'], 'couvertureDettes' => ['couverture_dettes', 'getCouvertureDettes', 'setCouvertureDettes'], 'margeNette' => ['marge_nette', 'getMargeNette', 'setMargeNette'], 'rentabiliteFondsPropres' => ['rentabilite_fonds_propres', 'getRentabiliteFondsPropres', 'setRentabiliteFondsPropres'], 'rentabiliteEconomique' => ['rentabilite_economique', 'getRentabiliteEconomique', 'setRentabiliteEconomique'], 'valeurAjoutee' => ['valeur_ajoutee', 'getValeurAjoutee', 'setValeurAjoutee'], 'valeurAjouteeCA' => ['valeur_ajoutee_CA', 'getValeurAjouteeCA', 'setValeurAjouteeCA'], 'salairesChargesSociales' => ['salaires_charges_sociales', 'getSalairesChargesSociales', 'setSalairesChargesSociales'], 'salairesCA' => ['salaires_CA', 'getSalairesCA', 'setSalairesCA'], 'impotsTaxes' => ['impots_taxes', 'getImpotsTaxes', 'setImpotsTaxes']];
     }
 }

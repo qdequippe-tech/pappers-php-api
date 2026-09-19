@@ -11,6 +11,7 @@ use Qdequippe\Pappers\Api\Model\ListeInformationsPostBody;
 use Qdequippe\Pappers\Api\Runtime\Client\BaseEndpoint;
 use Qdequippe\Pappers\Api\Runtime\Client\Endpoint;
 use Qdequippe\Pappers\Api\Runtime\Client\EndpointTrait;
+use Qdequippe\Pappers\Api\Runtime\Client\JsonPayload;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -44,7 +45,7 @@ class SurveillanceListeInformations extends BaseEndpoint implements Endpoint
     public function getBody(SerializerInterface $serializer, $streamFactory = null): array
     {
         if ($this->body instanceof ListeInformationsPostBody) {
-            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
+            return [['Content-Type' => ['application/json']], JsonPayload::encode($serializer, $this->body)];
         }
 
         return [[], null];

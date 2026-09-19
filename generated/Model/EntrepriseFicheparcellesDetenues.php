@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheparcellesDetenues extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheParcellesDetenues implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -16,7 +20,7 @@ class EntrepriseFicheparcellesDetenues extends \ArrayObject
     /**
      * Liste des locaux et parcelles détenus (maximum 200 résultats).
      *
-     * @var list<EntrepriseFicheparcellesDetenuesResultatsItem>|null
+     * @var list<EntrepriseFicheParcellesDetenuesResultatsItem>|null
      */
     protected $resultats;
     /**
@@ -35,7 +39,7 @@ class EntrepriseFicheparcellesDetenues extends \ArrayObject
     /**
      * Liste des locaux et parcelles détenus (maximum 200 résultats).
      *
-     * @return list<EntrepriseFicheparcellesDetenuesResultatsItem>|null
+     * @return list<EntrepriseFicheParcellesDetenuesResultatsItem>|null
      */
     public function getResultats(): ?array
     {
@@ -45,7 +49,7 @@ class EntrepriseFicheparcellesDetenues extends \ArrayObject
     /**
      * Liste des locaux et parcelles détenus (maximum 200 résultats).
      *
-     * @param list<EntrepriseFicheparcellesDetenuesResultatsItem>|null $resultats
+     * @param list<EntrepriseFicheParcellesDetenuesResultatsItem>|null $resultats
      */
     public function setResultats(?array $resultats): self
     {
@@ -91,5 +95,10 @@ class EntrepriseFicheparcellesDetenues extends \ArrayObject
         $this->incomplet = $incomplet;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['resultats' => ['resultats', 'getResultats', 'setResultats'], 'total' => ['total', 'getTotal', 'setTotal'], 'incomplet' => ['incomplet', 'getIncomplet', 'setIncomplet']];
     }
 }

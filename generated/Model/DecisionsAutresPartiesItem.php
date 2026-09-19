@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class DecisionsAutresPartiesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class DecisionsAutresPartiesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -116,5 +120,10 @@ class DecisionsAutresPartiesItem extends \ArrayObject
         $this->avocats = $avocats;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'siren' => ['siren', 'getSiren', 'setSiren'], 'position' => ['position', 'getPosition', 'setPosition'], 'avocats' => ['avocats', 'getAvocats', 'setAvocats']];
     }
 }

@@ -40,6 +40,7 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
      *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
      *    "convention_collective"?: string, //Convention collective de l'entreprise.
      *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     *
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
      *    "statut_rcs"?: string, //Statut au RCS
@@ -51,18 +52,56 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
      *    "capital_min"?: string, //Capital minimum de l'entreprise.
      *    "capital_max"?: string, //Capital maximum de l'entreprise.
      *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
      *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
-     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
      *    "age_beneficiaire_min"?: int, //Âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
      *    "age_beneficiaire_max"?: int, //Âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
@@ -170,7 +209,7 @@ class RechercheDirigeants extends BaseEndpoint implements Endpoint
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
+        if ((null === $contentType) === false && (200 === $status && false !== stripos(strtolower($contentType), 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\RechercheDirigeantsGetResponse200', 'json');
         }
         if (401 === $status) {

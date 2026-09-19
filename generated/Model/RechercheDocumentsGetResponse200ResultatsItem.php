@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class RechercheDocumentsGetResponse200ResultatsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -133,5 +137,10 @@ class RechercheDocumentsGetResponse200ResultatsItem extends \ArrayObject
         $this->entreprise = $entreprise;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['type' => ['type', 'getType', 'setType'], 'token' => ['token', 'getToken', 'setToken'], 'dateDepot' => ['date_depot', 'getDateDepot', 'setDateDepot'], 'mentions' => ['mentions', 'getMentions', 'setMentions'], 'entreprise' => ['entreprise', 'getEntreprise', 'setEntreprise']];
     }
 }

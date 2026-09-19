@@ -32,27 +32,29 @@ class EtablissementFicheDomiciliationNormalizer implements DenormalizerInterface
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EtablissementFicheDomiciliation();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new EtablissementFicheDomiciliation();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -72,7 +74,7 @@ class EtablissementFicheDomiciliationNormalizer implements DenormalizerInterface
         if ($data->isInitialized('siren') && null !== $data->getSiren()) {
             $dataArray['siren'] = $data->getSiren();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

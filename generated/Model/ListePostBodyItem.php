@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class ListePostBodyItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class ListePostBodyItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -162,5 +166,10 @@ class ListePostBodyItem extends \ArrayObject
         $this->rechercheElargie = $rechercheElargie;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siren' => ['siren', 'getSiren', 'setSiren'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'nom' => ['nom', 'getNom', 'setNom'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'dateDeNaissance' => ['date_de_naissance', 'getDateDeNaissance', 'setDateDeNaissance'], 'rechercheElargie' => ['recherche_elargie', 'getRechercheElargie', 'setRechercheElargie']];
     }
 }

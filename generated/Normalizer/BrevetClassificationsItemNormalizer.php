@@ -32,27 +32,29 @@ class BrevetClassificationsItemNormalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new BrevetClassificationsItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new BrevetClassificationsItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('symbole', $data) && null !== $data['symbole']) {
             $object->setSymbole($data['symbole']);
             unset($data['symbole']);
         } elseif (\array_key_exists('symbole', $data) && null === $data['symbole']) {
             $object->setSymbole(null);
+            unset($data['symbole']);
         }
         if (\array_key_exists('label', $data) && null !== $data['label']) {
             $object->setLabel($data['label']);
             unset($data['label']);
         } elseif (\array_key_exists('label', $data) && null === $data['label']) {
             $object->setLabel(null);
+            unset($data['label']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -66,13 +68,13 @@ class BrevetClassificationsItemNormalizer implements DenormalizerInterface, Norm
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('symbole')) {
+        if ($data->isInitialized('symbole') && null !== $data->getSymbole()) {
             $dataArray['symbole'] = $data->getSymbole();
         }
-        if ($data->isInitialized('label')) {
+        if ($data->isInitialized('label') && null !== $data->getLabel()) {
             $dataArray['label'] = $data->getLabel();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

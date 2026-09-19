@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class AppelOffreLance extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class AppelOffreLance implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -283,5 +287,10 @@ class AppelOffreLance extends \ArrayObject
         $this->titulaires = $titulaires;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['montant' => ['montant', 'getMontant', 'setMontant'], 'dureeMois' => ['duree_mois', 'getDureeMois', 'setDureeMois'], 'dateNotification' => ['date_notification', 'getDateNotification', 'setDateNotification'], 'datePublication' => ['date_publication', 'getDatePublication', 'setDatePublication'], 'objet' => ['objet', 'getObjet', 'setObjet'], 'codeCategorie' => ['code_categorie', 'getCodeCategorie', 'setCodeCategorie'], 'libelleCategorie' => ['libelle_categorie', 'getLibelleCategorie', 'setLibelleCategorie'], 'idMacellum' => ['id_macellum', 'getIdMacellum', 'setIdMacellum'], 'statutProcedure' => ['statut_procedure', 'getStatutProcedure', 'setStatutProcedure'], 'acheteur' => ['acheteur', 'getAcheteur', 'setAcheteur'], 'titulaires' => ['titulaires', 'getTitulaires', 'setTitulaires']];
     }
 }

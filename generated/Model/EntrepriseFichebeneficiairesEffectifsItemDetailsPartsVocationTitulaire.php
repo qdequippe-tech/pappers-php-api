@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaire implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -28,13 +32,13 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes|null
      */
     protected $detailsDirectes;
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes|null
      */
     protected $detailsIndirectes;
 
@@ -79,7 +83,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe.
      */
-    public function getDetailsDirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes
+    public function getDetailsDirectes(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes
     {
         return $this->detailsDirectes;
     }
@@ -87,7 +91,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon directe.
      */
-    public function setDetailsDirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes $detailsDirectes): self
+    public function setDetailsDirectes(?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes $detailsDirectes): self
     {
         $this->initialized['detailsDirectes'] = true;
         $this->detailsDirectes = $detailsDirectes;
@@ -98,7 +102,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte.
      */
-    public function getDetailsIndirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes
+    public function getDetailsIndirectes(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes
     {
         return $this->detailsIndirectes;
     }
@@ -106,11 +110,16 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire ext
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte.
      */
-    public function setDetailsIndirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes $detailsIndirectes): self
+    public function setDetailsIndirectes(?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes $detailsIndirectes): self
     {
         $this->initialized['detailsIndirectes'] = true;
         $this->detailsIndirectes = $detailsIndirectes;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['pourcentageDirectes' => ['pourcentage_directes', 'getPourcentageDirectes', 'setPourcentageDirectes'], 'pourcentageIndirectes' => ['pourcentage_indirectes', 'getPourcentageIndirectes', 'setPourcentageIndirectes'], 'detailsDirectes' => ['details_directes', 'getDetailsDirectes', 'setDetailsDirectes'], 'detailsIndirectes' => ['details_indirectes', 'getDetailsIndirectes', 'setDetailsIndirectes']];
     }
 }

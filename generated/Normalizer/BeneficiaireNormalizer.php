@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\Beneficiaire;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -32,13 +33,16 @@ class BeneficiaireNormalizer implements DenormalizerInterface, NormalizerInterfa
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new Beneficiaire();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new Beneficiaire();
         if (\array_key_exists('pourcentage_parts', $data) && \is_int($data['pourcentage_parts'])) {
             $data['pourcentage_parts'] = (float) $data['pourcentage_parts'];
         }
@@ -75,194 +79,226 @@ class BeneficiaireNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (\array_key_exists('detention_pouvoir_decision_ag', $data) && \is_int($data['detention_pouvoir_decision_ag'])) {
             $data['detention_pouvoir_decision_ag'] = (bool) $data['detention_pouvoir_decision_ag'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('nom_usage', $data) && null !== $data['nom_usage']) {
             $object->setNomUsage($data['nom_usage']);
             unset($data['nom_usage']);
         } elseif (\array_key_exists('nom_usage', $data) && null === $data['nom_usage']) {
             $object->setNomUsage(null);
+            unset($data['nom_usage']);
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
             $object->setPrenom($data['prenom']);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
+            unset($data['prenom']);
         }
         if (\array_key_exists('pseudonyme', $data) && null !== $data['pseudonyme']) {
             $object->setPseudonyme($data['pseudonyme']);
             unset($data['pseudonyme']);
         } elseif (\array_key_exists('pseudonyme', $data) && null === $data['pseudonyme']) {
             $object->setPseudonyme(null);
+            unset($data['pseudonyme']);
         }
         if (\array_key_exists('nom_complet', $data) && null !== $data['nom_complet']) {
             $object->setNomComplet($data['nom_complet']);
             unset($data['nom_complet']);
         } elseif (\array_key_exists('nom_complet', $data) && null === $data['nom_complet']) {
             $object->setNomComplet(null);
+            unset($data['nom_complet']);
         }
         if (\array_key_exists('date_de_naissance_formate', $data) && null !== $data['date_de_naissance_formate']) {
             $object->setDateDeNaissanceFormate($data['date_de_naissance_formate']);
             unset($data['date_de_naissance_formate']);
         } elseif (\array_key_exists('date_de_naissance_formate', $data) && null === $data['date_de_naissance_formate']) {
             $object->setDateDeNaissanceFormate(null);
+            unset($data['date_de_naissance_formate']);
         }
         if (\array_key_exists('nationalite', $data) && null !== $data['nationalite']) {
             $object->setNationalite($data['nationalite']);
             unset($data['nationalite']);
         } elseif (\array_key_exists('nationalite', $data) && null === $data['nationalite']) {
             $object->setNationalite(null);
+            unset($data['nationalite']);
         }
         if (\array_key_exists('pourcentage_parts', $data) && null !== $data['pourcentage_parts']) {
             $object->setPourcentageParts($data['pourcentage_parts']);
             unset($data['pourcentage_parts']);
         } elseif (\array_key_exists('pourcentage_parts', $data) && null === $data['pourcentage_parts']) {
             $object->setPourcentageParts(null);
+            unset($data['pourcentage_parts']);
         }
         if (\array_key_exists('pourcentage_votes', $data) && null !== $data['pourcentage_votes']) {
             $object->setPourcentageVotes($data['pourcentage_votes']);
             unset($data['pourcentage_votes']);
         } elseif (\array_key_exists('pourcentage_votes', $data) && null === $data['pourcentage_votes']) {
             $object->setPourcentageVotes(null);
+            unset($data['pourcentage_votes']);
         }
         if (\array_key_exists('pourcentage_votes_indirect', $data) && null !== $data['pourcentage_votes_indirect']) {
             $object->setPourcentageVotesIndirect($data['pourcentage_votes_indirect']);
             unset($data['pourcentage_votes_indirect']);
         } elseif (\array_key_exists('pourcentage_votes_indirect', $data) && null === $data['pourcentage_votes_indirect']) {
             $object->setPourcentageVotesIndirect(null);
+            unset($data['pourcentage_votes_indirect']);
         }
         if (\array_key_exists('pourcentage_votes_directs', $data) && null !== $data['pourcentage_votes_directs']) {
             $object->setPourcentageVotesDirects($data['pourcentage_votes_directs']);
             unset($data['pourcentage_votes_directs']);
         } elseif (\array_key_exists('pourcentage_votes_directs', $data) && null === $data['pourcentage_votes_directs']) {
             $object->setPourcentageVotesDirects(null);
+            unset($data['pourcentage_votes_directs']);
         }
         if (\array_key_exists('detention_autres_moyens_controle', $data) && null !== $data['detention_autres_moyens_controle']) {
             $object->setDetentionAutresMoyensControle($data['detention_autres_moyens_controle']);
             unset($data['detention_autres_moyens_controle']);
         } elseif (\array_key_exists('detention_autres_moyens_controle', $data) && null === $data['detention_autres_moyens_controle']) {
             $object->setDetentionAutresMoyensControle(null);
+            unset($data['detention_autres_moyens_controle']);
         }
         if (\array_key_exists('beneficiaire_representant_legal', $data) && null !== $data['beneficiaire_representant_legal']) {
             $object->setBeneficiaireRepresentantLegal($data['beneficiaire_representant_legal']);
             unset($data['beneficiaire_representant_legal']);
         } elseif (\array_key_exists('beneficiaire_representant_legal', $data) && null === $data['beneficiaire_representant_legal']) {
             $object->setBeneficiaireRepresentantLegal(null);
+            unset($data['beneficiaire_representant_legal']);
         }
         if (\array_key_exists('adresse_ligne_1', $data) && null !== $data['adresse_ligne_1']) {
             $object->setAdresseLigne1($data['adresse_ligne_1']);
             unset($data['adresse_ligne_1']);
         } elseif (\array_key_exists('adresse_ligne_1', $data) && null === $data['adresse_ligne_1']) {
             $object->setAdresseLigne1(null);
+            unset($data['adresse_ligne_1']);
         }
         if (\array_key_exists('adresse_ligne_2', $data) && null !== $data['adresse_ligne_2']) {
             $object->setAdresseLigne2($data['adresse_ligne_2']);
             unset($data['adresse_ligne_2']);
         } elseif (\array_key_exists('adresse_ligne_2', $data) && null === $data['adresse_ligne_2']) {
             $object->setAdresseLigne2(null);
+            unset($data['adresse_ligne_2']);
         }
         if (\array_key_exists('adresse_ligne_3', $data) && null !== $data['adresse_ligne_3']) {
             $object->setAdresseLigne3($data['adresse_ligne_3']);
             unset($data['adresse_ligne_3']);
         } elseif (\array_key_exists('adresse_ligne_3', $data) && null === $data['adresse_ligne_3']) {
             $object->setAdresseLigne3(null);
+            unset($data['adresse_ligne_3']);
         }
         if (\array_key_exists('pourcentage_parts_vocation_titulaire', $data) && null !== $data['pourcentage_parts_vocation_titulaire']) {
             $object->setPourcentagePartsVocationTitulaire($data['pourcentage_parts_vocation_titulaire']);
             unset($data['pourcentage_parts_vocation_titulaire']);
         } elseif (\array_key_exists('pourcentage_parts_vocation_titulaire', $data) && null === $data['pourcentage_parts_vocation_titulaire']) {
             $object->setPourcentagePartsVocationTitulaire(null);
+            unset($data['pourcentage_parts_vocation_titulaire']);
         }
         if (\array_key_exists('representant_legal_placement_sans_gestion_delegation', $data) && null !== $data['representant_legal_placement_sans_gestion_delegation']) {
             $object->setRepresentantLegalPlacementSansGestionDelegation($data['representant_legal_placement_sans_gestion_delegation']);
             unset($data['representant_legal_placement_sans_gestion_delegation']);
         } elseif (\array_key_exists('representant_legal_placement_sans_gestion_delegation', $data) && null === $data['representant_legal_placement_sans_gestion_delegation']) {
             $object->setRepresentantLegalPlacementSansGestionDelegation(null);
+            unset($data['representant_legal_placement_sans_gestion_delegation']);
         }
         if (\array_key_exists('code_postal', $data) && null !== $data['code_postal']) {
             $object->setCodePostal($data['code_postal']);
             unset($data['code_postal']);
         } elseif (\array_key_exists('code_postal', $data) && null === $data['code_postal']) {
             $object->setCodePostal(null);
+            unset($data['code_postal']);
         }
         if (\array_key_exists('detention_pouvoir_nom_membre_conseil_administration', $data) && null !== $data['detention_pouvoir_nom_membre_conseil_administration']) {
             $object->setDetentionPouvoirNomMembreConseilAdministration($data['detention_pouvoir_nom_membre_conseil_administration']);
             unset($data['detention_pouvoir_nom_membre_conseil_administration']);
         } elseif (\array_key_exists('detention_pouvoir_nom_membre_conseil_administration', $data) && null === $data['detention_pouvoir_nom_membre_conseil_administration']) {
             $object->setDetentionPouvoirNomMembreConseilAdministration(null);
+            unset($data['detention_pouvoir_nom_membre_conseil_administration']);
         }
         if (\array_key_exists('ville', $data) && null !== $data['ville']) {
             $object->setVille($data['ville']);
             unset($data['ville']);
         } elseif (\array_key_exists('ville', $data) && null === $data['ville']) {
             $object->setVille(null);
+            unset($data['ville']);
         }
         if (\array_key_exists('date_de_naissance_complete_formatee', $data) && null !== $data['date_de_naissance_complete_formatee']) {
-            $object->setDateDeNaissanceCompleteFormatee(\DateTime::createFromFormat('Y-m-d', $data['date_de_naissance_complete_formatee'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date_de_naissance_complete_formatee']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date_de_naissance_complete_formatee'], 'Y-m-d');
+            }
+            $object->setDateDeNaissanceCompleteFormatee($date->setTime(0, 0, 0));
             unset($data['date_de_naissance_complete_formatee']);
         } elseif (\array_key_exists('date_de_naissance_complete_formatee', $data) && null === $data['date_de_naissance_complete_formatee']) {
             $object->setDateDeNaissanceCompleteFormatee(null);
+            unset($data['date_de_naissance_complete_formatee']);
         }
         if (\array_key_exists('pourcentage_parts_directes', $data) && null !== $data['pourcentage_parts_directes']) {
             $object->setPourcentagePartsDirectes($data['pourcentage_parts_directes']);
             unset($data['pourcentage_parts_directes']);
         } elseif (\array_key_exists('pourcentage_parts_directes', $data) && null === $data['pourcentage_parts_directes']) {
             $object->setPourcentagePartsDirectes(null);
+            unset($data['pourcentage_parts_directes']);
         }
         if (\array_key_exists('pourcentage_parts_indirectes', $data) && null !== $data['pourcentage_parts_indirectes']) {
             $object->setPourcentagePartsIndirectes($data['pourcentage_parts_indirectes']);
             unset($data['pourcentage_parts_indirectes']);
         } elseif (\array_key_exists('pourcentage_parts_indirectes', $data) && null === $data['pourcentage_parts_indirectes']) {
             $object->setPourcentagePartsIndirectes(null);
+            unset($data['pourcentage_parts_indirectes']);
         }
         if (\array_key_exists('pays_de_naissance', $data) && null !== $data['pays_de_naissance']) {
             $object->setPaysDeNaissance($data['pays_de_naissance']);
             unset($data['pays_de_naissance']);
         } elseif (\array_key_exists('pays_de_naissance', $data) && null === $data['pays_de_naissance']) {
             $object->setPaysDeNaissance(null);
+            unset($data['pays_de_naissance']);
         }
         if (\array_key_exists('code_pays_de_naissance', $data) && null !== $data['code_pays_de_naissance']) {
             $object->setCodePaysDeNaissance($data['code_pays_de_naissance']);
             unset($data['code_pays_de_naissance']);
         } elseif (\array_key_exists('code_pays_de_naissance', $data) && null === $data['code_pays_de_naissance']) {
             $object->setCodePaysDeNaissance(null);
+            unset($data['code_pays_de_naissance']);
         }
         if (\array_key_exists('ville_de_naissance', $data) && null !== $data['ville_de_naissance']) {
             $object->setVilleDeNaissance($data['ville_de_naissance']);
             unset($data['ville_de_naissance']);
         } elseif (\array_key_exists('ville_de_naissance', $data) && null === $data['ville_de_naissance']) {
             $object->setVilleDeNaissance(null);
+            unset($data['ville_de_naissance']);
         }
         if (\array_key_exists('detention_pouvoir_decision_ag', $data) && null !== $data['detention_pouvoir_decision_ag']) {
             $object->setDetentionPouvoirDecisionAg($data['detention_pouvoir_decision_ag']);
             unset($data['detention_pouvoir_decision_ag']);
         } elseif (\array_key_exists('detention_pouvoir_decision_ag', $data) && null === $data['detention_pouvoir_decision_ag']) {
             $object->setDetentionPouvoirDecisionAg(null);
+            unset($data['detention_pouvoir_decision_ag']);
         }
         if (\array_key_exists('pays', $data) && null !== $data['pays']) {
             $object->setPays($data['pays']);
             unset($data['pays']);
         } elseif (\array_key_exists('pays', $data) && null === $data['pays']) {
             $object->setPays(null);
+            unset($data['pays']);
         }
         if (\array_key_exists('date_de_naissance_formatee', $data) && null !== $data['date_de_naissance_formatee']) {
             $object->setDateDeNaissanceFormatee($data['date_de_naissance_formatee']);
             unset($data['date_de_naissance_formatee']);
         } elseif (\array_key_exists('date_de_naissance_formatee', $data) && null === $data['date_de_naissance_formatee']) {
             $object->setDateDeNaissanceFormatee(null);
+            unset($data['date_de_naissance_formatee']);
         }
         if (\array_key_exists('code_pays', $data) && null !== $data['code_pays']) {
             $object->setCodePays($data['code_pays']);
             unset($data['code_pays']);
         } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
             $object->setCodePays(null);
+            unset($data['code_pays']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -369,7 +405,7 @@ class BeneficiaireNormalizer implements DenormalizerInterface, NormalizerInterfa
         if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

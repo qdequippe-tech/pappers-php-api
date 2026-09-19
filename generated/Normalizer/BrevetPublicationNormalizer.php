@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\BrevetPublication;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -32,39 +33,47 @@ class BrevetPublicationNormalizer implements DenormalizerInterface, NormalizerIn
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new BrevetPublication();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new BrevetPublication();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('nature', $data) && null !== $data['nature']) {
             $object->setNature($data['nature']);
             unset($data['nature']);
         } elseif (\array_key_exists('nature', $data) && null === $data['nature']) {
             $object->setNature(null);
+            unset($data['nature']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d', $data['date'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date'], 'Y-m-d');
+            }
+            $object->setDate($date->setTime(0, 0, 0));
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('numero', $data) && null !== $data['numero']) {
             $object->setNumero($data['numero']);
             unset($data['numero']);
         } elseif (\array_key_exists('numero', $data) && null === $data['numero']) {
             $object->setNumero(null);
+            unset($data['numero']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -78,19 +87,19 @@ class BrevetPublicationNormalizer implements DenormalizerInterface, NormalizerIn
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('type')) {
+        if ($data->isInitialized('type') && null !== $data->getType()) {
             $dataArray['type'] = $data->getType();
         }
-        if ($data->isInitialized('nature')) {
+        if ($data->isInitialized('nature') && null !== $data->getNature()) {
             $dataArray['nature'] = $data->getNature();
         }
-        if ($data->isInitialized('date')) {
+        if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate()?->format('Y-m-d');
         }
-        if ($data->isInitialized('numero')) {
+        if ($data->isInitialized('numero') && null !== $data->getNumero()) {
             $dataArray['numero'] = $data->getNumero();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

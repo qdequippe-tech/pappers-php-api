@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsDirectes implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -62,5 +66,10 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes extends \Arr
         $this->pourcentageNuePropriete = $pourcentageNuePropriete;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['pourcentagePleinePropriete' => ['pourcentage_pleine_propriete', 'getPourcentagePleinePropriete', 'setPourcentagePleinePropriete'], 'pourcentageNuePropriete' => ['pourcentage_nue_propriete', 'getPourcentageNuePropriete', 'setPourcentageNuePropriete']];
     }
 }

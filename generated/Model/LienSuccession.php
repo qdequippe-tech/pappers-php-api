@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class LienSuccession extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class LienSuccession implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class LienSuccession extends \ArrayObject
         $this->continuiteEconomique = $continuiteEconomique;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siret' => ['siret', 'getSiret', 'setSiret'], 'date' => ['date', 'getDate', 'setDate'], 'transfertSiege' => ['transfert_siege', 'getTransfertSiege', 'setTransfertSiege'], 'continuiteEconomique' => ['continuite_economique', 'getContinuiteEconomique', 'setContinuiteEconomique']];
     }
 }

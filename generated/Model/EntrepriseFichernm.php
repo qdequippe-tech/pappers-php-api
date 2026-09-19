@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichernm extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheRnm implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -187,5 +191,10 @@ class EntrepriseFichernm extends \ArrayObject
         $this->derniereMiseAJour = $derniereMiseAJour;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['dateImmatriculation' => ['date_immatriculation', 'getDateImmatriculation', 'setDateImmatriculation'], 'dateRadiation' => ['date_radiation', 'getDateRadiation', 'setDateRadiation'], 'dateDebutActivite' => ['date_debut_activite', 'getDateDebutActivite', 'setDateDebutActivite'], 'dateCessationActivite' => ['date_cessation_activite', 'getDateCessationActivite', 'setDateCessationActivite'], 'chambreDesMetiers' => ['chambre_des_metiers', 'getChambreDesMetiers', 'setChambreDesMetiers'], 'qualification' => ['qualification', 'getQualification', 'setQualification'], 'derniereMiseAJour' => ['derniere_mise_a_jour', 'getDerniereMiseAJour', 'setDerniereMiseAJour']];
     }
 }

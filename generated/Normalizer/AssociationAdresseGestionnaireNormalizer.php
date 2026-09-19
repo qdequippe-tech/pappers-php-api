@@ -32,63 +32,71 @@ class AssociationAdresseGestionnaireNormalizer implements DenormalizerInterface,
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new AssociationAdresseGestionnaire();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new AssociationAdresseGestionnaire();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('gestionnaire', $data) && null !== $data['gestionnaire']) {
             $object->setGestionnaire($data['gestionnaire']);
             unset($data['gestionnaire']);
         } elseif (\array_key_exists('gestionnaire', $data) && null === $data['gestionnaire']) {
             $object->setGestionnaire(null);
+            unset($data['gestionnaire']);
         }
         if (\array_key_exists('code_postal', $data) && null !== $data['code_postal']) {
             $object->setCodePostal($data['code_postal']);
             unset($data['code_postal']);
         } elseif (\array_key_exists('code_postal', $data) && null === $data['code_postal']) {
             $object->setCodePostal(null);
+            unset($data['code_postal']);
         }
         if (\array_key_exists('ville', $data) && null !== $data['ville']) {
             $object->setVille($data['ville']);
             unset($data['ville']);
         } elseif (\array_key_exists('ville', $data) && null === $data['ville']) {
             $object->setVille(null);
+            unset($data['ville']);
         }
         if (\array_key_exists('distribution', $data) && null !== $data['distribution']) {
             $object->setDistribution($data['distribution']);
             unset($data['distribution']);
         } elseif (\array_key_exists('distribution', $data) && null === $data['distribution']) {
             $object->setDistribution(null);
+            unset($data['distribution']);
         }
         if (\array_key_exists('adresse_ligne', $data) && null !== $data['adresse_ligne']) {
             $object->setAdresseLigne($data['adresse_ligne']);
             unset($data['adresse_ligne']);
         } elseif (\array_key_exists('adresse_ligne', $data) && null === $data['adresse_ligne']) {
             $object->setAdresseLigne(null);
+            unset($data['adresse_ligne']);
         }
         if (\array_key_exists('complement_adresse', $data) && null !== $data['complement_adresse']) {
             $object->setComplementAdresse($data['complement_adresse']);
             unset($data['complement_adresse']);
         } elseif (\array_key_exists('complement_adresse', $data) && null === $data['complement_adresse']) {
             $object->setComplementAdresse(null);
+            unset($data['complement_adresse']);
         }
         if (\array_key_exists('indication', $data) && null !== $data['indication']) {
             $object->setIndication($data['indication']);
             unset($data['indication']);
         } elseif (\array_key_exists('indication', $data) && null === $data['indication']) {
             $object->setIndication(null);
+            unset($data['indication']);
         }
         if (\array_key_exists('pays', $data) && null !== $data['pays']) {
             $object->setPays($data['pays']);
             unset($data['pays']);
         } elseif (\array_key_exists('pays', $data) && null === $data['pays']) {
             $object->setPays(null);
+            unset($data['pays']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -126,7 +134,7 @@ class AssociationAdresseGestionnaireNormalizer implements DenormalizerInterface,
         if ($data->isInitialized('pays') && null !== $data->getPays()) {
             $dataArray['pays'] = $data->getPays();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

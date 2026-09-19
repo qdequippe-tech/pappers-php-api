@@ -32,18 +32,18 @@ class RepresentantSuggestionsNormalizer implements DenormalizerInterface, Normal
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new RepresentantSuggestions();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new RepresentantSuggestions();
         if (\array_key_exists('personne_morale', $data) && \is_int($data['personne_morale'])) {
             $data['personne_morale'] = (bool) $data['personne_morale'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('qualites', $data) && null !== $data['qualites']) {
             $values = [];
@@ -54,90 +54,105 @@ class RepresentantSuggestionsNormalizer implements DenormalizerInterface, Normal
             unset($data['qualites']);
         } elseif (\array_key_exists('qualites', $data) && null === $data['qualites']) {
             $object->setQualites(null);
+            unset($data['qualites']);
         }
         if (\array_key_exists('personne_morale', $data) && null !== $data['personne_morale']) {
             $object->setPersonneMorale($data['personne_morale']);
             unset($data['personne_morale']);
         } elseif (\array_key_exists('personne_morale', $data) && null === $data['personne_morale']) {
             $object->setPersonneMorale(null);
+            unset($data['personne_morale']);
         }
         if (\array_key_exists('date_prise_de_poste', $data) && null !== $data['date_prise_de_poste']) {
             $object->setDatePriseDePoste($data['date_prise_de_poste']);
             unset($data['date_prise_de_poste']);
         } elseif (\array_key_exists('date_prise_de_poste', $data) && null === $data['date_prise_de_poste']) {
             $object->setDatePriseDePoste(null);
+            unset($data['date_prise_de_poste']);
         }
         if (\array_key_exists('denomination', $data) && null !== $data['denomination']) {
             $object->setDenomination($data['denomination']);
             unset($data['denomination']);
         } elseif (\array_key_exists('denomination', $data) && null === $data['denomination']) {
             $object->setDenomination(null);
+            unset($data['denomination']);
         }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         if (\array_key_exists('forme_juridique', $data) && null !== $data['forme_juridique']) {
             $object->setFormeJuridique($data['forme_juridique']);
             unset($data['forme_juridique']);
         } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
             $object->setFormeJuridique(null);
+            unset($data['forme_juridique']);
         }
         if (\array_key_exists('sexe', $data) && null !== $data['sexe']) {
             $object->setSexe($data['sexe']);
             unset($data['sexe']);
         } elseif (\array_key_exists('sexe', $data) && null === $data['sexe']) {
             $object->setSexe(null);
+            unset($data['sexe']);
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
             $object->setPrenom($data['prenom']);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
+            unset($data['prenom']);
         }
         if (\array_key_exists('prenom_usuel', $data) && null !== $data['prenom_usuel']) {
             $object->setPrenomUsuel($data['prenom_usuel']);
             unset($data['prenom_usuel']);
         } elseif (\array_key_exists('prenom_usuel', $data) && null === $data['prenom_usuel']) {
             $object->setPrenomUsuel(null);
+            unset($data['prenom_usuel']);
         }
         if (\array_key_exists('nom_complet', $data) && null !== $data['nom_complet']) {
             $object->setNomComplet($data['nom_complet']);
             unset($data['nom_complet']);
         } elseif (\array_key_exists('nom_complet', $data) && null === $data['nom_complet']) {
             $object->setNomComplet(null);
+            unset($data['nom_complet']);
         }
         if (\array_key_exists('date_de_naissance', $data) && null !== $data['date_de_naissance']) {
             $object->setDateDeNaissance($data['date_de_naissance']);
             unset($data['date_de_naissance']);
         } elseif (\array_key_exists('date_de_naissance', $data) && null === $data['date_de_naissance']) {
             $object->setDateDeNaissance(null);
+            unset($data['date_de_naissance']);
         }
         if (\array_key_exists('date_de_naissance_formate', $data) && null !== $data['date_de_naissance_formate']) {
             $object->setDateDeNaissanceFormate($data['date_de_naissance_formate']);
             unset($data['date_de_naissance_formate']);
         } elseif (\array_key_exists('date_de_naissance_formate', $data) && null === $data['date_de_naissance_formate']) {
             $object->setDateDeNaissanceFormate(null);
+            unset($data['date_de_naissance_formate']);
         }
         if (\array_key_exists('age', $data) && null !== $data['age']) {
             $object->setAge($data['age']);
             unset($data['age']);
         } elseif (\array_key_exists('age', $data) && null === $data['age']) {
             $object->setAge(null);
+            unset($data['age']);
         }
         if (\array_key_exists('nationalite', $data) && null !== $data['nationalite']) {
             $object->setNationalite($data['nationalite']);
             unset($data['nationalite']);
         } elseif (\array_key_exists('nationalite', $data) && null === $data['nationalite']) {
             $object->setNationalite(null);
+            unset($data['nationalite']);
         }
         if (\array_key_exists('codes_nationalites', $data) && null !== $data['codes_nationalites']) {
             $values_1 = [];
@@ -148,66 +163,77 @@ class RepresentantSuggestionsNormalizer implements DenormalizerInterface, Normal
             unset($data['codes_nationalites']);
         } elseif (\array_key_exists('codes_nationalites', $data) && null === $data['codes_nationalites']) {
             $object->setCodesNationalites(null);
+            unset($data['codes_nationalites']);
         }
         if (\array_key_exists('ville_de_naissance', $data) && null !== $data['ville_de_naissance']) {
             $object->setVilleDeNaissance($data['ville_de_naissance']);
             unset($data['ville_de_naissance']);
         } elseif (\array_key_exists('ville_de_naissance', $data) && null === $data['ville_de_naissance']) {
             $object->setVilleDeNaissance(null);
+            unset($data['ville_de_naissance']);
         }
         if (\array_key_exists('pays_de_naissance', $data) && null !== $data['pays_de_naissance']) {
             $object->setPaysDeNaissance($data['pays_de_naissance']);
             unset($data['pays_de_naissance']);
         } elseif (\array_key_exists('pays_de_naissance', $data) && null === $data['pays_de_naissance']) {
             $object->setPaysDeNaissance(null);
+            unset($data['pays_de_naissance']);
         }
         if (\array_key_exists('code_pays_de_naissance', $data) && null !== $data['code_pays_de_naissance']) {
             $object->setCodePaysDeNaissance($data['code_pays_de_naissance']);
             unset($data['code_pays_de_naissance']);
         } elseif (\array_key_exists('code_pays_de_naissance', $data) && null === $data['code_pays_de_naissance']) {
             $object->setCodePaysDeNaissance(null);
+            unset($data['code_pays_de_naissance']);
         }
         if (\array_key_exists('adresse_ligne_1', $data) && null !== $data['adresse_ligne_1']) {
             $object->setAdresseLigne1($data['adresse_ligne_1']);
             unset($data['adresse_ligne_1']);
         } elseif (\array_key_exists('adresse_ligne_1', $data) && null === $data['adresse_ligne_1']) {
             $object->setAdresseLigne1(null);
+            unset($data['adresse_ligne_1']);
         }
         if (\array_key_exists('adresse_ligne_2', $data) && null !== $data['adresse_ligne_2']) {
             $object->setAdresseLigne2($data['adresse_ligne_2']);
             unset($data['adresse_ligne_2']);
         } elseif (\array_key_exists('adresse_ligne_2', $data) && null === $data['adresse_ligne_2']) {
             $object->setAdresseLigne2(null);
+            unset($data['adresse_ligne_2']);
         }
         if (\array_key_exists('adresse_ligne_3', $data) && null !== $data['adresse_ligne_3']) {
             $object->setAdresseLigne3($data['adresse_ligne_3']);
             unset($data['adresse_ligne_3']);
         } elseif (\array_key_exists('adresse_ligne_3', $data) && null === $data['adresse_ligne_3']) {
             $object->setAdresseLigne3(null);
+            unset($data['adresse_ligne_3']);
         }
         if (\array_key_exists('code_postal', $data) && null !== $data['code_postal']) {
             $object->setCodePostal($data['code_postal']);
             unset($data['code_postal']);
         } elseif (\array_key_exists('code_postal', $data) && null === $data['code_postal']) {
             $object->setCodePostal(null);
+            unset($data['code_postal']);
         }
         if (\array_key_exists('ville', $data) && null !== $data['ville']) {
             $object->setVille($data['ville']);
             unset($data['ville']);
         } elseif (\array_key_exists('ville', $data) && null === $data['ville']) {
             $object->setVille(null);
+            unset($data['ville']);
         }
         if (\array_key_exists('pays', $data) && null !== $data['pays']) {
             $object->setPays($data['pays']);
             unset($data['pays']);
         } elseif (\array_key_exists('pays', $data) && null === $data['pays']) {
             $object->setPays(null);
+            unset($data['pays']);
         }
         if (\array_key_exists('code_pays', $data) && null !== $data['code_pays']) {
             $object->setCodePays($data['code_pays']);
             unset($data['code_pays']);
         } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
             $object->setCodePays(null);
+            unset($data['code_pays']);
         }
         foreach ($data as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
@@ -307,7 +333,7 @@ class RepresentantSuggestionsNormalizer implements DenormalizerInterface, Normal
         if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
-        foreach ($data as $key => $value_2) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_2;
             }

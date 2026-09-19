@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class LabelsBaseInscriptionsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class LabelsBaseInscriptionsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -166,5 +170,10 @@ class LabelsBaseInscriptionsItem extends \ArrayObject
         $this->activites = $activites;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['categorie' => ['categorie', 'getCategorie', 'setCategorie'], 'labelCategorie' => ['label_categorie', 'getLabelCategorie', 'setLabelCategorie'], 'statut' => ['statut', 'getStatut', 'setStatut'], 'dateInscription' => ['date_inscription', 'getDateInscription', 'setDateInscription'], 'encaisseFonds' => ['encaisse_fonds', 'getEncaisseFonds', 'setEncaisseFonds'], 'activites' => ['activites', 'getActivites', 'setActivites']];
     }
 }

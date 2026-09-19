@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationEntrepriseNouvelActePublieItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationEntrepriseNouvelActePublieItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -87,5 +91,10 @@ class NotificationEntrepriseNouvelActePublieItem extends \ArrayObject
         $this->token = $token;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['acte' => ['acte', 'getActe', 'setActe'], 'date' => ['date', 'getDate', 'setDate'], 'token' => ['token', 'getToken', 'setToken']];
     }
 }

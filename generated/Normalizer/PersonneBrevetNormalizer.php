@@ -32,51 +32,57 @@ class PersonneBrevetNormalizer implements DenormalizerInterface, NormalizerInter
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new PersonneBrevet();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new PersonneBrevet();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('rue', $data) && null !== $data['rue']) {
             $object->setRue($data['rue']);
             unset($data['rue']);
         } elseif (\array_key_exists('rue', $data) && null === $data['rue']) {
             $object->setRue(null);
+            unset($data['rue']);
         }
         if (\array_key_exists('ville', $data) && null !== $data['ville']) {
             $object->setVille($data['ville']);
             unset($data['ville']);
         } elseif (\array_key_exists('ville', $data) && null === $data['ville']) {
             $object->setVille(null);
+            unset($data['ville']);
         }
         if (\array_key_exists('code_postal', $data) && null !== $data['code_postal']) {
             $object->setCodePostal($data['code_postal']);
             unset($data['code_postal']);
         } elseif (\array_key_exists('code_postal', $data) && null === $data['code_postal']) {
             $object->setCodePostal(null);
+            unset($data['code_postal']);
         }
         if (\array_key_exists('code_pays', $data) && null !== $data['code_pays']) {
             $object->setCodePays($data['code_pays']);
             unset($data['code_pays']);
         } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
             $object->setCodePays(null);
+            unset($data['code_pays']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -90,25 +96,25 @@ class PersonneBrevetNormalizer implements DenormalizerInterface, NormalizerInter
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('siren')) {
+        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
             $dataArray['siren'] = $data->getSiren();
         }
-        if ($data->isInitialized('nom')) {
+        if ($data->isInitialized('nom') && null !== $data->getNom()) {
             $dataArray['nom'] = $data->getNom();
         }
-        if ($data->isInitialized('rue')) {
+        if ($data->isInitialized('rue') && null !== $data->getRue()) {
             $dataArray['rue'] = $data->getRue();
         }
-        if ($data->isInitialized('ville')) {
+        if ($data->isInitialized('ville') && null !== $data->getVille()) {
             $dataArray['ville'] = $data->getVille();
         }
-        if ($data->isInitialized('codePostal')) {
+        if ($data->isInitialized('codePostal') && null !== $data->getCodePostal()) {
             $dataArray['code_postal'] = $data->getCodePostal();
         }
-        if ($data->isInitialized('codePays')) {
+        if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

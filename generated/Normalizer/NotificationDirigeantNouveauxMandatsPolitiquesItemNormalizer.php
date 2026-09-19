@@ -32,39 +32,43 @@ class NotificationDirigeantNouveauxMandatsPolitiquesItemNormalizer implements De
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationDirigeantNouveauxMandatsPolitiquesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationDirigeantNouveauxMandatsPolitiquesItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('fonction', $data) && null !== $data['fonction']) {
             $object->setFonction($data['fonction']);
             unset($data['fonction']);
         } elseif (\array_key_exists('fonction', $data) && null === $data['fonction']) {
             $object->setFonction(null);
+            unset($data['fonction']);
         }
         if (\array_key_exists('pays', $data) && null !== $data['pays']) {
             $object->setPays($data['pays']);
             unset($data['pays']);
         } elseif (\array_key_exists('pays', $data) && null === $data['pays']) {
             $object->setPays(null);
+            unset($data['pays']);
         }
         if (\array_key_exists('code_pays', $data) && null !== $data['code_pays']) {
             $object->setCodePays($data['code_pays']);
             unset($data['code_pays']);
         } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
             $object->setCodePays(null);
+            unset($data['code_pays']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -78,19 +82,19 @@ class NotificationDirigeantNouveauxMandatsPolitiquesItemNormalizer implements De
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('date')) {
+        if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        if ($data->isInitialized('fonction')) {
+        if ($data->isInitialized('fonction') && null !== $data->getFonction()) {
             $dataArray['fonction'] = $data->getFonction();
         }
-        if ($data->isInitialized('pays')) {
+        if ($data->isInitialized('pays') && null !== $data->getPays()) {
             $dataArray['pays'] = $data->getPays();
         }
-        if ($data->isInitialized('codePays')) {
+        if ($data->isInitialized('codePays') && null !== $data->getCodePays()) {
             $dataArray['code_pays'] = $data->getCodePays();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

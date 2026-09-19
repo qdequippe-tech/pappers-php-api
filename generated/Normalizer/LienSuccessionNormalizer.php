@@ -32,45 +32,49 @@ class LienSuccessionNormalizer implements DenormalizerInterface, NormalizerInter
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new LienSuccession();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new LienSuccession();
         if (\array_key_exists('transfert_siege', $data) && \is_int($data['transfert_siege'])) {
             $data['transfert_siege'] = (bool) $data['transfert_siege'];
         }
         if (\array_key_exists('continuite_economique', $data) && \is_int($data['continuite_economique'])) {
             $data['continuite_economique'] = (bool) $data['continuite_economique'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('siret', $data) && null !== $data['siret']) {
             $object->setSiret($data['siret']);
             unset($data['siret']);
         } elseif (\array_key_exists('siret', $data) && null === $data['siret']) {
             $object->setSiret(null);
+            unset($data['siret']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('transfert_siege', $data) && null !== $data['transfert_siege']) {
             $object->setTransfertSiege($data['transfert_siege']);
             unset($data['transfert_siege']);
         } elseif (\array_key_exists('transfert_siege', $data) && null === $data['transfert_siege']) {
             $object->setTransfertSiege(null);
+            unset($data['transfert_siege']);
         }
         if (\array_key_exists('continuite_economique', $data) && null !== $data['continuite_economique']) {
             $object->setContinuiteEconomique($data['continuite_economique']);
             unset($data['continuite_economique']);
         } elseif (\array_key_exists('continuite_economique', $data) && null === $data['continuite_economique']) {
             $object->setContinuiteEconomique(null);
+            unset($data['continuite_economique']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -96,7 +100,7 @@ class LienSuccessionNormalizer implements DenormalizerInterface, NormalizerInter
         if ($data->isInitialized('continuiteEconomique') && null !== $data->getContinuiteEconomique()) {
             $dataArray['continuite_economique'] = $data->getContinuiteEconomique();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

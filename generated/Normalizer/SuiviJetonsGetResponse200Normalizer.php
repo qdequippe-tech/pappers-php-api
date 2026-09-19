@@ -32,13 +32,16 @@ class SuiviJetonsGetResponse200Normalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SuiviJetonsGetResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new SuiviJetonsGetResponse200();
         if (\array_key_exists('jetons_abonnement', $data) && \is_int($data['jetons_abonnement'])) {
             $data['jetons_abonnement'] = (float) $data['jetons_abonnement'];
         }
@@ -48,26 +51,26 @@ class SuiviJetonsGetResponse200Normalizer implements DenormalizerInterface, Norm
         if (\array_key_exists('jetons_pay_as_you_go_restants', $data) && \is_int($data['jetons_pay_as_you_go_restants'])) {
             $data['jetons_pay_as_you_go_restants'] = (float) $data['jetons_pay_as_you_go_restants'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('jetons_abonnement', $data) && null !== $data['jetons_abonnement']) {
             $object->setJetonsAbonnement($data['jetons_abonnement']);
             unset($data['jetons_abonnement']);
         } elseif (\array_key_exists('jetons_abonnement', $data) && null === $data['jetons_abonnement']) {
             $object->setJetonsAbonnement(null);
+            unset($data['jetons_abonnement']);
         }
         if (\array_key_exists('jetons_abonnement_utilises', $data) && null !== $data['jetons_abonnement_utilises']) {
             $object->setJetonsAbonnementUtilises($data['jetons_abonnement_utilises']);
             unset($data['jetons_abonnement_utilises']);
         } elseif (\array_key_exists('jetons_abonnement_utilises', $data) && null === $data['jetons_abonnement_utilises']) {
             $object->setJetonsAbonnementUtilises(null);
+            unset($data['jetons_abonnement_utilises']);
         }
         if (\array_key_exists('jetons_pay_as_you_go_restants', $data) && null !== $data['jetons_pay_as_you_go_restants']) {
             $object->setJetonsPayAsYouGoRestants($data['jetons_pay_as_you_go_restants']);
             unset($data['jetons_pay_as_you_go_restants']);
         } elseif (\array_key_exists('jetons_pay_as_you_go_restants', $data) && null === $data['jetons_pay_as_you_go_restants']) {
             $object->setJetonsPayAsYouGoRestants(null);
+            unset($data['jetons_pay_as_you_go_restants']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -90,7 +93,7 @@ class SuiviJetonsGetResponse200Normalizer implements DenormalizerInterface, Norm
         if ($data->isInitialized('jetonsPayAsYouGoRestants') && null !== $data->getJetonsPayAsYouGoRestants()) {
             $dataArray['jetons_pay_as_you_go_restants'] = $data->getJetonsPayAsYouGoRestants();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationVeille extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationVeille implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -780,5 +784,10 @@ class NotificationVeille extends \ArrayObject
         $this->qualiteDirigeant = $qualiteDirigeant;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siren' => ['siren', 'getSiren', 'setSiren'], 'nomEntreprise' => ['nom_entreprise', 'getNomEntreprise', 'setNomEntreprise'], 'nomCommercial' => ['nom_commercial', 'getNomCommercial', 'setNomCommercial'], 'formeJuridique' => ['forme_juridique', 'getFormeJuridique', 'setFormeJuridique'], 'siegeSocial' => ['siege_social', 'getSiegeSocial', 'setSiegeSocial'], 'entrepriseCessee' => ['entreprise_cessee', 'getEntrepriseCessee', 'setEntrepriseCessee'], 'codeNaf' => ['code_naf', 'getCodeNaf', 'setCodeNaf'], 'entrepriseEmployeuse' => ['entreprise_employeuse', 'getEntrepriseEmployeuse', 'setEntrepriseEmployeuse'], 'enseigne' => ['enseigne', 'getEnseigne', 'setEnseigne'], 'nouvelEtablissement' => ['nouvel_etablissement', 'getNouvelEtablissement', 'setNouvelEtablissement'], 'fermetureEtablissement' => ['fermeture_etablissement', 'getFermetureEtablissement', 'setFermetureEtablissement'], 'statutRcs' => ['statut_rcs', 'getStatutRcs', 'setStatutRcs'], 'objetSocial' => ['objet_social', 'getObjetSocial', 'setObjetSocial'], 'capital' => ['capital', 'getCapital', 'setCapital'], 'dateClotureExercice' => ['date_cloture_exercice', 'getDateClotureExercice', 'setDateClotureExercice'], 'chiffreAffaires' => ['chiffre_affaires', 'getChiffreAffaires', 'setChiffreAffaires'], 'resultat' => ['resultat', 'getResultat', 'setResultat'], 'nouveauxComptesDisponibles' => ['nouveaux_comptes_disponibles', 'getNouveauxComptesDisponibles', 'setNouveauxComptesDisponibles'], 'nouveauxComptesPublies' => ['nouveaux_comptes_publies', 'getNouveauxComptesPublies', 'setNouveauxComptesPublies'], 'nouvelleAnnonceProcedureCollectivePubliee' => ['nouvelle_annonce_procedure_collective_publiee', 'getNouvelleAnnonceProcedureCollectivePubliee', 'setNouvelleAnnonceProcedureCollectivePubliee'], 'nouvelleAnnonceVentePubliee' => ['nouvelle_annonce_vente_publiee', 'getNouvelleAnnonceVentePubliee', 'setNouvelleAnnonceVentePubliee'], 'nouvelleAnnoncePubliee' => ['nouvelle_annonce_publiee', 'getNouvelleAnnoncePubliee', 'setNouvelleAnnoncePubliee'], 'nouveauxStatutsPublies' => ['nouveaux_statuts_publies', 'getNouveauxStatutsPublies', 'setNouveauxStatutsPublies'], 'nouvelActePublie' => ['nouvel_acte_publie', 'getNouvelActePublie', 'setNouvelActePublie'], 'nouvelleDeclarationBeneficiairesEffectifPubliee' => ['nouvelle_declaration_beneficiaires_effectif_publiee', 'getNouvelleDeclarationBeneficiairesEffectifPubliee', 'setNouvelleDeclarationBeneficiairesEffectifPubliee'], 'nouveauDirigeant' => ['nouveau_dirigeant', 'getNouveauDirigeant', 'setNouveauDirigeant'], 'dirigeantPartant' => ['dirigeant_partant', 'getDirigeantPartant', 'setDirigeantPartant'], 'qualiteDirigeant' => ['qualite_dirigeant', 'getQualiteDirigeant', 'setQualiteDirigeant']];
     }
 }

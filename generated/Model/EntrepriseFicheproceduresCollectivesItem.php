@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheProceduresCollectivesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -116,5 +120,10 @@ class EntrepriseFicheproceduresCollectivesItem extends \ArrayObject
         $this->publicationsBodacc = $publicationsBodacc;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['type' => ['type', 'getType', 'setType'], 'dateDebut' => ['date_debut', 'getDateDebut', 'setDateDebut'], 'dateFin' => ['date_fin', 'getDateFin', 'setDateFin'], 'publicationsBodacc' => ['publications_bodacc', 'getPublicationsBodacc', 'setPublicationsBodacc']];
     }
 }

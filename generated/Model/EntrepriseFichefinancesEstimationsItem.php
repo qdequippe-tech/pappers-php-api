@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichefinancesEstimationsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheFinancesEstimationsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -62,5 +66,10 @@ class EntrepriseFichefinancesEstimationsItem extends \ArrayObject
         $this->chiffreAffaires = $chiffreAffaires;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['annee' => ['annee', 'getAnnee', 'setAnnee'], 'chiffreAffaires' => ['chiffre_affaires', 'getChiffreAffaires', 'setChiffreAffaires']];
     }
 }

@@ -32,49 +32,58 @@ class NotificationDirigeantDetailsDirigeantNormalizer implements DenormalizerInt
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationDirigeantDetailsDirigeant();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationDirigeantDetailsDirigeant();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
-            $object->setPrenom($data['prenom']);
+            $values = [];
+            foreach ($data['prenom'] as $value) {
+                $values[] = $value;
+            }
+            $object->setPrenom($values);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
+            unset($data['prenom']);
         }
         if (\array_key_exists('date_de_naissance_rgpd', $data) && null !== $data['date_de_naissance_rgpd']) {
             $object->setDateDeNaissanceRgpd($data['date_de_naissance_rgpd']);
             unset($data['date_de_naissance_rgpd']);
         } elseif (\array_key_exists('date_de_naissance_rgpd', $data) && null === $data['date_de_naissance_rgpd']) {
             $object->setDateDeNaissanceRgpd(null);
+            unset($data['date_de_naissance_rgpd']);
         }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         if (\array_key_exists('denomination', $data) && null !== $data['denomination']) {
             $object->setDenomination($data['denomination']);
             unset($data['denomination']);
         } elseif (\array_key_exists('denomination', $data) && null === $data['denomination']) {
             $object->setDenomination(null);
+            unset($data['denomination']);
         }
-        foreach ($data as $key => $value) {
+        foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
-                $object[$key] = $value;
+                $object[$key] = $value_1;
             }
         }
 
@@ -88,7 +97,11 @@ class NotificationDirigeantDetailsDirigeantNormalizer implements DenormalizerInt
             $dataArray['nom'] = $data->getNom();
         }
         if ($data->isInitialized('prenom') && null !== $data->getPrenom()) {
-            $dataArray['prenom'] = $data->getPrenom();
+            $values = [];
+            foreach ($data->getPrenom() as $value) {
+                $values[] = $value;
+            }
+            $dataArray['prenom'] = $values;
         }
         if ($data->isInitialized('dateDeNaissanceRgpd') && null !== $data->getDateDeNaissanceRgpd()) {
             $dataArray['date_de_naissance_rgpd'] = $data->getDateDeNaissanceRgpd();
@@ -99,9 +112,9 @@ class NotificationDirigeantDetailsDirigeantNormalizer implements DenormalizerInt
         if ($data->isInitialized('denomination') && null !== $data->getDenomination()) {
             $dataArray['denomination'] = $data->getDenomination();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
-                $dataArray[$key] = $value;
+                $dataArray[$key] = $value_1;
             }
         }
 

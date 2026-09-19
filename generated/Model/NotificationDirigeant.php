@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeant extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeant implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -25,6 +29,12 @@ class NotificationDirigeant extends \ArrayObject
      * @var string|null
      */
     protected $information;
+    /**
+     * Identifiant unique de la notification.
+     *
+     * @var string|null
+     */
+    protected $id;
     /**
      * Détails du dirigeant.
      *
@@ -84,6 +94,25 @@ class NotificationDirigeant extends \ArrayObject
     {
         $this->initialized['information'] = true;
         $this->information = $information;
+
+        return $this;
+    }
+
+    /**
+     * Identifiant unique de la notification.
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    /**
+     * Identifiant unique de la notification.
+     */
+    public function setId(?string $id): self
+    {
+        $this->initialized['id'] = true;
+        $this->id = $id;
 
         return $this;
     }
@@ -174,5 +203,10 @@ class NotificationDirigeant extends \ArrayObject
         $this->entreprises = $entreprises;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['dirigeant' => ['dirigeant', 'getDirigeant', 'setDirigeant'], 'information' => ['information', 'getInformation', 'setInformation'], 'id' => ['id', 'getId', 'setId'], 'detailsDirigeant' => ['details_dirigeant', 'getDetailsDirigeant', 'setDetailsDirigeant'], 'nouvellesSanctions' => ['nouvelles_sanctions', 'getNouvellesSanctions', 'setNouvellesSanctions'], 'nouveauxMandatsPolitiques' => ['nouveaux_mandats_politiques', 'getNouveauxMandatsPolitiques', 'setNouveauxMandatsPolitiques'], 'entreprises' => ['entreprises', 'getEntreprises', 'setEntreprises']];
     }
 }

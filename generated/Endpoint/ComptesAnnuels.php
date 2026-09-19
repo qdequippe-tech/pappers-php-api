@@ -2,6 +2,7 @@
 
 namespace Qdequippe\Pappers\Api\Endpoint;
 
+use Jane\Component\JsonSchemaRuntime\Exception\MalformedJsonException;
 use Psr\Http\Message\ResponseInterface;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException;
 use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException;
@@ -72,8 +73,12 @@ class ComptesAnnuels extends BaseEndpoint implements Endpoint
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
-            return json_decode($body);
+        if ((null === $contentType) === false && (200 === $status && false !== stripos(strtolower($contentType), 'application/json'))) {
+            try {
+                return json_decode($body, false, 512, \JSON_THROW_ON_ERROR);
+            } catch (\JsonException $jsonException) {
+                throw new MalformedJsonException('Malformed JSON response body.', 0, $jsonException);
+            }
         }
         if (400 === $status) {
             throw new ComptesAnnuelsBadRequestException($response);

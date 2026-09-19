@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheparcellesDetenuesResultatsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheParcellesDetenuesResultatsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -212,5 +216,10 @@ class EntrepriseFicheparcellesDetenuesResultatsItem extends \ArrayObject
         $this->contenance = $contenance;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['parcelleCadastrale' => ['parcelle_cadastrale', 'getParcelleCadastrale', 'setParcelleCadastrale'], 'type' => ['type', 'getType', 'setType'], 'numeroVoie' => ['numero_voie', 'getNumeroVoie', 'setNumeroVoie'], 'typeVoie' => ['type_voie', 'getTypeVoie', 'setTypeVoie'], 'libelleVoie' => ['libelle_voie', 'getLibelleVoie', 'setLibelleVoie'], 'codeCommune' => ['code_commune', 'getCodeCommune', 'setCodeCommune'], 'nomCommune' => ['nom_commune', 'getNomCommune', 'setNomCommune'], 'contenance' => ['contenance', 'getContenance', 'setContenance']];
     }
 }

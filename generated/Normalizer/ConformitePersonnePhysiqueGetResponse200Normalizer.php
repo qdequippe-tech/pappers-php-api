@@ -6,6 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200;
 use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee;
 use Qdequippe\Pappers\Api\Model\Sanction;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -34,30 +35,32 @@ class ConformitePersonnePhysiqueGetResponse200Normalizer implements Denormalizer
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ConformitePersonnePhysiqueGetResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new ConformitePersonnePhysiqueGetResponse200();
         if (\array_key_exists('sanctions_en_cours', $data) && \is_int($data['sanctions_en_cours'])) {
             $data['sanctions_en_cours'] = (bool) $data['sanctions_en_cours'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('personne_politiquement_exposee', $data) && null !== $data['personne_politiquement_exposee']) {
             $object->setPersonnePolitiquementExposee($this->denormalizer->denormalize($data['personne_politiquement_exposee'], PersonnePolitiquementExposee::class, 'json', $context));
             unset($data['personne_politiquement_exposee']);
         } elseif (\array_key_exists('personne_politiquement_exposee', $data) && null === $data['personne_politiquement_exposee']) {
             $object->setPersonnePolitiquementExposee(null);
+            unset($data['personne_politiquement_exposee']);
         }
         if (\array_key_exists('sanctions_en_cours', $data) && null !== $data['sanctions_en_cours']) {
             $object->setSanctionsEnCours($data['sanctions_en_cours']);
             unset($data['sanctions_en_cours']);
         } elseif (\array_key_exists('sanctions_en_cours', $data) && null === $data['sanctions_en_cours']) {
             $object->setSanctionsEnCours(null);
+            unset($data['sanctions_en_cours']);
         }
         if (\array_key_exists('sanctions', $data) && null !== $data['sanctions']) {
             $values = [];
@@ -68,6 +71,7 @@ class ConformitePersonnePhysiqueGetResponse200Normalizer implements Denormalizer
             unset($data['sanctions']);
         } elseif (\array_key_exists('sanctions', $data) && null === $data['sanctions']) {
             $object->setSanctions(null);
+            unset($data['sanctions']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -82,7 +86,7 @@ class ConformitePersonnePhysiqueGetResponse200Normalizer implements Denormalizer
     {
         $dataArray = [];
         if ($data->isInitialized('personnePolitiquementExposee') && null !== $data->getPersonnePolitiquementExposee()) {
-            $dataArray['personne_politiquement_exposee'] = $this->normalizer->normalize($data->getPersonnePolitiquementExposee(), 'json', $context);
+            $dataArray['personne_politiquement_exposee'] = null === $data->getPersonnePolitiquementExposee() ? null : new JsonObject($this->normalizer->normalize($data->getPersonnePolitiquementExposee(), 'json', $context));
         }
         if ($data->isInitialized('sanctionsEnCours') && null !== $data->getSanctionsEnCours()) {
             $dataArray['sanctions_en_cours'] = $data->getSanctionsEnCours();
@@ -90,11 +94,11 @@ class ConformitePersonnePhysiqueGetResponse200Normalizer implements Denormalizer
         if ($data->isInitialized('sanctions') && null !== $data->getSanctions()) {
             $values = [];
             foreach ($data->getSanctions() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['sanctions'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

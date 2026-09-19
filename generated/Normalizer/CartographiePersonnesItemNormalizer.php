@@ -32,39 +32,43 @@ class CartographiePersonnesItemNormalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new CartographiePersonnesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new CartographiePersonnesItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('id', $data) && null !== $data['id']) {
             $object->setId($data['id']);
             unset($data['id']);
         } elseif (\array_key_exists('id', $data) && null === $data['id']) {
             $object->setId(null);
+            unset($data['id']);
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
             $object->setPrenom($data['prenom']);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
+            unset($data['prenom']);
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('niveau', $data) && null !== $data['niveau']) {
             $object->setNiveau($data['niveau']);
             unset($data['niveau']);
         } elseif (\array_key_exists('niveau', $data) && null === $data['niveau']) {
             $object->setNiveau(null);
+            unset($data['niveau']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -90,7 +94,7 @@ class CartographiePersonnesItemNormalizer implements DenormalizerInterface, Norm
         if ($data->isInitialized('niveau') && null !== $data->getNiveau()) {
             $dataArray['niveau'] = $data->getNiveau();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

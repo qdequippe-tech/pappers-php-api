@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeantDetailsDirigeant extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeantDetailsDirigeant implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -22,7 +26,7 @@ class NotificationDirigeantDetailsDirigeant extends \ArrayObject
     /**
      * Prénom du dirigeant.
      *
-     * @var string|null
+     * @var list<string>|null
      */
     protected $prenom;
     /**
@@ -65,16 +69,20 @@ class NotificationDirigeantDetailsDirigeant extends \ArrayObject
 
     /**
      * Prénom du dirigeant.
+     *
+     * @return list<string>|null
      */
-    public function getPrenom(): ?string
+    public function getPrenom(): ?array
     {
         return $this->prenom;
     }
 
     /**
      * Prénom du dirigeant.
+     *
+     * @param list<string>|null $prenom
      */
-    public function setPrenom(?string $prenom): self
+    public function setPrenom(?array $prenom): self
     {
         $this->initialized['prenom'] = true;
         $this->prenom = $prenom;
@@ -137,5 +145,10 @@ class NotificationDirigeantDetailsDirigeant extends \ArrayObject
         $this->denomination = $denomination;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'dateDeNaissanceRgpd' => ['date_de_naissance_rgpd', 'getDateDeNaissanceRgpd', 'setDateDeNaissanceRgpd'], 'siren' => ['siren', 'getSiren', 'setSiren'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination']];
     }
 }

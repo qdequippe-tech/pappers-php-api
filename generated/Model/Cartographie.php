@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class Cartographie extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class Cartographie implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -28,7 +32,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des noeuds personnes.
      *
-     * @var list<list<mixed>>|null
+     * @var list<list<string>>|null
      */
     protected $liensEntreprisesPersonnes;
     /**
@@ -93,7 +97,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des noeuds personnes.
      *
-     * @return list<list<mixed>>|null
+     * @return list<list<string>>|null
      */
     public function getLiensEntreprisesPersonnes(): ?array
     {
@@ -103,7 +107,7 @@ class Cartographie extends \ArrayObject
     /**
      * Liste des arêtes liant les noeuds entreprises avec des noeuds personnes.
      *
-     * @param list<list<mixed>>|null $liensEntreprisesPersonnes
+     * @param list<list<string>>|null $liensEntreprisesPersonnes
      */
     public function setLiensEntreprisesPersonnes(?array $liensEntreprisesPersonnes): self
     {
@@ -157,5 +161,10 @@ class Cartographie extends \ArrayObject
         $this->modificationsEffectuees = $modificationsEffectuees;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['entreprises' => ['entreprises', 'getEntreprises', 'setEntreprises'], 'personnes' => ['personnes', 'getPersonnes', 'setPersonnes'], 'liensEntreprisesPersonnes' => ['liens_entreprises_personnes', 'getLiensEntreprisesPersonnes', 'setLiensEntreprisesPersonnes'], 'liensEntreprisesEntreprises' => ['liens_entreprises_entreprises', 'getLiensEntreprisesEntreprises', 'setLiensEntreprisesEntreprises'], 'modificationsEffectuees' => ['modifications_effectuees', 'getModificationsEffectuees', 'setModificationsEffectuees']];
     }
 }

@@ -39,6 +39,9 @@ class Recherche extends BaseEndpoint implements Endpoint
      *    "departement"?: string, //Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
      *    "region"?: string, //Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
      *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
+     *    "latitude"?: int, //Latitude du point central utilisé pour le filtrage géographique.
+     *    "longitude"?: int, //Longitude du point central utilisé pour le filtrage géographique.
+     *    "distance"?: int, //Distance maximale en kilomètres autour du point latitude/longitude.
      *    "convention_collective"?: string, //Convention collective de l'entreprise.
      *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      *
@@ -66,10 +69,42 @@ class Recherche extends BaseEndpoint implements Endpoint
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
      *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
-     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
      *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
@@ -121,7 +156,7 @@ class Recherche extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['page', 'par_page', 'curseur', 'par_curseur', 'bases', 'precision', 'q', 'siege', 'code_naf', 'departement', 'region', 'code_postal', 'convention_collective', 'categorie_juridique', 'entreprise_cessee', 'statut_rcs', 'objet_social', 'date_immatriculation_rcs_min', 'date_immatriculation_rcs_max', 'date_radiation_rcs_min', 'date_radiation_rcs_max', 'capital_min', 'capital_max', 'chiffre_affaires_min', 'chiffre_affaires_max', 'resultat_min', 'resultat_max', 'date_creation_min', 'date_creation_max', 'tranche_effectif_min', 'tranche_effectif_max', 'type_dirigeant', 'qualite_dirigeant', 'nationalite_dirigeant', 'nom_dirigeant', 'prenom_dirigeant', 'age_dirigeant_min', 'age_dirigeant_max', 'date_de_naissance_dirigeant_min', 'date_de_naissance_dirigeant_max', 'age_beneficiaire_min', 'age_beneficiaire_max', 'date_de_naissance_beneficiaire_min', 'date_de_naissance_beneficiaire_max', 'nationalite_beneficiaire', 'date_depot_document_min', 'date_depot_document_max', 'type_publication', 'date_publication_min', 'date_publication_max']);
+        $optionsResolver->setDefined(['page', 'par_page', 'curseur', 'par_curseur', 'bases', 'precision', 'q', 'siege', 'code_naf', 'departement', 'region', 'code_postal', 'latitude', 'longitude', 'distance', 'convention_collective', 'categorie_juridique', 'entreprise_cessee', 'statut_rcs', 'objet_social', 'date_immatriculation_rcs_min', 'date_immatriculation_rcs_max', 'date_radiation_rcs_min', 'date_radiation_rcs_max', 'capital_min', 'capital_max', 'chiffre_affaires_min', 'chiffre_affaires_max', 'resultat_min', 'resultat_max', 'date_creation_min', 'date_creation_max', 'tranche_effectif_min', 'tranche_effectif_max', 'type_dirigeant', 'qualite_dirigeant', 'nationalite_dirigeant', 'nom_dirigeant', 'prenom_dirigeant', 'age_dirigeant_min', 'age_dirigeant_max', 'date_de_naissance_dirigeant_min', 'date_de_naissance_dirigeant_max', 'age_beneficiaire_min', 'age_beneficiaire_max', 'date_de_naissance_beneficiaire_min', 'date_de_naissance_beneficiaire_max', 'nationalite_beneficiaire', 'date_depot_document_min', 'date_depot_document_max', 'type_publication', 'date_publication_min', 'date_publication_max']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('page', ['int']);
@@ -136,6 +171,9 @@ class Recherche extends BaseEndpoint implements Endpoint
         $optionsResolver->addAllowedTypes('departement', ['string']);
         $optionsResolver->addAllowedTypes('region', ['string']);
         $optionsResolver->addAllowedTypes('code_postal', ['string']);
+        $optionsResolver->addAllowedTypes('latitude', ['int']);
+        $optionsResolver->addAllowedTypes('longitude', ['int']);
+        $optionsResolver->addAllowedTypes('distance', ['int']);
         $optionsResolver->addAllowedTypes('convention_collective', ['string']);
         $optionsResolver->addAllowedTypes('categorie_juridique', ['string']);
         $optionsResolver->addAllowedTypes('entreprise_cessee', ['bool']);
@@ -189,7 +227,7 @@ class Recherche extends BaseEndpoint implements Endpoint
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
+        if ((null === $contentType) === false && (200 === $status && false !== stripos(strtolower($contentType), 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\RechercheGetResponse200', 'json');
         }
         if (401 === $status) {

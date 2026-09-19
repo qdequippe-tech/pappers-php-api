@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class Bodacc extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class Bodacc implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -150,5 +154,10 @@ class Bodacc extends \ArrayObject
     {
         $this->initialized['greffe'] = true;
         $this->greffe = $greffe;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['numeroParution' => ['numero_parution', 'getNumeroParution', 'setNumeroParution'], 'date' => ['date', 'getDate', 'setDate'], 'numeroAnnonce' => ['numero_annonce', 'getNumeroAnnonce', 'setNumeroAnnonce'], 'bodacc' => ['bodacc', 'getBodacc', 'setBodacc'], 'type' => ['type', 'getType', 'setType'], 'greffe' => ['greffe', 'getGreffe', 'setGreffe']];
     }
 }

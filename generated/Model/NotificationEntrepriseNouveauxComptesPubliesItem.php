@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationEntrepriseNouveauxComptesPubliesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationEntrepriseNouveauxComptesPubliesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -187,5 +191,10 @@ class NotificationEntrepriseNouveauxComptesPubliesItem extends \ArrayObject
         $this->numeroAnnonce = $numeroAnnonce;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['annonce' => ['annonce', 'getAnnonce', 'setAnnonce'], 'type' => ['type', 'getType', 'setType'], 'date' => ['date', 'getDate', 'setDate'], 'anneeCloture' => ['annee_cloture', 'getAnneeCloture', 'setAnneeCloture'], 'numeroParution' => ['numero_parution', 'getNumeroParution', 'setNumeroParution'], 'bodacc' => ['bodacc', 'getBodacc', 'setBodacc'], 'numeroAnnonce' => ['numero_annonce', 'getNumeroAnnonce', 'setNumeroAnnonce']];
     }
 }

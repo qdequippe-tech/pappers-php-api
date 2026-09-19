@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesDirects implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -87,5 +91,10 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects extends \Arra
         $this->pourcentageUsufruit = $pourcentageUsufruit;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['pourcentagePleinePropriete' => ['pourcentage_pleine_propriete', 'getPourcentagePleinePropriete', 'setPourcentagePleinePropriete'], 'pourcentageNuePropriete' => ['pourcentage_nue_propriete', 'getPourcentageNuePropriete', 'setPourcentageNuePropriete'], 'pourcentageUsufruit' => ['pourcentage_usufruit', 'getPourcentageUsufruit', 'setPourcentageUsufruit']];
     }
 }

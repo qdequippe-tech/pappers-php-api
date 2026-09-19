@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class Association extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class Association implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -700,5 +704,10 @@ class Association extends \ArrayObject
         $this->publicationsJoafe = $publicationsJoafe;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['isWaldec' => ['is_waldec', 'getIsWaldec', 'setIsWaldec'], 'idAssociation' => ['id_association', 'getIdAssociation', 'setIdAssociation'], 'idExAssociation' => ['id_ex_association', 'getIdExAssociation', 'setIdExAssociation'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'siret' => ['siret', 'getSiret', 'setSiret'], 'numeroRup' => ['numero_rup', 'getNumeroRup', 'setNumeroRup'], 'objet' => ['objet', 'getObjet', 'setObjet'], 'objetSocial1' => ['objet_social_1', 'getObjetSocial1', 'setObjetSocial1'], 'categorieSocial1' => ['categorie_social_1', 'getCategorieSocial1', 'setCategorieSocial1'], 'objetSocial2' => ['objet_social_2', 'getObjetSocial2', 'setObjetSocial2'], 'categorieSocial2' => ['categorie_social_2', 'getCategorieSocial2', 'setCategorieSocial2'], 'dateCreation' => ['date_creation', 'getDateCreation', 'setDateCreation'], 'dateDerniereDeclaration' => ['date_derniere_declaration', 'getDateDerniereDeclaration', 'setDateDerniereDeclaration'], 'datePublicationCreation' => ['date_publication_creation', 'getDatePublicationCreation', 'setDatePublicationCreation'], 'dateDeclarationDissolution' => ['date_declaration_dissolution', 'getDateDeclarationDissolution', 'setDateDeclarationDissolution'], 'groupement' => ['groupement', 'getGroupement', 'setGroupement'], 'positionActivite' => ['position_activite', 'getPositionActivite', 'setPositionActivite'], 'nature' => ['nature', 'getNature', 'setNature'], 'siteWeb' => ['site_web', 'getSiteWeb', 'setSiteWeb'], 'telephone' => ['telephone', 'getTelephone', 'setTelephone'], 'email' => ['email', 'getEmail', 'setEmail'], 'adresseSiege' => ['adresse_siege', 'getAdresseSiege', 'setAdresseSiege'], 'adresseGestionnaire' => ['adresse_gestionnaire', 'getAdresseGestionnaire', 'setAdresseGestionnaire'], 'observation' => ['observation', 'getObservation', 'setObservation'], 'codeGestion' => ['code_gestion', 'getCodeGestion', 'setCodeGestion'], 'dirigeantCivilite' => ['dirigeant_civilite', 'getDirigeantCivilite', 'setDirigeantCivilite'], 'derniereMaj' => ['derniere_maj', 'getDerniereMaj', 'setDerniereMaj'], 'publicationsJoafe' => ['publications_joafe', 'getPublicationsJoafe', 'setPublicationsJoafe']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichemarquesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheMarquesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -70,7 +74,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @var list<EntrepriseFichemarquesItemClassesItem>|null
+     * @var list<EntrepriseFicheMarquesItemClassesItem>|null
      */
     protected $classes;
     /**
@@ -84,7 +88,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @var list<EntrepriseFichemarquesItemEvenementsItem>|null
+     * @var list<EntrepriseFicheMarquesItemEvenementsItem>|null
      */
     protected $evenements;
 
@@ -266,7 +270,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @return list<EntrepriseFichemarquesItemClassesItem>|null
+     * @return list<EntrepriseFicheMarquesItemClassesItem>|null
      */
     public function getClasses(): ?array
     {
@@ -276,7 +280,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des classes (produits et services) de la marque. La liste des classes est disponible sur le document suivant : https://www.inpi.fr/sites/default/files/classification_nice_2021_0.pdf.
      *
-     * @param list<EntrepriseFichemarquesItemClassesItem>|null $classes
+     * @param list<EntrepriseFicheMarquesItemClassesItem>|null $classes
      */
     public function setClasses(?array $classes): self
     {
@@ -315,7 +319,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @return list<EntrepriseFichemarquesItemEvenementsItem>|null
+     * @return list<EntrepriseFicheMarquesItemEvenementsItem>|null
      */
     public function getEvenements(): ?array
     {
@@ -325,7 +329,7 @@ class EntrepriseFichemarquesItem extends \ArrayObject
     /**
      * Liste des événements associés à la marque.
      *
-     * @param list<EntrepriseFichemarquesItemEvenementsItem>|null $evenements
+     * @param list<EntrepriseFicheMarquesItemEvenementsItem>|null $evenements
      */
     public function setEvenements(?array $evenements): self
     {
@@ -333,5 +337,10 @@ class EntrepriseFichemarquesItem extends \ArrayObject
         $this->evenements = $evenements;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['numero' => ['numero', 'getNumero', 'setNumero'], 'dateEnregistrement' => ['date_enregistrement', 'getDateEnregistrement', 'setDateEnregistrement'], 'dateExpiration' => ['date_expiration', 'getDateExpiration', 'setDateExpiration'], 'lieuEnregistrement' => ['lieu_enregistrement', 'getLieuEnregistrement', 'setLieuEnregistrement'], 'statut' => ['statut', 'getStatut', 'setStatut'], 'texte' => ['texte', 'getTexte', 'setTexte'], 'type' => ['type', 'getType', 'setType'], 'lienImage' => ['lien_image', 'getLienImage', 'setLienImage'], 'descriptions' => ['descriptions', 'getDescriptions', 'setDescriptions'], 'classes' => ['classes', 'getClasses', 'setClasses'], 'deposant' => ['deposant', 'getDeposant', 'setDeposant'], 'mandataire' => ['mandataire', 'getMandataire', 'setMandataire'], 'evenements' => ['evenements', 'getEvenements', 'setEvenements']];
     }
 }

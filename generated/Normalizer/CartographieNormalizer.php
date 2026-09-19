@@ -6,6 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\Cartographie;
 use Qdequippe\Pappers\Api\Model\CartographieEntreprisesItem;
 use Qdequippe\Pappers\Api\Model\CartographiePersonnesItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -34,15 +35,15 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new Cartographie();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new Cartographie();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
             $values = [];
@@ -53,6 +54,7 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
             unset($data['entreprises']);
         } elseif (\array_key_exists('entreprises', $data) && null === $data['entreprises']) {
             $object->setEntreprises(null);
+            unset($data['entreprises']);
         }
         if (\array_key_exists('personnes', $data) && null !== $data['personnes']) {
             $values_1 = [];
@@ -63,13 +65,20 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
             unset($data['personnes']);
         } elseif (\array_key_exists('personnes', $data) && null === $data['personnes']) {
             $object->setPersonnes(null);
+            unset($data['personnes']);
         }
         if (\array_key_exists('liens_entreprises_personnes', $data) && null !== $data['liens_entreprises_personnes']) {
             $values_2 = [];
             foreach ($data['liens_entreprises_personnes'] as $value_2) {
                 $values_3 = [];
                 foreach ($value_2 as $value_3) {
-                    $values_3[] = $value_3;
+                    $value_4 = $value_3;
+                    if (\is_string($value_3)) {
+                        $value_4 = $value_3;
+                    } elseif (\is_string($value_3)) {
+                        $value_4 = $value_3;
+                    }
+                    $values_3[] = $value_4;
                 }
                 $values_2[] = $values_3;
             }
@@ -77,13 +86,14 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
             unset($data['liens_entreprises_personnes']);
         } elseif (\array_key_exists('liens_entreprises_personnes', $data) && null === $data['liens_entreprises_personnes']) {
             $object->setLiensEntreprisesPersonnes(null);
+            unset($data['liens_entreprises_personnes']);
         }
         if (\array_key_exists('liens_entreprises_entreprises', $data) && null !== $data['liens_entreprises_entreprises']) {
             $values_4 = [];
-            foreach ($data['liens_entreprises_entreprises'] as $value_4) {
+            foreach ($data['liens_entreprises_entreprises'] as $value_5) {
                 $values_5 = [];
-                foreach ($value_4 as $value_5) {
-                    $values_5[] = $value_5;
+                foreach ($value_5 as $value_6) {
+                    $values_5[] = $value_6;
                 }
                 $values_4[] = $values_5;
             }
@@ -91,20 +101,22 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
             unset($data['liens_entreprises_entreprises']);
         } elseif (\array_key_exists('liens_entreprises_entreprises', $data) && null === $data['liens_entreprises_entreprises']) {
             $object->setLiensEntreprisesEntreprises(null);
+            unset($data['liens_entreprises_entreprises']);
         }
         if (\array_key_exists('modifications_effectuees', $data) && null !== $data['modifications_effectuees']) {
-            $values_6 = new \ArrayObject([], \ArrayObject::ARRAY_AS_PROPS);
-            foreach ($data['modifications_effectuees'] as $key => $value_6) {
-                $values_6[$key] = $value_6;
+            $values_6 = new JsonObject();
+            foreach ($data['modifications_effectuees'] as $key => $value_7) {
+                $values_6[$key] = $value_7;
             }
             $object->setModificationsEffectuees($values_6);
             unset($data['modifications_effectuees']);
         } elseif (\array_key_exists('modifications_effectuees', $data) && null === $data['modifications_effectuees']) {
             $object->setModificationsEffectuees(null);
+            unset($data['modifications_effectuees']);
         }
-        foreach ($data as $key_1 => $value_7) {
+        foreach ($data as $key_1 => $value_8) {
             if (preg_match('/.*/', (string) $key_1)) {
-                $object[$key_1] = $value_7;
+                $object[$key_1] = $value_8;
             }
         }
 
@@ -117,14 +129,14 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
         if ($data->isInitialized('entreprises') && null !== $data->getEntreprises()) {
             $values = [];
             foreach ($data->getEntreprises() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['entreprises'] = $values;
         }
         if ($data->isInitialized('personnes') && null !== $data->getPersonnes()) {
             $values_1 = [];
             foreach ($data->getPersonnes() as $value_1) {
-                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+                $values_1[] = null === $value_1 ? null : new JsonObject($this->normalizer->normalize($value_1, 'json', $context));
             }
             $dataArray['personnes'] = $values_1;
         }
@@ -133,7 +145,13 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
             foreach ($data->getLiensEntreprisesPersonnes() as $value_2) {
                 $values_3 = [];
                 foreach ($value_2 as $value_3) {
-                    $values_3[] = $value_3;
+                    $value_4 = $value_3;
+                    if (\is_string($value_3)) {
+                        $value_4 = $value_3;
+                    } elseif (\is_string($value_3)) {
+                        $value_4 = $value_3;
+                    }
+                    $values_3[] = $value_4;
                 }
                 $values_2[] = $values_3;
             }
@@ -141,25 +159,25 @@ class CartographieNormalizer implements DenormalizerInterface, NormalizerInterfa
         }
         if ($data->isInitialized('liensEntreprisesEntreprises') && null !== $data->getLiensEntreprisesEntreprises()) {
             $values_4 = [];
-            foreach ($data->getLiensEntreprisesEntreprises() as $value_4) {
+            foreach ($data->getLiensEntreprisesEntreprises() as $value_5) {
                 $values_5 = [];
-                foreach ($value_4 as $value_5) {
-                    $values_5[] = $value_5;
+                foreach ($value_5 as $value_6) {
+                    $values_5[] = $value_6;
                 }
                 $values_4[] = $values_5;
             }
             $dataArray['liens_entreprises_entreprises'] = $values_4;
         }
         if ($data->isInitialized('modificationsEffectuees') && null !== $data->getModificationsEffectuees()) {
-            $values_6 = [];
-            foreach ($data->getModificationsEffectuees() as $key => $value_6) {
-                $values_6[$key] = $value_6;
+            $values_6 = new JsonObject();
+            foreach ($data->getModificationsEffectuees() as $key => $value_7) {
+                $values_6[$key] = $value_7;
             }
             $dataArray['modifications_effectuees'] = $values_6;
         }
-        foreach ($data as $key_1 => $value_7) {
+        foreach ($data->additionalPropertyEntries() as $key_1 => $value_8) {
             if (preg_match('/.*/', (string) $key_1)) {
-                $dataArray[$key_1] = $value_7;
+                $dataArray[$key_1] = $value_8;
             }
         }
 

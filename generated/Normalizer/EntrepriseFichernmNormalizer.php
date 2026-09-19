@@ -3,7 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichernm;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheRnm;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EntrepriseFicheRnmNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -22,67 +22,74 @@ class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerI
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return EntrepriseFichernm::class === $type;
+        return EntrepriseFicheRnm::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && EntrepriseFichernm::class === $data::class;
+        return \is_object($data) && EntrepriseFicheRnm::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseFicheRnm();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new EntrepriseFichernm();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('date_immatriculation', $data) && null !== $data['date_immatriculation']) {
             $object->setDateImmatriculation($data['date_immatriculation']);
             unset($data['date_immatriculation']);
         } elseif (\array_key_exists('date_immatriculation', $data) && null === $data['date_immatriculation']) {
             $object->setDateImmatriculation(null);
+            unset($data['date_immatriculation']);
         }
         if (\array_key_exists('date_radiation', $data) && null !== $data['date_radiation']) {
             $object->setDateRadiation($data['date_radiation']);
             unset($data['date_radiation']);
         } elseif (\array_key_exists('date_radiation', $data) && null === $data['date_radiation']) {
             $object->setDateRadiation(null);
+            unset($data['date_radiation']);
         }
         if (\array_key_exists('date_debut_activite', $data) && null !== $data['date_debut_activite']) {
             $object->setDateDebutActivite($data['date_debut_activite']);
             unset($data['date_debut_activite']);
         } elseif (\array_key_exists('date_debut_activite', $data) && null === $data['date_debut_activite']) {
             $object->setDateDebutActivite(null);
+            unset($data['date_debut_activite']);
         }
         if (\array_key_exists('date_cessation_activite', $data) && null !== $data['date_cessation_activite']) {
             $object->setDateCessationActivite($data['date_cessation_activite']);
             unset($data['date_cessation_activite']);
         } elseif (\array_key_exists('date_cessation_activite', $data) && null === $data['date_cessation_activite']) {
             $object->setDateCessationActivite(null);
+            unset($data['date_cessation_activite']);
         }
         if (\array_key_exists('chambre_des_metiers', $data) && null !== $data['chambre_des_metiers']) {
             $object->setChambreDesMetiers($data['chambre_des_metiers']);
             unset($data['chambre_des_metiers']);
         } elseif (\array_key_exists('chambre_des_metiers', $data) && null === $data['chambre_des_metiers']) {
             $object->setChambreDesMetiers(null);
+            unset($data['chambre_des_metiers']);
         }
         if (\array_key_exists('qualification', $data) && null !== $data['qualification']) {
             $object->setQualification($data['qualification']);
             unset($data['qualification']);
         } elseif (\array_key_exists('qualification', $data) && null === $data['qualification']) {
             $object->setQualification(null);
+            unset($data['qualification']);
         }
         if (\array_key_exists('derniere_mise_a_jour', $data) && null !== $data['derniere_mise_a_jour']) {
             $object->setDerniereMiseAJour($data['derniere_mise_a_jour']);
             unset($data['derniere_mise_a_jour']);
         } elseif (\array_key_exists('derniere_mise_a_jour', $data) && null === $data['derniere_mise_a_jour']) {
             $object->setDerniereMiseAJour(null);
+            unset($data['derniere_mise_a_jour']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -117,7 +124,7 @@ class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerI
         if ($data->isInitialized('derniereMiseAJour') && null !== $data->getDerniereMiseAJour()) {
             $dataArray['derniere_mise_a_jour'] = $data->getDerniereMiseAJour();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }
@@ -128,6 +135,6 @@ class EntrepriseFichernmNormalizer implements DenormalizerInterface, NormalizerI
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [EntrepriseFichernm::class => false];
+        return [EntrepriseFicheRnm::class => false];
     }
 }

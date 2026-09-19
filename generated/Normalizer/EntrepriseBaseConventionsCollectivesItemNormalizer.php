@@ -32,45 +32,49 @@ class EntrepriseBaseConventionsCollectivesItemNormalizer implements Denormalizer
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseBaseConventionsCollectivesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new EntrepriseBaseConventionsCollectivesItem();
         if (\array_key_exists('pourcentage', $data) && \is_int($data['pourcentage'])) {
             $data['pourcentage'] = (float) $data['pourcentage'];
         }
         if (\array_key_exists('confirmee', $data) && \is_int($data['confirmee'])) {
             $data['confirmee'] = (bool) $data['confirmee'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('idcc', $data) && null !== $data['idcc']) {
             $object->setIdcc($data['idcc']);
             unset($data['idcc']);
         } elseif (\array_key_exists('idcc', $data) && null === $data['idcc']) {
             $object->setIdcc(null);
+            unset($data['idcc']);
         }
         if (\array_key_exists('confirmee', $data) && null !== $data['confirmee']) {
             $object->setConfirmee($data['confirmee']);
             unset($data['confirmee']);
         } elseif (\array_key_exists('confirmee', $data) && null === $data['confirmee']) {
             $object->setConfirmee(null);
+            unset($data['confirmee']);
         }
         if (\array_key_exists('pourcentage', $data) && null !== $data['pourcentage']) {
             $object->setPourcentage($data['pourcentage']);
             unset($data['pourcentage']);
         } elseif (\array_key_exists('pourcentage', $data) && null === $data['pourcentage']) {
             $object->setPourcentage(null);
+            unset($data['pourcentage']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -96,7 +100,7 @@ class EntrepriseBaseConventionsCollectivesItemNormalizer implements Denormalizer
         if ($data->isInitialized('pourcentage') && null !== $data->getPourcentage()) {
             $dataArray['pourcentage'] = $data->getPourcentage();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

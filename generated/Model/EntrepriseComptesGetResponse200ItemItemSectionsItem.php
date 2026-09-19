@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseComptesGetResponse200ItemItemSectionsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -66,5 +70,10 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItem extends \ArrayObject
         $this->liasses = $liasses;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['libelle' => ['libelle', 'getLibelle', 'setLibelle'], 'liasses' => ['liasses', 'getLiasses', 'setLiasses']];
     }
 }

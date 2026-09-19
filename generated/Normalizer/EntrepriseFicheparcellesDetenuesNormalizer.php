@@ -3,8 +3,9 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheparcellesDetenues;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheparcellesDetenuesResultatsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheParcellesDetenues;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheParcellesDetenuesResultatsItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -14,7 +15,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class EntrepriseFicheparcellesDetenuesNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EntrepriseFicheParcellesDetenuesNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -23,50 +24,53 @@ class EntrepriseFicheparcellesDetenuesNormalizer implements DenormalizerInterfac
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return EntrepriseFicheparcellesDetenues::class === $type;
+        return EntrepriseFicheParcellesDetenues::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && EntrepriseFicheparcellesDetenues::class === $data::class;
+        return \is_object($data) && EntrepriseFicheParcellesDetenues::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseFicheParcellesDetenues();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new EntrepriseFicheparcellesDetenues();
         if (\array_key_exists('incomplet', $data) && \is_int($data['incomplet'])) {
             $data['incomplet'] = (bool) $data['incomplet'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('resultats', $data) && null !== $data['resultats']) {
             $values = [];
             foreach ($data['resultats'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, EntrepriseFicheparcellesDetenuesResultatsItem::class, 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, EntrepriseFicheParcellesDetenuesResultatsItem::class, 'json', $context);
             }
             $object->setResultats($values);
             unset($data['resultats']);
         } elseif (\array_key_exists('resultats', $data) && null === $data['resultats']) {
             $object->setResultats(null);
+            unset($data['resultats']);
         }
         if (\array_key_exists('total', $data) && null !== $data['total']) {
             $object->setTotal($data['total']);
             unset($data['total']);
         } elseif (\array_key_exists('total', $data) && null === $data['total']) {
             $object->setTotal(null);
+            unset($data['total']);
         }
         if (\array_key_exists('incomplet', $data) && null !== $data['incomplet']) {
             $object->setIncomplet($data['incomplet']);
             unset($data['incomplet']);
         } elseif (\array_key_exists('incomplet', $data) && null === $data['incomplet']) {
             $object->setIncomplet(null);
+            unset($data['incomplet']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -83,7 +87,7 @@ class EntrepriseFicheparcellesDetenuesNormalizer implements DenormalizerInterfac
         if ($data->isInitialized('resultats') && null !== $data->getResultats()) {
             $values = [];
             foreach ($data->getResultats() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['resultats'] = $values;
         }
@@ -93,7 +97,7 @@ class EntrepriseFicheparcellesDetenuesNormalizer implements DenormalizerInterfac
         if ($data->isInitialized('incomplet') && null !== $data->getIncomplet()) {
             $dataArray['incomplet'] = $data->getIncomplet();
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }
@@ -104,6 +108,6 @@ class EntrepriseFicheparcellesDetenuesNormalizer implements DenormalizerInterfac
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [EntrepriseFicheparcellesDetenues::class => false];
+        return [EntrepriseFicheParcellesDetenues::class => false];
     }
 }

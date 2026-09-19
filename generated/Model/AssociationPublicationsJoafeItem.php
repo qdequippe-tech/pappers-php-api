@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class AssociationPublicationsJoafeItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class AssociationPublicationsJoafeItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -262,5 +266,10 @@ class AssociationPublicationsJoafeItem extends \ArrayObject
         $this->adresse = $adresse;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['numeroParution' => ['numero_parution', 'getNumeroParution', 'setNumeroParution'], 'dateParution' => ['date_parution', 'getDateParution', 'setDateParution'], 'dateDeclaration' => ['date_declaration', 'getDateDeclaration', 'setDateDeclaration'], 'numeroAnnonce' => ['numero_annonce', 'getNumeroAnnonce', 'setNumeroAnnonce'], 'titre' => ['titre', 'getTitre', 'setTitre'], 'type' => ['type', 'getType', 'setType'], 'prefecture' => ['prefecture', 'getPrefecture', 'setPrefecture'], 'objet' => ['objet', 'getObjet', 'setObjet'], 'siteWeb' => ['site_web', 'getSiteWeb', 'setSiteWeb'], 'adresse' => ['adresse', 'getAdresse', 'setAdresse']];
     }
 }

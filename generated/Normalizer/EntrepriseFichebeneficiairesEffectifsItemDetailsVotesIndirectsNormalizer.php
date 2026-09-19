@@ -3,9 +3,10 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -24,55 +25,59 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsNormalizer i
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects::class === $type;
+        return EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects::class === $data::class;
+        return \is_object($data) && EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects();
         if (\array_key_exists('pourcentage_en_indivision', $data) && \is_int($data['pourcentage_en_indivision'])) {
             $data['pourcentage_en_indivision'] = (float) $data['pourcentage_en_indivision'];
         }
         if (\array_key_exists('pourcentage_en_personne_morale', $data) && \is_int($data['pourcentage_en_personne_morale'])) {
             $data['pourcentage_en_personne_morale'] = (float) $data['pourcentage_en_personne_morale'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('pourcentage_en_indivision', $data) && null !== $data['pourcentage_en_indivision']) {
             $object->setPourcentageEnIndivision($data['pourcentage_en_indivision']);
             unset($data['pourcentage_en_indivision']);
         } elseif (\array_key_exists('pourcentage_en_indivision', $data) && null === $data['pourcentage_en_indivision']) {
             $object->setPourcentageEnIndivision(null);
+            unset($data['pourcentage_en_indivision']);
         }
         if (\array_key_exists('pourcentage_en_personne_morale', $data) && null !== $data['pourcentage_en_personne_morale']) {
             $object->setPourcentageEnPersonneMorale($data['pourcentage_en_personne_morale']);
             unset($data['pourcentage_en_personne_morale']);
         } elseif (\array_key_exists('pourcentage_en_personne_morale', $data) && null === $data['pourcentage_en_personne_morale']) {
             $object->setPourcentageEnPersonneMorale(null);
+            unset($data['pourcentage_en_personne_morale']);
         }
         if (\array_key_exists('details_en_indivision', $data) && null !== $data['details_en_indivision']) {
-            $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision::class, 'json', $context));
+            $object->setDetailsEnIndivision($this->denormalizer->denormalize($data['details_en_indivision'], EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision::class, 'json', $context));
             unset($data['details_en_indivision']);
         } elseif (\array_key_exists('details_en_indivision', $data) && null === $data['details_en_indivision']) {
             $object->setDetailsEnIndivision(null);
+            unset($data['details_en_indivision']);
         }
         if (\array_key_exists('details_en_personne_morale', $data) && null !== $data['details_en_personne_morale']) {
-            $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale::class, 'json', $context));
+            $object->setDetailsEnPersonneMorale($this->denormalizer->denormalize($data['details_en_personne_morale'], EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale::class, 'json', $context));
             unset($data['details_en_personne_morale']);
         } elseif (\array_key_exists('details_en_personne_morale', $data) && null === $data['details_en_personne_morale']) {
             $object->setDetailsEnPersonneMorale(null);
+            unset($data['details_en_personne_morale']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -93,12 +98,12 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsNormalizer i
             $dataArray['pourcentage_en_personne_morale'] = $data->getPourcentageEnPersonneMorale();
         }
         if ($data->isInitialized('detailsEnIndivision') && null !== $data->getDetailsEnIndivision()) {
-            $dataArray['details_en_indivision'] = $this->normalizer->normalize($data->getDetailsEnIndivision(), 'json', $context);
+            $dataArray['details_en_indivision'] = null === $data->getDetailsEnIndivision() ? null : new JsonObject($this->normalizer->normalize($data->getDetailsEnIndivision(), 'json', $context));
         }
         if ($data->isInitialized('detailsEnPersonneMorale') && null !== $data->getDetailsEnPersonneMorale()) {
-            $dataArray['details_en_personne_morale'] = $this->normalizer->normalize($data->getDetailsEnPersonneMorale(), 'json', $context);
+            $dataArray['details_en_personne_morale'] = null === $data->getDetailsEnPersonneMorale() ? null : new JsonObject($this->normalizer->normalize($data->getDetailsEnPersonneMorale(), 'json', $context));
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }
@@ -109,6 +114,6 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsNormalizer i
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects::class => false];
+        return [EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects::class => false];
     }
 }

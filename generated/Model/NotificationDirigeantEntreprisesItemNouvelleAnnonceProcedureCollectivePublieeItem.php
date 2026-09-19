@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -25,6 +29,12 @@ class NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePubl
      * @var string|null
      */
     protected $type;
+    /**
+     * Type de la procédure collective parmi la liste suivante : Liquidation judiciaire, Redressement judiciaire, Procédure de sauvegarde, ou Autre procédure collective.
+     *
+     * @var string|null
+     */
+    protected $typeProcedureCollective;
     /**
      * Date de publication de l'annonce au format AAAA-MM-JJ.
      *
@@ -84,6 +94,25 @@ class NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePubl
     {
         $this->initialized['type'] = true;
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Type de la procédure collective parmi la liste suivante : Liquidation judiciaire, Redressement judiciaire, Procédure de sauvegarde, ou Autre procédure collective.
+     */
+    public function getTypeProcedureCollective(): ?string
+    {
+        return $this->typeProcedureCollective;
+    }
+
+    /**
+     * Type de la procédure collective parmi la liste suivante : Liquidation judiciaire, Redressement judiciaire, Procédure de sauvegarde, ou Autre procédure collective.
+     */
+    public function setTypeProcedureCollective(?string $typeProcedureCollective): self
+    {
+        $this->initialized['typeProcedureCollective'] = true;
+        $this->typeProcedureCollective = $typeProcedureCollective;
 
         return $this;
     }
@@ -162,5 +191,10 @@ class NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePubl
         $this->numeroAnnonce = $numeroAnnonce;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['annonce' => ['annonce', 'getAnnonce', 'setAnnonce'], 'type' => ['type', 'getType', 'setType'], 'typeProcedureCollective' => ['type_procedure_collective', 'getTypeProcedureCollective', 'setTypeProcedureCollective'], 'date' => ['date', 'getDate', 'setDate'], 'numeroParution' => ['numero_parution', 'getNumeroParution', 'setNumeroParution'], 'bodacc' => ['bodacc', 'getBodacc', 'setBodacc'], 'numeroAnnonce' => ['numero_annonce', 'getNumeroAnnonce', 'setNumeroAnnonce']];
     }
 }

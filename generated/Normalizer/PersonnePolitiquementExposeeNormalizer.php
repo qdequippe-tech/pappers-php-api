@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposee;
 use Qdequippe\Pappers\Api\Model\PersonnePolitiquementExposeeFonctionsItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,24 +34,25 @@ class PersonnePolitiquementExposeeNormalizer implements DenormalizerInterface, N
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new PersonnePolitiquementExposee();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new PersonnePolitiquementExposee();
         if (\array_key_exists('en_cours', $data) && \is_int($data['en_cours'])) {
             $data['en_cours'] = (bool) $data['en_cours'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('en_cours', $data) && null !== $data['en_cours']) {
             $object->setEnCours($data['en_cours']);
             unset($data['en_cours']);
         } elseif (\array_key_exists('en_cours', $data) && null === $data['en_cours']) {
             $object->setEnCours(null);
+            unset($data['en_cours']);
         }
         if (\array_key_exists('fonctions', $data) && null !== $data['fonctions']) {
             $values = [];
@@ -61,6 +63,7 @@ class PersonnePolitiquementExposeeNormalizer implements DenormalizerInterface, N
             unset($data['fonctions']);
         } elseif (\array_key_exists('fonctions', $data) && null === $data['fonctions']) {
             $object->setFonctions(null);
+            unset($data['fonctions']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -80,11 +83,11 @@ class PersonnePolitiquementExposeeNormalizer implements DenormalizerInterface, N
         if ($data->isInitialized('fonctions') && null !== $data->getFonctions()) {
             $values = [];
             foreach ($data->getFonctions() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['fonctions'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

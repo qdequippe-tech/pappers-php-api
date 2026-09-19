@@ -8,6 +8,7 @@ use Qdequippe\Pappers\Api\Model\NotificationDirigeantDetailsDirigeant;
 use Qdequippe\Pappers\Api\Model\NotificationDirigeantEntreprisesItem;
 use Qdequippe\Pappers\Api\Model\NotificationDirigeantNouveauxMandatsPolitiquesItem;
 use Qdequippe\Pappers\Api\Model\NotificationDirigeantNouvellesSanctionsItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -36,33 +37,43 @@ class NotificationDirigeantNormalizer implements DenormalizerInterface, Normaliz
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationDirigeant();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationDirigeant();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('dirigeant', $data) && null !== $data['dirigeant']) {
             $object->setDirigeant($data['dirigeant']);
             unset($data['dirigeant']);
         } elseif (\array_key_exists('dirigeant', $data) && null === $data['dirigeant']) {
             $object->setDirigeant(null);
+            unset($data['dirigeant']);
         }
         if (\array_key_exists('information', $data) && null !== $data['information']) {
             $object->setInformation($data['information']);
             unset($data['information']);
         } elseif (\array_key_exists('information', $data) && null === $data['information']) {
             $object->setInformation(null);
+            unset($data['information']);
+        }
+        if (\array_key_exists('id', $data) && null !== $data['id']) {
+            $object->setId($data['id']);
+            unset($data['id']);
+        } elseif (\array_key_exists('id', $data) && null === $data['id']) {
+            $object->setId(null);
+            unset($data['id']);
         }
         if (\array_key_exists('details_dirigeant', $data) && null !== $data['details_dirigeant']) {
             $object->setDetailsDirigeant($this->denormalizer->denormalize($data['details_dirigeant'], NotificationDirigeantDetailsDirigeant::class, 'json', $context));
             unset($data['details_dirigeant']);
         } elseif (\array_key_exists('details_dirigeant', $data) && null === $data['details_dirigeant']) {
             $object->setDetailsDirigeant(null);
+            unset($data['details_dirigeant']);
         }
         if (\array_key_exists('nouvelles_sanctions', $data) && null !== $data['nouvelles_sanctions']) {
             $values = [];
@@ -73,6 +84,7 @@ class NotificationDirigeantNormalizer implements DenormalizerInterface, Normaliz
             unset($data['nouvelles_sanctions']);
         } elseif (\array_key_exists('nouvelles_sanctions', $data) && null === $data['nouvelles_sanctions']) {
             $object->setNouvellesSanctions(null);
+            unset($data['nouvelles_sanctions']);
         }
         if (\array_key_exists('nouveaux_mandats_politiques', $data) && null !== $data['nouveaux_mandats_politiques']) {
             $values_1 = [];
@@ -83,6 +95,7 @@ class NotificationDirigeantNormalizer implements DenormalizerInterface, Normaliz
             unset($data['nouveaux_mandats_politiques']);
         } elseif (\array_key_exists('nouveaux_mandats_politiques', $data) && null === $data['nouveaux_mandats_politiques']) {
             $object->setNouveauxMandatsPolitiques(null);
+            unset($data['nouveaux_mandats_politiques']);
         }
         if (\array_key_exists('entreprises', $data) && null !== $data['entreprises']) {
             $values_2 = [];
@@ -93,6 +106,7 @@ class NotificationDirigeantNormalizer implements DenormalizerInterface, Normaliz
             unset($data['entreprises']);
         } elseif (\array_key_exists('entreprises', $data) && null === $data['entreprises']) {
             $object->setEntreprises(null);
+            unset($data['entreprises']);
         }
         foreach ($data as $key => $value_3) {
             if (preg_match('/.*/', (string) $key)) {
@@ -112,31 +126,34 @@ class NotificationDirigeantNormalizer implements DenormalizerInterface, Normaliz
         if ($data->isInitialized('information') && null !== $data->getInformation()) {
             $dataArray['information'] = $data->getInformation();
         }
+        if ($data->isInitialized('id') && null !== $data->getId()) {
+            $dataArray['id'] = $data->getId();
+        }
         if ($data->isInitialized('detailsDirigeant') && null !== $data->getDetailsDirigeant()) {
-            $dataArray['details_dirigeant'] = $this->normalizer->normalize($data->getDetailsDirigeant(), 'json', $context);
+            $dataArray['details_dirigeant'] = null === $data->getDetailsDirigeant() ? null : new JsonObject($this->normalizer->normalize($data->getDetailsDirigeant(), 'json', $context));
         }
         if ($data->isInitialized('nouvellesSanctions') && null !== $data->getNouvellesSanctions()) {
             $values = [];
             foreach ($data->getNouvellesSanctions() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['nouvelles_sanctions'] = $values;
         }
         if ($data->isInitialized('nouveauxMandatsPolitiques') && null !== $data->getNouveauxMandatsPolitiques()) {
             $values_1 = [];
             foreach ($data->getNouveauxMandatsPolitiques() as $value_1) {
-                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+                $values_1[] = null === $value_1 ? null : new JsonObject($this->normalizer->normalize($value_1, 'json', $context));
             }
             $dataArray['nouveaux_mandats_politiques'] = $values_1;
         }
         if ($data->isInitialized('entreprises') && null !== $data->getEntreprises()) {
             $values_2 = [];
             foreach ($data->getEntreprises() as $value_2) {
-                $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
+                $values_2[] = null === $value_2 ? null : new JsonObject($this->normalizer->normalize($value_2, 'json', $context));
             }
             $dataArray['entreprises'] = $values_2;
         }
-        foreach ($data as $key => $value_3) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_3) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_3;
             }

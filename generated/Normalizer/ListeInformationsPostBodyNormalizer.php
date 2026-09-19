@@ -32,15 +32,15 @@ class ListeInformationsPostBodyNormalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ListeInformationsPostBody();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new ListeInformationsPostBody();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('notifications', $data) && null !== $data['notifications']) {
             $values = [];
@@ -51,12 +51,14 @@ class ListeInformationsPostBodyNormalizer implements DenormalizerInterface, Norm
             unset($data['notifications']);
         } elseif (\array_key_exists('notifications', $data) && null === $data['notifications']) {
             $object->setNotifications(null);
+            unset($data['notifications']);
         }
         if (\array_key_exists('informations', $data) && null !== $data['informations']) {
             $object->setInformations($data['informations']);
             unset($data['informations']);
         } elseif (\array_key_exists('informations', $data) && null === $data['informations']) {
             $object->setInformations(null);
+            unset($data['informations']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -80,7 +82,7 @@ class ListeInformationsPostBodyNormalizer implements DenormalizerInterface, Norm
         if ($data->isInitialized('informations') && null !== $data->getInformations()) {
             $dataArray['informations'] = $data->getInformations();
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

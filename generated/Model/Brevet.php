@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class Brevet extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class Brevet implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -386,5 +390,10 @@ class Brevet extends \ArrayObject
         $this->classifications = $classifications;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['proprietaires' => ['proprietaires', 'getProprietaires', 'setProprietaires'], 'depositaires' => ['depositaires', 'getDepositaires', 'setDepositaires'], 'inventeurs' => ['inventeurs', 'getInventeurs', 'setInventeurs'], 'agents' => ['agents', 'getAgents', 'setAgents'], 'titreInvention' => ['titre_invention', 'getTitreInvention', 'setTitreInvention'], 'description' => ['description', 'getDescription', 'setDescription'], 'statut' => ['statut', 'getStatut', 'setStatut'], 'publication' => ['publication', 'getPublication', 'setPublication'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays'], 'dateDepot' => ['date_depot', 'getDateDepot', 'setDateDepot'], 'numeroDepot' => ['numero_depot', 'getNumeroDepot', 'setNumeroDepot'], 'dateExpiration' => ['date_expiration', 'getDateExpiration', 'setDateExpiration'], 'priorites' => ['priorites', 'getPriorites', 'setPriorites'], 'classifications' => ['classifications', 'getClassifications', 'setClassifications']];
     }
 }

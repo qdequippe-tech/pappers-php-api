@@ -88,4 +88,9 @@ class BodaccProcedureCollective extends Bodacc
 
         return $this;
     }
+
+    public function definedProperties(): array
+    {
+        return array_merge(parent::definedProperties(), ['famille' => ['famille', 'getFamille', 'setFamille'], 'nature' => ['nature', 'getNature', 'setNature'], 'complementJugement' => ['complement_jugement', 'getComplementJugement', 'setComplementJugement']]);
+    }
 }

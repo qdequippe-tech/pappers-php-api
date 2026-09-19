@@ -6,6 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItem;
 use Qdequippe\Pappers\Api\Model\Ratios;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -34,13 +35,16 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseComptesGetResponse200ItemItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new EntrepriseComptesGetResponse200ItemItem();
         if (\array_key_exists('confidentialite', $data) && \is_int($data['confidentialite'])) {
             $data['confidentialite'] = (bool) $data['confidentialite'];
         }
@@ -50,104 +54,117 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
         if (\array_key_exists('coherence_comptable', $data) && \is_int($data['coherence_comptable'])) {
             $data['coherence_comptable'] = (bool) $data['coherence_comptable'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('date_depot', $data) && null !== $data['date_depot']) {
             $object->setDateDepot($data['date_depot']);
             unset($data['date_depot']);
         } elseif (\array_key_exists('date_depot', $data) && null === $data['date_depot']) {
             $object->setDateDepot(null);
+            unset($data['date_depot']);
         }
         if (\array_key_exists('code_greffe', $data) && null !== $data['code_greffe']) {
             $object->setCodeGreffe($data['code_greffe']);
             unset($data['code_greffe']);
         } elseif (\array_key_exists('code_greffe', $data) && null === $data['code_greffe']) {
             $object->setCodeGreffe(null);
+            unset($data['code_greffe']);
         }
         if (\array_key_exists('numero_depot', $data) && null !== $data['numero_depot']) {
             $object->setNumeroDepot($data['numero_depot']);
             unset($data['numero_depot']);
         } elseif (\array_key_exists('numero_depot', $data) && null === $data['numero_depot']) {
             $object->setNumeroDepot(null);
+            unset($data['numero_depot']);
         }
         if (\array_key_exists('numero_gestion', $data) && null !== $data['numero_gestion']) {
             $object->setNumeroGestion($data['numero_gestion']);
             unset($data['numero_gestion']);
         } elseif (\array_key_exists('numero_gestion', $data) && null === $data['numero_gestion']) {
             $object->setNumeroGestion(null);
+            unset($data['numero_gestion']);
         }
         if (\array_key_exists('date_cloture', $data) && null !== $data['date_cloture']) {
             $object->setDateCloture($data['date_cloture']);
             unset($data['date_cloture']);
         } elseif (\array_key_exists('date_cloture', $data) && null === $data['date_cloture']) {
             $object->setDateCloture(null);
+            unset($data['date_cloture']);
         }
         if (\array_key_exists('date_cloture_n-1', $data) && null !== $data['date_cloture_n-1']) {
             $object->setDateClotureN1($data['date_cloture_n-1']);
             unset($data['date_cloture_n-1']);
         } elseif (\array_key_exists('date_cloture_n-1', $data) && null === $data['date_cloture_n-1']) {
             $object->setDateClotureN1(null);
+            unset($data['date_cloture_n-1']);
         }
         if (\array_key_exists('duree_exercice_n', $data) && null !== $data['duree_exercice_n']) {
             $object->setDureeExerciceN($data['duree_exercice_n']);
             unset($data['duree_exercice_n']);
         } elseif (\array_key_exists('duree_exercice_n', $data) && null === $data['duree_exercice_n']) {
             $object->setDureeExerciceN(null);
+            unset($data['duree_exercice_n']);
         }
         if (\array_key_exists('duree_exercice_n-1', $data) && null !== $data['duree_exercice_n-1']) {
             $object->setDureeExerciceN1($data['duree_exercice_n-1']);
             unset($data['duree_exercice_n-1']);
         } elseif (\array_key_exists('duree_exercice_n-1', $data) && null === $data['duree_exercice_n-1']) {
             $object->setDureeExerciceN1(null);
+            unset($data['duree_exercice_n-1']);
         }
         if (\array_key_exists('type_comptes', $data) && null !== $data['type_comptes']) {
             $object->setTypeComptes($data['type_comptes']);
             unset($data['type_comptes']);
         } elseif (\array_key_exists('type_comptes', $data) && null === $data['type_comptes']) {
             $object->setTypeComptes(null);
+            unset($data['type_comptes']);
         }
         if (\array_key_exists('libelle_type_comptes', $data) && null !== $data['libelle_type_comptes']) {
             $object->setLibelleTypeComptes($data['libelle_type_comptes']);
             unset($data['libelle_type_comptes']);
         } elseif (\array_key_exists('libelle_type_comptes', $data) && null === $data['libelle_type_comptes']) {
             $object->setLibelleTypeComptes(null);
+            unset($data['libelle_type_comptes']);
         }
         if (\array_key_exists('devise', $data) && null !== $data['devise']) {
             $object->setDevise($data['devise']);
             unset($data['devise']);
         } elseif (\array_key_exists('devise', $data) && null === $data['devise']) {
             $object->setDevise(null);
+            unset($data['devise']);
         }
         if (\array_key_exists('devise_origine', $data) && null !== $data['devise_origine']) {
             $object->setDeviseOrigine($data['devise_origine']);
             unset($data['devise_origine']);
         } elseif (\array_key_exists('devise_origine', $data) && null === $data['devise_origine']) {
             $object->setDeviseOrigine(null);
+            unset($data['devise_origine']);
         }
         if (\array_key_exists('confidentialite', $data) && null !== $data['confidentialite']) {
             $object->setConfidentialite($data['confidentialite']);
             unset($data['confidentialite']);
         } elseif (\array_key_exists('confidentialite', $data) && null === $data['confidentialite']) {
             $object->setConfidentialite(null);
+            unset($data['confidentialite']);
         }
         if (\array_key_exists('confidentialite_compte_de_resultat', $data) && null !== $data['confidentialite_compte_de_resultat']) {
             $object->setConfidentialiteCompteDeResultat($data['confidentialite_compte_de_resultat']);
             unset($data['confidentialite_compte_de_resultat']);
         } elseif (\array_key_exists('confidentialite_compte_de_resultat', $data) && null === $data['confidentialite_compte_de_resultat']) {
             $object->setConfidentialiteCompteDeResultat(null);
+            unset($data['confidentialite_compte_de_resultat']);
         }
         if (\array_key_exists('coherence_comptable', $data) && null !== $data['coherence_comptable']) {
             $object->setCoherenceComptable($data['coherence_comptable']);
             unset($data['coherence_comptable']);
         } elseif (\array_key_exists('coherence_comptable', $data) && null === $data['coherence_comptable']) {
             $object->setCoherenceComptable(null);
+            unset($data['coherence_comptable']);
         }
         if (\array_key_exists('type_saisie', $data) && null !== $data['type_saisie']) {
             $object->setTypeSaisie($data['type_saisie']);
             unset($data['type_saisie']);
         } elseif (\array_key_exists('type_saisie', $data) && null === $data['type_saisie']) {
             $object->setTypeSaisie(null);
+            unset($data['type_saisie']);
         }
         if (\array_key_exists('informations_traitement', $data) && null !== $data['informations_traitement']) {
             $values = [];
@@ -158,6 +175,7 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
             unset($data['informations_traitement']);
         } elseif (\array_key_exists('informations_traitement', $data) && null === $data['informations_traitement']) {
             $object->setInformationsTraitement(null);
+            unset($data['informations_traitement']);
         }
         if (\array_key_exists('sections', $data) && null !== $data['sections']) {
             $values_1 = [];
@@ -168,12 +186,14 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
             unset($data['sections']);
         } elseif (\array_key_exists('sections', $data) && null === $data['sections']) {
             $object->setSections(null);
+            unset($data['sections']);
         }
         if (\array_key_exists('ratios', $data) && null !== $data['ratios']) {
             $object->setRatios($this->denormalizer->denormalize($data['ratios'], Ratios::class, 'json', $context));
             unset($data['ratios']);
         } elseif (\array_key_exists('ratios', $data) && null === $data['ratios']) {
             $object->setRatios(null);
+            unset($data['ratios']);
         }
         foreach ($data as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
@@ -245,14 +265,14 @@ class EntrepriseComptesGetResponse200ItemItemNormalizer implements DenormalizerI
         if ($data->isInitialized('sections') && null !== $data->getSections()) {
             $values_1 = [];
             foreach ($data->getSections() as $value_1) {
-                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+                $values_1[] = null === $value_1 ? null : new JsonObject($this->normalizer->normalize($value_1, 'json', $context));
             }
             $dataArray['sections'] = $values_1;
         }
         if ($data->isInitialized('ratios') && null !== $data->getRatios()) {
-            $dataArray['ratios'] = $this->normalizer->normalize($data->getRatios(), 'json', $context);
+            $dataArray['ratios'] = null === $data->getRatios() ? null : new JsonObject($this->normalizer->normalize($data->getRatios(), 'json', $context));
         }
-        foreach ($data as $key => $value_2) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_2;
             }

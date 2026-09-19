@@ -32,48 +32,53 @@ class LabelsBaseInscriptionsItemNormalizer implements DenormalizerInterface, Nor
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new LabelsBaseInscriptionsItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new LabelsBaseInscriptionsItem();
         if (\array_key_exists('encaisse_fonds', $data) && \is_int($data['encaisse_fonds'])) {
             $data['encaisse_fonds'] = (bool) $data['encaisse_fonds'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('categorie', $data) && null !== $data['categorie']) {
             $object->setCategorie($data['categorie']);
             unset($data['categorie']);
         } elseif (\array_key_exists('categorie', $data) && null === $data['categorie']) {
             $object->setCategorie(null);
+            unset($data['categorie']);
         }
         if (\array_key_exists('label_categorie', $data) && null !== $data['label_categorie']) {
             $object->setLabelCategorie($data['label_categorie']);
             unset($data['label_categorie']);
         } elseif (\array_key_exists('label_categorie', $data) && null === $data['label_categorie']) {
             $object->setLabelCategorie(null);
+            unset($data['label_categorie']);
         }
         if (\array_key_exists('statut', $data) && null !== $data['statut']) {
             $object->setStatut($data['statut']);
             unset($data['statut']);
         } elseif (\array_key_exists('statut', $data) && null === $data['statut']) {
             $object->setStatut(null);
+            unset($data['statut']);
         }
         if (\array_key_exists('date_inscription', $data) && null !== $data['date_inscription']) {
             $object->setDateInscription($data['date_inscription']);
             unset($data['date_inscription']);
         } elseif (\array_key_exists('date_inscription', $data) && null === $data['date_inscription']) {
             $object->setDateInscription(null);
+            unset($data['date_inscription']);
         }
         if (\array_key_exists('encaisse_fonds', $data) && null !== $data['encaisse_fonds']) {
             $object->setEncaisseFonds($data['encaisse_fonds']);
             unset($data['encaisse_fonds']);
         } elseif (\array_key_exists('encaisse_fonds', $data) && null === $data['encaisse_fonds']) {
             $object->setEncaisseFonds(null);
+            unset($data['encaisse_fonds']);
         }
         if (\array_key_exists('activites', $data) && null !== $data['activites']) {
             $values = [];
@@ -84,6 +89,7 @@ class LabelsBaseInscriptionsItemNormalizer implements DenormalizerInterface, Nor
             unset($data['activites']);
         } elseif (\array_key_exists('activites', $data) && null === $data['activites']) {
             $object->setActivites(null);
+            unset($data['activites']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -119,7 +125,7 @@ class LabelsBaseInscriptionsItemNormalizer implements DenormalizerInterface, Nor
             }
             $dataArray['activites'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

@@ -32,81 +32,92 @@ class AssociationAdresseSiegeNormalizer implements DenormalizerInterface, Normal
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new AssociationAdresseSiege();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new AssociationAdresseSiege();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('code_postal', $data) && null !== $data['code_postal']) {
             $object->setCodePostal($data['code_postal']);
             unset($data['code_postal']);
         } elseif (\array_key_exists('code_postal', $data) && null === $data['code_postal']) {
             $object->setCodePostal(null);
+            unset($data['code_postal']);
         }
         if (\array_key_exists('code_insee', $data) && null !== $data['code_insee']) {
             $object->setCodeInsee($data['code_insee']);
             unset($data['code_insee']);
         } elseif (\array_key_exists('code_insee', $data) && null === $data['code_insee']) {
             $object->setCodeInsee(null);
+            unset($data['code_insee']);
         }
         if (\array_key_exists('ville', $data) && null !== $data['ville']) {
             $object->setVille($data['ville']);
             unset($data['ville']);
         } elseif (\array_key_exists('ville', $data) && null === $data['ville']) {
             $object->setVille(null);
+            unset($data['ville']);
         }
         if (\array_key_exists('numero_voie', $data) && null !== $data['numero_voie']) {
             $object->setNumeroVoie($data['numero_voie']);
             unset($data['numero_voie']);
         } elseif (\array_key_exists('numero_voie', $data) && null === $data['numero_voie']) {
             $object->setNumeroVoie(null);
+            unset($data['numero_voie']);
         }
         if (\array_key_exists('indice_repetition', $data) && null !== $data['indice_repetition']) {
             $object->setIndiceRepetition($data['indice_repetition']);
             unset($data['indice_repetition']);
         } elseif (\array_key_exists('indice_repetition', $data) && null === $data['indice_repetition']) {
             $object->setIndiceRepetition(null);
+            unset($data['indice_repetition']);
         }
         if (\array_key_exists('type_voie', $data) && null !== $data['type_voie']) {
             $object->setTypeVoie($data['type_voie']);
             unset($data['type_voie']);
         } elseif (\array_key_exists('type_voie', $data) && null === $data['type_voie']) {
             $object->setTypeVoie(null);
+            unset($data['type_voie']);
         }
         if (\array_key_exists('libelle_voie', $data) && null !== $data['libelle_voie']) {
             $object->setLibelleVoie($data['libelle_voie']);
             unset($data['libelle_voie']);
         } elseif (\array_key_exists('libelle_voie', $data) && null === $data['libelle_voie']) {
             $object->setLibelleVoie(null);
+            unset($data['libelle_voie']);
         }
         if (\array_key_exists('complement_adresse', $data) && null !== $data['complement_adresse']) {
             $object->setComplementAdresse($data['complement_adresse']);
             unset($data['complement_adresse']);
         } elseif (\array_key_exists('complement_adresse', $data) && null === $data['complement_adresse']) {
             $object->setComplementAdresse(null);
+            unset($data['complement_adresse']);
         }
         if (\array_key_exists('distribution', $data) && null !== $data['distribution']) {
             $object->setDistribution($data['distribution']);
             unset($data['distribution']);
         } elseif (\array_key_exists('distribution', $data) && null === $data['distribution']) {
             $object->setDistribution(null);
+            unset($data['distribution']);
         }
         if (\array_key_exists('adresse_ligne_1', $data) && null !== $data['adresse_ligne_1']) {
             $object->setAdresseLigne1($data['adresse_ligne_1']);
             unset($data['adresse_ligne_1']);
         } elseif (\array_key_exists('adresse_ligne_1', $data) && null === $data['adresse_ligne_1']) {
             $object->setAdresseLigne1(null);
+            unset($data['adresse_ligne_1']);
         }
         if (\array_key_exists('adresse_ligne_2', $data) && null !== $data['adresse_ligne_2']) {
             $object->setAdresseLigne2($data['adresse_ligne_2']);
             unset($data['adresse_ligne_2']);
         } elseif (\array_key_exists('adresse_ligne_2', $data) && null === $data['adresse_ligne_2']) {
             $object->setAdresseLigne2(null);
+            unset($data['adresse_ligne_2']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -153,7 +164,7 @@ class AssociationAdresseSiegeNormalizer implements DenormalizerInterface, Normal
         if ($data->isInitialized('adresseLigne2') && null !== $data->getAdresseLigne2()) {
             $dataArray['adresse_ligne_2'] = $data->getAdresseLigne2();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

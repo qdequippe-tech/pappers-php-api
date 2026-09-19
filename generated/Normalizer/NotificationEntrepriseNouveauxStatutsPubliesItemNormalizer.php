@@ -32,33 +32,36 @@ class NotificationEntrepriseNouveauxStatutsPubliesItemNormalizer implements Deno
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationEntrepriseNouveauxStatutsPubliesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationEntrepriseNouveauxStatutsPubliesItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('acte', $data) && null !== $data['acte']) {
             $object->setActe($data['acte']);
             unset($data['acte']);
         } elseif (\array_key_exists('acte', $data) && null === $data['acte']) {
             $object->setActe(null);
+            unset($data['acte']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('token', $data) && null !== $data['token']) {
             $object->setToken($data['token']);
             unset($data['token']);
         } elseif (\array_key_exists('token', $data) && null === $data['token']) {
             $object->setToken(null);
+            unset($data['token']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -72,16 +75,16 @@ class NotificationEntrepriseNouveauxStatutsPubliesItemNormalizer implements Deno
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('acte')) {
+        if ($data->isInitialized('acte') && null !== $data->getActe()) {
             $dataArray['acte'] = $data->getActe();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        if ($data->isInitialized('token')) {
+        if ($data->isInitialized('token') && null !== $data->getToken()) {
             $dataArray['token'] = $data->getToken();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

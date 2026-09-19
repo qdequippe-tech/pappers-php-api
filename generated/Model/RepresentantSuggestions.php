@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class RepresentantSuggestions extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class RepresentantSuggestions implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -670,5 +674,10 @@ class RepresentantSuggestions extends \ArrayObject
         $this->codePays = $codePays;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['qualites' => ['qualites', 'getQualites', 'setQualites'], 'personneMorale' => ['personne_morale', 'getPersonneMorale', 'setPersonneMorale'], 'datePriseDePoste' => ['date_prise_de_poste', 'getDatePriseDePoste', 'setDatePriseDePoste'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'siren' => ['siren', 'getSiren', 'setSiren'], 'formeJuridique' => ['forme_juridique', 'getFormeJuridique', 'setFormeJuridique'], 'sexe' => ['sexe', 'getSexe', 'setSexe'], 'nom' => ['nom', 'getNom', 'setNom'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'prenomUsuel' => ['prenom_usuel', 'getPrenomUsuel', 'setPrenomUsuel'], 'nomComplet' => ['nom_complet', 'getNomComplet', 'setNomComplet'], 'dateDeNaissance' => ['date_de_naissance', 'getDateDeNaissance', 'setDateDeNaissance'], 'dateDeNaissanceFormate' => ['date_de_naissance_formate', 'getDateDeNaissanceFormate', 'setDateDeNaissanceFormate'], 'age' => ['age', 'getAge', 'setAge'], 'nationalite' => ['nationalite', 'getNationalite', 'setNationalite'], 'codesNationalites' => ['codes_nationalites', 'getCodesNationalites', 'setCodesNationalites'], 'villeDeNaissance' => ['ville_de_naissance', 'getVilleDeNaissance', 'setVilleDeNaissance'], 'paysDeNaissance' => ['pays_de_naissance', 'getPaysDeNaissance', 'setPaysDeNaissance'], 'codePaysDeNaissance' => ['code_pays_de_naissance', 'getCodePaysDeNaissance', 'setCodePaysDeNaissance'], 'adresseLigne1' => ['adresse_ligne_1', 'getAdresseLigne1', 'setAdresseLigne1'], 'adresseLigne2' => ['adresse_ligne_2', 'getAdresseLigne2', 'setAdresseLigne2'], 'adresseLigne3' => ['adresse_ligne_3', 'getAdresseLigne3', 'setAdresseLigne3'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'ville' => ['ville', 'getVille', 'setVille'], 'pays' => ['pays', 'getPays', 'setPays'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays']];
     }
 }

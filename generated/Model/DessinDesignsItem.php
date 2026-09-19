@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class DessinDesignsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class DessinDesignsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -87,5 +91,10 @@ class DessinDesignsItem extends \ArrayObject
         $this->dateExpiration = $dateExpiration;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['titre' => ['titre', 'getTitre', 'setTitre'], 'ref' => ['ref', 'getRef', 'setRef'], 'dateExpiration' => ['date_expiration', 'getDateExpiration', 'setDateExpiration']];
     }
 }

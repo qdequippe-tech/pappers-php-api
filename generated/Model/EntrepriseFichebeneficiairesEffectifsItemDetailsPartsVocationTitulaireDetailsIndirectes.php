@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -28,13 +32,13 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte par le biais d'une indivision.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision|null
      */
     protected $detailsEnIndivision;
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte par le biais d'une personne morale.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale|null
      */
     protected $detailsEnPersonneMorale;
 
@@ -79,7 +83,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte par le biais d'une indivision.
      */
-    public function getDetailsEnIndivision(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision
+    public function getDetailsEnIndivision(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision
     {
         return $this->detailsEnIndivision;
     }
@@ -87,7 +91,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte par le biais d'une indivision.
      */
-    public function setDetailsEnIndivision(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision $detailsEnIndivision): self
+    public function setDetailsEnIndivision(?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision $detailsEnIndivision): self
     {
         $this->initialized['detailsEnIndivision'] = true;
         $this->detailsEnIndivision = $detailsEnIndivision;
@@ -98,7 +102,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte par le biais d'une personne morale.
      */
-    public function getDetailsEnPersonneMorale(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale
+    public function getDetailsEnPersonneMorale(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale
     {
         return $this->detailsEnPersonneMorale;
     }
@@ -106,11 +110,16 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire de façon indirecte par le biais d'une personne morale.
      */
-    public function setDetailsEnPersonneMorale(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale $detailsEnPersonneMorale): self
+    public function setDetailsEnPersonneMorale(?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale $detailsEnPersonneMorale): self
     {
         $this->initialized['detailsEnPersonneMorale'] = true;
         $this->detailsEnPersonneMorale = $detailsEnPersonneMorale;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['pourcentageEnIndivision' => ['pourcentage_en_indivision', 'getPourcentageEnIndivision', 'setPourcentageEnIndivision'], 'pourcentageEnPersonneMorale' => ['pourcentage_en_personne_morale', 'getPourcentageEnPersonneMorale', 'setPourcentageEnPersonneMorale'], 'detailsEnIndivision' => ['details_en_indivision', 'getDetailsEnIndivision', 'setDetailsEnIndivision'], 'detailsEnPersonneMorale' => ['details_en_personne_morale', 'getDetailsEnPersonneMorale', 'setDetailsEnPersonneMorale']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class ListeInformationsPostBody extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class ListeInformationsPostBody implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -66,5 +70,10 @@ class ListeInformationsPostBody extends \ArrayObject
         $this->informations = $informations;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['notifications' => ['notifications', 'getNotifications', 'setNotifications'], 'informations' => ['informations', 'getInformations', 'setInformations']];
     }
 }
