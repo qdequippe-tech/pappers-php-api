@@ -32,42 +32,46 @@ class NotificationVeilleChiffreAffairesItemNormalizer implements DenormalizerInt
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationVeilleChiffreAffairesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new NotificationVeilleChiffreAffairesItem();
         if (\array_key_exists('valeur', $data) && \is_int($data['valeur'])) {
             $data['valeur'] = (float) $data['valeur'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('valeur', $data) && null !== $data['valeur']) {
             $object->setValeur($data['valeur']);
             unset($data['valeur']);
         } elseif (\array_key_exists('valeur', $data) && null === $data['valeur']) {
             $object->setValeur(null);
+            unset($data['valeur']);
         }
         if (\array_key_exists('annee_cloture', $data) && null !== $data['annee_cloture']) {
             $object->setAnneeCloture($data['annee_cloture']);
             unset($data['annee_cloture']);
         } elseif (\array_key_exists('annee_cloture', $data) && null === $data['annee_cloture']) {
             $object->setAnneeCloture(null);
+            unset($data['annee_cloture']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('type_comptes', $data) && null !== $data['type_comptes']) {
             $object->setTypeComptes($data['type_comptes']);
             unset($data['type_comptes']);
         } elseif (\array_key_exists('type_comptes', $data) && null === $data['type_comptes']) {
             $object->setTypeComptes(null);
+            unset($data['type_comptes']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -93,7 +97,7 @@ class NotificationVeilleChiffreAffairesItemNormalizer implements DenormalizerInt
         if ($data->isInitialized('typeComptes') && null !== $data->getTypeComptes()) {
             $dataArray['type_comptes'] = $data->getTypeComptes();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

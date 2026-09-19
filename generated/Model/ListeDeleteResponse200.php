@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class ListeDeleteResponse200 extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class ListeDeleteResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -37,5 +41,10 @@ class ListeDeleteResponse200 extends \ArrayObject
         $this->notificationsSupprimees = $notificationsSupprimees;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['notificationsSupprimees' => ['notifications_supprimees', 'getNotificationsSupprimees', 'setNotificationsSupprimees']];
     }
 }

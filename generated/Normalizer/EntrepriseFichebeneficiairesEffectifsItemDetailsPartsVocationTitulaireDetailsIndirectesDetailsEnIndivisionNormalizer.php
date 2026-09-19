@@ -3,7 +3,7 @@
 namespace Qdequippe\Pappers\Api\Normalizer;
 
 use Jane\Component\JsonSchemaRuntime\Reference;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivisionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivisionNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use CheckArray;
     use DenormalizerAwareTrait;
@@ -22,43 +22,45 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class === $type;
+        return EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class === $type;
     }
 
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return \is_object($data) && EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class === $data::class;
+        return \is_object($data) && EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class === $data::class;
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision();
         if (\array_key_exists('pourcentage_pleine_propriete', $data) && \is_int($data['pourcentage_pleine_propriete'])) {
             $data['pourcentage_pleine_propriete'] = (float) $data['pourcentage_pleine_propriete'];
         }
         if (\array_key_exists('pourcentage_nue_propriete', $data) && \is_int($data['pourcentage_nue_propriete'])) {
             $data['pourcentage_nue_propriete'] = (float) $data['pourcentage_nue_propriete'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('pourcentage_pleine_propriete', $data) && null !== $data['pourcentage_pleine_propriete']) {
             $object->setPourcentagePleinePropriete($data['pourcentage_pleine_propriete']);
             unset($data['pourcentage_pleine_propriete']);
         } elseif (\array_key_exists('pourcentage_pleine_propriete', $data) && null === $data['pourcentage_pleine_propriete']) {
             $object->setPourcentagePleinePropriete(null);
+            unset($data['pourcentage_pleine_propriete']);
         }
         if (\array_key_exists('pourcentage_nue_propriete', $data) && null !== $data['pourcentage_nue_propriete']) {
             $object->setPourcentageNuePropriete($data['pourcentage_nue_propriete']);
             unset($data['pourcentage_nue_propriete']);
         } elseif (\array_key_exists('pourcentage_nue_propriete', $data) && null === $data['pourcentage_nue_propriete']) {
             $object->setPourcentageNuePropriete(null);
+            unset($data['pourcentage_nue_propriete']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -78,7 +80,7 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
         if ($data->isInitialized('pourcentageNuePropriete') && null !== $data->getPourcentageNuePropriete()) {
             $dataArray['pourcentage_nue_propriete'] = $data->getPourcentageNuePropriete();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }
@@ -89,6 +91,6 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDeta
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class => false];
+        return [EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class => false];
     }
 }

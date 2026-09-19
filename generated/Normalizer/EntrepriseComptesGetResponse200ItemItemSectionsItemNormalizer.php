@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,21 +34,22 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemNormalizer implements D
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseComptesGetResponse200ItemItemSectionsItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new EntrepriseComptesGetResponse200ItemItemSectionsItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('libelle', $data) && null !== $data['libelle']) {
             $object->setLibelle($data['libelle']);
             unset($data['libelle']);
         } elseif (\array_key_exists('libelle', $data) && null === $data['libelle']) {
             $object->setLibelle(null);
+            unset($data['libelle']);
         }
         if (\array_key_exists('liasses', $data) && null !== $data['liasses']) {
             $values = [];
@@ -58,6 +60,7 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemNormalizer implements D
             unset($data['liasses']);
         } elseif (\array_key_exists('liasses', $data) && null === $data['liasses']) {
             $object->setLiasses(null);
+            unset($data['liasses']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -77,11 +80,11 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemNormalizer implements D
         if ($data->isInitialized('liasses') && null !== $data->getLiasses()) {
             $values = [];
             foreach ($data->getLiasses() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['liasses'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

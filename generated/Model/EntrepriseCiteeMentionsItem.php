@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseCiteeMentionsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseCiteeMentionsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -116,5 +120,10 @@ class EntrepriseCiteeMentionsItem extends \ArrayObject
         $this->mentions = $mentions;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siren' => ['siren', 'getSiren', 'setSiren'], 'date' => ['date', 'getDate', 'setDate'], 'token' => ['token', 'getToken', 'setToken'], 'mentions' => ['mentions', 'getMentions', 'setMentions']];
     }
 }

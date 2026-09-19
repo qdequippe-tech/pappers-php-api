@@ -38,4 +38,9 @@ class DocumentComptes extends Document
 
         return $this;
     }
+
+    public function definedProperties(): array
+    {
+        return array_merge(parent::definedProperties(), ['dateCloture' => ['date_cloture', 'getDateCloture', 'setDateCloture']]);
+    }
 }

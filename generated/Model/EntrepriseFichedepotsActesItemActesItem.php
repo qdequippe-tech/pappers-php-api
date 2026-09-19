@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheDepotsActesItemActesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class EntrepriseFichedepotsActesItemActesItem extends \ArrayObject
         $this->dateActeFormate = $dateActeFormate;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['type' => ['type', 'getType', 'setType'], 'decision' => ['decision', 'getDecision', 'setDecision'], 'dateActe' => ['date_acte', 'getDateActe', 'setDateActe'], 'dateActeFormate' => ['date_acte_formate', 'getDateActeFormate', 'setDateActeFormate']];
     }
 }

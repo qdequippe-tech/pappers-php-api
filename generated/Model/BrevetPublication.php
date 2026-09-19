@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class BrevetPublication extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class BrevetPublication implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class BrevetPublication extends \ArrayObject
         $this->numero = $numero;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['type' => ['type', 'getType', 'setType'], 'nature' => ['nature', 'getNature', 'setNature'], 'date' => ['date', 'getDate', 'setDate'], 'numero' => ['numero', 'getNumero', 'setNumero']];
     }
 }

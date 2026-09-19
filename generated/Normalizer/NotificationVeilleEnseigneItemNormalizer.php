@@ -32,33 +32,36 @@ class NotificationVeilleEnseigneItemNormalizer implements DenormalizerInterface,
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationVeilleEnseigneItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationVeilleEnseigneItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('siret', $data) && null !== $data['siret']) {
             $object->setSiret($data['siret']);
             unset($data['siret']);
         } elseif (\array_key_exists('siret', $data) && null === $data['siret']) {
             $object->setSiret(null);
+            unset($data['siret']);
         }
         if (\array_key_exists('valeur', $data) && null !== $data['valeur']) {
             $object->setValeur($data['valeur']);
             unset($data['valeur']);
         } elseif (\array_key_exists('valeur', $data) && null === $data['valeur']) {
             $object->setValeur(null);
+            unset($data['valeur']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -81,7 +84,7 @@ class NotificationVeilleEnseigneItemNormalizer implements DenormalizerInterface,
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

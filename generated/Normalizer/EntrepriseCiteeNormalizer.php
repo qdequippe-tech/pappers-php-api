@@ -6,6 +6,7 @@ use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\EntrepriseCitee;
 use Qdequippe\Pappers\Api\Model\EntrepriseCiteeMentionsItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseCiteePersonnesItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -34,33 +35,36 @@ class EntrepriseCiteeNormalizer implements DenormalizerInterface, NormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new EntrepriseCitee();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new EntrepriseCitee();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         if (\array_key_exists('nom_entreprise', $data) && null !== $data['nom_entreprise']) {
             $object->setNomEntreprise($data['nom_entreprise']);
             unset($data['nom_entreprise']);
         } elseif (\array_key_exists('nom_entreprise', $data) && null === $data['nom_entreprise']) {
             $object->setNomEntreprise(null);
+            unset($data['nom_entreprise']);
         }
         if (\array_key_exists('type_relation', $data) && null !== $data['type_relation']) {
             $object->setTypeRelation($data['type_relation']);
             unset($data['type_relation']);
         } elseif (\array_key_exists('type_relation', $data) && null === $data['type_relation']) {
             $object->setTypeRelation(null);
+            unset($data['type_relation']);
         }
         if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values = [];
@@ -71,6 +75,7 @@ class EntrepriseCiteeNormalizer implements DenormalizerInterface, NormalizerInte
             unset($data['mentions']);
         } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
             $object->setMentions(null);
+            unset($data['mentions']);
         }
         if (\array_key_exists('personnes', $data) && null !== $data['personnes']) {
             $values_1 = [];
@@ -81,6 +86,7 @@ class EntrepriseCiteeNormalizer implements DenormalizerInterface, NormalizerInte
             unset($data['personnes']);
         } elseif (\array_key_exists('personnes', $data) && null === $data['personnes']) {
             $object->setPersonnes(null);
+            unset($data['personnes']);
         }
         foreach ($data as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
@@ -106,18 +112,18 @@ class EntrepriseCiteeNormalizer implements DenormalizerInterface, NormalizerInte
         if ($data->isInitialized('mentions') && null !== $data->getMentions()) {
             $values = [];
             foreach ($data->getMentions() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['mentions'] = $values;
         }
         if ($data->isInitialized('personnes') && null !== $data->getPersonnes()) {
             $values_1 = [];
             foreach ($data->getPersonnes() as $value_1) {
-                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+                $values_1[] = null === $value_1 ? null : new JsonObject($this->normalizer->normalize($value_1, 'json', $context));
             }
             $dataArray['personnes'] = $values_1;
         }
-        foreach ($data as $key => $value_2) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_2;
             }

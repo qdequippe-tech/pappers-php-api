@@ -32,33 +32,36 @@ class NotificationEntrepriseFormeJuridiqueNormalizer implements DenormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationEntrepriseFormeJuridique();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationEntrepriseFormeJuridique();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('valeur', $data) && null !== $data['valeur']) {
             $object->setValeur($data['valeur']);
             unset($data['valeur']);
         } elseif (\array_key_exists('valeur', $data) && null === $data['valeur']) {
             $object->setValeur(null);
+            unset($data['valeur']);
         }
         if (\array_key_exists('ancienne_valeur', $data) && null !== $data['ancienne_valeur']) {
             $object->setAncienneValeur($data['ancienne_valeur']);
             unset($data['ancienne_valeur']);
         } elseif (\array_key_exists('ancienne_valeur', $data) && null === $data['ancienne_valeur']) {
             $object->setAncienneValeur(null);
+            unset($data['ancienne_valeur']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -72,16 +75,16 @@ class NotificationEntrepriseFormeJuridiqueNormalizer implements DenormalizerInte
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('valeur')) {
+        if ($data->isInitialized('valeur') && null !== $data->getValeur()) {
             $dataArray['valeur'] = $data->getValeur();
         }
-        if ($data->isInitialized('ancienneValeur')) {
+        if ($data->isInitialized('ancienneValeur') && null !== $data->getAncienneValeur()) {
             $dataArray['ancienne_valeur'] = $data->getAncienneValeur();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

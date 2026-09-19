@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheBeneficiairesEffectifsItemDetailsSocieteDeGestion implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -162,5 +166,10 @@ class EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion extends \
         $this->ville = $ville;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'siren' => ['siren', 'getSiren', 'setSiren'], 'greffe' => ['greffe', 'getGreffe', 'setGreffe'], 'adresse' => ['adresse', 'getAdresse', 'setAdresse'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'ville' => ['ville', 'getVille', 'setVille']];
     }
 }

@@ -32,69 +32,78 @@ class BodaccProcedureCollectiveNormalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new BodaccProcedureCollective();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new BodaccProcedureCollective();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('numero_parution', $data) && null !== $data['numero_parution']) {
             $object->setNumeroParution($data['numero_parution']);
             unset($data['numero_parution']);
         } elseif (\array_key_exists('numero_parution', $data) && null === $data['numero_parution']) {
             $object->setNumeroParution(null);
+            unset($data['numero_parution']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('numero_annonce', $data) && null !== $data['numero_annonce']) {
             $object->setNumeroAnnonce($data['numero_annonce']);
             unset($data['numero_annonce']);
         } elseif (\array_key_exists('numero_annonce', $data) && null === $data['numero_annonce']) {
             $object->setNumeroAnnonce(null);
+            unset($data['numero_annonce']);
         }
         if (\array_key_exists('bodacc', $data) && null !== $data['bodacc']) {
             $object->setBodacc($data['bodacc']);
             unset($data['bodacc']);
         } elseif (\array_key_exists('bodacc', $data) && null === $data['bodacc']) {
             $object->setBodacc(null);
+            unset($data['bodacc']);
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('greffe', $data) && null !== $data['greffe']) {
             $object->setGreffe($data['greffe']);
             unset($data['greffe']);
         } elseif (\array_key_exists('greffe', $data) && null === $data['greffe']) {
             $object->setGreffe(null);
+            unset($data['greffe']);
         }
         if (\array_key_exists('famille', $data) && null !== $data['famille']) {
             $object->setFamille($data['famille']);
             unset($data['famille']);
         } elseif (\array_key_exists('famille', $data) && null === $data['famille']) {
             $object->setFamille(null);
+            unset($data['famille']);
         }
         if (\array_key_exists('nature', $data) && null !== $data['nature']) {
             $object->setNature($data['nature']);
             unset($data['nature']);
         } elseif (\array_key_exists('nature', $data) && null === $data['nature']) {
             $object->setNature(null);
+            unset($data['nature']);
         }
         if (\array_key_exists('complement_jugement', $data) && null !== $data['complement_jugement']) {
             $object->setComplementJugement($data['complement_jugement']);
             unset($data['complement_jugement']);
         } elseif (\array_key_exists('complement_jugement', $data) && null === $data['complement_jugement']) {
             $object->setComplementJugement(null);
+            unset($data['complement_jugement']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -135,7 +144,7 @@ class BodaccProcedureCollectiveNormalizer implements DenormalizerInterface, Norm
         if ($data->isInitialized('complementJugement') && null !== $data->getComplementJugement()) {
             $dataArray['complement_jugement'] = $data->getComplementJugement();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

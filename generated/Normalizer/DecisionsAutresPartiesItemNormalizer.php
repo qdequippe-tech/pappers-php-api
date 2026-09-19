@@ -32,33 +32,36 @@ class DecisionsAutresPartiesItemNormalizer implements DenormalizerInterface, Nor
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new DecisionsAutresPartiesItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new DecisionsAutresPartiesItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         if (\array_key_exists('position', $data) && null !== $data['position']) {
             $object->setPosition($data['position']);
             unset($data['position']);
         } elseif (\array_key_exists('position', $data) && null === $data['position']) {
             $object->setPosition(null);
+            unset($data['position']);
         }
         if (\array_key_exists('avocats', $data) && null !== $data['avocats']) {
             $values = [];
@@ -69,6 +72,7 @@ class DecisionsAutresPartiesItemNormalizer implements DenormalizerInterface, Nor
             unset($data['avocats']);
         } elseif (\array_key_exists('avocats', $data) && null === $data['avocats']) {
             $object->setAvocats(null);
+            unset($data['avocats']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -82,10 +86,10 @@ class DecisionsAutresPartiesItemNormalizer implements DenormalizerInterface, Nor
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('nom')) {
+        if ($data->isInitialized('nom') && null !== $data->getNom()) {
             $dataArray['nom'] = $data->getNom();
         }
-        if ($data->isInitialized('siren')) {
+        if ($data->isInitialized('siren') && null !== $data->getSiren()) {
             $dataArray['siren'] = $data->getSiren();
         }
         if ($data->isInitialized('position') && null !== $data->getPosition()) {
@@ -98,7 +102,7 @@ class DecisionsAutresPartiesItemNormalizer implements DenormalizerInterface, Nor
             }
             $dataArray['avocats'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

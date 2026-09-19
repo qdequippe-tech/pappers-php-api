@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationEntrepriseNouveauxComptesDisponiblesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class NotificationEntrepriseNouveauxComptesDisponiblesItem extends \ArrayObject
         $this->typeComptes = $typeComptes;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['anneeCloture' => ['annee_cloture', 'getAnneeCloture', 'setAnneeCloture'], 'date' => ['date', 'getDate', 'setDate'], 'token' => ['token', 'getToken', 'setToken'], 'typeComptes' => ['type_comptes', 'getTypeComptes', 'setTypeComptes']];
     }
 }

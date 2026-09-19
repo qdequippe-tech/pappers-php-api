@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class RechercheGetResponse200 extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class RechercheGetResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -116,5 +120,10 @@ class RechercheGetResponse200 extends \ArrayObject
         $this->curseurSuivant = $curseurSuivant;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['resultats' => ['resultats', 'getResultats', 'setResultats'], 'total' => ['total', 'getTotal', 'setTotal'], 'page' => ['page', 'getPage', 'setPage'], 'curseurSuivant' => ['curseurSuivant', 'getCurseurSuivant', 'setCurseurSuivant']];
     }
 }

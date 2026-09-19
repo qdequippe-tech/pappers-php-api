@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class ConformitePersonnePhysiqueGetResponse200 extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class ConformitePersonnePhysiqueGetResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -91,5 +95,10 @@ class ConformitePersonnePhysiqueGetResponse200 extends \ArrayObject
         $this->sanctions = $sanctions;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['personnePolitiquementExposee' => ['personne_politiquement_exposee', 'getPersonnePolitiquementExposee', 'setPersonnePolitiquementExposee'], 'sanctionsEnCours' => ['sanctions_en_cours', 'getSanctionsEnCours', 'setSanctionsEnCours'], 'sanctions' => ['sanctions', 'getSanctions', 'setSanctions']];
     }
 }

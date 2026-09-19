@@ -32,21 +32,22 @@ class NotificationEntrepriseDetailsEntrepriseNormalizer implements DenormalizerI
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationEntrepriseDetailsEntreprise();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationEntrepriseDetailsEntreprise();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('nom_entreprise', $data) && null !== $data['nom_entreprise']) {
             $object->setNomEntreprise($data['nom_entreprise']);
             unset($data['nom_entreprise']);
         } elseif (\array_key_exists('nom_entreprise', $data) && null === $data['nom_entreprise']) {
             $object->setNomEntreprise(null);
+            unset($data['nom_entreprise']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -60,10 +61,10 @@ class NotificationEntrepriseDetailsEntrepriseNormalizer implements DenormalizerI
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('nomEntreprise')) {
+        if ($data->isInitialized('nomEntreprise') && null !== $data->getNomEntreprise()) {
             $dataArray['nom_entreprise'] = $data->getNomEntreprise();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

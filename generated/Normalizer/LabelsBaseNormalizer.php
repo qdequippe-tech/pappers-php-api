@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\LabelsBase;
 use Qdequippe\Pappers\Api\Model\LabelsBaseInscriptionsItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,21 +34,22 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new LabelsBase();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new LabelsBase();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('certificats', $data) && null !== $data['certificats']) {
             $values = [];
@@ -58,6 +60,7 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
             unset($data['certificats']);
         } elseif (\array_key_exists('certificats', $data) && null === $data['certificats']) {
             $object->setCertificats(null);
+            unset($data['certificats']);
         }
         if (\array_key_exists('specialites', $data) && null !== $data['specialites']) {
             $values_1 = [];
@@ -68,6 +71,7 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
             unset($data['specialites']);
         } elseif (\array_key_exists('specialites', $data) && null === $data['specialites']) {
             $object->setSpecialites(null);
+            unset($data['specialites']);
         }
         if (\array_key_exists('notes', $data) && null !== $data['notes']) {
             $values_2 = [];
@@ -78,12 +82,14 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
             unset($data['notes']);
         } elseif (\array_key_exists('notes', $data) && null === $data['notes']) {
             $object->setNotes(null);
+            unset($data['notes']);
         }
         if (\array_key_exists('numero_immatriculation', $data) && null !== $data['numero_immatriculation']) {
             $object->setNumeroImmatriculation($data['numero_immatriculation']);
             unset($data['numero_immatriculation']);
         } elseif (\array_key_exists('numero_immatriculation', $data) && null === $data['numero_immatriculation']) {
             $object->setNumeroImmatriculation(null);
+            unset($data['numero_immatriculation']);
         }
         if (\array_key_exists('inscriptions', $data) && null !== $data['inscriptions']) {
             $values_3 = [];
@@ -94,6 +100,7 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
             unset($data['inscriptions']);
         } elseif (\array_key_exists('inscriptions', $data) && null === $data['inscriptions']) {
             $object->setInscriptions(null);
+            unset($data['inscriptions']);
         }
         if (\array_key_exists('mentions', $data) && null !== $data['mentions']) {
             $values_4 = [];
@@ -104,6 +111,7 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
             unset($data['mentions']);
         } elseif (\array_key_exists('mentions', $data) && null === $data['mentions']) {
             $object->setMentions(null);
+            unset($data['mentions']);
         }
         foreach ($data as $key => $value_5) {
             if (preg_match('/.*/', (string) $key)) {
@@ -147,7 +155,7 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
         if ($data->isInitialized('inscriptions') && null !== $data->getInscriptions()) {
             $values_3 = [];
             foreach ($data->getInscriptions() as $value_3) {
-                $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);
+                $values_3[] = null === $value_3 ? null : new JsonObject($this->normalizer->normalize($value_3, 'json', $context));
             }
             $dataArray['inscriptions'] = $values_3;
         }
@@ -158,7 +166,7 @@ class LabelsBaseNormalizer implements DenormalizerInterface, NormalizerInterface
             }
             $dataArray['mentions'] = $values_4;
         }
-        foreach ($data as $key => $value_5) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_5) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_5;
             }

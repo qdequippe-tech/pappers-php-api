@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\NotificationEntrepriseNouvelleDecisionJusticeItem;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
+use Qdequippe\Pappers\Api\Runtime\Normalizer\InvalidDateException;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
@@ -32,51 +33,65 @@ class NotificationEntrepriseNouvelleDecisionJusticeItemNormalizer implements Den
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationEntrepriseNouvelleDecisionJusticeItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new NotificationEntrepriseNouvelleDecisionJusticeItem();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('id', $data) && null !== $data['id']) {
             $object->setId($data['id']);
             unset($data['id']);
         } elseif (\array_key_exists('id', $data) && null === $data['id']) {
             $object->setId(null);
+            unset($data['id']);
         }
         if (\array_key_exists('juridiction', $data) && null !== $data['juridiction']) {
             $object->setJuridiction($data['juridiction']);
             unset($data['juridiction']);
         } elseif (\array_key_exists('juridiction', $data) && null === $data['juridiction']) {
             $object->setJuridiction(null);
+            unset($data['juridiction']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
-            $object->setDate(\DateTime::createFromFormat('Y-m-d', $data['date'])->setTime(0, 0, 0));
+            $date = \DateTime::createFromFormat('Y-m-d', $data['date']);
+            if (false === $date) {
+                throw new InvalidDateException($data['date'], 'Y-m-d');
+            }
+            $object->setDate($date->setTime(0, 0, 0));
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('numero', $data) && null !== $data['numero']) {
             $object->setNumero($data['numero']);
             unset($data['numero']);
         } elseif (\array_key_exists('numero', $data) && null === $data['numero']) {
             $object->setNumero(null);
+            unset($data['numero']);
         }
         if (\array_key_exists('date_debut_affaire', $data) && null !== $data['date_debut_affaire']) {
-            $object->setDateDebutAffaire(\DateTime::createFromFormat('Y-m-d', $data['date_debut_affaire'])->setTime(0, 0, 0));
+            $date_1 = \DateTime::createFromFormat('Y-m-d', $data['date_debut_affaire']);
+            if (false === $date_1) {
+                throw new InvalidDateException($data['date_debut_affaire'], 'Y-m-d');
+            }
+            $object->setDateDebutAffaire($date_1->setTime(0, 0, 0));
             unset($data['date_debut_affaire']);
         } elseif (\array_key_exists('date_debut_affaire', $data) && null === $data['date_debut_affaire']) {
             $object->setDateDebutAffaire(null);
+            unset($data['date_debut_affaire']);
         }
         if (\array_key_exists('position', $data) && null !== $data['position']) {
             $object->setPosition($data['position']);
             unset($data['position']);
         } elseif (\array_key_exists('position', $data) && null === $data['position']) {
             $object->setPosition(null);
+            unset($data['position']);
         }
         if (\array_key_exists('avocats', $data) && null !== $data['avocats']) {
             $values = [];
@@ -87,6 +102,7 @@ class NotificationEntrepriseNouvelleDecisionJusticeItemNormalizer implements Den
             unset($data['avocats']);
         } elseif (\array_key_exists('avocats', $data) && null === $data['avocats']) {
             $object->setAvocats(null);
+            unset($data['avocats']);
         }
         if (\array_key_exists('autres_parties', $data) && null !== $data['autres_parties']) {
             $values_1 = [];
@@ -97,6 +113,7 @@ class NotificationEntrepriseNouvelleDecisionJusticeItemNormalizer implements Den
             unset($data['autres_parties']);
         } elseif (\array_key_exists('autres_parties', $data) && null === $data['autres_parties']) {
             $object->setAutresParties(null);
+            unset($data['autres_parties']);
         }
         foreach ($data as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
@@ -110,22 +127,22 @@ class NotificationEntrepriseNouvelleDecisionJusticeItemNormalizer implements Den
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('id')) {
+        if ($data->isInitialized('id') && null !== $data->getId()) {
             $dataArray['id'] = $data->getId();
         }
-        if ($data->isInitialized('juridiction')) {
+        if ($data->isInitialized('juridiction') && null !== $data->getJuridiction()) {
             $dataArray['juridiction'] = $data->getJuridiction();
         }
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate()->format('Y-m-d');
         }
-        if ($data->isInitialized('numero')) {
+        if ($data->isInitialized('numero') && null !== $data->getNumero()) {
             $dataArray['numero'] = $data->getNumero();
         }
         if ($data->isInitialized('dateDebutAffaire') && null !== $data->getDateDebutAffaire()) {
             $dataArray['date_debut_affaire'] = $data->getDateDebutAffaire()->format('Y-m-d');
         }
-        if ($data->isInitialized('position')) {
+        if ($data->isInitialized('position') && null !== $data->getPosition()) {
             $dataArray['position'] = $data->getPosition();
         }
         if ($data->isInitialized('avocats') && null !== $data->getAvocats()) {
@@ -142,7 +159,7 @@ class NotificationEntrepriseNouvelleDecisionJusticeItemNormalizer implements Den
             }
             $dataArray['autres_parties'] = $values_1;
         }
-        foreach ($data as $key => $value_2) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_2) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_2;
             }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class CartographiePersonnesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class CartographiePersonnesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class CartographiePersonnesItem extends \ArrayObject
         $this->niveau = $niveau;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['id' => ['id', 'getId', 'setId'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'nom' => ['nom', 'getNom', 'setNom'], 'niveau' => ['niveau', 'getNiveau', 'setNiveau']];
     }
 }

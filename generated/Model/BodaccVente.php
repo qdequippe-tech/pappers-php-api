@@ -388,4 +388,9 @@ class BodaccVente extends Bodacc
 
         return $this;
     }
+
+    public function definedProperties(): array
+    {
+        return array_merge(parent::definedProperties(), ['nomEntreprise' => ['nom_entreprise', 'getNomEntreprise', 'setNomEntreprise'], 'personneMorale' => ['personne_morale', 'getPersonneMorale', 'setPersonneMorale'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'nom' => ['nom', 'getNom', 'setNom'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'administration' => ['administration', 'getAdministration', 'setAdministration'], 'adresse' => ['adresse', 'getAdresse', 'setAdresse'], 'commentaires' => ['commentaires', 'getCommentaires', 'setCommentaires'], 'oppositions' => ['oppositions', 'getOppositions', 'setOppositions'], 'declarationCreance' => ['declaration_creance', 'getDeclarationCreance', 'setDeclarationCreance'], 'publicationLegale' => ['publication_legale', 'getPublicationLegale', 'setPublicationLegale'], 'denominationNouveauProprietaire' => ['denomination_nouveau_proprietaire', 'getDenominationNouveauProprietaire', 'setDenominationNouveauProprietaire'], 'sirenNouveauProprietaire' => ['siren_nouveau_proprietaire', 'getSirenNouveauProprietaire', 'setSirenNouveauProprietaire'], 'denominationNouvelExploitant' => ['denomination_nouvel_exploitant', 'getDenominationNouvelExploitant', 'setDenominationNouvelExploitant'], 'sirenNouvelExploitant' => ['siren_nouvel_exploitant', 'getSirenNouvelExploitant', 'setSirenNouvelExploitant']]);
+    }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationVeilleNouveauxStatutsPubliesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationVeilleNouveauxStatutsPubliesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -62,5 +66,10 @@ class NotificationVeilleNouveauxStatutsPubliesItem extends \ArrayObject
         $this->date = $date;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['acte' => ['acte', 'getActe', 'setActe'], 'date' => ['date', 'getDate', 'setDate']];
     }
 }

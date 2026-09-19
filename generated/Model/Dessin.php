@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class Dessin extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class Dessin implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -199,5 +203,10 @@ class Dessin extends \ArrayObject
         $this->designs = $designs;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['numero' => ['numero', 'getNumero', 'setNumero'], 'depositaires' => ['depositaires', 'getDepositaires', 'setDepositaires'], 'mandataires' => ['mandataires', 'getMandataires', 'setMandataires'], 'lienImage' => ['lien_image', 'getLienImage', 'setLienImage'], 'lieuEnregistrement' => ['lieu_enregistrement', 'getLieuEnregistrement', 'setLieuEnregistrement'], 'dateEnregistrement' => ['date_enregistrement', 'getDateEnregistrement', 'setDateEnregistrement'], 'designs' => ['designs', 'getDesigns', 'setDesigns']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheetablissement extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheEtablissement implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -110,7 +114,23 @@ class EntrepriseFicheetablissement extends \ArrayObject
      */
     protected $effectifMax;
     /**
-     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'établissement, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      *
      * @var string|null
      */
@@ -597,7 +617,23 @@ class EntrepriseFicheetablissement extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'établissement, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      */
     public function getTrancheEffectif(): ?string
     {
@@ -605,7 +641,23 @@ class EntrepriseFicheetablissement extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'établissement, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'établissement, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      */
     public function setTrancheEffectif(?string $trancheEffectif): self
     {
@@ -1183,5 +1235,10 @@ class EntrepriseFicheetablissement extends \ArrayObject
         $this->codeRegion = $codeRegion;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siret' => ['siret', 'getSiret', 'setSiret'], 'siretFormate' => ['siret_formate', 'getSiretFormate', 'setSiretFormate'], 'diffusionPartielle' => ['diffusion_partielle', 'getDiffusionPartielle', 'setDiffusionPartielle'], 'nic' => ['nic', 'getNic', 'setNic'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'ville' => ['ville', 'getVille', 'setVille'], 'pays' => ['pays', 'getPays', 'setPays'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays'], 'latitude' => ['latitude', 'getLatitude', 'setLatitude'], 'longitude' => ['longitude', 'getLongitude', 'setLongitude'], 'etablissementCesse' => ['etablissement_cesse', 'getEtablissementCesse', 'setEtablissementCesse'], 'siege' => ['siege', 'getSiege', 'setSiege'], 'etablissementEmployeur' => ['etablissement_employeur', 'getEtablissementEmployeur', 'setEtablissementEmployeur'], 'effectif' => ['effectif', 'getEffectif', 'setEffectif'], 'effectifMin' => ['effectif_min', 'getEffectifMin', 'setEffectifMin'], 'effectifMax' => ['effectif_max', 'getEffectifMax', 'setEffectifMax'], 'trancheEffectif' => ['tranche_effectif', 'getTrancheEffectif', 'setTrancheEffectif'], 'anneeEffectif' => ['annee_effectif', 'getAnneeEffectif', 'setAnneeEffectif'], 'codeNaf' => ['code_naf', 'getCodeNaf', 'setCodeNaf'], 'libelleCodeNaf' => ['libelle_code_naf', 'getLibelleCodeNaf', 'setLibelleCodeNaf'], 'nomenclatureCodeNaf' => ['nomenclature_code_naf', 'getNomenclatureCodeNaf', 'setNomenclatureCodeNaf'], 'dateDeCreation' => ['date_de_creation', 'getDateDeCreation', 'setDateDeCreation'], 'numeroVoie' => ['numero_voie', 'getNumeroVoie', 'setNumeroVoie'], 'indiceRepetition' => ['indice_repetition', 'getIndiceRepetition', 'setIndiceRepetition'], 'typeVoie' => ['type_voie', 'getTypeVoie', 'setTypeVoie'], 'libelleVoie' => ['libelle_voie', 'getLibelleVoie', 'setLibelleVoie'], 'complementAdresse' => ['complement_adresse', 'getComplementAdresse', 'setComplementAdresse'], 'adresseLigne1' => ['adresse_ligne_1', 'getAdresseLigne1', 'setAdresseLigne1'], 'adresseLigne2' => ['adresse_ligne_2', 'getAdresseLigne2', 'setAdresseLigne2'], 'dateCessation' => ['date_cessation', 'getDateCessation', 'setDateCessation'], 'enseigne' => ['enseigne', 'getEnseigne', 'setEnseigne'], 'nomCommercial' => ['nom_commercial', 'getNomCommercial', 'setNomCommercial'], 'domiciliation' => ['domiciliation', 'getDomiciliation', 'setDomiciliation'], 'labels' => ['labels', 'getLabels', 'setLabels'], 'predecesseurs' => ['predecesseurs', 'getPredecesseurs', 'setPredecesseurs'], 'successeurs' => ['successeurs', 'getSuccesseurs', 'setSuccesseurs'], 'enseigne1' => ['enseigne_1', 'getEnseigne1', 'setEnseigne1'], 'enseigne2' => ['enseigne_2', 'getEnseigne2', 'setEnseigne2'], 'enseigne3' => ['enseigne_3', 'getEnseigne3', 'setEnseigne3'], 'distributionSpeciale' => ['distribution_speciale', 'getDistributionSpeciale', 'setDistributionSpeciale'], 'codeCedex' => ['code_cedex', 'getCodeCedex', 'setCodeCedex'], 'libelleCedex' => ['libelle_cedex', 'getLibelleCedex', 'setLibelleCedex'], 'codeCommune' => ['code_commune', 'getCodeCommune', 'setCodeCommune'], 'departement' => ['departement', 'getDepartement', 'setDepartement'], 'codeDepartement' => ['code_departement', 'getCodeDepartement', 'setCodeDepartement'], 'region' => ['region', 'getRegion', 'setRegion'], 'codeRegion' => ['code_region', 'getCodeRegion', 'setCodeRegion']];
     }
 }

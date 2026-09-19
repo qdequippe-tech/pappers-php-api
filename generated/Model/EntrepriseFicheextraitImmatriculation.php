@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheextraitImmatriculation extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheExtraitImmatriculation implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -37,5 +41,10 @@ class EntrepriseFicheextraitImmatriculation extends \ArrayObject
         $this->token = $token;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['token' => ['token', 'getToken', 'setToken']];
     }
 }

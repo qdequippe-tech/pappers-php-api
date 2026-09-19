@@ -32,24 +32,25 @@ class ListeDeleteResponse200Normalizer implements DenormalizerInterface, Normali
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new ListeDeleteResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new ListeDeleteResponse200();
         if (\array_key_exists('notifications_supprimees', $data) && \is_int($data['notifications_supprimees'])) {
             $data['notifications_supprimees'] = (float) $data['notifications_supprimees'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('notifications_supprimees', $data) && null !== $data['notifications_supprimees']) {
             $object->setNotificationsSupprimees($data['notifications_supprimees']);
             unset($data['notifications_supprimees']);
         } elseif (\array_key_exists('notifications_supprimees', $data) && null === $data['notifications_supprimees']) {
             $object->setNotificationsSupprimees(null);
+            unset($data['notifications_supprimees']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -66,7 +67,7 @@ class ListeDeleteResponse200Normalizer implements DenormalizerInterface, Normali
         if ($data->isInitialized('notificationsSupprimees') && null !== $data->getNotificationsSupprimees()) {
             $dataArray['notifications_supprimees'] = $data->getNotificationsSupprimees();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

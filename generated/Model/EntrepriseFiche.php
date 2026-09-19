@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFiche extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFiche implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -130,7 +134,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      *
-     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
      *
      * @var string|null
      */
@@ -172,7 +176,23 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $effectifMax;
     /**
-     * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      *
      * @var string|null
      */
@@ -196,9 +216,17 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $statutRcs;
     /**
-     * @var EtablissementFiche|null
+     * Siège de l'entreprise. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
+     *
+     * @var EntrepriseFicheSiege|null
      */
     protected $siege;
+    /**
+     * URL de la page de l'entreprise sur Pappers. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var string|null
+     */
+    protected $lienPappers;
     /**
      * Le statut de diffusion de l'entreprise. Non diffusable correspond à une entreprise ayant demandé une diffusion partielle de ses données. Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
      *
@@ -235,6 +263,12 @@ class EntrepriseFiche extends \ArrayObject
      * @var string|null
      */
     protected $deviseCapital;
+    /**
+     * Informations sur la situation de l'actif net par rapport au capital social de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     *
+     * @var EntrepriseFicheActifNetInferieurMoitieCapital|null
+     */
+    protected $actifNetInferieurMoitieCapital;
     /**
      * Numéro RCS de l'entreprise.
      *
@@ -400,19 +434,19 @@ class EntrepriseFiche extends \ArrayObject
      */
     protected $etablissements;
     /**
-     * @var EntrepriseFicheetablissement|null
+     * @var EntrepriseFicheEtablissement|null
      */
     protected $etablissement;
     /**
      * Liste des finances de l'entreprise.
      *
-     * @var list<EntrepriseFichefinancesItem>|null
+     * @var list<EntrepriseFicheFinancesItem>|null
      */
     protected $finances;
     /**
      * Liste des finances estimées de l'entreprise.
      *
-     * @var list<EntrepriseFichefinancesEstimationsItem>|null
+     * @var list<EntrepriseFicheFinancesEstimationsItem>|null
      */
     protected $financesEstimations;
     /**
@@ -424,19 +458,19 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs de l'entreprise (si disponibles). Nécessite une habilitation.
      *
-     * @var list<EntrepriseFichebeneficiairesEffectifsItem>|null
+     * @var list<EntrepriseFicheBeneficiairesEffectifsItem>|null
      */
     protected $beneficiairesEffectifs;
     /**
      * Liste des actes de l'entreprise.
      *
-     * @var list<EntrepriseFichedepotsActesItem>|null
+     * @var list<EntrepriseFicheDepotsActesItem>|null
      */
     protected $depotsActes;
     /**
      * Liste des comptes de l'entreprise.
      *
-     * @var list<EntrepriseFichecomptesItem>|null
+     * @var list<EntrepriseFicheComptesItem>|null
      */
     protected $comptes;
     /**
@@ -448,7 +482,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des procédures collectives de l'entreprise.
      *
-     * @var list<EntrepriseFicheproceduresCollectivesItem>|null
+     * @var list<EntrepriseFicheProceduresCollectivesItem>|null
      */
     protected $proceduresCollectives;
     /**
@@ -466,25 +500,25 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des statuts de l'entreprise.
      *
-     * @var EntrepriseFichederniersStatuts|null
+     * @var EntrepriseFicheDerniersStatuts|null
      */
     protected $derniersStatuts;
     /**
      * Extrait d'immatriculation de l'entreprise.
      *
-     * @var EntrepriseFicheextraitImmatriculation|null
+     * @var EntrepriseFicheExtraitImmatriculation|null
      */
     protected $extraitImmatriculation;
     /**
      * Informations sur l'immatriculation de l'entreprise au Répertoire des Métiers.
      *
-     * @var EntrepriseFichernm|null
+     * @var EntrepriseFicheRnm|null
      */
     protected $rnm;
     /**
      * Liste des marques françaises déposées par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var list<EntrepriseFichemarquesItem>|null
+     * @var list<EntrepriseFicheMarquesItem>|null
      */
     protected $marques;
     /**
@@ -568,13 +602,13 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des entreprises dirigées par l'entreprise ou la personne physique. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var list<EntrepriseFicheentreprisesDirigeesItem>|null
+     * @var list<EntrepriseFicheEntreprisesDirigeesItem>|null
      */
     protected $entreprisesDirigees;
     /**
      * Liste des observations du greffe. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var list<EntrepriseFicheobservationsItem>|null
+     * @var list<EntrepriseFicheObservationsItem>|null
      */
     protected $observations;
     /**
@@ -586,7 +620,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations sur les parcelles détenues. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var EntrepriseFicheparcellesDetenues|null
+     * @var EntrepriseFicheParcellesDetenues|null
      */
     protected $parcellesDetenues;
     /**
@@ -634,7 +668,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations boursières de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @var EntrepriseFicheinformationsBoursieres|null
+     * @var EntrepriseFicheInformationsBoursieres|null
      */
     protected $informationsBoursieres;
 
@@ -1006,7 +1040,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      *
-     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
      */
     public function getCategorieJuridique(): ?string
     {
@@ -1015,7 +1049,7 @@ class EntrepriseFiche extends \ArrayObject
 
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
-     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
      */
     public function setCategorieJuridique(?string $categorieJuridique): self
     {
@@ -1140,7 +1174,23 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      */
     public function getTrancheEffectif(): ?string
     {
@@ -1148,7 +1198,23 @@ class EntrepriseFiche extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      */
     public function setTrancheEffectif(?string $trancheEffectif): self
     {
@@ -1215,15 +1281,40 @@ class EntrepriseFiche extends \ArrayObject
         return $this;
     }
 
-    public function getSiege(): ?EtablissementFiche
+    /**
+     * Siège de l'entreprise. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
+     */
+    public function getSiege(): ?EntrepriseFicheSiege
     {
         return $this->siege;
     }
 
-    public function setSiege(?EtablissementFiche $siege): self
+    /**
+     * Siège de l'entreprise. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
+     */
+    public function setSiege(?EntrepriseFicheSiege $siege): self
     {
         $this->initialized['siege'] = true;
         $this->siege = $siege;
+
+        return $this;
+    }
+
+    /**
+     * URL de la page de l'entreprise sur Pappers. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getLienPappers(): ?string
+    {
+        return $this->lienPappers;
+    }
+
+    /**
+     * URL de la page de l'entreprise sur Pappers. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setLienPappers(?string $lienPappers): self
+    {
+        $this->initialized['lienPappers'] = true;
+        $this->lienPappers = $lienPappers;
 
         return $this;
     }
@@ -1338,6 +1429,25 @@ class EntrepriseFiche extends \ArrayObject
     {
         $this->initialized['deviseCapital'] = true;
         $this->deviseCapital = $deviseCapital;
+
+        return $this;
+    }
+
+    /**
+     * Informations sur la situation de l'actif net par rapport au capital social de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function getActifNetInferieurMoitieCapital(): ?EntrepriseFicheActifNetInferieurMoitieCapital
+    {
+        return $this->actifNetInferieurMoitieCapital;
+    }
+
+    /**
+     * Informations sur la situation de l'actif net par rapport au capital social de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
+     */
+    public function setActifNetInferieurMoitieCapital(?EntrepriseFicheActifNetInferieurMoitieCapital $actifNetInferieurMoitieCapital): self
+    {
+        $this->initialized['actifNetInferieurMoitieCapital'] = true;
+        $this->actifNetInferieurMoitieCapital = $actifNetInferieurMoitieCapital;
 
         return $this;
     }
@@ -1863,12 +1973,12 @@ class EntrepriseFiche extends \ArrayObject
         return $this;
     }
 
-    public function getEtablissement(): ?EntrepriseFicheetablissement
+    public function getEtablissement(): ?EntrepriseFicheEtablissement
     {
         return $this->etablissement;
     }
 
-    public function setEtablissement(?EntrepriseFicheetablissement $etablissement): self
+    public function setEtablissement(?EntrepriseFicheEtablissement $etablissement): self
     {
         $this->initialized['etablissement'] = true;
         $this->etablissement = $etablissement;
@@ -1879,7 +1989,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des finances de l'entreprise.
      *
-     * @return list<EntrepriseFichefinancesItem>|null
+     * @return list<EntrepriseFicheFinancesItem>|null
      */
     public function getFinances(): ?array
     {
@@ -1889,7 +1999,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des finances de l'entreprise.
      *
-     * @param list<EntrepriseFichefinancesItem>|null $finances
+     * @param list<EntrepriseFicheFinancesItem>|null $finances
      */
     public function setFinances(?array $finances): self
     {
@@ -1902,7 +2012,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des finances estimées de l'entreprise.
      *
-     * @return list<EntrepriseFichefinancesEstimationsItem>|null
+     * @return list<EntrepriseFicheFinancesEstimationsItem>|null
      */
     public function getFinancesEstimations(): ?array
     {
@@ -1912,7 +2022,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des finances estimées de l'entreprise.
      *
-     * @param list<EntrepriseFichefinancesEstimationsItem>|null $financesEstimations
+     * @param list<EntrepriseFicheFinancesEstimationsItem>|null $financesEstimations
      */
     public function setFinancesEstimations(?array $financesEstimations): self
     {
@@ -1948,7 +2058,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs de l'entreprise (si disponibles). Nécessite une habilitation.
      *
-     * @return list<EntrepriseFichebeneficiairesEffectifsItem>|null
+     * @return list<EntrepriseFicheBeneficiairesEffectifsItem>|null
      */
     public function getBeneficiairesEffectifs(): ?array
     {
@@ -1958,7 +2068,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des bénéficiaires effectifs de l'entreprise (si disponibles). Nécessite une habilitation.
      *
-     * @param list<EntrepriseFichebeneficiairesEffectifsItem>|null $beneficiairesEffectifs
+     * @param list<EntrepriseFicheBeneficiairesEffectifsItem>|null $beneficiairesEffectifs
      */
     public function setBeneficiairesEffectifs(?array $beneficiairesEffectifs): self
     {
@@ -1971,7 +2081,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des actes de l'entreprise.
      *
-     * @return list<EntrepriseFichedepotsActesItem>|null
+     * @return list<EntrepriseFicheDepotsActesItem>|null
      */
     public function getDepotsActes(): ?array
     {
@@ -1981,7 +2091,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des actes de l'entreprise.
      *
-     * @param list<EntrepriseFichedepotsActesItem>|null $depotsActes
+     * @param list<EntrepriseFicheDepotsActesItem>|null $depotsActes
      */
     public function setDepotsActes(?array $depotsActes): self
     {
@@ -1994,7 +2104,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des comptes de l'entreprise.
      *
-     * @return list<EntrepriseFichecomptesItem>|null
+     * @return list<EntrepriseFicheComptesItem>|null
      */
     public function getComptes(): ?array
     {
@@ -2004,7 +2114,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des comptes de l'entreprise.
      *
-     * @param list<EntrepriseFichecomptesItem>|null $comptes
+     * @param list<EntrepriseFicheComptesItem>|null $comptes
      */
     public function setComptes(?array $comptes): self
     {
@@ -2040,7 +2150,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des procédures collectives de l'entreprise.
      *
-     * @return list<EntrepriseFicheproceduresCollectivesItem>|null
+     * @return list<EntrepriseFicheProceduresCollectivesItem>|null
      */
     public function getProceduresCollectives(): ?array
     {
@@ -2050,7 +2160,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des procédures collectives de l'entreprise.
      *
-     * @param list<EntrepriseFicheproceduresCollectivesItem>|null $proceduresCollectives
+     * @param list<EntrepriseFicheProceduresCollectivesItem>|null $proceduresCollectives
      */
     public function setProceduresCollectives(?array $proceduresCollectives): self
     {
@@ -2101,7 +2211,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des statuts de l'entreprise.
      */
-    public function getDerniersStatuts(): ?EntrepriseFichederniersStatuts
+    public function getDerniersStatuts(): ?EntrepriseFicheDerniersStatuts
     {
         return $this->derniersStatuts;
     }
@@ -2109,7 +2219,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des statuts de l'entreprise.
      */
-    public function setDerniersStatuts(?EntrepriseFichederniersStatuts $derniersStatuts): self
+    public function setDerniersStatuts(?EntrepriseFicheDerniersStatuts $derniersStatuts): self
     {
         $this->initialized['derniersStatuts'] = true;
         $this->derniersStatuts = $derniersStatuts;
@@ -2120,7 +2230,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Extrait d'immatriculation de l'entreprise.
      */
-    public function getExtraitImmatriculation(): ?EntrepriseFicheextraitImmatriculation
+    public function getExtraitImmatriculation(): ?EntrepriseFicheExtraitImmatriculation
     {
         return $this->extraitImmatriculation;
     }
@@ -2128,7 +2238,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Extrait d'immatriculation de l'entreprise.
      */
-    public function setExtraitImmatriculation(?EntrepriseFicheextraitImmatriculation $extraitImmatriculation): self
+    public function setExtraitImmatriculation(?EntrepriseFicheExtraitImmatriculation $extraitImmatriculation): self
     {
         $this->initialized['extraitImmatriculation'] = true;
         $this->extraitImmatriculation = $extraitImmatriculation;
@@ -2139,7 +2249,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations sur l'immatriculation de l'entreprise au Répertoire des Métiers.
      */
-    public function getRnm(): ?EntrepriseFichernm
+    public function getRnm(): ?EntrepriseFicheRnm
     {
         return $this->rnm;
     }
@@ -2147,7 +2257,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations sur l'immatriculation de l'entreprise au Répertoire des Métiers.
      */
-    public function setRnm(?EntrepriseFichernm $rnm): self
+    public function setRnm(?EntrepriseFicheRnm $rnm): self
     {
         $this->initialized['rnm'] = true;
         $this->rnm = $rnm;
@@ -2158,7 +2268,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des marques françaises déposées par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return list<EntrepriseFichemarquesItem>|null
+     * @return list<EntrepriseFicheMarquesItem>|null
      */
     public function getMarques(): ?array
     {
@@ -2168,7 +2278,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des marques françaises déposées par l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param list<EntrepriseFichemarquesItem>|null $marques
+     * @param list<EntrepriseFicheMarquesItem>|null $marques
      */
     public function setMarques(?array $marques): self
     {
@@ -2440,7 +2550,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des entreprises dirigées par l'entreprise ou la personne physique. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return list<EntrepriseFicheentreprisesDirigeesItem>|null
+     * @return list<EntrepriseFicheEntreprisesDirigeesItem>|null
      */
     public function getEntreprisesDirigees(): ?array
     {
@@ -2450,7 +2560,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des entreprises dirigées par l'entreprise ou la personne physique. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param list<EntrepriseFicheentreprisesDirigeesItem>|null $entreprisesDirigees
+     * @param list<EntrepriseFicheEntreprisesDirigeesItem>|null $entreprisesDirigees
      */
     public function setEntreprisesDirigees(?array $entreprisesDirigees): self
     {
@@ -2463,7 +2573,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des observations du greffe. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @return list<EntrepriseFicheobservationsItem>|null
+     * @return list<EntrepriseFicheObservationsItem>|null
      */
     public function getObservations(): ?array
     {
@@ -2473,7 +2583,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Liste des observations du greffe. Uniquement présent si demandé dans les champs supplémentaires.
      *
-     * @param list<EntrepriseFicheobservationsItem>|null $observations
+     * @param list<EntrepriseFicheObservationsItem>|null $observations
      */
     public function setObservations(?array $observations): self
     {
@@ -2509,7 +2619,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations sur les parcelles détenues. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function getParcellesDetenues(): ?EntrepriseFicheparcellesDetenues
+    public function getParcellesDetenues(): ?EntrepriseFicheParcellesDetenues
     {
         return $this->parcellesDetenues;
     }
@@ -2517,7 +2627,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations sur les parcelles détenues. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function setParcellesDetenues(?EntrepriseFicheparcellesDetenues $parcellesDetenues): self
+    public function setParcellesDetenues(?EntrepriseFicheParcellesDetenues $parcellesDetenues): self
     {
         $this->initialized['parcellesDetenues'] = true;
         $this->parcellesDetenues = $parcellesDetenues;
@@ -2681,7 +2791,7 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations boursières de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function getInformationsBoursieres(): ?EntrepriseFicheinformationsBoursieres
+    public function getInformationsBoursieres(): ?EntrepriseFicheInformationsBoursieres
     {
         return $this->informationsBoursieres;
     }
@@ -2689,11 +2799,16 @@ class EntrepriseFiche extends \ArrayObject
     /**
      * Informations boursières de l'entreprise. Uniquement présent si demandé dans les champs supplémentaires.
      */
-    public function setInformationsBoursieres(?EntrepriseFicheinformationsBoursieres $informationsBoursieres): self
+    public function setInformationsBoursieres(?EntrepriseFicheInformationsBoursieres $informationsBoursieres): self
     {
         $this->initialized['informationsBoursieres'] = true;
         $this->informationsBoursieres = $informationsBoursieres;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siren' => ['siren', 'getSiren', 'setSiren'], 'sirenFormate' => ['siren_formate', 'getSirenFormate', 'setSirenFormate'], 'oppositionUtilisationCommerciale' => ['opposition_utilisation_commerciale', 'getOppositionUtilisationCommerciale', 'setOppositionUtilisationCommerciale'], 'nomEntreprise' => ['nom_entreprise', 'getNomEntreprise', 'setNomEntreprise'], 'personneMorale' => ['personne_morale', 'getPersonneMorale', 'setPersonneMorale'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'nom' => ['nom', 'getNom', 'setNom'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'sexe' => ['sexe', 'getSexe', 'setSexe'], 'codeNaf' => ['code_naf', 'getCodeNaf', 'setCodeNaf'], 'libelleCodeNaf' => ['libelle_code_naf', 'getLibelleCodeNaf', 'setLibelleCodeNaf'], 'domaineActivite' => ['domaine_activite', 'getDomaineActivite', 'setDomaineActivite'], 'conventionsCollectives' => ['conventions_collectives', 'getConventionsCollectives', 'setConventionsCollectives'], 'dateCreation' => ['date_creation', 'getDateCreation', 'setDateCreation'], 'dateCreationFormate' => ['date_creation_formate', 'getDateCreationFormate', 'setDateCreationFormate'], 'entrepriseCessee' => ['entreprise_cessee', 'getEntrepriseCessee', 'setEntrepriseCessee'], 'dateCessation' => ['date_cessation', 'getDateCessation', 'setDateCessation'], 'entrepriseEmployeuse' => ['entreprise_employeuse', 'getEntrepriseEmployeuse', 'setEntrepriseEmployeuse'], 'societeAMission' => ['societe_a_mission', 'getSocieteAMission', 'setSocieteAMission'], 'categorieJuridique' => ['categorie_juridique', 'getCategorieJuridique', 'setCategorieJuridique'], 'formeJuridique' => ['forme_juridique', 'getFormeJuridique', 'setFormeJuridique'], 'microEntreprise' => ['micro_entreprise', 'getMicroEntreprise', 'setMicroEntreprise'], 'formeExercice' => ['forme_exercice', 'getFormeExercice', 'setFormeExercice'], 'effectif' => ['effectif', 'getEffectif', 'setEffectif'], 'effectifMin' => ['effectif_min', 'getEffectifMin', 'setEffectifMin'], 'effectifMax' => ['effectif_max', 'getEffectifMax', 'setEffectifMax'], 'trancheEffectif' => ['tranche_effectif', 'getTrancheEffectif', 'setTrancheEffectif'], 'anneeEffectif' => ['annee_effectif', 'getAnneeEffectif', 'setAnneeEffectif'], 'capital' => ['capital', 'getCapital', 'setCapital'], 'statutRcs' => ['statut_rcs', 'getStatutRcs', 'setStatutRcs'], 'siege' => ['siege', 'getSiege', 'setSiege'], 'lienPappers' => ['lien_pappers', 'getLienPappers', 'setLienPappers'], 'diffusable' => ['diffusable', 'getDiffusable', 'setDiffusable'], 'sigle' => ['sigle', 'getSigle', 'setSigle'], 'objetSocial' => ['objet_social', 'getObjetSocial', 'setObjetSocial'], 'capitalFormate' => ['capital_formate', 'getCapitalFormate', 'setCapitalFormate'], 'capitalActuelSiVariable' => ['capital_actuel_si_variable', 'getCapitalActuelSiVariable', 'setCapitalActuelSiVariable'], 'deviseCapital' => ['devise_capital', 'getDeviseCapital', 'setDeviseCapital'], 'actifNetInferieurMoitieCapital' => ['actif_net_inferieur_moitie_capital', 'getActifNetInferieurMoitieCapital', 'setActifNetInferieurMoitieCapital'], 'numeroRcs' => ['numero_rcs', 'getNumeroRcs', 'setNumeroRcs'], 'dateClotureExercice' => ['date_cloture_exercice', 'getDateClotureExercice', 'setDateClotureExercice'], 'dateClotureExerciceExceptionnelle' => ['date_cloture_exercice_exceptionnelle', 'getDateClotureExerciceExceptionnelle', 'setDateClotureExerciceExceptionnelle'], 'dateClotureExerciceExceptionnelleFormate' => ['date_cloture_exercice_exceptionnelle_formate', 'getDateClotureExerciceExceptionnelleFormate', 'setDateClotureExerciceExceptionnelleFormate'], 'prochaineDateClotureExercice' => ['prochaine_date_cloture_exercice', 'getProchaineDateClotureExercice', 'setProchaineDateClotureExercice'], 'prochaineDateClotureExerciceFormate' => ['prochaine_date_cloture_exercice_formate', 'getProchaineDateClotureExerciceFormate', 'setProchaineDateClotureExerciceFormate'], 'economieSocialeSolidaire' => ['economie_sociale_solidaire', 'getEconomieSocialeSolidaire', 'setEconomieSocialeSolidaire'], 'dureePersonneMorale' => ['duree_personne_morale', 'getDureePersonneMorale', 'setDureePersonneMorale'], 'dernierTraitement' => ['dernier_traitement', 'getDernierTraitement', 'setDernierTraitement'], 'derniereMiseAJourSirene' => ['derniere_mise_a_jour_sirene', 'getDerniereMiseAJourSirene', 'setDerniereMiseAJourSirene'], 'derniereMiseAJourRcs' => ['derniere_mise_a_jour_rcs', 'getDerniereMiseAJourRcs', 'setDerniereMiseAJourRcs'], 'statutConsolide' => ['statut_consolide', 'getStatutConsolide', 'setStatutConsolide'], 'dateReouverture' => ['date_reouverture', 'getDateReouverture', 'setDateReouverture'], 'greffe' => ['greffe', 'getGreffe', 'setGreffe'], 'codeGreffe' => ['code_greffe', 'getCodeGreffe', 'setCodeGreffe'], 'dateImmatriculationRcs' => ['date_immatriculation_rcs', 'getDateImmatriculationRcs', 'setDateImmatriculationRcs'], 'datePremiereImmatriculationRcs' => ['date_premiere_immatriculation_rcs', 'getDatePremiereImmatriculationRcs', 'setDatePremiereImmatriculationRcs'], 'dateDebutActivite' => ['date_debut_activite', 'getDateDebutActivite', 'setDateDebutActivite'], 'dateDebutPremiereActivite' => ['date_debut_premiere_activite', 'getDateDebutPremiereActivite', 'setDateDebutPremiereActivite'], 'dateRadiationRcs' => ['date_radiation_rcs', 'getDateRadiationRcs', 'setDateRadiationRcs'], 'statutRne' => ['statut_rne', 'getStatutRne', 'setStatutRne'], 'dateImmatriculationRne' => ['date_immatriculation_rne', 'getDateImmatriculationRne', 'setDateImmatriculationRne'], 'dateRadiationRne' => ['date_radiation_rne', 'getDateRadiationRne', 'setDateRadiationRne'], 'numeroTvaIntracommunautaire' => ['numero_tva_intracommunautaire', 'getNumeroTvaIntracommunautaire', 'setNumeroTvaIntracommunautaire'], 'validiteTvaIntracommunautaire' => ['validite_tva_intracommunautaire', 'getValiditeTvaIntracommunautaire', 'setValiditeTvaIntracommunautaire'], 'associeUnique' => ['associe_unique', 'getAssocieUnique', 'setAssocieUnique'], 'etablissements' => ['etablissements', 'getEtablissements', 'setEtablissements'], 'etablissement' => ['etablissement', 'getEtablissement', 'setEtablissement'], 'finances' => ['finances', 'getFinances', 'setFinances'], 'financesEstimations' => ['finances_estimations', 'getFinancesEstimations', 'setFinancesEstimations'], 'representants' => ['representants', 'getRepresentants', 'setRepresentants'], 'beneficiairesEffectifs' => ['beneficiaires_effectifs', 'getBeneficiairesEffectifs', 'setBeneficiairesEffectifs'], 'depotsActes' => ['depots_actes', 'getDepotsActes', 'setDepotsActes'], 'comptes' => ['comptes', 'getComptes', 'setComptes'], 'publicationsBodacc' => ['publications_bodacc', 'getPublicationsBodacc', 'setPublicationsBodacc'], 'proceduresCollectives' => ['procedures_collectives', 'getProceduresCollectives', 'setProceduresCollectives'], 'procedureCollectiveExiste' => ['procedure_collective_existe', 'getProcedureCollectiveExiste', 'setProcedureCollectiveExiste'], 'procedureCollectiveEnCours' => ['procedure_collective_en_cours', 'getProcedureCollectiveEnCours', 'setProcedureCollectiveEnCours'], 'derniersStatuts' => ['derniers_statuts', 'getDerniersStatuts', 'setDerniersStatuts'], 'extraitImmatriculation' => ['extrait_immatriculation', 'getExtraitImmatriculation', 'setExtraitImmatriculation'], 'rnm' => ['rnm', 'getRnm', 'setRnm'], 'marques' => ['marques', 'getMarques', 'setMarques'], 'association' => ['association', 'getAssociation', 'setAssociation'], 'labels' => ['labels', 'getLabels', 'setLabels'], 'sitesInternet' => ['sites_internet', 'getSitesInternet', 'setSitesInternet'], 'telephone' => ['telephone', 'getTelephone', 'setTelephone'], 'email' => ['email', 'getEmail', 'setEmail'], 'scoringNonFinancier' => ['scoring_non_financier', 'getScoringNonFinancier', 'setScoringNonFinancier'], 'scoringFinancier' => ['scoring_financier', 'getScoringFinancier', 'setScoringFinancier'], 'categorieEntreprise' => ['categorie_entreprise', 'getCategorieEntreprise', 'setCategorieEntreprise'], 'anneeCategorieEntreprise' => ['annee_categorie_entreprise', 'getAnneeCategorieEntreprise', 'setAnneeCategorieEntreprise'], 'motifCessation' => ['motif_cessation', 'getMotifCessation', 'setMotifCessation'], 'nomUsage' => ['nom_usage', 'getNomUsage', 'setNomUsage'], 'nomPatronymique' => ['nom_patronymique', 'getNomPatronymique', 'setNomPatronymique'], 'representantsLegaux' => ['representants_legaux', 'getRepresentantsLegaux', 'setRepresentantsLegaux'], 'entreprisesDirigees' => ['entreprises_dirigees', 'getEntreprisesDirigees', 'setEntreprisesDirigees'], 'observations' => ['observations', 'getObservations', 'setObservations'], 'decisions' => ['decisions', 'getDecisions', 'setDecisions'], 'parcellesDetenues' => ['parcelles_detenues', 'getParcellesDetenues', 'setParcellesDetenues'], 'appelsOffresGagnes' => ['appels_offres_gagnes', 'getAppelsOffresGagnes', 'setAppelsOffresGagnes'], 'appelsOffresLances' => ['appels_offres_lances', 'getAppelsOffresLances', 'setAppelsOffresLances'], 'entreprisesCitees' => ['entreprises_citees', 'getEntreprisesCitees', 'setEntreprisesCitees'], 'entreprisesCiteesTotal' => ['entreprises_citees_total', 'getEntreprisesCiteesTotal', 'setEntreprisesCiteesTotal'], 'entreprisesCiteesIncomplet' => ['entreprises_citees_incomplet', 'getEntreprisesCiteesIncomplet', 'setEntreprisesCiteesIncomplet'], 'brevets' => ['brevets', 'getBrevets', 'setBrevets'], 'dessins' => ['dessins', 'getDessins', 'setDessins'], 'informationsBoursieres' => ['informations_boursieres', 'getInformationsBoursieres', 'setInformationsBoursieres']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class RechercheBeneficiairesGetResponse200ResultatsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -895,5 +899,10 @@ class RechercheBeneficiairesGetResponse200ResultatsItem extends \ArrayObject
         $this->nbEntreprisesDirigeantTotal = $nbEntreprisesDirigeantTotal;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'nomUsage' => ['nom_usage', 'getNomUsage', 'setNomUsage'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'pseudonyme' => ['pseudonyme', 'getPseudonyme', 'setPseudonyme'], 'nomComplet' => ['nom_complet', 'getNomComplet', 'setNomComplet'], 'dateDeNaissanceFormate' => ['date_de_naissance_formate', 'getDateDeNaissanceFormate', 'setDateDeNaissanceFormate'], 'nationalite' => ['nationalite', 'getNationalite', 'setNationalite'], 'pourcentageParts' => ['pourcentage_parts', 'getPourcentageParts', 'setPourcentageParts'], 'pourcentageVotes' => ['pourcentage_votes', 'getPourcentageVotes', 'setPourcentageVotes'], 'pourcentageVotesIndirect' => ['pourcentage_votes_indirect', 'getPourcentageVotesIndirect', 'setPourcentageVotesIndirect'], 'pourcentageVotesDirects' => ['pourcentage_votes_directs', 'getPourcentageVotesDirects', 'setPourcentageVotesDirects'], 'detentionAutresMoyensControle' => ['detention_autres_moyens_controle', 'getDetentionAutresMoyensControle', 'setDetentionAutresMoyensControle'], 'beneficiaireRepresentantLegal' => ['beneficiaire_representant_legal', 'getBeneficiaireRepresentantLegal', 'setBeneficiaireRepresentantLegal'], 'adresseLigne1' => ['adresse_ligne_1', 'getAdresseLigne1', 'setAdresseLigne1'], 'adresseLigne2' => ['adresse_ligne_2', 'getAdresseLigne2', 'setAdresseLigne2'], 'adresseLigne3' => ['adresse_ligne_3', 'getAdresseLigne3', 'setAdresseLigne3'], 'pourcentagePartsVocationTitulaire' => ['pourcentage_parts_vocation_titulaire', 'getPourcentagePartsVocationTitulaire', 'setPourcentagePartsVocationTitulaire'], 'representantLegalPlacementSansGestionDelegation' => ['representant_legal_placement_sans_gestion_delegation', 'getRepresentantLegalPlacementSansGestionDelegation', 'setRepresentantLegalPlacementSansGestionDelegation'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'detentionPouvoirNomMembreConseilAdministration' => ['detention_pouvoir_nom_membre_conseil_administration', 'getDetentionPouvoirNomMembreConseilAdministration', 'setDetentionPouvoirNomMembreConseilAdministration'], 'ville' => ['ville', 'getVille', 'setVille'], 'dateDeNaissanceCompleteFormatee' => ['date_de_naissance_complete_formatee', 'getDateDeNaissanceCompleteFormatee', 'setDateDeNaissanceCompleteFormatee'], 'pourcentagePartsDirectes' => ['pourcentage_parts_directes', 'getPourcentagePartsDirectes', 'setPourcentagePartsDirectes'], 'pourcentagePartsIndirectes' => ['pourcentage_parts_indirectes', 'getPourcentagePartsIndirectes', 'setPourcentagePartsIndirectes'], 'paysDeNaissance' => ['pays_de_naissance', 'getPaysDeNaissance', 'setPaysDeNaissance'], 'codePaysDeNaissance' => ['code_pays_de_naissance', 'getCodePaysDeNaissance', 'setCodePaysDeNaissance'], 'villeDeNaissance' => ['ville_de_naissance', 'getVilleDeNaissance', 'setVilleDeNaissance'], 'detentionPouvoirDecisionAg' => ['detention_pouvoir_decision_ag', 'getDetentionPouvoirDecisionAg', 'setDetentionPouvoirDecisionAg'], 'pays' => ['pays', 'getPays', 'setPays'], 'dateDeNaissanceFormatee' => ['date_de_naissance_formatee', 'getDateDeNaissanceFormatee', 'setDateDeNaissanceFormatee'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays'], 'entreprises' => ['entreprises', 'getEntreprises', 'setEntreprises'], 'nbEntreprisesTotal' => ['nb_entreprises_total', 'getNbEntreprisesTotal', 'setNbEntreprisesTotal'], 'entreprisesDirigeant' => ['entreprises_dirigeant', 'getEntreprisesDirigeant', 'setEntreprisesDirigeant'], 'nbEntreprisesDirigeantTotal' => ['nb_entreprises_dirigeant_total', 'getNbEntreprisesDirigeantTotal', 'setNbEntreprisesDirigeantTotal']];
     }
 }

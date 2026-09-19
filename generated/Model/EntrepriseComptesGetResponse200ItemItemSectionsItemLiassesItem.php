@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -91,5 +95,10 @@ class EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem extends \Ar
         $this->colonnes = $colonnes;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['code' => ['code', 'getCode', 'setCode'], 'libelle' => ['libelle', 'getLibelle', 'setLibelle'], 'colonnes' => ['colonnes', 'getColonnes', 'setColonnes']];
     }
 }

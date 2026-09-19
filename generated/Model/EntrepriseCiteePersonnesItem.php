@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseCiteePersonnesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseCiteePersonnesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -162,5 +166,10 @@ class EntrepriseCiteePersonnesItem extends \ArrayObject
         $this->siren = $siren;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'nomUsage' => ['nom_usage', 'getNomUsage', 'setNomUsage'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'dateDeNaissance' => ['date_de_naissance', 'getDateDeNaissance', 'setDateDeNaissance'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'siren' => ['siren', 'getSiren', 'setSiren']];
     }
 }

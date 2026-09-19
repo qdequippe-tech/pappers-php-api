@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeantNouveauxMandatsPolitiquesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeantNouveauxMandatsPolitiquesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class NotificationDirigeantNouveauxMandatsPolitiquesItem extends \ArrayObject
         $this->codePays = $codePays;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['date' => ['date', 'getDate', 'setDate'], 'fonction' => ['fonction', 'getFonction', 'setFonction'], 'pays' => ['pays', 'getPays', 'setPays'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class LabelsBase extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class LabelsBase implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -207,5 +211,10 @@ class LabelsBase extends \ArrayObject
         $this->mentions = $mentions;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'certificats' => ['certificats', 'getCertificats', 'setCertificats'], 'specialites' => ['specialites', 'getSpecialites', 'setSpecialites'], 'notes' => ['notes', 'getNotes', 'setNotes'], 'numeroImmatriculation' => ['numero_immatriculation', 'getNumeroImmatriculation', 'setNumeroImmatriculation'], 'inscriptions' => ['inscriptions', 'getInscriptions', 'setInscriptions'], 'mentions' => ['mentions', 'getMentions', 'setMentions']];
     }
 }

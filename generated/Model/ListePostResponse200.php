@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class ListePostResponse200 extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class ListePostResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -37,5 +41,10 @@ class ListePostResponse200 extends \ArrayObject
         $this->notificationsAjoutees = $notificationsAjoutees;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['notificationsAjoutees' => ['notifications_ajoutees', 'getNotificationsAjoutees', 'setNotificationsAjoutees']];
     }
 }

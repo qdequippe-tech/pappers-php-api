@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationVeilleStatutRcs extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationVeilleStatutRcs implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -54,5 +58,10 @@ class NotificationVeilleStatutRcs extends \ArrayObject
         $this->date = $date;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['valeur' => ['valeur', 'getValeur', 'setValeur'], 'date' => ['date', 'getDate', 'setDate']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseComptesGetResponse200ItemItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -487,5 +491,10 @@ class EntrepriseComptesGetResponse200ItemItem extends \ArrayObject
         $this->ratios = $ratios;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['dateDepot' => ['date_depot', 'getDateDepot', 'setDateDepot'], 'codeGreffe' => ['code_greffe', 'getCodeGreffe', 'setCodeGreffe'], 'numeroDepot' => ['numero_depot', 'getNumeroDepot', 'setNumeroDepot'], 'numeroGestion' => ['numero_gestion', 'getNumeroGestion', 'setNumeroGestion'], 'dateCloture' => ['date_cloture', 'getDateCloture', 'setDateCloture'], 'dateClotureN1' => ['date_cloture_n-1', 'getDateClotureN1', 'setDateClotureN1'], 'dureeExerciceN' => ['duree_exercice_n', 'getDureeExerciceN', 'setDureeExerciceN'], 'dureeExerciceN1' => ['duree_exercice_n-1', 'getDureeExerciceN1', 'setDureeExerciceN1'], 'typeComptes' => ['type_comptes', 'getTypeComptes', 'setTypeComptes'], 'libelleTypeComptes' => ['libelle_type_comptes', 'getLibelleTypeComptes', 'setLibelleTypeComptes'], 'devise' => ['devise', 'getDevise', 'setDevise'], 'deviseOrigine' => ['devise_origine', 'getDeviseOrigine', 'setDeviseOrigine'], 'confidentialite' => ['confidentialite', 'getConfidentialite', 'setConfidentialite'], 'confidentialiteCompteDeResultat' => ['confidentialite_compte_de_resultat', 'getConfidentialiteCompteDeResultat', 'setConfidentialiteCompteDeResultat'], 'coherenceComptable' => ['coherence_comptable', 'getCoherenceComptable', 'setCoherenceComptable'], 'typeSaisie' => ['type_saisie', 'getTypeSaisie', 'setTypeSaisie'], 'informationsTraitement' => ['informations_traitement', 'getInformationsTraitement', 'setInformationsTraitement'], 'sections' => ['sections', 'getSections', 'setSections'], 'ratios' => ['ratios', 'getRatios', 'setRatios']];
     }
 }

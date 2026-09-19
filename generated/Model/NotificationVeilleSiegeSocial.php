@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationVeilleSiegeSocial extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationVeilleSiegeSocial implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -329,5 +333,10 @@ class NotificationVeilleSiegeSocial extends \ArrayObject
         $this->date = $date;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['valeur' => ['valeur', 'getValeur', 'setValeur'], 'numeroVoie' => ['numero_voie', 'getNumeroVoie', 'setNumeroVoie'], 'indiceRepetition' => ['indice_repetition', 'getIndiceRepetition', 'setIndiceRepetition'], 'typeVoie' => ['type_voie', 'getTypeVoie', 'setTypeVoie'], 'libelleVoie' => ['libelle_voie', 'getLibelleVoie', 'setLibelleVoie'], 'complementAdresse' => ['complement_adresse', 'getComplementAdresse', 'setComplementAdresse'], 'adresseLigne1' => ['adresse_ligne_1', 'getAdresseLigne1', 'setAdresseLigne1'], 'adresseLigne2' => ['adresse_ligne_2', 'getAdresseLigne2', 'setAdresseLigne2'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'ville' => ['ville', 'getVille', 'setVille'], 'pays' => ['pays', 'getPays', 'setPays'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays'], 'date' => ['date', 'getDate', 'setDate']];
     }
 }

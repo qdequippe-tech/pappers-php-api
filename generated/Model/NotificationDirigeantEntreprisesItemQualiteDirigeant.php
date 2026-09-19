@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeantEntreprisesItemQualiteDirigeant extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeantEntreprisesItemQualiteDirigeant implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -212,5 +216,10 @@ class NotificationDirigeantEntreprisesItemQualiteDirigeant extends \ArrayObject
         $this->date = $date;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'nom' => ['nom', 'getNom', 'setNom'], 'dateDeNaissanceRgpd' => ['date_de_naissance_rgpd', 'getDateDeNaissanceRgpd', 'setDateDeNaissanceRgpd'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'siren' => ['siren', 'getSiren', 'setSiren'], 'valeur' => ['valeur', 'getValeur', 'setValeur'], 'ancienneValeur' => ['ancienne_valeur', 'getAncienneValeur', 'setAncienneValeur'], 'date' => ['date', 'getDate', 'setDate']];
     }
 }

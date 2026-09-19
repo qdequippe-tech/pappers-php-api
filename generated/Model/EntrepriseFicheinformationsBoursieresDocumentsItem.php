@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheinformationsBoursieresDocumentsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheInformationsBoursieresDocumentsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -162,5 +166,10 @@ class EntrepriseFicheinformationsBoursieresDocumentsItem extends \ArrayObject
         $this->date = $date;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'type' => ['type', 'getType', 'setType'], 'sousType' => ['sous_type', 'getSousType', 'setSousType'], 'url' => ['url', 'getUrl', 'setUrl'], 'langue' => ['langue', 'getLangue', 'setLangue'], 'date' => ['date', 'getDate', 'setDate']];
     }
 }

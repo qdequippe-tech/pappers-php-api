@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationEntrepriseDetailsEntreprise extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationEntrepriseDetailsEntreprise implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -37,5 +41,10 @@ class NotificationEntrepriseDetailsEntreprise extends \ArrayObject
         $this->nomEntreprise = $nomEntreprise;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nomEntreprise' => ['nom_entreprise', 'getNomEntreprise', 'setNomEntreprise']];
     }
 }

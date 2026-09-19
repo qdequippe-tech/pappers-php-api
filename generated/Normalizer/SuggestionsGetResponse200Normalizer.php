@@ -10,6 +10,7 @@ use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsNomEntrepriseI
 use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsRepresentantItem;
 use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSirenItem;
 use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200ResultatsSiretItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -38,15 +39,15 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new SuggestionsGetResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new SuggestionsGetResponse200();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('resultats_nom_entreprise', $data) && null !== $data['resultats_nom_entreprise']) {
             $values = [];
@@ -57,6 +58,7 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
             unset($data['resultats_nom_entreprise']);
         } elseif (\array_key_exists('resultats_nom_entreprise', $data) && null === $data['resultats_nom_entreprise']) {
             $object->setResultatsNomEntreprise(null);
+            unset($data['resultats_nom_entreprise']);
         }
         if (\array_key_exists('resultats_denomination', $data) && null !== $data['resultats_denomination']) {
             $values_1 = [];
@@ -67,6 +69,7 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
             unset($data['resultats_denomination']);
         } elseif (\array_key_exists('resultats_denomination', $data) && null === $data['resultats_denomination']) {
             $object->setResultatsDenomination(null);
+            unset($data['resultats_denomination']);
         }
         if (\array_key_exists('resultats_nom_complet', $data) && null !== $data['resultats_nom_complet']) {
             $values_2 = [];
@@ -77,6 +80,7 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
             unset($data['resultats_nom_complet']);
         } elseif (\array_key_exists('resultats_nom_complet', $data) && null === $data['resultats_nom_complet']) {
             $object->setResultatsNomComplet(null);
+            unset($data['resultats_nom_complet']);
         }
         if (\array_key_exists('resultats_representant', $data) && null !== $data['resultats_representant']) {
             $values_3 = [];
@@ -87,6 +91,7 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
             unset($data['resultats_representant']);
         } elseif (\array_key_exists('resultats_representant', $data) && null === $data['resultats_representant']) {
             $object->setResultatsRepresentant(null);
+            unset($data['resultats_representant']);
         }
         if (\array_key_exists('resultats_siren', $data) && null !== $data['resultats_siren']) {
             $values_4 = [];
@@ -97,6 +102,7 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
             unset($data['resultats_siren']);
         } elseif (\array_key_exists('resultats_siren', $data) && null === $data['resultats_siren']) {
             $object->setResultatsSiren(null);
+            unset($data['resultats_siren']);
         }
         if (\array_key_exists('resultats_siret', $data) && null !== $data['resultats_siret']) {
             $values_5 = [];
@@ -107,6 +113,7 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
             unset($data['resultats_siret']);
         } elseif (\array_key_exists('resultats_siret', $data) && null === $data['resultats_siret']) {
             $object->setResultatsSiret(null);
+            unset($data['resultats_siret']);
         }
         foreach ($data as $key => $value_6) {
             if (preg_match('/.*/', (string) $key)) {
@@ -123,46 +130,46 @@ class SuggestionsGetResponse200Normalizer implements DenormalizerInterface, Norm
         if ($data->isInitialized('resultatsNomEntreprise') && null !== $data->getResultatsNomEntreprise()) {
             $values = [];
             foreach ($data->getResultatsNomEntreprise() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['resultats_nom_entreprise'] = $values;
         }
         if ($data->isInitialized('resultatsDenomination') && null !== $data->getResultatsDenomination()) {
             $values_1 = [];
             foreach ($data->getResultatsDenomination() as $value_1) {
-                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+                $values_1[] = null === $value_1 ? null : new JsonObject($this->normalizer->normalize($value_1, 'json', $context));
             }
             $dataArray['resultats_denomination'] = $values_1;
         }
         if ($data->isInitialized('resultatsNomComplet') && null !== $data->getResultatsNomComplet()) {
             $values_2 = [];
             foreach ($data->getResultatsNomComplet() as $value_2) {
-                $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
+                $values_2[] = null === $value_2 ? null : new JsonObject($this->normalizer->normalize($value_2, 'json', $context));
             }
             $dataArray['resultats_nom_complet'] = $values_2;
         }
         if ($data->isInitialized('resultatsRepresentant') && null !== $data->getResultatsRepresentant()) {
             $values_3 = [];
             foreach ($data->getResultatsRepresentant() as $value_3) {
-                $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);
+                $values_3[] = null === $value_3 ? null : new JsonObject($this->normalizer->normalize($value_3, 'json', $context));
             }
             $dataArray['resultats_representant'] = $values_3;
         }
         if ($data->isInitialized('resultatsSiren') && null !== $data->getResultatsSiren()) {
             $values_4 = [];
             foreach ($data->getResultatsSiren() as $value_4) {
-                $values_4[] = $this->normalizer->normalize($value_4, 'json', $context);
+                $values_4[] = null === $value_4 ? null : new JsonObject($this->normalizer->normalize($value_4, 'json', $context));
             }
             $dataArray['resultats_siren'] = $values_4;
         }
         if ($data->isInitialized('resultatsSiret') && null !== $data->getResultatsSiret()) {
             $values_5 = [];
             foreach ($data->getResultatsSiret() as $value_5) {
-                $values_5[] = $this->normalizer->normalize($value_5, 'json', $context);
+                $values_5[] = null === $value_5 ? null : new JsonObject($this->normalizer->normalize($value_5, 'json', $context));
             }
             $dataArray['resultats_siret'] = $values_5;
         }
-        foreach ($data as $key => $value_6) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_6) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_6;
             }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class BrevetPrioritesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class BrevetPrioritesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -87,5 +91,10 @@ class BrevetPrioritesItem extends \ArrayObject
         $this->type = $type;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['numero' => ['numero', 'getNumero', 'setNumero'], 'date' => ['date', 'getDate', 'setDate'], 'type' => ['type', 'getType', 'setType']];
     }
 }

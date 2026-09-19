@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class PersonneMarque extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class PersonneMarque implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -237,5 +241,10 @@ class PersonneMarque extends \ArrayObject
         $this->codePays = $codePays;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siren' => ['siren', 'getSiren', 'setSiren'], 'entiteLegale' => ['entite_legale', 'getEntiteLegale', 'setEntiteLegale'], 'nom' => ['nom', 'getNom', 'setNom'], 'batiment' => ['batiment', 'getBatiment', 'setBatiment'], 'rue' => ['rue', 'getRue', 'setRue'], 'ville' => ['ville', 'getVille', 'setVille'], 'boitePostale' => ['boite_postale', 'getBoitePostale', 'setBoitePostale'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays']];
     }
 }

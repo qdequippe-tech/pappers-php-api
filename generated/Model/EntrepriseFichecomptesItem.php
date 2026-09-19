@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichecomptesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheComptesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -337,5 +341,10 @@ class EntrepriseFichecomptesItem extends \ArrayObject
         $this->tokenXlsx = $tokenXlsx;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['dateDepot' => ['date_depot', 'getDateDepot', 'setDateDepot'], 'dateDepotFormate' => ['date_depot_formate', 'getDateDepotFormate', 'setDateDepotFormate'], 'dateCloture' => ['date_cloture', 'getDateCloture', 'setDateCloture'], 'anneeCloture' => ['annee_cloture', 'getAnneeCloture', 'setAnneeCloture'], 'typeComptes' => ['type_comptes', 'getTypeComptes', 'setTypeComptes'], 'confidentialite' => ['confidentialite', 'getConfidentialite', 'setConfidentialite'], 'confidentialiteCompteDeResultat' => ['confidentialite_compte_de_resultat', 'getConfidentialiteCompteDeResultat', 'setConfidentialiteCompteDeResultat'], 'disponible' => ['disponible', 'getDisponible', 'setDisponible'], 'nomFichierPdf' => ['nom_fichier_pdf', 'getNomFichierPdf', 'setNomFichierPdf'], 'token' => ['token', 'getToken', 'setToken'], 'disponibleXlsx' => ['disponible_xlsx', 'getDisponibleXlsx', 'setDisponibleXlsx'], 'nomFichierXlsx' => ['nom_fichier_xlsx', 'getNomFichierXlsx', 'setNomFichierXlsx'], 'tokenXlsx' => ['token_xlsx', 'getTokenXlsx', 'setTokenXlsx']];
     }
 }

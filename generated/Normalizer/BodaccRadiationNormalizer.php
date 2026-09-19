@@ -32,51 +32,57 @@ class BodaccRadiationNormalizer implements DenormalizerInterface, NormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new BodaccRadiation();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new BodaccRadiation();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('numero_parution', $data) && null !== $data['numero_parution']) {
             $object->setNumeroParution($data['numero_parution']);
             unset($data['numero_parution']);
         } elseif (\array_key_exists('numero_parution', $data) && null === $data['numero_parution']) {
             $object->setNumeroParution(null);
+            unset($data['numero_parution']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('numero_annonce', $data) && null !== $data['numero_annonce']) {
             $object->setNumeroAnnonce($data['numero_annonce']);
             unset($data['numero_annonce']);
         } elseif (\array_key_exists('numero_annonce', $data) && null === $data['numero_annonce']) {
             $object->setNumeroAnnonce(null);
+            unset($data['numero_annonce']);
         }
         if (\array_key_exists('bodacc', $data) && null !== $data['bodacc']) {
             $object->setBodacc($data['bodacc']);
             unset($data['bodacc']);
         } elseif (\array_key_exists('bodacc', $data) && null === $data['bodacc']) {
             $object->setBodacc(null);
+            unset($data['bodacc']);
         }
         if (\array_key_exists('type', $data) && null !== $data['type']) {
             $object->setType($data['type']);
             unset($data['type']);
         } elseif (\array_key_exists('type', $data) && null === $data['type']) {
             $object->setType(null);
+            unset($data['type']);
         }
         if (\array_key_exists('greffe', $data) && null !== $data['greffe']) {
             $object->setGreffe($data['greffe']);
             unset($data['greffe']);
         } elseif (\array_key_exists('greffe', $data) && null === $data['greffe']) {
             $object->setGreffe(null);
+            unset($data['greffe']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -108,7 +114,7 @@ class BodaccRadiationNormalizer implements DenormalizerInterface, NormalizerInte
         if ($data->isInitialized('greffe') && null !== $data->getGreffe()) {
             $dataArray['greffe'] = $data->getGreffe();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

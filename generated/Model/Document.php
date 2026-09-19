@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class Document extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class Document implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -108,5 +112,10 @@ class Document extends \ArrayObject
     {
         $this->initialized['mentions'] = true;
         $this->mentions = $mentions;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['type' => ['type', 'getType', 'setType'], 'token' => ['token', 'getToken', 'setToken'], 'dateDepot' => ['date_depot', 'getDateDepot', 'setDateDepot'], 'mentions' => ['mentions', 'getMentions', 'setMentions']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichemarquesItemEvenementsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheMarquesItemEvenementsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -187,5 +191,10 @@ class EntrepriseFichemarquesItemEvenementsItem extends \ArrayObject
         $this->beneficiaire = $beneficiaire;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['type' => ['type', 'getType', 'setType'], 'identifiantEvenement' => ['identifiant_evenement', 'getIdentifiantEvenement', 'setIdentifiantEvenement'], 'reference' => ['reference', 'getReference', 'setReference'], 'date' => ['date', 'getDate', 'setDate'], 'numeroBopi' => ['numero_bopi', 'getNumeroBopi', 'setNumeroBopi'], 'dateBopi' => ['date_bopi', 'getDateBopi', 'setDateBopi'], 'beneficiaire' => ['beneficiaire', 'getBeneficiaire', 'setBeneficiaire']];
     }
 }

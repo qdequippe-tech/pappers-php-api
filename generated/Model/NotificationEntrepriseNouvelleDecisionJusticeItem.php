@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationEntrepriseNouvelleDecisionJusticeItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationEntrepriseNouvelleDecisionJusticeItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -220,5 +224,10 @@ class NotificationEntrepriseNouvelleDecisionJusticeItem extends \ArrayObject
         $this->autresParties = $autresParties;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['id' => ['id', 'getId', 'setId'], 'juridiction' => ['juridiction', 'getJuridiction', 'setJuridiction'], 'date' => ['date', 'getDate', 'setDate'], 'numero' => ['numero', 'getNumero', 'setNumero'], 'dateDebutAffaire' => ['date_debut_affaire', 'getDateDebutAffaire', 'setDateDebutAffaire'], 'position' => ['position', 'getPosition', 'setPosition'], 'avocats' => ['avocats', 'getAvocats', 'setAvocats'], 'autresParties' => ['autres_parties', 'getAutresParties', 'setAutresParties']];
     }
 }

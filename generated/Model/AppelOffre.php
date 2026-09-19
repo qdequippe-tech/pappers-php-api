@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class AppelOffre extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class AppelOffre implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -237,5 +241,10 @@ class AppelOffre extends \ArrayObject
         $this->statutProcedure = $statutProcedure;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['montant' => ['montant', 'getMontant', 'setMontant'], 'dureeMois' => ['duree_mois', 'getDureeMois', 'setDureeMois'], 'dateNotification' => ['date_notification', 'getDateNotification', 'setDateNotification'], 'datePublication' => ['date_publication', 'getDatePublication', 'setDatePublication'], 'objet' => ['objet', 'getObjet', 'setObjet'], 'codeCategorie' => ['code_categorie', 'getCodeCategorie', 'setCodeCategorie'], 'libelleCategorie' => ['libelle_categorie', 'getLibelleCategorie', 'setLibelleCategorie'], 'idMacellum' => ['id_macellum', 'getIdMacellum', 'setIdMacellum'], 'statutProcedure' => ['statut_procedure', 'getStatutProcedure', 'setStatutProcedure']];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationVeilleNouvelleAnnoncePublieeItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationVeilleNouvelleAnnoncePublieeItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -162,5 +166,10 @@ class NotificationVeilleNouvelleAnnoncePublieeItem extends \ArrayObject
         $this->numeroAnnonce = $numeroAnnonce;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['annonce' => ['annonce', 'getAnnonce', 'setAnnonce'], 'type' => ['type', 'getType', 'setType'], 'date' => ['date', 'getDate', 'setDate'], 'numeroParution' => ['numero_parution', 'getNumeroParution', 'setNumeroParution'], 'bodacc' => ['bodacc', 'getBodacc', 'setBodacc'], 'numeroAnnonce' => ['numero_annonce', 'getNumeroAnnonce', 'setNumeroAnnonce']];
     }
 }

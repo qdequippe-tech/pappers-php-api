@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class SuggestionsGetResponse200ResultatsSirenItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -136,7 +140,7 @@ class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      *
-     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
      *
      * @var string|null
      */
@@ -178,7 +182,23 @@ class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
      */
     protected $effectifMax;
     /**
-     * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      *
      * @var string|null
      */
@@ -629,7 +649,7 @@ class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      *
-     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     * **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
      */
     public function getCategorieJuridique(): ?string
     {
@@ -638,7 +658,7 @@ class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
 
     /**
      * Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
-     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
+     **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498. Nullable si le paramètre `autoriser_absence_insee` est utilisé.
      */
     public function setCategorieJuridique(?string $categorieJuridique): self
     {
@@ -763,7 +783,23 @@ class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      */
     public function getTrancheEffectif(): ?string
     {
@@ -771,7 +807,23 @@ class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
     }
 
     /**
-     * Tranche d'effectif de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     * Tranche d'effectif de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      */
     public function setTrancheEffectif(?string $trancheEffectif): self
     {
@@ -967,5 +1019,10 @@ class SuggestionsGetResponse200ResultatsSirenItem extends \ArrayObject
         $this->anneeFinances = $anneeFinances;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['mention' => ['mention', 'getMention', 'setMention'], 'siren' => ['siren', 'getSiren', 'setSiren'], 'sirenFormate' => ['siren_formate', 'getSirenFormate', 'setSirenFormate'], 'oppositionUtilisationCommerciale' => ['opposition_utilisation_commerciale', 'getOppositionUtilisationCommerciale', 'setOppositionUtilisationCommerciale'], 'nomEntreprise' => ['nom_entreprise', 'getNomEntreprise', 'setNomEntreprise'], 'personneMorale' => ['personne_morale', 'getPersonneMorale', 'setPersonneMorale'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'nom' => ['nom', 'getNom', 'setNom'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'sexe' => ['sexe', 'getSexe', 'setSexe'], 'codeNaf' => ['code_naf', 'getCodeNaf', 'setCodeNaf'], 'libelleCodeNaf' => ['libelle_code_naf', 'getLibelleCodeNaf', 'setLibelleCodeNaf'], 'domaineActivite' => ['domaine_activite', 'getDomaineActivite', 'setDomaineActivite'], 'conventionsCollectives' => ['conventions_collectives', 'getConventionsCollectives', 'setConventionsCollectives'], 'dateCreation' => ['date_creation', 'getDateCreation', 'setDateCreation'], 'dateCreationFormate' => ['date_creation_formate', 'getDateCreationFormate', 'setDateCreationFormate'], 'entrepriseCessee' => ['entreprise_cessee', 'getEntrepriseCessee', 'setEntrepriseCessee'], 'dateCessation' => ['date_cessation', 'getDateCessation', 'setDateCessation'], 'entrepriseEmployeuse' => ['entreprise_employeuse', 'getEntrepriseEmployeuse', 'setEntrepriseEmployeuse'], 'societeAMission' => ['societe_a_mission', 'getSocieteAMission', 'setSocieteAMission'], 'categorieJuridique' => ['categorie_juridique', 'getCategorieJuridique', 'setCategorieJuridique'], 'formeJuridique' => ['forme_juridique', 'getFormeJuridique', 'setFormeJuridique'], 'microEntreprise' => ['micro_entreprise', 'getMicroEntreprise', 'setMicroEntreprise'], 'formeExercice' => ['forme_exercice', 'getFormeExercice', 'setFormeExercice'], 'effectif' => ['effectif', 'getEffectif', 'setEffectif'], 'effectifMin' => ['effectif_min', 'getEffectifMin', 'setEffectifMin'], 'effectifMax' => ['effectif_max', 'getEffectifMax', 'setEffectifMax'], 'trancheEffectif' => ['tranche_effectif', 'getTrancheEffectif', 'setTrancheEffectif'], 'anneeEffectif' => ['annee_effectif', 'getAnneeEffectif', 'setAnneeEffectif'], 'capital' => ['capital', 'getCapital', 'setCapital'], 'statutRcs' => ['statut_rcs', 'getStatutRcs', 'setStatutRcs'], 'siege' => ['siege', 'getSiege', 'setSiege'], 'statutConsolide' => ['statut_consolide', 'getStatutConsolide', 'setStatutConsolide'], 'villes' => ['villes', 'getVilles', 'setVilles'], 'chiffreAffaires' => ['chiffre_affaires', 'getChiffreAffaires', 'setChiffreAffaires'], 'resultat' => ['resultat', 'getResultat', 'setResultat'], 'effectifsFinances' => ['effectifs_finances', 'getEffectifsFinances', 'setEffectifsFinances'], 'anneeFinances' => ['annee_finances', 'getAnneeFinances', 'setAnneeFinances']];
     }
 }

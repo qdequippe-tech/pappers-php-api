@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationEntrepriseResultatItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationEntrepriseResultatItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -129,5 +133,10 @@ class NotificationEntrepriseResultatItem extends \ArrayObject
         $this->typeComptes = $typeComptes;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['valeur' => ['valeur', 'getValeur', 'setValeur'], 'anneeCloture' => ['annee_cloture', 'getAnneeCloture', 'setAnneeCloture'], 'date' => ['date', 'getDate', 'setDate'], 'token' => ['token', 'getToken', 'setToken'], 'typeComptes' => ['type_comptes', 'getTypeComptes', 'setTypeComptes']];
     }
 }

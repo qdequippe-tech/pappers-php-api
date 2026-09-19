@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class PersonnePolitiquementExposee extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class PersonnePolitiquementExposee implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -66,5 +70,10 @@ class PersonnePolitiquementExposee extends \ArrayObject
         $this->fonctions = $fonctions;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['enCours' => ['en_cours', 'getEnCours', 'setEnCours'], 'fonctions' => ['fonctions', 'getFonctions', 'setFonctions']];
     }
 }

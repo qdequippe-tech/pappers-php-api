@@ -16,14 +16,14 @@ class DocumentActe extends Document
     /**
      * Titres des actes associés au document.
      *
-     * @var list<DocumentActetitresItem>|null
+     * @var list<DocumentActeTitresItem>|null
      */
     protected $titres;
 
     /**
      * Titres des actes associés au document.
      *
-     * @return list<DocumentActetitresItem>|null
+     * @return list<DocumentActeTitresItem>|null
      */
     public function getTitres(): ?array
     {
@@ -33,7 +33,7 @@ class DocumentActe extends Document
     /**
      * Titres des actes associés au document.
      *
-     * @param list<DocumentActetitresItem>|null $titres
+     * @param list<DocumentActeTitresItem>|null $titres
      */
     public function setTitres(?array $titres): self
     {
@@ -41,5 +41,10 @@ class DocumentActe extends Document
         $this->titres = $titres;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return array_merge(parent::definedProperties(), ['titres' => ['titres', 'getTitres', 'setTitres']]);
     }
 }

@@ -188,4 +188,9 @@ class BodaccImmatriculation extends Bodacc
 
         return $this;
     }
+
+    public function definedProperties(): array
+    {
+        return array_merge(parent::definedProperties(), ['nomEntreprise' => ['nom_entreprise', 'getNomEntreprise', 'setNomEntreprise'], 'personneMorale' => ['personne_morale', 'getPersonneMorale', 'setPersonneMorale'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'nom' => ['nom', 'getNom', 'setNom'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'administration' => ['administration', 'getAdministration', 'setAdministration'], 'adresse' => ['adresse', 'getAdresse', 'setAdresse']]);
+    }
 }

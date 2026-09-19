@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class BrevetClassificationsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class BrevetClassificationsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -62,5 +66,10 @@ class BrevetClassificationsItem extends \ArrayObject
         $this->label = $label;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['symbole' => ['symbole', 'getSymbole', 'setSymbole'], 'label' => ['label', 'getLabel', 'setLabel']];
     }
 }

@@ -32,51 +32,56 @@ class NotificationEntrepriseResultatItemNormalizer implements DenormalizerInterf
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new NotificationEntrepriseResultatItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new NotificationEntrepriseResultatItem();
         if (\array_key_exists('valeur', $data) && \is_int($data['valeur'])) {
             $data['valeur'] = (float) $data['valeur'];
         }
         if (\array_key_exists('annee_cloture', $data) && \is_int($data['annee_cloture'])) {
             $data['annee_cloture'] = (float) $data['annee_cloture'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('valeur', $data) && null !== $data['valeur']) {
             $object->setValeur($data['valeur']);
             unset($data['valeur']);
         } elseif (\array_key_exists('valeur', $data) && null === $data['valeur']) {
             $object->setValeur(null);
+            unset($data['valeur']);
         }
         if (\array_key_exists('annee_cloture', $data) && null !== $data['annee_cloture']) {
             $object->setAnneeCloture($data['annee_cloture']);
             unset($data['annee_cloture']);
         } elseif (\array_key_exists('annee_cloture', $data) && null === $data['annee_cloture']) {
             $object->setAnneeCloture(null);
+            unset($data['annee_cloture']);
         }
         if (\array_key_exists('date', $data) && null !== $data['date']) {
             $object->setDate($data['date']);
             unset($data['date']);
         } elseif (\array_key_exists('date', $data) && null === $data['date']) {
             $object->setDate(null);
+            unset($data['date']);
         }
         if (\array_key_exists('token', $data) && null !== $data['token']) {
             $object->setToken($data['token']);
             unset($data['token']);
         } elseif (\array_key_exists('token', $data) && null === $data['token']) {
             $object->setToken(null);
+            unset($data['token']);
         }
         if (\array_key_exists('type_comptes', $data) && null !== $data['type_comptes']) {
             $object->setTypeComptes($data['type_comptes']);
             unset($data['type_comptes']);
         } elseif (\array_key_exists('type_comptes', $data) && null === $data['type_comptes']) {
             $object->setTypeComptes(null);
+            unset($data['type_comptes']);
         }
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
@@ -90,7 +95,7 @@ class NotificationEntrepriseResultatItemNormalizer implements DenormalizerInterf
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('valeur')) {
+        if ($data->isInitialized('valeur') && null !== $data->getValeur()) {
             $dataArray['valeur'] = $data->getValeur();
         }
         if ($data->isInitialized('anneeCloture') && null !== $data->getAnneeCloture()) {
@@ -99,13 +104,13 @@ class NotificationEntrepriseResultatItemNormalizer implements DenormalizerInterf
         if ($data->isInitialized('date') && null !== $data->getDate()) {
             $dataArray['date'] = $data->getDate();
         }
-        if ($data->isInitialized('token')) {
+        if ($data->isInitialized('token') && null !== $data->getToken()) {
             $dataArray['token'] = $data->getToken();
         }
         if ($data->isInitialized('typeComptes') && null !== $data->getTypeComptes()) {
             $dataArray['type_comptes'] = $data->getTypeComptes();
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class SuggestionsGetResponse200 extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class SuggestionsGetResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -186,5 +190,10 @@ class SuggestionsGetResponse200 extends \ArrayObject
         $this->resultatsSiret = $resultatsSiret;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['resultatsNomEntreprise' => ['resultats_nom_entreprise', 'getResultatsNomEntreprise', 'setResultatsNomEntreprise'], 'resultatsDenomination' => ['resultats_denomination', 'getResultatsDenomination', 'setResultatsDenomination'], 'resultatsNomComplet' => ['resultats_nom_complet', 'getResultatsNomComplet', 'setResultatsNomComplet'], 'resultatsRepresentant' => ['resultats_representant', 'getResultatsRepresentant', 'setResultatsRepresentant'], 'resultatsSiren' => ['resultats_siren', 'getResultatsSiren', 'setResultatsSiren'], 'resultatsSiret' => ['resultats_siret', 'getResultatsSiret', 'setResultatsSiret']];
     }
 }

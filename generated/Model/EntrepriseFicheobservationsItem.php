@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFicheobservationsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheObservationsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -162,5 +166,10 @@ class EntrepriseFicheobservationsItem extends \ArrayObject
         $this->dateSuppression = $dateSuppression;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['numero' => ['numero', 'getNumero', 'setNumero'], 'dateAjout' => ['date_ajout', 'getDateAjout', 'setDateAjout'], 'texte' => ['texte', 'getTexte', 'setTexte'], 'etat' => ['etat', 'getEtat', 'setEtat'], 'dateModification' => ['date_modification', 'getDateModification', 'setDateModification'], 'dateSuppression' => ['date_suppression', 'getDateSuppression', 'setDateSuppression']];
     }
 }

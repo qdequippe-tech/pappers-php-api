@@ -35,7 +35,7 @@ use Qdequippe\Pappers\Api\Model\Dessin;
 use Qdequippe\Pappers\Api\Model\DessinDesignsItem;
 use Qdequippe\Pappers\Api\Model\Document;
 use Qdequippe\Pappers\Api\Model\DocumentActe;
-use Qdequippe\Pappers\Api\Model\DocumentActetitresItem;
+use Qdequippe\Pappers\Api\Model\DocumentActeTitresItem;
 use Qdequippe\Pappers\Api\Model\DocumentComptes;
 use Qdequippe\Pappers\Api\Model\EntrepriseBase;
 use Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem;
@@ -47,40 +47,42 @@ use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsI
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem;
 use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichecomptesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichedepotsActesItemActesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichederniersStatuts;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheentreprisesDirigeesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheetablissement;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheextraitImmatriculation;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesEstimationsItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichefinancesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieres;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheinformationsBoursieresDocumentsItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItemClassesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichemarquesItemEvenementsItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheobservationsItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheparcellesDetenues;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheparcellesDetenuesResultatsItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFicheproceduresCollectivesItem;
-use Qdequippe\Pappers\Api\Model\EntrepriseFichernm;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheActifNetInferieurMoitieCapital;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsDirectes;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectes;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaire;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsSocieteDeGestion;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesDirects;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheComptesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheDepotsActesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheDepotsActesItemActesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheDerniersStatuts;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheEntreprisesDirigeesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheEtablissement;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheExtraitImmatriculation;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheFinancesEstimationsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheFinancesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheInformationsBoursieres;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheInformationsBoursieresDocumentsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheMarquesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheMarquesItemClassesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheMarquesItemEvenementsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheObservationsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheParcellesDetenues;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheParcellesDetenuesResultatsItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheProceduresCollectivesItem;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheRnm;
+use Qdequippe\Pappers\Api\Model\EntrepriseFicheSiege;
 use Qdequippe\Pappers\Api\Model\EntrepriseRecherche;
 use Qdequippe\Pappers\Api\Model\EtablissementFiche;
 use Qdequippe\Pappers\Api\Model\EtablissementFicheDomiciliation;
@@ -178,7 +180,7 @@ use Qdequippe\Pappers\Api\Model\RechercheDocumentsGetResponse200;
 use Qdequippe\Pappers\Api\Model\RechercheDocumentsGetResponse200ResultatsItem;
 use Qdequippe\Pappers\Api\Model\RechercheGetResponse200;
 use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItem;
-use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItempublicationsItem;
+use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItemPublicationsItem;
 use Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200;
 use Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200ResultatsItem;
 use Qdequippe\Pappers\Api\Model\Representant;
@@ -221,73 +223,77 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         EntrepriseFiche::class => EntrepriseFicheNormalizer::class,
 
-        EntrepriseFicheetablissement::class => EntrepriseFicheetablissementNormalizer::class,
+        EntrepriseFicheSiege::class => EntrepriseFicheSiegeNormalizer::class,
 
-        EntrepriseFichefinancesItem::class => EntrepriseFichefinancesItemNormalizer::class,
+        EntrepriseFicheActifNetInferieurMoitieCapital::class => EntrepriseFicheActifNetInferieurMoitieCapitalNormalizer::class,
 
-        EntrepriseFichefinancesEstimationsItem::class => EntrepriseFichefinancesEstimationsItemNormalizer::class,
+        EntrepriseFicheEtablissement::class => EntrepriseFicheEtablissementNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItem::class => EntrepriseFichebeneficiairesEffectifsItemNormalizer::class,
+        EntrepriseFicheFinancesItem::class => EntrepriseFicheFinancesItemNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectesNormalizer::class,
+        EntrepriseFicheFinancesEstimationsItem::class => EntrepriseFicheFinancesEstimationsItemNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItem::class => EntrepriseFicheBeneficiairesEffectifsItemNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivisionNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsDirectes::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsDirectesNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMoraleNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectes::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectesNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivisionNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectesNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMoraleNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivisionNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectesNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale::class => EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMoraleNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects::class => EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirectsNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivisionNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects::class => EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMoraleNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision::class => EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivisionNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesDirects::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesDirectsNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale::class => EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMoraleNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsNormalizer::class,
 
-        EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion::class => EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestionNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivisionNormalizer::class,
 
-        EntrepriseFichedepotsActesItem::class => EntrepriseFichedepotsActesItemNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMoraleNormalizer::class,
 
-        EntrepriseFichedepotsActesItemActesItem::class => EntrepriseFichedepotsActesItemActesItemNormalizer::class,
+        EntrepriseFicheBeneficiairesEffectifsItemDetailsSocieteDeGestion::class => EntrepriseFicheBeneficiairesEffectifsItemDetailsSocieteDeGestionNormalizer::class,
 
-        EntrepriseFichecomptesItem::class => EntrepriseFichecomptesItemNormalizer::class,
+        EntrepriseFicheDepotsActesItem::class => EntrepriseFicheDepotsActesItemNormalizer::class,
 
-        EntrepriseFicheproceduresCollectivesItem::class => EntrepriseFicheproceduresCollectivesItemNormalizer::class,
+        EntrepriseFicheDepotsActesItemActesItem::class => EntrepriseFicheDepotsActesItemActesItemNormalizer::class,
 
-        EntrepriseFichederniersStatuts::class => EntrepriseFichederniersStatutsNormalizer::class,
+        EntrepriseFicheComptesItem::class => EntrepriseFicheComptesItemNormalizer::class,
 
-        EntrepriseFicheextraitImmatriculation::class => EntrepriseFicheextraitImmatriculationNormalizer::class,
+        EntrepriseFicheProceduresCollectivesItem::class => EntrepriseFicheProceduresCollectivesItemNormalizer::class,
 
-        EntrepriseFichernm::class => EntrepriseFichernmNormalizer::class,
+        EntrepriseFicheDerniersStatuts::class => EntrepriseFicheDerniersStatutsNormalizer::class,
 
-        EntrepriseFichemarquesItem::class => EntrepriseFichemarquesItemNormalizer::class,
+        EntrepriseFicheExtraitImmatriculation::class => EntrepriseFicheExtraitImmatriculationNormalizer::class,
 
-        EntrepriseFichemarquesItemClassesItem::class => EntrepriseFichemarquesItemClassesItemNormalizer::class,
+        EntrepriseFicheRnm::class => EntrepriseFicheRnmNormalizer::class,
 
-        EntrepriseFichemarquesItemEvenementsItem::class => EntrepriseFichemarquesItemEvenementsItemNormalizer::class,
+        EntrepriseFicheMarquesItem::class => EntrepriseFicheMarquesItemNormalizer::class,
 
-        EntrepriseFicheentreprisesDirigeesItem::class => EntrepriseFicheentreprisesDirigeesItemNormalizer::class,
+        EntrepriseFicheMarquesItemClassesItem::class => EntrepriseFicheMarquesItemClassesItemNormalizer::class,
 
-        EntrepriseFicheobservationsItem::class => EntrepriseFicheobservationsItemNormalizer::class,
+        EntrepriseFicheMarquesItemEvenementsItem::class => EntrepriseFicheMarquesItemEvenementsItemNormalizer::class,
 
-        EntrepriseFicheparcellesDetenues::class => EntrepriseFicheparcellesDetenuesNormalizer::class,
+        EntrepriseFicheEntreprisesDirigeesItem::class => EntrepriseFicheEntreprisesDirigeesItemNormalizer::class,
 
-        EntrepriseFicheparcellesDetenuesResultatsItem::class => EntrepriseFicheparcellesDetenuesResultatsItemNormalizer::class,
+        EntrepriseFicheObservationsItem::class => EntrepriseFicheObservationsItemNormalizer::class,
 
-        EntrepriseFicheinformationsBoursieres::class => EntrepriseFicheinformationsBoursieresNormalizer::class,
+        EntrepriseFicheParcellesDetenues::class => EntrepriseFicheParcellesDetenuesNormalizer::class,
 
-        EntrepriseFicheinformationsBoursieresDocumentsItem::class => EntrepriseFicheinformationsBoursieresDocumentsItemNormalizer::class,
+        EntrepriseFicheParcellesDetenuesResultatsItem::class => EntrepriseFicheParcellesDetenuesResultatsItemNormalizer::class,
+
+        EntrepriseFicheInformationsBoursieres::class => EntrepriseFicheInformationsBoursieresNormalizer::class,
+
+        EntrepriseFicheInformationsBoursieresDocumentsItem::class => EntrepriseFicheInformationsBoursieresDocumentsItemNormalizer::class,
 
         EntrepriseRecherche::class => EntrepriseRechercheNormalizer::class,
 
@@ -321,7 +327,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         DocumentActe::class => DocumentActeNormalizer::class,
 
-        DocumentActetitresItem::class => DocumentActetitresItemNormalizer::class,
+        DocumentActeTitresItem::class => DocumentActeTitresItemNormalizer::class,
 
         DocumentComptes::class => DocumentComptesNormalizer::class,
 
@@ -551,7 +557,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
         RechercheGetResponse200ResultatsItem::class => RechercheGetResponse200ResultatsItemNormalizer::class,
 
-        RechercheGetResponse200ResultatsItempublicationsItem::class => RechercheGetResponse200ResultatsItempublicationsItemNormalizer::class,
+        RechercheGetResponse200ResultatsItemPublicationsItem::class => RechercheGetResponse200ResultatsItemPublicationsItemNormalizer::class,
 
         RechercheDirigeantsGetResponse200::class => RechercheDirigeantsGetResponse200Normalizer::class,
 
@@ -652,203 +658,6 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
 
     public function getSupportedTypes(?string $format = null): array
     {
-        return [
-            EntrepriseBase::class => false,
-            EntrepriseBaseConventionsCollectivesItem::class => false,
-            EntrepriseFiche::class => false,
-            EntrepriseFicheetablissement::class => false,
-            EntrepriseFichefinancesItem::class => false,
-            EntrepriseFichefinancesEstimationsItem::class => false,
-            EntrepriseFichebeneficiairesEffectifsItem::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnIndivision::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectesDetailsEnPersonneMorale::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsDirectes::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectes::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnIndivision::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaireDetailsIndirectesDetailsEnPersonneMorale::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnIndivision::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirectsDetailsEnPersonneMorale::class => false,
-            EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion::class => false,
-            EntrepriseFichedepotsActesItem::class => false,
-            EntrepriseFichedepotsActesItemActesItem::class => false,
-            EntrepriseFichecomptesItem::class => false,
-            EntrepriseFicheproceduresCollectivesItem::class => false,
-            EntrepriseFichederniersStatuts::class => false,
-            EntrepriseFicheextraitImmatriculation::class => false,
-            EntrepriseFichernm::class => false,
-            EntrepriseFichemarquesItem::class => false,
-            EntrepriseFichemarquesItemClassesItem::class => false,
-            EntrepriseFichemarquesItemEvenementsItem::class => false,
-            EntrepriseFicheentreprisesDirigeesItem::class => false,
-            EntrepriseFicheobservationsItem::class => false,
-            EntrepriseFicheparcellesDetenues::class => false,
-            EntrepriseFicheparcellesDetenuesResultatsItem::class => false,
-            EntrepriseFicheinformationsBoursieres::class => false,
-            EntrepriseFicheinformationsBoursieresDocumentsItem::class => false,
-            EntrepriseRecherche::class => false,
-            EtablissementFiche::class => false,
-            EtablissementFicheDomiciliation::class => false,
-            EtablissementRecherche::class => false,
-            RepresentantSuggestions::class => false,
-            Representant::class => false,
-            PersonnePolitiquementExposee::class => false,
-            PersonnePolitiquementExposeeFonctionsItem::class => false,
-            PersonnePolitiquementExposeeFonctionsItemSourcesItem::class => false,
-            Sanction::class => false,
-            SanctionSourcesItem::class => false,
-            RepresentantEntreprise::class => false,
-            RepresentantRecherche::class => false,
-            Beneficiaire::class => false,
-            Document::class => false,
-            DocumentActe::class => false,
-            DocumentActetitresItem::class => false,
-            DocumentComptes::class => false,
-            Publication::class => false,
-            Bodacc::class => false,
-            BodaccCreation::class => false,
-            BodaccImmatriculation::class => false,
-            BodaccModification::class => false,
-            BodaccAchat::class => false,
-            BodaccVente::class => false,
-            BodaccRadiation::class => false,
-            BodaccProcedureCollective::class => false,
-            BodaccDepotDesComptes::class => false,
-            PersonneMarque::class => false,
-            Ratios::class => false,
-            Association::class => false,
-            AssociationAdresseSiege::class => false,
-            AssociationAdresseGestionnaire::class => false,
-            AssociationPublicationsJoafeItem::class => false,
-            ScoringNonFinancier::class => false,
-            ScoringFinancier::class => false,
-            ScoringFinancierDetailsScore::class => false,
-            LabelsBase::class => false,
-            LabelsBaseInscriptionsItem::class => false,
-            Labels::class => false,
-            LienSuccession::class => false,
-            Cartographie::class => false,
-            CartographieEntreprisesItem::class => false,
-            CartographiePersonnesItem::class => false,
-            NotificationEntreprise::class => false,
-            NotificationEntrepriseDetailsEntreprise::class => false,
-            NotificationEntrepriseNomEntreprise::class => false,
-            NotificationEntrepriseNomCommercialItem::class => false,
-            NotificationEntrepriseFormeJuridique::class => false,
-            NotificationEntrepriseSiegeSocial::class => false,
-            NotificationEntrepriseEntrepriseCessee::class => false,
-            NotificationEntrepriseStatutDiffusion::class => false,
-            NotificationEntrepriseCodeNaf::class => false,
-            NotificationEntrepriseEntrepriseEmployeuse::class => false,
-            NotificationEntrepriseEnseigneItem::class => false,
-            NotificationEntrepriseNouvelEtablissementItem::class => false,
-            NotificationEntrepriseFermetureEtablissementItem::class => false,
-            NotificationEntrepriseStatutRcs::class => false,
-            NotificationEntrepriseObjetSocial::class => false,
-            NotificationEntrepriseCapital::class => false,
-            NotificationEntrepriseDateClotureExercice::class => false,
-            NotificationEntrepriseChiffreAffairesItem::class => false,
-            NotificationEntrepriseResultatItem::class => false,
-            NotificationEntrepriseNouveauxComptesDisponiblesItem::class => false,
-            NotificationEntrepriseNouveauxComptesPubliesItem::class => false,
-            NotificationEntrepriseNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
-            NotificationEntrepriseNouvelleAnnonceVentePublieeItem::class => false,
-            NotificationEntrepriseNouvelleAnnoncePublieeItem::class => false,
-            NotificationEntrepriseNouveauxStatutsPubliesItem::class => false,
-            NotificationEntrepriseNouvelActePublieItem::class => false,
-            NotificationEntrepriseNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => false,
-            NotificationEntrepriseNouveauDirigeantItem::class => false,
-            NotificationEntrepriseDirigeantPartantItem::class => false,
-            NotificationEntrepriseQualiteDirigeantItem::class => false,
-            NotificationEntrepriseNouvelleDecisionJusticeItem::class => false,
-            NotificationDirigeant::class => false,
-            NotificationDirigeantDetailsDirigeant::class => false,
-            NotificationDirigeantNouvellesSanctionsItem::class => false,
-            NotificationDirigeantNouveauxMandatsPolitiquesItem::class => false,
-            NotificationDirigeantEntreprisesItem::class => false,
-            NotificationDirigeantEntreprisesItemNouveauMandat::class => false,
-            NotificationDirigeantEntreprisesItemMandatSupprime::class => false,
-            NotificationDirigeantEntreprisesItemQualiteDirigeant::class => false,
-            NotificationDirigeantEntreprisesItemNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
-            NotificationVeille::class => false,
-            NotificationVeilleNomEntreprise::class => false,
-            NotificationVeilleNomCommercialItem::class => false,
-            NotificationVeilleFormeJuridique::class => false,
-            NotificationVeilleSiegeSocial::class => false,
-            NotificationVeilleEntrepriseCessee::class => false,
-            NotificationVeilleCodeNaf::class => false,
-            NotificationVeilleEntrepriseEmployeuse::class => false,
-            NotificationVeilleEnseigneItem::class => false,
-            NotificationVeilleNouvelEtablissementItem::class => false,
-            NotificationVeilleFermetureEtablissementItem::class => false,
-            NotificationVeilleStatutRcs::class => false,
-            NotificationVeilleObjetSocial::class => false,
-            NotificationVeilleCapital::class => false,
-            NotificationVeilleDateClotureExercice::class => false,
-            NotificationVeilleChiffreAffairesItem::class => false,
-            NotificationVeilleResultatItem::class => false,
-            NotificationVeilleNouveauxComptesDisponiblesItem::class => false,
-            NotificationVeilleNouveauxComptesPubliesItem::class => false,
-            NotificationVeilleNouvelleAnnonceProcedureCollectivePublieeItem::class => false,
-            NotificationVeilleNouvelleAnnonceVentePublieeItem::class => false,
-            NotificationVeilleNouvelleAnnoncePublieeItem::class => false,
-            NotificationVeilleNouveauxStatutsPubliesItem::class => false,
-            NotificationVeilleNouvelActePublieItem::class => false,
-            NotificationVeilleNouvelleDeclarationBeneficiairesEffectifPublieeItem::class => false,
-            NotificationVeilleNouveauDirigeantItem::class => false,
-            NotificationVeilleDirigeantPartantItem::class => false,
-            NotificationVeilleQualiteDirigeantItem::class => false,
-            Decisions::class => false,
-            DecisionsAutresPartiesItem::class => false,
-            AppelOffre::class => false,
-            AppelOffreEntreprise::class => false,
-            AppelOffreLance::class => false,
-            AppelOffreGagne::class => false,
-            EntrepriseCitee::class => false,
-            EntrepriseCiteeMentionsItem::class => false,
-            EntrepriseCiteePersonnesItem::class => false,
-            PersonneBrevet::class => false,
-            Brevet::class => false,
-            BrevetPublication::class => false,
-            BrevetPrioritesItem::class => false,
-            BrevetClassificationsItem::class => false,
-            PersonneDessin::class => false,
-            Dessin::class => false,
-            DessinDesignsItem::class => false,
-            RechercheGetResponse200::class => false,
-            RechercheGetResponse200ResultatsItem::class => false,
-            RechercheGetResponse200ResultatsItempublicationsItem::class => false,
-            RechercheDirigeantsGetResponse200::class => false,
-            RechercheDirigeantsGetResponse200ResultatsItem::class => false,
-            RechercheBeneficiairesGetResponse200::class => false,
-            RechercheBeneficiairesGetResponse200ResultatsItem::class => false,
-            RechercheDocumentsGetResponse200::class => false,
-            RechercheDocumentsGetResponse200ResultatsItem::class => false,
-            RecherchePublicationsGetResponse200::class => false,
-            RecherchePublicationsGetResponse200ResultatsItem::class => false,
-            SuggestionsGetResponse200::class => false,
-            SuggestionsGetResponse200ResultatsNomEntrepriseItem::class => false,
-            SuggestionsGetResponse200ResultatsDenominationItem::class => false,
-            SuggestionsGetResponse200ResultatsNomCompletItem::class => false,
-            SuggestionsGetResponse200ResultatsRepresentantItem::class => false,
-            SuggestionsGetResponse200ResultatsSirenItem::class => false,
-            SuggestionsGetResponse200ResultatsSiretItem::class => false,
-            EntrepriseComptesGetResponse200ItemItem::class => false,
-            EntrepriseComptesGetResponse200ItemItemSectionsItem::class => false,
-            EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItem::class => false,
-            EntrepriseComptesGetResponse200ItemItemSectionsItemLiassesItemColonnesItem::class => false,
-            ConformitePersonnePhysiqueGetResponse200::class => false,
-            SuiviJetonsGetResponse200::class => false,
-            ListePostBodyItem::class => false,
-            ListePostResponse200::class => false,
-            ListePostResponse201::class => false,
-            ListeDeleteResponse200::class => false,
-            ListeInformationsPostBody::class => false,
-            Reference::class => false,
-        ];
+        return array_combine(array_keys($this->normalizers), array_fill(0, \count($this->normalizers), false));
     }
 }

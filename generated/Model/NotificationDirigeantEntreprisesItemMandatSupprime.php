@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeantEntreprisesItemMandatSupprime extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeantEntreprisesItemMandatSupprime implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -166,5 +170,10 @@ class NotificationDirigeantEntreprisesItemMandatSupprime extends \ArrayObject
         $this->date = $date;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'nom' => ['nom', 'getNom', 'setNom'], 'dateDeNaissanceRgpd' => ['date_de_naissance_rgpd', 'getDateDeNaissanceRgpd', 'setDateDeNaissanceRgpd'], 'denomination' => ['denomination', 'getDenomination', 'setDenomination'], 'siren' => ['siren', 'getSiren', 'setSiren'], 'date' => ['date', 'getDate', 'setDate']];
     }
 }

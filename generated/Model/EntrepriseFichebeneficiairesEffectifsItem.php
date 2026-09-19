@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseFicheBeneficiairesEffectifsItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -170,19 +174,19 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon directe par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsDirectes|null
      */
     protected $detailsPartsDirectes;
     /**
      * Détails des parts détenues de façon indirecte par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectes|null
      */
     protected $detailsPartsIndirectes;
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaire|null
      */
     protected $detailsPartsVocationTitulaire;
     /**
@@ -206,19 +210,19 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon directe par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesDirects|null
      */
     protected $detailsVotesDirects;
     /**
      * Détails des droits de vote détenus de façon indirecte par le bénéficiaire effectif.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects|null
      */
     protected $detailsVotesIndirects;
     /**
      * Détails sur la société de gestion, le cas échéant.
      *
-     * @var EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion|null
+     * @var EntrepriseFicheBeneficiairesEffectifsItemDetailsSocieteDeGestion|null
      */
     protected $detailsSocieteDeGestion;
     /**
@@ -765,7 +769,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon directe par le bénéficiaire effectif.
      */
-    public function getDetailsPartsDirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes
+    public function getDetailsPartsDirectes(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsDirectes
     {
         return $this->detailsPartsDirectes;
     }
@@ -773,7 +777,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon directe par le bénéficiaire effectif.
      */
-    public function setDetailsPartsDirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsDirectes $detailsPartsDirectes): self
+    public function setDetailsPartsDirectes(?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsDirectes $detailsPartsDirectes): self
     {
         $this->initialized['detailsPartsDirectes'] = true;
         $this->detailsPartsDirectes = $detailsPartsDirectes;
@@ -784,7 +788,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon indirecte par le bénéficiaire effectif.
      */
-    public function getDetailsPartsIndirectes(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes
+    public function getDetailsPartsIndirectes(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectes
     {
         return $this->detailsPartsIndirectes;
     }
@@ -792,7 +796,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts détenues de façon indirecte par le bénéficiaire effectif.
      */
-    public function setDetailsPartsIndirectes(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsIndirectes $detailsPartsIndirectes): self
+    public function setDetailsPartsIndirectes(?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsIndirectes $detailsPartsIndirectes): self
     {
         $this->initialized['detailsPartsIndirectes'] = true;
         $this->detailsPartsIndirectes = $detailsPartsIndirectes;
@@ -803,7 +807,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire.
      */
-    public function getDetailsPartsVocationTitulaire(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire
+    public function getDetailsPartsVocationTitulaire(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaire
     {
         return $this->detailsPartsVocationTitulaire;
     }
@@ -811,7 +815,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des parts dont le bénéficiaire effectif a vocation à devenir titulaire.
      */
-    public function setDetailsPartsVocationTitulaire(?EntrepriseFichebeneficiairesEffectifsItemDetailsPartsVocationTitulaire $detailsPartsVocationTitulaire): self
+    public function setDetailsPartsVocationTitulaire(?EntrepriseFicheBeneficiairesEffectifsItemDetailsPartsVocationTitulaire $detailsPartsVocationTitulaire): self
     {
         $this->initialized['detailsPartsVocationTitulaire'] = true;
         $this->detailsPartsVocationTitulaire = $detailsPartsVocationTitulaire;
@@ -879,7 +883,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon directe par le bénéficiaire effectif.
      */
-    public function getDetailsVotesDirects(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects
+    public function getDetailsVotesDirects(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesDirects
     {
         return $this->detailsVotesDirects;
     }
@@ -887,7 +891,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon directe par le bénéficiaire effectif.
      */
-    public function setDetailsVotesDirects(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesDirects $detailsVotesDirects): self
+    public function setDetailsVotesDirects(?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesDirects $detailsVotesDirects): self
     {
         $this->initialized['detailsVotesDirects'] = true;
         $this->detailsVotesDirects = $detailsVotesDirects;
@@ -898,7 +902,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon indirecte par le bénéficiaire effectif.
      */
-    public function getDetailsVotesIndirects(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects
+    public function getDetailsVotesIndirects(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects
     {
         return $this->detailsVotesIndirects;
     }
@@ -906,7 +910,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails des droits de vote détenus de façon indirecte par le bénéficiaire effectif.
      */
-    public function setDetailsVotesIndirects(?EntrepriseFichebeneficiairesEffectifsItemDetailsVotesIndirects $detailsVotesIndirects): self
+    public function setDetailsVotesIndirects(?EntrepriseFicheBeneficiairesEffectifsItemDetailsVotesIndirects $detailsVotesIndirects): self
     {
         $this->initialized['detailsVotesIndirects'] = true;
         $this->detailsVotesIndirects = $detailsVotesIndirects;
@@ -917,7 +921,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails sur la société de gestion, le cas échéant.
      */
-    public function getDetailsSocieteDeGestion(): ?EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion
+    public function getDetailsSocieteDeGestion(): ?EntrepriseFicheBeneficiairesEffectifsItemDetailsSocieteDeGestion
     {
         return $this->detailsSocieteDeGestion;
     }
@@ -925,7 +929,7 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
     /**
      * Détails sur la société de gestion, le cas échéant.
      */
-    public function setDetailsSocieteDeGestion(?EntrepriseFichebeneficiairesEffectifsItemDetailsSocieteDeGestion $detailsSocieteDeGestion): self
+    public function setDetailsSocieteDeGestion(?EntrepriseFicheBeneficiairesEffectifsItemDetailsSocieteDeGestion $detailsSocieteDeGestion): self
     {
         $this->initialized['detailsSocieteDeGestion'] = true;
         $this->detailsSocieteDeGestion = $detailsSocieteDeGestion;
@@ -1087,5 +1091,10 @@ class EntrepriseFichebeneficiairesEffectifsItem extends \ArrayObject
         $this->sanctions = $sanctions;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['dateGreffe' => ['date_greffe', 'getDateGreffe', 'setDateGreffe'], 'type' => ['type', 'getType', 'setType'], 'nom' => ['nom', 'getNom', 'setNom'], 'nomUsage' => ['nom_usage', 'getNomUsage', 'setNomUsage'], 'prenom' => ['prenom', 'getPrenom', 'setPrenom'], 'prenomUsuel' => ['prenom_usuel', 'getPrenomUsuel', 'setPrenomUsuel'], 'pseudonyme' => ['pseudonyme', 'getPseudonyme', 'setPseudonyme'], 'sexe' => ['sexe', 'getSexe', 'setSexe'], 'dateDeNaissanceFormatee' => ['date_de_naissance_formatee', 'getDateDeNaissanceFormatee', 'setDateDeNaissanceFormatee'], 'dateDeNaissanceCompleteFormatee' => ['date_de_naissance_complete_formatee', 'getDateDeNaissanceCompleteFormatee', 'setDateDeNaissanceCompleteFormatee'], 'nationalite' => ['nationalite', 'getNationalite', 'setNationalite'], 'codesNationalites' => ['codes_nationalites', 'getCodesNationalites', 'setCodesNationalites'], 'villeDeNaissance' => ['ville_de_naissance', 'getVilleDeNaissance', 'setVilleDeNaissance'], 'paysDeNaissance' => ['pays_de_naissance', 'getPaysDeNaissance', 'setPaysDeNaissance'], 'codePaysDeNaissance' => ['code_pays_de_naissance', 'getCodePaysDeNaissance', 'setCodePaysDeNaissance'], 'adresseLigne1' => ['adresse_ligne_1', 'getAdresseLigne1', 'setAdresseLigne1'], 'adresseLigne2' => ['adresse_ligne_2', 'getAdresseLigne2', 'setAdresseLigne2'], 'adresseLigne3' => ['adresse_ligne_3', 'getAdresseLigne3', 'setAdresseLigne3'], 'codePostal' => ['code_postal', 'getCodePostal', 'setCodePostal'], 'ville' => ['ville', 'getVille', 'setVille'], 'pays' => ['pays', 'getPays', 'setPays'], 'codePays' => ['code_pays', 'getCodePays', 'setCodePays'], 'pourcentageParts' => ['pourcentage_parts', 'getPourcentageParts', 'setPourcentageParts'], 'pourcentagePartsDirectes' => ['pourcentage_parts_directes', 'getPourcentagePartsDirectes', 'setPourcentagePartsDirectes'], 'pourcentagePartsIndirectes' => ['pourcentage_parts_indirectes', 'getPourcentagePartsIndirectes', 'setPourcentagePartsIndirectes'], 'pourcentagePartsVocationTitulaire' => ['pourcentage_parts_vocation_titulaire', 'getPourcentagePartsVocationTitulaire', 'setPourcentagePartsVocationTitulaire'], 'detailsPartsDirectes' => ['details_parts_directes', 'getDetailsPartsDirectes', 'setDetailsPartsDirectes'], 'detailsPartsIndirectes' => ['details_parts_indirectes', 'getDetailsPartsIndirectes', 'setDetailsPartsIndirectes'], 'detailsPartsVocationTitulaire' => ['details_parts_vocation_titulaire', 'getDetailsPartsVocationTitulaire', 'setDetailsPartsVocationTitulaire'], 'pourcentageVotes' => ['pourcentage_votes', 'getPourcentageVotes', 'setPourcentageVotes'], 'pourcentageVotesDirects' => ['pourcentage_votes_directs', 'getPourcentageVotesDirects', 'setPourcentageVotesDirects'], 'pourcentageVotesIndirect' => ['pourcentage_votes_indirect', 'getPourcentageVotesIndirect', 'setPourcentageVotesIndirect'], 'detailsVotesDirects' => ['details_votes_directs', 'getDetailsVotesDirects', 'setDetailsVotesDirects'], 'detailsVotesIndirects' => ['details_votes_indirects', 'getDetailsVotesIndirects', 'setDetailsVotesIndirects'], 'detailsSocieteDeGestion' => ['details_societe_de_gestion', 'getDetailsSocieteDeGestion', 'setDetailsSocieteDeGestion'], 'detentionPouvoirDecisionAg' => ['detention_pouvoir_decision_ag', 'getDetentionPouvoirDecisionAg', 'setDetentionPouvoirDecisionAg'], 'detentionPouvoirNomMembreConseilAdministration' => ['detention_pouvoir_nom_membre_conseil_administration', 'getDetentionPouvoirNomMembreConseilAdministration', 'setDetentionPouvoirNomMembreConseilAdministration'], 'detentionAutresMoyensControle' => ['detention_autres_moyens_controle', 'getDetentionAutresMoyensControle', 'setDetentionAutresMoyensControle'], 'beneficiaireRepresentantLegal' => ['beneficiaire_representant_legal', 'getBeneficiaireRepresentantLegal', 'setBeneficiaireRepresentantLegal'], 'representantLegalPlacementSansGestionDelegation' => ['representant_legal_placement_sans_gestion_delegation', 'getRepresentantLegalPlacementSansGestionDelegation', 'setRepresentantLegalPlacementSansGestionDelegation'], 'personnePolitiquementExposee' => ['personne_politiquement_exposee', 'getPersonnePolitiquementExposee', 'setPersonnePolitiquementExposee'], 'sanctionsEnCours' => ['sanctions_en_cours', 'getSanctionsEnCours', 'setSanctionsEnCours'], 'sanctions' => ['sanctions', 'getSanctions', 'setSanctions']];
     }
 }

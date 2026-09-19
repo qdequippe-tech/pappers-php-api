@@ -5,6 +5,7 @@ namespace Qdequippe\Pappers\Api\Normalizer;
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Qdequippe\Pappers\Api\Model\Sanction;
 use Qdequippe\Pappers\Api\Model\SanctionSourcesItem;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -33,60 +34,67 @@ class SanctionNormalizer implements DenormalizerInterface, NormalizerInterface, 
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new Sanction();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new Sanction();
         if (\array_key_exists('en_cours', $data) && \is_int($data['en_cours'])) {
             $data['en_cours'] = (bool) $data['en_cours'];
-        }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('description', $data) && null !== $data['description']) {
             $object->setDescription($data['description']);
             unset($data['description']);
         } elseif (\array_key_exists('description', $data) && null === $data['description']) {
             $object->setDescription(null);
+            unset($data['description']);
         }
         if (\array_key_exists('autorite', $data) && null !== $data['autorite']) {
             $object->setAutorite($data['autorite']);
             unset($data['autorite']);
         } elseif (\array_key_exists('autorite', $data) && null === $data['autorite']) {
             $object->setAutorite(null);
+            unset($data['autorite']);
         }
         if (\array_key_exists('pays', $data) && null !== $data['pays']) {
             $object->setPays($data['pays']);
             unset($data['pays']);
         } elseif (\array_key_exists('pays', $data) && null === $data['pays']) {
             $object->setPays(null);
+            unset($data['pays']);
         }
         if (\array_key_exists('code_pays', $data) && null !== $data['code_pays']) {
             $object->setCodePays($data['code_pays']);
             unset($data['code_pays']);
         } elseif (\array_key_exists('code_pays', $data) && null === $data['code_pays']) {
             $object->setCodePays(null);
+            unset($data['code_pays']);
         }
         if (\array_key_exists('en_cours', $data) && null !== $data['en_cours']) {
             $object->setEnCours($data['en_cours']);
             unset($data['en_cours']);
         } elseif (\array_key_exists('en_cours', $data) && null === $data['en_cours']) {
             $object->setEnCours(null);
+            unset($data['en_cours']);
         }
         if (\array_key_exists('date_debut', $data) && null !== $data['date_debut']) {
             $object->setDateDebut($data['date_debut']);
             unset($data['date_debut']);
         } elseif (\array_key_exists('date_debut', $data) && null === $data['date_debut']) {
             $object->setDateDebut(null);
+            unset($data['date_debut']);
         }
         if (\array_key_exists('date_fin', $data) && null !== $data['date_fin']) {
             $object->setDateFin($data['date_fin']);
             unset($data['date_fin']);
         } elseif (\array_key_exists('date_fin', $data) && null === $data['date_fin']) {
             $object->setDateFin(null);
+            unset($data['date_fin']);
         }
         if (\array_key_exists('sources', $data) && null !== $data['sources']) {
             $values = [];
@@ -97,6 +105,7 @@ class SanctionNormalizer implements DenormalizerInterface, NormalizerInterface, 
             unset($data['sources']);
         } elseif (\array_key_exists('sources', $data) && null === $data['sources']) {
             $object->setSources(null);
+            unset($data['sources']);
         }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
@@ -134,11 +143,11 @@ class SanctionNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if ($data->isInitialized('sources') && null !== $data->getSources()) {
             $values = [];
             foreach ($data->getSources() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['sources'] = $values;
         }
-        foreach ($data as $key => $value_1) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_1;
             }

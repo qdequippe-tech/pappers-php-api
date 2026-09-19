@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class EntrepriseBaseConventionsCollectivesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -112,5 +116,10 @@ class EntrepriseBaseConventionsCollectivesItem extends \ArrayObject
         $this->pourcentage = $pourcentage;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['nom' => ['nom', 'getNom', 'setNom'], 'idcc' => ['idcc', 'getIdcc', 'setIdcc'], 'confirmee' => ['confirmee', 'getConfirmee', 'setConfirmee'], 'pourcentage' => ['pourcentage', 'getPourcentage', 'setPourcentage']];
     }
 }

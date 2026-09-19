@@ -8,8 +8,9 @@ use Qdequippe\Pappers\Api\Model\Document;
 use Qdequippe\Pappers\Api\Model\EntrepriseBaseConventionsCollectivesItem;
 use Qdequippe\Pappers\Api\Model\EtablissementRecherche;
 use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItem;
-use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItempublicationsItem;
+use Qdequippe\Pappers\Api\Model\RechercheGetResponse200ResultatsItemPublicationsItem;
 use Qdequippe\Pappers\Api\Model\RepresentantRecherche;
+use Qdequippe\Pappers\Api\Runtime\JsonObject;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\CheckArray;
 use Qdequippe\Pappers\Api\Runtime\Normalizer\ValidatorTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -38,13 +39,16 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new RechercheGetResponse200ResultatsItem();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new RechercheGetResponse200ResultatsItem();
         if (\array_key_exists('capital', $data) && \is_int($data['capital'])) {
             $data['capital'] = (float) $data['capital'];
         }
@@ -66,80 +70,89 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
         if (\array_key_exists('micro_entreprise', $data) && \is_int($data['micro_entreprise'])) {
             $data['micro_entreprise'] = (bool) $data['micro_entreprise'];
         }
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('siren', $data) && null !== $data['siren']) {
             $object->setSiren($data['siren']);
             unset($data['siren']);
         } elseif (\array_key_exists('siren', $data) && null === $data['siren']) {
             $object->setSiren(null);
+            unset($data['siren']);
         }
         if (\array_key_exists('siren_formate', $data) && null !== $data['siren_formate']) {
             $object->setSirenFormate($data['siren_formate']);
             unset($data['siren_formate']);
         } elseif (\array_key_exists('siren_formate', $data) && null === $data['siren_formate']) {
             $object->setSirenFormate(null);
+            unset($data['siren_formate']);
         }
         if (\array_key_exists('opposition_utilisation_commerciale', $data) && null !== $data['opposition_utilisation_commerciale']) {
             $object->setOppositionUtilisationCommerciale($data['opposition_utilisation_commerciale']);
             unset($data['opposition_utilisation_commerciale']);
         } elseif (\array_key_exists('opposition_utilisation_commerciale', $data) && null === $data['opposition_utilisation_commerciale']) {
             $object->setOppositionUtilisationCommerciale(null);
+            unset($data['opposition_utilisation_commerciale']);
         }
         if (\array_key_exists('nom_entreprise', $data) && null !== $data['nom_entreprise']) {
             $object->setNomEntreprise($data['nom_entreprise']);
             unset($data['nom_entreprise']);
         } elseif (\array_key_exists('nom_entreprise', $data) && null === $data['nom_entreprise']) {
             $object->setNomEntreprise(null);
+            unset($data['nom_entreprise']);
         }
         if (\array_key_exists('personne_morale', $data) && null !== $data['personne_morale']) {
             $object->setPersonneMorale($data['personne_morale']);
             unset($data['personne_morale']);
         } elseif (\array_key_exists('personne_morale', $data) && null === $data['personne_morale']) {
             $object->setPersonneMorale(null);
+            unset($data['personne_morale']);
         }
         if (\array_key_exists('denomination', $data) && null !== $data['denomination']) {
             $object->setDenomination($data['denomination']);
             unset($data['denomination']);
         } elseif (\array_key_exists('denomination', $data) && null === $data['denomination']) {
             $object->setDenomination(null);
+            unset($data['denomination']);
         }
         if (\array_key_exists('nom', $data) && null !== $data['nom']) {
             $object->setNom($data['nom']);
             unset($data['nom']);
         } elseif (\array_key_exists('nom', $data) && null === $data['nom']) {
             $object->setNom(null);
+            unset($data['nom']);
         }
         if (\array_key_exists('prenom', $data) && null !== $data['prenom']) {
             $object->setPrenom($data['prenom']);
             unset($data['prenom']);
         } elseif (\array_key_exists('prenom', $data) && null === $data['prenom']) {
             $object->setPrenom(null);
+            unset($data['prenom']);
         }
         if (\array_key_exists('sexe', $data) && null !== $data['sexe']) {
             $object->setSexe($data['sexe']);
             unset($data['sexe']);
         } elseif (\array_key_exists('sexe', $data) && null === $data['sexe']) {
             $object->setSexe(null);
+            unset($data['sexe']);
         }
         if (\array_key_exists('code_naf', $data) && null !== $data['code_naf']) {
             $object->setCodeNaf($data['code_naf']);
             unset($data['code_naf']);
         } elseif (\array_key_exists('code_naf', $data) && null === $data['code_naf']) {
             $object->setCodeNaf(null);
+            unset($data['code_naf']);
         }
         if (\array_key_exists('libelle_code_naf', $data) && null !== $data['libelle_code_naf']) {
             $object->setLibelleCodeNaf($data['libelle_code_naf']);
             unset($data['libelle_code_naf']);
         } elseif (\array_key_exists('libelle_code_naf', $data) && null === $data['libelle_code_naf']) {
             $object->setLibelleCodeNaf(null);
+            unset($data['libelle_code_naf']);
         }
         if (\array_key_exists('domaine_activite', $data) && null !== $data['domaine_activite']) {
             $object->setDomaineActivite($data['domaine_activite']);
             unset($data['domaine_activite']);
         } elseif (\array_key_exists('domaine_activite', $data) && null === $data['domaine_activite']) {
             $object->setDomaineActivite(null);
+            unset($data['domaine_activite']);
         }
         if (\array_key_exists('conventions_collectives', $data) && null !== $data['conventions_collectives']) {
             $values = [];
@@ -150,120 +163,140 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
             unset($data['conventions_collectives']);
         } elseif (\array_key_exists('conventions_collectives', $data) && null === $data['conventions_collectives']) {
             $object->setConventionsCollectives(null);
+            unset($data['conventions_collectives']);
         }
         if (\array_key_exists('date_creation', $data) && null !== $data['date_creation']) {
             $object->setDateCreation($data['date_creation']);
             unset($data['date_creation']);
         } elseif (\array_key_exists('date_creation', $data) && null === $data['date_creation']) {
             $object->setDateCreation(null);
+            unset($data['date_creation']);
         }
         if (\array_key_exists('date_creation_formate', $data) && null !== $data['date_creation_formate']) {
             $object->setDateCreationFormate($data['date_creation_formate']);
             unset($data['date_creation_formate']);
         } elseif (\array_key_exists('date_creation_formate', $data) && null === $data['date_creation_formate']) {
             $object->setDateCreationFormate(null);
+            unset($data['date_creation_formate']);
         }
         if (\array_key_exists('entreprise_cessee', $data) && null !== $data['entreprise_cessee']) {
             $object->setEntrepriseCessee($data['entreprise_cessee']);
             unset($data['entreprise_cessee']);
         } elseif (\array_key_exists('entreprise_cessee', $data) && null === $data['entreprise_cessee']) {
             $object->setEntrepriseCessee(null);
+            unset($data['entreprise_cessee']);
         }
         if (\array_key_exists('date_cessation', $data) && null !== $data['date_cessation']) {
             $object->setDateCessation($data['date_cessation']);
             unset($data['date_cessation']);
         } elseif (\array_key_exists('date_cessation', $data) && null === $data['date_cessation']) {
             $object->setDateCessation(null);
+            unset($data['date_cessation']);
         }
         if (\array_key_exists('entreprise_employeuse', $data) && null !== $data['entreprise_employeuse']) {
             $object->setEntrepriseEmployeuse($data['entreprise_employeuse']);
             unset($data['entreprise_employeuse']);
         } elseif (\array_key_exists('entreprise_employeuse', $data) && null === $data['entreprise_employeuse']) {
             $object->setEntrepriseEmployeuse(null);
+            unset($data['entreprise_employeuse']);
         }
         if (\array_key_exists('societe_a_mission', $data) && null !== $data['societe_a_mission']) {
             $object->setSocieteAMission($data['societe_a_mission']);
             unset($data['societe_a_mission']);
         } elseif (\array_key_exists('societe_a_mission', $data) && null === $data['societe_a_mission']) {
             $object->setSocieteAMission(null);
+            unset($data['societe_a_mission']);
         }
         if (\array_key_exists('categorie_juridique', $data) && null !== $data['categorie_juridique']) {
             $object->setCategorieJuridique($data['categorie_juridique']);
             unset($data['categorie_juridique']);
         } elseif (\array_key_exists('categorie_juridique', $data) && null === $data['categorie_juridique']) {
             $object->setCategorieJuridique(null);
+            unset($data['categorie_juridique']);
         }
         if (\array_key_exists('forme_juridique', $data) && null !== $data['forme_juridique']) {
             $object->setFormeJuridique($data['forme_juridique']);
             unset($data['forme_juridique']);
         } elseif (\array_key_exists('forme_juridique', $data) && null === $data['forme_juridique']) {
             $object->setFormeJuridique(null);
+            unset($data['forme_juridique']);
         }
         if (\array_key_exists('micro_entreprise', $data) && null !== $data['micro_entreprise']) {
             $object->setMicroEntreprise($data['micro_entreprise']);
             unset($data['micro_entreprise']);
         } elseif (\array_key_exists('micro_entreprise', $data) && null === $data['micro_entreprise']) {
             $object->setMicroEntreprise(null);
+            unset($data['micro_entreprise']);
         }
         if (\array_key_exists('forme_exercice', $data) && null !== $data['forme_exercice']) {
             $object->setFormeExercice($data['forme_exercice']);
             unset($data['forme_exercice']);
         } elseif (\array_key_exists('forme_exercice', $data) && null === $data['forme_exercice']) {
             $object->setFormeExercice(null);
+            unset($data['forme_exercice']);
         }
         if (\array_key_exists('effectif', $data) && null !== $data['effectif']) {
             $object->setEffectif($data['effectif']);
             unset($data['effectif']);
         } elseif (\array_key_exists('effectif', $data) && null === $data['effectif']) {
             $object->setEffectif(null);
+            unset($data['effectif']);
         }
         if (\array_key_exists('effectif_min', $data) && null !== $data['effectif_min']) {
             $object->setEffectifMin($data['effectif_min']);
             unset($data['effectif_min']);
         } elseif (\array_key_exists('effectif_min', $data) && null === $data['effectif_min']) {
             $object->setEffectifMin(null);
+            unset($data['effectif_min']);
         }
         if (\array_key_exists('effectif_max', $data) && null !== $data['effectif_max']) {
             $object->setEffectifMax($data['effectif_max']);
             unset($data['effectif_max']);
         } elseif (\array_key_exists('effectif_max', $data) && null === $data['effectif_max']) {
             $object->setEffectifMax(null);
+            unset($data['effectif_max']);
         }
         if (\array_key_exists('tranche_effectif', $data) && null !== $data['tranche_effectif']) {
             $object->setTrancheEffectif($data['tranche_effectif']);
             unset($data['tranche_effectif']);
         } elseif (\array_key_exists('tranche_effectif', $data) && null === $data['tranche_effectif']) {
             $object->setTrancheEffectif(null);
+            unset($data['tranche_effectif']);
         }
         if (\array_key_exists('annee_effectif', $data) && null !== $data['annee_effectif']) {
             $object->setAnneeEffectif($data['annee_effectif']);
             unset($data['annee_effectif']);
         } elseif (\array_key_exists('annee_effectif', $data) && null === $data['annee_effectif']) {
             $object->setAnneeEffectif(null);
+            unset($data['annee_effectif']);
         }
         if (\array_key_exists('capital', $data) && null !== $data['capital']) {
             $object->setCapital($data['capital']);
             unset($data['capital']);
         } elseif (\array_key_exists('capital', $data) && null === $data['capital']) {
             $object->setCapital(null);
+            unset($data['capital']);
         }
         if (\array_key_exists('statut_rcs', $data) && null !== $data['statut_rcs']) {
             $object->setStatutRcs($data['statut_rcs']);
             unset($data['statut_rcs']);
         } elseif (\array_key_exists('statut_rcs', $data) && null === $data['statut_rcs']) {
             $object->setStatutRcs(null);
+            unset($data['statut_rcs']);
         }
         if (\array_key_exists('siege', $data) && null !== $data['siege']) {
             $object->setSiege($this->denormalizer->denormalize($data['siege'], EtablissementRecherche::class, 'json', $context));
             unset($data['siege']);
         } elseif (\array_key_exists('siege', $data) && null === $data['siege']) {
             $object->setSiege(null);
+            unset($data['siege']);
         }
         if (\array_key_exists('statut_consolide', $data) && null !== $data['statut_consolide']) {
             $object->setStatutConsolide($data['statut_consolide']);
             unset($data['statut_consolide']);
         } elseif (\array_key_exists('statut_consolide', $data) && null === $data['statut_consolide']) {
             $object->setStatutConsolide(null);
+            unset($data['statut_consolide']);
         }
         if (\array_key_exists('villes', $data) && null !== $data['villes']) {
             $values_1 = [];
@@ -274,30 +307,35 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
             unset($data['villes']);
         } elseif (\array_key_exists('villes', $data) && null === $data['villes']) {
             $object->setVilles(null);
+            unset($data['villes']);
         }
         if (\array_key_exists('chiffre_affaires', $data) && null !== $data['chiffre_affaires']) {
             $object->setChiffreAffaires($data['chiffre_affaires']);
             unset($data['chiffre_affaires']);
         } elseif (\array_key_exists('chiffre_affaires', $data) && null === $data['chiffre_affaires']) {
             $object->setChiffreAffaires(null);
+            unset($data['chiffre_affaires']);
         }
         if (\array_key_exists('resultat', $data) && null !== $data['resultat']) {
             $object->setResultat($data['resultat']);
             unset($data['resultat']);
         } elseif (\array_key_exists('resultat', $data) && null === $data['resultat']) {
             $object->setResultat(null);
+            unset($data['resultat']);
         }
         if (\array_key_exists('effectifs_finances', $data) && null !== $data['effectifs_finances']) {
             $object->setEffectifsFinances($data['effectifs_finances']);
             unset($data['effectifs_finances']);
         } elseif (\array_key_exists('effectifs_finances', $data) && null === $data['effectifs_finances']) {
             $object->setEffectifsFinances(null);
+            unset($data['effectifs_finances']);
         }
         if (\array_key_exists('annee_finances', $data) && null !== $data['annee_finances']) {
             $object->setAnneeFinances($data['annee_finances']);
             unset($data['annee_finances']);
         } elseif (\array_key_exists('annee_finances', $data) && null === $data['annee_finances']) {
             $object->setAnneeFinances(null);
+            unset($data['annee_finances']);
         }
         if (\array_key_exists('dirigeants', $data) && null !== $data['dirigeants']) {
             $values_2 = [];
@@ -308,6 +346,7 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
             unset($data['dirigeants']);
         } elseif (\array_key_exists('dirigeants', $data) && null === $data['dirigeants']) {
             $object->setDirigeants(null);
+            unset($data['dirigeants']);
         }
         if (\array_key_exists('beneficiaires', $data) && null !== $data['beneficiaires']) {
             $values_3 = [];
@@ -318,6 +357,7 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
             unset($data['beneficiaires']);
         } elseif (\array_key_exists('beneficiaires', $data) && null === $data['beneficiaires']) {
             $object->setBeneficiaires(null);
+            unset($data['beneficiaires']);
         }
         if (\array_key_exists('documents', $data) && null !== $data['documents']) {
             $values_4 = [];
@@ -328,52 +368,60 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
             unset($data['documents']);
         } elseif (\array_key_exists('documents', $data) && null === $data['documents']) {
             $object->setDocuments(null);
+            unset($data['documents']);
         }
         if (\array_key_exists('publications', $data) && null !== $data['publications']) {
             $values_5 = [];
             foreach ($data['publications'] as $value_5) {
-                $values_5[] = $this->denormalizer->denormalize($value_5, RechercheGetResponse200ResultatsItempublicationsItem::class, 'json', $context);
+                $values_5[] = $this->denormalizer->denormalize($value_5, RechercheGetResponse200ResultatsItemPublicationsItem::class, 'json', $context);
             }
             $object->setPublications($values_5);
             unset($data['publications']);
         } elseif (\array_key_exists('publications', $data) && null === $data['publications']) {
             $object->setPublications(null);
+            unset($data['publications']);
         }
         if (\array_key_exists('nb_dirigeants_total', $data) && null !== $data['nb_dirigeants_total']) {
             $object->setNbDirigeantsTotal($data['nb_dirigeants_total']);
             unset($data['nb_dirigeants_total']);
         } elseif (\array_key_exists('nb_dirigeants_total', $data) && null === $data['nb_dirigeants_total']) {
             $object->setNbDirigeantsTotal(null);
+            unset($data['nb_dirigeants_total']);
         }
         if (\array_key_exists('nb_beneficiaires_total', $data) && null !== $data['nb_beneficiaires_total']) {
             $object->setNbBeneficiairesTotal($data['nb_beneficiaires_total']);
             unset($data['nb_beneficiaires_total']);
         } elseif (\array_key_exists('nb_beneficiaires_total', $data) && null === $data['nb_beneficiaires_total']) {
             $object->setNbBeneficiairesTotal(null);
+            unset($data['nb_beneficiaires_total']);
         }
         if (\array_key_exists('nb_documents_avec_mentions', $data) && null !== $data['nb_documents_avec_mentions']) {
             $object->setNbDocumentsAvecMentions($data['nb_documents_avec_mentions']);
             unset($data['nb_documents_avec_mentions']);
         } elseif (\array_key_exists('nb_documents_avec_mentions', $data) && null === $data['nb_documents_avec_mentions']) {
             $object->setNbDocumentsAvecMentions(null);
+            unset($data['nb_documents_avec_mentions']);
         }
         if (\array_key_exists('nb_documents_total', $data) && null !== $data['nb_documents_total']) {
             $object->setNbDocumentsTotal($data['nb_documents_total']);
             unset($data['nb_documents_total']);
         } elseif (\array_key_exists('nb_documents_total', $data) && null === $data['nb_documents_total']) {
             $object->setNbDocumentsTotal(null);
+            unset($data['nb_documents_total']);
         }
         if (\array_key_exists('nb_publications_avec_mentions', $data) && null !== $data['nb_publications_avec_mentions']) {
             $object->setNbPublicationsAvecMentions($data['nb_publications_avec_mentions']);
             unset($data['nb_publications_avec_mentions']);
         } elseif (\array_key_exists('nb_publications_avec_mentions', $data) && null === $data['nb_publications_avec_mentions']) {
             $object->setNbPublicationsAvecMentions(null);
+            unset($data['nb_publications_avec_mentions']);
         }
         if (\array_key_exists('nb_publications_total', $data) && null !== $data['nb_publications_total']) {
             $object->setNbPublicationsTotal($data['nb_publications_total']);
             unset($data['nb_publications_total']);
         } elseif (\array_key_exists('nb_publications_total', $data) && null === $data['nb_publications_total']) {
             $object->setNbPublicationsTotal(null);
+            unset($data['nb_publications_total']);
         }
         foreach ($data as $key => $value_6) {
             if (preg_match('/.*/', (string) $key)) {
@@ -426,7 +474,7 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
         if ($data->isInitialized('conventionsCollectives') && null !== $data->getConventionsCollectives()) {
             $values = [];
             foreach ($data->getConventionsCollectives() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+                $values[] = null === $value ? null : new JsonObject($this->normalizer->normalize($value, 'json', $context));
             }
             $dataArray['conventions_collectives'] = $values;
         }
@@ -482,7 +530,7 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
             $dataArray['statut_rcs'] = $data->getStatutRcs();
         }
         if ($data->isInitialized('siege') && null !== $data->getSiege()) {
-            $dataArray['siege'] = $this->normalizer->normalize($data->getSiege(), 'json', $context);
+            $dataArray['siege'] = null === $data->getSiege() ? null : new JsonObject($this->normalizer->normalize($data->getSiege(), 'json', $context));
         }
         if ($data->isInitialized('statutConsolide') && null !== $data->getStatutConsolide()) {
             $dataArray['statut_consolide'] = $data->getStatutConsolide();
@@ -509,28 +557,28 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
         if ($data->isInitialized('dirigeants') && null !== $data->getDirigeants()) {
             $values_2 = [];
             foreach ($data->getDirigeants() as $value_2) {
-                $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
+                $values_2[] = null === $value_2 ? null : new JsonObject($this->normalizer->normalize($value_2, 'json', $context));
             }
             $dataArray['dirigeants'] = $values_2;
         }
         if ($data->isInitialized('beneficiaires') && null !== $data->getBeneficiaires()) {
             $values_3 = [];
             foreach ($data->getBeneficiaires() as $value_3) {
-                $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);
+                $values_3[] = null === $value_3 ? null : new JsonObject($this->normalizer->normalize($value_3, 'json', $context));
             }
             $dataArray['beneficiaires'] = $values_3;
         }
         if ($data->isInitialized('documents') && null !== $data->getDocuments()) {
             $values_4 = [];
             foreach ($data->getDocuments() as $value_4) {
-                $values_4[] = $this->normalizer->normalize($value_4, 'json', $context);
+                $values_4[] = null === $value_4 ? null : new JsonObject($this->normalizer->normalize($value_4, 'json', $context));
             }
             $dataArray['documents'] = $values_4;
         }
         if ($data->isInitialized('publications') && null !== $data->getPublications()) {
             $values_5 = [];
             foreach ($data->getPublications() as $value_5) {
-                $values_5[] = $this->normalizer->normalize($value_5, 'json', $context);
+                $values_5[] = null === $value_5 ? null : new JsonObject($this->normalizer->normalize($value_5, 'json', $context));
             }
             $dataArray['publications'] = $values_5;
         }
@@ -552,7 +600,7 @@ class RechercheGetResponse200ResultatsItemNormalizer implements DenormalizerInte
         if ($data->isInitialized('nbPublicationsTotal') && null !== $data->getNbPublicationsTotal()) {
             $dataArray['nb_publications_total'] = $data->getNbPublicationsTotal();
         }
-        foreach ($data as $key => $value_6) {
+        foreach ($data->additionalPropertyEntries() as $key => $value_6) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value_6;
             }

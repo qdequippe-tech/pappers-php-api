@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class NotificationDirigeantEntreprisesItem extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class NotificationDirigeantEntreprisesItem implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -141,5 +145,10 @@ class NotificationDirigeantEntreprisesItem extends \ArrayObject
         $this->nouvelleAnnonceProcedureCollectivePubliee = $nouvelleAnnonceProcedureCollectivePubliee;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['siren' => ['siren', 'getSiren', 'setSiren'], 'nouveauMandat' => ['nouveau_mandat', 'getNouveauMandat', 'setNouveauMandat'], 'mandatSupprime' => ['mandat_supprime', 'getMandatSupprime', 'setMandatSupprime'], 'qualiteDirigeant' => ['qualite_dirigeant', 'getQualiteDirigeant', 'setQualiteDirigeant'], 'nouvelleAnnonceProcedureCollectivePubliee' => ['nouvelle_annonce_procedure_collective_publiee', 'getNouvelleAnnonceProcedureCollectivePubliee', 'setNouvelleAnnonceProcedureCollectivePubliee']];
     }
 }

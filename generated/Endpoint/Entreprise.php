@@ -29,6 +29,12 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * > Ce statut est signalé par le champ `diffusable=false`.
      * >
      * > Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
+     * >
+     * > D'autre part, certaines rares entreprises ne sont pas connues par l'INSEE.
+     * >
+     * > En utilisant le paramètre `autoriser_absence_insee=true`, la requête retournera également ces entreprises.
+     * >
+     * > Les champs suivants peuvent alors devenir nullable : `categorie_juridique` ; `siege`.
      *
      * @param array{
      *    "siren"?: string, //SIREN de l'entreprise
@@ -37,6 +43,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
      *    "validite_tva_intracommunautaire"?: bool, //Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      *    "publications_bodacc_brutes"?: bool, //Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
      *    "beneficiaires_effectifs_complets"?: bool, //Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
+     *    "autoriser_absence_insee"?: bool, //Si vrai, la requête retournera également les entreprises qui ne sont pas connues par l'INSEE (cas rares). Sans ce paramètre, ces entreprises retournent une erreur 404. Lorsque ce paramètre est à vrai, les champs `categorie_juridique` et `siege` peuvent être nuls.
      *    "champs_supplementaires"?: string, //Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :
@@ -56,6 +63,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `code_departement` : gratuit
      * - `departement` : gratuit
      * - `nomenclature_code_naf` : gratuit
+     * - `lien_pappers` : gratuit
      * - `labels` : gratuit
      * - `labels:orias` : 0.5 crédit supplémentaire
      * - `labels:cci` : 0.5 crédit supplémentaire
@@ -79,6 +87,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
      * - `informations_boursieres`: 5 crédits supplémentaires si disponible
      * - `informations_boursieres:documents`: 10 crédits supplémentaires si disponible (donc un total de 15 crédits supplémentaires car ce champ inclut également le champ `informations_boursieres`)
      * - `finances_estimations` : 5 crédits supplémentaires si disponible
+     * - `actif_net_inferieur_moitie_capital`: 1 crédit supplémentaire
      * } $queryParameters
      */
     public function __construct(array $queryParameters = [])
@@ -109,7 +118,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
     protected function getQueryOptionsResolver(): OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(['siren', 'siret', 'format_publications_bodacc', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes', 'beneficiaires_effectifs_complets', 'champs_supplementaires']);
+        $optionsResolver->setDefined(['siren', 'siret', 'format_publications_bodacc', 'validite_tva_intracommunautaire', 'publications_bodacc_brutes', 'beneficiaires_effectifs_complets', 'autoriser_absence_insee', 'champs_supplementaires']);
         $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('siren', ['string']);
@@ -118,6 +127,7 @@ class Entreprise extends BaseEndpoint implements Endpoint
         $optionsResolver->addAllowedTypes('validite_tva_intracommunautaire', ['bool']);
         $optionsResolver->addAllowedTypes('publications_bodacc_brutes', ['bool']);
         $optionsResolver->addAllowedTypes('beneficiaires_effectifs_complets', ['bool']);
+        $optionsResolver->addAllowedTypes('autoriser_absence_insee', ['bool']);
         $optionsResolver->addAllowedTypes('champs_supplementaires', ['string']);
 
         return $optionsResolver;
@@ -134,10 +144,10 @@ class Entreprise extends BaseEndpoint implements Endpoint
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();
-        if ((null === $contentType) === false && (200 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
+        if ((null === $contentType) === false && (200 === $status && false !== stripos(strtolower($contentType), 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\EntrepriseFiche', 'json');
         }
-        if ((null === $contentType) === false && (206 === $status && false !== mb_strpos(strtolower($contentType), 'application/json'))) {
+        if ((null === $contentType) === false && (206 === $status && false !== stripos(strtolower($contentType), 'application/json'))) {
             return $serializer->deserialize($body, 'Qdequippe\Pappers\Api\Model\EntrepriseFiche', 'json');
         }
         if (400 === $status) {

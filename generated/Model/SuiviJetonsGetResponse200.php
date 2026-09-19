@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class SuiviJetonsGetResponse200 extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class SuiviJetonsGetResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -87,5 +91,10 @@ class SuiviJetonsGetResponse200 extends \ArrayObject
         $this->jetonsPayAsYouGoRestants = $jetonsPayAsYouGoRestants;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['jetonsAbonnement' => ['jetons_abonnement', 'getJetonsAbonnement', 'setJetonsAbonnement'], 'jetonsAbonnementUtilises' => ['jetons_abonnement_utilises', 'getJetonsAbonnementUtilises', 'setJetonsAbonnementUtilises'], 'jetonsPayAsYouGoRestants' => ['jetons_pay_as_you_go_restants', 'getJetonsPayAsYouGoRestants', 'setJetonsPayAsYouGoRestants']];
     }
 }

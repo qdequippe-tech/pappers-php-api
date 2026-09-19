@@ -32,8 +32,108 @@ use Qdequippe\Pappers\Api\Endpoint\SurveillanceDirigeant;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceEntreprise;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceListeInformations;
 use Qdequippe\Pappers\Api\Endpoint\SurveillanceNotificationsDelete;
+use Qdequippe\Pappers\Api\Exception\AssociationBadRequestException;
+use Qdequippe\Pappers\Api\Exception\AssociationNotFoundException;
+use Qdequippe\Pappers\Api\Exception\AssociationServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\AssociationUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\CartographieBadRequestException;
+use Qdequippe\Pappers\Api\Exception\CartographieNotFoundException;
+use Qdequippe\Pappers\Api\Exception\CartographieUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsBadRequestException;
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\ComptesAnnuelsUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\ConformiteBadRequestException;
+use Qdequippe\Pappers\Api\Exception\ConformiteServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\ConformiteUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentAvisSituationInseeUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsForbiddenException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentBeneficiairesEffectifsUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitInpiUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentExtraitPappersUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringFinancierBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringFinancierNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringFinancierServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringFinancierUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringNonFinancierBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringNonFinancierNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringNonFinancierServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentScoringNonFinancierUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentStatusBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentStatusNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentStatusServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentStatusUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementBadRequestException;
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementNotFoundException;
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\DocumentTelechargementUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\EntrepriseBadRequestException;
+use Qdequippe\Pappers\Api\Exception\EntrepriseNotFoundException;
+use Qdequippe\Pappers\Api\Exception\EntrepriseUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesNotFoundException;
+use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\RechercheBeneficiairesUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\RechercheDirigeantsUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\RechercheDocumentsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\RechercheDocumentsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\RechercheDocumentsUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\RechercheNotFoundException;
+use Qdequippe\Pappers\Api\Exception\RecherchePublicationsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\RecherchePublicationsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\RecherchePublicationsUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\RechercheServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\RechercheUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\SuggestionsBadRequestException;
+use Qdequippe\Pappers\Api\Exception\SuiviJetonsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SuiviJetonsUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantBadRequestException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantForbiddenException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantNotFoundException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceDirigeantUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseBadRequestException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseForbiddenException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseNotFoundException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceEntrepriseUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsBadRequestException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsNotFoundException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceListeInformationsUnauthorizedException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteBadRequestException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteNotFoundException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteServiceUnavailableException;
+use Qdequippe\Pappers\Api\Exception\SurveillanceNotificationsDeleteUnauthorizedException;
+use Qdequippe\Pappers\Api\Model\ConformitePersonnePhysiqueGetResponse200;
+use Qdequippe\Pappers\Api\Model\EntrepriseFiche;
+use Qdequippe\Pappers\Api\Model\ListeDeleteResponse200;
 use Qdequippe\Pappers\Api\Model\ListeInformationsPostBody;
+use Qdequippe\Pappers\Api\Model\ListePostBodyItem;
+use Qdequippe\Pappers\Api\Model\ListePostResponse200;
+use Qdequippe\Pappers\Api\Model\ListePostResponse201;
+use Qdequippe\Pappers\Api\Model\RechercheBeneficiairesGetResponse200;
+use Qdequippe\Pappers\Api\Model\RechercheDirigeantsGetResponse200;
+use Qdequippe\Pappers\Api\Model\RechercheDocumentsGetResponse200;
+use Qdequippe\Pappers\Api\Model\RechercheGetResponse200;
+use Qdequippe\Pappers\Api\Model\RecherchePublicationsGetResponse200;
+use Qdequippe\Pappers\Api\Model\SuggestionsGetResponse200;
+use Qdequippe\Pappers\Api\Model\SuiviJetonsGetResponse200;
 use Qdequippe\Pappers\Api\Normalizer\JaneObjectNormalizer;
+use Qdequippe\Pappers\Api\Runtime\Client\FormEncoder;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -54,6 +154,12 @@ class Client extends Runtime\Client\Client
      * > Ce statut est signalé par le champ `diffusable=false`.
      * >
      * > Les champs suivants peuvent alors devenir nullable : `nom_entreprise` ; `denomination` ; `nom` ; `prenom` ; `sexe` ; `nom_usage` ; `nom_patronymique` ; `code_postal` ; `numero_voie` ; `indice_repetition` ; `type_voie` ; `libelle_voie` ; `complement_adresse` ; `adresse_ligne_1` ; `adresse_ligne_2`.
+     * >
+     * > D'autre part, certaines rares entreprises ne sont pas connues par l'INSEE.
+     * >
+     * > En utilisant le paramètre `autoriser_absence_insee=true`, la requête retournera également ces entreprises.
+     * >
+     * > Les champs suivants peuvent alors devenir nullable : `categorie_juridique` ; `siege`.
      *
      * @param array{
      *    "siren"?: string, //SIREN de l'entreprise
@@ -62,6 +168,7 @@ class Client extends Runtime\Client\Client
      *    "validite_tva_intracommunautaire"?: bool, //Si vrai, le champ validite_tva_intracommunautaire du retour indiquera si le numéro de tva est valide auprès de la Commission européenne. Valeur par défaut : `false`.
      *    "publications_bodacc_brutes"?: bool, //Pappers traite les publications BODACC afin de supprimer les publications périmée. Si vrai, le retour inclura les publications bodacc sans traitement. Valeur par défaut : `false`.
      *    "beneficiaires_effectifs_complets"?: bool, //Si vrai, la requête se lancera avec un accès complet au registre des bénéficiaires effectifs. Nécessite une habilitation.
+     *    "autoriser_absence_insee"?: bool, //Si vrai, la requête retournera également les entreprises qui ne sont pas connues par l'INSEE (cas rares). Sans ce paramètre, ces entreprises retournent une erreur 404. Lorsque ce paramètre est à vrai, les champs `categorie_juridique` et `siege` peuvent être nuls.
      *    "champs_supplementaires"?: string, //Liste des champs supplémentaires à inclure dans le retour. Certains champs peuvent entraîner une consommation de crédits supplémentaires.
      *
      * Champs supplémentaires disponibles :
@@ -81,6 +188,7 @@ class Client extends Runtime\Client\Client
      * - `code_departement` : gratuit
      * - `departement` : gratuit
      * - `nomenclature_code_naf` : gratuit
+     * - `lien_pappers` : gratuit
      * - `labels` : gratuit
      * - `labels:orias` : 0.5 crédit supplémentaire
      * - `labels:cci` : 0.5 crédit supplémentaire
@@ -104,14 +212,15 @@ class Client extends Runtime\Client\Client
      * - `informations_boursieres`: 5 crédits supplémentaires si disponible
      * - `informations_boursieres:documents`: 10 crédits supplémentaires si disponible (donc un total de 15 crédits supplémentaires car ce champ inclut également le champ `informations_boursieres`)
      * - `finances_estimations` : 5 crédits supplémentaires si disponible
+     * - `actif_net_inferieur_moitie_capital`: 1 crédit supplémentaire
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\EntrepriseFiche|null : ResponseInterface)
+     * @return ($fetch is 'object' ? EntrepriseFiche|null : ResponseInterface)
      *
-     * @throws Exception\EntrepriseBadRequestException
-     * @throws Exception\EntrepriseUnauthorizedException
-     * @throws Exception\EntrepriseNotFoundException
+     * @throws EntrepriseBadRequestException
+     * @throws EntrepriseUnauthorizedException
+     * @throws EntrepriseNotFoundException
      */
     public function entreprise(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -130,10 +239,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? Model\Association|null : ResponseInterface)
      *
-     * @throws Exception\AssociationBadRequestException
-     * @throws Exception\AssociationUnauthorizedException
-     * @throws Exception\AssociationNotFoundException
-     * @throws Exception\AssociationServiceUnavailableException
+     * @throws AssociationBadRequestException
+     * @throws AssociationUnauthorizedException
+     * @throws AssociationNotFoundException
+     * @throws AssociationServiceUnavailableException
      */
     public function association(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -162,6 +271,9 @@ class Client extends Runtime\Client\Client
      *    "departement"?: string, //Numéro de département de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs départements en les séparant par des virgules.
      *    "region"?: string, //Code de la région de l'un des établissements de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/4316069#titre-bloc-18). Il est possible d'indiquer plusieurs codes régions en les séparant par des virgules.
      *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
+     *    "latitude"?: int, //Latitude du point central utilisé pour le filtrage géographique.
+     *    "longitude"?: int, //Longitude du point central utilisé pour le filtrage géographique.
+     *    "distance"?: int, //Distance maximale en kilomètres autour du point latitude/longitude.
      *    "convention_collective"?: string, //Convention collective de l'entreprise.
      *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
      *
@@ -189,10 +301,42 @@ class Client extends Runtime\Client\Client
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
      *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
-     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
      *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
      *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
@@ -217,11 +361,11 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\RechercheGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? RechercheGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\RechercheUnauthorizedException
-     * @throws Exception\RechercheNotFoundException
-     * @throws Exception\RechercheServiceUnavailableException
+     * @throws RechercheUnauthorizedException
+     * @throws RechercheNotFoundException
+     * @throws RechercheServiceUnavailableException
      */
     public function recherche(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -251,6 +395,7 @@ class Client extends Runtime\Client\Client
      *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
      *    "convention_collective"?: string, //Convention collective de l'entreprise.
      *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     *
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
      *    "statut_rcs"?: string, //Statut au RCS
@@ -262,18 +407,56 @@ class Client extends Runtime\Client\Client
      *    "capital_min"?: string, //Capital minimum de l'entreprise.
      *    "capital_max"?: string, //Capital maximum de l'entreprise.
      *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
      *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
-     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
      *    "age_beneficiaire_min"?: int, //Âge minimal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
      *    "age_beneficiaire_max"?: int, //Âge maximal du bénéficiaire effectif (ou de l'un des bénéficiaires effectifs de l'entreprise pour une recherche d'entreprises).
@@ -289,11 +472,11 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\RechercheDirigeantsGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? RechercheDirigeantsGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\RechercheDirigeantsUnauthorizedException
-     * @throws Exception\RechercheDirigeantsNotFoundException
-     * @throws Exception\RechercheDirigeantsServiceUnavailableException
+     * @throws RechercheDirigeantsUnauthorizedException
+     * @throws RechercheDirigeantsNotFoundException
+     * @throws RechercheDirigeantsServiceUnavailableException
      */
     public function rechercheDirigeants(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -319,6 +502,7 @@ class Client extends Runtime\Client\Client
      *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
      *    "convention_collective"?: string, //Convention collective de l'entreprise.
      *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     *
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
      *    "statut_rcs"?: string, //Statut au RCS
@@ -330,18 +514,56 @@ class Client extends Runtime\Client\Client
      *    "capital_min"?: string, //Capital minimum de l'entreprise.
      *    "capital_max"?: string, //Capital maximum de l'entreprise.
      *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
      *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
-     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
      *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
      *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
@@ -361,11 +583,11 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\RechercheBeneficiairesGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? RechercheBeneficiairesGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\RechercheBeneficiairesUnauthorizedException
-     * @throws Exception\RechercheBeneficiairesNotFoundException
-     * @throws Exception\RechercheBeneficiairesServiceUnavailableException
+     * @throws RechercheBeneficiairesUnauthorizedException
+     * @throws RechercheBeneficiairesNotFoundException
+     * @throws RechercheBeneficiairesServiceUnavailableException
      */
     public function rechercheBeneficiaires(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -388,6 +610,7 @@ class Client extends Runtime\Client\Client
      *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
      *    "convention_collective"?: string, //Convention collective de l'entreprise.
      *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     *
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
      *    "statut_rcs"?: string, //Statut au RCS
@@ -399,18 +622,56 @@ class Client extends Runtime\Client\Client
      *    "capital_min"?: string, //Capital minimum de l'entreprise.
      *    "capital_max"?: string, //Capital maximum de l'entreprise.
      *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
      *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
-     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
      *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
      *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
@@ -433,11 +694,11 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\RechercheDocumentsGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? RechercheDocumentsGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\RechercheDocumentsUnauthorizedException
-     * @throws Exception\RechercheDocumentsNotFoundException
-     * @throws Exception\RechercheDocumentsServiceUnavailableException
+     * @throws RechercheDocumentsUnauthorizedException
+     * @throws RechercheDocumentsNotFoundException
+     * @throws RechercheDocumentsServiceUnavailableException
      */
     public function rechercheDocuments(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -458,6 +719,7 @@ class Client extends Runtime\Client\Client
      *    "code_postal"?: string, //Code postal de l'un des établissements de l'entreprise. Il est possible d'indiquer plusieurs codes postaux en les séparant par des virgules.
      *    "convention_collective"?: string, //Convention collective de l'entreprise.
      *    "categorie_juridique"?: string, //Catégorie juridique de l'entreprise, selon la [nomenclature Insee](https://www.insee.fr/fr/information/2028129).
+     *
      **Note** : Le code correspond à celui de l'INSEE, à l'exception des SASU qui auront comme code 5720 et les EURL qui auront comme code 5498.
      *    "entreprise_cessee"?: bool, //Activité de l'entreprise cessée ou non.
      *    "statut_rcs"?: string, //Statut au RCS
@@ -469,18 +731,56 @@ class Client extends Runtime\Client\Client
      *    "capital_min"?: string, //Capital minimum de l'entreprise.
      *    "capital_max"?: string, //Capital maximum de l'entreprise.
      *    "chiffre_affaires_min"?: string, //Chiffre d'affaires minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "chiffre_affaires_max"?: string, //Chiffre d'affaires maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_min"?: string, //Résultat minimum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "resultat_max"?: string, //Résultat maximum de l'entreprise.
+     *
      **Note** : Filtrer sur ce critère restreint énormément les entreprises retournées car cela élimine d'office toutes les entreprises dont les comptes ne sont pas publiés.
      *    "date_creation_min"?: string, //Date de création minimale de l'entreprise, au format JJ-MM-AAAA.
      *    "date_creation_max"?: string, //Date de création maximale de l'entreprise, au format JJ-MM-AAAA.
-     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_min"?: string, //Tranche d'effectifs minimale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
-     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la [nomenclature Sirene](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm#73).
+     *    "tranche_effectif_max"?: string, //Tranche d'effectifs maximale de l'entreprise, selon la nomenclature Sirene :
+     * - NN : Unité non employeuse (pas de salarié au cours de l'année de référence et pas d'effectif au 31/12)
+     * - 00 : 0 salarié (n'ayant pas d'effectif au 31/12 mais ayant employé des salariés au cours de l'année de référence)
+     * - 01 : 1 ou 2 salariés
+     * - 02 : 3 à 5 salariés
+     * - 03 : 6 à 9 salariés
+     * - 11 : 10 à 19 salariés
+     * - 12 : 20 à 49 salariés
+     * - 21 : 50 à 99 salariés
+     * - 22 : 100 à 199 salariés
+     * - 31 : 200 à 249 salariés
+     * - 32 : 250 à 499 salariés
+     * - 41 : 500 à 999 salariés
+     * - 42 : 1 000 à 1 999 salariés
+     * - 51 : 2 000 à 4 999 salariés
+     * - 52 : 5 000 à 9 999 salariés
+     * - 53 : 10 000 salariés et plus
+     *
      **Note** : 00 ou NN donneront les mêmes résultats et veulent dire non employeur
      *    "type_dirigeant"?: string, //Type du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
      *    "qualite_dirigeant"?: string, //Qualité du dirigeant (ou de l'un des dirigeants de l'entreprise pour une recherche d'entreprises).
@@ -505,11 +805,11 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\RecherchePublicationsGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? RecherchePublicationsGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\RecherchePublicationsUnauthorizedException
-     * @throws Exception\RecherchePublicationsNotFoundException
-     * @throws Exception\RecherchePublicationsServiceUnavailableException
+     * @throws RecherchePublicationsUnauthorizedException
+     * @throws RecherchePublicationsNotFoundException
+     * @throws RecherchePublicationsServiceUnavailableException
      */
     public function recherchePublications(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -528,9 +828,9 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\SuggestionsGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? SuggestionsGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\SuggestionsBadRequestException
+     * @throws SuggestionsBadRequestException
      */
     public function suggestions(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -548,10 +848,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\ComptesAnnuelsBadRequestException
-     * @throws Exception\ComptesAnnuelsUnauthorizedException
-     * @throws Exception\ComptesAnnuelsNotFoundException
-     * @throws Exception\ComptesAnnuelsServiceUnavailableException
+     * @throws ComptesAnnuelsBadRequestException
+     * @throws ComptesAnnuelsUnauthorizedException
+     * @throws ComptesAnnuelsNotFoundException
+     * @throws ComptesAnnuelsServiceUnavailableException
      */
     public function comptesAnnuels(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -578,9 +878,9 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? Model\Cartographie|null : ResponseInterface)
      *
-     * @throws Exception\CartographieBadRequestException
-     * @throws Exception\CartographieUnauthorizedException
-     * @throws Exception\CartographieNotFoundException
+     * @throws CartographieBadRequestException
+     * @throws CartographieUnauthorizedException
+     * @throws CartographieNotFoundException
      */
     public function cartographie(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -597,10 +897,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentTelechargementBadRequestException
-     * @throws Exception\DocumentTelechargementUnauthorizedException
-     * @throws Exception\DocumentTelechargementNotFoundException
-     * @throws Exception\DocumentTelechargementServiceUnavailableException
+     * @throws DocumentTelechargementBadRequestException
+     * @throws DocumentTelechargementUnauthorizedException
+     * @throws DocumentTelechargementNotFoundException
+     * @throws DocumentTelechargementServiceUnavailableException
      */
     public function documentTelechargement(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -618,10 +918,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentExtraitPappersBadRequestException
-     * @throws Exception\DocumentExtraitPappersUnauthorizedException
-     * @throws Exception\DocumentExtraitPappersNotFoundException
-     * @throws Exception\DocumentExtraitPappersServiceUnavailableException
+     * @throws DocumentExtraitPappersBadRequestException
+     * @throws DocumentExtraitPappersUnauthorizedException
+     * @throws DocumentExtraitPappersNotFoundException
+     * @throws DocumentExtraitPappersServiceUnavailableException
      */
     public function documentExtraitPappers(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -639,10 +939,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentExtraitInpiBadRequestException
-     * @throws Exception\DocumentExtraitInpiUnauthorizedException
-     * @throws Exception\DocumentExtraitInpiNotFoundException
-     * @throws Exception\DocumentExtraitInpiServiceUnavailableException
+     * @throws DocumentExtraitInpiBadRequestException
+     * @throws DocumentExtraitInpiUnauthorizedException
+     * @throws DocumentExtraitInpiNotFoundException
+     * @throws DocumentExtraitInpiServiceUnavailableException
      */
     public function documentExtraitInpi(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -660,10 +960,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentAvisSituationInseeBadRequestException
-     * @throws Exception\DocumentAvisSituationInseeUnauthorizedException
-     * @throws Exception\DocumentAvisSituationInseeNotFoundException
-     * @throws Exception\DocumentAvisSituationInseeServiceUnavailableException
+     * @throws DocumentAvisSituationInseeBadRequestException
+     * @throws DocumentAvisSituationInseeUnauthorizedException
+     * @throws DocumentAvisSituationInseeNotFoundException
+     * @throws DocumentAvisSituationInseeServiceUnavailableException
      */
     public function documentAvisSituationInsee(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -681,10 +981,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentStatusBadRequestException
-     * @throws Exception\DocumentStatusUnauthorizedException
-     * @throws Exception\DocumentStatusNotFoundException
-     * @throws Exception\DocumentStatusServiceUnavailableException
+     * @throws DocumentStatusBadRequestException
+     * @throws DocumentStatusUnauthorizedException
+     * @throws DocumentStatusNotFoundException
+     * @throws DocumentStatusServiceUnavailableException
      */
     public function documentStatus(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -705,11 +1005,11 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentBeneficiairesEffectifsBadRequestException
-     * @throws Exception\DocumentBeneficiairesEffectifsUnauthorizedException
-     * @throws Exception\DocumentBeneficiairesEffectifsForbiddenException
-     * @throws Exception\DocumentBeneficiairesEffectifsNotFoundException
-     * @throws Exception\DocumentBeneficiairesEffectifsServiceUnavailableException
+     * @throws DocumentBeneficiairesEffectifsBadRequestException
+     * @throws DocumentBeneficiairesEffectifsUnauthorizedException
+     * @throws DocumentBeneficiairesEffectifsForbiddenException
+     * @throws DocumentBeneficiairesEffectifsNotFoundException
+     * @throws DocumentBeneficiairesEffectifsServiceUnavailableException
      */
     public function documentBeneficiairesEffectifs(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -726,10 +1026,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentScoringFinancierBadRequestException
-     * @throws Exception\DocumentScoringFinancierUnauthorizedException
-     * @throws Exception\DocumentScoringFinancierNotFoundException
-     * @throws Exception\DocumentScoringFinancierServiceUnavailableException
+     * @throws DocumentScoringFinancierBadRequestException
+     * @throws DocumentScoringFinancierUnauthorizedException
+     * @throws DocumentScoringFinancierNotFoundException
+     * @throws DocumentScoringFinancierServiceUnavailableException
      */
     public function documentScoringFinancier(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -746,10 +1046,10 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\DocumentScoringNonFinancierBadRequestException
-     * @throws Exception\DocumentScoringNonFinancierUnauthorizedException
-     * @throws Exception\DocumentScoringNonFinancierNotFoundException
-     * @throws Exception\DocumentScoringNonFinancierServiceUnavailableException
+     * @throws DocumentScoringNonFinancierBadRequestException
+     * @throws DocumentScoringNonFinancierUnauthorizedException
+     * @throws DocumentScoringNonFinancierNotFoundException
+     * @throws DocumentScoringNonFinancierServiceUnavailableException
      */
     public function documentScoringNonFinancier(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -768,11 +1068,11 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\ConformitePersonnePhysiqueGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? ConformitePersonnePhysiqueGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\ConformiteBadRequestException
-     * @throws Exception\ConformiteUnauthorizedException
-     * @throws Exception\ConformiteServiceUnavailableException
+     * @throws ConformiteBadRequestException
+     * @throws ConformiteUnauthorizedException
+     * @throws ConformiteServiceUnavailableException
      */
     public function conformite(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -782,10 +1082,10 @@ class Client extends Runtime\Client\Client
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\SuiviJetonsGetResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? SuiviJetonsGetResponse200|null : ResponseInterface)
      *
-     * @throws Exception\SuiviJetonsUnauthorizedException
-     * @throws Exception\SuiviJetonsServiceUnavailableException
+     * @throws SuiviJetonsUnauthorizedException
+     * @throws SuiviJetonsServiceUnavailableException
      */
     public function suiviJetons(string $fetch = self::FETCH_OBJECT)
     {
@@ -795,19 +1095,19 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste.
      *
-     * @param Model\ListePostBodyItem[]|null $requestBody
+     * @param ListePostBodyItem[]|null $requestBody
      * @param array{
      *    "id_liste": string, //Identifiant unique de votre liste de surveillance d'entreprises
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\ListePostResponse200|Model\ListePostResponse201|null : ResponseInterface)
+     * @return ($fetch is 'object' ? ListePostResponse200|ListePostResponse201|null : ResponseInterface)
      *
-     * @throws Exception\SurveillanceEntrepriseBadRequestException
-     * @throws Exception\SurveillanceEntrepriseUnauthorizedException
-     * @throws Exception\SurveillanceEntrepriseForbiddenException
-     * @throws Exception\SurveillanceEntrepriseNotFoundException
-     * @throws Exception\SurveillanceEntrepriseServiceUnavailableException
+     * @throws SurveillanceEntrepriseBadRequestException
+     * @throws SurveillanceEntrepriseUnauthorizedException
+     * @throws SurveillanceEntrepriseForbiddenException
+     * @throws SurveillanceEntrepriseNotFoundException
+     * @throws SurveillanceEntrepriseServiceUnavailableException
      */
     public function surveillanceEntreprise(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -825,12 +1125,12 @@ class Client extends Runtime\Client\Client
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\ListeDeleteResponse200|null : ResponseInterface)
+     * @return ($fetch is 'object' ? ListeDeleteResponse200|null : ResponseInterface)
      *
-     * @throws Exception\SurveillanceNotificationsDeleteBadRequestException
-     * @throws Exception\SurveillanceNotificationsDeleteUnauthorizedException
-     * @throws Exception\SurveillanceNotificationsDeleteNotFoundException
-     * @throws Exception\SurveillanceNotificationsDeleteServiceUnavailableException
+     * @throws SurveillanceNotificationsDeleteBadRequestException
+     * @throws SurveillanceNotificationsDeleteUnauthorizedException
+     * @throws SurveillanceNotificationsDeleteNotFoundException
+     * @throws SurveillanceNotificationsDeleteServiceUnavailableException
      */
     public function surveillanceNotificationsDelete(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -840,19 +1140,19 @@ class Client extends Runtime\Client\Client
     /**
      * Vous devez fournir la clé d'utilisation de l'API ainsi que l'identifiant de votre liste. Les informations à renseigner sont différentes selon le type de personne à ajouter (morale ou physique).
      *
-     * @param Model\ListePostBodyItem[]|null $requestBody
+     * @param ListePostBodyItem[]|null $requestBody
      * @param array{
      *    "id_liste": string, //Identifiant unique de votre liste de surveillance de dirigeants
      * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
-     * @return ($fetch is 'object' ? Model\ListePostResponse200|Model\ListePostResponse201|null : ResponseInterface)
+     * @return ($fetch is 'object' ? ListePostResponse200|ListePostResponse201|null : ResponseInterface)
      *
-     * @throws Exception\SurveillanceDirigeantBadRequestException
-     * @throws Exception\SurveillanceDirigeantUnauthorizedException
-     * @throws Exception\SurveillanceDirigeantForbiddenException
-     * @throws Exception\SurveillanceDirigeantNotFoundException
-     * @throws Exception\SurveillanceDirigeantServiceUnavailableException
+     * @throws SurveillanceDirigeantBadRequestException
+     * @throws SurveillanceDirigeantUnauthorizedException
+     * @throws SurveillanceDirigeantForbiddenException
+     * @throws SurveillanceDirigeantNotFoundException
+     * @throws SurveillanceDirigeantServiceUnavailableException
      */
     public function surveillanceDirigeant(?array $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -869,36 +1169,38 @@ class Client extends Runtime\Client\Client
      *
      * @return ($fetch is 'object' ? null : ResponseInterface)
      *
-     * @throws Exception\SurveillanceListeInformationsBadRequestException
-     * @throws Exception\SurveillanceListeInformationsUnauthorizedException
-     * @throws Exception\SurveillanceListeInformationsNotFoundException
-     * @throws Exception\SurveillanceListeInformationsServiceUnavailableException
+     * @throws SurveillanceListeInformationsBadRequestException
+     * @throws SurveillanceListeInformationsUnauthorizedException
+     * @throws SurveillanceListeInformationsNotFoundException
+     * @throws SurveillanceListeInformationsServiceUnavailableException
      */
     public function surveillanceListeInformations(?ListeInformationsPostBody $requestBody = null, array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new SurveillanceListeInformations($requestBody, $queryParameters), $fetch);
     }
 
-    public static function create($httpClient = null, array $additionalPlugins = [], array $additionalNormalizers = [])
+    public static function create($httpClient = null, array $additionalPlugins = [], array $additionalNormalizers = [], bool $applyServerPlugins = true)
     {
+        $plugins = [];
         if (null === $httpClient) {
             $httpClient = Psr18ClientDiscovery::find();
-            $plugins = [];
+        }
+        if ($applyServerPlugins) {
             $uri = Psr17FactoryDiscovery::findUriFactory()->createUri('https://api.pappers.fr/v2');
             $plugins[] = new AddHostPlugin($uri);
             $plugins[] = new AddPathPlugin($uri);
-            if (\count($additionalPlugins) > 0) {
-                $plugins = array_merge($plugins, $additionalPlugins);
-            }
-            $httpClient = new PluginClient($httpClient, $plugins);
         }
+        if (\count($additionalPlugins) > 0) {
+            $plugins = array_merge($plugins, $additionalPlugins);
+        }
+        $httpClient = new PluginClient($httpClient, $plugins);
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
         $streamFactory = Psr17FactoryDiscovery::findStreamFactory();
         $normalizers = [new ArrayDenormalizer(), new JaneObjectNormalizer()];
         if (\count($additionalNormalizers) > 0) {
             $normalizers = array_merge($normalizers, $additionalNormalizers);
         }
-        $serializer = new Serializer($normalizers, [new JsonEncoder(new JsonEncode(), new JsonDecode(['json_decode_associative' => true]))]);
+        $serializer = new Serializer($normalizers, [new JsonEncoder(new JsonEncode(), new JsonDecode(['json_decode_associative' => true])), new FormEncoder()]);
 
         return new static($httpClient, $requestFactory, $serializer, $streamFactory);
     }

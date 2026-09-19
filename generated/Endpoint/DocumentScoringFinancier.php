@@ -66,7 +66,7 @@ class DocumentScoringFinancier extends BaseEndpoint implements Endpoint
      * @throws DocumentScoringFinancierNotFoundException
      * @throws DocumentScoringFinancierServiceUnavailableException
      */
-    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null): void
+    protected function transformResponseBody(ResponseInterface $response, SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
         $body = (string) $response->getBody();

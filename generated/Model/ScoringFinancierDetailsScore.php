@@ -2,8 +2,12 @@
 
 namespace Qdequippe\Pappers\Api\Model;
 
-class ScoringFinancierDetailsScore extends \ArrayObject
+use Qdequippe\Pappers\Api\Runtime\AdditionalAndPatternProperties;
+use Qdequippe\Pappers\Api\Runtime\AdditionalPropertiesInterface;
+
+class ScoringFinancierDetailsScore implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
      * @var array
      */
@@ -131,5 +135,10 @@ class ScoringFinancierDetailsScore extends \ArrayObject
         $this->scoreChargesFinancieresNettes = $scoreChargesFinancieresNettes;
 
         return $this;
+    }
+
+    public function definedProperties(): array
+    {
+        return ['scoreEbitCa' => ['score_ebit_ca', 'getScoreEbitCa', 'setScoreEbitCa'], 'scoreFondsDeRoulement' => ['score_fonds_de_roulement', 'getScoreFondsDeRoulement', 'setScoreFondsDeRoulement'], 'scoreTresorerieNette' => ['score_tresorerie_nette', 'getScoreTresorerieNette', 'setScoreTresorerieNette'], 'scoreDettesFiscalesVa' => ['score_dettes_fiscales_va', 'getScoreDettesFiscalesVa', 'setScoreDettesFiscalesVa'], 'scoreCashFlow' => ['score_cash_flow', 'getScoreCashFlow', 'setScoreCashFlow'], 'scoreDettesFiscalesCa' => ['score_dettes_fiscales_ca', 'getScoreDettesFiscalesCa', 'setScoreDettesFiscalesCa'], 'scoreChargesFinancieresNettes' => ['score_charges_financieres_nettes', 'getScoreChargesFinancieresNettes', 'setScoreChargesFinancieresNettes']];
     }
 }
